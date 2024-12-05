@@ -7,3 +7,11 @@ You can find the requirements doc [here](https://docs.google.com/document/d/1AsA
 
 ## Boilerplate
 This project was created using nextjs-flask.  Information about the boilerplate and basics of how to use it can be found in [BOILERPLATE.md](BOILERPLATE.md)
+
+## License
+
+### Python
+All python code in this project is licensed under the PSFL.  The license text can be found under api/LICENSE.txt.
+
+### Node
+
