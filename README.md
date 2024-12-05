@@ -11,7 +11,7 @@ This project was created using nextjs-flask.  Information about the boilerplate 
 ## License
 
 ### Python
-All python code in this project is licensed under the PSFL.  The license text can be found under api/LICENSE.txt.
+All python code in this project is licensed under the PSFL.  The license text can be found under [api/LICENSE.txt](api/LICENSE.txt).
 
 ### Node
-
+All node code in this project is licensed under the MIT license.  The licene text can be found under [app/LICENSE.txt](app/LICENSE.txt)
