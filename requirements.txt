@@ -1,4 +1,4 @@
 Flask==3.0.3
-click=8.1.7
+click==8.1.7
 sh==2.1.0
 PyYAML==6.0.2

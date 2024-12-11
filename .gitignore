@@ -35,5 +35,9 @@ yarn-error.log*
 next-env.d.ts
 __pycache__
 
+# python
+dist
+*.egg-info
+
 # vim
 .*.sw?
