@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+import os
+
+from openforge.db import PgDB
+from openforge.db.schema import get_schema_versions
+
+
+def execute():
+    db = PgDB(os.environ)
+    with db.pool.connection() as conn:
+        versions = get_schema_versions()
+        for schema in versions:
+            schema(conn).up()
+
+
+if __name__ == "__main__":
+    execute()
