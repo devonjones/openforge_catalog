@@ -41,3 +41,6 @@ dist
 
 # vim
 .*.sw?
+
+# postgres
+db-data
