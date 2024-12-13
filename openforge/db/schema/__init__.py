@@ -31,24 +31,21 @@ class SchemaBase(ABC):
     def down_impl(self, curs: cursor): ...
 
     def version_exists(self, curs: cursor) -> bool:
-        try:
-            query = sql.SQL(
-                "SELECT version FROM schema_versions WHERE version = %s"
-            ).format(sql.Literal(self.version))
-            curs.execute(query)
-            result = curs.fetchone()
-            if result is not None:
-                return True
-            else:
-                return False
-        except:
+        query = sql.SQL(
+            "SELECT version FROM schema_versions WHERE version = {version}"
+        ).format(version=sql.Literal(self.version))
+        curs.execute(query)
+        result = curs.fetchone()
+        if result is not None:
+            return True
+        else:
             return False
 
     def report_success(self, up: bool):
         if up:
-            print(f"Schema upgraded to version {self.ver}")
+            print(f"Schema upgraded to version {self.version}")
         else:
-            print(f"Schema downgraded from version {self.ver}")
+            print(f"Schema downgraded from version {self.version}")
 
     def insert_version(self, curs: cursor):
         query = sql.SQL(

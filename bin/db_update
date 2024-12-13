@@ -2,15 +2,28 @@
 import os
 
 from openforge.db import PgDB
-from openforge.db.schema import get_schema_versions
+from openforge.db.schema import get_schema_versions, SchemaBase
 
 
 def execute():
     db = PgDB(os.environ)
-    with db.pool.connection() as conn:
-        versions = get_schema_versions()
-        for schema in versions:
+    versions = get_schema_versions()
+    up(db, versions)
+
+
+def up(db: PgDB, versions: list[SchemaBase]):
+    for schema in versions:
+        with db.pool.connection() as conn:
             schema(conn).up()
+            conn.commit()
+        conn.close()
+
+
+def down(db: PgDB, versions: list[SchemaBase]):
+    for schema in reversed(versions):
+        with db.pool.connection() as conn:
+            schema(conn).down()
+        conn.close()
 
 
 if __name__ == "__main__":
