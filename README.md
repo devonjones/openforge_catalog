@@ -15,3 +15,10 @@ All python code in this project is licensed under the PSFL.  The license text ca
 
 ### Node
 All node code in this project is licensed under the MIT license.  The licene text can be found under [app/LICENSE.txt](app/LICENSE.txt)
+
+### Postgres
+To start the postgres container, run `docker compose up -d`.
+
+To connect to the postgres container, run `psql -U openforge -W openforge -h 127.0.0.1`.
+
+To run the db update script, run `bin/db_update`.
