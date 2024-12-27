@@ -60,36 +60,17 @@ AS ENUM ('model', 'blueprint')
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 blueprint_name TEXT NOT NULL
 blueprint_type blueprint_type NOT NULL
-created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-```
-
-### Blueprint Configuration
-
-```sql
-id UUID PRIMARY KEY DEFAULT gen_random_uuid()
-blueprint_id UUID NOT NULL REFERENCES blueprints(id)
-configuration_name TEXT NOT NULL
 config JSONB NOT NULL
-created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-```
-
-### File
-
-```sql
-id UUID PRIMARY KEY DEFAULT gen_random_uuid()
-blueprint_id UUID NOT NULL REFERENCES blueprints(id)
-file_size INT NOT NULL
-file_md5 TEXT NOT NULL
-file_name TEXT NOT NULL
-full_name TEXT NOT NULL
-file_changed_at TIMESTAMP NOT NULL
-file_modified_at TIMESTAMP NOT NULL
+file_size INT
+file_md5 TEXT
+file_name TEXT
+full_name TEXT
+file_changed_at TIMESTAMP
+file_modified_at TIMESTAMP
 storage_address TEXT
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-UNIQUE (file_md5)
+UNIQUE NULLS NOT DISTINCT (file_md5)
 ```
 
 ### Tag

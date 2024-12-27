@@ -8,8 +8,6 @@ class SchemaVersion2(SchemaBase):
     def up_impl(self, curs: cursor):
         self.create_blueprint_type(curs)
         self.create_blueprint(curs)
-        self.create_blueprint_configuration(curs)
-        self.create_file(curs)
         self.create_tag(curs)
         self.create_image(curs)
         self.create_blueprint_image(curs)
@@ -17,10 +15,8 @@ class SchemaVersion2(SchemaBase):
         self.create_blueprint_documentation(curs)
 
     def down_impl(self, curs: cursor):
-        self.drop_blueprint_configuration(curs)
         self.drop_blueprint_documentation(curs)
         self.drop_blueprint_image(curs)
-        self.drop_file(curs)
         self.drop_tag(curs)
         self.drop_image(curs)
         self.drop_documentation(curs)
@@ -49,8 +45,17 @@ CREATE TABLE blueprints (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   blueprint_name TEXT NOT NULL,
   blueprint_type blueprint_type NOT NULL,
+  config JSONB NOT NULL,
+  file_md5 TEXT,
+  file_size INT,
+  file_name TEXT,
+  full_name TEXT,
+  file_changed_at TIMESTAMP,
+  file_modified_at TIMESTAMP,
+  storage_address TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (file_md5)
 )
 """
         )
@@ -61,54 +66,6 @@ CREATE TABLE blueprints (
         query = sql.SQL("DROP TABLE blueprints")
         curs.execute(query)
         print("dropped blueprint")
-
-    def create_blueprint_configuration(self, curs: cursor):
-        query = sql.SQL(
-            """
-CREATE TABLE blueprint_configurations (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  blueprint_id UUID NOT NULL REFERENCES blueprints(id),
-  configuration_name TEXT NOT NULL,
-  config JSONB NOT NULL,
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
-"""
-        )
-        curs.execute(query)
-        print("created blueprint_configuration")
-
-    def drop_blueprint_configuration(self, curs: cursor):
-        query = sql.SQL("DROP TABLE blueprint_configurations")
-        curs.execute(query)
-        print("dropped blueprint_configuration")
-
-    def create_file(self, curs: cursor):
-        query = sql.SQL(
-            """
-CREATE TABLE files (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  blueprint_id UUID NOT NULL REFERENCES blueprints(id),
-  file_size INT NOT NULL,
-  file_md5 TEXT NOT NULL,
-  file_name TEXT NOT NULL,
-  full_name TEXT NOT NULL,
-  file_changed_at TIMESTAMP NOT NULL,
-  file_modified_at TIMESTAMP NOT NULL,
-  storage_address TEXT,
-  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE (file_md5)
-)
-"""
-        )
-        curs.execute(query)
-        print("created file")
-
-    def drop_file(self, curs: cursor):
-        query = sql.SQL("DROP TABLE files")
-        curs.execute(query)
-        print("dropped file")
 
     def create_tag(self, curs: cursor):
         query = sql.SQL(
