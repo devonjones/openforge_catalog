@@ -47,8 +47,8 @@ CREATE TYPE blueprint_type
             """
 CREATE TABLE blueprints (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT NOT NULL,
-  type blueprint_type NOT NULL,
+  blueprint_name TEXT NOT NULL,
+  blueprint_type blueprint_type NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )
@@ -68,7 +68,7 @@ CREATE TABLE blueprints (
 CREATE TABLE blueprint_configurations (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   blueprint_id UUID NOT NULL REFERENCES blueprints(id),
-  name TEXT NOT NULL,
+  configuration_name TEXT NOT NULL,
   config JSONB NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -89,8 +89,8 @@ CREATE TABLE blueprint_configurations (
 CREATE TABLE files (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   blueprint_id UUID NOT NULL REFERENCES blueprints(id),
-  size INT NOT NULL,
-  md5 TEXT NOT NULL,
+  file_size INT NOT NULL,
+  file_md5 TEXT NOT NULL,
   file_name TEXT NOT NULL,
   full_name TEXT NOT NULL,
   file_changed_at TIMESTAMP NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE files (
   storage_address TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE (md5)
+  UNIQUE (file_md5)
 )
 """
         )

@@ -89,7 +89,7 @@ file_modified_at TIMESTAMP NOT NULL
 storage_address TEXT
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-UNIQUE INDEX file_name_idx ON md5 (md5)
+UNIQUE (file_md5)
 ```
 
 ### Tag
