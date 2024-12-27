@@ -70,7 +70,6 @@ INSERT INTO blueprints (
 
 
 def get_blueprint_by_id(curs: cursor, blueprint_id: uuid.UUID) -> dict:
-    print(blueprint_id)
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,

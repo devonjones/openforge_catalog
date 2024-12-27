@@ -29,6 +29,17 @@ properties:
     format: date-time
   storage_address:
     type: string
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  tags:
+    type: array
+    items:
+      type: string
 required:
   - blueprint_name
   - blueprint_type
+additionalProperties: false
