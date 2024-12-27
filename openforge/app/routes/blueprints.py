@@ -2,6 +2,7 @@ from flask import jsonify, request, current_app, make_response, abort
 from psycopg.rows import dict_row
 
 import openforge.db.sql.blueprints as blueprint_sql
+from openforge.openapi import validate_schema
 
 
 def get_blueprints():
@@ -12,6 +13,7 @@ def get_blueprints():
 
 
 def create_blueprint():
+    validate_schema("blueprint.yaml", request.json)
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.insert_blueprint(cursor, request.json)
@@ -26,6 +28,7 @@ def get_blueprint_by_id(blueprint_id):
 
 
 def update_blueprint(blueprint_id):
+    validate_schema("blueprint.yaml", request.json, required=False)
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.update_blueprint(cursor, blueprint_id, request.json)

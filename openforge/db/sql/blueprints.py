@@ -2,6 +2,8 @@ import json
 import uuid
 from psycopg import cursor, sql
 
+from werkzeug.exceptions import NotFound
+
 
 def _blueprint_defaults(data: dict) -> dict:
     defaults = {
@@ -79,7 +81,10 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
     curs.execute(query)
-    return _convert_config(dict(curs.fetchone()))
+    if curs.rowcount > 0:
+        return _convert_config(dict(curs.fetchone()))
+    else:
+        raise NotFound("Blueprint not found")
 
 
 def get_blueprint_by_md5(curs: cursor, md5: str) -> dict:
@@ -93,7 +98,10 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
 """
     ).format(md5=sql.Literal(md5))
     curs.execute(query)
-    return _convert_config(dict(curs.fetchone()))
+    if curs.rowcount > 0:
+        return _convert_config(dict(curs.fetchone()))
+    else:
+        raise NotFound("Blueprint not found")
 
 
 def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
@@ -131,10 +139,12 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
             blueprint_id=sql.Literal(blueprint_id)
         )
     )
-    print(query_list)
     query = sql.Composed(query_list)
     curs.execute(query.join("\n"))
-    return get_blueprint_by_id(curs, blueprint_id)
+    if curs.rowcount > 0:
+        return get_blueprint_by_id(curs, blueprint_id)
+    else:
+        raise NotFound("Blueprint not found")
 
 
 def delete_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
