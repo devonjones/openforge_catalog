@@ -1,8 +1,5 @@
-import json
 import uuid
 from psycopg import cursor, sql
-
-from werkzeug.exceptions import NotFound
 
 
 def _convert_tag(tag: dict) -> dict:
@@ -19,7 +16,6 @@ SELECT id, blueprint_id, tag, created_at, updated_at
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
     curs.execute(query)
-    print(curs.rowcount)
     return [_convert_tag(row) for row in curs.fetchall()]
 
 
