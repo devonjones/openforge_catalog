@@ -17,15 +17,15 @@ class SchemaVersion2(SchemaBase):
         self.create_blueprint_documentation(curs)
 
     def down_impl(self, curs: cursor):
-        self.drop_blueprint_type(curs)
-        self.drop_blueprint(curs)
         self.drop_blueprint_configuration(curs)
+        self.drop_blueprint_documentation(curs)
+        self.drop_blueprint_image(curs)
         self.drop_file(curs)
         self.drop_tag(curs)
         self.drop_image(curs)
-        self.drop_blueprint_image(curs)
         self.drop_documentation(curs)
-        self.drop_blueprint_documentation(curs)
+        self.drop_blueprint(curs)
+        self.drop_blueprint_type(curs)
 
     def create_blueprint_type(self, curs: cursor):
         query = sql.SQL(

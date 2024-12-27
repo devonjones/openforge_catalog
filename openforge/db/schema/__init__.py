@@ -10,22 +10,29 @@ class SchemaBase(ABC):
     def __init__(self, conn: connection):
         self.conn = conn
 
-    def up(self):
+    def up(self) -> bool:
         with self.conn.cursor() as curs:
             if not self.version_exists(curs):
+                print(f"Upgrading schema version {self.version}")
                 self.up_impl(curs)
                 self.insert_version(curs)
                 self.report_success(True)
+                return True
+        return False
 
     @abstractmethod
     def up_impl(self, curs: cursor): ...
 
-    def down(self, ver: int):
+    def down(self, ver: int) -> bool:
         with self.conn.cursor() as curs:
-            if not self.version_exists(curs) and self.ver >= ver:
-                self.down_impl(curs)
-                self.delete_version(curs)
-                self.report_success(False)
+            if self.version >= ver:
+                if self.version_exists(curs):
+                    print(f"Downgrading schema version {self.version}")
+                    self.down_impl(curs)
+                    self.delete_version(curs)
+                    self.report_success(False)
+                return True
+        return False
 
     @abstractmethod
     def down_impl(self, curs: cursor): ...
@@ -61,9 +68,9 @@ VALUES ({version}, NOW())
         query = sql.SQL(
             """
 DELETE FROM schema_versions
-  WHERE version = %s
+  WHERE version = {version}
 """
-        ).format(sql.Literal(self.version))
+        ).format(version=sql.Literal(self.version))
         curs.execute(query)
 
 
@@ -87,3 +94,16 @@ def get_schema_versions():
         import_module(f".{module[:-3]}", __name__)
     SCHEMA_VERSIONS.sort(key=operator.itemgetter(0))
     return [m[1] for m in SCHEMA_VERSIONS]
+
+
+def get_current_schema_version(curs: cursor):
+    query = sql.SQL(
+        """
+SELECT version
+  FROM schema_versions
+  ORDER BY version DESC
+  LIMIT 1
+"""
+    )
+    curs.execute(query)
+    return curs.fetchone()[0]
