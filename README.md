@@ -46,6 +46,7 @@ To connect to the postgres container, run `psql -U openforge -W openforge -h 127
 
 To run the db update script, run `bin/db_update`.
 
+If you want to load the fixtures, run `bin/db_fixtures`.
 ## Schema
 ### Blueprint type
 
