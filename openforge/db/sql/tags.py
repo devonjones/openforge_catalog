@@ -75,6 +75,12 @@ DELETE FROM tags
     return curs.rowcount
 
 
+def delete_all_tags(curs: cursor) -> dict:
+    query = sql.SQL("DELETE FROM tags")
+    curs.execute(query)
+    return curs.rowcount
+
+
 def get_blueprint_ids_by_tag(curs: cursor, tag: str) -> list[uuid.UUID]:
     tags = tag.split("|")
     query_list = [

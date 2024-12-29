@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db-update": "bin/db_update"
+    "db-update": "bin/db_update",
+    "db-fixtures": "bin/db_fixtures"
   },
   "dependencies": {
     "@types/node": "20.1.4",

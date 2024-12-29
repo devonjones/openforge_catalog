@@ -3,6 +3,7 @@ import uuid
 from psycopg import cursor, sql
 
 from werkzeug.exceptions import NotFound
+from psycopg.errors import UniqueViolation
 
 
 def _blueprint_defaults(data: dict) -> dict:
@@ -51,9 +52,12 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
     return [_convert_config(dict(row)) for row in curs.fetchall()]
 
 
-def insert_blueprint(curs: cursor, data: dict) -> dict:
-    query = sql.SQL(
-        """
+def insert_blueprint(
+    curs: cursor, data: dict, rescue_md5_conflict: bool = False
+) -> dict:
+    query_list = [
+        sql.SQL(
+            """
 INSERT INTO blueprints (
   blueprint_name, blueprint_type, config, file_md5, file_size, file_name,
   full_name, file_changed_at, file_modified_at, storage_address
@@ -61,12 +65,21 @@ INSERT INTO blueprints (
   {blueprint_name}, {blueprint_type}, {config}, {file_md5}, {file_size}, {file_name},
   {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}
 )
-  RETURNING id
 """
-    ).format(**_blueprint_defaults(data))
-    curs.execute(query)
-    blueprint_id = curs.fetchone()["id"]
-    return get_blueprint_by_id(curs, blueprint_id)
+        ).format(**_blueprint_defaults(data))
+    ]
+    if rescue_md5_conflict:
+        query_list.append(
+            sql.SQL("ON CONFLICT ON CONSTRAINT blueprints_file_md5_key DO NOTHING")
+        )
+    query_list.append(sql.SQL("RETURNING id"))
+    query = sql.Composed(query_list)
+    curs.execute(query.join("\n"))
+    row = curs.fetchone()
+    if row:
+        return get_blueprint_by_id(curs, row["id"])
+    else:
+        raise UniqueViolation("MD5 not unique")
 
 
 def get_blueprint_by_id(curs: cursor, blueprint_id: uuid.UUID) -> dict:
@@ -150,5 +163,11 @@ def delete_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
     query = sql.SQL("DELETE FROM blueprints WHERE id = {blueprint_id}").format(
         blueprint_id=sql.Literal(blueprint_id)
     )
+    curs.execute(query)
+    return curs.rowcount
+
+
+def delete_all_blueprints(curs: cursor) -> dict:
+    query = sql.SQL("DELETE FROM blueprints")
     curs.execute(query)
     return curs.rowcount
