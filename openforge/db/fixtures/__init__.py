@@ -38,20 +38,27 @@ def load_fixtures(conn: connection):
     with conn.cursor(row_factory=dict_row) as curs:
         clear_db(curs)
         for f in ffiles:
-            with open(f, "r") as f:
-                if str(f).endswith(".json"):
-                    data = json.load(f)
-                elif str(f).endswith(".yaml"):
-                    data = safe_load(f)
-                for rec in data:
-                    load_fixture(curs, rec)
+            data = _load_data(f)
+            for rec in data:
+                load_fixture(curs, rec)
+
+
+def _load_data(f):
+    with open(f, "r") as fh:
+        if str(f).endswith(".json"):
+            return json.load(fh)
+        elif str(f).endswith(".yaml"):
+            return safe_load(fh)
+        raise ValueError(f"Unsupported file type: {f}")
 
 
 def _munge_blueprint(data: dict):
     bp = {}
+    print(data)
     bp["blueprint_type"] = data["type"]
     bp["blueprint_name"] = data.get("name")
-    bp["config"] = json.dumps(data.get("config", {}))
+    bp["blueprint_config"] = data.get("config", {})
+    print(bp)
     if "file_metadata" in data:
         if not bp["blueprint_name"]:
             bp["blueprint_name"] = data["file_metadata"]["file"]
@@ -70,7 +77,6 @@ def load_fixture(curs: cursor, data: dict):
         bp = blueprint_sql.insert_blueprint(curs, bp_data, rescue_md5_conflict=True)
         for tag in data.get("tags", []):
             tag_sql.insert_tag(curs, bp["id"], _munge_tag(tag))
-        print(f"loaded {bp['blueprint_name']}")
     except UniqueViolation:
         sys.stderr.write(f"MD5 not unique for {bp_data['blueprint_name']}\n")
 
