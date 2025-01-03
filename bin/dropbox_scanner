@@ -99,6 +99,20 @@ def parse_texture(texture, tags):
 def parse_form(form, tags):
     texture, form = form.split("#")
     parse_texture(texture, tags)
+    parts = form.split(",")
+    for part in parts:
+        parse_form_part(part, tags)
+
+
+def parse_form_part(part, tags):
+    parts = part.split("+")
+    form = parts.pop(0)
+    t = []
+    t.append(("component", form))
+    tags.add(("component", form))
+    for fp in parts:
+        t.append(("component", form, fp))
+        tags.add(("component", form, fp))
 
 
 def parse_size(size, tags):
@@ -143,7 +157,25 @@ def parse_filename(file, tags):
         raise e
 
 
-def parse_files(path, files, md5):
+def parse_path(file, tags):
+    path = file["path"]
+    builds = [
+        ("s2w", "s2w"),
+        ("separate_wall", "separate wall"),
+        ("wall_on_tile", "wall on tile"),
+        ("s_system", "s-system"),
+        ("thick_wall", "thick wall"),
+    ]
+    for build in builds:
+        if build[0] in path:
+            tags.add(("build", build[1]))
+    components = [("bases", "base")]
+    for component in components:
+        if component[0] in path:
+            tags.add(("component", component[1]))
+
+
+def parse_files(path, files, md5, verbose):
     def _get_metadata_file(path):
         metadata_file = os.path.join(path, "metadata.yaml")
         if os.path.exists(metadata_file):
@@ -164,6 +196,8 @@ def parse_files(path, files, md5):
     newfiles = []
     donefiles = []
     for file in files:
+        if verbose:
+            sys.stderr.write(f"Processing: {file}\n")
         full_file = os.path.join(path, file)
         local_path = os.path.dirname(full_file)
         fn = os.path.basename(full_file)
@@ -188,18 +222,8 @@ def parse_files(path, files, md5):
         f["modified"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
 
         parse_filename(f, t)
-        # f = get_texture(f, t)
-        # f = get_scheme(f, t)
-        # f = get_function(f, t)
-        # f, d = get_piece(f, t)
-        # if f and f['path'] == []:
-        #    del f["path"]
-        # elif f:
-        #    f['connections'] = f["path"]
+        parse_path(f, t)
         del f["path"]
-        # if d:
-        #    donefiles.append(d)
-        #    continue
         newfiles.append(o)
     return newfiles, donefiles
 
@@ -235,10 +259,11 @@ def print_files(files):
 )
 @click.option("--subset", default="tiles/dungeon_stone")
 @click.option("--md5/--no-md5", default=True, help="Calculate MD5 hash for files")
-def main(path, subset, md5):
+@click.option("--verbose/--no-verbose", default=False, help="Verbose output")
+def main(path, subset, md5, verbose):
     files = find_files(path, subset)
     files = clean_files(path, files)
-    files, donefiles = parse_files(path, files, md5)
+    files, donefiles = parse_files(path, files, md5, verbose)
     print_files(files)
 
 

@@ -6,6 +6,12 @@ from psycopg import cursor, connection
 from psycopg.rows import dict_row
 from psycopg.errors import UniqueViolation
 
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper, safe_load
+except ImportError:
+    from yaml import Loader, Dumper, safe_load
+
+
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 
@@ -16,6 +22,8 @@ def find_fixtures():
     ffiles = []
     for f in impresources.files(fixtures).iterdir():
         if str(f).endswith(".json"):
+            ffiles.append(f)
+        elif str(f).endswith(".yaml"):
             ffiles.append(f)
     return ffiles
 
@@ -31,22 +39,28 @@ def load_fixtures(conn: connection):
         clear_db(curs)
         for f in ffiles:
             with open(f, "r") as f:
-                data = json.load(f)
+                if str(f).endswith(".json"):
+                    data = json.load(f)
+                elif str(f).endswith(".yaml"):
+                    data = safe_load(f)
                 for rec in data:
                     load_fixture(curs, rec)
 
 
 def _munge_blueprint(data: dict):
     bp = {}
-    bp["blueprint_name"] = data["file_metadata"]["file"]
     bp["blueprint_type"] = data["type"]
+    bp["blueprint_name"] = data.get("name")
     bp["config"] = json.dumps(data.get("config", {}))
-    bp["file_md5"] = data["file_metadata"]["md5"]
-    bp["file_size"] = data["file_metadata"]["size"]
-    bp["file_name"] = data["file_metadata"]["file"]
-    bp["full_name"] = data["file_metadata"]["full_name"]
-    bp["file_changed_at"] = data["file_metadata"]["changed"]
-    bp["file_modified_at"] = data["file_metadata"]["modified"]
+    if "file_metadata" in data:
+        if not bp["blueprint_name"]:
+            bp["blueprint_name"] = data["file_metadata"]["file"]
+        bp["file_md5"] = data["file_metadata"]["md5"]
+        bp["file_size"] = data["file_metadata"]["size"]
+        bp["file_name"] = data["file_metadata"]["file"]
+        bp["full_name"] = data["file_metadata"]["full_name"]
+        bp["file_changed_at"] = data["file_metadata"]["changed"]
+        bp["file_modified_at"] = data["file_metadata"]["modified"]
     return bp
 
 
