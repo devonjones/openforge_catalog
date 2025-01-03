@@ -1,4 +1,8 @@
+import logging
+
 from psycopg_pool import ConnectionPool
+
+logger = logging.getLogger(__name__)
 
 
 class PgDB:

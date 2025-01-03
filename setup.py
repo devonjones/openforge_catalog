@@ -13,5 +13,9 @@ required.append(f"package-name @ {local_path}")
 setup(
     install_requires=required,
     packages=["openforge"],
-    scripts=["bin/db_update", "bin/dropbox_scanner"],
+    scripts=["bin/db_update", "bin/dropbox_scanner", "bin/fixtures"],
+    package_data={
+        "openforge/db/fixtures": ["*.json"],
+        "openforge/openapi": ["*.yaml"],
+    },
 )

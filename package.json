@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:flask": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328",
-    "dev-next": "next dev",
-    "dev": "concurrently \"pnpm dev-next\" \"pnpm dev-flask\"",
+    "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328 --debug",
+    "next-dev": "next dev",
+    "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db-update": "bin/db_update",
+    "db-fixtures": "bin/db_fixtures"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",

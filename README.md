@@ -18,6 +18,12 @@ All node code in this project is licensed under the MIT license.  The licene tex
 
 ## Setup
 
+### Node
+
+Install pnpm:
+
+`curl -fsSL https://get.pnpm.io/install.sh | sh -`
+
 ### Python
 We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.  To install the python version specified in the `.python-version` file, run `pyenv install`.
 
@@ -40,71 +46,80 @@ To connect to the postgres container, run `psql -U openforge -W openforge -h 127
 
 To run the db update script, run `bin/db_update`.
 
+If you want to load the fixtures, run `bin/db_fixtures`.
 ## Schema
 ### Blueprint type
+
+```sql
 CREATE TYPE blueprint_type
 AS ENUM ('model', 'blueprint')
+```
 
 ### Blueprint
-id UUID PRIMARY KEY DEFAULT gen_random_uuid()
-name TEXT NOT NULL
-type blueprint_type NOT NULL
-created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 
-### Blueprint Configuration
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
-blueprint_id UUID NOT NULL REFERENCES blueprints(id)
-name TEXT NOT NULL
+blueprint_name TEXT NOT NULL
+blueprint_type blueprint_type NOT NULL
 config JSONB NOT NULL
-created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-
-### File
-id UUID PRIMARY KEY DEFAULT gen_random_uuid()
-blueprint_id UUID NOT NULL REFERENCES blueprints(id)
-size INT NOT NULL
-md5 TEXT NOT NULL
-file_name TEXT NOT NULL
-full_name TEXT NOT NULL
-file_changed_at TIMESTAMP NOT NULL
-file_modified_at TIMESTAMP NOT NULL
+file_size INT
+file_md5 TEXT
+file_name TEXT
+full_name TEXT
+file_changed_at TIMESTAMP
+file_modified_at TIMESTAMP
 storage_address TEXT
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-unique index file_name_idx ON md5 (md5)
+UNIQUE NULLS NOT DISTINCT (file_md5)
+```
 
 ### Tag
+
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 blueprint_id UUID NOT NULL REFERENCES blueprints(id)
 tag TEXT ARRAY NOT NULL
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
 
 ### Image
+
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 image_name TEXT NOT NULL
 image_url TEXT NOT NULL
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
 
 ### Blueprint Image
+
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 blueprint_id UUID NOT NULL REFERENCES blueprints(id)
 image_id UUID NOT NULL REFERENCES images(id)
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
 
 ### Documentation
+
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 documentation_name TEXT NOT NULL
 document TEXT NOT NULL
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
 
 ### Blueprint Documentation
+
+```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 blueprint_id UUID NOT NULL REFERENCES blueprints(id)
 documentation_id UUID NOT NULL REFERENCES documentation(id)
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```

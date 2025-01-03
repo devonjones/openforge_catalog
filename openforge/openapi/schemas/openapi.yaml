@@ -1,0 +1,400 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/1.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /api/blueprints:
+    get:
+      tags:
+        - blueprint
+      summary: returns all blueprints
+      operationId: allBlueprints
+      description: |
+        Returns all blueprints
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blueprint'
+    post:
+      tags:
+        - blueprint
+      summary: Creates a blueprint
+      operationId: addBlueprint
+      description: Creates a blueprint
+      responses:
+        '201':
+          description: Blueprint created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+        description: Blueprint to create
+  /api/blueprints/{blueprint_id}:
+    get:
+      tags:
+        - blueprint
+      summary: returns a blueprint by id
+      operationId: getBlueprint
+      description: Returns a blueprint by id
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: a blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '404':
+          description: 'Blueprint not found'
+    patch:
+      tags:
+        - blueprint
+      summary: Updates a blueprint
+      operationId: patchBlueprint
+      description: Updates a blueprint and returns it
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '404':
+          description: 'Blueprint not found'
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+    delete:
+      tags:
+        - blueprint
+      summary: Deletes a blueprint
+      operationId: deleteBlueprint
+      description: Deletes a blueprint
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: 'Blueprint not found'
+  /api/blueprints/tags/{tag}:
+    get:
+      tags:
+        - blueprint
+        - tags
+      summary: Returns a list of blueprint ids that match a tag head
+      operationId: getBlueprintIdByTag
+      description: Returns blueprint ids
+      parameters:
+        - in: path
+          name: tag
+          description: Tag to search for.  Tags are in the form of part1|part2|part... Search will return all tags that match with the tag based on it being the front of the tag.  E.g. foo|bar will match on foo|bar|baz as well as foo|bar or foo|bar|1
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: list of blueprint ids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+  /api/blueprints/{blueprint_id}/tags:
+    get:
+      tags:
+        - blueprint
+        - tags
+      summary: Returns a list of tags and their metadata for a blueprint
+      operationId: getBlueprintTags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: List of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '404':
+          description: 'Blueprint not found'
+    post:
+      tags:
+        - blueprint
+        - tags
+      summary: Resets a list of tags for a blueprint.  This will remove existing tags and replace them with the ones passed in
+      operationId: replaceBlueprintTags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: a blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '404':
+          description: 'Blueprint not found'
+    delete:
+      tags:
+        - blueprint
+        - tags
+      summary: Deletes all tags for a blueprint.
+      operationId: deleteBlueprintTags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Tag or Blueprint not found
+  /api/blueprints/{blueprint_id}/tags/{tag}:
+    post:
+      tags:
+        - blueprint
+        - tags
+      summary: Creates a single tag for a blueprint.
+      operationId: createBlueprintTag
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: tag
+          description: Tag to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '404':
+          description: Blueprint not found
+    delete:
+      tags:
+        - blueprint
+        - tags
+      summary: Deletes a single tag for a blueprint.
+      operationId: deleteBlueprintTag
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: tag
+          description: Tag to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Tag or Blueprint not found
+#      parameters:
+#        - in: query
+#          name: searchString
+#          description: pass an optional search string for looking up inventory
+#          required: false
+#          schema:
+#            type: string
+#        - in: query
+#          name: skip
+#          description: number of records to skip for pagination
+#          schema:
+#            type: integer
+#            format: int32
+#            minimum: 0
+#        - in: query
+#          name: limit
+#          description: maximum number of records to return
+#          schema:
+#            type: integer
+#            format: int32
+#            minimum: 0
+#            maximum: 50
+#      responses:
+#        '200':
+#          description: search results matching criteria
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/InventoryItem'
+#        '400':
+#          description: bad input parameter
+#    post:
+#      tags:
+#        - admins
+#      summary: adds an inventory item
+#      operationId: addInventory
+#      description: Adds an item to the system
+#      responses:
+#        '201':
+#          description: item created
+#        '400':
+#          description: 'invalid input, object invalid'
+#        '409':
+#          description: an existing item already exists
+#      requestBody:
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/InventoryItem'
+#        description: Inventory item to add
+components:
+  schemas:
+    Blueprint:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        blueprint_name:
+          type: string
+        blueprint_type:
+          type: string
+          enum:
+            - model
+            - blueprint
+        blueprint_config:
+          type: object
+        file_md5:
+          type: string
+        file_size:
+          type: integer
+        file_name:
+          type: string
+        full_name:
+          type: string
+        file_changed_at:
+          type: string
+          format: date-time
+        file_modified_at:
+          type: string
+          format: date-time
+        storage_address:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        blueprint_id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        tag:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
