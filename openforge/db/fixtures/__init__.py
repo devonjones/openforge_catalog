@@ -58,7 +58,6 @@ def _munge_blueprint(data: dict):
     bp["blueprint_type"] = data["type"]
     bp["blueprint_name"] = data.get("name")
     bp["blueprint_config"] = data.get("config", {})
-    print(bp)
     if "file_metadata" in data:
         if not bp["blueprint_name"]:
             bp["blueprint_name"] = data["file_metadata"]["file"]

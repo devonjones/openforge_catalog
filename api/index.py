@@ -28,6 +28,11 @@ def blueprint(blueprint_id):
         return blueprint_routes.delete_blueprint(blueprint_id)
 
 
+@app.route("/api/blueprints/tags", methods=["POST"])
+def tags():
+    return tag_routes.query_tags()
+
+
 @app.route("/api/blueprints/tags/<tag>", methods=["GET"])
 def blueprints_by_tag(tag):
     return tag_routes.get_blueprint_ids_by_tag(tag)
