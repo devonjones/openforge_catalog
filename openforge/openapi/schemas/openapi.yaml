@@ -286,58 +286,46 @@ paths:
           description: Deleted
         '404':
           description: Tag or Blueprint not found
-#      parameters:
-#        - in: query
-#          name: searchString
-#          description: pass an optional search string for looking up inventory
-#          required: false
-#          schema:
-#            type: string
-#        - in: query
-#          name: skip
-#          description: number of records to skip for pagination
-#          schema:
-#            type: integer
-#            format: int32
-#            minimum: 0
-#        - in: query
-#          name: limit
-#          description: maximum number of records to return
-#          schema:
-#            type: integer
-#            format: int32
-#            minimum: 0
-#            maximum: 50
-#      responses:
-#        '200':
-#          description: search results matching criteria
-#          content:
-#            application/json:
-#              schema:
-#                type: array
-#                items:
-#                  $ref: '#/components/schemas/InventoryItem'
-#        '400':
-#          description: bad input parameter
-#    post:
-#      tags:
-#        - admins
-#      summary: adds an inventory item
-#      operationId: addInventory
-#      description: Adds an item to the system
-#      responses:
-#        '201':
-#          description: item created
-#        '400':
-#          description: 'invalid input, object invalid'
-#        '409':
-#          description: an existing item already exists
-#      requestBody:
-#        content:
-#          application/json:
-#            schema:
-#              $ref: '#/components/schemas/InventoryItem'
-#        description: Inventory item to add
+  /api/blueprints/tags:
+    post:
+      tags:
+        - tags
+      summary: Queries tags for a list of blueprint ids
+      operationId: getBlueprintIdByTagQuery
+      description: Returns blueprint ids
+      parameters:
+        - in: query
+          name: paging
+          description: Paging id
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagQuery'
+        description: Tag Query
+      responses:
+        '200':
+          description: list of blueprint ids
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: integer
+                  next_paging:
+                    type: string
+                  blueprints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Blueprint'
+                  tag_counts:
+                    type: array
+                    items:
+                      type: object
 components:
   schemas:
     Blueprint:
@@ -398,3 +386,20 @@ components:
         updated_at:
           type: string
           format: date-time
+    TagQuery:
+      type: object
+      properties:
+        require:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+        deny:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string

@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "db-update": "bin/db_update",
-    "db-fixtures": "bin/db_fixtures"
+    "db-fixtures": "bin/fixtures"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",

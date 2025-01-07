@@ -8,7 +8,7 @@ from psycopg.errors import UniqueViolation
 
 def _blueprint_defaults(data: dict) -> dict:
     defaults = {
-        "blueprint_config": {},
+        "config": {},
         "file_md5": sql.NULL,
         "file_size": sql.NULL,
         "file_name": sql.NULL,
@@ -55,6 +55,7 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
 def insert_blueprint(
     curs: cursor, data: dict, rescue_md5_conflict: bool = False
 ) -> dict:
+    print(data)
     query_list = [
         sql.SQL(
             """
