@@ -33,7 +33,8 @@ To activate the virtual environment, run `pyenv activate openforge_catalog`.
 
 To deactivate the virtual environment, run `pyenv deactivate`.
 
-Finally, until I come up with a better solution, you'll need to use pyenv-virtualenvwrapper to manage your virtual environments.  To install pyenv-virtualenvwrapper, run `pip install pyenv-virtualenvwrapper`.
+Finally, until I come up with a better solution, you'll need to use pyenv-virtualenvwrapper to manage your virtual environments.  You can find more information about it [here](https://github.com/pyenv/pyenv-virtualenvwrapper).  Easiest way to install it is to run `git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper`.
+
 
 Then, run `pyenv virtualenvwrapper` to initialize virtualenvwrapper.  Next, run `add2virtualenv .` to add the local directory to the virtualenv.
 

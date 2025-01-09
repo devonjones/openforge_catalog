@@ -130,7 +130,6 @@ def tag_search_tags(
     require: list[str],
     deny: list[str],
     paging: uuid.UUID | None = None,
-    limit: bool = True,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
@@ -162,7 +161,9 @@ def tag_search_blueprint_count(
     return curs.fetchone()["count"]
 
 
-def tag_search_tag_count(curs: cursor, require: list[str], deny: list[str]) -> int:
+def tag_search_tag_count(
+    curs: cursor, require: list[str], deny: list[str]
+) -> list[dict]:
     parts = [
         sql.SQL("SELECT COUNT(*) AS tag_count, t.tag"),
         sql.SQL("  FROM tags AS t"),
