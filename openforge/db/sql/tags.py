@@ -120,7 +120,6 @@ def tag_search_blueprints(
         sql.SQL("  ORDER BY blueprints.id"),
     ]
     query = sql.Composed(parts)
-    print(query.as_string(curs))
     curs.execute(query)
     return curs.fetchall()
 
@@ -140,7 +139,6 @@ def tag_search_tags(
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
     query = sql.Composed(parts)
-    print(query.as_string(curs))
     curs.execute(query)
     return curs.fetchall()
 
@@ -156,7 +154,6 @@ def tag_search_blueprint_count(
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
-    print(query.join("\n").as_string(curs))
     curs.execute(query)
     return curs.fetchone()["count"]
 
@@ -173,7 +170,6 @@ def tag_search_tag_count(
         sql.SQL("  GROUP BY t.tag"),
     ]
     query = sql.Composed(parts)
-    print(query.join("\n").as_string(curs))
     curs.execute(query)
     return curs.fetchall()
 
