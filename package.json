@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db-update": "bin/db_update",
+    "db-update": "bin/db_update up",
     "db-fixtures": "bin/fixtures"
   },
   "dependencies": {
