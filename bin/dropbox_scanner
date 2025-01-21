@@ -3,6 +3,7 @@
 # pylint: disable=E1101,C0114,C0116
 import re
 import os
+import io
 import sys
 import hashlib
 import datetime
@@ -18,6 +19,10 @@ from pprint import pprint
 
 import sh
 import click
+from dotenv import dotenv_values
+import boto3
+from botocore.client import Config
+from botocore.exceptions import ClientError
 
 
 def parse_bonuses(data):
@@ -175,7 +180,7 @@ def parse_path(file, tags):
             tags.add(("component", component[1]))
 
 
-def parse_files(path, files, md5, verbose):
+def parse_files(path, files, md5, verbose, upload, config):
     def _get_metadata_file(path):
         metadata_file = os.path.join(path, "metadata.yaml")
         if os.path.exists(metadata_file):
@@ -193,8 +198,22 @@ def parse_files(path, files, md5, verbose):
                 return data[fn]
         return None
 
+    def _get_s3_client(config):
+        s3_client = boto3.client(
+            service_name="s3",
+            endpoint_url=config["CLOUDFLARE_ENDPOINT"],
+            aws_access_key_id=config["AWS_ACCESS_KEY_ID"],
+            aws_secret_access_key=config["AWS_SECRET_ACCESS_KEY"],
+            config=Config(signature_version="s3v4"),
+            region_name="auto",
+        )
+        return s3_client
+
+    def _create_image(name, url):
+        return {"image_name": name, "image_url": url}
+
     newfiles = []
-    donefiles = []
+    s3_client = _get_s3_client(config)
     for file in files:
         if verbose:
             sys.stderr.write(f"Processing: {file}\n")
@@ -220,12 +239,50 @@ def parse_files(path, files, md5, verbose):
         f["size"] = stat.st_size
         f["changed"] = datetime.datetime.fromtimestamp(stat.st_ctime).isoformat()
         f["modified"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
-
+        if upload:
+            if not md5:
+                raise Exception("MD5 is required for upload")
+            model_address = upload_file(f, full_file, s3_client, "models")
+            f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
+            thumb_path = create_thumbnail(full_file)
+            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails")
+            images = f.get("images", [])
+            images.append(
+                _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
+            )
         parse_filename(f, t)
         parse_path(f, t)
         del f["path"]
         newfiles.append(o)
-    return newfiles, donefiles
+    return newfiles
+
+
+def upload_file(f, file_path, s3_client, object_path):
+    bucket = "openforge-models"
+    _, fn = os.path.split(file_path)
+    parts = fn.split(".")
+    extension = parts.pop()
+    object_name = f"{object_path}/{f['md5'][:6]}/{f['md5']}.{extension}"
+    try:
+        object_information = s3_client.head_object(Bucket=bucket, Key=object_name)
+    except ClientError as ce:
+        if ce.response["Error"]["Code"] == "404":
+            response = s3_client.upload_fileobj(
+                io.BytesIO(open(file_path, "rb").read()), bucket, object_name
+            )
+        else:
+            raise ce
+    return object_name
+
+
+def create_thumbnail(file_path):
+    path, fn = os.path.split(file_path)
+    parts = fn.split(".")
+    _ = parts.pop()
+    base = ".".join(parts)
+    thumb_path = os.path.join(path, f"{base}-thumb.png")
+    sh.stl_thumb(file_path, thumb_path)
+    return thumb_path
 
 
 def clean_files(path, files):
@@ -239,9 +296,46 @@ def clean_files(path, files):
     return newfiles
 
 
+def _extract_skip(metadata_files: list[str]) -> set[str]:
+    skip = set()
+    for metadata_file in metadata_files:
+        path, _ = os.path.split(metadata_file)
+        with open(metadata_file, "r") as f:
+            metadata = safe_load(f)
+        for key, value in metadata.items():
+            if value.get("ignore", False):
+                skip.add(os.path.join(path, key))
+    return skip
+
+
 def find_files(path, subset):
-    files = sh.find(os.path.join(path, subset), "-type", "f", "-name", "*.stl")
-    return files.split("\n")
+    metadata_files = [
+        f
+        for f in sh.find(
+            os.path.join(path, subset), "-type", "f", "-name", "metadata.yaml"
+        ).split("\n")
+        if f
+    ]
+    skip = _extract_skip(metadata_files)
+    files = [
+        f
+        for f in sh.find(
+            os.path.join(path, subset), "-type", "f", "-name", "*.stl"
+        ).split("\n")
+        if f
+    ]
+
+    retfiles = []
+    for f in files:
+        add = True
+        for s in skip:
+            if f.startswith(s):
+                add = False
+                break
+        if add:
+            retfiles.append(f)
+
+    return retfiles
 
 
 def print_files(files):
@@ -257,13 +351,15 @@ def print_files(files):
 @click.option(
     "--path", default="/home/devon/Dropbox/projects/Hardware/objects/OpenForge/"
 )
-@click.option("--subset", default="tiles/dungeon_stone")
+@click.option("--subset", default="")
 @click.option("--md5/--no-md5", default=True, help="Calculate MD5 hash for files")
 @click.option("--verbose/--no-verbose", default=False, help="Verbose output")
-def main(path, subset, md5, verbose):
+@click.option("--upload/--no-upload", default=False, help="Upload files to R2")
+def main(path, subset, md5, verbose, upload):
+    config = dotenv_values(".env")
     files = find_files(path, subset)
     files = clean_files(path, files)
-    files, donefiles = parse_files(path, files, md5, verbose)
+    files = parse_files(path, files, md5, verbose, upload, config)
     print_files(files)
 
 
