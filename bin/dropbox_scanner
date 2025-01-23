@@ -246,10 +246,11 @@ def parse_files(path, files, md5, verbose, upload, config):
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
             thumb_path = create_thumbnail(full_file)
             thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails")
-            images = f.get("images", [])
+            images = o.get("images", [])
             images.append(
                 _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
             )
+            o["images"] = images
         parse_filename(f, t)
         parse_path(f, t)
         del f["path"]
