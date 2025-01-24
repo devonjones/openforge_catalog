@@ -32,12 +32,14 @@ def find_fixtures():
 def clear_db(curs: cursor):
     tag_sql.delete_all_tags(curs)
     blueprint_sql.delete_all_blueprints(curs)
+    image_sql.delete_all_images(curs)
 
 
 def load_fixtures(conn: connection):
     ffiles = find_fixtures()
     with conn.cursor(row_factory=dict_row) as curs:
         clear_db(curs)
+        conn.commit()
         for f in ffiles:
             data = _load_data(f)
             for rec in data:

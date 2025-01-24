@@ -39,6 +39,17 @@ properties:
     type: array
     items:
       type: string
+  images:
+    type: array
+    items:
+      type: object
+      properties:
+        image_name:
+          type: string
+        image_md5:
+          type: string
+        image_url:
+          type: string
 required:
   - blueprint_name
   - blueprint_type

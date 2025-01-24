@@ -31,12 +31,12 @@ CREATE TYPE blueprint_type
 """
         )
         curs.execute(query)
-        print("created blueprint_type")
+        print("  created blueprint_type")
 
     def drop_blueprint_type(self, curs: cursor):
         query = sql.SQL("DROP TYPE blueprint_type")
         curs.execute(query)
-        print("dropped blueprint_type")
+        print("  dropped blueprint_type")
 
     def create_blueprint(self, curs: cursor):
         query = sql.SQL(
@@ -60,12 +60,12 @@ CREATE TABLE blueprints (
 """
         )
         curs.execute(query)
-        print("created blueprint")
+        print("  created blueprint")
 
     def drop_blueprint(self, curs: cursor):
         query = sql.SQL("DROP TABLE blueprints")
         curs.execute(query)
-        print("dropped blueprint")
+        print("  dropped blueprint")
 
     def create_tag(self, curs: cursor):
         query = sql.SQL(
@@ -81,7 +81,7 @@ CREATE TABLE tags (
 """
         )
         curs.execute(query)
-        print("created tag")
+        print("  created tag")
 
     def drop_tag(self, curs: cursor):
         query = sql.SQL("DROP TABLE tags")
@@ -101,12 +101,12 @@ CREATE TABLE images (
 """
         )
         curs.execute(query)
-        print("created image")
+        print("  created image")
 
     def drop_image(self, curs: cursor):
         query = sql.SQL("DROP TABLE images")
         curs.execute(query)
-        print("dropped image")
+        print("  dropped image")
 
     def create_blueprint_image(self, curs: cursor):
         query = sql.SQL(
@@ -121,12 +121,12 @@ CREATE TABLE blueprint_images (
 """
         )
         curs.execute(query)
-        print("created blueprint_image")
+        print("  created blueprint_image")
 
     def drop_blueprint_image(self, curs: cursor):
         query = sql.SQL("DROP TABLE blueprint_images")
         curs.execute(query)
-        print("dropped blueprint_image")
+        print("  dropped blueprint_image")
 
     def create_documentation(self, curs: cursor):
         query = sql.SQL(
@@ -141,12 +141,12 @@ CREATE TABLE documentation (
 """
         )
         curs.execute(query)
-        print("created documentation")
+        print("  created documentation")
 
     def drop_documentation(self, curs: cursor):
         query = sql.SQL("DROP TABLE documentation")
         curs.execute(query)
-        print("dropped documentation")
+        print("  dropped documentation")
 
     def create_blueprint_documentation(self, curs: cursor):
         query = sql.SQL(
@@ -161,9 +161,9 @@ CREATE TABLE blueprint_documentation (
 """
         )
         curs.execute(query)
-        print("created blueprint_documentation")
+        print("  created blueprint_documentation")
 
     def drop_blueprint_documentation(self, curs: cursor):
         query = sql.SQL("DROP TABLE blueprint_documentation")
         curs.execute(query)
-        print("dropped blueprint_documentation")
+        print("  dropped blueprint_documentation")

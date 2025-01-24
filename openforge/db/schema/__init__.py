@@ -18,6 +18,9 @@ class SchemaBase(ABC):
                 self.insert_version(curs)
                 self.report_success(True)
                 return True
+            else:
+                print(f"Schema version {self.version} already exists")
+                return True
 
     @abstractmethod
     def up_impl(self, curs: cursor): ...

@@ -18,12 +18,18 @@ SELECT id, image_name, image_url, created_at, updated_at
 def insert_image(curs: cursor, image_name: str, image_url: str) -> dict:
     query = sql.SQL(
         """
-INSERT INTO images (
-  image_name, image_url
-) VALUES (
-  {image_name}, {image_url}
-) ON CONFLICT DO NOTHING
-RETURNING id
+WITH new_images AS (
+  INSERT INTO images (
+    image_name, image_url
+  ) VALUES (
+    {image_name}, {image_url}
+  ) ON CONFLICT DO NOTHING
+  RETURNING id
+)
+SELECT COALESCE(
+  (SELECT id FROM new_images),
+  (SELECT id FROM images WHERE image_url = {image_url})
+) AS id
 """
     ).format(image_name=sql.Literal(image_name), image_url=sql.Literal(image_url))
     curs.execute(query)
@@ -65,3 +71,9 @@ def insert_image_for_blueprint(
     image = insert_image(curs, image["image_name"], image["image_url"])
     insert_blueprint_image(curs, blueprint_id, image["id"])
     return image
+
+
+def delete_all_images(curs: cursor) -> dict:
+    query = sql.SQL("TRUNCATE images CASCADE")
+    curs.execute(query)
+    return curs.rowcount
