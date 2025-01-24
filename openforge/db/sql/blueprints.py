@@ -147,6 +147,7 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
                 sql.SQL(f"{comma}{field} = " + "{value}").format(value=data[field])
             )
             comma = ", "
+    query_list.append(sql.SQL(f"{comma}updated_at = NOW()"))
 
     query_list.append(
         sql.SQL("  WHERE id = {blueprint_id}").format(

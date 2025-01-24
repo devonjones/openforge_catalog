@@ -24,6 +24,10 @@ def create_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
 
 
 def replace_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
+    try:
+        validate_schema("tags.yaml", tags)
+    except ValidationError as e:
+        return jsonify({"error": str(e)}), 400
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)

@@ -80,7 +80,7 @@ def delete_blueprint(blueprint_id):
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
-                tag_sql.delete_blueprint_tags(cursor, blueprint_id)
+                tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
             except NotFound:
                 pass
             rows = blueprint_sql.delete_blueprint(cursor, blueprint_id)

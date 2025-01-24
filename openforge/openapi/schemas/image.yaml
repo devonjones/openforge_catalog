@@ -1,0 +1,25 @@
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+type: object
+properties:
+  id:
+    type: string
+    pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+  image_name:
+    type: string
+  image_url:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  blueprint_ids:
+    type: array
+    items:
+      type: string
+      pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+required:
+  - image_name
+  - image_url
+additionalProperties: false

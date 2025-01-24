@@ -5,6 +5,30 @@ from psycopg import cursor, sql
 from werkzeug.exceptions import NotFound
 
 
+def get_all_images(curs: cursor) -> list[dict]:
+    query = sql.SQL(
+        """
+SELECT id, image_name, image_url, created_at, updated_at
+  FROM images
+  ORDER BY id
+"""
+    )
+    curs.execute(query)
+    return curs.fetchall()
+
+
+def get_all_blueprint_images(curs: cursor) -> list[dict]:
+    query = sql.SQL(
+        """
+SELECT id, blueprint_id, image_id, created_at, updated_at
+  FROM blueprint_images
+  ORDER BY image_id
+"""
+    )
+    curs.execute(query)
+    return curs.fetchall()
+
+
 def get_images_for_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
@@ -31,7 +55,7 @@ SELECT id, image_name, image_url, created_at, updated_at
     return curs.fetchone()
 
 
-def insert_image(curs: cursor, image_name: str, image_url: str) -> dict:
+def insert_image(curs: cursor, image_name: str, image_url: str, **kwargs) -> dict:
     query = sql.SQL(
         """
 WITH new_images AS (
@@ -115,6 +139,18 @@ DELETE FROM blueprint_images
     return [row["image_id"] for row in rows]
 
 
+def get_blueprints_ids_for_image(curs: cursor, image_id: uuid.UUID) -> dict:
+    query = sql.SQL(
+        """
+SELECT blueprint_id
+  FROM blueprint_images
+  WHERE image_id = {image_id}
+"""
+    ).format(image_id=sql.Literal(image_id))
+    curs.execute(query)
+    return [row["blueprint_id"] for row in curs.fetchall()]
+
+
 def delete_images_by_ids(curs: cursor, image_ids: list[uuid.UUID]) -> dict:
     query = sql.SQL(
         """
@@ -136,3 +172,68 @@ def delete_all_images(curs: cursor) -> dict:
     query = sql.SQL("TRUNCATE images CASCADE")
     curs.execute(query)
     return curs.rowcount
+
+
+def delete_image(curs: cursor, image_id: uuid.UUID) -> dict:
+    query = sql.SQL(
+        """
+DELETE FROM blueprint_images
+  WHERE image_id = {image_id}
+"""
+    ).format(image_id=sql.Literal(image_id))
+    curs.execute(query)
+    query = sql.SQL(
+        """
+DELETE FROM images
+  WHERE id = {image_id}
+"""
+    ).format(image_id=sql.Literal(image_id))
+    curs.execute(query)
+    return curs.rowcount
+
+
+def update_image(curs: cursor, image_id: uuid.UUID, data: dict) -> dict:
+    newdata = {}
+    newdata.update(data)
+    query_list = [
+        sql.SQL("UPDATE images"),
+        sql.SQL("  SET"),
+    ]
+
+    fields = [
+        "image_name",
+        "image_url",
+    ]
+
+    comma = ""
+    for field in fields:
+        if field in data:
+            query_list.append(
+                sql.SQL(f"{comma}{field} = " + "{value}").format(value=data[field])
+            )
+            comma = ", "
+    query_list.append(sql.SQL(f"{comma}updated_at = NOW()"))
+
+    query_list.append(
+        sql.SQL("  WHERE id = {image_id}").format(image_id=sql.Literal(image_id))
+    )
+    query = sql.Composed(query_list)
+    curs.execute(query.join("\n"))
+    if curs.rowcount > 0:
+        return get_image_by_id(curs, image_id)
+    else:
+        raise NotFound("Image not found")
+
+
+def replace_blueprints_for_image(
+    curs: cursor, image_id: uuid.UUID, blueprint_ids: list[uuid.UUID]
+) -> dict:
+    query = sql.SQL(
+        """
+DELETE FROM blueprint_images
+  WHERE image_id = {image_id}
+"""
+    ).format(image_id=sql.Literal(image_id))
+    curs.execute(query)
+    for blueprint_id in blueprint_ids:
+        insert_blueprint_image(curs, blueprint_id, image_id)
