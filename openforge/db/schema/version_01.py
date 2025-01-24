@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS schema_versions (
 """
         )
         curs.execute(query)
-        print("created schema_versions")
+        print("  created schema_versions")
 
     def insert_version(self, curs: cursor):
         query = sql.SQL(
@@ -53,4 +53,4 @@ INSERT INTO schema_versions
     def drop_schema_versions(self, curs: cursor):
         query = sql.SQL("DROP TABLE schema_versions")
         curs.execute(query)
-        print("dropped schema_versions")
+        print("  dropped schema_versions")

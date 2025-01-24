@@ -5,6 +5,7 @@ from jsonschema.exceptions import ValidationError
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
+import openforge.db.sql.images as image_sql
 from openforge.openapi import validate_schema
 
 
@@ -27,7 +28,11 @@ def create_blueprint():
             if "tags" in req_data:
                 for tag in req_data["tags"]:
                     tag_sql.insert_tag(cursor, data["id"], tag)
+            if "images" in req_data:
+                for image in req_data["images"]:
+                    image_sql.insert_image_for_blueprint(cursor, data["id"], image)
             data["tags"] = [tag["tag"] for tag in tag_sql.get_tags(cursor, data["id"])]
+            data["images"] = image_sql.get_images_for_blueprint(cursor, data["id"])
             return jsonify(data), 201
 
 
@@ -38,6 +43,7 @@ def get_blueprint_by_id(blueprint_id):
             data["tags"] = [
                 tag["tag"] for tag in tag_sql.get_tags(cursor, blueprint_id)
             ]
+            data["images"] = image_sql.get_images_for_blueprint(cursor, data["id"])
             return jsonify(data)
 
 
@@ -52,14 +58,21 @@ def update_blueprint(blueprint_id):
             data = blueprint_sql.update_blueprint(cursor, blueprint_id, req_data)
             if "tags" in req_data:
                 try:
-                    tag_sql.delete_blueprint_tags(cursor, blueprint_id)
+                    tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
                 except NotFound:
                     pass
                 for tag in req_data["tags"]:
                     tag_sql.insert_tag(cursor, blueprint_id, tag)
+            if "images" in req_data:
+                image_sql.replace_images_for_blueprint(
+                    cursor, blueprint_id, req_data["images"]
+                )
             data["tags"] = [
                 tag["tag"] for tag in tag_sql.get_tags(cursor, blueprint_id)
             ]
+            data["images"] = list(
+                image_sql.get_images_for_blueprint(cursor, blueprint_id)
+            )
             return jsonify(data)
 
 

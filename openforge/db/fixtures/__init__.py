@@ -14,6 +14,7 @@ except ImportError:
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
+import openforge.db.sql.images as image_sql
 
 
 def find_fixtures():
@@ -31,12 +32,14 @@ def find_fixtures():
 def clear_db(curs: cursor):
     tag_sql.delete_all_tags(curs)
     blueprint_sql.delete_all_blueprints(curs)
+    image_sql.delete_all_images(curs)
 
 
 def load_fixtures(conn: connection):
     ffiles = find_fixtures()
     with conn.cursor(row_factory=dict_row) as curs:
         clear_db(curs)
+        conn.commit()
         for f in ffiles:
             data = _load_data(f)
             for rec in data:
@@ -76,9 +79,16 @@ def load_fixture(curs: cursor, data: dict):
         bp = blueprint_sql.insert_blueprint(curs, bp_data, rescue_md5_conflict=True)
         for tag in data.get("tags", []):
             tag_sql.insert_tag(curs, bp["id"], _munge_tag(tag))
+        for image in data.get("images", []):
+            image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except UniqueViolation:
         sys.stderr.write(f"MD5 not unique for {bp_data['blueprint_name']}\n")
 
 
 def _munge_tag(tag: list):
     return "|".join(str(t) for t in tag)
+
+
+def _munge_image(image: dict):
+    # placeholder for additional work if needed
+    return image
