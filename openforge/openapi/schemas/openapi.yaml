@@ -354,6 +354,129 @@ paths:
                     type: array
                     items:
                       type: object
+  /api/images:
+    get:
+      tags:
+        - images
+      summary: returns all blueprints
+      operationId: allImages
+      description: |
+        Returns all iamges
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+    post:
+      tags:
+        - image
+      summary: Creates an image
+      operationId: addImage
+      description: Creates an image
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '201':
+          description: Blueprint created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+        description: Image to create
+  /api/images/{image_id}:
+    get:
+      tags:
+        - image
+      summary: returns a image by id
+      operationId: getImage
+      description: Returns an image by id
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: an image
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '404':
+          description: 'Image not found'
+    patch:
+      tags:
+        - image
+      summary: Updates an image
+      operationId: patchImage
+      description: Updates an image and returns it
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+    delete:
+      tags:
+        - iamge
+      summary: Deletes an image
+      operationId: deleteImage
+      description: Deletes an image
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Success
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Image not found'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -461,7 +584,7 @@ components:
         updated_at:
           type: string
           format: date-time
-        blueprints:
+        blueprint_ids:
           type: array
           items:
             type: string

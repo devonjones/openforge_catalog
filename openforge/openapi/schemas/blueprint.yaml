@@ -46,8 +46,6 @@ properties:
       properties:
         image_name:
           type: string
-        image_md5:
-          type: string
         image_url:
           type: string
 required:
