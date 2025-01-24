@@ -1,9 +1,10 @@
 import json
 import uuid
-from psycopg import cursor, sql
 
-from werkzeug.exceptions import NotFound
+from psycopg import cursor, sql
+from psycopg.types.json import Jsonb
 from psycopg.errors import UniqueViolation
+from werkzeug.exceptions import NotFound
 
 
 def _blueprint_defaults(data: dict) -> dict:
@@ -19,6 +20,8 @@ def _blueprint_defaults(data: dict) -> dict:
     }
     defaults.update(data)
     defaults = _convert_blueprint_config(defaults)
+    defaults["config"] = Jsonb(defaults["config"])
+    print(defaults)
     return defaults
 
 
@@ -55,7 +58,6 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
 def insert_blueprint(
     curs: cursor, data: dict, rescue_md5_conflict: bool = False
 ) -> dict:
-    print(data)
     query_list = [
         sql.SQL(
             """
@@ -145,7 +147,7 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
             query_list.append(
                 sql.SQL(f"{comma}{field} = " + "{value}").format(value=data[field])
             )
-            comma = sql.SQL(", ")
+            comma = ", "
 
     query_list.append(
         sql.SQL("  WHERE id = {blueprint_id}").format(
@@ -153,6 +155,7 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         )
     )
     query = sql.Composed(query_list)
+    print(query.join("\n"))
     curs.execute(query.join("\n"))
     if curs.rowcount > 0:
         return get_blueprint_by_id(curs, blueprint_id)

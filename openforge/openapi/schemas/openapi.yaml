@@ -369,6 +369,15 @@ components:
           type: array
           items:
             type: string
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              image_name:
+                type: string
+              image_url:
+                type: string
     Tag:
       type: object
       properties:
@@ -403,3 +412,24 @@ components:
             properties:
               tag:
                 type: string
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        image_name:
+          type: string
+        image_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        blueprints:
+          type: array
+          items:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
