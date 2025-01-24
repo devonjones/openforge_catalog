@@ -4,6 +4,7 @@ from openforge.app import init_app
 import openforge.app.routes.blueprints as blueprint_routes
 import openforge.app.routes.tags as tag_routes
 from openforge.openapi import validate_schema
+from openforge.app.routes import authenticate
 
 
 app = Flask(__name__)
@@ -11,6 +12,7 @@ init_app(app)
 
 
 @app.route("/api/blueprints", methods=["GET", "POST"])
+@authenticate(methods=["POST"])
 def blueprints():
     if request.method == "GET":
         return blueprint_routes.get_blueprints()
@@ -19,6 +21,7 @@ def blueprints():
 
 
 @app.route("/api/blueprints/<blueprint_id>", methods=["GET", "PATCH", "DELETE"])
+@authenticate(methods=["PATCH", "DELETE"])
 def blueprint(blueprint_id):
     if request.method == "GET":
         return blueprint_routes.get_blueprint_by_id(blueprint_id)
@@ -39,6 +42,7 @@ def blueprints_by_tag(tag):
 
 
 @app.route("/api/blueprints/<blueprint_id>/tags", methods=["GET", "POST", "DELETE"])
+@authenticate(methods=["POST", "DELETE"])
 def blueprint_tags(blueprint_id):
     if request.method == "GET":
         return tag_routes.get_blueprint_tags(blueprint_id)
@@ -51,6 +55,7 @@ def blueprint_tags(blueprint_id):
 
 
 @app.route("/api/blueprints/<blueprint_id>/tags/<tag>", methods=["POST", "DELETE"])
+@authenticate(methods=["POST", "DELETE"])
 def blueprint_tag(blueprint_id, tag):
     if request.method == "POST":
         return tag_routes.create_blueprint_tags(blueprint_id, [tag])

@@ -41,6 +41,8 @@ paths:
       summary: Creates a blueprint
       operationId: addBlueprint
       description: Creates a blueprint
+      security:
+        - ApiKeyAuth: []
       responses:
         '201':
           description: Blueprint created
@@ -50,6 +52,8 @@ paths:
                 $ref: '#/components/schemas/Blueprint'
         '400':
           description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
       requestBody:
         content:
           application/json:
@@ -86,6 +90,8 @@ paths:
       summary: Updates a blueprint
       operationId: patchBlueprint
       description: Updates a blueprint and returns it
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -101,10 +107,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Blueprint'
-        '404':
-          description: 'Blueprint not found'
         '400':
           description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
       requestBody:
         content:
           application/json:
@@ -116,6 +124,8 @@ paths:
       summary: Deletes a blueprint
       operationId: deleteBlueprint
       description: Deletes a blueprint
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -127,6 +137,8 @@ paths:
       responses:
         '204':
           description: Success
+        '401':
+          description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
   /api/blueprints/tags/{tag}:
@@ -186,6 +198,8 @@ paths:
         - tags
       summary: Resets a list of tags for a blueprint.  This will remove existing tags and replace them with the ones passed in
       operationId: replaceBlueprintTags
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -208,6 +222,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Blueprint'
+        '401':
+          description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
     delete:
@@ -216,6 +232,8 @@ paths:
         - tags
       summary: Deletes all tags for a blueprint.
       operationId: deleteBlueprintTags
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -227,6 +245,8 @@ paths:
       responses:
         '204':
           description: Deleted
+        '401':
+          description: 'Not Authorized'
         '404':
           description: Tag or Blueprint not found
   /api/blueprints/{blueprint_id}/tags/{tag}:
@@ -236,6 +256,8 @@ paths:
         - tags
       summary: Creates a single tag for a blueprint.
       operationId: createBlueprintTag
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -259,6 +281,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Tag'
+        '401':
+          description: 'Not Authorized'
         '404':
           description: Blueprint not found
     delete:
@@ -267,6 +291,8 @@ paths:
         - tags
       summary: Deletes a single tag for a blueprint.
       operationId: deleteBlueprintTag
+      security:
+        - ApiKeyAuth: []
       parameters:
         - in: path
           name: blueprint_id
@@ -284,6 +310,8 @@ paths:
       responses:
         '204':
           description: Deleted
+        '401':
+          description: 'Not Authorized'
         '404':
           description: Tag or Blueprint not found
   /api/blueprints/tags:
@@ -327,6 +355,11 @@ paths:
                     items:
                       type: object
 components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
   schemas:
     Blueprint:
       type: object

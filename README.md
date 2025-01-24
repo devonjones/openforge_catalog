@@ -18,6 +18,11 @@ All node code in this project is licensed under the MIT license.  The licene tex
 
 ## Setup
 
+### API Token
+There is a default API token set when in development mode.  That token is "1234567890".  You can change it by setting the `API_TOKEN` environment variable.
+
+To call any write endpoint, you need to pass the API token in the `Authorization` header with the value `Bearer <API_TOKEN>`.
+
 ### Node
 
 Install pnpm:
@@ -44,8 +49,6 @@ Then, run `pyenv virtualenvwrapper` to initialize virtualenvwrapper.  Next, run 
 Now you can install the dependencies with `pip install -r requirements.txt` and install setuptools with `pip install setuptools`.
 
 Finally, run `./setup.py install` to install the dependencies.
-
-
 
 ### Postgres
 You need to have postgres installed on your machine.  You can find more information about it [here](https://www.postgresql.org/download/).
@@ -106,7 +109,7 @@ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ```sql
 id UUID PRIMARY KEY DEFAULT gen_random_uuid()
 image_name TEXT NOT NULL
-image_url TEXT NOT NULL
+image_url TEXT NOT NULL UNIQUE
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ```
@@ -119,6 +122,7 @@ blueprint_id UUID NOT NULL REFERENCES blueprints(id)
 image_id UUID NOT NULL REFERENCES images(id)
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+UNIQUE NULLS NOT DISTINCT (blueprint_id, image_id)
 ```
 
 ### Documentation
