@@ -21,7 +21,6 @@ def _blueprint_defaults(data: dict) -> dict:
     defaults.update(data)
     defaults = _convert_blueprint_config(defaults)
     defaults["config"] = Jsonb(defaults["config"])
-    print(defaults)
     return defaults
 
 
@@ -155,7 +154,6 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         )
     )
     query = sql.Composed(query_list)
-    print(query.join("\n"))
     curs.execute(query.join("\n"))
     if curs.rowcount > 0:
         return get_blueprint_by_id(curs, blueprint_id)
