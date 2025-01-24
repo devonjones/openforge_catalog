@@ -52,7 +52,7 @@ paths:
                 $ref: '#/components/schemas/Blueprint'
         '400':
           description: 'invalid input, object invalid'
-        '403':
+        '401':
           description: 'Not Authorized'
       requestBody:
         content:
@@ -109,7 +109,7 @@ paths:
                 $ref: '#/components/schemas/Blueprint'
         '400':
           description: 'invalid input, object invalid'
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
@@ -137,7 +137,7 @@ paths:
       responses:
         '204':
           description: Success
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
@@ -222,7 +222,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Blueprint'
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
@@ -245,7 +245,7 @@ paths:
       responses:
         '204':
           description: Deleted
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: Tag or Blueprint not found
@@ -281,7 +281,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Tag'
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: Blueprint not found
@@ -310,7 +310,7 @@ paths:
       responses:
         '204':
           description: Deleted
-        '403':
+        '401':
           description: 'Not Authorized'
         '404':
           description: Tag or Blueprint not found
