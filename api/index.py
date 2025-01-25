@@ -1,4 +1,5 @@
 from flask import Flask, request
+import aws_lambda_wsgi
 
 from openforge.app import init_app
 import openforge.app.routes.blueprints as blueprint_routes
@@ -89,3 +90,7 @@ def image(image_id):
         return image_routes.update_image(image_id)
     elif request.method == "DELETE":
         return image_routes.delete_image(image_id)
+
+
+def lambda_handler(event, context):
+    return aws_lambda_wsgi.response(app.wsgi_app, event, context)

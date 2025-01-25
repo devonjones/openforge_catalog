@@ -5,3 +5,4 @@ PyYAML==6.0.2
 psycopg==3.2.3
 psycopg-pool==3.2.4
 jsonschema==4.23.0
+aws_lambda_wsgi==0.0.6
