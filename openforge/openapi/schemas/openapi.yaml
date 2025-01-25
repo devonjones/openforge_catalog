@@ -5,10 +5,10 @@ servers:
     url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/1.0.0
 info:
   description: This is a simple API
-  version: "1.0.0"
-  title: Simple Inventory API
+  version: "0.2.0"
+  title: Openforge Catalog API
   contact:
-    email: you@your-company.com
+    email: devon.jones@gmail.com
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -357,7 +357,7 @@ paths:
   /api/images:
     get:
       tags:
-        - images
+        - image
       summary: returns all blueprints
       operationId: allImages
       description: |
@@ -456,7 +456,7 @@ paths:
               $ref: '#/components/schemas/Blueprint'
     delete:
       tags:
-        - iamge
+        - image
       summary: Deletes an image
       operationId: deleteImage
       description: Deletes an image
