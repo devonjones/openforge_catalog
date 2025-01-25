@@ -1,0 +1,56 @@
+name: Staging
+run-name: ${{github.actor}}: staging
+on:
+  push:
+    branches: [test]
+concurrency:
+  group: ${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  id-token: write
+  contents: read
+defaults:
+  run:
+    shell: bash
+jobs:
+  docker-build:
+    name: Staging Docker Build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Context for Buildx
+        run: |
+          docker context create builders
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          endpoint: builders
+
+
+      - name: Configure Staging OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.ECR_IAM }}
+          role-session-name: staging-ecr
+          aws-region: us-east-1
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+        id: login-com-test-ecr
+        with:
+          mask-password: true
+
+      - name: Docker Build and Push
+        if: ${{ ! inputs.use_cache }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ./
+          file: ./Dockerfile.api.deploy
+          push: true
+          platforms: linux/amd64
+          tags: "682033461796.dkr.ecr.us-east-1.amazonaws.com/openforge_catalog/api:${{ github.sha }}"
