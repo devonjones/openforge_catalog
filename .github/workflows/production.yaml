@@ -1,8 +1,8 @@
-name: Staging
+name: Production
 
 on:
   push:
-    branches: [test]
+    branches: [main]
 concurrency:
   group: ${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
@@ -15,7 +15,7 @@ defaults:
 
 jobs:
   docker-build:
-    name: Staging Docker Build
+    name: Production Docker Build
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -33,11 +33,11 @@ jobs:
           endpoint: builders
 
 
-      - name: Configure Staging OIDC
+      - name: Configure Production OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.ECR_IAM_STAGING }}
-          role-session-name: staging-ecr
+          role-to-assume: ${{ vars.ECR_IAM_PROD }}
+          role-session-name: production-ecr
           aws-region: us-east-1
 
       - name: Login to ECR
