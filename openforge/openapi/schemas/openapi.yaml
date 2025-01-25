@@ -1,0 +1,591 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/1.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /api/blueprints:
+    get:
+      tags:
+        - blueprint
+      summary: returns all blueprints
+      operationId: allBlueprints
+      description: |
+        Returns all blueprints
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blueprint'
+    post:
+      tags:
+        - blueprint
+      summary: Creates a blueprint
+      operationId: addBlueprint
+      description: Creates a blueprint
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '201':
+          description: Blueprint created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+        description: Blueprint to create
+  /api/blueprints/{blueprint_id}:
+    get:
+      tags:
+        - blueprint
+      summary: returns a blueprint by id
+      operationId: getBlueprint
+      description: Returns a blueprint by id
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: a blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '404':
+          description: 'Blueprint not found'
+    patch:
+      tags:
+        - blueprint
+      summary: Updates a blueprint
+      operationId: patchBlueprint
+      description: Updates a blueprint and returns it
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+    delete:
+      tags:
+        - blueprint
+      summary: Deletes a blueprint
+      operationId: deleteBlueprint
+      description: Deletes a blueprint
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Success
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+  /api/blueprints/tags/{tag}:
+    get:
+      tags:
+        - blueprint
+        - tags
+      summary: Returns a list of blueprint ids that match a tag head
+      operationId: getBlueprintIdByTag
+      description: Returns blueprint ids
+      parameters:
+        - in: path
+          name: tag
+          description: Tag to search for.  Tags are in the form of part1|part2|part... Search will return all tags that match with the tag based on it being the front of the tag.  E.g. foo|bar will match on foo|bar|baz as well as foo|bar or foo|bar|1
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: list of blueprint ids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+  /api/blueprints/{blueprint_id}/tags:
+    get:
+      tags:
+        - blueprint
+        - tags
+      summary: Returns a list of tags and their metadata for a blueprint
+      operationId: getBlueprintTags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: List of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '404':
+          description: 'Blueprint not found'
+    post:
+      tags:
+        - blueprint
+        - tags
+      summary: Resets a list of tags for a blueprint.  This will remove existing tags and replace them with the ones passed in
+      operationId: replaceBlueprintTags
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: a blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+    delete:
+      tags:
+        - blueprint
+        - tags
+      summary: Deletes all tags for a blueprint.
+      operationId: deleteBlueprintTags
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: Tag or Blueprint not found
+  /api/blueprints/{blueprint_id}/tags/{tag}:
+    post:
+      tags:
+        - blueprint
+        - tags
+      summary: Creates a single tag for a blueprint.
+      operationId: createBlueprintTag
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: tag
+          description: Tag to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: Blueprint not found
+    delete:
+      tags:
+        - blueprint
+        - tags
+      summary: Deletes a single tag for a blueprint.
+      operationId: deleteBlueprintTag
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: Id of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: tag
+          description: Tag to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: Tag or Blueprint not found
+  /api/blueprints/tags:
+    post:
+      tags:
+        - tags
+      summary: Queries tags for a list of blueprint ids
+      operationId: getBlueprintIdByTagQuery
+      description: Returns blueprint ids
+      parameters:
+        - in: query
+          name: paging
+          description: Paging id
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagQuery'
+        description: Tag Query
+      responses:
+        '200':
+          description: list of blueprint ids
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: integer
+                  next_paging:
+                    type: string
+                  blueprints:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Blueprint'
+                  tag_counts:
+                    type: array
+                    items:
+                      type: object
+  /api/images:
+    get:
+      tags:
+        - images
+      summary: returns all blueprints
+      operationId: allImages
+      description: |
+        Returns all iamges
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+    post:
+      tags:
+        - image
+      summary: Creates an image
+      operationId: addImage
+      description: Creates an image
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '201':
+          description: Blueprint created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Image'
+        description: Image to create
+  /api/images/{image_id}:
+    get:
+      tags:
+        - image
+      summary: returns a image by id
+      operationId: getImage
+      description: Returns an image by id
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: an image
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '404':
+          description: 'Image not found'
+    patch:
+      tags:
+        - image
+      summary: Updates an image
+      operationId: patchImage
+      description: Updates an image and returns it
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Blueprint'
+    delete:
+      tags:
+        - iamge
+      summary: Deletes an image
+      operationId: deleteImage
+      description: Deletes an image
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: image_id
+          description: Id of the image
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Success
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Image not found'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    Blueprint:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        blueprint_name:
+          type: string
+        blueprint_type:
+          type: string
+          enum:
+            - model
+            - blueprint
+        blueprint_config:
+          type: object
+        file_md5:
+          type: string
+        file_size:
+          type: integer
+        file_name:
+          type: string
+        full_name:
+          type: string
+        file_changed_at:
+          type: string
+          format: date-time
+        file_modified_at:
+          type: string
+          format: date-time
+        storage_address:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              image_name:
+                type: string
+              image_url:
+                type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        blueprint_id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        tag:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    TagQuery:
+      type: object
+      properties:
+        require:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+        deny:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        image_name:
+          type: string
+        image_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        blueprint_ids:
+          type: array
+          items:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"

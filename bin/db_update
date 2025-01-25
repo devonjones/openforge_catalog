@@ -1,0 +1,65 @@
+#!/usr/bin/env python
+import os
+
+from openforge.db import PgDB
+from openforge.db.schema import get_schema_versions, get_current_schema_version
+from openforge.db.schema import SchemaBase
+
+import click
+
+
+@click.group()
+@click.option("--debug/--no-debug", default=False)
+@click.pass_context
+def cli(ctx, debug):
+    ctx.ensure_object(dict)
+    ctx.obj["debug"] = debug
+
+
+@cli.command()
+@click.pass_context
+def up(ctx):
+    db = PgDB(os.environ)
+    versions = get_schema_versions()
+    for schema in versions:
+        with db.pool.connection() as conn:
+            result = schema(conn).up()
+            if result:
+                conn.commit()
+            else:
+                break
+
+
+@cli.command()
+@click.argument("ver", type=int)
+@click.pass_context
+def down(ctx, ver):
+    db = PgDB(os.environ)
+    versions = get_schema_versions()
+    for schema in reversed(versions):
+        with db.pool.connection() as conn:
+            result = schema(conn).down(ver)
+            if result:
+                conn.commit()
+            else:
+                break
+
+
+@cli.command()
+@click.pass_context
+def version(ctx):
+    db = PgDB(os.environ)
+    versions = get_schema_versions()
+    with db.pool.connection() as conn:
+        with conn.cursor() as curs:
+            try:
+                version = get_current_schema_version(curs)
+                print(
+                    f"Current schema version: {version}.  Max version: {versions[-1].version}"
+                )
+            except Exception as e:
+                print("No schema version found")
+
+
+if __name__ == "__main__":
+    cli(obj={})
