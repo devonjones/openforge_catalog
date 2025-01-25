@@ -13,6 +13,6 @@ COPY bin/ bin/
 COPY openforge ./openforge
 RUN python setup.py install
 
-COPY api/index.py ./index.py
+COPY api/index.py ./openforge/index.py
 
-CMD ["index.lambda_handler"]
+CMD ["openforge.index.lambda_handler"]
