@@ -53,5 +53,7 @@ jobs:
           context: ./
           file: ./Dockerfile.api.deploy
           push: true
+          buildArgs:
+            provenance: "false"
           platforms: linux/amd64
           tags: "682033461796.dkr.ecr.us-east-1.amazonaws.com/openforge_catalog/api:${{ github.sha }}"
