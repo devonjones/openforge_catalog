@@ -30,9 +30,9 @@ Install pnpm:
 `curl -fsSL https://get.pnpm.io/install.sh | sh -`
 
 ### Python
-We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.  To install the python version specified in the `.python-version` file, run `pyenv install`.
+We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.
 
-We also use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtual environments.  To create a virtual environment for this project, run `pyenv virtualenv 3.12.1 openforge_catalog`. If you dont have 3.12.1 installed, you can install it with `pyenv install 3.12.1`.
+We also use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtual environments.  First, install the version of python we use: 3.11.2.  You can install it with `pyenv install 3.11.2`.  To create a virtual environment for this project, run `pyenv virtualenv 3.11.2 openforge_catalog`. 
 
 To activate the virtual environment, run `pyenv activate openforge_catalog`.
 
@@ -40,9 +40,7 @@ To deactivate the virtual environment, run `pyenv deactivate`.
 
 Dont exit the virtual environment, you'll need it for the next step.
 
-
-Finally, until I come up with a better solution, you'll need to use pyenv-virtualenvwrapper to manage your virtual environments.  You can find more information about it [here](https://github.com/pyenv/pyenv-virtualenvwrapper).  Easiest way to install it is to run `git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper`. If you're using mac try to use `brew install pyenv-virtualenvwrapper` instead.
-
+Now we will do virtualenvwrapper.  First install it `pip install virtualenvwrapper`.  Until I come up with a better solution, you'll need to use pyenv-virtualenvwrapper to manage your virtual environments.  You can find more information about it [here](https://github.com/pyenv/pyenv-virtualenvwrapper).  Easiest way to install it is to run `git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper`. If you're using mac try to use `brew install pyenv-virtualenvwrapper` instead.
 
 Then, run `pyenv virtualenvwrapper` to initialize virtualenvwrapper.  Next, run `add2virtualenv .` to add the local directory to the virtualenv.
 
@@ -53,17 +51,19 @@ Finally, run `./setup.py install` to install the dependencies.
 ### Postgres
 You need to have postgres installed on your machine.  You can find more information about it [here](https://www.postgresql.org/download/).
 
-For Mac users: `brew install libpq` & `brew install postgresql` & `brew install openssl`
-After that, recompile psycopg with `pip install --upgrade --force-reinstall psycopg==3.2.3` and `pip install "psycopg[binary]==3.2.3"`.
+For Debian/Ubuntu users: `sudo apt install libpq-dev libyaml-dev postgresql-client`
 
+For Mac users: `brew install libpq` & `brew install postgresql` & `brew install openssl`
+
+After that, recompile psycopg with `pip install --upgrade --force-reinstall psycopg==3.2.3` and `pip install "psycopg[binary]==3.2.3"`.
 
 To start the postgres container, run `docker compose up -d`.
 
 To connect to the postgres container, run `psql -U openforge -W openforge -h 127.0.0.1`.
 
-To run the db update script, run `bin/db_update`.
+To run the db update script, run `bin/db_update up`.
 
-If you want to load the fixtures, run `bin/db_fixtures`.
+If you want to load the fixtures, run `bin/fixtures`.
 
 Now you can run `yarn flask-dev` to start the flask server.
 
