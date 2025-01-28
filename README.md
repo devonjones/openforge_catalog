@@ -30,7 +30,7 @@ Install pnpm:
 `curl -fsSL https://get.pnpm.io/install.sh | sh -`
 
 ### Python
-We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.  To install the python version specified in the `.python-version` file, run `pyenv install`.
+We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.
 
 We also use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtual environments.  First, install the version of python we use: 3.11.2.  You can install it with `pyenv install 3.11.2`.  To create a virtual environment for this project, run `pyenv virtualenv 3.11.2 openforge_catalog`. 
 
