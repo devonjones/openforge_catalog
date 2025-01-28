@@ -63,7 +63,7 @@ To connect to the postgres container, run `psql -U openforge -W openforge -h 127
 
 To run the db update script, run `bin/db_update up`.
 
-If you want to load the fixtures, run `bin/db_fixtures`.
+If you want to load the fixtures, run `bin/fixtures`.
 
 Now you can run `yarn flask-dev` to start the flask server.
 
