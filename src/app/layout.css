@@ -1,0 +1,41 @@
+
+.pageContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.pageHeader {
+  flex: 0 0 auto; 
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+}
+
+.columnContainer {
+  flex: 0 1 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
+}
+
+
+.tagContainer {
+  padding: 8px;
+  background-color: #ddd;
+  flex: 0 1 200px;
+}
+.modelsContainer {
+  padding: 8px;
+  flex: 1 1 auto;
+}
+.modelDetailsContainer {
+  padding: 8px;
+  flex: 1 1 auto;
+}
