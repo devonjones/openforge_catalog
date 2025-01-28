@@ -61,7 +61,7 @@ To start the postgres container, run `docker compose up -d`.
 
 To connect to the postgres container, run `psql -U openforge -W openforge -h 127.0.0.1`.
 
-To run the db update script, run `bin/db_update`.
+To run the db update script, run `bin/db_update up`.
 
 If you want to load the fixtures, run `bin/db_fixtures`.
 
