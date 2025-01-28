@@ -143,6 +143,28 @@ def tag_search_tags(
     return curs.fetchall()
 
 
+def tag_search_blueprint_images(
+    curs: cursor,
+    require: list[str],
+    deny: list[str],
+    paging: uuid.UUID | None = None,
+) -> list[dict]:
+    parts = [
+        sql.SQL(
+            "SELECT bpi.blueprint_id,images.id, images.image_name, images.image_url, images.created_at, images.updated_at"
+        ),
+        sql.SQL("  FROM images"),
+        sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
+        sql.SQL("  WHERE bpi.blueprint_id IN ("),
+        _query_tags_basics(require, deny, paging),
+        sql.SQL("  )"),
+        sql.SQL("  ORDER BY bpi.blueprint_id"),
+    ]
+    query = sql.Composed(parts)
+    curs.execute(query)
+    return curs.fetchall()
+
+
 def tag_search_blueprint_count(
     curs: cursor, require: list[str], deny: list[str]
 ) -> int:
@@ -200,7 +222,7 @@ SELECT DISTINCT bp.id
         )
     end_parts = [sql.SQL("  ORDER BY bp.id")]
     if limit:
-        end_parts.append(sql.SQL("  LIMIT 100"))
+        end_parts.append(sql.SQL("  LIMIT 20"))
     query = sql.Composed(query_parts + deny_parts + end_parts)
     return query.join("\n")
 

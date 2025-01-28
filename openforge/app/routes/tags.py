@@ -74,7 +74,11 @@ def query_tags():
             count = tag_sql.tag_search_blueprint_count(cursor, require, deny)
             tag_count = tag_sql.tag_search_tag_count(cursor, require, deny)
             tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
+            image_data = tag_sql.tag_search_blueprint_images(
+                cursor, require, deny, paging
+            )
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
+            bps = _merge_blueprint_image_data(bps, image_data)
             next_paging = bps[-1]["id"] if len(bps) > 0 else None
             return jsonify(
                 {
@@ -96,3 +100,25 @@ def _merge_blueprint_tag_data(bp_data: list[dict], tag_data: list[dict]) -> list
 
 def _munge_tag(tag: dict) -> dict:
     return "|".join(tag["tag"])
+
+
+def _merge_blueprint_image_data(
+    bp_data: list[dict], image_data: list[dict]
+) -> list[dict]:
+    for bp in bp_data:
+        bp["images"] = [
+            _munge_image(image)
+            for image in image_data
+            if image["blueprint_id"] == bp["id"]
+        ]
+    return bp_data
+
+
+def _munge_image(image: dict) -> dict:
+    return {
+        "id": image["id"],
+        "image_name": image["image_name"],
+        "image_url": image["image_url"],
+        "created_at": image["created_at"],
+        "updated_at": image["updated_at"],
+    }
