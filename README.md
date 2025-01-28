@@ -42,7 +42,6 @@ Dont exit the virtual environment, you'll need it for the next step.
 
 Now we will do virtualenvwrapper.  First install it `pip install virtualenvwrapper`.  Until I come up with a better solution, you'll need to use pyenv-virtualenvwrapper to manage your virtual environments.  You can find more information about it [here](https://github.com/pyenv/pyenv-virtualenvwrapper).  Easiest way to install it is to run `git clone https://github.com/pyenv/pyenv-virtualenvwrapper.git $(pyenv root)/plugins/pyenv-virtualenvwrapper`. If you're using mac try to use `brew install pyenv-virtualenvwrapper` instead.
 
-
 Then, run `pyenv virtualenvwrapper` to initialize virtualenvwrapper.  Next, run `add2virtualenv .` to add the local directory to the virtualenv.
 
 Now you can install the dependencies with `pip install -r requirements.txt` and install setuptools with `pip install setuptools`.
@@ -52,9 +51,10 @@ Finally, run `./setup.py install` to install the dependencies.
 ### Postgres
 You need to have postgres installed on your machine.  You can find more information about it [here](https://www.postgresql.org/download/).
 
+For Debian/Ubuntu users: `sudo apt install libpq-dev libyaml-dev postgresql-client`
+
 For Mac users: `brew install libpq` & `brew install postgresql` & `brew install openssl`
 After that, recompile psycopg with `pip install --upgrade --force-reinstall psycopg==3.2.3` and `pip install "psycopg[binary]==3.2.3"`.
-
 
 To start the postgres container, run `docker compose up -d`.
 
