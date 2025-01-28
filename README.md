@@ -54,6 +54,7 @@ You need to have postgres installed on your machine.  You can find more informat
 For Debian/Ubuntu users: `sudo apt install libpq-dev libyaml-dev postgresql-client`
 
 For Mac users: `brew install libpq` & `brew install postgresql` & `brew install openssl`
+
 After that, recompile psycopg with `pip install --upgrade --force-reinstall psycopg==3.2.3` and `pip install "psycopg[binary]==3.2.3"`.
 
 To start the postgres container, run `docker compose up -d`.
