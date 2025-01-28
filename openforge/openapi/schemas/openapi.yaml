@@ -328,6 +328,12 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: limit
+          description: Limit the number of results (default 20)
+          required: false
+          schema:
+            type: integer
       requestBody:
         content:
           application/json:
