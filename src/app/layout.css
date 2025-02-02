@@ -1,0 +1,28 @@
+body,html {
+    height: 100%;
+}
+
+.Layout__Container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.Layout__Header {
+    flex: 0 0 30px;
+}
+.Layout__Content {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.Layout__Filters {
+    flex: 0 0 200px;
+    background-color: #ddd;
+}
+.Layout__Models {
+    flex: 1 1 auto;
+}
+.Layout__Details {
+    flex: 1 1 auto;
+}

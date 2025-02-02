@@ -46,3 +46,6 @@ dist
 
 # postgres
 db-data
+
+# yarn
+yarn.lock
