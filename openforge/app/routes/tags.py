@@ -61,13 +61,17 @@ def get_blueprint_ids_by_tag(tag: str):
 
 def query_tags():
     try:
-        validate_schema("tag_query.yaml", request.json)
+        if len(request.data) > 0:
+            validate_schema("tag_query.yaml", request.json)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            require = request.json.get("require", [])
-            deny = request.json.get("deny", [])
+            require = []
+            deny = []
+            if len(request.data) > 0:
+                require = request.json.get("require", [])
+                deny = request.json.get("deny", [])
             paging = request.args.get("paging")
             limit = request.args.get("limit", 20)
             bp_data = tag_sql.tag_search_blueprints(
