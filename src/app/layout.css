@@ -1,28 +1,38 @@
-body,html {
-    height: 100%;
+.pageContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.Layout__Container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.pageHeaderWrapper {
+  flex: 0 0 auto; 
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
 }
-.Layout__Header {
-    flex: 0 0 30px;
+
+.columnContainer {
+  flex: 0 1 auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  align-items: stretch;
 }
-.Layout__Content {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+
+.tagContainerWrapper {
+  padding: 8px;
+  background-color: #ddd;
+  flex: 0 1 200px;
 }
-.Layout__Filters {
-    flex: 0 0 200px;
-    background-color: #ddd;
+.modelsContainerWrapper {
+  padding: 8px;
+  flex: 1 1 auto;
 }
-.Layout__Models {
-    flex: 1 1 auto;
-}
-.Layout__Details {
-    flex: 1 1 auto;
+.modelDetailsContainerWrapper {
+  padding: 8px;
+  flex: 1 1 auto;
 }
