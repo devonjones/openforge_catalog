@@ -251,11 +251,45 @@ def parse_files(path, files, md5, verbose, upload, config):
                 _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
             )
             o["images"] = images
-        parse_filename(f, t)
-        parse_path(f, t)
+        if metadata and metadata.get("auto", True):
+            parse_filename(f, t)
+            parse_path(f, t)
+        apply_metadata(metadata, o)
         del f["path"]
         newfiles.append(o)
     return newfiles
+
+
+def apply_metadata(metadata, o):
+    if metadata is None:
+        return
+    if "ignore" in metadata:
+        del metadata["ignore"]
+    if "auto" in metadata:
+        del metadata["auto"]
+    if "tags" in metadata:
+        for tag in metadata["tags"]:
+            o["tags"].add(tuple(tag.split("|")))
+        del metadata["tags"]
+    if "config" in metadata:
+        o["config"] = metadata["config"]
+        del metadata["config"]
+    if "edit" in metadata:
+        apply_metadata_edit(metadata["edit"], o)
+        del metadata["edit"]
+    assert len(metadata) == 0, metadata
+
+
+def apply_metadata_edit(edit, o):
+    if "tags" in edit:
+        if "add" in edit["tags"]:
+            for tag in edit["tags"]["add"]:
+                o["tags"].add(tuple(tag.split("|")))
+        if "remove" in edit["tags"]:
+            for tag in edit["tags"]["remove"]:
+                o["tags"].remove(tuple(tag.split("|")))
+        del edit["tags"]
+    assert len(edit) == 0, edit
 
 
 def upload_file(f, file_path, s3_client, object_path):
