@@ -251,7 +251,7 @@ def parse_files(path, files, md5, verbose, upload, config):
                 _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
             )
             o["images"] = images
-        if metadata and metadata.get("auto", True):
+        if not metadata or metadata.get("auto", True):
             parse_filename(f, t)
             parse_path(f, t)
         apply_metadata(metadata, o)
