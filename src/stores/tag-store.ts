@@ -1,4 +1,4 @@
-    /* 
+/* 
       Data returned looks like:
       {
         tag_counts: {
@@ -37,14 +37,7 @@
 
 
 import { create } from 'zustand';
-
-interface TagNode {
-  __count?: number;
-  __totalCount?: number;
-  __subTags?: number;
-  children?: Record<string, TagNode>;
-  [key: string]: any;
-}
+import { TagNode } from '@/types';
 
 interface StoreState {
   data: Record<string, TagNode>;
