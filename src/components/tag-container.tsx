@@ -5,17 +5,23 @@ import useStore from '@/stores/tag-store';
 
 const renderTags = (data: Record<string, any>, level = 0, expandedNodes: Record<string, boolean>, toggleNode: (key: string) => void) => {
   return Object.entries(data).map(([tag, value], index) => {
+    if (tag.startsWith('__') || tag === 'children') return null;
+
     const key = `${level}-${tag}`;
     const isExpanded = expandedNodes[key] || false;
-    const hasChildren = Object.keys(value).some(k => k !== 'count' && k !== '__count');
+    const hasChildren = value.children && Object.keys(value.children).length > 0;
 
     return (
       <div key={key} style={{ marginLeft: level * 20 }}>
-        <div onClick={() => hasChildren && toggleNode(key)} style={{ cursor: hasChildren ? 'pointer' : 'default' }}>
-          {tag}: {value.count ?? value.__count ?? ''}
-          {hasChildren && (isExpanded ? ' ▼' : ' ▶')}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {hasChildren && (
+            <span onClick={() => toggleNode(key)} style={{ cursor: 'pointer', marginRight: 5 }}>
+              {isExpanded ? '▼' : '▶'}
+            </span>
+          )}
+          <span>{tag} {value.__subTags > 0 && `(${value.__subTags})`}</span>
         </div>
-        {isExpanded && hasChildren && renderTags(value, level + 1, expandedNodes, toggleNode)}
+        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode)}
       </div>
     );
   });
