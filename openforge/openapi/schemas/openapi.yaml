@@ -560,6 +560,13 @@ components:
     TagQuery:
       type: object
       properties:
+        accept:
+          type: array
+          items:
+            type: object
+            properties:
+              tag:
+                type: string
         require:
           type: array
           items:
