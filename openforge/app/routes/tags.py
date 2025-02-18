@@ -67,23 +67,27 @@ def query_tags():
         return jsonify({"error": str(e)}), 400
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
+            accept = []
             require = []
             deny = []
             if len(request.data) > 0:
+                accept = request.json.get("accept", [])
                 require = request.json.get("require", [])
                 deny = request.json.get("deny", [])
             paging = request.args.get("paging")
             limit = request.args.get("limit", 20)
             bp_data = tag_sql.tag_search_blueprints(
-                cursor, require, deny, paging, limit
+                cursor, accept, require, deny, paging, limit
             )
-            tag_data = tag_sql.tag_search_tags(cursor, require, deny, paging, limit)
-            count = tag_sql.tag_search_blueprint_count(cursor, require, deny)
-            tag_count = tag_sql.tag_search_tag_count(cursor, require, deny)
-            tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
+            tag_data = tag_sql.tag_search_tags(
+                cursor, accept, require, deny, paging, limit
+            )
             image_data = tag_sql.tag_search_blueprint_images(
-                cursor, require, deny, paging, limit
+                cursor, accept, require, deny, paging, limit
             )
+            count = tag_sql.tag_search_blueprint_count(cursor, accept, require, deny)
+            tag_count = tag_sql.tag_search_tag_count(cursor, accept, require, deny)
+            tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)
             next_paging = bps[-1]["id"] if len(bps) > 0 else None

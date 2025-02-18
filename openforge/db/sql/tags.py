@@ -110,6 +110,7 @@ SELECT DISTINCT blueprint_id
 
 def tag_search_blueprints(
     curs: cursor,
+    accept: list[str],
     require: list[str],
     deny: list[str],
     paging: uuid.UUID | None = None,
@@ -119,17 +120,19 @@ def tag_search_blueprints(
         sql.SQL("SELECT *"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, paging, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY blueprints.id"),
     ]
     query = sql.Composed(parts)
+    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
 
 def tag_search_tags(
     curs: cursor,
+    accept: list[str],
     require: list[str],
     deny: list[str],
     paging: uuid.UUID | None = None,
@@ -139,17 +142,19 @@ def tag_search_tags(
         sql.SQL("SELECT *"),
         sql.SQL("  FROM tags AS bptags"),
         sql.SQL("  WHERE bptags.blueprint_id IN ("),
-        _query_tags_basics(require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, paging, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
     query = sql.Composed(parts)
+    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
 
 def tag_search_blueprint_images(
     curs: cursor,
+    accept: list[str],
     require: list[str],
     deny: list[str],
     paging: uuid.UUID | None = None,
@@ -162,23 +167,27 @@ def tag_search_blueprint_images(
         sql.SQL("  FROM images"),
         sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
         sql.SQL("  WHERE bpi.blueprint_id IN ("),
-        _query_tags_basics(require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, paging, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
     query = sql.Composed(parts)
+    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
 
 def tag_search_blueprint_count(
-    curs: cursor, require: list[str], deny: list[str]
+    curs: cursor,
+    accept: list[str],
+    require: list[str],
+    deny: list[str],
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(require, deny, do_limit=False),
+        _query_tags_basics(accept, require, deny, do_limit=False),
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
@@ -187,13 +196,16 @@ def tag_search_blueprint_count(
 
 
 def tag_search_tag_count(
-    curs: cursor, require: list[str], deny: list[str]
+    curs: cursor,
+    accept: list[str],
+    require: list[str],
+    deny: list[str],
 ) -> list[dict]:
     parts = [
         sql.SQL("SELECT COUNT(*) AS tag_count, t.tag"),
         sql.SQL("  FROM tags AS t"),
         sql.SQL("  WHERE t.blueprint_id IN ("),
-        _query_tags_basics(require, deny, do_limit=False),
+        _query_tags_basics(accept, require, deny, do_limit=False),
         sql.SQL("  )"),
         sql.SQL("  GROUP BY t.tag"),
     ]
@@ -203,6 +215,7 @@ def tag_search_tag_count(
 
 
 def _query_tags_basics(
+    accept: list[str],
     require: list[str],
     deny: list[str],
     paging: uuid.UUID | None = None,
@@ -216,7 +229,7 @@ SELECT DISTINCT bp.id
   FROM blueprints AS bp"""
         )
     ]
-    query_parts.append(_query_tags_require(require))
+    query_parts.append(_query_tags_include(accept, require))
     deny_parts = []
     if len(deny) > 0:
         deny_parts.append(sql.SQL("    AND bp.id NOT IN ("))
@@ -234,27 +247,58 @@ SELECT DISTINCT bp.id
     return query.join("\n")
 
 
-def _query_tags_require(require: list[str]) -> sql.Composed:
+def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
     joins = []
     wheres = []
     counter = 0
     where = "WHERE"
-    for req in require:
-        if "tag" in req:
-            tags_name = f"tags_{counter}"
-            joins.append(
-                sql.SQL(
-                    "    JOIN tags AS {table} ON bp.id = {table}.blueprint_id"
-                ).format(table=sql.Identifier(tags_name))
+
+    def _query_tag_require(counter: int, where: str, require_tag: str) -> int:
+        tags_name = "tags_%s" % counter
+        joins.append(
+            sql.SQL("    JOIN tags AS {table} ON bp.id = {table}.blueprint_id").format(
+                table=sql.Identifier(tags_name)
             )
-            tags = req["tag"].split("|")
+        )
+        tags = require_tag.split("|")
+        wheres.append(
+            sql.SQL("  %s {table}.tag = {tags}" % where).format(
+                table=sql.Identifier(tags_name),
+                tags=sql.Literal(tags),
+            )
+        )
+        return counter + 1
+
+    def _query_tag_accept(counter: int, where: str, accept_tag: str) -> int:
+        tags_name = "tags_%s" % counter
+        joins.append(
+            sql.SQL("    JOIN tags AS {table} ON bp.id = {table}.blueprint_id").format(
+                table=sql.Identifier(tags_name)
+            )
+        )
+        tags = accept_tag.split("|")
+        wheres.append(sql.SQL("  %s (" % where))
+        t = 1
+        sql_and = ""
+        for tag in tags:
             wheres.append(
-                sql.SQL("  %s {table}.tag = {tags}" % where).format(
+                sql.SQL("     %s {table}.tag[%s] = {tag}" % (sql_and, t)).format(
                     table=sql.Identifier(tags_name),
-                    tags=sql.Literal(tags),
+                    tag=sql.Literal(tag),
                 )
             )
-            counter += 1
+            sql_and = "   AND"
+            t += 1
+        wheres.append(sql.SQL("    )"))
+        return counter + 1
+
+    for req in require:
+        if "tag" in req:
+            counter = _query_tag_require(counter, where, req["tag"])
+            where = "  AND"
+    for acc in accept:
+        if "tag" in acc:
+            counter = _query_tag_accept(counter, where, acc["tag"])
             where = "  AND"
     return sql.Composed(joins + wheres).join("\n")
 
