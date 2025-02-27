@@ -287,7 +287,11 @@ def apply_metadata_edit(edit, o):
                 o["tags"].add(tuple(tag.split("|")))
         if "remove" in edit["tags"]:
             for tag in edit["tags"]["remove"]:
-                o["tags"].remove(tuple(tag.split("|")))
+                try:
+                    o["tags"].remove(tuple(tag.split("|")))
+                except KeyError as ke:
+                    print(o["tags"])
+                    raise ke
         del edit["tags"]
     assert len(edit) == 0, edit
 
