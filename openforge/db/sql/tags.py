@@ -125,7 +125,6 @@ def tag_search_blueprints(
         sql.SQL("  ORDER BY blueprints.id"),
     ]
     query = sql.Composed(parts)
-    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -147,7 +146,6 @@ def tag_search_tags(
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
     query = sql.Composed(parts)
-    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -172,7 +170,6 @@ def tag_search_blueprint_images(
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
     query = sql.Composed(parts)
-    print(query.as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -189,6 +186,26 @@ def tag_search_blueprint_count(
         sql.SQL("  WHERE blueprints.id IN ("),
         _query_tags_basics(accept, require, deny, do_limit=False),
         sql.SQL("  )"),
+    ]
+    query = sql.Composed(parts)
+    curs.execute(query)
+    return curs.fetchone()["count"]
+
+
+def tag_search_blueprint_start_count(
+    curs: cursor,
+    accept: list[str],
+    require: list[str],
+    deny: list[str],
+    first: uuid.UUID,
+) -> int:
+    parts = [
+        sql.SQL("SELECT COUNT(*)"),
+        sql.SQL("  FROM blueprints"),
+        sql.SQL("  WHERE blueprints.id IN ("),
+        _query_tags_basics(accept, require, deny, do_limit=False),
+        sql.SQL("  )"),
+        sql.SQL("  AND blueprints.id < {first}").format(first=sql.Literal(first)),
     ]
     query = sql.Composed(parts)
     curs.execute(query)
@@ -230,15 +247,23 @@ SELECT DISTINCT bp.id
         )
     ]
     query_parts.append(_query_tags_include(accept, require))
+    if query_parts[-1] == sql.Composed([]):
+        query_parts = query_parts[:-1]
     deny_parts = []
     if len(deny) > 0:
-        deny_parts.append(sql.SQL("    AND bp.id NOT IN ("))
+        deny_parts.append(
+            sql.SQL(
+                "    %s bp.id NOT IN (" % ("WHERE" if len(query_parts) <= 1 else "AND")
+            )
+        )
         deny_parts.append(_query_tags_deny(deny))
         deny_parts.append(sql.SQL("    )"))
 
     if paging:
         query_parts.append(
-            sql.SQL("  AND bp.id > {paging}").format(paging=sql.Literal(paging))
+            sql.SQL(
+                "  %s bp.id > {paging}" % ("WHERE" if len(query_parts) <= 1 else "AND")
+            ).format(paging=sql.Literal(paging))
         )
     end_parts = [sql.SQL("  ORDER BY bp.id")]
     if do_limit:

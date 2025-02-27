@@ -348,10 +348,17 @@ paths:
               schema:
                 type: object
                 properties:
-                  total_count:
-                    type: integer
-                  next_paging:
-                    type: string
+                  paging:
+                    type: object
+                    properties:
+                      next_token:
+                        type: string
+                      previous_token:
+                        type: string
+                      total_count:
+                        type: integer
+                      start_count:
+                        type: integer
                   blueprints:
                     type: array
                     items:

@@ -86,19 +86,35 @@ def query_tags():
                 cursor, accept, require, deny, paging, limit
             )
             count = tag_sql.tag_search_blueprint_count(cursor, accept, require, deny)
+            start_count = 0
+            if len(bp_data) > 0:
+                start_count = tag_sql.tag_search_blueprint_start_count(
+                    cursor, accept, require, deny, bp_data[0]["id"]
+                )
             tag_count = tag_sql.tag_search_tag_count(cursor, accept, require, deny)
             tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)
-            next_paging = bps[-1]["id"] if len(bps) > 0 else None
+            paging = _munge_paging(bps, count, start_count)
             return jsonify(
                 {
-                    "total_count": count,
-                    "next_paging": next_paging,
+                    "paging": paging,
                     "blueprints": bps,
                     "tag_counts": tag_count,
                 }
             )
+
+
+def _munge_paging(bps: list[dict], total_count: int, start_count: int) -> dict:
+    previous_token = bps[0]["id"] if len(bps) > 0 else None
+    next_token = bps[-1]["id"] if len(bps) > 0 else None
+    paging = {
+        "previous_token": previous_token,
+        "next_token": next_token,
+        "total_count": total_count,
+        "start_count": start_count,
+    }
+    return paging
 
 
 def _merge_blueprint_tag_data(bp_data: list[dict], tag_data: list[dict]) -> list[dict]:
