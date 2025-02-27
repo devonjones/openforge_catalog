@@ -74,16 +74,17 @@ def query_tags():
                 accept = request.json.get("accept", [])
                 require = request.json.get("require", [])
                 deny = request.json.get("deny", [])
-            paging = request.args.get("paging")
+            next = request.args.get("next")
+            previous = request.args.get("previous")
             limit = request.args.get("limit", 20)
             bp_data = tag_sql.tag_search_blueprints(
-                cursor, accept, require, deny, paging, limit
+                cursor, accept, require, deny, next, previous, limit
             )
             tag_data = tag_sql.tag_search_tags(
-                cursor, accept, require, deny, paging, limit
+                cursor, accept, require, deny, next, previous, limit
             )
             image_data = tag_sql.tag_search_blueprint_images(
-                cursor, accept, require, deny, paging, limit
+                cursor, accept, require, deny, next, previous, limit
             )
             count = tag_sql.tag_search_blueprint_count(cursor, accept, require, deny)
             start_count = 0

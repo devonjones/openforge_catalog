@@ -323,8 +323,14 @@ paths:
       description: Returns blueprint ids
       parameters:
         - in: query
-          name: paging
-          description: Paging id
+          name: next
+          description: Paging id for next page
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: previous
+          description: Paging id for previous page
           required: false
           schema:
             type: string

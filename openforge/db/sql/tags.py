@@ -113,14 +113,15 @@ def tag_search_blueprints(
     accept: list[str],
     require: list[str],
     deny: list[str],
-    paging: uuid.UUID | None = None,
+    next: uuid.UUID | None = None,
+    previous: uuid.UUID | None = None,
     limit: int = 20,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY blueprints.id"),
     ]
@@ -134,14 +135,15 @@ def tag_search_tags(
     accept: list[str],
     require: list[str],
     deny: list[str],
-    paging: uuid.UUID | None = None,
+    next: uuid.UUID | None = None,
+    previous: uuid.UUID | None = None,
     limit: int = 20,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM tags AS bptags"),
         sql.SQL("  WHERE bptags.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
@@ -155,7 +157,8 @@ def tag_search_blueprint_images(
     accept: list[str],
     require: list[str],
     deny: list[str],
-    paging: uuid.UUID | None = None,
+    next: uuid.UUID | None = None,
+    previous: uuid.UUID | None = None,
     limit: int = 20,
 ) -> list[dict]:
     parts = [
@@ -165,7 +168,7 @@ def tag_search_blueprint_images(
         sql.SQL("  FROM images"),
         sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
         sql.SQL("  WHERE bpi.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, paging, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
@@ -235,7 +238,8 @@ def _query_tags_basics(
     accept: list[str],
     require: list[str],
     deny: list[str],
-    paging: uuid.UUID | None = None,
+    next: uuid.UUID | None = None,
+    previous: uuid.UUID | None = None,
     limit: int = 20,
     do_limit: bool = True,
 ) -> sql.Composed:
@@ -259,13 +263,20 @@ SELECT DISTINCT bp.id
         deny_parts.append(_query_tags_deny(deny))
         deny_parts.append(sql.SQL("    )"))
 
-    if paging:
+    if next:
         query_parts.append(
             sql.SQL(
-                "  %s bp.id > {paging}" % ("WHERE" if len(query_parts) <= 1 else "AND")
-            ).format(paging=sql.Literal(paging))
+                "  %s bp.id > {next}" % ("WHERE" if len(query_parts) <= 1 else "AND")
+            ).format(next=sql.Literal(next))
         )
-    end_parts = [sql.SQL("  ORDER BY bp.id")]
+    elif previous:
+        query_parts.append(
+            sql.SQL(
+                "  %s bp.id < {previous}"
+                % ("WHERE" if len(query_parts) <= 1 else "AND")
+            ).format(previous=sql.Literal(previous))
+        )
+    end_parts = [sql.SQL("  ORDER BY bp.id %s" % ("DESC" if previous else "ASC"))]
     if do_limit:
         end_parts.append(sql.SQL("  LIMIT {limit}").format(limit=sql.Literal(limit)))
     query = sql.Composed(query_parts + deny_parts + end_parts)
