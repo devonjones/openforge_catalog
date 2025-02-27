@@ -1,10 +1,18 @@
 'use client'
 
 import React, { useState } from 'react';
-import useStore from '@/stores/tag-store';
+import useTagStore from '@/stores/tag-store';
+import useBlueprintStore from '@/stores/blueprints-store';
 
-const renderTags = (data: Record<string, any>, level = 0, expandedNodes: Record<string, boolean>, toggleNode: (key: string) => void) => {
+const renderTags = (
+  data: Record<string, any>,
+  level = 0,
+  expandedNodes: Record<string, boolean>,
+  toggleNode: (key: string) => void,
+  handleAddTag: (tag: string) => void
+) => {
   return Object.entries(data).map(([tag, value], index) => {
+    
     if (tag.startsWith('__') || tag === 'children') return null;
 
     const key = `${level}-${tag}`;
@@ -19,18 +27,26 @@ const renderTags = (data: Record<string, any>, level = 0, expandedNodes: Record<
               {isExpanded ? '▼' : '▶'}
             </span>
           )}
-          <span>{tag} {value.__subTags > 0 && `(${value.__subTags})`}</span>
+          <span>
+            {tag} {value.__subTags > 0 && `(${value.__subTags})`}
+            {value.__count && (
+              <span className="tagButton" onClick={() => handleAddTag(value.__name)} style={{ cursor: 'pointer', marginLeft: 5 }}>
+                +
+              </span>
+            )}
+          </span>
         </div>
-        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode)}
+        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag)}
       </div>
     );
   });
 };
 
 const TagContainer = () => {
-  const data = useStore((state) => state.data);
+  const data = useTagStore((state) => state.data);
+  const addTag = useBlueprintStore((state) => state.addTag);
   const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
-
+  console.log('tags', data)
   const toggleNode = (key: string) => {
     setExpandedNodes((prev) => ({
       ...prev,
@@ -38,10 +54,14 @@ const TagContainer = () => {
     }));
   };
 
+  const handleAddTag = (tag: string) => {
+    addTag(tag);
+  };
+
   return (
     <div className='tagContainer'>
       <div>Browse Tags</div>
-      <div>{renderTags(data, 0, expandedNodes, toggleNode)}</div>
+      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>
   );
 };

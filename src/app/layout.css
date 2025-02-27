@@ -26,7 +26,8 @@
 .tagContainerWrapper {
   padding: 8px;
   background-color: #ddd;
-  flex: 0 1 200px;
+  flex: 0 0 200px;
+  user-select: none;
 }
 .modelsContainerWrapper {
   padding: 8px;
@@ -35,4 +36,17 @@
 .modelDetailsContainerWrapper {
   padding: 8px;
   flex: 1 1 auto;
+}
+
+.tagButton {
+  background-color: #c8c8c8;
+  color: #595959;
+  padding: 0px 5px;
+  border-radius: 3px;
+  line-height: 1.0em;
+}
+
+.tagButton:hover {
+  background-color: lightblue;
+  color: #333;
 }
