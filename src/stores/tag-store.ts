@@ -1,50 +1,42 @@
-    /* 
-      Data returned looks like:
-      {
-        tag_counts: {
-          'tag1': 5,
-          'tag1|tag2': 3,
-          'tag1|tag4': 2,
-          'tag1|tag2|tag3': 1,
-        }
-      }
+/* 
+  Data returned looks like:
+  {
+    tag_counts: {
+      'tag1': 5,
+      'tag1|tag2': 3,
+      'tag1|tag4': 2,
+      'tag1|tag2|tag3': 1,
+    }
+  }
 
-      Resulting data structure:
-      {
-        tag1: {
-          __count: 5,       <-- Note that there are no instances of the top level tags having a count
-          __totalCount: 11,
-          __subTags: 3,
+  Resulting data structure:
+  {
+    tag1: {
+      __count: 5,       <-- Note that there are no instances of the top level tags having a count
+      __totalCount: 11,
+      __subTags: 3,
+      children: {
+        tag2: {
+          __count: 3,
+          __totalCount: 4,
+          __subTags: 1,
           children: {
-            tag2: {
-              __count: 3,
-              __totalCount: 4,
-              __subTags: 1,
-              children: {
-                tag3: {
-                  __count: 1
-                }
-              }
-            },
-            tag4: {
-              __count: 2
+            tag3: {
+              __count: 1
             }
-          },
+          }
         },
-        ...
-      }
-    */
-
+        tag4: {
+          __count: 2
+        }
+      },
+    },
+    ...
+  }
+*/
 
 import { create } from 'zustand';
-
-interface TagNode {
-  __count?: number;
-  __totalCount?: number;
-  __subTags?: number;
-  children?: Record<string, TagNode>;
-  [key: string]: any;
-}
+import { TagNode } from '@/types';
 
 interface StoreState {
   data: Record<string, TagNode>;

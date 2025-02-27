@@ -1,22 +1,27 @@
-
 "use client";
 
 import "./globals.css";
 import './layout.css';
-import React, { useEffect } from 'react';
-import { Inter } from "next/font/google";
-import TagContainer from "@/components/tag-container";
-import useStore from '@/stores/tag-store';
+
 // import { metadata } from '@/app/metadata';
+import React, { useEffect, useState } from 'react';
+import { Inter } from "next/font/google";
+import useStore from '@/stores/tag-store';
+import TagContainer from "@/components/tag-container";
+import ResultsContainer from "@/components/results-container";
+import BlueprintContainer from "@/components/blueprint-container";
+import { Blueprint } from '@/types';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-	children,
+    children,
 }: {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }) {
   const fetchData = useStore((state) => state.fetchData);
+  const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
+
 
   useEffect(() => {
     fetchData();
@@ -31,11 +36,15 @@ export default function RootLayout({
             <div className='tagContainerWrapper'>
               <TagContainer />
             </div>
-            <div className='modelsContainerWrapper'>Models</div>
-            <div className='modelDetailsContainerWrapper'>Model Details</div>
+            <div className='modelsContainerWrapper'>
+              <ResultsContainer onSelect={setSelectedBlueprint} />
+            </div>
+            <div className='modelDetailsContainerWrapper'>
+              <BlueprintContainer blueprint={selectedBlueprint} />
+            </div>
           </div>
         </div>
-			</body>
-		</html>
-	);
+      </body>
+    </html>
+  );
 }

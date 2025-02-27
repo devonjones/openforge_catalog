@@ -40,7 +40,7 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
           </ul>
         </div>
       )}
-      
+
       <ul>
         {blueprints.map((blueprint) => (
           <li
