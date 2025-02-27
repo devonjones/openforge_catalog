@@ -60,11 +60,19 @@ const useStore = create<StoreState>((set) => ({
     Object.entries(tagCounts).forEach(([key, count]) => {
       const tags = key.split('|');
       let currentLevel = data;
+      let fullPath = '';
 
       tags.forEach((tag, index) => {
-        if (!currentLevel[tag]) {
-          currentLevel[tag] = { children: {} };
+        if (fullPath) {
+          fullPath += `|${tag}`;
+        } else {
+          fullPath = tag;
         }
+
+        if (!currentLevel[tag]) {
+          currentLevel[tag] = { children: {}, __name: fullPath };
+        }
+
         if (index === tags.length - 1) {
           currentLevel[tag].__count = count as number;
         } else {
