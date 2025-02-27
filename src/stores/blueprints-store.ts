@@ -1,9 +1,11 @@
 import { create } from 'zustand';
-import { Blueprint } from '@/types';
+import { Blueprint, Paging } from '@/types';
+import useTagStore from '@/stores/tag-store';
 
 interface StoreState {
   blueprints: Blueprint[];
   selectedTags: string[];
+  paging: Paging | null;
   fetchBlueprints: () => Promise<void>;
   addTag: (tag: string) => void;
   removeTag: (tag: string) => void;
@@ -12,6 +14,7 @@ interface StoreState {
 const useStore = create<StoreState>((set, get) => ({
   blueprints: [],
   selectedTags: [],
+  paging: null,
   fetchBlueprints: async () => {
     const { selectedTags } = get();
     const response = await fetch('/api/blueprints/tags', {
@@ -24,8 +27,11 @@ const useStore = create<StoreState>((set, get) => ({
       }),
     });
     const result = await response.json();
-    const blueprints = result.blueprints;
-    set({ blueprints });
+    set({ 
+      blueprints: result.blueprints,
+      paging: result.paging,
+    });
+    useTagStore.getState().setData(result.tag_counts);
   },
   addTag: (tag: string) => {
     set((state) => {

@@ -31,3 +31,10 @@ export interface TagNode {
   children?: Record<string, TagNode>;
   [key: string]: any;
 }
+
+export interface Paging {
+  previous_token: string | null;
+  next_token: string | null;
+  total_count: number;
+  start_count: number;
+}

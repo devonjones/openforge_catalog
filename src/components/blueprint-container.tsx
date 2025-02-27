@@ -36,12 +36,6 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
       <h2>{blueprint.blueprint_name}</h2>
       <p><strong>Type:</strong> {blueprint.blueprint_type}</p>
       <p><strong>Created:</strong> {blueprint.created_at}, <strong>Updated:</strong> {earlierDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
-      <p><strong>Storage Address:</strong> <a 
-        href={blueprint.storage_address}
-        download={blueprint.file_name}
-      >
-        {blueprint.storage_address}
-      </a></p>
       <p>{blueprint.tags.map(tag => (
         <button
           key={tag}
@@ -51,6 +45,12 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
           {tag}
         </button>
       ))}</p>
+      <p><strong><a 
+        href={blueprint.storage_address}
+        download={blueprint.file_name}
+      >
+        Download
+      </a></strong></p>
       <div>
         {blueprint.images.map((image) => (
           <div key={image.id}>
