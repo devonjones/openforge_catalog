@@ -26,7 +26,7 @@
 .tagContainerWrapper {
   padding: 8px;
   background-color: #ddd;
-  flex: 0 1 200px;
+  flex: 0 0 200px;
 }
 .modelsContainerWrapper {
   padding: 8px;
