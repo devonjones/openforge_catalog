@@ -24,8 +24,8 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     return <div>No blueprint selected</div>;
   }
 
-  const earlierDate = new Date(
-    Math.min(
+  const laterDate = new Date(
+    Math.max(
       new Date(blueprint.file_changed_at).getTime(),
       new Date(blueprint.file_modified_at).getTime()
     )
@@ -35,7 +35,7 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     <div className='blueprintContainer'>
       <h2>{blueprint.blueprint_name}</h2>
       <p><strong>Type:</strong> {blueprint.blueprint_type}</p>
-      <p><strong>Created:</strong> {blueprint.created_at}, <strong>Updated:</strong> {earlierDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
+      <p><strong>Last Modified:</strong> {laterDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
       <p>{blueprint.tags.map(tag => (
         <button
           key={tag}
