@@ -33,8 +33,8 @@ export interface TagNode {
 }
 
 export interface Paging {
-  previous_token: string | null;
-  next_token: string | null;
+  previous_token: string | undefined;
+  next_token: string | undefined;
   total_count: number;
   start_count: number;
 }

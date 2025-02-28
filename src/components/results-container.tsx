@@ -60,6 +60,27 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
       <div className="totalCount">
         <strong>{startCount} - {endCount}</strong> of <strong>{paging?.total_count}</strong> that match your tags
       </div>
+
+
+      <div className="pagination flex justify-between mt-4">
+        {paging?.previous_token && startCount > 1 &&(
+          <button
+            onClick={() => fetchBlueprints({ previous: paging.previous_token })}
+            className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Previous Page
+          </button>
+        )}
+        
+        {paging?.next_token && endCount < paging.total_count && (
+          <button
+            onClick={() => fetchBlueprints({ next: paging.next_token })}
+            className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Next Page
+          </button>
+        )}
+      </div>
     </div>
   );
 };
