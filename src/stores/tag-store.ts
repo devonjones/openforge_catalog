@@ -41,9 +41,10 @@ import { TagNode } from '@/types';
 interface StoreState {
   data: Record<string, TagNode>;
   fetchData: () => Promise<void>;
+  setData: (tagCounts: object) => void;
 }
 
-const useStore = create<StoreState>((set) => ({
+const useStore = create<StoreState>((set, get) => ({
   data: {},
   fetchData: async () => {
     const response = await fetch('/api/blueprints/tags', {
@@ -54,7 +55,9 @@ const useStore = create<StoreState>((set) => ({
     });
     const result = await response.json();
     const tagCounts = result.tag_counts;
-
+    get().setData(tagCounts);
+  },
+  setData: (tagCounts: object) => {
     const data: Record<string, TagNode> = {};
 
     Object.entries(tagCounts).forEach(([key, count]) => {

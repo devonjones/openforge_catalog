@@ -1,10 +1,12 @@
 import { create } from 'zustand';
-import { Blueprint } from '@/types';
+import { Blueprint, Paging } from '@/types';
+import useTagStore from '@/stores/tag-store';
 
 interface StoreState {
   blueprints: Blueprint[];
   selectedTags: string[];
-  fetchBlueprints: () => Promise<void>;
+  paging: Paging | null;
+  fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   addTag: (tag: string) => void;
   removeTag: (tag: string) => void;
 }
@@ -12,9 +14,19 @@ interface StoreState {
 const useStore = create<StoreState>((set, get) => ({
   blueprints: [],
   selectedTags: [],
-  fetchBlueprints: async () => {
+  paging: null,
+  fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
     const { selectedTags } = get();
-    const response = await fetch('/api/blueprints/tags', {
+    let url = '/api/blueprints/tags';
+
+    // Add pagination parameters if provided
+    if (params?.next) {
+      url += `?next=${params.next}`;
+    } else if (params?.previous) {
+      url += `?previous=${params.previous}`;
+    }
+    
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,8 +36,11 @@ const useStore = create<StoreState>((set, get) => ({
       }),
     });
     const result = await response.json();
-    const blueprints = result.blueprints;
-    set({ blueprints });
+    set({ 
+      blueprints: result.blueprints,
+      paging: result.paging,
+    });
+    useTagStore.getState().setData(result.tag_counts);
   },
   addTag: (tag: string) => {
     set((state) => {
