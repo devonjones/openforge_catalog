@@ -1,16 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  rewrites: async () => {
-    return [
-      {
-        source: '/api/:path*',
-        destination:
-          process.env.NODE_ENV === 'development'
-            ? 'http://127.0.0.1:5328/api/:path*'
-            : '/api/',
-      },
-    ]
-  },
+  output: process.env.BACKEND_API ? undefined : "export",
+}
+
+if (process.env.BACKEND_API) {
+  nextConfig.rewrites = async () => {
+      return [
+          {
+              source: '/api/:path*',
+              destination: `${process.env.BACKEND_API}/:path*`
+          }
+      ]
+  }
 }
 
 module.exports = nextConfig
