@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "flask-dev": "pip3 install -r requirements.txt && FLASK_DEBUG=1 python3 -m flask --app openforge.app.index run -p 5328 --debug",
-    "next-dev": "next dev",
+    "next-dev": "BACKEND_API=true next dev",
     "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
     "build": "next build",
     "start": "next start",
