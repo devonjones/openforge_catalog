@@ -1,7 +1,11 @@
 import uuid
+
 from flask import jsonify, request, current_app, make_response, abort
 from psycopg.rows import dict_row
 from jsonschema.exceptions import ValidationError
+from urllib.parse import urlparse
+import boto3
+from botocore.config import Config
 
 import openforge.db.sql.tags as tag_sql
 from openforge.openapi import validate_schema
@@ -97,6 +101,7 @@ def query_tags():
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)
             paging = _munge_paging(bps, count, start_count)
+            _get_signed_urls(bps)
             return jsonify(
                 {
                     "paging": paging,
@@ -104,6 +109,38 @@ def query_tags():
                     "tag_counts": tag_count,
                 }
             )
+
+
+def _get_signed_urls(bps: list[dict]):
+    if current_app.config["CLOUDFLARE_ENDPOINT"] is None:
+        return
+
+    s3_client = boto3.client(
+        "s3",
+        endpoint_url=current_app.config["CLOUDFLARE_ENDPOINT"],
+        aws_access_key_id=current_app.config["CLOUDFLARE_ACCESS_KEY_ID"],
+        aws_secret_access_key=current_app.config["CLOUDFLARE_SECRET_ACCESS_KEY"],
+        config=Config(signature_version="s3v4"),
+    )
+
+    for bp in bps:
+        if bp["storage_address"] is None:
+            continue
+        if bp["file_name"] is None:
+            continue
+        parsed_url = urlparse(bp["storage_address"])
+        key = parsed_url.path.lstrip("/")
+
+        url = s3_client.generate_presigned_url(
+            "get_object",
+            Params={
+                "Bucket": "openforge-models",
+                "Key": key,
+                "ResponseContentDisposition": f'attachment; filename="{bp["file_name"]}"',
+            },
+            ExpiresIn=3600,  # 1 hour
+        )
+        bp["signed_url"] = url
 
 
 def _munge_paging(bps: list[dict], total_count: int, start_count: int) -> dict:

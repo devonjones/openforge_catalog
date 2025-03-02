@@ -24,6 +24,8 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     return <div>No blueprint selected</div>;
   }
 
+  const downloadUrl = blueprint.signed_url || blueprint.storage_address;
+
   const laterDate = new Date(
     Math.max(
       new Date(blueprint.file_changed_at).getTime(),
@@ -46,7 +48,7 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
         </button>
       ))}</p>
       <p><strong><a 
-        href={blueprint.storage_address}
+        href={downloadUrl}
         download={blueprint.file_name}
       >
         Download

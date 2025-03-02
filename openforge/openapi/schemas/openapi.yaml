@@ -534,6 +534,8 @@ components:
           format: date-time
         storage_address:
           type: string
+        signed_url:
+          type: string
         created_at:
           type: string
           format: date-time

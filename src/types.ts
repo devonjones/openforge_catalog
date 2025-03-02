@@ -19,6 +19,7 @@ export interface Blueprint {
   full_name: string;
   id: string;
   images: Image[];
+  signed_url: string;
   storage_address: string;
   tags: string[];
   updated_at: string;
