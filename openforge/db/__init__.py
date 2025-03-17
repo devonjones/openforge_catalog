@@ -32,5 +32,7 @@ def db_url(vars):
         args["port"] = vars["PGPORT"]
     if "PGDATABASE" in vars:
         args["database"] = vars["PGDATABASE"]
+    if "LOG_LEVEL" in vars:
+        logger.setLevel(vars["LOG_LEVEL"])
 
     return f'postgresql://{args["user"]}:{args["password"]}@{args["host"]}:{args["port"]}/{args["database"]}'

@@ -102,6 +102,7 @@ def query_tags():
             bps = _merge_blueprint_image_data(bps, image_data)
             paging = _munge_paging(bps, count, start_count)
             _get_signed_urls(bps)
+
             return jsonify(
                 {
                     "paging": paging,
@@ -111,6 +112,7 @@ def query_tags():
             )
 
 
+# TODO: Use redirect to get signed url
 def _get_signed_urls(bps: list[dict]):
     if current_app.config["CLOUDFLARE_ENDPOINT"] is None:
         return
