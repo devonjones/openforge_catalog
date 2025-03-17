@@ -11,6 +11,14 @@
   padding: 8px;
 }
 
+.pageHeaderRight {
+  float: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
 .columnContainer {
   flex: 0 1 auto;
   width: 100%;
