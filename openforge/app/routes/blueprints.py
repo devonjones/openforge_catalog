@@ -1,7 +1,10 @@
-from flask import jsonify, request, current_app, make_response, abort
+from flask import jsonify, request, current_app, make_response, abort, redirect
 from psycopg.rows import dict_row
 from werkzeug.exceptions import NotFound
 from jsonschema.exceptions import ValidationError
+import boto3
+from botocore.config import Config
+from urllib.parse import urlparse
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
@@ -88,3 +91,44 @@ def delete_blueprint(blueprint_id):
                 return make_response("", 204)
             else:
                 abort(404)
+
+
+def download_blueprint(blueprint_id):
+    with current_app.db.pool.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            bp = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)
+            url = _get_signed_urls(bp)
+            if url is None:
+                abort(404)
+            return redirect(url)
+
+
+def _get_signed_urls(bp: dict):
+    if current_app.config["CLOUDFLARE_ENDPOINT"] is None:
+        return
+
+    s3_client = boto3.client(
+        "s3",
+        endpoint_url=current_app.config["CLOUDFLARE_ENDPOINT"],
+        aws_access_key_id=current_app.config["CLOUDFLARE_ACCESS_KEY_ID"],
+        aws_secret_access_key=current_app.config["CLOUDFLARE_SECRET_ACCESS_KEY"],
+        config=Config(signature_version="s3v4"),
+    )
+
+    if bp["storage_address"] is None:
+        return
+    if bp["file_name"] is None:
+        return
+    parsed_url = urlparse(bp["storage_address"])
+    key = parsed_url.path.lstrip("/")
+
+    url = s3_client.generate_presigned_url(
+        "get_object",
+        Params={
+            "Bucket": "openforge-models",
+            "Key": key,
+            "ResponseContentDisposition": f'attachment; filename="{bp["file_name"]}"',
+        },
+        ExpiresIn=3600,  # 1 hour
+    )
+    return url
