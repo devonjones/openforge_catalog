@@ -46,7 +46,6 @@ const TagContainer = () => {
   const data = useTagStore((state) => state.data);
   const addTag = useBlueprintStore((state) => state.addTag);
   const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
-  console.log('tags', data)
   const toggleNode = (key: string) => {
     setExpandedNodes((prev) => ({
       ...prev,

@@ -7,6 +7,7 @@ interface StoreState {
   selectedTags: string[];
   paging: Paging | null;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
+  fetchBlueprintById: (id: string) => Promise<Blueprint>;
   addTag: (tag: string) => void;
   removeTag: (tag: string) => void;
 }
@@ -15,6 +16,13 @@ const useStore = create<StoreState>((set, get) => ({
   blueprints: [],
   selectedTags: [],
   paging: null,
+  fetchBlueprintById: async (id: string) => {
+    const response = await fetch(`/api/blueprints/${id}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch blueprint');
+    }
+    return response.json();
+  },
   fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
     const { selectedTags } = get();
     let url = '/api/blueprints/tags';

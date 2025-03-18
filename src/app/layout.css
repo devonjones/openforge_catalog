@@ -16,7 +16,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: inline-block;
 }
 
 .columnContainer {
@@ -57,4 +56,13 @@
 .tagButton:hover {
   background-color: lightblue;
   color: #333;
+}
+
+.visibleLink {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.visibleLink:hover {
+  color: #003d7a;
 }
