@@ -17,11 +17,27 @@ const useStore = create<StoreState>((set, get) => ({
   selectedTags: [],
   paging: null,
   fetchBlueprintById: async (id: string) => {
+    const { blueprints } = get();
+    
+    // Check if blueprint exists in local store
+    const localBlueprint = blueprints.find(bp => bp.id === id);
+    if (localBlueprint) {
+      return localBlueprint;
+    }
+
+    // If not found locally, fetch from API
     const response = await fetch(`/api/blueprints/${id}`);
     if (!response.ok) {
       throw new Error('Failed to fetch blueprint');
     }
-    return response.json();
+    const blueprint = await response.json();
+    
+    // Add to local store
+    set(state => ({
+      blueprints: [...state.blueprints, blueprint]
+    }));
+    
+    return blueprint;
   },
   fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
     const { selectedTags } = get();
