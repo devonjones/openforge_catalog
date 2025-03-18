@@ -199,6 +199,7 @@ sizes = {
     "1x2": [("size", "width", 1), ("size", "depth", 2)],
     "1x3": [("size", "width", 1), ("size", "depth", 3)],
     "1x4": [("size", "width", 1), ("size", "depth", 4)],
+    "2x0.5": [("size", "width", 2), ("size", "depth", 0.5)],
     "2x1": [("size", "width", 2), ("size", "depth", 1)],
     "2x2": [("size", "width", 2), ("size", "depth", 2)],
     "2x3": [("size", "width", 2), ("size", "depth", 3)],
