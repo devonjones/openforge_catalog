@@ -1,30 +1,33 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Blueprint } from '@/types';
 import useBlueprintStore from '@/stores/blueprints-store';
-
-const formatFileSize = (bytes: number): string => {
-  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
-  let size = bytes;
-  let unitIndex = 0;
-
-  while (size >= 1024 && unitIndex < units.length - 1) {
-    size /= 1024;
-    unitIndex++;
-  }
-
-  return `${Math.round(size * 100) / 100} ${units[unitIndex]}`;
-};
+import { formatFileSize } from '@/utils/format';
 
 const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   const addTag = useBlueprintStore((state) => state.addTag);
+
+  useEffect(() => {
+    // Handle browser back/forward buttons
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const blueprintId = params.get('blueprint_id');
+      if (!blueprintId && blueprint) {
+        // Clear the blueprint selection if there's no ID in the URL
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [blueprint]);
 
   if (!blueprint) {
     return <div>No blueprint selected</div>;
   }
 
-  const downloadUrl = blueprint.signed_url || blueprint.storage_address;
+  const downloadUrl = "/api/blueprints/" + blueprint.id + "/download";
 
   const laterDate = new Date(
     Math.max(
@@ -47,7 +50,7 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
           {tag}
         </button>
       ))}</p>
-      <p><strong><a 
+      <p><strong><a className='visibleLink' 
         href={downloadUrl}
         download={blueprint.file_name}
       >

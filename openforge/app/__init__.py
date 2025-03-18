@@ -1,4 +1,5 @@
 import os
+import logging
 
 from flask import Flask
 from dotenv import load_dotenv
@@ -16,3 +17,5 @@ def init_app(app: Flask):
         "CLOUDFLARE_SECRET_ACCESS_KEY"
     )
     app.db = db
+    if "LOG_LEVEL" in os.environ:
+        app.logger.setLevel(os.environ["LOG_LEVEL"])

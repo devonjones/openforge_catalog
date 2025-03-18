@@ -31,7 +31,12 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
         <div className='pageContainer'>
-          <div className='pageHeaderWrapper'>OpenForge Catalog</div>
+          <div className='pageHeaderWrapper'>OpenForge Catalog
+            <div className='pageHeaderRight'>
+              <a href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
+              <a href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
+            </div>
+          </div>
           <div className='columnContainer'>
             <div className='tagContainerWrapper'>
               <TagContainer />

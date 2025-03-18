@@ -1,6 +1,7 @@
 import uuid
 from pprint import pprint
 from psycopg import cursor, sql
+from flask import current_app
 
 
 def _convert_tag(tag: dict) -> dict:
@@ -16,6 +17,7 @@ SELECT id, blueprint_id, tag, created_at, updated_at
   WHERE blueprint_id = {blueprint_id}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return [_convert_tag(row) for row in curs.fetchall()]
 
@@ -28,6 +30,7 @@ SELECT id, blueprint_id, tag, created_at, updated_at
   WHERE id = {tag_id}
 """
     ).format(tag_id=sql.Literal(tag_id))
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return _convert_tag(curs.fetchone())
 
@@ -49,6 +52,7 @@ SELECT COALESCE(
 ) AS id
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return get_tag_by_id(curs, curs.fetchone()["id"])
 
@@ -61,6 +65,7 @@ DELETE FROM tags
     AND tag = {tag}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
@@ -72,12 +77,14 @@ DELETE FROM tags
   WHERE blueprint_id = {blueprint_id}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
 
 def delete_all_tags(curs: cursor) -> dict:
     query = sql.SQL("DELETE FROM tags")
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
@@ -104,6 +111,7 @@ SELECT DISTINCT blueprint_id
             ).format(tag=sql.Literal(tag), counter=sql.Literal(counter))
         )
     query = sql.Composed(query_list)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query.join("\n"))
     return [row["blueprint_id"] for row in curs.fetchall()]
 
@@ -123,9 +131,10 @@ def tag_search_blueprints(
         sql.SQL("  WHERE blueprints.id IN ("),
         _query_tags_basics(accept, require, deny, next, previous, limit),
         sql.SQL("  )"),
-        sql.SQL("  ORDER BY blueprints.id"),
+        sql.SQL("  ORDER BY blueprints.blueprint_name"),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -148,6 +157,7 @@ def tag_search_tags(
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -173,6 +183,7 @@ def tag_search_blueprint_images(
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -191,6 +202,7 @@ def tag_search_blueprint_count(
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchone()["count"]
 
@@ -208,9 +220,12 @@ def tag_search_blueprint_start_count(
         sql.SQL("  WHERE blueprints.id IN ("),
         _query_tags_basics(accept, require, deny, do_limit=False),
         sql.SQL("  )"),
-        sql.SQL("  AND blueprints.id < {first}").format(first=sql.Literal(first)),
+        sql.SQL(
+            "    AND blueprints.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {first})"
+        ).format(first=sql.Literal(first)),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchone()["count"]
 
@@ -230,6 +245,7 @@ def tag_search_tag_count(
         sql.SQL("  GROUP BY t.tag"),
     ]
     query = sql.Composed(parts)
+    current_app.logger.debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -242,12 +258,16 @@ def _query_tags_basics(
     previous: uuid.UUID | None = None,
     limit: int = 20,
     do_limit: bool = True,
+    models: bool = True,
+    blueprints: bool = False,
 ) -> sql.Composed:
     query_parts = [
         sql.SQL(
             """
 SELECT DISTINCT bp.id
-  FROM blueprints AS bp"""
+  FROM blueprints AS bp, (
+    SELECT bp2.id, bp2.blueprint_name
+      FROM blueprints bp2"""
         )
     ]
     query_parts.append(_query_tags_include(accept, require))
@@ -257,28 +277,56 @@ SELECT DISTINCT bp.id
     if len(deny) > 0:
         deny_parts.append(
             sql.SQL(
-                "    %s bp.id NOT IN (" % ("WHERE" if len(query_parts) <= 1 else "AND")
+                "    %s bp2.id NOT IN (" % ("WHERE" if len(query_parts) <= 1 else "AND")
             )
         )
         deny_parts.append(_query_tags_deny(deny))
         deny_parts.append(sql.SQL("    )"))
 
+    if models:
+        query_parts.append(
+            sql.SQL(
+                "    %s bp2.blueprint_type = 'model'"
+                % ("WHERE" if len(query_parts) <= 1 else "AND")
+            )
+        )
+    if blueprints:
+        query_parts.append(
+            sql.SQL(
+                "    %s bp2.blueprint_type = 'blueprint'"
+                % ("WHERE" if len(query_parts) <= 1 else "AND")
+            )
+        )
     if next:
         query_parts.append(
             sql.SQL(
-                "  %s bp.id > {next}" % ("WHERE" if len(query_parts) <= 1 else "AND")
+                "        %s bp2.blueprint_name > (SELECT blueprint_name FROM blueprints WHERE id = {next})"
+                % ("WHERE" if len(query_parts) <= 1 else "AND")
             ).format(next=sql.Literal(next))
         )
     elif previous:
         query_parts.append(
             sql.SQL(
-                "  %s bp.id < {previous}"
+                "        %s bp2.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {previous})"
                 % ("WHERE" if len(query_parts) <= 1 else "AND")
             ).format(previous=sql.Literal(previous))
         )
-    end_parts = [sql.SQL("  ORDER BY bp.id %s" % ("DESC" if previous else "ASC"))]
+    end_parts = [
+        sql.SQL(
+            "      ORDER BY bp2.blueprint_name %s" % ("DESC" if previous else "ASC")
+        )
+    ]
     if do_limit:
-        end_parts.append(sql.SQL("  LIMIT {limit}").format(limit=sql.Literal(limit)))
+        end_parts.append(
+            sql.SQL("      LIMIT {limit}").format(limit=sql.Literal(limit))
+        )
+    end_parts.append(
+        sql.SQL(
+            """    ) as bp_name
+    WHERE bp_name.id = bp.id
+"""
+        )
+    )
     query = sql.Composed(query_parts + deny_parts + end_parts)
     return query.join("\n")
 
@@ -292,7 +340,7 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
     def _query_tag_require(counter: int, where: str, require_tag: str) -> int:
         tags_name = "tags_%s" % counter
         joins.append(
-            sql.SQL("    JOIN tags AS {table} ON bp.id = {table}.blueprint_id").format(
+            sql.SQL("    JOIN tags AS {table} ON bp2.id = {table}.blueprint_id").format(
                 table=sql.Identifier(tags_name)
             )
         )
@@ -308,7 +356,7 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
     def _query_tag_accept(counter: int, where: str, accept_tag: str) -> int:
         tags_name = "tags_%s" % counter
         joins.append(
-            sql.SQL("    JOIN tags AS {table} ON bp.id = {table}.blueprint_id").format(
+            sql.SQL("    JOIN tags AS {table} ON bp2.id = {table}.blueprint_id").format(
                 table=sql.Identifier(tags_name)
             )
         )

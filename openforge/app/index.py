@@ -36,6 +36,11 @@ def blueprint(blueprint_id):
         return blueprint_routes.delete_blueprint(blueprint_id)
 
 
+@app.route("/api/blueprints/<blueprint_id>/download", methods=["GET"])
+def download_blueprint(blueprint_id):
+    return blueprint_routes.download_blueprint(blueprint_id)
+
+
 @app.route("/api/blueprints/tags", methods=["POST"])
 def tags():
     return tag_routes.query_tags()

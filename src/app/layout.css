@@ -11,6 +11,13 @@
   padding: 8px;
 }
 
+.pageHeaderRight {
+  float: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .columnContainer {
   flex: 0 1 auto;
   width: 100%;
@@ -49,4 +56,13 @@
 .tagButton:hover {
   background-color: lightblue;
   color: #333;
+}
+
+.visibleLink {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.visibleLink:hover {
+  color: #003d7a;
 }
