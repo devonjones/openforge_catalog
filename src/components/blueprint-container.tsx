@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import { Blueprint } from '@/types';
 import useBlueprintStore from '@/stores/blueprints-store';
 import { formatFileSize } from '@/utils/format';
+import newGithubIssueUrl from 'new-github-issue-url';
+
 
 const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   const addTag = useBlueprintStore((state) => state.addTag);
@@ -35,6 +37,12 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     return <div>No blueprint selected</div>;
   }
 
+  const issue_url = newGithubIssueUrl({
+    user: 'devonjones',
+    repo: 'openforge_catalog',
+    body: 'Model Reported: ' + window.location + '\n---\n\n\n'
+  });
+
   const downloadUrl = "/api/blueprints/" + blueprint.id + "/download";
 
   const laterDate = new Date(
@@ -59,17 +67,15 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
         </button>
       ))}</p>
       <p>
-        <strong>Find other:</strong>&nbsp;
+        <strong>Find related:</strong>&nbsp;
         <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'texture')}>textures</a>,&nbsp;
         <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'size')}>sizes</a>,&nbsp;
         <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'connection')}>connections</a>
       </p>
-      <p><strong><a className='visibleLink' 
-        href={downloadUrl}
-        download={blueprint.file_name}
-      >
-        Download
-      </a></strong></p>
+      <p>
+        <strong>
+          <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a></strong>&nbsp;
+          (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>
       <div>
         {blueprint.images.map((image) => (
           <div key={image.id}>
