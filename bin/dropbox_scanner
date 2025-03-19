@@ -127,13 +127,31 @@ def parse_size(size, tags):
 
 def parse_connection(connection, tags):
     def _add_connections(connections):
+        to_add = set()
         for connection in connections:
             if "+" in connection:
                 options = connection.split("+")
                 connection = options.pop(0)
                 for option in options:
-                    tags.add(("connection", connection, option))
-            tags.add(("connection", connection))
+                    to_add.add(("connection", connection, option))
+            to_add.add(("connection", connection))
+        _handle_side(to_add)
+        tags.update(to_add)
+
+    def _handle_side(to_add):
+        has_side = False
+        has_side_option = False
+        side = None
+        for tag in to_add:
+            if tag[0] == "connection" and tag[1] == "side":
+                has_side = True
+                if len(tag) > 2:
+                    has_side_option = True
+                else:
+                    side = tag
+
+        if has_side and not has_side_option:
+            to_add.add((side[0], side[1], "openlock"))
 
     parts = connection.split(",")
     _add_connections(parts)
@@ -163,6 +181,14 @@ def parse_filename(file, tags):
 
 
 def parse_path(file, tags):
+    def _component_filter(builds, tags):
+        components = set()
+        for build in builds:
+            components.add(("component", build[0]))
+            components.add(("component", build[1]))
+        for component in components:
+            tags.discard(component)
+
     path = file["path"]
     builds = [
         ("s2w", "s2w"),
@@ -174,10 +200,56 @@ def parse_path(file, tags):
     for build in builds:
         if build[0] in path:
             tags.add(("build", build[1]))
+    _component_filter(builds, tags)
+
     components = [("bases", "base")]
     for component in components:
         if component[0] in path:
             tags.add(("component", component[1]))
+
+    if "floor" in path:
+        tags.add(("shape", "floor"))
+
+
+def filter_s_system(tags):
+    if ("build", "s-system") not in tags:
+        return
+    addtags = set()
+    removetags = set()
+    for tag in tags:
+        if tag[0] == "component" and tag[1].startswith("s_"):
+            removetags.add(tag)
+            addtags.add(("component", tag[1].replace("s_", "")))
+    tags.update(addtags)
+    for tag in removetags:
+        tags.discard(tag)
+
+
+def filter_shape(tags):
+    def _check_wall_alone(tags):
+        count = 0
+        for tag in tags:
+            if tag[0] == "component":
+                count += 1
+        if count == 1:
+            return True
+        return False
+
+    def _check_floor_alone(tags):
+        count = 0
+        for tag in tags:
+            if tag[0] == "component":
+                count += 1
+        if count == 1:
+            return True
+        return False
+
+    if ("shape", "wall") in tags:
+        if not _check_wall_alone(tags):
+            tags.discard(("component", "wall"))
+    if ("shape", "floor") in tags:
+        if not _check_floor_alone(tags):
+            tags.discard(("component", "floor"))
 
 
 def parse_files(path, files, md5, verbose, upload, config):
@@ -254,6 +326,8 @@ def parse_files(path, files, md5, verbose, upload, config):
         if not metadata or metadata.get("auto", True):
             parse_filename(f, t)
             parse_path(f, t)
+        filter_s_system(t)
+        filter_shape(t)
         apply_metadata(metadata, o)
         del f["path"]
         newfiles.append(o)
