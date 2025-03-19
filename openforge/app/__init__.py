@@ -9,7 +9,7 @@ from openforge.db import PgDB
 
 def init_app(app: Flask):
     load_dotenv()
-    db = PgDB(os.environ)
+    db = PgDB(os.environ, app.logger)
     app.config["API_TOKEN"] = os.environ.get("API_TOKEN", "1234567890")
     app.config["CLOUDFLARE_ENDPOINT"] = os.environ.get("CLOUDFLARE_ENDPOINT")
     app.config["CLOUDFLARE_ACCESS_KEY_ID"] = os.environ.get("CLOUDFLARE_ACCESS_KEY_ID")

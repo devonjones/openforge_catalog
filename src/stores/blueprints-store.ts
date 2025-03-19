@@ -9,7 +9,9 @@ interface StoreState {
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
   addTag: (tag: string) => void;
+  addAllTags: (tags: string[]) => void;
   removeTag: (tag: string) => void;
+  clearTags: () => void;
 }
 
 const useStore = create<StoreState>((set, get) => ({
@@ -76,11 +78,22 @@ const useStore = create<StoreState>((set, get) => ({
     });
     get().fetchBlueprints();
   },
+  addAllTags: (tags: string[]) => {
+    set((state) => {
+      const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
+      return { selectedTags: uniqueTags };
+    });
+    get().fetchBlueprints();
+  },
   removeTag: (tag: string) => {
     set((state) => {
       const updatedTags = state.selectedTags.filter((t) => t !== tag);
       return { selectedTags: updatedTags };
     });
+    get().fetchBlueprints();
+  },
+  clearTags: () => {
+    set({ selectedTags: [] });
     get().fetchBlueprints();
   },
 }));

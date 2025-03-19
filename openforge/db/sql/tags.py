@@ -1,7 +1,7 @@
 import uuid
 from pprint import pprint
 from psycopg import cursor, sql
-from flask import current_app
+from openforge.db import get_logger
 
 
 def _convert_tag(tag: dict) -> dict:
@@ -17,7 +17,7 @@ SELECT id, blueprint_id, tag, created_at, updated_at
   WHERE blueprint_id = {blueprint_id}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return [_convert_tag(row) for row in curs.fetchall()]
 
@@ -30,7 +30,7 @@ SELECT id, blueprint_id, tag, created_at, updated_at
   WHERE id = {tag_id}
 """
     ).format(tag_id=sql.Literal(tag_id))
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return _convert_tag(curs.fetchone())
 
@@ -52,7 +52,7 @@ SELECT COALESCE(
 ) AS id
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return get_tag_by_id(curs, curs.fetchone()["id"])
 
@@ -65,7 +65,7 @@ DELETE FROM tags
     AND tag = {tag}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
@@ -77,14 +77,14 @@ DELETE FROM tags
   WHERE blueprint_id = {blueprint_id}
 """
     ).format(blueprint_id=sql.Literal(blueprint_id))
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
 
 def delete_all_tags(curs: cursor) -> dict:
     query = sql.SQL("DELETE FROM tags")
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
 
@@ -111,7 +111,7 @@ SELECT DISTINCT blueprint_id
             ).format(tag=sql.Literal(tag), counter=sql.Literal(counter))
         )
     query = sql.Composed(query_list)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query.join("\n"))
     return [row["blueprint_id"] for row in curs.fetchall()]
 
@@ -134,7 +134,7 @@ def tag_search_blueprints(
         sql.SQL("  ORDER BY blueprints.blueprint_name"),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -157,7 +157,7 @@ def tag_search_tags(
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -183,7 +183,7 @@ def tag_search_blueprint_images(
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 
@@ -202,7 +202,7 @@ def tag_search_blueprint_count(
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchone()["count"]
 
@@ -225,7 +225,7 @@ def tag_search_blueprint_start_count(
         ).format(first=sql.Literal(first)),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchone()["count"]
 
@@ -245,7 +245,7 @@ def tag_search_tag_count(
         sql.SQL("  GROUP BY t.tag"),
     ]
     query = sql.Composed(parts)
-    current_app.logger.debug(query.join("\n").as_string())
+    get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.fetchall()
 

@@ -7,6 +7,8 @@ import { formatFileSize } from '@/utils/format';
 
 const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   const addTag = useBlueprintStore((state) => state.addTag);
+  const clearTags = useBlueprintStore((state) => state.clearTags);
+  const addAllTags = useBlueprintStore((state) => state.addAllTags);
 
   useEffect(() => {
     // Handle browser back/forward buttons
@@ -22,6 +24,12 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [blueprint]);
+
+  const handleSwapTags = (blueprint: Blueprint, tag: string) => {
+    const newTags = blueprint.tags.filter(t => !t.startsWith(tag));
+    clearTags();
+    addAllTags(newTags);
+  };
 
   if (!blueprint) {
     return <div>No blueprint selected</div>;
@@ -50,6 +58,12 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
           {tag}
         </button>
       ))}</p>
+      <p>
+        <strong>Find other:</strong>&nbsp;
+        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'texture')}>textures</a>,&nbsp;
+        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'size')}>sizes</a>,&nbsp;
+        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'connection')}>connections</a>
+      </p>
       <p><strong><a className='visibleLink' 
         href={downloadUrl}
         download={blueprint.file_name}

@@ -1,20 +1,20 @@
 import logging
-
+from flask import current_app
 from psycopg_pool import ConnectionPool
 
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 class PgDB:
-    def __init__(self, vars):
-        self.database_url = db_url(vars)
+    def __init__(self, vars, ext_logger=None):
+        self.database_url = db_url(vars, ext_logger)
         self.pool = ConnectionPool(self.database_url)
 
     def __del__(self):
         self.pool.close()
 
 
-def db_url(vars):
+def db_url(vars, ext_logger=None):
     args = {
         "user": "openforge",
         "database": "openforge",
@@ -22,6 +22,7 @@ def db_url(vars):
         "host": "localhost",
         "port": 5432,
     }
+    LOGGER = ext_logger if ext_logger else logging.getLogger(__name__)
     if "PGUSER" in vars:
         args["user"] = vars["PGUSER"]
     if "PGPASSWORD" in vars:
@@ -33,6 +34,12 @@ def db_url(vars):
     if "PGDATABASE" in vars:
         args["database"] = vars["PGDATABASE"]
     if "LOG_LEVEL" in vars:
-        logger.setLevel(vars["LOG_LEVEL"])
+        LOGGER.setLevel(vars["LOG_LEVEL"])
 
     return f'postgresql://{args["user"]}:{args["password"]}@{args["host"]}:{args["port"]}/{args["database"]}'
+
+
+def get_logger():
+    if current_app:
+        return current_app.logger
+    return LOGGER

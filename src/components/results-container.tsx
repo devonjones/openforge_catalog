@@ -12,7 +12,8 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
   const paging = useBlueprintStore((state) => state.paging);
   const selectedTags = useBlueprintStore((state) => state.selectedTags);
   const removeTag = useBlueprintStore((state) => state.removeTag);
-  const addTag = useBlueprintStore((state) => state.addTag);  
+  const addTag = useBlueprintStore((state) => state.addTag);
+  const clearTags = useBlueprintStore((state) => state.clearTags);
   const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
 
   useEffect(() => {
@@ -74,6 +75,24 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
     return `/?${params}`;
   };
 
+  const handleClear = (e: React.MouseEvent) => {
+    e.preventDefault();
+    clearTags();
+    // Update URL to remove tag parameters while preserving blueprint_id
+    if (typeof window !== 'undefined') {
+      const currentParams = new URLSearchParams(window.location.search);
+      const blueprintId = currentParams.get('blueprint_id');
+      
+      const newParams = new URLSearchParams();
+      if (blueprintId) {
+        newParams.set('blueprint_id', blueprintId);
+      }
+      
+      const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
+      window.history.pushState({}, '', newUrl);
+    }
+  };
+
   const startCount = (paging?.start_count ?? 0) + 1;
   const endCount = startCount + blueprints.length - 1;
 
@@ -86,11 +105,11 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
           <ul>
             {selectedTags.map((tag) => (
               <li key={tag}>
-                {tag} <button  className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>
+                {tag} <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>
               </li>
             ))}
           </ul>
-          <div className='selectedTagsContainer__header'><a className='visibleLink' href="/">clear</a></div>
+          <div className='selectedTagsContainer__header'><a className='visibleLink' href="#" onClick={handleClear}>clear</a></div>
         </div>
       )}
 

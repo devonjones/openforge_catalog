@@ -33,8 +33,9 @@ export default function RootLayout({
         <div className='pageContainer'>
           <div className='pageHeaderWrapper'>OpenForge Catalog
             <div className='pageHeaderRight'>
-              <a href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
-              <a href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
+              Version 0.2.0 |&nbsp;
+              <a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
+              <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
             </div>
           </div>
           <div className='columnContainer'>
