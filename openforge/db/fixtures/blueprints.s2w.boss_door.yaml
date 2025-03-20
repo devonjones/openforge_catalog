@@ -1,0 +1,71 @@
+- name: "S2W 4x1 Wall on Tile Boss Door"
+  type: "blueprint"
+  config:
+    wall:
+      require:
+        - tag: build|separate wall
+        - tag: size|width|4
+        - tag: connection|openforge
+        - tag: component|boss_door
+        - tag: shape|wall
+    base:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|1
+        - tag: component|base
+        - tag: component|square
+    floor:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|1
+        - tag: component|floor
+        - tag: component|floor|wall
+        - tag: build|s2w
+
+- name: "S2W 4x2 Wall on Tile Boss Door"
+  type: "blueprint"
+  config:
+    wall:
+      require:
+        - tag: build|separate wall
+        - tag: size|width|4
+        - tag: connection|openforge
+        - tag: component|boss_door
+        - tag: shape|wall
+    base:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|2
+        - tag: component|base
+        - tag: component|square
+    floor:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|2
+        - tag: component|floor
+        - tag: component|floor|wall
+        - tag: build|s2w
+
+- name: "S2W 4x4 Wall on Tile Boss Door"
+  type: "blueprint"
+  config:
+    wall:
+      require:
+        - tag: build|separate wall
+        - tag: size|width|4
+        - tag: connection|openforge
+        - tag: component|boss_door
+        - tag: shape|wall
+    base:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|4
+        - tag: component|base
+        - tag: component|square
+    floor:
+      require:
+        - tag: size|width|4
+        - tag: size|depth|4
+        - tag: component|floor
+        - tag: component|floor|wall
+        - tag: build|s2w
