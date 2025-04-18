@@ -1,5 +1,5 @@
 .pageContainer {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 .columnContainer {
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   width: 100%;
   height: 100%;
   display: flex;
@@ -35,16 +35,23 @@
   background-color: #ddd;
   flex: 0 0 200px;
   user-select: none;
+  height: 100%;
 }
 
 .modelsContainerWrapper {
   padding: 8px;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
+  min-width: 300px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .modelDetailsContainerWrapper {
   padding: 8px;
   flex: 1 1 auto;
+  min-width: 300px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .tagButton {
