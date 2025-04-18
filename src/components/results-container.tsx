@@ -15,6 +15,7 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
   const addTag = useBlueprintStore((state) => state.addTag);
   const clearTags = useBlueprintStore((state) => state.clearTags);
   const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     // Read URL parameters and add tags
@@ -48,17 +49,21 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
     fetchBlueprints();
   }, [fetchBlueprints]);
 
+  const copyToClipboard = (text: string) => {
+    const currentUrl = window.location.href;
+    const urlWithoutParameters = currentUrl.split("?")[0];
+    navigator.clipboard.writeText(urlWithoutParameters + '?' + text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+  };
+
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
     onSelect(blueprint);
     
     // Update URL while preserving existing tag parameters
     if (typeof window !== 'undefined') {
-      const currentParams = new URLSearchParams(window.location.search);
-      const tags = currentParams.getAll('tag');
-      
       const newParams = new URLSearchParams();
-      tags.forEach(tag => newParams.append('tag', tag));
       newParams.set('blueprint_id', blueprint.id);
       
       const newUrl = `${window.location.pathname}?${newParams.toString()}`;
@@ -72,7 +77,7 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
 
   const createDeepLink = (tags: string[]) => {
     const params = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
-    return `/?${params}`;
+    return `${params}`;
   };
 
   const handleClear = (e: React.MouseEvent) => {
@@ -101,7 +106,13 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
       <h2>Blueprints</h2>
       {selectedTags.length > 0 && (
         <div className='selectedTagsContainer'>
-          <div className='selectedTagsContainer__header'>Selected Tags - <a className='visibleLink' href={createDeepLink(selectedTags)}>deeplink</a></div>
+          <div className='selectedTagsContainer__header'>Selected Tags - <a className='visibleLink' href={"/?" + createDeepLink(selectedTags)}>deeplink</a>&nbsp;
+          <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(createDeepLink(selectedTags))}>
+            <svg aria-hidden="true" focusable="false" className="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style={{ "verticalAlign": "text-bottom" }}>
+              <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+              <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+            </svg>
+          </button></div>
           <ul>
             {selectedTags.map((tag) => (
               <li key={tag}>

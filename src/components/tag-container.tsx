@@ -21,7 +21,7 @@ const renderTags = (
 
     return (
       <div key={key} style={{ marginLeft: level * 20 }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', 'whiteSpace': 'nowrap' }}>
           {hasChildren && (
             <span onClick={() => toggleNode(key)} style={{ cursor: 'pointer', marginRight: 5 }}>
               {isExpanded ? '▼' : '▶'}

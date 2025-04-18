@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Blueprint } from '@/types';
 import useBlueprintStore from '@/stores/blueprints-store';
 import { formatFileSize } from '@/utils/format';
@@ -11,6 +11,7 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   const addTag = useBlueprintStore((state) => state.addTag);
   const clearTags = useBlueprintStore((state) => state.clearTags);
   const addAllTags = useBlueprintStore((state) => state.addAllTags);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     // Handle browser back/forward buttons
@@ -26,6 +27,14 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [blueprint]);
+
+  const copyToClipboard = (blueprint_id: string) => {
+    const currentUrl = window.location.href;
+    const urlWithoutParameters = currentUrl.split("?")[0];
+    navigator.clipboard.writeText(urlWithoutParameters + '?blueprint_id=' + blueprint_id);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleSwapTags = (blueprint: Blueprint, tag: string) => {
     const newTags = blueprint.tags.filter(t => !t.startsWith(tag));
@@ -54,7 +63,18 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
 
   return (
     <div className='blueprintContainer'>
-      <h2>{blueprint.blueprint_name}</h2>
+      <h2>
+        <div title={blueprint.full_name}>{blueprint.blueprint_name}</div>
+        <div className="blueprintLinks">
+          <a className='visibleLink' href={`/?blueprint_id=${blueprint.id}`}>deeplink</a>&nbsp;
+          <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(blueprint.id)}>
+            <svg aria-hidden="true" focusable="false" className="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style={{ "verticalAlign": "text-bottom" }}>
+              <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+              <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+            </svg>
+          </button>
+        </div>
+      </h2>
       <p><strong>Type:</strong> {blueprint.blueprint_type}</p>
       <p><strong>Last Modified:</strong> {laterDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
       <p>{blueprint.tags.map(tag => (
