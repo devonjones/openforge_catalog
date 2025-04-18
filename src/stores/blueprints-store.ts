@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Blueprint, Paging } from '@/types';
-import useTagStore from '@/stores/tag-store';
+import { useModelTagStore } from '@/stores/tag-store';
 
 interface StoreState {
   blueprints: Blueprint[];
@@ -66,7 +66,7 @@ const useStore = create<StoreState>((set, get) => ({
       blueprints: result.blueprints,
       paging: result.paging,
     });
-    useTagStore.getState().setData(result.tag_counts);
+    useModelTagStore.getState().setData(result.tag_counts);
   },
   addTag: (tag: string) => {
     set((state) => {

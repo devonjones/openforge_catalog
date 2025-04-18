@@ -124,12 +124,13 @@ def tag_search_blueprints(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit, models=models),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY blueprints.blueprint_name"),
     ]
@@ -147,12 +148,13 @@ def tag_search_tags(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM tags AS bptags"),
         sql.SQL("  WHERE bptags.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit, models=models),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
@@ -170,6 +172,7 @@ def tag_search_blueprint_images(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
 ) -> list[dict]:
     parts = [
         sql.SQL(
@@ -178,7 +181,7 @@ def tag_search_blueprint_images(
         sql.SQL("  FROM images"),
         sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
         sql.SQL("  WHERE bpi.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(accept, require, deny, next, previous, limit, models=models),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
@@ -193,12 +196,13 @@ def tag_search_blueprint_count(
     accept: list[str],
     require: list[str],
     deny: list[str],
+    models: bool = True,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(accept, require, deny, do_limit=False, models=models),
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
@@ -213,12 +217,13 @@ def tag_search_blueprint_start_count(
     require: list[str],
     deny: list[str],
     first: uuid.UUID,
+    models: bool = True,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(accept, require, deny, do_limit=False, models=models),
         sql.SQL("  )"),
         sql.SQL(
             "    AND blueprints.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {first})"
@@ -235,12 +240,13 @@ def tag_search_tag_count(
     accept: list[str],
     require: list[str],
     deny: list[str],
+    models: bool = True,
 ) -> list[dict]:
     parts = [
         sql.SQL("SELECT COUNT(*) AS tag_count, t.tag"),
         sql.SQL("  FROM tags AS t"),
         sql.SQL("  WHERE t.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(accept, require, deny, do_limit=False, models=models),
         sql.SQL("  )"),
         sql.SQL("  GROUP BY t.tag"),
     ]

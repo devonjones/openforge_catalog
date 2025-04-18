@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import useTagStore from '@/stores/tag-store';
+import { useModelTagStore } from '@/stores/tag-store';
 import useBlueprintStore from '@/stores/blueprints-store';
 
 const renderTags = (
@@ -43,7 +43,7 @@ const renderTags = (
 };
 
 const TagContainer = () => {
-  const data = useTagStore((state) => state.data);
+  const data = useModelTagStore((state) => state.data);
   const addTag = useBlueprintStore((state) => state.addTag);
   const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
 

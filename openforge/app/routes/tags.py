@@ -78,22 +78,27 @@ def query_tags():
             next = request.args.get("next")
             previous = request.args.get("previous")
             limit = request.args.get("limit", 20)
+            models = request.args.get("models", "true").lower() == "true"
             bp_data = tag_sql.tag_search_blueprints(
-                cursor, accept, require, deny, next, previous, limit
+                cursor, accept, require, deny, next, previous, limit, models=models
             )
             tag_data = tag_sql.tag_search_tags(
-                cursor, accept, require, deny, next, previous, limit
+                cursor, accept, require, deny, next, previous, limit, models=models
             )
             image_data = tag_sql.tag_search_blueprint_images(
-                cursor, accept, require, deny, next, previous, limit
+                cursor, accept, require, deny, next, previous, limit, models=models
             )
-            count = tag_sql.tag_search_blueprint_count(cursor, accept, require, deny)
+            count = tag_sql.tag_search_blueprint_count(
+                cursor, accept, require, deny, models=models
+            )
             start_count = 0
             if len(bp_data) > 0:
                 start_count = tag_sql.tag_search_blueprint_start_count(
-                    cursor, accept, require, deny, bp_data[0]["id"]
+                    cursor, accept, require, deny, bp_data[0]["id"], models=models
                 )
-            tag_count = tag_sql.tag_search_tag_count(cursor, accept, require, deny)
+            tag_count = tag_sql.tag_search_tag_count(
+                cursor, accept, require, deny, models=models
+            )
             tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)

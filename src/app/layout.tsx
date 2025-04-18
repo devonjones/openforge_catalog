@@ -4,13 +4,9 @@ import "./globals.css";
 import './layout.css';
 
 // import { metadata } from '@/app/metadata';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Inter } from "next/font/google";
-import useStore from '@/stores/tag-store';
-import TagContainer from "@/components/tag-container";
-import ResultsContainer from "@/components/results-container";
-import BlueprintContainer from "@/components/blueprint-container";
-import { Blueprint } from '@/types';
+import TabbedInterface from "@/components/tabbed-interface";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,14 +15,6 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
-  const fetchData = useStore((state) => state.fetchData);
-  const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
-
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
 	return (
 		<html lang="en">
 			<body className={inter.className}>
@@ -38,17 +26,7 @@ export default function RootLayout({
               <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
             </div>
           </div>
-          <div className='columnContainer'>
-            <div className='tagContainerWrapper'>
-              <TagContainer />
-            </div>
-            <div className='modelsContainerWrapper'>
-              <ResultsContainer onSelect={setSelectedBlueprint} />
-            </div>
-            <div className='modelDetailsContainerWrapper'>
-              <BlueprintContainer blueprint={selectedBlueprint} />
-            </div>
-          </div>
+          <TabbedInterface />
         </div>
       </body>
     </html>

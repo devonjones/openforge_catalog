@@ -44,70 +44,74 @@ interface StoreState {
   setData: (tagCounts: object) => void;
 }
 
-const useStore = create<StoreState>((set, get) => ({
-  data: {},
-  fetchData: async () => {
-    const response = await fetch('/api/blueprints/tags', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const result = await response.json();
-    const tagCounts = result.tag_counts;
-    get().setData(tagCounts);
-  },
-  setData: (tagCounts: object) => {
-    const data: Record<string, TagNode> = {};
+const createTagStore = (models: boolean = true) => {
+  return create<StoreState>((set, get) => ({
+    data: {},
+    fetchData: async () => {
+      const response = await fetch(`/api/blueprints/tags?models=${models}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+      const tagCounts = result.tag_counts;
+      get().setData(tagCounts);
+    },
+    setData: (tagCounts: object) => {
+      const data: Record<string, TagNode> = {};
 
-    Object.entries(tagCounts).forEach(([key, count]) => {
-      const tags = key.split('|');
-      let currentLevel = data;
-      let fullPath = '';
+      Object.entries(tagCounts).forEach(([key, count]) => {
+        const tags = key.split('|');
+        let currentLevel = data;
+        let fullPath = '';
 
-      tags.forEach((tag, index) => {
-        if (fullPath) {
-          fullPath += `|${tag}`;
-        } else {
-          fullPath = tag;
-        }
+        tags.forEach((tag, index) => {
+          if (fullPath) {
+            fullPath += `|${tag}`;
+          } else {
+            fullPath = tag;
+          }
 
-        if (!currentLevel[tag]) {
-          currentLevel[tag] = { children: {}, __name: fullPath };
-        }
+          if (!currentLevel[tag]) {
+            currentLevel[tag] = { children: {}, __name: fullPath };
+          }
 
-        if (index === tags.length - 1) {
-          currentLevel[tag].__count = count as number;
-        } else {
-          currentLevel = currentLevel[tag].children!;
+          if (index === tags.length - 1) {
+            currentLevel[tag].__count = count as number;
+          } else {
+            currentLevel = currentLevel[tag].children!;
+          }
+        });
+      });
+
+      // Aggregate counts for non-leaf nodes
+      const aggregateCounts = (node: TagNode) => {
+        if (!node) return 0;
+        let total = node.__count || 0;
+        let subTags = 0;
+        Object.values(node.children || {}).forEach((child) => {
+          if (typeof child === 'object') {
+            subTags++;
+            total += aggregateCounts(child);
+          }
+        });
+        node.__totalCount = total;
+        node.__subTags = subTags;
+        return total;
+      };
+
+      Object.values(data).forEach((node) => {
+        if (typeof node === 'object') {
+          aggregateCounts(node);
         }
       });
-    });
 
-    // Aggregate counts for non-leaf nodes
-    const aggregateCounts = (node: TagNode) => {
-      if (!node) return 0;
-      let total = node.__count || 0;
-      let subTags = 0;
-      Object.values(node.children || {}).forEach((child) => {
-        if (typeof child === 'object') {
-          subTags++;
-          total += aggregateCounts(child);
-        }
-      });
-      node.__totalCount = total;
-      node.__subTags = subTags;
-      return total;
-    };
+      set({ data });
+    },
+  }));
+};
 
-    Object.values(data).forEach((node) => {
-      if (typeof node === 'object') {
-        aggregateCounts(node);
-      }
-    });
-
-    set({ data });
-  },
-}));
-
-export default useStore;
+// Create two instances of the store
+export const useModelTagStore = createTagStore(true);
+export const useBlueprintTagStore = createTagStore(false);

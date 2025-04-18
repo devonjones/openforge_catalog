@@ -340,6 +340,13 @@ paths:
           required: false
           schema:
             type: integer
+        - in: query
+          name: models
+          description: Whether to include models in the results (default true)
+          required: false
+          schema:
+            type: boolean
+            default: true
       requestBody:
         content:
           application/json:
