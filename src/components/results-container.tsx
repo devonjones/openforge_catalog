@@ -140,7 +140,6 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
         <strong>{startCount} - {endCount}</strong> of <strong>{paging?.total_count}</strong> that match your tags
       </div>
 
-
       <div className="pagination flex justify-between mt-4">
         {paging?.previous_token && startCount > 1 &&(
           <button
@@ -150,7 +149,7 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
             Previous Page
           </button>
         )}
-        
+        <div className="flex-grow"></div>
         {paging?.next_token && endCount < paging.total_count && (
           <button
             onClick={() => fetchBlueprints({ next: paging.next_token })}
