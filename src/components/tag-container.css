@@ -1,0 +1,22 @@
+.tagContainer {
+  padding: 20px;
+  min-width: 200px;
+  flex: 0 0 auto;
+}
+
+.tagNode {
+  margin-left: 20px;
+  min-width: 0;
+}
+
+.expandButton {
+  cursor: pointer;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.tagButton {
+  cursor: pointer;
+  margin-left: 5px;
+  flex-shrink: 0;
+} 

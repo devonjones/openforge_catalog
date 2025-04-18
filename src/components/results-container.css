@@ -11,7 +11,6 @@
 .selectedTagsContainer__header {
   font-weight: bold;
   font-size: small;
-
 }
 
 .selectedTagsContainer ul {
@@ -24,4 +23,16 @@
 }
 
 .selectedTagsContainer button:hover {
+}
+
+.octicon {
+  vertical-align: text-bottom;
+}
+
+.blueprintListItem {
+  cursor: pointer;
+}
+
+.blueprintListItem.selected {
+  background-color: lightblue;
 }

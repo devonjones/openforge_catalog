@@ -36,10 +36,12 @@
   flex: 0 0 200px;
   user-select: none;
 }
+
 .modelsContainerWrapper {
   padding: 8px;
   flex: 1 1 auto;
 }
+
 .modelDetailsContainerWrapper {
   padding: 8px;
   flex: 1 1 auto;

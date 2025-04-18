@@ -20,17 +20,17 @@ const renderTags = (
     const hasChildren = value.children && Object.keys(value.children).length > 0;
 
     return (
-      <div key={key} style={{ marginLeft: level * 20 }}>
-        <div style={{ display: 'flex', alignItems: 'center', 'whiteSpace': 'nowrap' }}>
+      <div key={key} className="tagNode" style={{ marginLeft: level * 20 }}>
+        <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
           {hasChildren && (
-            <span onClick={() => toggleNode(key)} style={{ cursor: 'pointer', marginRight: 5 }}>
+            <span onClick={() => toggleNode(key)} className="expandButton">
               {isExpanded ? '▼' : '▶'}
             </span>
           )}
           <span>
-            {tag} {value.__subTags > 0 && `(${value.__subTags})`}
+            {tag} {value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
-              <span className="tagButton" onClick={() => handleAddTag(value.__name)} style={{ cursor: 'pointer', marginLeft: 5 }}>
+              <span className="tagButton" onClick={() => handleAddTag(value.__name)}>
                 +
               </span>
             )}
@@ -59,7 +59,7 @@ const TagContainer = () => {
   };
 
   return (
-    <div className='tagContainer'>
+    <div className="tagContainer">
       <div>Browse Tags</div>
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>

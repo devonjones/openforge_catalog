@@ -24,4 +24,8 @@
 
 .blueprintLinks button:hover {
   opacity: 0.8;
+}
+
+.octicon {
+  vertical-align: text-bottom;
 } 
