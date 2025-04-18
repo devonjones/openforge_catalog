@@ -41,7 +41,7 @@
 .modelsContainerWrapper {
   padding: 8px;
   flex: 0 0 auto;
-  min-width: 300px;
+  min-width: 600px;
   height: 100%;
   overflow-y: auto;
 }
