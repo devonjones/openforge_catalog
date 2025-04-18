@@ -1,7 +1,7 @@
 import json
 import sys
 from importlib import resources as impresources
-
+from pathlib import Path
 from psycopg import cursor, connection
 from psycopg.rows import dict_row
 from psycopg.errors import UniqueViolation
@@ -17,11 +17,28 @@ import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 
 
-def find_fixtures():
+def find_fixtures(dir: str):
+    if dir:
+        return find_fixtures_directory(dir)
+    else:
+        return find_fixtures_package()
+
+
+def find_fixtures_package():
     import openforge.db.fixtures as fixtures
 
     ffiles = []
     for f in impresources.files(fixtures).iterdir():
+        if str(f).endswith(".json"):
+            ffiles.append(f)
+        elif str(f).endswith(".yaml"):
+            ffiles.append(f)
+    return ffiles
+
+
+def find_fixtures_directory(dir: str):
+    ffiles = []
+    for f in Path(dir).iterdir():
         if str(f).endswith(".json"):
             ffiles.append(f)
         elif str(f).endswith(".yaml"):
@@ -35,8 +52,8 @@ def clear_db(curs: cursor):
     image_sql.delete_all_images(curs)
 
 
-def load_fixtures(conn: connection):
-    ffiles = find_fixtures()
+def load_fixtures(conn: connection, alt: str):
+    ffiles = find_fixtures(alt)
     with conn.cursor(row_factory=dict_row) as curs:
         clear_db(curs)
         conn.commit()

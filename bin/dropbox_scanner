@@ -89,16 +89,24 @@ def parse_texture(texture, tags):
     parts = texture.split("%")
     main = parts.pop(0)
     for m in main.split(","):
+        s = []
         if m.find("+") > 0:
-            raise Exception(f"Texture {m} contains +")
+            s = m.split("+")
+            m = s.pop(0)
         tags.add(("texture", m))
+        for x in s:
+            tags.add(("texture", m, x))
     if len(parts) == 0:
         return
     subtex = parts.pop(0)
     for o in subtex.split(","):
+        s = []
         if o.find("+") > 0:
-            raise Exception(f"Subtexture {o} contains +")
-        tags.add(("texture", "floor", o))
+            s = o.split("+")
+            o = s.pop(0)
+        tags.add(("texture", m, o))
+        for x in s:
+            tags.add(("texture", m, o, x))
 
 
 def parse_form(form, tags):
@@ -209,6 +217,24 @@ def parse_path(file, tags):
 
     if "floor" in path:
         tags.add(("shape", "floor"))
+    if "floor+special" in path:
+        tags.add(("shape", "floor"))
+    if "wall" in path:
+        tags.add(("shape", "wall"))
+    if "wall+special" in path:
+        tags.add(("shape", "wall"))
+    if "curved_floors" in path:
+        tags.add(("shape", "floor"))
+        tags.add(("shape", "curved"))
+    if "curved_walls" in path:
+        tags.add(("shape", "wall"))
+        tags.add(("shape", "curved"))
+    if "primary_floors" in path:
+        tags.add(("shape", "floor"))
+        tags.add(("shape", "square"))
+    if "primary_walls" in path:
+        tags.add(("shape", "wall"))
+        tags.add(("shape", "square"))
 
 
 def filter_s_system(tags):
@@ -230,8 +256,9 @@ def filter_shape(tags):
         count = 0
         for tag in tags:
             if tag[0] == "component":
-                count += 1
-        if count == 1:
+                if tag != ("component", "wall"):
+                    count += 1
+        if count == 0:
             return True
         return False
 
@@ -244,12 +271,115 @@ def filter_shape(tags):
             return True
         return False
 
+    def _check_wall_low(tags):
+        if ("component", "wall", "low") in tags:
+            tags.discard(("component", "wall"))
+            tags.add(("shape", "wall", "low"))
+            tags.discard(("shape", "wall"))
+
+    def _check_columns(tags):
+        tags.discard(("component", "column"))
+        if ("component", "column", "low") in tags:
+            tags.add(("shape", "column", "low"))
+            tags.discard(("shape", "column"))
+            tags.discard(("component", "column", "low"))
+
+    def _move_tag_chain(tags, old, new):
+        def _compare_old(tag, old):
+            for i, v in enumerate(old):
+                if tag[i] != v:
+                    return False
+            return True
+
+        def _swap_tag(tag, old, new):
+            newtag = list(new)
+            for i, t in enumerate(tag):
+                if len(old) <= i:
+                    newtag.append(t)
+            return tuple(newtag)
+
+        swap_tags = []
+        for tag in tags:
+            if _compare_old(tag, old):
+                swap_tags.append(tag)
+        replacements = []
+        for tag in swap_tags:
+            replacements.append(_swap_tag(tag, old, new))
+        tags.update(replacements)
+        for tag in swap_tags:
+            tags.discard(tag)
+        return tags
+
+    def _handle_decorations(tags):
+        _move_tag_chain(tags, ["component", "air"], ["decoration", "symbol", "air"])
+        _move_tag_chain(
+            tags, ["component", "air_symbol"], ["decoration", "symbol", "air"]
+        )
+        _move_tag_chain(
+            tags, ["component", "beezlebub"], ["decoration", "symbol", "beezlebub"]
+        )
+        _move_tag_chain(
+            tags,
+            ["component", "beezlebub_symbol"],
+            ["decoration", "symbol", "beezlebub"],
+        )
+        _move_tag_chain(
+            tags, ["component", "celtic_knot"], ["decoration", "celtic_knot"]
+        )
+        _move_tag_chain(tags, ["component", "demon"], ["decoration", "demon"])
+        _move_tag_chain(
+            tags, ["component", "dragon_skulls"], ["decoration", "dragon_skulls"]
+        )
+        _move_tag_chain(tags, ["component", "earth"], ["decoration", "symbol", "earth"])
+        _move_tag_chain(
+            tags, ["component", "earth_symbol"], ["decoration", "symbol", "earth"]
+        )
+        _move_tag_chain(tags, ["component", "fire"], ["decoration", "symbol", "fire"])
+        _move_tag_chain(
+            tags, ["component", "fire_symbol"], ["decoration", "symbol", "fire"]
+        )
+        _move_tag_chain(
+            tags, ["component", "lamashtu"], ["decoration", "symbol", "lamashtu"]
+        )
+        _move_tag_chain(
+            tags, ["component", "lamashtu_symbol"], ["decoration", "symbol", "lamashtu"]
+        )
+        _move_tag_chain(
+            tags, ["component", "spirit"], ["decoration", "symbol", "spirit"]
+        )
+        _move_tag_chain(
+            tags, ["component", "spirit_symbol"], ["decoration", "symbol", "spirit"]
+        )
+        _move_tag_chain(tags, ["component", "water"], ["decoration", "symbol", "water"])
+        _move_tag_chain(
+            tags, ["component", "water_symbol"], ["decoration", "symbol", "water"]
+        )
+
+    _move_tag_chain(tags, ["component", "corner"], ["shape", "corner"])
     if ("shape", "wall") in tags:
         if not _check_wall_alone(tags):
             tags.discard(("component", "wall"))
+        else:
+            tags.add(("component", "wall"))
     if ("shape", "floor") in tags:
         if not _check_floor_alone(tags):
             tags.discard(("component", "floor"))
+        else:
+            tags.add(("component", "floor"))
+        if ("shape", "wall") in tags:
+            tags.discard(("shape", "wall"))
+            tags.add(("shape", "floor", "cut_for_wall"))
+    _move_tag_chain(tags, ["component", "floor"], ["shape", "floor"])
+    _move_tag_chain(tags, ["component", "curved"], ["shape", "curved"])
+    _move_tag_chain(tags, ["component", "base"], ["shape", "base"])
+    _move_tag_chain(tags, ["component", "angled"], ["shape", "angled"])
+    _move_tag_chain(tags, ["component", "riser"], ["shape", "riser"])
+    _move_tag_chain(tags, ["component", "stairs"], ["shape", "stairs"])
+    _move_tag_chain(tags, ["component", "column"], ["shape", "column"])
+    _handle_decorations(tags)
+    if ("shape", "column") in tags:
+        _check_columns(tags)
+    _check_wall_low(tags)
 
 
 def parse_files(path, files, md5, verbose, upload, config):

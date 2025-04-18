@@ -9,10 +9,11 @@ import click
 
 
 @click.command()
-def main():
+@click.option("--alt", default="")
+def main(alt):
     db = PgDB(os.environ)
     with db.pool.connection() as conn:
-        load_fixtures(conn)
+        load_fixtures(conn, alt)
 
 
 if __name__ == "__main__":
