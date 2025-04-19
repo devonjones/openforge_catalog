@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { useTagStore } from '@/stores/tag-store';
+import useTagStore from '@/stores/tag-store';
 import useBlueprintStore from '@/stores/blueprints-store';
 
 const renderTags = (
@@ -67,6 +67,3 @@ const TagContainer = () => {
 };
 
 export default TagContainer;
-
-
-

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Blueprint, Paging } from '@/types';
-import { useTagStore } from '@/stores/tag-store';
+import useTagStore from '@/stores/tag-store';
 
 interface StoreState {
   blueprints: Blueprint[];
