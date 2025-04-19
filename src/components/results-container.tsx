@@ -14,7 +14,8 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
   const removeTag = useBlueprintStore((state) => state.removeTag);
   const addTag = useBlueprintStore((state) => state.addTag);
   const clearTags = useBlueprintStore((state) => state.clearTags);
-  const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
+  const selectedBlueprint = useBlueprintStore((state) => state.selectedBlueprint);
+  const setSelectedBlueprint = useBlueprintStore((state) => state.setSelectedBlueprint);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

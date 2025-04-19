@@ -6,6 +6,8 @@ interface StoreState {
   blueprints: Blueprint[];
   selectedTags: string[];
   paging: Paging | null;
+  selectedBlueprint: Blueprint | null;
+  setSelectedBlueprint: (blueprint: Blueprint | null) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
   addTag: (tag: string) => void;
@@ -18,6 +20,8 @@ const useStore = create<StoreState>((set, get) => ({
   blueprints: [],
   selectedTags: [],
   paging: null,
+  selectedBlueprint: null,
+  setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
   fetchBlueprintById: async (id: string) => {
     const { blueprints } = get();
     
