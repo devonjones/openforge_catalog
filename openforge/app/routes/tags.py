@@ -79,25 +79,56 @@ def query_tags():
             previous = request.args.get("previous")
             limit = request.args.get("limit", 20)
             models = request.args.get("models", "true").lower() == "true"
+            blueprints = request.args.get("blueprints", "false").lower() == "true"
             bp_data = tag_sql.tag_search_blueprints(
-                cursor, accept, require, deny, next, previous, limit, models=models
+                cursor,
+                accept,
+                require,
+                deny,
+                next,
+                previous,
+                limit,
+                models=models,
+                blueprints=blueprints,
             )
             tag_data = tag_sql.tag_search_tags(
-                cursor, accept, require, deny, next, previous, limit, models=models
+                cursor,
+                accept,
+                require,
+                deny,
+                next,
+                previous,
+                limit,
+                models=models,
+                blueprints=blueprints,
             )
             image_data = tag_sql.tag_search_blueprint_images(
-                cursor, accept, require, deny, next, previous, limit, models=models
+                cursor,
+                accept,
+                require,
+                deny,
+                next,
+                previous,
+                limit,
+                models=models,
+                blueprints=blueprints,
             )
             count = tag_sql.tag_search_blueprint_count(
-                cursor, accept, require, deny, models=models
+                cursor, accept, require, deny, models=models, blueprints=blueprints
             )
             start_count = 0
             if len(bp_data) > 0:
                 start_count = tag_sql.tag_search_blueprint_start_count(
-                    cursor, accept, require, deny, bp_data[0]["id"], models=models
+                    cursor,
+                    accept,
+                    require,
+                    deny,
+                    bp_data[0]["id"],
+                    models=models,
+                    blueprints=blueprints,
                 )
             tag_count = tag_sql.tag_search_tag_count(
-                cursor, accept, require, deny, models=models
+                cursor, accept, require, deny, models=models, blueprints=blueprints
             )
             tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)

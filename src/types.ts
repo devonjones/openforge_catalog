@@ -9,7 +9,7 @@ export interface Image {
 export interface Blueprint {
   blueprint_name: string;
   blueprint_type: string;
-  config: string;
+  blueprint_config: Record<string, any>;
   created_at: string;
   file_changed_at: string;
   file_md5: string;
