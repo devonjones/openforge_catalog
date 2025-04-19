@@ -68,4 +68,31 @@
   object-fit: cover;
   border-radius: 4px;
   border: 1px solid #e0e0e0;
+}
+
+.columnContainer {
+  display: flex;
+  height: calc(100vh - 40px);
+  overflow: hidden;
+}
+
+.tagContainerWrapper {
+  width: 300px;
+  padding: 20px;
+  overflow-y: auto;
+  border-right: 1px solid #e1e4e8;
+}
+
+.modelsContainerWrapper {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  min-width: 600px;
+}
+
+.modelDetailsContainerWrapper {
+  width: 400px;
+  padding: 20px;
+  overflow-y: auto;
+  border-left: 1px solid #e1e4e8;
 } 
