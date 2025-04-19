@@ -6,7 +6,7 @@ import TagContainer from './tag-container';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
 
-const PartSearch = () => {
+const TabPartSearch: React.FC = () => {
   const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
 
   return (
@@ -24,4 +24,4 @@ const PartSearch = () => {
   );
 };
 
-export default PartSearch; 
+export default TabPartSearch; 

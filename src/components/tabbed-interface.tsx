@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import PartSearch from './part-search';
-import Blueprints from './blueprints';
+import TabPartSearch from './tab-part-search';
+import TabBlueprints from './tab-blueprints';
 
 const TabbedInterface = () => {
   const [activeTab, setActiveTab] = useState<'partSearch' | 'blueprints'>('partSearch');
@@ -24,7 +24,7 @@ const TabbedInterface = () => {
         </button>
       </div>
       <div className="tabContent">
-        {activeTab === 'partSearch' ? <PartSearch /> : <Blueprints />}
+        {activeTab === 'partSearch' ? <TabPartSearch /> : <TabBlueprints />}
       </div>
     </div>
   );

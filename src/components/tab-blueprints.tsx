@@ -3,9 +3,9 @@
 import React from 'react';
 import useStore from '../stores/blueprints-store';
 import { Blueprint } from '@/types';
-import './blueprints.css';
+import './tab-blueprints.css';
 
-const Blueprints: React.FC = () => {
+const TabBlueprints: React.FC = () => {
   const { blueprints } = useStore();
 
   if (!blueprints.length) return <div>No blueprints found</div>;
@@ -52,4 +52,4 @@ const Blueprints: React.FC = () => {
   );
 };
 
-export default Blueprints; 
+export default TabBlueprints; 
