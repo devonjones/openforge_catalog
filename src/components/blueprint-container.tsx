@@ -18,7 +18,7 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
   const addTag = useTagStore((state) => state.addTag);
   const clearTags = useTagStore((state) => state.clearTags);
   const addAllTags = useTagStore((state) => state.addAllTags);
-  const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
+  const fetchBlueprints = useTagStore((state) => state.fetchBlueprints);
   const [copied, setCopied] = useState(false);
   
   // Only use the appropriate context based on isPartSearch
@@ -51,7 +51,6 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
     const newTags = blueprint.tags.filter(t => !t.startsWith(tag));
     clearTags();
     addAllTags(newTags);
-    fetchBlueprints();
   };
 
   if (!blueprint) {
@@ -92,10 +91,7 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
       <p>{blueprint.tags.map(tag => (
         <button
           key={tag}
-          onClick={() => {
-            addTag(tag);
-            fetchBlueprints();
-          }}
+          onClick={() => addTag(tag)}
           className="inline-block px-2 py-1 mr-2 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
         >
           {tag}

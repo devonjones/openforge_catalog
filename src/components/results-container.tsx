@@ -14,14 +14,14 @@ interface ResultsContainerProps {
 }
 
 const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerProps) => {
-  const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
   const fetchBlueprintById = useBlueprintStore((state) => state.fetchBlueprintById);
-  const blueprints = useBlueprintStore((state) => state.blueprints);
-  const paging = useBlueprintStore((state) => state.paging);
+  const blueprints = useTagStore((state) => state.blueprints);
+  const paging = useTagStore((state) => state.paging);
   const selectedTags = useTagStore((state) => state.selectedTags);
   const removeTag = useTagStore((state) => state.removeTag);
   const addTag = useTagStore((state) => state.addTag);
   const clearTags = useTagStore((state) => state.clearTags);
+  const fetchBlueprints = useTagStore((state) => state.fetchBlueprints);
   const selectedBlueprint = useBlueprintStore((state) => state.selectedBlueprint);
   const setSelectedBlueprint = useBlueprintStore((state) => state.setSelectedBlueprint);
   const [copied, setCopied] = useState(false);
@@ -76,7 +76,6 @@ const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerPr
 
   const handleRemoveTag = (tag: string) => {
     removeTag(tag);
-    fetchBlueprints();
   };
 
   const createDeepLink = (tags: string[]) => {
@@ -87,7 +86,6 @@ const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerPr
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault();
     clearTags();
-    fetchBlueprints();
     // Update URL to remove tag parameters while preserving blueprint_id
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);

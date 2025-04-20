@@ -36,12 +36,15 @@
 */
 
 import { create } from 'zustand';
-import { TagNode } from '@/types';
+import { TagNode, Blueprint, Paging } from '@/types';
+import useBlueprintStore from '@/stores/blueprints-store';
 
 interface StoreState {
   data: Record<string, TagNode>;
   expandedNodes: Record<string, boolean>;
   selectedTags: string[];
+  blueprints: Blueprint[];
+  paging: Paging | null;
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
   toggleNode: (key: string) => void;
@@ -49,12 +52,16 @@ interface StoreState {
   addAllTags: (tags: string[]) => void;
   removeTag: (tag: string) => void;
   clearTags: () => void;
+  fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
+  setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
 
 const useStore = create<StoreState>((set, get) => ({
   data: {},
   expandedNodes: {},
   selectedTags: [],
+  blueprints: [],
+  paging: null,
   fetchData: async () => {
     const response = await fetch('/api/blueprints/tags', {
       method: 'POST',
@@ -133,21 +140,52 @@ const useStore = create<StoreState>((set, get) => ({
       }
       return state;
     });
+    get().fetchBlueprints();
   },
   addAllTags: (tags: string[]) => {
     set((state) => {
       const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
       return { selectedTags: uniqueTags };
     });
+    get().fetchBlueprints();
   },
   removeTag: (tag: string) => {
     set((state) => {
       const updatedTags = state.selectedTags.filter((t) => t !== tag);
       return { selectedTags: updatedTags };
     });
+    get().fetchBlueprints();
   },
   clearTags: () => {
     set({ selectedTags: [] });
+    get().fetchBlueprints();
+  },
+  fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
+    const { selectedTags } = get();
+    let url = '/api/blueprints/tags';
+
+    // Add pagination parameters if provided
+    if (params?.next) {
+      url += `?next=${params.next}`;
+    } else if (params?.previous) {
+      url += `?previous=${params.previous}`;
+    }
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        require: selectedTags.map(tag => ({ tag })),
+      }),
+    });
+    const result = await response.json();
+    get().setBlueprints(result.blueprints, result.paging);
+    get().setData(result.tag_counts);
+  },
+  setBlueprints: (blueprints, paging) => {
+    set({ blueprints, paging });
   },
 }));
 

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import useTagStore from '@/stores/tag-store';
-import useBlueprintStore from '@/stores/blueprints-store';
 
 const renderTags = (
   data: Record<string, any>,
@@ -47,11 +46,9 @@ const TagContainer = () => {
   const expandedNodes = useTagStore((state) => state.expandedNodes);
   const toggleNode = useTagStore((state) => state.toggleNode);
   const addTag = useTagStore((state) => state.addTag);
-  const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
-    fetchBlueprints();
   };
 
   return (
