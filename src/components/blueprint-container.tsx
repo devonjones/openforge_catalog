@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Blueprint } from '@/types';
 import useBlueprintStore from '@/stores/blueprints-store';
+import useTagStore from '@/stores/tag-store';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
 import { usePartSearchContext } from '@/contexts/part-search-context';
@@ -14,9 +15,10 @@ interface BlueprintContainerProps {
 }
 
 const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContainerProps) => {
-  const addTag = useBlueprintStore((state) => state.addTag);
-  const clearTags = useBlueprintStore((state) => state.clearTags);
-  const addAllTags = useBlueprintStore((state) => state.addAllTags);
+  const addTag = useTagStore((state) => state.addTag);
+  const clearTags = useTagStore((state) => state.clearTags);
+  const addAllTags = useTagStore((state) => state.addAllTags);
+  const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
   const [copied, setCopied] = useState(false);
   
   // Only use the appropriate context based on isPartSearch
@@ -49,6 +51,7 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
     const newTags = blueprint.tags.filter(t => !t.startsWith(tag));
     clearTags();
     addAllTags(newTags);
+    fetchBlueprints();
   };
 
   if (!blueprint) {
@@ -89,7 +92,10 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
       <p>{blueprint.tags.map(tag => (
         <button
           key={tag}
-          onClick={() => addTag(tag)}
+          onClick={() => {
+            addTag(tag);
+            fetchBlueprints();
+          }}
           className="inline-block px-2 py-1 mr-2 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
         >
           {tag}

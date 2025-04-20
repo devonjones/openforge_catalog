@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import useBlueprintStore from '@/stores/blueprints-store';
+import useTagStore from '@/stores/tag-store';
 import { Blueprint } from '@/types';
 import './results-container.css';
 import { usePartSearchContext } from '@/contexts/part-search-context';
@@ -17,10 +18,10 @@ const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerPr
   const fetchBlueprintById = useBlueprintStore((state) => state.fetchBlueprintById);
   const blueprints = useBlueprintStore((state) => state.blueprints);
   const paging = useBlueprintStore((state) => state.paging);
-  const selectedTags = useBlueprintStore((state) => state.selectedTags);
-  const removeTag = useBlueprintStore((state) => state.removeTag);
-  const addTag = useBlueprintStore((state) => state.addTag);
-  const clearTags = useBlueprintStore((state) => state.clearTags);
+  const selectedTags = useTagStore((state) => state.selectedTags);
+  const removeTag = useTagStore((state) => state.removeTag);
+  const addTag = useTagStore((state) => state.addTag);
+  const clearTags = useTagStore((state) => state.clearTags);
   const selectedBlueprint = useBlueprintStore((state) => state.selectedBlueprint);
   const setSelectedBlueprint = useBlueprintStore((state) => state.setSelectedBlueprint);
   const [copied, setCopied] = useState(false);
@@ -71,19 +72,11 @@ const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerPr
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
     onSelect(blueprint);
-    
-    // Update URL while preserving existing tag parameters
-    if (typeof window !== 'undefined') {
-      const newParams = new URLSearchParams();
-      newParams.set('blueprint_id', blueprint.id);
-      
-      const newUrl = `${window.location.pathname}?${newParams.toString()}`;
-      window.history.pushState({}, '', newUrl);
-    }
   };
 
   const handleRemoveTag = (tag: string) => {
     removeTag(tag);
+    fetchBlueprints();
   };
 
   const createDeepLink = (tags: string[]) => {
@@ -94,6 +87,7 @@ const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerPr
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault();
     clearTags();
+    fetchBlueprints();
     // Update URL to remove tag parameters while preserving blueprint_id
     if (typeof window !== 'undefined') {
       const currentParams = new URLSearchParams(window.location.search);

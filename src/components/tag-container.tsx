@@ -46,10 +46,12 @@ const TagContainer = () => {
   const data = useTagStore((state) => state.data);
   const expandedNodes = useTagStore((state) => state.expandedNodes);
   const toggleNode = useTagStore((state) => state.toggleNode);
-  const addTag = useBlueprintStore((state) => state.addTag);
+  const addTag = useTagStore((state) => state.addTag);
+  const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
+    fetchBlueprints();
   };
 
   return (

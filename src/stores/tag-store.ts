@@ -41,14 +41,20 @@ import { TagNode } from '@/types';
 interface StoreState {
   data: Record<string, TagNode>;
   expandedNodes: Record<string, boolean>;
+  selectedTags: string[];
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
   toggleNode: (key: string) => void;
+  addTag: (tag: string) => void;
+  addAllTags: (tags: string[]) => void;
+  removeTag: (tag: string) => void;
+  clearTags: () => void;
 }
 
 const useStore = create<StoreState>((set, get) => ({
   data: {},
   expandedNodes: {},
+  selectedTags: [],
   fetchData: async () => {
     const response = await fetch('/api/blueprints/tags', {
       method: 'POST',
@@ -118,6 +124,30 @@ const useStore = create<StoreState>((set, get) => ({
         [key]: !state.expandedNodes[key],
       },
     }));
+  },
+  addTag: (tag: string) => {
+    set((state) => {
+      if (!state.selectedTags.includes(tag)) {
+        const updatedTags = [...state.selectedTags, tag];
+        return { selectedTags: updatedTags };
+      }
+      return state;
+    });
+  },
+  addAllTags: (tags: string[]) => {
+    set((state) => {
+      const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
+      return { selectedTags: uniqueTags };
+    });
+  },
+  removeTag: (tag: string) => {
+    set((state) => {
+      const updatedTags = state.selectedTags.filter((t) => t !== tag);
+      return { selectedTags: updatedTags };
+    });
+  },
+  clearTags: () => {
+    set({ selectedTags: [] });
   },
 }));
 

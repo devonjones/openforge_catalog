@@ -4,21 +4,15 @@ import useTagStore from '@/stores/tag-store';
 
 interface StoreState {
   blueprints: Blueprint[];
-  selectedTags: string[];
   paging: Paging | null;
   selectedBlueprint: Blueprint | null;
   setSelectedBlueprint: (blueprint: Blueprint | null) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
-  addTag: (tag: string) => void;
-  addAllTags: (tags: string[]) => void;
-  removeTag: (tag: string) => void;
-  clearTags: () => void;
 }
 
 const useStore = create<StoreState>((set, get) => ({
   blueprints: [],
-  selectedTags: [],
   paging: null,
   selectedBlueprint: null,
   setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
@@ -46,7 +40,7 @@ const useStore = create<StoreState>((set, get) => ({
     return blueprint;
   },
   fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
-    const { selectedTags } = get();
+    const selectedTags = useTagStore.getState().selectedTags;
     let url = '/api/blueprints/tags';
 
     // Add pagination parameters if provided
@@ -71,34 +65,6 @@ const useStore = create<StoreState>((set, get) => ({
       paging: result.paging,
     });
     useTagStore.getState().setData(result.tag_counts);
-  },
-  addTag: (tag: string) => {
-    set((state) => {
-      if (!state.selectedTags.includes(tag)) {
-        const updatedTags = [...state.selectedTags, tag];
-        return { selectedTags: updatedTags };
-      }
-      return state;
-    });
-    get().fetchBlueprints();
-  },
-  addAllTags: (tags: string[]) => {
-    set((state) => {
-      const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
-      return { selectedTags: uniqueTags };
-    });
-    get().fetchBlueprints();
-  },
-  removeTag: (tag: string) => {
-    set((state) => {
-      const updatedTags = state.selectedTags.filter((t) => t !== tag);
-      return { selectedTags: updatedTags };
-    });
-    get().fetchBlueprints();
-  },
-  clearTags: () => {
-    set({ selectedTags: [] });
-    get().fetchBlueprints();
   },
 }));
 
