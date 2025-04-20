@@ -4,6 +4,10 @@
   padding: 20px;
 }
 
+.tagContainer h2 {
+  font-weight: bold;
+}
+
 .tagNode {
   margin-left: 20px;
   min-width: 0;

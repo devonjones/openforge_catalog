@@ -4,8 +4,15 @@ import React, { useEffect, useState } from 'react';
 import useBlueprintStore from '@/stores/blueprints-store';
 import { Blueprint } from '@/types';
 import './results-container.css';
+import { usePartSearchContext } from '@/contexts/part-search-context';
+import { useBlueprintsContext } from '@/contexts/blueprints-context';
 
-const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => void }) => {
+interface ResultsContainerProps {
+  onSelect: (blueprint: Blueprint) => void;
+  isPartSearch?: boolean;
+}
+
+const ResultsContainer = ({ onSelect, isPartSearch = false }: ResultsContainerProps) => {
   const fetchBlueprints = useBlueprintStore((state) => state.fetchBlueprints);
   const fetchBlueprintById = useBlueprintStore((state) => state.fetchBlueprintById);
   const blueprints = useBlueprintStore((state) => state.blueprints);
@@ -17,6 +24,9 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
   const selectedBlueprint = useBlueprintStore((state) => state.selectedBlueprint);
   const setSelectedBlueprint = useBlueprintStore((state) => state.setSelectedBlueprint);
   const [copied, setCopied] = useState(false);
+  
+  // Only use the appropriate context based on isPartSearch
+  const context = isPartSearch ? usePartSearchContext() : useBlueprintsContext();
 
   useEffect(() => {
     // Read URL parameters and add tags
@@ -104,7 +114,7 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
 
   return (
     <div className='resultsContainer'>
-      <h2>Blueprints</h2>
+      <h2>{context.resultsTitle}</h2>
       {selectedTags.length > 0 && (
         <div className='selectedTagsContainer'>
           <div className='selectedTagsContainer__header'>Selected Tags - <a className='visibleLink' href={"/?" + createDeepLink(selectedTags)}>deeplink</a>&nbsp;

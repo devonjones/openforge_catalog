@@ -54,7 +54,7 @@ const TagContainer = () => {
 
   return (
     <div className="tagContainer">
-      <div>Browse Tags</div>
+      <div><strong>Browse Tags</strong></div>
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>
   );

@@ -5,13 +5,22 @@ import { Blueprint } from '@/types';
 import useBlueprintStore from '@/stores/blueprints-store';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
+import { usePartSearchContext } from '@/contexts/part-search-context';
+import { useBlueprintsContext } from '@/contexts/blueprints-context';
 
+interface BlueprintContainerProps {
+  blueprint: Blueprint | null;
+  isPartSearch?: boolean;
+}
 
-const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
+const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContainerProps) => {
   const addTag = useBlueprintStore((state) => state.addTag);
   const clearTags = useBlueprintStore((state) => state.clearTags);
   const addAllTags = useBlueprintStore((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
+  
+  // Only use the appropriate context based on isPartSearch
+  const context = isPartSearch ? usePartSearchContext() : useBlueprintsContext();
 
   useEffect(() => {
     // Handle browser back/forward buttons
@@ -43,7 +52,7 @@ const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   };
 
   if (!blueprint) {
-    return <div>No blueprint selected</div>;
+    return <div>{context.noSelectionText}</div>;
   }
 
   const issue_url = newGithubIssueUrl({
