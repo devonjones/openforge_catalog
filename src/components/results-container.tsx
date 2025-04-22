@@ -1,22 +1,23 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import useBlueprintStore from '@/stores/blueprints-store';
-import useTagStore from '@/stores/tag-store';
+import { useStore } from 'zustand';
+import blueprintStore from '@/stores/blueprint-store';
+import tagStore from '@/stores/tag-store';
 import { Blueprint } from '@/types';
 import './results-container.css';
 
 const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => void }) => {
-  const fetchBlueprintById = useBlueprintStore((state) => state.fetchBlueprintById);
-  const blueprints = useTagStore((state) => state.blueprints);
-  const paging = useTagStore((state) => state.paging);
-  const selectedTags = useTagStore((state) => state.selectedTags);
-  const removeTag = useTagStore((state) => state.removeTag);
-  const addTag = useTagStore((state) => state.addTag);
-  const clearTags = useTagStore((state) => state.clearTags);
-  const fetchBlueprints = useTagStore((state) => state.fetchBlueprints);
-  const selectedBlueprint = useBlueprintStore((state) => state.selectedBlueprint);
-  const setSelectedBlueprint = useBlueprintStore((state) => state.setSelectedBlueprint);
+  const fetchBlueprintById = useStore(blueprintStore, (state) => state.fetchBlueprintById);
+  const selectedBlueprint = useStore(blueprintStore, (state) => state.selectedBlueprint);
+  const setSelectedBlueprint = useStore(blueprintStore, (state) => state.setSelectedBlueprint);
+  const blueprints = useStore(tagStore, (state) => state.blueprints);
+  const paging = useStore(tagStore, (state) => state.paging);
+  const selectedTags = useStore(tagStore, (state) => state.selectedTags);
+  const removeTag = useStore(tagStore, (state) => state.removeTag);
+  const addTag = useStore(tagStore, (state) => state.addTag);
+  const clearTags = useStore(tagStore, (state) => state.clearTags);
+  const fetchBlueprints = useStore(tagStore, (state) => state.fetchBlueprints);
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {

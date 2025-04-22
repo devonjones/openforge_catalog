@@ -4,11 +4,13 @@ import React from 'react';
 import TagContainer from './tag-container';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
-import useStore from '@/stores/blueprints-store';
+import { useStore } from 'zustand';
+import blueprintStore from '@/stores/blueprint-store';
 import './tab-blueprints.css';
 
 const TabBlueprints: React.FC = () => {
-  const { selectedBlueprint, setSelectedBlueprint } = useStore();
+  const selectedBlueprint = useStore(blueprintStore, (state) => state.selectedBlueprint);
+  const setSelectedBlueprint = useStore(blueprintStore, (state) => state.setSelectedBlueprint);
 
   return (
     <div className='columnContainer'>

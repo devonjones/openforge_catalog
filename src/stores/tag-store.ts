@@ -35,9 +35,9 @@
   }
 */
 
-import { create } from 'zustand';
+import { createStore } from 'zustand';
 import { TagNode, Blueprint, Paging } from '@/types';
-import useBlueprintStore from '@/stores/blueprints-store';
+import blueprintStore from '@/stores/blueprint-store';
 
 interface StoreState {
   data: Record<string, TagNode>;
@@ -56,7 +56,7 @@ interface StoreState {
   setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
 
-const useStore = create<StoreState>((set, get) => ({
+const tagStore = createStore<StoreState>((set, get) => ({
   data: {},
   expandedNodes: {},
   selectedTags: [],
@@ -189,4 +189,4 @@ const useStore = create<StoreState>((set, get) => ({
   },
 }));
 
-export default useStore;
+export default tagStore;

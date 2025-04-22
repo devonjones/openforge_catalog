@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+import { createStore } from 'zustand';
 import { Blueprint } from '@/types';
 
 interface StoreState {
@@ -7,7 +7,7 @@ interface StoreState {
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
 }
 
-const useStore = create<StoreState>((set, get) => ({
+const useStore = createStore<StoreState>((set, get) => ({
   selectedBlueprint: null,
   setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
   fetchBlueprintById: async (id: string) => {

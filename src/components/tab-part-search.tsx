@@ -4,10 +4,12 @@ import React from 'react';
 import TagContainer from './tag-container';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
-import useStore from '@/stores/blueprints-store';
+import { useStore } from 'zustand';
+import blueprintStore from '@/stores/blueprint-store';
 
 const TabPartSearch: React.FC = () => {
-  const { selectedBlueprint, setSelectedBlueprint } = useStore();
+  const selectedBlueprint = useStore(blueprintStore, (state) => state.selectedBlueprint);
+  const setSelectedBlueprint = useStore(blueprintStore, (state) => state.setSelectedBlueprint);
 
   return (
     <div className='columnContainer'>

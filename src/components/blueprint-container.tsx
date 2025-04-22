@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { Blueprint } from '@/types';
-import useTagStore from '@/stores/tag-store';
+import { useStore } from 'zustand';
+import tagStore from '@/stores/tag-store';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
 
-
 const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
-  const addTag = useTagStore((state) => state.addTag);
-  const clearTags = useTagStore((state) => state.clearTags);
-  const addAllTags = useTagStore((state) => state.addAllTags);
+  const addTag = useStore(tagStore, (state) => state.addTag);
+  const clearTags = useStore(tagStore, (state) => state.clearTags);
+  const addAllTags = useStore(tagStore, (state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {
