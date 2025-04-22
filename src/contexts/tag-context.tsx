@@ -8,10 +8,20 @@ type TagContext = StoreApi<TagStore> | null;
 
 const TagContext = createContext<TagContext>(null);
 
-export function TagProvider({ children, autoload = false }: { children: React.ReactNode; autoload?: boolean }) {
+export function TagProvider({ 
+  children, 
+  autoload = false,
+  search_models = true,
+  search_blueprints = false 
+}: { 
+  children: React.ReactNode; 
+  autoload?: boolean;
+  search_models?: boolean;
+  search_blueprints?: boolean;
+}) {
   const storeRef = useRef<TagContext>();
   if (!storeRef.current) {
-    storeRef.current = createTagStore(autoload);
+    storeRef.current = createTagStore(autoload, search_models, search_blueprints);
   }
 
   return (

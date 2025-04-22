@@ -6,7 +6,11 @@ import BlueprintContainer from '@/components/blueprint-container';
 
 export default function PartSearchTab() {
   return (
-    <TagProvider autoload={true}>
+    <TagProvider 
+      autoload={true}
+      search_models={true}
+      search_blueprints={false}
+    >
       <div className="flex flex-col md:flex-row gap-4 p-4">
         <div className="w-full md:w-1/3">
           <TagContainer />

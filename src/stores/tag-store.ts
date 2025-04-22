@@ -45,6 +45,8 @@ export interface TagStore {
   blueprints: Blueprint[];
   paging: Paging | null;
   autoload: boolean;
+  search_models: boolean;
+  search_blueprints: boolean;
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
   toggleNode: (key: string) => void;
@@ -56,7 +58,7 @@ export interface TagStore {
   setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
 
-export const createTagStore = (autoload = false) => {
+export const createTagStore = (autoload = false, search_models = false, search_blueprints = false) => {
   return createStore<TagStore>((set, get) => ({
     data: {},
     expandedNodes: {},
@@ -64,8 +66,22 @@ export const createTagStore = (autoload = false) => {
     blueprints: [],
     paging: null,
     autoload,
+    search_models,
+    search_blueprints,
     fetchData: async () => {
-      const response = await fetch('/api/blueprints/tags', {
+      const { search_models, search_blueprints } = get();
+      const params = new URLSearchParams();
+      console.log('fetchData');
+      console.log(search_models, search_blueprints);
+      console.log("--------------------------------")
+      
+      // Only add parameters when they differ from defaults
+      if (!search_models || search_blueprints) {
+        if (!search_models) params.set('models', 'false');
+        if (search_blueprints) params.set('blueprints', 'true');
+      }
+
+      const response = await fetch(`/api/blueprints/tags${params.toString() ? '?' + params.toString() : ''}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -163,17 +179,27 @@ export const createTagStore = (autoload = false) => {
       get().fetchBlueprints();
     },
     fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
-      const { selectedTags } = get();
-      let url = '/api/blueprints/tags';
+      const { selectedTags, search_models, search_blueprints } = get();
+      console.log('fetchBlueprints');
+      console.log(search_models, search_blueprints);
+
+      const urlParams = new URLSearchParams();
+      
+      // Add search type parameters when they differ from defaults
+      if (!search_models || search_blueprints) {
+        if (!search_models) urlParams.set('models', 'false');
+        if (search_blueprints) urlParams.set('blueprints', 'true');
+      }
 
       // Add pagination parameters if provided
       if (params?.next) {
-        url += `?next=${params.next}`;
+        urlParams.set('next', params.next);
       } else if (params?.previous) {
-        url += `?previous=${params.previous}`;
+        urlParams.set('previous', params.previous);
       }
-      
-      const response = await fetch(url, {
+      console.log(urlParams.toString());
+      console.log("--------------------------------")
+      const response = await fetch(`/api/blueprints/tags${urlParams.toString() ? '?' + urlParams.toString() : ''}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ import './tab-blueprints.css';
 
 const TabBlueprints: React.FC = () => {
   return (
-    <TagProvider autoload={false}>
+    <TagProvider autoload={false} search_models={false} search_blueprints={true}>
       <BlueprintProvider autoload={false}>
         <div className='columnContainer'>
           <div className='tagContainerWrapper'>
