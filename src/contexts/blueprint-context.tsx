@@ -1,24 +1,17 @@
-import React, { createContext, useContext, useRef } from 'react';
-import { StoreApi, useStore, createStore } from 'zustand';
-import type { BlueprintStoreState } from '@/stores/blueprint-store';
+'use client'
 
-const BlueprintContext = createContext<StoreApi<BlueprintStoreState> | null>(null);
+import React, { createContext, useContext, useRef } from 'react';
+import { StoreApi, useStore } from 'zustand';
+import { createBlueprintStore, BlueprintStore } from '@/stores/blueprint-store';
+
+type BlueprintContext = StoreApi<BlueprintStore> | null;
+
+const BlueprintContext = createContext<BlueprintContext>(null);
 
 export function BlueprintProvider({ children }: { children: React.ReactNode }) {
-  const storeRef = useRef<StoreApi<BlueprintStoreState>>();
+  const storeRef = useRef<BlueprintContext>();
   if (!storeRef.current) {
-    storeRef.current = createStore<BlueprintStoreState>((set, get) => ({
-      selectedBlueprint: null,
-      setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
-      fetchBlueprintById: async (id: string) => {
-        const response = await fetch(`/api/blueprints/${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch blueprint');
-        }
-        const blueprint = await response.json();
-        return blueprint;
-      },
-    }));
+    storeRef.current = createBlueprintStore();
   }
 
   return (
@@ -28,9 +21,7 @@ export function BlueprintProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useBlueprintContext<T>(
-  selector: (state: BlueprintStoreState) => T,
-): T {
+export function useBlueprintContext<T>(selector: (state: BlueprintStore) => T) {
   const store = useContext(BlueprintContext);
   if (!store) {
     throw new Error('useBlueprintContext must be used within a BlueprintProvider');
