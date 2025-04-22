@@ -2,28 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { Blueprint } from '@/types';
-import useBlueprintStore from '@/stores/blueprints-store';
 import useTagStore from '@/stores/tag-store';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
-import { usePartSearchContext } from '@/contexts/part-search-context';
-import { useBlueprintsContext } from '@/contexts/blueprints-context';
 
-interface BlueprintContainerProps {
-  blueprint: Blueprint | null;
-  isPartSearch?: boolean;
-}
 
-const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContainerProps) => {
+const BlueprintContainer = ({ blueprint }: { blueprint: Blueprint | null }) => {
   const addTag = useTagStore((state) => state.addTag);
   const clearTags = useTagStore((state) => state.clearTags);
   const addAllTags = useTagStore((state) => state.addAllTags);
-  const fetchBlueprints = useTagStore((state) => state.fetchBlueprints);
   const [copied, setCopied] = useState(false);
   
-  // Only use the appropriate context based on isPartSearch
-  const context = isPartSearch ? usePartSearchContext() : useBlueprintsContext();
-
   useEffect(() => {
     // Handle browser back/forward buttons
     const handlePopState = () => {
@@ -54,7 +43,7 @@ const BlueprintContainer = ({ blueprint, isPartSearch = false }: BlueprintContai
   };
 
   if (!blueprint) {
-    return <div>{context.noSelectionText}</div>;
+    return <div>No Blueprint Selected</div>;
   }
 
   const issue_url = newGithubIssueUrl({
