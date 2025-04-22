@@ -86,8 +86,10 @@
 .modelsContainerWrapper {
   padding: 8px;
   flex: 0 0 auto;
-  min-width: 600px;
+  min-width: 300px;
+  white-space: nowrap;
   height: 100%;
+  overflow-y: auto;
 }
 
 .modelDetailsContainerWrapper {
