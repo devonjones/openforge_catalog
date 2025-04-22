@@ -37,8 +37,9 @@ const BlueprintContainer = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSwapTags = (blueprint: Blueprint, tag: string) => {
-    const newTags = blueprint.tags.filter(t => !t.startsWith(tag));
+  const handleSwapTags = (e: React.MouseEvent, blueprint: Blueprint, tagType: string) => {
+    e.preventDefault();
+    const newTags = blueprint.tags.filter(t => !t.startsWith(tagType));
     clearTags();
     addAllTags(newTags);
   };
@@ -89,9 +90,9 @@ const BlueprintContainer = () => {
       ))}</p>
       <p>
         <strong>Find related:</strong>&nbsp;
-        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'texture')}>textures</a>,&nbsp;
-        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'size')}>sizes</a>,&nbsp;
-        <a className='visibleLink' href="#" onClick={() => handleSwapTags(blueprint, 'connection')}>connections</a>
+        <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'texture')}>textures</a>,&nbsp;
+        <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'size')}>sizes</a>,&nbsp;
+        <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'connection')}>connections</a>
       </p>
       <p>
         <strong>
