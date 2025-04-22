@@ -2,15 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
-import blueprintStore from '@/stores/blueprint-store';
+import { useBlueprintContext } from '@/contexts/blueprint-context';
 import tagStore from '@/stores/tag-store';
 import { Blueprint } from '@/types';
 import './results-container.css';
 
-const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => void }) => {
-  const fetchBlueprintById = useStore(blueprintStore, (state) => state.fetchBlueprintById);
-  const selectedBlueprint = useStore(blueprintStore, (state) => state.selectedBlueprint);
-  const setSelectedBlueprint = useStore(blueprintStore, (state) => state.setSelectedBlueprint);
+const ResultsContainer = () => {
+  const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
+  const selectedBlueprint = useBlueprintContext((state) => state.selectedBlueprint);
   const blueprints = useStore(tagStore, (state) => state.blueprints);
   const paging = useStore(tagStore, (state) => state.paging);
   const selectedTags = useStore(tagStore, (state) => state.selectedTags);
@@ -36,14 +35,10 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
       // Handle blueprint selection
       const blueprintId = params.get('blueprint_id');
       if (blueprintId) {
-        fetchBlueprintById(blueprintId)
-          .then(blueprint => {
-            setSelectedBlueprint(blueprint);
-            onSelect(blueprint);
-          })
-          .catch(error => {
-            console.error('Failed to fetch blueprint:', error);
-          });
+        const blueprint = blueprints.find(b => b.id === blueprintId);
+        if (blueprint) {
+          setSelectedBlueprint(blueprint);
+        }
       }
     }
   }, []); // Run only once on mount
@@ -62,7 +57,6 @@ const ResultsContainer = ({ onSelect }: { onSelect: (blueprint: Blueprint) => vo
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
-    onSelect(blueprint);
   };
 
   const handleRemoveTag = (tag: string) => {

@@ -24,7 +24,12 @@ const TabbedInterface = () => {
         </button>
       </div>
       <div className="tabContent">
-        {activeTab === 'partSearch' ? <TabPartSearch /> : <TabBlueprints />}
+        <div style={{ display: activeTab === 'partSearch' ? 'block' : 'none' }}>
+          <TabPartSearch />
+        </div>
+        <div style={{ display: activeTab === 'blueprints' ? 'block' : 'none' }}>
+          <TabBlueprints />
+        </div>
       </div>
     </div>
   );

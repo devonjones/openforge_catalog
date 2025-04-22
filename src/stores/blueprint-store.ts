@@ -1,13 +1,13 @@
 import { createStore } from 'zustand';
 import { Blueprint } from '@/types';
 
-interface StoreState {
+export interface BlueprintStoreState {
   selectedBlueprint: Blueprint | null;
   setSelectedBlueprint: (blueprint: Blueprint | null) => void;
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
 }
 
-const useStore = createStore<StoreState>((set, get) => ({
+const blueprintStore = createStore<BlueprintStoreState>((set, get) => ({
   selectedBlueprint: null,
   setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
   fetchBlueprintById: async (id: string) => {
@@ -20,4 +20,4 @@ const useStore = createStore<StoreState>((set, get) => ({
   },
 }));
 
-export default useStore;
+export default blueprintStore;
