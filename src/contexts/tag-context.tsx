@@ -3,16 +3,15 @@
 import React, { createContext, useContext, useRef } from 'react';
 import { StoreApi, useStore } from 'zustand';
 import { createTagStore, TagStore } from '@/stores/tag-store';
-import type { TagNode } from '@/types';
 
 type TagContext = StoreApi<TagStore> | null;
 
 const TagContext = createContext<TagContext>(null);
 
-export function TagProvider({ children }: { children: React.ReactNode }) {
+export function TagProvider({ children, autoload = false }: { children: React.ReactNode; autoload?: boolean }) {
   const storeRef = useRef<TagContext>();
   if (!storeRef.current) {
-    storeRef.current = createTagStore();
+    storeRef.current = createTagStore(autoload);
   }
 
   return (

@@ -9,8 +9,8 @@ import { TagProvider } from '@/contexts/tag-context';
 
 const TabPartSearch: React.FC = () => {
   return (
-    <TagProvider>
-      <BlueprintProvider>
+    <TagProvider autoload={true}>
+      <BlueprintProvider autoload={true}>
         <div className='columnContainer'>
           <div className='tagContainerWrapper'>
             <TagContainer />

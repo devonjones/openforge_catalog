@@ -44,6 +44,7 @@ export interface TagStore {
   selectedTags: string[];
   blueprints: Blueprint[];
   paging: Paging | null;
+  autoload: boolean;
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
   toggleNode: (key: string) => void;
@@ -55,13 +56,14 @@ export interface TagStore {
   setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
 
-export const createTagStore = () => {
+export const createTagStore = (autoload = false) => {
   return createStore<TagStore>((set, get) => ({
     data: {},
     expandedNodes: {},
     selectedTags: [],
     blueprints: [],
     paging: null,
+    autoload,
     fetchData: async () => {
       const response = await fetch('/api/blueprints/tags', {
         method: 'POST',

@@ -15,12 +15,22 @@ const BlueprintContainer = () => {
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {
+    // Handle URL cleanup and browser navigation
+    if (blueprint) {
+      // Remove blueprint_id from URL after it's been used
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('blueprint_id')) {
+        params.delete('blueprint_id');
+        const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+        window.history.replaceState({}, '', newUrl);
+      }
+    }
+
     // Handle browser back/forward buttons
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
       const blueprintId = params.get('blueprint_id');
       if (!blueprintId && blueprint) {
-        // Clear the blueprint selection if there's no ID in the URL
         window.location.reload();
       }
     };
@@ -31,8 +41,8 @@ const BlueprintContainer = () => {
 
   const copyToClipboard = (blueprint_id: string) => {
     const currentUrl = window.location.href;
-    const urlWithoutParameters = currentUrl.split("?")[0];
-    navigator.clipboard.writeText(urlWithoutParameters + '?blueprint_id=' + blueprint_id);
+    const baseUrl = currentUrl.split("?")[0];
+    navigator.clipboard.writeText(baseUrl + '?blueprint_id=' + blueprint_id);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -63,12 +73,14 @@ const BlueprintContainer = () => {
     )
   );
 
+  const currentPath = window.location.pathname;
+
   return (
     <div className='blueprintContainer'>
       <h2>
         <div title={blueprint.full_name}>{blueprint.blueprint_name}</div>
         <div className="blueprintLinks">
-          <a className='visibleLink' href={`/?blueprint_id=${blueprint.id}`}>deeplink</a>&nbsp;
+          <a className='visibleLink' href={`${currentPath}?blueprint_id=${blueprint.id}`}>deeplink</a>&nbsp;
           <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(blueprint.id)} className="copyButton">
             <svg className="octicon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
               <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>

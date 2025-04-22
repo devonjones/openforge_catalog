@@ -1,18 +1,39 @@
 'use client'
 
-import React, { createContext, useContext, useRef } from 'react';
+import React, { createContext, useContext, useRef, useEffect } from 'react';
 import { StoreApi, useStore } from 'zustand';
 import { createBlueprintStore, BlueprintStore } from '@/stores/blueprint-store';
+import { useSearchParams } from 'next/navigation';
 
 type BlueprintContext = StoreApi<BlueprintStore> | null;
 
 const BlueprintContext = createContext<BlueprintContext>(null);
 
-export function BlueprintProvider({ children }: { children: React.ReactNode }) {
+interface BlueprintProviderProps {
+  children: React.ReactNode;
+  autoload?: boolean;
+}
+
+export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
   const storeRef = useRef<BlueprintContext>();
+  const searchParams = useSearchParams();
+  const blueprintId = autoload ? searchParams.get('blueprint_id') : null;
+
   if (!storeRef.current) {
     storeRef.current = createBlueprintStore();
   }
+
+  useEffect(() => {
+    if (blueprintId) {
+      storeRef.current?.getState().fetchBlueprintById(blueprintId)
+        .then(blueprint => {
+          storeRef.current?.getState().setSelectedBlueprint(blueprint);
+        })
+        .catch(error => {
+          console.error('Failed to fetch initial blueprint:', error);
+        });
+    }
+  }, [blueprintId]);
 
   return (
     <BlueprintContext.Provider value={storeRef.current}>

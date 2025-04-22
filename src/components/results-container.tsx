@@ -5,6 +5,7 @@ import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint } from '@/types';
 import './results-container.css';
+import { useSearchParams } from 'next/navigation';
 
 const ResultsContainer = () => {
   const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
@@ -16,11 +17,12 @@ const ResultsContainer = () => {
   const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const fetchBlueprints = useTagContext((state) => state.fetchBlueprints);
+  const autoload = useTagContext((state) => state.autoload);
   const [copied, setCopied] = useState(false);
-  
+
   useEffect(() => {
     // Read URL parameters and add tags
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && autoload) {
       const params = new URLSearchParams(window.location.search);
       
       // Handle tags
@@ -39,8 +41,16 @@ const ResultsContainer = () => {
           setSelectedBlueprint(blueprint);
         }
       }
+
+      // Remove tag parameters from URL after processing
+      const newParams = new URLSearchParams();
+      if (blueprintId) {
+        newParams.set('blueprint_id', blueprintId);
+      }
+      const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
+      window.history.replaceState({}, '', newUrl);
     }
-  }, []); // Run only once on mount
+  }, [autoload]); // Run only once on mount
 
   useEffect(() => {
     fetchBlueprints();
