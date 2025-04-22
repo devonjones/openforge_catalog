@@ -1,22 +1,21 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { useStore } from 'zustand';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
-import tagStore from '@/stores/tag-store';
+import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint } from '@/types';
 import './results-container.css';
 
 const ResultsContainer = () => {
   const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
   const selectedBlueprint = useBlueprintContext((state) => state.selectedBlueprint);
-  const blueprints = useStore(tagStore, (state) => state.blueprints);
-  const paging = useStore(tagStore, (state) => state.paging);
-  const selectedTags = useStore(tagStore, (state) => state.selectedTags);
-  const removeTag = useStore(tagStore, (state) => state.removeTag);
-  const addTag = useStore(tagStore, (state) => state.addTag);
-  const clearTags = useStore(tagStore, (state) => state.clearTags);
-  const fetchBlueprints = useStore(tagStore, (state) => state.fetchBlueprints);
+  const blueprints = useTagContext((state) => state.blueprints);
+  const paging = useTagContext((state) => state.paging);
+  const selectedTags = useTagContext((state) => state.selectedTags);
+  const removeTag = useTagContext((state) => state.removeTag);
+  const addTag = useTagContext((state) => state.addTag);
+  const clearTags = useTagContext((state) => state.clearTags);
+  const fetchBlueprints = useTagContext((state) => state.fetchBlueprints);
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {

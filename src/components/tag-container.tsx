@@ -1,8 +1,7 @@
 'use client'
 
 import React from 'react';
-import { useStore } from 'zustand';
-import tagStore from '@/stores/tag-store';
+import { useTagContext } from '@/contexts/tag-context';
 
 const renderTags = (
   data: Record<string, any>,
@@ -43,10 +42,10 @@ const renderTags = (
 };
 
 const TagContainer = () => {
-  const data = useStore(tagStore, (state) => state.data);
-  const expandedNodes = useStore(tagStore, (state) => state.expandedNodes);
-  const toggleNode = useStore(tagStore, (state) => state.toggleNode);
-  const addTag = useStore(tagStore, (state) => state.addTag);
+  const data = useTagContext((state) => state.data);
+  const expandedNodes = useTagContext((state) => state.expandedNodes);
+  const toggleNode = useTagContext((state) => state.toggleNode);
+  const addTag = useTagContext((state) => state.addTag);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);

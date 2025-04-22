@@ -2,17 +2,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { Blueprint } from '@/types';
-import { useStore } from 'zustand';
-import tagStore from '@/stores/tag-store';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
+import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
 
 const BlueprintContainer = () => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
-  const addTag = useStore(tagStore, (state) => state.addTag);
-  const clearTags = useStore(tagStore, (state) => state.clearTags);
-  const addAllTags = useStore(tagStore, (state) => state.addAllTags);
+  const addTag = useTagContext((state) => state.addTag);
+  const clearTags = useTagContext((state) => state.clearTags);
+  const addAllTags = useTagContext((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
   
   useEffect(() => {
