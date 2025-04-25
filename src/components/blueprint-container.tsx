@@ -86,6 +86,12 @@ const ConfigBox = ({ title, value }: { title: string; value: any }) => {
               className="mt-2 max-w-[200px] max-h-[200px] object-contain"
             />
           )}
+          <button
+            onClick={() => setConfigSelection(title, null)}
+            className="mt-2 text-red-600 hover:text-red-800 text-sm font-medium"
+          >
+            Clear Selection
+          </button>
         </div>
       ) : (
         <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
@@ -112,11 +118,24 @@ const ConfigBox = ({ title, value }: { title: string; value: any }) => {
 
 const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainerProps) => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
+  const configSelections = useBlueprintContext((state) => state.configSelections);
   const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const addAllTags = useTagContext((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
   
+  const shouldShowDownloadLink = (blueprint: Blueprint) => {
+    if (blueprint.file_name) {
+      return true;
+    }
+    if (blueprint.blueprint_config) {
+      const config_keys = Object.keys(blueprint.blueprint_config)
+      const selection_keys = Object.keys(configSelections)
+      return config_keys.every(key => selection_keys.includes(key))
+    }
+    return false;
+  };
+
   useEffect(() => {
     // Handle URL cleanup and browser navigation
     if (blueprint) {
@@ -223,7 +242,9 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
               }
             }}>Select This Part</a>
           ) : (
-            <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a>
+            shouldShowDownloadLink(blueprint) && (
+              <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a>
+            )
           )}
         </strong>&nbsp;
         (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>

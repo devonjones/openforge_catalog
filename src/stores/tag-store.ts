@@ -57,6 +57,7 @@ export interface TagStore {
   clearTags: () => void;
   addDenyTag: (tag: string) => void;
   removeDenyTag: (tag: string) => void;
+  setTagState: (tags: { require?: string[]; deny?: string[] }) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
@@ -202,6 +203,13 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     clearTags: () => {
       console.log('clearTags');
       set({ selectedTags: [], denyTags: [] });
+      get().fetchBlueprints();
+    },
+    setTagState: (tags: { require?: string[]; deny?: string[] }) => {
+      set({
+        selectedTags: tags.require || [],
+        denyTags: tags.deny || [],
+      });
       get().fetchBlueprints();
     },
     fetchBlueprints: async (params?: { next?: string; previous?: string }) => {

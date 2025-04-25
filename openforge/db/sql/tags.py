@@ -346,13 +346,15 @@ SELECT DISTINCT bp.id
         query_parts = query_parts[:-1]
     deny_parts = []
     if len(deny) > 0:
-        deny_parts.append(
-            sql.SQL(
-                "    %s bp2.id NOT IN (" % ("WHERE" if len(query_parts) <= 1 else "AND")
+        for d in deny:
+            deny_parts.append(
+                sql.SQL(
+                    "    %s bp2.id NOT IN ("
+                    % ("WHERE" if len(query_parts) <= 1 else "AND")
+                )
             )
-        )
-        deny_parts.append(_query_tags_deny(deny))
-        deny_parts.append(sql.SQL("    )"))
+            deny_parts.append(_query_tags_deny([d]))
+            deny_parts.append(sql.SQL("    )"))
 
     if models:
         query_parts.append(
@@ -463,7 +465,7 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
     if len(deny) > 0:
         deny_parts.extend(
             [
-                sql.SQL("      SELECT bp_neg.id"),
+                sql.SQL("      SELECT DISTINCT bp_neg.id"),
                 sql.SQL("  FROM blueprints AS bp_neg"),
             ]
         )

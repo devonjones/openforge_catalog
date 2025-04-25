@@ -21,9 +21,9 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const denyTags = useTagContext((state) => state.denyTags);
   const removeTag = useTagContext((state) => state.removeTag);
   const addTag = useTagContext((state) => state.addTag);
-  const addDenyTag = useTagContext((state) => state.addDenyTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const fetchBlueprints = useTagContext((state) => state.fetchBlueprints);
+  const setTagState = useTagContext((state) => state.setTagState);
   const autoload = useTagContext((state) => state.autoload);
   const [copied, setCopied] = useState(false);
 
@@ -61,13 +61,13 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
 
   useEffect(() => {
     if (configValues) {
-      clearTags();
+      const tags = { require: [] as string[], deny: [] as string[] };
       if (configValues.require) {
         const require = configValues.require;
         for (const key in require) {
           const data = require[key];
           if (data.tag) {
-            addTag(data.tag);
+            tags.require.push(data.tag as string);
           }
         }
       }
@@ -76,7 +76,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
         for (const key in deny) {
           const data = deny[key];
           if (data.tag) {
-            addDenyTag(data.tag);
+            tags.deny.push(data.tag as string);
           }
         }
       }
@@ -88,14 +88,15 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
             const constraintTag = data.tag;
             tagsFromOtherSelections.forEach(tag => {
               if (tag.startsWith(constraintTag)) {
-                addTag(tag);
+                tags.require.push(tag as string);
               }
             });
           }
         }
       }
+      setTagState(tags);
     }
-  }, [configValues, clearTags, addTag, addDenyTag]);
+  }, [configValues, setTagState]);
 
   useEffect(() => {
     fetchBlueprints();
