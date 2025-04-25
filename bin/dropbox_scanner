@@ -10,6 +10,7 @@ import datetime
 import json
 
 from openforge.data import sizes
+from openforge.openapi import validate_schema
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper, safe_load
@@ -456,9 +457,15 @@ def parse_files(path, files, md5, verbose, upload, config):
         filter_s_system(t)
         filter_shape(t)
         apply_metadata(metadata, o)
+        validate(o)
         del f["path"]
         newfiles.append(o)
     return newfiles
+
+
+def validate(o):
+    if "config" in o:
+        validate_schema("config.yaml", o["config"])
 
 
 def apply_metadata(metadata, o):

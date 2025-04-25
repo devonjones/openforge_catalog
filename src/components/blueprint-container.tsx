@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigPart } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
+import { downloadFiles } from '@/utils/download';
 import newGithubIssueUrl from 'new-github-issue-url';
 import PartSelectionModal from './part-selection-modal';
 import ConfigBox from './config-box';
@@ -26,12 +27,34 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     if (blueprint.file_name) {
       return true;
     }
-    if (blueprint.blueprint_config) {
-      const config_keys = Object.keys(blueprint.blueprint_config)
-      const selection_keys = Object.keys(configSelections)
-      return config_keys.every(key => selection_keys.includes(key))
+    if (blueprint.blueprint_config?.parts) {
+      const requiredParts = blueprint.blueprint_config.parts.filter(part => 
+        part.tags.require && part.tags.require.length > 0
+      );
+      return requiredParts.every(part => 
+        configSelections[part.name] !== undefined
+      );
     }
     return false;
+  };
+
+  const handleDownload = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const urls: string[] = [];
+
+    // Add main blueprint download if it has a file_name
+    if (blueprint?.file_name) {
+      urls.push(`/api/blueprints/${blueprint.id}/download`);
+    }
+
+    // Add downloads for each selected part
+    Object.entries(configSelections).forEach(([_, bp]) => {
+      if (bp.file_name) {
+        urls.push(`/api/blueprints/${bp.id}/download`);
+      }
+    });
+
+    downloadFiles(urls);
   };
 
   useEffect(() => {
@@ -83,8 +106,6 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     repo: 'openforge_catalog',
     body: 'Model Reported: ' + window.location + '\n---\n\n\n'
   });
-
-  const downloadUrl = "/api/blueprints/" + blueprint.id + "/download";
 
   const laterDate = new Date(
     Math.max(
@@ -141,18 +162,22 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
             }}>Select This Part</a>
           ) : (
             shouldShowDownloadLink(blueprint) && (
-              <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a>
+              <a className='visibleLink' href="#" onClick={handleDownload}>Download</a>
             )
           )}
         </strong>&nbsp;
         (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>
       
-      {blueprint.blueprint_config && Object.keys(blueprint.blueprint_config).length > 0 && (
+      {blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
           <div className="flex flex-wrap">
-            {Object.entries(blueprint.blueprint_config).map(([key, value]) => (
-              <ConfigBox key={key} title={key} value={value} />
+            {blueprint.blueprint_config.parts.map((part: ConfigPart) => (
+              <ConfigBox 
+                key={part.name} 
+                title={part.name} 
+                value={part.tags} 
+              />
             ))}
           </div>
         </div>

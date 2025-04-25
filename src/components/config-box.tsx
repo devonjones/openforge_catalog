@@ -1,13 +1,13 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigTags } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import PartSelectionModal from './part-selection-modal';
 
 interface ConfigBoxProps {
   title: string;
-  value: any;
+  value: ConfigTags;
 }
 
 const ConfigBox = ({ title, value }: ConfigBoxProps) => {
@@ -33,31 +33,62 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     setIsModalOpen(true);
   };
 
-  const renderValue = (val: any) => {
-    if (val === null || val === undefined) {
-      return <span className="text-gray-500">null</span>;
-    }
-    if (typeof val === 'object') {
-      if (Array.isArray(val)) {
-        return (
+  const renderTagRequirements = (tags: ConfigTags) => {
+    const requirements = [];
+    
+    if (tags.require && tags.require.length > 0) {
+      requirements.push(
+        <div key="require" className="mt-2">
+          <strong className="text-green-600">Required Tags:</strong>
           <ul className="list-disc pl-4">
-            {val.map((item, index) => (
-              <li key={index}>{renderValue(item)}</li>
+            {tags.require.map((tag, index) => (
+              <li key={index}>{tag.tag}</li>
             ))}
           </ul>
-        );
-      }
-      return (
-        <div className="pl-4">
-          {Object.entries(val).map(([key, value]) => (
-            <div key={key} className="mt-2">
-              <strong>{key}:</strong> {renderValue(value)}
-            </div>
-          ))}
         </div>
       );
     }
-    return <span>{String(val)}</span>;
+
+    if (tags.accept && tags.accept.length > 0) {
+      requirements.push(
+        <div key="accept" className="mt-2">
+          <strong className="text-blue-600">Accepted Tags:</strong>
+          <ul className="list-disc pl-4">
+            {tags.accept.map((tag, index) => (
+              <li key={index}>{tag.tag}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    if (tags.deny && tags.deny.length > 0) {
+      requirements.push(
+        <div key="deny" className="mt-2">
+          <strong className="text-red-600">Denied Tags:</strong>
+          <ul className="list-disc pl-4">
+            {tags.deny.map((tag, index) => (
+              <li key={index}>{tag.tag}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    if (tags.constrain && tags.constrain.length > 0) {
+      requirements.push(
+        <div key="constrain" className="mt-2">
+          <strong className="text-yellow-600">Constrained Tags:</strong>
+          <ul className="list-disc pl-4">
+            {tags.constrain.map((tag, index) => (
+              <li key={index}>{tag.tag}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    return requirements;
   };
 
   // Generate otherBlueprintTags from the blueprint store
@@ -92,7 +123,7 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
         </div>
       ) : (
         <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
-          {renderValue(value)}
+          {renderTagRequirements(value)}
         </div>
       )}
       <button

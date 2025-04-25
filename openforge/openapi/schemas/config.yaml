@@ -1,0 +1,48 @@
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+type: object
+properties:
+  parts:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        tags:
+          type: object
+          properties:
+            accept:
+              type: array
+              items:
+                type: object
+                properties:
+                  tag:
+                    type: string
+                additionalProperties: false
+            require:
+              type: array
+              items:
+                type: object
+                properties:
+                  tag:
+                    type: string
+                additionalProperties: false
+            deny:
+              type: array
+              items:
+                type: object
+                properties:
+                  tag:
+                    type: string
+                additionalProperties: false
+            constrain:
+              type: array
+              items:
+                type: object
+                properties:
+                  tag:
+                    type: string
+                additionalProperties: false
+          additionalProperties: false
+      additionalProperties: false
+additionalProperties: false
