@@ -10,11 +10,31 @@ import PartSelectionModal from './part-selection-modal';
 
 interface BlueprintContainerProps {
   configValues?: Record<string, any> | null;
+  onPartSelected?: (partName: string, blueprint: Blueprint) => void;
 }
 
 const ConfigBox = ({ title, value }: { title: string; value: any }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
+  const configSelections = useBlueprintContext((state) => state.configSelections);
+  const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
+  const selectedBlueprint = configSelections[title];
+
+  const handlePartSelected = (partName: string, blueprint: Blueprint) => {
+    setConfigSelection(partName, blueprint);
+    setIsModalOpen(false);
+  };
+
+  const handleOpenModal = () => {
+    // Collect all tags from other selected blueprints
+    const otherBlueprintTags = new Set<string>();
+    Object.entries(configSelections).forEach(([key, bp]) => {
+      if (key !== title) {
+        bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+      }
+    });
+    setIsModalOpen(true);
+  };
 
   const renderValue = (val: any) => {
     if (val === null || val === undefined) {
@@ -43,31 +63,54 @@ const ConfigBox = ({ title, value }: { title: string; value: any }) => {
     return <span>{String(val)}</span>;
   };
 
+  // Generate otherBlueprintTags from the blueprint store
+  const otherBlueprintTags = new Set<string>();
+  Object.entries(configSelections).forEach(([key, bp]) => {
+    if (key !== title) {
+      bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+    }
+  });
+
   return (
     <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">
       <h3 className="text-lg font-semibold mb-2 cursor-help" title={JSON.stringify(value, null, 2)}>
         {title}
       </h3>
-      <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
-        {renderValue(value)}
-      </div>
+      {selectedBlueprint ? (
+        <div className="mt-2">
+          <div className="font-medium">{selectedBlueprint.blueprint_name}</div>
+          {selectedBlueprint.images[0] && (
+            <img 
+              src={selectedBlueprint.images[0].image_url} 
+              alt={selectedBlueprint.blueprint_name}
+              className="mt-2 max-w-[200px] max-h-[200px] object-contain"
+            />
+          )}
+        </div>
+      ) : (
+        <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
+          {renderValue(value)}
+        </div>
+      )}
       <button
-        onClick={() => setIsModalOpen(true)}
+        onClick={handleOpenModal}
         className="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
       >
-        Select Part
+        {selectedBlueprint ? 'Change Part' : 'Select Part'}
       </button>
       <PartSelectionModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         partName={title}
         configValues={value}
+        onPartSelected={handlePartSelected}
+        tagsFromOtherSelections={Array.from(otherBlueprintTags)}
       />
     </div>
   );
 };
 
-const BlueprintContainer = ({ configValues }: BlueprintContainerProps) => {
+const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainerProps) => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
   const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
@@ -175,8 +218,9 @@ const BlueprintContainer = ({ configValues }: BlueprintContainerProps) => {
           {configValues ? (
             <a className='visibleLink' href="#" onClick={(e) => {
               e.preventDefault();
-              // TODO: Handle part selection
-              console.log('Part selected:', blueprint.blueprint_name);
+              if (onPartSelected && blueprint) {
+                onPartSelected(configValues.partName, blueprint);
+              }
             }}>Select This Part</a>
           ) : (
             <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a>

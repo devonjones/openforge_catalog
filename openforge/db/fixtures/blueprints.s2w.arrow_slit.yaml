@@ -22,7 +22,8 @@
       deny:
         - tag: shape|wall
         - tag: shape|base|wall
-        - tag: shape|base|option
+        - tag: shape|base|corner
+        - tag: shape|option|notch
       constrain:
         - tag: size|width
         - tag: size|depth

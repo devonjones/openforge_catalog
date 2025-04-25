@@ -5,6 +5,7 @@ import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
 import { BlueprintProvider } from '@/contexts/blueprint-context';
 import { TagProvider } from '@/contexts/tag-context';
+import { Blueprint } from '@/types';
 import './part-selection-modal.css';
 
 interface PartSelectionModalProps {
@@ -12,9 +13,11 @@ interface PartSelectionModalProps {
   onClose: () => void;
   partName: string;
   configValues: Record<string, any> | null;
+  onPartSelected?: (partName: string, blueprint: Blueprint) => void;
+  tagsFromOtherSelections?: string[];
 }
 
-const PartSelectionModal = ({ isOpen, onClose, partName, configValues }: PartSelectionModalProps) => {
+const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSelected, tagsFromOtherSelections = [] }: PartSelectionModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -36,10 +39,16 @@ const PartSelectionModal = ({ isOpen, onClose, partName, configValues }: PartSel
             <BlueprintProvider autoload={false}>
               <div className="part-selection-modal__grid">
                 <div className="part-selection-modal__sidebar">
-                  <ResultsContainer configValues={configValues} />
+                  <ResultsContainer 
+                    configValues={configValues} 
+                    tagsFromOtherSelections={tagsFromOtherSelections}
+                  />
                 </div>
                 <div className="part-selection-modal__main">
-                  <BlueprintContainer configValues={configValues} />
+                  <BlueprintContainer 
+                    configValues={{ ...configValues, partName }} 
+                    onPartSelected={onPartSelected}
+                  />
                 </div>
               </div>
             </BlueprintProvider>
