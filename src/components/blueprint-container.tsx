@@ -6,6 +6,62 @@ import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
+import PartSelectionModal from './part-selection-modal';
+
+const ConfigBox = ({ title, value }: { title: string; value: any }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
+
+  const renderValue = (val: any) => {
+    if (val === null || val === undefined) {
+      return <span className="text-gray-500">null</span>;
+    }
+    if (typeof val === 'object') {
+      if (Array.isArray(val)) {
+        return (
+          <ul className="list-disc pl-4">
+            {val.map((item, index) => (
+              <li key={index}>{renderValue(item)}</li>
+            ))}
+          </ul>
+        );
+      }
+      return (
+        <div className="pl-4">
+          {Object.entries(val).map(([key, value]) => (
+            <div key={key} className="mt-2">
+              <strong>{key}:</strong> {renderValue(value)}
+            </div>
+          ))}
+        </div>
+      );
+    }
+    return <span>{String(val)}</span>;
+  };
+
+  return (
+    <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">
+      <h3 className="text-lg font-semibold mb-2 cursor-help" title={JSON.stringify(value, null, 2)}>
+        {title}
+      </h3>
+      <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
+        {renderValue(value)}
+      </div>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+      >
+        Select Part
+      </button>
+      <PartSelectionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        partName={title}
+        configValues={value}
+      />
+    </div>
+  );
+};
 
 const BlueprintContainer = () => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
@@ -110,6 +166,18 @@ const BlueprintContainer = () => {
         <strong>
           <a className='visibleLink' href={downloadUrl} download={blueprint.file_name}>Download</a></strong>&nbsp;
           (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>
+      
+      {blueprint.blueprint_config && (
+        <div className="mt-4">
+          <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
+          <div className="flex flex-wrap">
+            {Object.entries(blueprint.blueprint_config).map(([key, value]) => (
+              <ConfigBox key={key} title={key} value={value} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div>
         {blueprint.images.map((image) => (
           <div key={image.id}>

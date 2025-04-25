@@ -488,6 +488,6 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
                         tags=sql.Literal(neg_tags),
                     )
                 )
-                neg_where = "  AND"
+                neg_where = "  OR"
                 neg_counter += 1
     return sql.Composed(deny_parts + neg_joins + neg_wheres).join("\n      ")

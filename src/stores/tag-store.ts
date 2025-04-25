@@ -42,6 +42,7 @@ export interface TagStore {
   data: Record<string, TagNode>;
   expandedNodes: Record<string, boolean>;
   selectedTags: string[];
+  denyTags: string[];
   blueprints: Blueprint[];
   paging: Paging | null;
   autoload: boolean;
@@ -54,6 +55,8 @@ export interface TagStore {
   addAllTags: (tags: string[]) => void;
   removeTag: (tag: string) => void;
   clearTags: () => void;
+  addDenyTag: (tag: string) => void;
+  removeDenyTag: (tag: string) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
@@ -63,6 +66,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     data: {},
     expandedNodes: {},
     selectedTags: [],
+    denyTags: [],
     blueprints: [],
     paging: null,
     autoload,
@@ -71,9 +75,6 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     fetchData: async () => {
       const { search_models, search_blueprints } = get();
       const params = new URLSearchParams();
-      console.log('fetchData');
-      console.log(search_models, search_blueprints);
-      console.log("--------------------------------")
       
       // Only add parameters when they differ from defaults
       if (!search_models || search_blueprints) {
@@ -92,6 +93,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().setData(tagCounts);
     },
     setData: (tagCounts: object) => {
+      console.log('setData', tagCounts);
       const data: Record<string, TagNode> = {};
 
       Object.entries(tagCounts).forEach(([key, count]) => {
@@ -143,6 +145,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       set({ data });
     },
     toggleNode: (key: string) => {
+      console.log('toggleNode', key);
       set((state) => ({
         expandedNodes: {
           ...state.expandedNodes,
@@ -151,6 +154,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       }));
     },
     addTag: (tag: string) => {
+      console.log('addTag', tag);
       set((state) => {
         if (!state.selectedTags.includes(tag)) {
           const updatedTags = [...state.selectedTags, tag];
@@ -161,6 +165,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     addAllTags: (tags: string[]) => {
+      console.log('addAllTags', tags);
       set((state) => {
         const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
         return { selectedTags: uniqueTags };
@@ -168,20 +173,39 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     removeTag: (tag: string) => {
+      console.log('removeTag', tag);
       set((state) => {
         const updatedTags = state.selectedTags.filter((t) => t !== tag);
         return { selectedTags: updatedTags };
       });
       get().fetchBlueprints();
     },
+    addDenyTag: (tag: string) => {
+      console.log('addDenyTag', tag);
+      set((state) => {
+        if (!state.denyTags.includes(tag)) {
+          const updatedTags = [...state.denyTags, tag];
+          return { denyTags: updatedTags };
+        }
+        return state;
+      });
+      get().fetchBlueprints();
+    },
+    removeDenyTag: (tag: string) => {
+      console.log('removeDenyTag', tag);
+      set((state) => {
+        const updatedTags = state.denyTags.filter((t) => t !== tag);
+        return { denyTags: updatedTags };
+      });
+      get().fetchBlueprints();
+    },
     clearTags: () => {
-      set({ selectedTags: [] });
+      console.log('clearTags');
+      set({ selectedTags: [], denyTags: [] });
       get().fetchBlueprints();
     },
     fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
-      const { selectedTags, search_models, search_blueprints } = get();
-      console.log('fetchBlueprints');
-      console.log(search_models, search_blueprints);
+      const { selectedTags, denyTags, search_models, search_blueprints } = get();
 
       const urlParams = new URLSearchParams();
       
@@ -197,8 +221,6 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       } else if (params?.previous) {
         urlParams.set('previous', params.previous);
       }
-      console.log(urlParams.toString());
-      console.log("--------------------------------")
       const response = await fetch(`/api/blueprints/tags${urlParams.toString() ? '?' + urlParams.toString() : ''}`, {
         method: 'POST',
         headers: {
@@ -206,6 +228,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
         },
         body: JSON.stringify({
           require: selectedTags.map(tag => ({ tag })),
+          deny: denyTags.map(tag => ({ tag })),
         }),
       });
       const result = await response.json();

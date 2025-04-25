@@ -366,9 +366,6 @@ def filter_shape(tags):
             tags.discard(("component", "floor"))
         else:
             tags.add(("component", "floor"))
-        if ("shape", "wall") in tags:
-            tags.discard(("shape", "wall"))
-            tags.add(("shape", "floor", "cut_for_wall"))
     _move_tag_chain(tags, ["component", "floor"], ["shape", "floor"])
     _move_tag_chain(tags, ["component", "curved"], ["shape", "curved"])
     _move_tag_chain(tags, ["component", "base"], ["shape", "base"])
