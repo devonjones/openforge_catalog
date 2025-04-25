@@ -7,114 +7,12 @@ import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
 import newGithubIssueUrl from 'new-github-issue-url';
 import PartSelectionModal from './part-selection-modal';
+import ConfigBox from './config-box';
 
 interface BlueprintContainerProps {
   configValues?: Record<string, any> | null;
   onPartSelected?: (partName: string, blueprint: Blueprint) => void;
 }
-
-const ConfigBox = ({ title, value }: { title: string; value: any }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
-  const configSelections = useBlueprintContext((state) => state.configSelections);
-  const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
-  const selectedBlueprint = configSelections[title];
-
-  const handlePartSelected = (partName: string, blueprint: Blueprint) => {
-    setConfigSelection(partName, blueprint);
-    setIsModalOpen(false);
-  };
-
-  const handleOpenModal = () => {
-    // Collect all tags from other selected blueprints
-    const otherBlueprintTags = new Set<string>();
-    Object.entries(configSelections).forEach(([key, bp]) => {
-      if (key !== title) {
-        bp.tags.forEach(tag => otherBlueprintTags.add(tag));
-      }
-    });
-    setIsModalOpen(true);
-  };
-
-  const renderValue = (val: any) => {
-    if (val === null || val === undefined) {
-      return <span className="text-gray-500">null</span>;
-    }
-    if (typeof val === 'object') {
-      if (Array.isArray(val)) {
-        return (
-          <ul className="list-disc pl-4">
-            {val.map((item, index) => (
-              <li key={index}>{renderValue(item)}</li>
-            ))}
-          </ul>
-        );
-      }
-      return (
-        <div className="pl-4">
-          {Object.entries(val).map(([key, value]) => (
-            <div key={key} className="mt-2">
-              <strong>{key}:</strong> {renderValue(value)}
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return <span>{String(val)}</span>;
-  };
-
-  // Generate otherBlueprintTags from the blueprint store
-  const otherBlueprintTags = new Set<string>();
-  Object.entries(configSelections).forEach(([key, bp]) => {
-    if (key !== title) {
-      bp.tags.forEach(tag => otherBlueprintTags.add(tag));
-    }
-  });
-
-  return (
-    <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">
-      <h3 className="text-lg font-semibold mb-2 cursor-help" title={JSON.stringify(value, null, 2)}>
-        {title}
-      </h3>
-      {selectedBlueprint ? (
-        <div className="mt-2">
-          <div className="font-medium">{selectedBlueprint.blueprint_name}</div>
-          {selectedBlueprint.images[0] && (
-            <img 
-              src={selectedBlueprint.images[0].image_url} 
-              alt={selectedBlueprint.blueprint_name}
-              className="mt-2 max-w-[200px] max-h-[200px] object-contain"
-            />
-          )}
-          <button
-            onClick={() => setConfigSelection(title, null)}
-            className="mt-2 text-red-600 hover:text-red-800 text-sm font-medium"
-          >
-            Clear Selection
-          </button>
-        </div>
-      ) : (
-        <div className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-0 top-full mt-2 w-full bg-white border rounded p-4 shadow-lg z-10">
-          {renderValue(value)}
-        </div>
-      )}
-      <button
-        onClick={handleOpenModal}
-        className="mt-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
-      >
-        {selectedBlueprint ? 'Change Part' : 'Select Part'}
-      </button>
-      <PartSelectionModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        partName={title}
-        configValues={value}
-        onPartSelected={handlePartSelected}
-        tagsFromOtherSelections={Array.from(otherBlueprintTags)}
-      />
-    </div>
-  );
-};
 
 const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainerProps) => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
@@ -207,7 +105,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
             <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(blueprint.id)} className="copyButton">
               <svg className="octicon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
                 <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25Z"></path>
               </svg>
             </button>
           </div>
