@@ -3,6 +3,7 @@
 import React from 'react';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
+import TagContainer from './tag-container';
 import { BlueprintProvider } from '@/contexts/blueprint-context';
 import { TagProvider } from '@/contexts/tag-context';
 import { Blueprint } from '@/types';
@@ -38,6 +39,9 @@ const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSel
           <TagProvider autoload={false} search_models={true} search_blueprints={false}>
             <BlueprintProvider autoload={false}>
               <div className="part-selection-modal__grid">
+                <div className="part-selection-modal__tags">
+                  <TagContainer />
+                </div>
                 <div className="part-selection-modal__sidebar">
                   <ResultsContainer 
                     configValues={configValues} 

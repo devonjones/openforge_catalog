@@ -60,6 +60,17 @@
   }
 }
 
+.part-selection-modal__tags {
+  width: fit-content;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .part-selection-modal__tags {
+    width: fit-content;
+  }
+}
+
 .part-selection-modal__sidebar {
   width: 100%;
   min-width: 0;
@@ -68,7 +79,7 @@
 @media (min-width: 768px) {
   .part-selection-modal__sidebar {
     width: auto;
-    min-width: 25%;
+    min-width: 30%;
   }
 }
 
@@ -79,6 +90,6 @@
 
 @media (min-width: 768px) {
   .part-selection-modal__main {
-    width: 75%;
+    width: 50%;
   }
 } 
