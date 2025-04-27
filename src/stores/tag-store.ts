@@ -37,6 +37,7 @@
 
 import { createStore } from 'zustand';
 import type { TagNode, Blueprint, Paging } from '@/types';
+import { devLog } from '@/utils/log';
 
 export interface TagStore {
   data: Record<string, TagNode>;
@@ -94,7 +95,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().setData(tagCounts);
     },
     setData: (tagCounts: object) => {
-      console.log('setData', tagCounts);
+      devLog('setData', tagCounts);
       const data: Record<string, TagNode> = {};
 
       Object.entries(tagCounts).forEach(([key, count]) => {
@@ -146,7 +147,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       set({ data });
     },
     toggleNode: (key: string) => {
-      console.log('toggleNode', key);
+      devLog('toggleNode', key);
       set((state) => ({
         expandedNodes: {
           ...state.expandedNodes,
@@ -155,7 +156,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       }));
     },
     addTag: (tag: string) => {
-      console.log('addTag', tag);
+      devLog('addTag', tag);
       set((state) => {
         if (!state.selectedTags.includes(tag)) {
           const updatedTags = [...state.selectedTags, tag];
@@ -166,7 +167,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     addAllTags: (tags: string[]) => {
-      console.log('addAllTags', tags);
+      devLog('addAllTags', tags);
       set((state) => {
         const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
         return { selectedTags: uniqueTags };
@@ -174,7 +175,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     removeTag: (tag: string) => {
-      console.log('removeTag', tag);
+      devLog('removeTag', tag);
       set((state) => {
         const updatedTags = state.selectedTags.filter((t) => t !== tag);
         return { selectedTags: updatedTags };
@@ -182,7 +183,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     addDenyTag: (tag: string) => {
-      console.log('addDenyTag', tag);
+      devLog('addDenyTag', tag);
       set((state) => {
         if (!state.denyTags.includes(tag)) {
           const updatedTags = [...state.denyTags, tag];
@@ -193,7 +194,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     removeDenyTag: (tag: string) => {
-      console.log('removeDenyTag', tag);
+      devLog('removeDenyTag', tag);
       set((state) => {
         const updatedTags = state.denyTags.filter((t) => t !== tag);
         return { denyTags: updatedTags };
@@ -201,11 +202,12 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       get().fetchBlueprints();
     },
     clearTags: () => {
-      console.log('clearTags');
+      devLog('clearTags');
       set({ selectedTags: [], denyTags: [] });
       get().fetchBlueprints();
     },
     setTagState: (tags: { require?: string[]; deny?: string[] }) => {
+      devLog('setTagState', tags);
       set({
         selectedTags: tags.require || [],
         denyTags: tags.deny || [],
@@ -240,6 +242,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
         }),
       });
       const result = await response.json();
+      devLog('Fetched blueprints:', result);
       get().setBlueprints(result.blueprints, result.paging);
       get().setData(result.tag_counts);
     },
