@@ -168,7 +168,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         </strong>&nbsp;
         (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>
       
-      {blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
+      {!configValues && blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
           <div className="flex flex-wrap">
