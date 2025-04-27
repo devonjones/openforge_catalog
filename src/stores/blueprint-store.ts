@@ -13,7 +13,12 @@ export interface BlueprintStore {
 export const createBlueprintStore = () => {
   return createStore<BlueprintStore>((set, get) => ({
     selectedBlueprint: null,
-    setSelectedBlueprint: (blueprint) => set({ selectedBlueprint: blueprint }),
+    setSelectedBlueprint: (blueprint) => {
+      if (blueprint !== get().selectedBlueprint) {
+        set({ configSelections: {} });
+      }
+      set({ selectedBlueprint: blueprint });
+    },
     fetchBlueprintById: async (id: string) => {
       const response = await fetch(`/api/blueprints/${id}`);
       if (!response.ok) {
