@@ -118,6 +118,35 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
     removeTag(tag);
   };
 
+  const isTagRemovable = (tag: string): boolean => {
+    // Tag is not removable if it's from other selections
+    if (tagsFromOtherSelections.includes(tag)) {
+      return false;
+    }
+    // If configValues exists, check if the tag is in require or deny
+    if (configValues) {
+      // Check require section
+      if (configValues.require) {
+        for (const key in configValues.require) {
+          const data = configValues.require[key];
+          if (data.tag === tag) {
+            return false;
+          }
+        }
+      }
+      // Check deny section
+      if (configValues.deny) {
+        for (const key in configValues.deny) {
+          const data = configValues.deny[key];
+          if (data.tag === tag) {
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  };
+
   const createDeepLink = (tags: string[]) => {
     const params = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
     return `${params}`;
@@ -168,7 +197,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
               <ul>
                 {selectedTags.map((tag) => (
                   <li key={tag}>
-                    {tag} {!configValues && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
+                    {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
                   </li>
                 ))}
               </ul>
@@ -181,7 +210,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
                 <ul>
                   {denyTags.map((tag) => (
                     <li key={tag} className="text-red-600">
-                      {tag} {!configValues && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
+                      {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
                     </li>
                   ))}
                 </ul>
