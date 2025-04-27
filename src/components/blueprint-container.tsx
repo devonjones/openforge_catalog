@@ -22,6 +22,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const clearTags = useTagContext((state) => state.clearTags);
   const addAllTags = useTagContext((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
+  const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
   
   const shouldShowDownloadLink = (blueprint: Blueprint) => {
     if (blueprint.file_name) {
@@ -31,9 +32,21 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
       const requiredParts = blueprint.blueprint_config.parts.filter(part => 
         part.tags.require && part.tags.require.length > 0
       );
-      return requiredParts.every(part => 
-        configSelections[part.name] !== undefined
-      );
+      return requiredParts.every(part => {
+        const selectedBlueprint = configSelections[part.name];
+        if (!selectedBlueprint) return false;
+        
+        // Check if the selected blueprint has its own required parts
+        if (selectedBlueprint.blueprint_config?.parts) {
+          const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
+            nestedPart.tags.require && nestedPart.tags.require.length > 0
+          );
+          return nestedRequiredParts.every(nestedPart => 
+            configSelections[nestedPart.name] !== undefined
+          );
+        }
+        return true;
+      });
     }
     return false;
   };
@@ -41,17 +54,25 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     const urls: string[] = [];
+    const processedBlueprints = new Set<string>();
 
     // Add main blueprint download if it has a file_name
     if (blueprint?.file_name) {
       urls.push(`/api/blueprints/${blueprint.id}/download`);
+      processedBlueprints.add(blueprint.id);
     }
 
-    // Add downloads for each selected part
-    Object.entries(configSelections).forEach(([_, bp]) => {
-      if (bp.file_name) {
+    // Add downloads for each selected part and its nested parts
+    const processBlueprint = (bp: Blueprint) => {
+      if (bp.file_name && !processedBlueprints.has(bp.id)) {
         urls.push(`/api/blueprints/${bp.id}/download`);
+        processedBlueprints.add(bp.id);
       }
+    };
+
+    // Process all selected blueprints
+    Object.entries(configSelections).forEach(([_, bp]) => {
+      processBlueprint(bp);
     });
 
     downloadFiles(urls);
@@ -82,6 +103,19 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     return () => window.removeEventListener('popstate', handlePopState);
   }, [blueprint]);
 
+  useEffect(() => {
+    // Update nested configs when configSelections changes
+    const newNestedConfigs: Record<string, ConfigPart[]> = {};
+    
+    Object.entries(configSelections).forEach(([partName, bp]) => {
+      if (bp.blueprint_config?.parts) {
+        newNestedConfigs[partName] = bp.blueprint_config.parts;
+      }
+    });
+
+    setNestedConfigs(newNestedConfigs);
+  }, [configSelections]);
+
   const copyToClipboard = (blueprint_id: string) => {
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split("?")[0];
@@ -95,6 +129,20 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     const newTags = blueprint.tags.filter(t => !t.startsWith(tagType));
     clearTags();
     addAllTags(newTags);
+  };
+
+  const renderConfigBoxes = (parts: ConfigPart[]) => {
+    return (
+      <div className="flex flex-wrap">
+        {parts.map((part: ConfigPart) => (
+          <ConfigBox 
+            key={part.name} 
+            title={part.name} 
+            value={part.tags} 
+          />
+        ))}
+      </div>
+    );
   };
 
   if (!blueprint) {
@@ -171,17 +219,17 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
       {!configValues && blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
-          <div className="flex flex-wrap">
-            {blueprint.blueprint_config.parts.map((part: ConfigPart) => (
-              <ConfigBox 
-                key={part.name} 
-                title={part.name} 
-                value={part.tags} 
-              />
-            ))}
-          </div>
+          {renderConfigBoxes(blueprint.blueprint_config.parts)}
         </div>
       )}
+
+      {/* Render nested configs for selected parts */}
+      {!configValues && Object.entries(nestedConfigs).map(([partName, parts]) => (
+        <div key={partName} className="mt-4">
+          <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
+          {renderConfigBoxes(parts)}
+        </div>
+      ))}
 
       <div>
         {blueprint.images.map((image) => (
