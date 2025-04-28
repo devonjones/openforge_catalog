@@ -1,10 +1,10 @@
-- name: "S2W Wall on Tile Arrow Slit"
+- name: "S2W: Wall on Tile: Wall: Magnetic"
   type: "blueprint"
   tags:
     - [object, tile]
     - [object, tile, wall_on_tile]
     - [build, s2w]
-    - [component, arrow_slit]
+    - [component, magnetic]
     - [shape, wall]
   config:
     parts:
@@ -12,9 +12,12 @@
         tags:
           require:
             - tag: build|separate wall
-            - tag: connection|openforge
-            - tag: component|arrow_slit
+            - tag: component|magnetic
             - tag: shape|wall
+            - tag: connection|openforge
+          deny:
+            - tag: shape|curved
+            - tag: size|width|1.5
           constrain:
             - tag: size|width
       - name: floor

@@ -8,6 +8,8 @@ properties:
       properties:
         name:
           type: string
+        id:
+          type: string
         tags:
           type: object
           properties:
@@ -18,7 +20,7 @@ properties:
                 properties:
                   tag:
                     type: string
-                additionalProperties: false
+                  additionalProperties: false
             require:
               type: array
               items:
@@ -26,7 +28,7 @@ properties:
                 properties:
                   tag:
                     type: string
-                additionalProperties: false
+                  additionalProperties: false
             deny:
               type: array
               items:
@@ -34,7 +36,7 @@ properties:
                 properties:
                   tag:
                     type: string
-                additionalProperties: false
+                  additionalProperties: false
             constrain:
               type: array
               items:
@@ -42,7 +44,14 @@ properties:
                 properties:
                   tag:
                     type: string
-                additionalProperties: false
+                  additionalProperties: false
           additionalProperties: false
-      additionalProperties: false
+  fulfills:
+    type: array
+    items:
+      type: object
+      properties:
+        part:
+          type: string
+        additionalProperties: false
 additionalProperties: false
