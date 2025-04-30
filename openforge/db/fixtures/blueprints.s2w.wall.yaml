@@ -6,6 +6,7 @@
     - [build, s2w]
     - [shape, corner]
   config:
+    parts:
       - name: wall
         tags:
           require:
