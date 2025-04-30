@@ -1,20 +1,23 @@
-- name: "S2W: Wall on Tile: Wall (Any)"
+- name: "S2W: Wall on Tile: Wall: Low Wall"
   type: "blueprint"
   tags:
     - [object, tile]
     - [object, tile, wall_on_tile]
     - [build, s2w]
-    - [shape, corner]
+    - [component, wall, low]
+    - [shape, wall]
   config:
+    parts:
       - name: wall
         tags:
           require:
             - tag: build|separate wall
-            - tag: shape|wall
+            - tag: shape|wall|low
             - tag: connection|openforge
           deny:
             - tag: shape|curved
             - tag: size|width|1.5
+            - tag: component|secret_door
           constrain:
             - tag: size|width
       - name: floor

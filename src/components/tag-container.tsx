@@ -1,8 +1,7 @@
 'use client'
 
-import React, { useState } from 'react';
-import useTagStore from '@/stores/tag-store';
-import useBlueprintStore from '@/stores/blueprints-store';
+import React from 'react';
+import { useTagContext } from '@/contexts/tag-context';
 
 const renderTags = (
   data: Record<string, any>,
@@ -43,16 +42,10 @@ const renderTags = (
 };
 
 const TagContainer = () => {
-  const data = useTagStore((state) => state.data);
-  const addTag = useBlueprintStore((state) => state.addTag);
-  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
-
-  const toggleNode = (key: string) => {
-    setExpandedNodes((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
+  const data = useTagContext((state) => state.data);
+  const expandedNodes = useTagContext((state) => state.expandedNodes);
+  const toggleNode = useTagContext((state) => state.toggleNode);
+  const addTag = useTagContext((state) => state.addTag);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
@@ -60,13 +53,10 @@ const TagContainer = () => {
 
   return (
     <div className="tagContainer">
-      <div>Browse Tags</div>
+      <div><strong>Browse Tags</strong></div>
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>
   );
 };
 
 export default TagContainer;
-
-
-

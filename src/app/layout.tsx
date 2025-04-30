@@ -1,56 +1,31 @@
-"use client";
-
 import "./globals.css";
 import './layout.css';
-
-// import { metadata } from '@/app/metadata';
-import React, { useEffect, useState } from 'react';
 import { Inter } from "next/font/google";
-import useStore from '@/stores/tag-store';
-import TagContainer from "@/components/tag-container";
-import ResultsContainer from "@/components/results-container";
-import BlueprintContainer from "@/components/blueprint-container";
-import { Blueprint } from '@/types';
+import TabbedInterface from "@/components/tabbed-interface";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-    children,
+	children,
 }: {
-    children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-  const fetchData = useStore((state) => state.fetchData);
-  const [selectedBlueprint, setSelectedBlueprint] = useState<Blueprint | null>(null);
-
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-        <div className='pageContainer'>
-          <div className='pageHeaderWrapper'>OpenForge Catalog
-            <div className='pageHeaderRight'>
-              Version 0.2.0 |&nbsp;
-              <a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
-              <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
-            </div>
-          </div>
-          <div className='columnContainer'>
-            <div className='tagContainerWrapper'>
-              <TagContainer />
-            </div>
-            <div className='modelsContainerWrapper'>
-              <ResultsContainer onSelect={setSelectedBlueprint} />
-            </div>
-            <div className='modelDetailsContainerWrapper'>
-              <BlueprintContainer blueprint={selectedBlueprint} />
-            </div>
-          </div>
-        </div>
-      </body>
-    </html>
-  );
+				<main className="min-h-screen bg-gray-100">
+					<div className='pageContainer'>
+						<div className='pageHeaderWrapper'>OpenForge Catalog
+							<div className='pageHeaderRight'>
+								Version 0.3.0 |&nbsp;
+								<a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
+								<a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
+							</div>
+						</div>
+						<TabbedInterface />
+					</div>
+				</main>
+			</body>
+		</html>
+	);
 }

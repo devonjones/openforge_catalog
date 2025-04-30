@@ -1,15 +1,18 @@
-- name: "S2W: Wall on Tile: Wall (Any)"
+- name: "S2W: Wall on Tile: Wall: Square Window"
   type: "blueprint"
   tags:
     - [object, tile]
     - [object, tile, wall_on_tile]
     - [build, s2w]
-    - [shape, corner]
+    - [component, window, square]
+    - [shape, wall]
   config:
+    parts:
       - name: wall
         tags:
           require:
             - tag: build|separate wall
+            - tag: component|window|square
             - tag: shape|wall
             - tag: connection|openforge
           deny:

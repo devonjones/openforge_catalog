@@ -36,3 +36,7 @@
 .blueprintListItem.selected {
   background-color: lightblue;
 }
+
+.resultsContainer h2 {
+  font-weight: bold;
+}

@@ -1,4 +1,6 @@
-export const metadata = {
-  title: "OpenForge Catalog",
-  description: "OpenForge Catalog",
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'OpenForge Catalog',
+  description: 'Browse and search OpenForge blueprints',
 };

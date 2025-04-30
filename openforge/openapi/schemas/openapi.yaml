@@ -340,6 +340,20 @@ paths:
           required: false
           schema:
             type: integer
+        - in: query
+          name: models
+          description: Whether to include models in the results (default true)
+          required: false
+          schema:
+            type: boolean
+            default: true
+        - in: query
+          name: blueprints
+          description: Whether to include blueprints in the results (default false)
+          required: false
+          schema:
+            type: boolean
+            default: false
       requestBody:
         content:
           application/json:

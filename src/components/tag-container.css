@@ -1,7 +1,11 @@
 .tagContainer {
-  padding: 20px;
+  display: inline-block;
   min-width: 200px;
-  flex: 0 0 auto;
+  padding: 20px;
+}
+
+.tagContainer h2 {
+  font-weight: bold;
 }
 
 .tagNode {

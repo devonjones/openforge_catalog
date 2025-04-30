@@ -1,4 +1,5 @@
 import uuid
+import json
 from pprint import pprint
 from psycopg import cursor, sql
 from openforge.db import get_logger
@@ -7,6 +8,16 @@ from openforge.db import get_logger
 def _convert_tag(tag: dict) -> dict:
     tag["tag"] = "|".join(tag["tag"])
     return tag
+
+
+def _convert_config(data: dict) -> dict:
+    if "config" in data:
+        if isinstance(data["config"], str):
+            data["blueprint_config"] = json.loads(data["config"])
+        else:
+            data["blueprint_config"] = data["config"]
+        del data["config"]
+    return data
 
 
 def get_tags(curs: cursor, blueprint_id: uuid.UUID) -> list[dict]:
@@ -124,19 +135,30 @@ def tag_search_blueprints(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
+    blueprints: bool = False,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            next,
+            previous,
+            limit,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY blueprints.blueprint_name"),
     ]
     query = sql.Composed(parts)
     get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
-    return curs.fetchall()
+    return [_convert_config(row) for row in curs.fetchall()]
 
 
 def tag_search_tags(
@@ -147,12 +169,23 @@ def tag_search_tags(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
+    blueprints: bool = False,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
         sql.SQL("  FROM tags AS bptags"),
         sql.SQL("  WHERE bptags.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            next,
+            previous,
+            limit,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bptags.blueprint_id"),
     ]
@@ -170,6 +203,8 @@ def tag_search_blueprint_images(
     next: uuid.UUID | None = None,
     previous: uuid.UUID | None = None,
     limit: int = 20,
+    models: bool = True,
+    blueprints: bool = False,
 ) -> list[dict]:
     parts = [
         sql.SQL(
@@ -178,7 +213,16 @@ def tag_search_blueprint_images(
         sql.SQL("  FROM images"),
         sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
         sql.SQL("  WHERE bpi.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, next, previous, limit),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            next,
+            previous,
+            limit,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bpi.blueprint_id"),
     ]
@@ -193,12 +237,21 @@ def tag_search_blueprint_count(
     accept: list[str],
     require: list[str],
     deny: list[str],
+    models: bool = True,
+    blueprints: bool = False,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            do_limit=False,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
     ]
     query = sql.Composed(parts)
@@ -213,12 +266,21 @@ def tag_search_blueprint_start_count(
     require: list[str],
     deny: list[str],
     first: uuid.UUID,
+    models: bool = True,
+    blueprints: bool = False,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
         sql.SQL("  FROM blueprints"),
         sql.SQL("  WHERE blueprints.id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            do_limit=False,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
         sql.SQL(
             "    AND blueprints.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {first})"
@@ -235,12 +297,21 @@ def tag_search_tag_count(
     accept: list[str],
     require: list[str],
     deny: list[str],
+    models: bool = True,
+    blueprints: bool = False,
 ) -> list[dict]:
     parts = [
         sql.SQL("SELECT COUNT(*) AS tag_count, t.tag"),
         sql.SQL("  FROM tags AS t"),
         sql.SQL("  WHERE t.blueprint_id IN ("),
-        _query_tags_basics(accept, require, deny, do_limit=False),
+        _query_tags_basics(
+            accept,
+            require,
+            deny,
+            do_limit=False,
+            models=models,
+            blueprints=blueprints,
+        ),
         sql.SQL("  )"),
         sql.SQL("  GROUP BY t.tag"),
     ]
@@ -275,13 +346,15 @@ SELECT DISTINCT bp.id
         query_parts = query_parts[:-1]
     deny_parts = []
     if len(deny) > 0:
-        deny_parts.append(
-            sql.SQL(
-                "    %s bp2.id NOT IN (" % ("WHERE" if len(query_parts) <= 1 else "AND")
+        for d in deny:
+            deny_parts.append(
+                sql.SQL(
+                    "    %s bp2.id NOT IN ("
+                    % ("WHERE" if len(query_parts) <= 1 else "AND")
+                )
             )
-        )
-        deny_parts.append(_query_tags_deny(deny))
-        deny_parts.append(sql.SQL("    )"))
+            deny_parts.append(_query_tags_deny([d]))
+            deny_parts.append(sql.SQL("    )"))
 
     if models:
         query_parts.append(
@@ -392,7 +465,7 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
     if len(deny) > 0:
         deny_parts.extend(
             [
-                sql.SQL("      SELECT bp_neg.id"),
+                sql.SQL("      SELECT DISTINCT bp_neg.id"),
                 sql.SQL("  FROM blueprints AS bp_neg"),
             ]
         )
@@ -417,6 +490,6 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
                         tags=sql.Literal(neg_tags),
                     )
                 )
-                neg_where = "  AND"
+                neg_where = "  OR"
                 neg_counter += 1
     return sql.Composed(deny_parts + neg_joins + neg_wheres).join("\n      ")

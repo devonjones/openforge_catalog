@@ -10,6 +10,7 @@ import datetime
 import json
 
 from openforge.data import sizes
+from openforge.openapi import validate_schema
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper, safe_load
@@ -366,9 +367,6 @@ def filter_shape(tags):
             tags.discard(("component", "floor"))
         else:
             tags.add(("component", "floor"))
-        if ("shape", "wall") in tags:
-            tags.discard(("shape", "wall"))
-            tags.add(("shape", "floor", "cut_for_wall"))
     _move_tag_chain(tags, ["component", "floor"], ["shape", "floor"])
     _move_tag_chain(tags, ["component", "curved"], ["shape", "curved"])
     _move_tag_chain(tags, ["component", "base"], ["shape", "base"])
@@ -459,9 +457,15 @@ def parse_files(path, files, md5, verbose, upload, config):
         filter_s_system(t)
         filter_shape(t)
         apply_metadata(metadata, o)
+        validate(o)
         del f["path"]
         newfiles.append(o)
     return newfiles
+
+
+def validate(o):
+    if "config" in o:
+        validate_schema("config.yaml", o["config"])
 
 
 def apply_metadata(metadata, o):

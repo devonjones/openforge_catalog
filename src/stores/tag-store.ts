@@ -35,79 +35,219 @@
   }
 */
 
-import { create } from 'zustand';
-import { TagNode } from '@/types';
+import { createStore } from 'zustand';
+import type { TagNode, Blueprint, Paging } from '@/types';
+import { devLog } from '@/utils/log';
 
-interface StoreState {
+export interface TagStore {
   data: Record<string, TagNode>;
+  expandedNodes: Record<string, boolean>;
+  selectedTags: string[];
+  denyTags: string[];
+  blueprints: Blueprint[];
+  paging: Paging | null;
+  autoload: boolean;
+  search_models: boolean;
+  search_blueprints: boolean;
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
+  toggleNode: (key: string) => void;
+  addTag: (tag: string) => void;
+  addAllTags: (tags: string[]) => void;
+  removeTag: (tag: string) => void;
+  clearTags: () => void;
+  addDenyTag: (tag: string) => void;
+  removeDenyTag: (tag: string) => void;
+  setTagState: (tags: { require?: string[]; deny?: string[] }) => void;
+  fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
+  setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
 }
 
-const useStore = create<StoreState>((set, get) => ({
-  data: {},
-  fetchData: async () => {
-    const response = await fetch('/api/blueprints/tags', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const result = await response.json();
-    const tagCounts = result.tag_counts;
-    get().setData(tagCounts);
-  },
-  setData: (tagCounts: object) => {
-    const data: Record<string, TagNode> = {};
-
-    Object.entries(tagCounts).forEach(([key, count]) => {
-      const tags = key.split('|');
-      let currentLevel = data;
-      let fullPath = '';
-
-      tags.forEach((tag, index) => {
-        if (fullPath) {
-          fullPath += `|${tag}`;
-        } else {
-          fullPath = tag;
-        }
-
-        if (!currentLevel[tag]) {
-          currentLevel[tag] = { children: {}, __name: fullPath };
-        }
-
-        if (index === tags.length - 1) {
-          currentLevel[tag].__count = count as number;
-        } else {
-          currentLevel = currentLevel[tag].children!;
-        }
-      });
-    });
-
-    // Aggregate counts for non-leaf nodes
-    const aggregateCounts = (node: TagNode) => {
-      if (!node) return 0;
-      let total = node.__count || 0;
-      let subTags = 0;
-      Object.values(node.children || {}).forEach((child) => {
-        if (typeof child === 'object') {
-          subTags++;
-          total += aggregateCounts(child);
-        }
-      });
-      node.__totalCount = total;
-      node.__subTags = subTags;
-      return total;
-    };
-
-    Object.values(data).forEach((node) => {
-      if (typeof node === 'object') {
-        aggregateCounts(node);
+export const createTagStore = (autoload = false, search_models = false, search_blueprints = false) => {
+  return createStore<TagStore>((set, get) => ({
+    data: {},
+    expandedNodes: {},
+    selectedTags: [],
+    denyTags: [],
+    blueprints: [],
+    paging: null,
+    autoload,
+    search_models,
+    search_blueprints,
+    fetchData: async () => {
+      const { search_models, search_blueprints } = get();
+      const params = new URLSearchParams();
+      
+      // Only add parameters when they differ from defaults
+      if (!search_models || search_blueprints) {
+        if (!search_models) params.set('models', 'false');
+        if (search_blueprints) params.set('blueprints', 'true');
       }
-    });
 
-    set({ data });
-  },
-}));
+      const response = await fetch(`/api/blueprints/tags${params.toString() ? '?' + params.toString() : ''}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const result = await response.json();
+      const tagCounts = result.tag_counts;
+      get().setData(tagCounts);
+    },
+    setData: (tagCounts: object) => {
+      devLog('setData', tagCounts);
+      const data: Record<string, TagNode> = {};
 
-export default useStore;
+      Object.entries(tagCounts).forEach(([key, count]) => {
+        const tags = key.split('|');
+        let currentLevel = data;
+        let fullPath = '';
+
+        tags.forEach((tag, index) => {
+          if (fullPath) {
+            fullPath += `|${tag}`;
+          } else {
+            fullPath = tag;
+          }
+
+          if (!currentLevel[tag]) {
+            currentLevel[tag] = { children: {}, __name: fullPath };
+          }
+
+          if (index === tags.length - 1) {
+            currentLevel[tag].__count = count as number;
+          } else {
+            currentLevel = currentLevel[tag].children!;
+          }
+        });
+      });
+
+      // Aggregate counts for non-leaf nodes
+      const aggregateCounts = (node: TagNode) => {
+        if (!node) return 0;
+        let total = node.__count || 0;
+        let subTags = 0;
+        Object.values(node.children || {}).forEach((child) => {
+          if (typeof child === 'object') {
+            subTags++;
+            total += aggregateCounts(child);
+          }
+        });
+        node.__totalCount = total;
+        node.__subTags = subTags;
+        return total;
+      };
+
+      Object.values(data).forEach((node) => {
+        if (typeof node === 'object') {
+          aggregateCounts(node);
+        }
+      });
+
+      set({ data });
+    },
+    toggleNode: (key: string) => {
+      devLog('toggleNode', key);
+      set((state) => ({
+        expandedNodes: {
+          ...state.expandedNodes,
+          [key]: !state.expandedNodes[key],
+        },
+      }));
+    },
+    addTag: (tag: string) => {
+      devLog('addTag', tag);
+      set((state) => {
+        if (!state.selectedTags.includes(tag)) {
+          const updatedTags = [...state.selectedTags, tag];
+          return { selectedTags: updatedTags };
+        }
+        return state;
+      });
+      get().fetchBlueprints();
+    },
+    addAllTags: (tags: string[]) => {
+      devLog('addAllTags', tags);
+      set((state) => {
+        const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
+        return { selectedTags: uniqueTags };
+      });
+      get().fetchBlueprints();
+    },
+    removeTag: (tag: string) => {
+      devLog('removeTag', tag);
+      set((state) => {
+        const updatedTags = state.selectedTags.filter((t) => t !== tag);
+        return { selectedTags: updatedTags };
+      });
+      get().fetchBlueprints();
+    },
+    addDenyTag: (tag: string) => {
+      devLog('addDenyTag', tag);
+      set((state) => {
+        if (!state.denyTags.includes(tag)) {
+          const updatedTags = [...state.denyTags, tag];
+          return { denyTags: updatedTags };
+        }
+        return state;
+      });
+      get().fetchBlueprints();
+    },
+    removeDenyTag: (tag: string) => {
+      devLog('removeDenyTag', tag);
+      set((state) => {
+        const updatedTags = state.denyTags.filter((t) => t !== tag);
+        return { denyTags: updatedTags };
+      });
+      get().fetchBlueprints();
+    },
+    clearTags: () => {
+      devLog('clearTags');
+      set({ selectedTags: [], denyTags: [] });
+      get().fetchBlueprints();
+    },
+    setTagState: (tags: { require?: string[]; deny?: string[] }) => {
+      devLog('setTagState', tags);
+      set({
+        selectedTags: tags.require || [],
+        denyTags: tags.deny || [],
+      });
+      get().fetchBlueprints();
+    },
+    fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
+      const { selectedTags, denyTags, search_models, search_blueprints } = get();
+
+      const urlParams = new URLSearchParams();
+      
+      // Add search type parameters when they differ from defaults
+      if (!search_models || search_blueprints) {
+        if (!search_models) urlParams.set('models', 'false');
+        if (search_blueprints) urlParams.set('blueprints', 'true');
+      }
+
+      // Add pagination parameters if provided
+      if (params?.next) {
+        urlParams.set('next', params.next);
+      } else if (params?.previous) {
+        urlParams.set('previous', params.previous);
+      }
+      const response = await fetch(`/api/blueprints/tags${urlParams.toString() ? '?' + urlParams.toString() : ''}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          require: selectedTags.map(tag => ({ tag })),
+          deny: denyTags.map(tag => ({ tag })),
+        }),
+      });
+      const result = await response.json();
+      devLog('Fetched blueprints:', result);
+      get().setBlueprints(result.blueprints, result.paging);
+      get().setData(result.tag_counts);
+    },
+    setBlueprints: (blueprints, paging) => {
+      set({ blueprints, paging });
+    },
+  }));
+};

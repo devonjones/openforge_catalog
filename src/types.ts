@@ -6,10 +6,30 @@ export interface Image {
   updated_at: string;
 }
 
+export interface ConfigTag {
+  tag: string;
+}
+
+export interface ConfigTags {
+  accept?: ConfigTag[];
+  require?: ConfigTag[];
+  deny?: ConfigTag[];
+  constrain?: ConfigTag[];
+}
+
+export interface ConfigPart {
+  name: string;
+  tags: ConfigTags;
+}
+
+export interface BlueprintConfig {
+  parts?: ConfigPart[];
+}
+
 export interface Blueprint {
   blueprint_name: string;
   blueprint_type: string;
-  config: string;
+  blueprint_config?: BlueprintConfig;
   created_at: string;
   file_changed_at: string;
   file_md5: string;
