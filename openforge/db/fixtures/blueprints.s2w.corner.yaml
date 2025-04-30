@@ -1,4 +1,4 @@
-- name: "S2W: Wall on Tile: Corner"
+- name: "S2W: Wall on Tile: Corner (Any)"
   type: "blueprint"
   tags:
     - [object, tile]

@@ -1,4 +1,4 @@
-- name: "S2W: Wall on Tile: Wall"
+- name: "S2W: Wall on Tile: Wall (Any)"
   type: "blueprint"
   tags:
     - [object, tile]
