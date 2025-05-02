@@ -2,10 +2,10 @@ openapi: 3.0.0
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/1.0.0
+    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/0.3.1
 info:
   description: This is a simple API
-  version: "0.2.0"
+  version: "0.3.1"
   title: Openforge Catalog API
   contact:
     email: devon.jones@gmail.com
@@ -139,6 +139,30 @@ paths:
           description: Success
         '401':
           description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+  /api/blueprints/md5/{md5}:
+    get:
+      tags:
+        - blueprint
+      summary: returns a blueprint by MD5 hash
+      operationId: getBlueprintByMd5
+      description: Returns a blueprint by its MD5 hash
+      parameters:
+        - in: path
+          name: md5
+          description: MD5 hash of the blueprint file
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{32}$"
+      responses:
+        '200':
+          description: a blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blueprint'
         '404':
           description: 'Blueprint not found'
   /api/blueprints/tags/{tag}:

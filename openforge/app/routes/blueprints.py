@@ -50,6 +50,17 @@ def get_blueprint_by_id(blueprint_id):
             return jsonify(data)
 
 
+def get_blueprint_by_md5(md5):
+    with current_app.db.pool.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            data = blueprint_sql.get_blueprint_by_md5(cursor, md5)
+            data["tags"] = [
+                tag["tag"] for tag in tag_sql.get_tags(cursor, data["id"])
+            ]
+            data["images"] = image_sql.get_images_for_blueprint(cursor, data["id"])
+            return jsonify(data)
+
+
 def update_blueprint(blueprint_id):
     try:
         validate_schema("blueprint.yaml", request.json, required=False)

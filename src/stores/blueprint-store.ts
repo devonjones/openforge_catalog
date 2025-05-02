@@ -5,6 +5,7 @@ export interface BlueprintStore {
   selectedBlueprint: Blueprint | null;
   setSelectedBlueprint: (blueprint: Blueprint | null) => void;
   fetchBlueprintById: (id: string) => Promise<Blueprint>;
+  fetchBlueprintByMd5: (md5: string) => Promise<Blueprint>;
   configSelections: Record<string, Blueprint>;
   setConfigSelection: (key: string, blueprint: Blueprint | null) => void;
   clearConfigSelections: () => void;
@@ -21,6 +22,13 @@ export const createBlueprintStore = () => {
     },
     fetchBlueprintById: async (id: string) => {
       const response = await fetch(`/api/blueprints/${id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch blueprint');
+      }
+      return response.json();
+    },
+    fetchBlueprintByMd5: async (md5: string) => {
+      const response = await fetch(`/api/blueprints/md5/${md5}`);
       if (!response.ok) {
         throw new Error('Failed to fetch blueprint');
       }

@@ -5,7 +5,6 @@ import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint } from '@/types';
 import './results-container.css';
-import { useSearchParams } from 'next/navigation';
 
 interface ResultsContainerProps {
   configValues?: Record<string, any> | null;

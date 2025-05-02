@@ -108,7 +108,7 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
        file_name, full_name, file_changed_at, file_modified_at, storage_address,
        created_at, updated_at
   FROM blueprints
-  WHERE file_md5 = %(md5)s
+  WHERE file_md5 = {md5}
 """
     ).format(md5=sql.Literal(md5))
     curs.execute(query)

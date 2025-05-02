@@ -36,6 +36,12 @@ def blueprint(blueprint_id):
         return blueprint_routes.delete_blueprint(blueprint_id)
 
 
+@app.route("/api/blueprints/md5/<md5>", methods=["GET"])
+def blueprint_by_md5(md5):
+    if request.method == "GET":
+        return blueprint_routes.get_blueprint_by_md5(md5)
+
+
 @app.route("/api/blueprints/<blueprint_id>/download", methods=["GET"])
 def download_blueprint(blueprint_id):
     return blueprint_routes.download_blueprint(blueprint_id)

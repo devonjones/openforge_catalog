@@ -18,6 +18,7 @@ export function BlueprintProvider({ children, autoload = false }: BlueprintProvi
   const storeRef = useRef<BlueprintContext>();
   const searchParams = useSearchParams();
   const blueprintId = autoload ? searchParams.get('blueprint_id') : null;
+  const md5 = autoload ? searchParams.get('md5') : null;
 
   if (!storeRef.current) {
     storeRef.current = createBlueprintStore();
@@ -32,8 +33,16 @@ export function BlueprintProvider({ children, autoload = false }: BlueprintProvi
         .catch(error => {
           console.error('Failed to fetch initial blueprint:', error);
         });
+    } else if (md5) {
+      storeRef.current?.getState().fetchBlueprintByMd5(md5)
+        .then(blueprint => {
+          storeRef.current?.getState().setSelectedBlueprint(blueprint);
+        })
+        .catch(error => {
+          console.error('Failed to fetch initial blueprint:', error);
+        });
     }
-  }, [blueprintId]);
+  }, [blueprintId, md5]);
 
   return (
     <BlueprintContext.Provider value={storeRef.current}>
