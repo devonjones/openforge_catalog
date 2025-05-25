@@ -10,6 +10,9 @@ import datetime
 import json
 
 from openforge.data import sizes
+from openforge.data.metadata import get_metadata_file
+from openforge.data.metadata import apply_metadata, apply_default_metadata
+from openforge.data.metadata import metadata_ignore, metadata_auto
 from openforge.openapi import validate_schema
 
 try:
@@ -381,18 +384,9 @@ def filter_shape(tags):
 
 
 def parse_files(path, files, md5, verbose, upload, config):
-    def _get_metadata_file(path):
-        metadata_file = os.path.join(path, "metadata.yaml")
-        if os.path.exists(metadata_file):
-            try:
-                with open(metadata_file, "r") as f:
-                    return safe_load(f)
-            except Exception as e:
-                sys.stderr.write(f"Error reading metadata file: {e}\n")
-        return None
 
     def _get_metadata(path, fn):
-        data = _get_metadata_file(path)
+        data = get_metadata_file(path)
         if data:
             if fn in data:
                 return data[fn]
@@ -414,6 +408,14 @@ def parse_files(path, files, md5, verbose, upload, config):
 
     newfiles = []
     s3_client = _get_s3_client(config)
+    # S3 key cache
+    s3_key_cache = set()
+    if upload:
+        bucket = "openforge-models"
+        paginator = s3_client.get_paginator('list_objects_v2')
+        for page in paginator.paginate(Bucket=bucket):
+            for obj in page.get('Contents', []):
+                s3_key_cache.add(obj['Key'])
     for file in files:
         if verbose:
             sys.stderr.write(f"Processing: {file}\n")
@@ -428,7 +430,7 @@ def parse_files(path, files, md5, verbose, upload, config):
         f["file"] = fn
         f["path"] = parts
         metadata = _get_metadata(local_path, fn)
-        if metadata and metadata.get("ignore", False):
+        if metadata_ignore(metadata):
             continue
         # Calculate MD5 hash of the file
         if md5:
@@ -442,21 +444,22 @@ def parse_files(path, files, md5, verbose, upload, config):
         if upload:
             if not md5:
                 raise Exception("MD5 is required for upload")
-            model_address = upload_file(f, full_file, s3_client, "models")
+            model_address = upload_file(f, full_file, s3_client, "models", s3_key_cache)
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
             thumb_path = create_thumbnail(full_file)
-            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails")
+            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails", s3_key_cache)
             images = o.get("images", [])
             images.append(
                 _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
             )
             o["images"] = images
-        if not metadata or metadata.get("auto", True):
+        if metadata_auto(metadata):
             parse_filename(f, t)
             parse_path(f, t)
         filter_s_system(t)
         filter_shape(t)
         apply_metadata(metadata, o)
+        apply_default_metadata(o)
         validate(o)
         del f["path"]
         newfiles.append(o)
@@ -468,52 +471,20 @@ def validate(o):
         validate_schema("config.yaml", o["config"])
 
 
-def apply_metadata(metadata, o):
-    if metadata is None:
-        return
-    if "ignore" in metadata:
-        del metadata["ignore"]
-    if "auto" in metadata:
-        del metadata["auto"]
-    if "tags" in metadata:
-        for tag in metadata["tags"]:
-            o["tags"].add(tuple(tag.split("|")))
-        del metadata["tags"]
-    if "config" in metadata:
-        o["config"] = metadata["config"]
-        del metadata["config"]
-    if "edit" in metadata:
-        apply_metadata_edit(metadata["edit"], o)
-        del metadata["edit"]
-    assert len(metadata) == 0, metadata
-
-
-def apply_metadata_edit(edit, o):
-    if "tags" in edit:
-        if "add" in edit["tags"]:
-            for tag in edit["tags"]["add"]:
-                o["tags"].add(tuple(tag.split("|")))
-        if "remove" in edit["tags"]:
-            for tag in edit["tags"]["remove"]:
-                try:
-                    o["tags"].remove(tuple(tag.split("|")))
-                except KeyError as ke:
-                    print(o["tags"])
-                    raise ke
-        del edit["tags"]
-    assert len(edit) == 0, edit
-
-
-def upload_file(f, file_path, s3_client, object_path):
+def upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
     bucket = "openforge-models"
     _, fn = os.path.split(file_path)
     parts = fn.split(".")
     extension = parts.pop()
     object_name = f"{object_path}/{f['md5'][:6]}/{f['md5']}.{extension}"
+    # Check cache first
+    if s3_key_cache is not None and object_name in s3_key_cache:
+        return object_name
     try:
         object_information = s3_client.head_object(Bucket=bucket, Key=object_name)
     except ClientError as ce:
         if ce.response["Error"]["Code"] == "404":
+            sys.stderr.write(f"Uploading: {file_path}\n")
             response = s3_client.upload_fileobj(
                 io.BytesIO(open(file_path, "rb").read()), bucket, object_name
             )

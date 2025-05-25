@@ -16,7 +16,7 @@ sizes = {
         ("shape", "option", "mirror"),
     ],
     "D": [("size", "width", 3), ("size", "openlock", "D"), ("shape", "wall")],
-    "IA": [("size", "width", 3), ("size", "openlock", "IA"), ("shape", "wall")],
+    "IA": [("size", "width", 1), ("size", "openlock", "IA"), ("shape", "wall")],
     "Q": [("size", "width", 4), ("size", "openlock", "Q"), ("shape", "wall")],
     "G": [
         ("size", "radius", 2),
