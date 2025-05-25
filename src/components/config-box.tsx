@@ -18,18 +18,31 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
   const selectedBlueprint = configSelections[title];
 
   const handlePartSelected = (partName: string, blueprint: Blueprint) => {
-    setConfigSelection(partName, blueprint);
+    setConfigSelection(title, blueprint);
     setIsModalOpen(false);
   };
 
   const handleOpenModal = () => {
     // Collect all tags from other selected blueprints
     const otherBlueprintTags = new Set<string>();
-    Object.entries(configSelections).forEach(([key, bp]) => {
-      if (key !== title) {
-        bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+    if (title.includes('|')) {
+      // Sub part: only consider parent object's tags
+      const parentKey = title.split('|').slice(0, -1).join('|');
+      const parentBlueprint = configSelections[parentKey];
+      if (parentBlueprint && parentBlueprint.tags) {
+        parentBlueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
       }
-    });
+    } else {
+      // Top-level part: consider all other selections and blueprint
+      Object.entries(configSelections).forEach(([key, bp]) => {
+        if (key !== title) {
+          bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+        }
+      });
+      if (blueprint && blueprint.tags) {
+        blueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
+      }
+    }
     setIsModalOpen(true);
   };
 
@@ -93,11 +106,24 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
 
   // Generate otherBlueprintTags from the blueprint store
   const otherBlueprintTags = new Set<string>();
-  Object.entries(configSelections).forEach(([key, bp]) => {
-    if (key !== title) {
-      bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+  if (title.includes('|')) {
+    // Sub part: only consider parent object's tags
+    const parentKey = title.split('|').slice(0, -1).join('|');
+    const parentBlueprint = configSelections[parentKey];
+    if (parentBlueprint && parentBlueprint.tags) {
+      parentBlueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
     }
-  });
+  } else {
+    // Top-level part: consider all other selections and blueprint
+    Object.entries(configSelections).forEach(([key, bp]) => {
+      if (key !== title) {
+        bp.tags.forEach(tag => otherBlueprintTags.add(tag));
+      }
+    });
+    if (blueprint && blueprint.tags) {
+      blueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
+    }
+  }
 
   return (
     <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">

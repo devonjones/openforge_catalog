@@ -24,6 +24,7 @@ export interface ConfigPart {
 
 export interface BlueprintConfig {
   parts?: ConfigPart[];
+  fulfills?: { part: string }[];
 }
 
 export interface Blueprint {

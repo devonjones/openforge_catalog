@@ -130,16 +130,22 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     addAllTags(newTags);
   };
 
-  const renderConfigBoxes = (parts: ConfigPart[]) => {
+  const renderConfigBoxes = (parts: ConfigPart[], parentPath: string[] = [], parentFulfills: { part: string }[] = []) => {
     return (
       <div className="flex flex-wrap">
-        {parts.map((part: ConfigPart) => (
-          <ConfigBox 
-            key={part.name} 
-            title={part.name} 
-            value={part.tags} 
-          />
-        ))}
+        {parts
+          .filter(part => !parentFulfills.some(f => f.part === part.name))
+          .map((part: ConfigPart) => {
+            const partPath = [...parentPath, part.name];
+            const key = partPath.join('|');
+            return (
+              <ConfigBox
+                key={key}
+                title={key}
+                value={part.tags}
+              />
+            );
+          })}
       </div>
     );
   };
@@ -218,17 +224,34 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
       {!configValues && blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
-          {renderConfigBoxes(blueprint.blueprint_config.parts)}
+          {renderConfigBoxes(
+            blueprint.blueprint_config.parts,
+            [],
+            blueprint.blueprint_config.fulfills || []
+          )}
         </div>
       )}
 
       {/* Render nested configs for selected parts */}
-      {!configValues && Object.entries(nestedConfigs).map(([partName, parts]) => (
-        <div key={partName} className="mt-4">
-          <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
-          {renderConfigBoxes(parts)}
-        </div>
-      ))}
+      {!configValues && Object.entries(nestedConfigs).map(([partName, parts]) => {
+        // Find fulfills for the part definition in the parent's config
+        let fulfills: { part: string }[] = [];
+        if (blueprint && blueprint.blueprint_config?.parts) {
+          const parentPart = blueprint.blueprint_config.parts.find(p => p.name === partName);
+          if (parentPart && (parentPart as any).fulfills) {
+            fulfills = (parentPart as any).fulfills;
+          }
+        }
+        // Filter parts to be shown
+        const filteredParts = parts.filter(part => !fulfills.some(f => f.part === part.name));
+        if (filteredParts.length === 0) return null;
+        return (
+          <div key={partName} className="mt-4">
+            <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
+            {renderConfigBoxes(filteredParts, [partName], fulfills)}
+          </div>
+        );
+      })}
 
       <div>
         {blueprint.images.map((image) => (
