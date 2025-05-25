@@ -144,3 +144,23 @@ documentation_id UUID NOT NULL REFERENCES documentation(id)
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ```
+
+## Configuration: Base Generator URL
+
+The URL for the "Base Generator" tab is configured at runtime using `public/app-config.json`.
+
+- By default, this file contains:
+
+```json
+{
+  "BASE_GENERATOR_URL": "http://localhost:8000"
+}
+```
+
+- To override this value for your deployment, update or replace `public/app-config.json` during your build or deploy process. For example:
+
+```sh
+echo '{ "BASE_GENERATOR_URL": "https://your-url.com" }' > public/app-config.json
+```
+
+- The app will read this value at runtime and use it for the Base Generator tab.

@@ -2,10 +2,10 @@ openapi: 3.0.0
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/0.3.1
+    url: https://virtserver.swaggerhub.com/DEVONJONES_1/openforge_catalog/0.4.0
 info:
   description: This is a simple API
-  version: "0.3.1"
+  version: "0.4.0"
   title: Openforge Catalog API
   contact:
     email: devon.jones@gmail.com
