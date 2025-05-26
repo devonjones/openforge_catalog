@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Blueprint, ConfigTags } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import PartSelectionModal from './part-selection-modal';
+import { getOtherBlueprintTags } from '@/lib/tags';
 
 interface ConfigBoxProps {
   title: string;
@@ -23,26 +24,7 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
   };
 
   const handleOpenModal = () => {
-    // Collect all tags from other selected blueprints
-    const otherBlueprintTags = new Set<string>();
-    if (title.includes('|')) {
-      // Sub part: only consider parent object's tags
-      const parentKey = title.split('|').slice(0, -1).join('|');
-      const parentBlueprint = configSelections[parentKey];
-      if (parentBlueprint && parentBlueprint.tags) {
-        parentBlueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
-      }
-    } else {
-      // Top-level part: consider all other selections and blueprint
-      Object.entries(configSelections).forEach(([key, bp]) => {
-        if (key !== title) {
-          bp.tags.forEach(tag => otherBlueprintTags.add(tag));
-        }
-      });
-      if (blueprint && blueprint.tags) {
-        blueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
-      }
-    }
+    const otherBlueprintTags = getOtherBlueprintTags(configSelections, title, blueprint);
     setIsModalOpen(true);
   };
 
@@ -104,26 +86,7 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     return requirements;
   };
 
-  // Generate otherBlueprintTags from the blueprint store
-  const otherBlueprintTags = new Set<string>();
-  if (title.includes('|')) {
-    // Sub part: only consider parent object's tags
-    const parentKey = title.split('|').slice(0, -1).join('|');
-    const parentBlueprint = configSelections[parentKey];
-    if (parentBlueprint && parentBlueprint.tags) {
-      parentBlueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
-    }
-  } else {
-    // Top-level part: consider all other selections and blueprint
-    Object.entries(configSelections).forEach(([key, bp]) => {
-      if (key !== title) {
-        bp.tags.forEach(tag => otherBlueprintTags.add(tag));
-      }
-    });
-    if (blueprint && blueprint.tags) {
-      blueprint.tags.forEach(tag => otherBlueprintTags.add(tag));
-    }
-  }
+  const otherBlueprintTags = getOtherBlueprintTags(configSelections, title, blueprint);
 
   return (
     <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">
