@@ -194,7 +194,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
                 )}
               </div>
               <ul>
-                {selectedTags.map((tag) => (
+                {Array.from(new Set(selectedTags)).map((tag) => (
                   <li key={tag}>
                     {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
                   </li>
