@@ -290,17 +290,16 @@ def filter_shape(tags):
 
     def _move_tag_chain(tags, old, new):
         def _compare_old(tag, old):
+            if len(tag) < len(old):
+                return False
             for i, v in enumerate(old):
                 if tag[i] != v:
                     return False
             return True
 
         def _swap_tag(tag, old, new):
-            newtag = list(new)
-            for i, t in enumerate(tag):
-                if len(old) <= i:
-                    newtag.append(t)
-            return tuple(newtag)
+            # Replace the prefix of tag (length of old) with new, then append the rest of tag
+            return tuple(new) + tag[len(old):]
 
         swap_tags = []
         for tag in tags:
@@ -315,51 +314,99 @@ def filter_shape(tags):
         return tags
 
     def _handle_decorations(tags):
-        _move_tag_chain(tags, ["component", "air"], ["decoration", "symbol", "air"])
-        _move_tag_chain(
-            tags, ["component", "air_symbol"], ["decoration", "symbol", "air"]
+        _move_tag_chain(tags,
+            ["component", "air"],
+            ["decoration", "symbol", "air"])
+        _move_tag_chain(tags,
+            ["component", "air_symbol"],
+            ["decoration", "symbol", "air"]
         )
-        _move_tag_chain(
-            tags, ["component", "beezlebub"], ["decoration", "symbol", "beezlebub"]
+        _move_tag_chain(tags,
+            ["shape", "floor", "air_symbol"],
+            ["decoration", "symbol", "air"]
         )
-        _move_tag_chain(
-            tags,
+        _move_tag_chain(tags,
+            ["component", "beezlebub"],
+            ["decoration", "symbol", "beezlebub"]
+        )
+        _move_tag_chain(tags,
             ["component", "beezlebub_symbol"],
             ["decoration", "symbol", "beezlebub"],
         )
-        _move_tag_chain(
-            tags, ["component", "celtic_knot"], ["decoration", "celtic_knot"]
+        _move_tag_chain(tags,
+            ["shape", "floor", "beezlebub_symbol"],
+            ["decoration", "symbol", "beezlebub"],
         )
-        _move_tag_chain(tags, ["component", "demon"], ["decoration", "demon"])
-        _move_tag_chain(
-            tags, ["component", "dragon_skulls"], ["decoration", "dragon_skulls"]
+        _move_tag_chain(tags,
+            ["component", "celtic_knot"],
+            ["decoration", "celtic_knot"]
         )
-        _move_tag_chain(tags, ["component", "earth"], ["decoration", "symbol", "earth"])
-        _move_tag_chain(
-            tags, ["component", "earth_symbol"], ["decoration", "symbol", "earth"]
+        _move_tag_chain(tags,
+            ["component", "demon"],
+            ["decoration", "demon"]
         )
-        _move_tag_chain(tags, ["component", "fire"], ["decoration", "symbol", "fire"])
-        _move_tag_chain(
-            tags, ["component", "fire_symbol"], ["decoration", "symbol", "fire"]
+        _move_tag_chain(tags,
+            ["component", "dragon_skulls"],
+            ["decoration", "dragon_skulls"]
         )
-        _move_tag_chain(
-            tags, ["component", "lamashtu"], ["decoration", "symbol", "lamashtu"]
+        _move_tag_chain(tags,
+            ["component", "earth"],
+            ["decoration", "symbol", "earth"]
         )
-        _move_tag_chain(
-            tags, ["component", "lamashtu_symbol"], ["decoration", "symbol", "lamashtu"]
+        _move_tag_chain(tags,
+            ["component", "earth_symbol"],
+            ["decoration", "symbol", "earth"]
         )
-        _move_tag_chain(
-            tags, ["component", "spirit"], ["decoration", "symbol", "spirit"]
+        _move_tag_chain(tags,
+            ["shape", "floor", "earth_symbol"],
+            ["decoration", "symbol", "earth"]
         )
-        _move_tag_chain(
-            tags, ["component", "spirit_symbol"], ["decoration", "symbol", "spirit"]
+        _move_tag_chain(tags,
+            ["component", "fire"],
+            ["decoration", "symbol", "fire"])
+        _move_tag_chain(tags,
+            ["component", "fire_symbol"],
+            ["decoration", "symbol", "fire"]
         )
-        _move_tag_chain(tags, ["component", "water"], ["decoration", "symbol", "water"])
-        _move_tag_chain(
-            tags, ["component", "water_symbol"], ["decoration", "symbol", "water"]
+        _move_tag_chain(tags,
+            ["shape", "floor", "fire_symbol"],
+            ["decoration", "symbol", "fire"]
+        )
+        _move_tag_chain(tags,
+            ["component", "lamashtu"],
+            ["decoration", "symbol", "lamashtu"]
+        )
+        _move_tag_chain(tags,
+            ["component", "lamashtu_symbol"],
+            ["decoration", "symbol", "lamashtu"]
+        )
+        _move_tag_chain(tags,
+            ["shape", "floor", "lamashtu_symbol"],
+            ["decoration", "symbol", "lamashtu"]
+        )
+        _move_tag_chain(tags,
+            ["component", "spirit_symbol"],
+            ["decoration", "symbol", "spirit"]
+        )
+        _move_tag_chain(tags,
+            ["shape", "floor", "spirit_symbol"],
+            ["decoration", "symbol", "spirit"]
+        )
+        _move_tag_chain(tags,
+            ["component", "water"],
+            ["decoration", "symbol", "water"])
+        _move_tag_chain(tags,
+            ["component", "water_symbol"],
+            ["decoration", "symbol", "water"]
+        )
+        _move_tag_chain(tags,
+            ["shape", "floor", "water_symbol"],
+            ["decoration", "symbol", "water"]
         )
 
-    _move_tag_chain(tags, ["component", "corner"], ["shape", "corner"])
+    _move_tag_chain(tags,
+        ["component", "corner"],
+        ["shape", "corner"])
     if ("shape", "wall") in tags:
         if not _check_wall_alone(tags):
             tags.discard(("component", "wall"))
@@ -481,6 +528,7 @@ def upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
     if s3_key_cache is not None and object_name in s3_key_cache:
         return object_name
     try:
+        sys.stderr.write(f"Testing: {file_path}\n")
         object_information = s3_client.head_object(Bucket=bucket, Key=object_name)
     except ClientError as ce:
         if ce.response["Error"]["Code"] == "404":

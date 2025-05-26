@@ -77,14 +77,24 @@ def has_tags(o, tags):
     return True
 
 
+def has_no_tags(o, tags):
+    for tag in tags:
+        if has_tag(o, tag):
+            return False
+    return True
+
+
 def apply_default_metadata(o):
     apply_openforge_wall(o)
 
 
 def is_openforge_wall(o):
     tags = [("shape", "wall"), ("connection", "openforge")]
-    neg_tags = [("build", "s2w")]
-    if has_tags(o, tags) and not has_tags(o, neg_tags):
+    neg_tags = [("build", "s2w"), ("shape", "floor"), ("shape", "base")]
+    if has_tags(o, tags) and has_no_tags(o, neg_tags):
+        return True
+    tags = [("shape", "wall", "low"), ("connection", "openforge")]
+    if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
     return False
 
@@ -93,7 +103,7 @@ def apply_openforge_wall(o):
     if not is_openforge_wall(o):
         return
     config = o.setdefault("config", {})
-    parts = o.setdefault("parts", [])
+    parts = config.setdefault("parts", [])
     parts.append(
         {
             "name": "base",
