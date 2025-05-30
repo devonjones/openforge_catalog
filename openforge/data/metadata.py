@@ -86,6 +86,8 @@ def has_no_tags(o, tags):
 
 def apply_default_metadata(o):
     apply_openforge_wall(o)
+    apply_openforge_floor(o)
+    apply_thick_wall(o)
 
 
 def is_openforge_wall(o):
@@ -93,10 +95,24 @@ def is_openforge_wall(o):
     neg_tags = [("build", "s2w"), ("shape", "floor"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
-    tags = [("shape", "wall", "low"), ("connection", "openforge")]
+    tags = [("shape", "wall", "low"), ("connection", "openforge"), ("build", "thick wall")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
     return False
+
+
+def is_openforge_floor(o):
+    tags = [("shape", "floor"), ("connection", "openforge")]
+    neg_tags = [("build", "s2w"), ("shape", "wall"), ("shape", "base")]
+    if has_tags(o, tags) and has_no_tags(o, neg_tags):
+        return True
+
+
+def is_thick_wall(o):
+    tags = [("build", "thick wall"), ("connection", "openforge"), ("component", "wall")]
+    neg_tags = [("build", "s2w"), ("shape", "base")]
+    if has_tags(o, tags) and has_no_tags(o, neg_tags):
+        return True
 
 
 def apply_openforge_wall(o):
@@ -117,6 +133,64 @@ def apply_openforge_wall(o):
                     {"tag": "texture"},
                 ]
                 
+            },
+            "optional": True,
+        }
+    )
+    config["parts"] = parts
+    o["config"] = config
+
+
+def apply_openforge_floor(o):
+    if not is_openforge_floor(o):
+        return
+    config = o.setdefault("config", {})
+    parts = config.setdefault("parts", [])
+    parts.append(
+        {
+            "name": "base",
+            "tags": {
+                "require": [
+                    {"tag": "shape|base"},
+                ],
+                "deny": [
+                    {"tag": "build|s2w"},
+                ],
+                "constrain": [
+                    {"tag": "shape"},
+                    {"tag": "size|width"},
+                    {"tag": "size|depth"},
+                    {"filter": "shape|floor"},
+                    {"filter": "shape|wall"},
+                ]
+                
+            },
+            "optional": True,
+        }
+    )
+    config["parts"] = parts
+    o["config"] = config
+
+def apply_thick_wall(o):
+    if not is_thick_wall(o):
+        return
+    config = o.setdefault("config", {})
+    parts = config.setdefault("parts", [])
+    parts.append(
+        {
+            "name": "base",
+            "tags": {
+                "require": [
+                    {"tag": "shape|base"},
+                ],
+                "deny": [
+                    {"tag": "build|s2w"},
+                ],
+                "constrain": [
+                    {"tag": "shape"},
+                    {"tag": "size|width"},
+                    {"tag": "size|depth"},
+                ],
             },
             "optional": True,
         }

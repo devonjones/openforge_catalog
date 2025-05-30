@@ -1,6 +1,6 @@
 export function getOtherBlueprintTags(configSelections: Record<string, any>, title: string, blueprint: any): Set<string> {
   const otherBlueprintTags = new Set<string>();
-  getParentBlueprintTags(configSelections, title).forEach(tag => otherBlueprintTags.add(tag));
+  getParentBlueprintTags(configSelections, title, blueprint).forEach(tag => otherBlueprintTags.add(tag));
   getSelectionsWithSamePrefix(configSelections, title).forEach(([_, bp]) => {
     bp.tags.forEach((tag: string) => otherBlueprintTags.add(tag));
   });
@@ -8,13 +8,18 @@ export function getOtherBlueprintTags(configSelections: Record<string, any>, tit
   return otherBlueprintTags;
 }
 
-export function getParentBlueprintTags(configSelections: Record<string, any>, title: string): Set<string> {
+export function getParentBlueprintTags(configSelections: Record<string, any>, title: string, blueprint: any): Set<string> {
   const tags = new Set<string>();
   if (title.includes('|')) {
     const parentKey = title.split('|').slice(0, -1).join('|');
     const parentBlueprint = configSelections[parentKey];
     if (parentBlueprint && parentBlueprint.tags) {
       parentBlueprint.tags.forEach((tag: string) => tags.add(tag));
+    }
+  } else {
+    // No parentKey: use the top-level object (title itself)
+    if (blueprint.tags) {
+      blueprint.tags.forEach((tag: string) => tags.add(tag));
     }
   }
   return tags;

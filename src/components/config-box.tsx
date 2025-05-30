@@ -71,16 +71,33 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     }
 
     if (tags.constrain && tags.constrain.length > 0) {
-      requirements.push(
-        <div key="constrain" className="mt-2">
-          <strong className="text-yellow-600">Constrained Tags:</strong>
-          <ul className="list-disc pl-4">
-            {tags.constrain.map((tag, index) => (
-              <li key={index}>{tag.tag}</li>
-            ))}
-          </ul>
-        </div>
-      );
+      const tagConstraints = tags.constrain.filter((c: any) => 'tag' in c) as { tag: string }[];
+      const filterConstraints = tags.constrain.filter((c: any) => 'filter' in c) as { filter: string }[];
+      if (tagConstraints.length > 0) {
+        requirements.push(
+          <div key="constrain" className="mt-2">
+            <strong className="text-yellow-600">Constrained Tags:</strong>
+            <ul className="list-disc pl-4">
+              {tagConstraints.map((tag, index) => (
+                <li key={index}>{tag.tag}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      if (filterConstraints.length > 0) {
+        requirements.push(
+          <div key="filter" className="mt-2">
+            <strong className="text-purple-600">Constraint Filtered Tags:</strong>
+            <ul className="list-disc pl-4">
+              {filterConstraints.map((f, index) => (
+                <li key={index}>{f.filter}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
     }
 
     return requirements;

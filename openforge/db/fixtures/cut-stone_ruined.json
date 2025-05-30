@@ -12,17 +12,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "shape",
-                "floor",
-                "a"
+                "size",
+                "width",
+                2
             ],
             [
                 "size",
-                "width",
+                "depth",
                 2
             ],
             [
@@ -35,13 +31,17 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "shape",
+                "floor",
+                "a"
             ]
         ],
         "images": [
@@ -49,7 +49,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/bab470/bab47025e20f57340bc919edca4ece23.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -64,12 +101,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "width",
+                2
             ],
             [
                 "size",
-                "width",
+                "depth",
                 2
             ],
             [
@@ -82,18 +120,17 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
+                "shape",
+                "floor",
+                "b"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "b"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -101,7 +138,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/472a97/472a972100a0ba909aa8d20c553b1bec.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -116,12 +190,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "width",
+                2
             ],
             [
                 "size",
-                "width",
+                "depth",
                 2
             ],
             [
@@ -134,18 +209,17 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
                 "floor",
                 "c"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -153,7 +227,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0b7acd/0b7acd7644d5719fa545bd402a86a0f3.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -168,12 +279,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "width",
+                2
             ],
             [
                 "size",
-                "width",
+                "depth",
                 2
             ],
             [
@@ -186,11 +298,6 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
             ],
@@ -198,6 +305,10 @@
                 "shape",
                 "floor",
                 "d"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -205,7 +316,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/2d1644/2d164425d7662549304897ca49714241.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -220,8 +368,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -234,7 +382,7 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
@@ -243,8 +391,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -252,7 +404,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0aedcb/0aedcbc6ae9b4678d96c473434857e8e.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -267,13 +456,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -285,13 +474,17 @@
                 "floor"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                1
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -299,7 +492,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/87cda8/87cda8d47e49589a3e99f97011493e13.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -314,8 +544,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -327,13 +557,17 @@
                 "floor"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                1
+                "texture",
+                "cut-stone"
             ],
             [
                 "size",
@@ -346,7 +580,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/153fe4/153fe433f570c89c078680d5e66ca7d8.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -361,8 +632,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -378,13 +649,17 @@
                 "openforge"
             ],
             [
-                "size",
-                "width",
-                3
+                "texture",
+                "cut-stone"
             ],
             [
                 "size",
                 "depth",
+                3
+            ],
+            [
+                "size",
+                "width",
                 3
             ]
         ],
@@ -393,7 +668,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/c0d731/c0d731f8eea07699a1bfa050988f4138.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -408,8 +720,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -422,6 +734,11 @@
             ],
             [
                 "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
                 "width",
                 4
             ],
@@ -430,9 +747,8 @@
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                1
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -440,7 +756,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/46d40c/46d40c607e01d0955f7335d45cc969d9.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -455,8 +808,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -469,17 +827,16 @@
             ],
             [
                 "size",
-                "depth",
-                2
-            ],
-            [
-                "size",
                 "width",
                 4
             ],
             [
                 "connection",
                 "openforge"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -487,7 +844,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/83d688/83d688bbd61c062ff017825304d915c0.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -502,8 +896,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -520,13 +914,17 @@
                 4
             ],
             [
+                "size",
+                "depth",
+                4
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                4
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -534,7 +932,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/71b618/71b618f2e87812897baa559633508535.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -549,18 +984,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "size",
                 "width",
                 2
             ],
             [
-                "component",
-                "collapsed_blocks",
-                "a"
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -572,17 +1007,21 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
+                "component",
+                "collapsed_blocks"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
-                "collapsed_blocks"
+                "collapsed_blocks",
+                "a"
             ]
         ],
         "images": [
@@ -590,7 +1029,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/44d8de/44d8de4765a2922fd062f383d5f15db5.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -605,13 +1081,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -623,15 +1104,6 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "component",
                 "collapsed_blocks",
                 "b"
@@ -639,6 +1111,14 @@
             [
                 "component",
                 "collapsed_blocks"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -646,7 +1126,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/804117/80411758723bbaff5f060a649ab9a0a5.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -661,13 +1178,23 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed_blocks",
+                "c"
             ],
             [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -679,22 +1206,16 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
+                "component",
+                "collapsed_blocks"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed_blocks",
-                "c"
-            ],
-            [
-                "component",
-                "collapsed_blocks"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -702,7 +1223,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/c610e4/c610e42958a0f25a8b0fe8c848f10dcb.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -717,13 +1275,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -735,9 +1298,8 @@
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                2
+                "component",
+                "collapsed_blocks"
             ],
             [
                 "connection",
@@ -745,12 +1307,12 @@
             ],
             [
                 "component",
-                "collapsed_blocks"
-            ],
-            [
-                "component",
                 "collapsed_blocks",
                 "d"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -758,7 +1320,44 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/c8aebf/c8aebfd49aee14e17d6c9eb8149a4da4.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -773,8 +1372,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "texture",
@@ -786,18 +1395,13 @@
                 "floor"
             ],
             [
-                "shape",
-                "floor",
-                "s2w"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
                 "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
             ],
             [
                 "connection",
@@ -805,17 +1409,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -838,8 +1437,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
@@ -856,9 +1465,9 @@
                 "floor"
             ],
             [
-                "shape",
-                "floor",
-                "s2w"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -869,18 +1478,8 @@
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -903,12 +1502,27 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
                 "width",
+                2
+            ],
+            [
+                "size",
+                "depth",
                 2
             ],
             [
@@ -922,16 +1536,6 @@
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
                 "wall"
             ],
             [
@@ -939,13 +1543,8 @@
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -968,8 +1567,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "texture",
@@ -981,9 +1590,9 @@
                 "floor"
             ],
             [
-                "shape",
-                "floor",
-                "s2w"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -994,23 +1603,13 @@
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
+                "texture",
+                "cut-stone"
             ],
             [
                 "size",
                 "width",
                 3
-            ],
-            [
-                "build",
-                "s2w"
             ]
         ],
         "images": [
@@ -1033,8 +1632,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "texture",
@@ -1047,11 +1656,6 @@
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "shape",
                 "wall"
             ],
             [
@@ -1059,9 +1663,8 @@
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
+                "texture",
+                "cut-stone"
             ],
             [
                 "size",
@@ -1072,10 +1675,6 @@
                 "size",
                 "width",
                 3
-            ],
-            [
-                "build",
-                "s2w"
             ]
         ],
         "images": [
@@ -1098,8 +1697,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "texture",
@@ -1111,9 +1720,13 @@
                 "floor"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "floor",
-                "s2w"
+                "wall"
             ],
             [
                 "size",
@@ -1121,26 +1734,12 @@
                 4
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1163,8 +1762,23 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -1177,13 +1791,7 @@
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "wall"
             ],
             [
                 "size",
@@ -1191,21 +1799,12 @@
                 4
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1228,8 +1827,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "texture",
@@ -1242,8 +1851,7 @@
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
+                "wall"
             ],
             [
                 "size",
@@ -1251,26 +1859,17 @@
                 4
             ],
             [
-                "shape",
-                "wall"
+                "size",
+                "depth",
+                4
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1293,8 +1892,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsing_blocks",
+                "a"
+            ],
+            [
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
@@ -1306,45 +1915,35 @@
                 "collapsing_blocks"
             ],
             [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "component",
-                "collapsing_blocks",
-                "a"
+                "floor"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1367,8 +1966,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
@@ -1380,9 +1989,22 @@
                 "collapsing_blocks"
             ],
             [
+                "size",
+                "depth",
+                2
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "component",
@@ -1390,35 +2012,12 @@
                 "b"
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
-                "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1441,8 +2040,18 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
@@ -1454,45 +2063,35 @@
                 "collapsing_blocks"
             ],
             [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "component",
+                "collapsing_blocks",
+                "c"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
                 "shape",
-                "floor"
-            ],
-            [
-                "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
                 "wall"
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
-                "component",
-                "collapsing_blocks",
-                "c"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1515,8 +2114,23 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsing_blocks",
+                "d"
+            ],
+            [
+                "shape",
+                "floor",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
+            ],
+            [
+                "build",
+                "s2w"
             ],
             [
                 "size",
@@ -1528,45 +2142,30 @@
                 "collapsing_blocks"
             ],
             [
+                "size",
+                "depth",
+                2
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
-                "component",
-                "collapsing_blocks",
-                "d"
+                "shape",
+                "wall"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1589,8 +2188,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1599,12 +2198,7 @@
             ],
             [
                 "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
-                "build",
-                "separate wall"
+                "collapsed"
             ],
             [
                 "texture",
@@ -1616,17 +2210,22 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -1634,7 +2233,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/41bd54/41bd54fdead765c0a86d25b9642a3e0e.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1649,8 +2274,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1658,8 +2283,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -1667,26 +2292,26 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -1694,7 +2319,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/447be5/447be5409e4a8d45b05c023a062173fa.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1709,30 +2360,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
                 "width",
                 2
-            ],
-            [
-                "build",
-                "separate wall"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "component",
@@ -1744,9 +2378,26 @@
                 "collapsed"
             ],
             [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1754,7 +2405,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/67bef8/67bef83f3f2302481d8183fa3c751641.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1769,13 +2446,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1783,8 +2455,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -1796,17 +2468,22 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-full"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1814,7 +2491,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/403b01/403b0193935fd83ec5c3c1e31c1aa795.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1829,13 +2532,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1843,8 +2541,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -1856,17 +2554,22 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -1874,7 +2577,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/323ee6/323ee62654d6f817ecc743e7ae9b59b2.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1889,8 +2618,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1898,8 +2632,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -1907,26 +2641,21 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -1934,7 +2663,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/aad782/aad782a46b96c796eea83f942ef430a2.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -1949,8 +2704,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1958,8 +2713,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -1967,26 +2722,26 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -1994,7 +2749,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/656179/6561792ceaf07abe1e7e0ff6bbc31b9a.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2009,15 +2790,6 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "build",
                 "separate wall"
             ],
@@ -2025,6 +2797,15 @@
                 "component",
                 "collapsed",
                 "minimal-low"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2036,17 +2817,17 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2054,7 +2835,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/5b182c/5b182c20b494500460152f220c0258a8.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2069,8 +2876,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2078,8 +2885,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2091,12 +2898,13 @@
                 "wall"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "openlock",
+                "A"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -2104,9 +2912,8 @@
                 "minimal"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2114,7 +2921,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/624548/624548cb7a31e322ccaee17c404cc7a2.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2129,8 +2962,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2139,12 +2972,7 @@
             ],
             [
                 "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
-                "build",
-                "separate wall"
+                "collapsed"
             ],
             [
                 "texture",
@@ -2156,6 +2984,11 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
@@ -2165,17 +2998,17 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -2183,7 +3016,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/674d5c/674d5c156729904dad224b3b94ff03f9.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2198,8 +3057,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2207,8 +3066,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2216,13 +3075,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -2234,17 +3093,17 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -2252,7 +3111,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0f05fc/0f05fc1d9d65a86b1b81018d20bbb209.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2267,8 +3152,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2276,8 +3161,13 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2289,13 +3179,13 @@
                 "wall"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "openlock",
+                "A"
             ],
             [
-                "component",
-                "collapsed",
-                "full"
+                "connection",
+                "openforge"
             ],
             [
                 "connection",
@@ -2303,17 +3193,12 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2321,7 +3206,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/3fcf17/3fcf17e365b7366a2d10af8b3ed1d205.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2336,13 +3247,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2350,8 +3256,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2363,8 +3269,18 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-full"
             ],
             [
                 "connection",
@@ -2372,17 +3288,12 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2390,7 +3301,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/456cba/456cbaec78fa00d49ef5a8c4a09b08f5.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2405,13 +3342,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2419,8 +3351,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2432,6 +3364,11 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
@@ -2441,17 +3378,17 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -2459,7 +3396,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/639885/639885eb39eddb532ffde5e93fe98b22.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2474,8 +3437,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2483,8 +3451,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2492,13 +3460,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -2510,17 +3478,12 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2528,7 +3491,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/137b72/137b728a7c913b3f6098fe03db985cc1.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2543,8 +3532,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2552,8 +3541,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2561,13 +3550,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -2579,17 +3568,17 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -2597,7 +3586,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/a5ddcf/a5ddcf620fcd0079076806963848578e.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2612,15 +3627,6 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "build",
                 "separate wall"
             ],
@@ -2628,6 +3634,15 @@
                 "component",
                 "collapsed",
                 "minimal-low"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2639,6 +3654,11 @@
                 "wall"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
@@ -2648,17 +3668,12 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2666,7 +3681,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/5a367d/5a367dbf3be3374a0729f2c81bb21b11.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2681,8 +3722,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2691,12 +3732,7 @@
             ],
             [
                 "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
-                "build",
-                "separate wall"
+                "collapsed"
             ],
             [
                 "texture",
@@ -2709,25 +3745,30 @@
             ],
             [
                 "connection",
-                "openforge"
+                "side",
+                "dragonlock"
             ],
             [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
-                "side",
-                "dragonlock"
+                "openforge"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -2735,7 +3776,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/617591/617591e09d65aebaa473295cb067b752.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2750,8 +3817,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2759,8 +3826,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2768,21 +3835,8 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "connection",
@@ -2790,13 +3844,26 @@
                 "dragonlock"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -2804,7 +3871,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/915848/9158488200768e944bd6a55b0056b94e.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2819,8 +3912,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2828,8 +3921,13 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2842,30 +3940,25 @@
             ],
             [
                 "connection",
-                "openforge"
+                "side",
+                "dragonlock"
             ],
             [
-                "component",
-                "collapsed",
-                "full"
-            ],
-            [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
-                "side",
-                "dragonlock"
+                "openforge"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2873,7 +3966,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/dc2d0f/dc2d0fb14254587ef8d0452b70ef4a6f.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2888,13 +4007,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2902,8 +4016,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2916,25 +4030,30 @@
             ],
             [
                 "connection",
+                "side",
+                "dragonlock"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
                 "openforge"
             ],
             [
                 "component",
-                "collapsed"
-            ],
-            [
-                "connection",
-                "side",
-                "dragonlock"
+                "collapsed",
+                "low-full"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -2942,7 +4061,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/01ba22/01ba22730e5f46ca43d839188e91ad2d.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -2957,13 +4102,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -2971,8 +4111,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -2985,25 +4125,30 @@
             ],
             [
                 "connection",
-                "openforge"
+                "side",
+                "dragonlock"
             ],
             [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
-                "side",
-                "dragonlock"
+                "openforge"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -3011,7 +4156,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/b6b027/b6b027d18b8bb72c016442a675cb642c.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -3026,8 +4197,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3035,8 +4211,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3044,21 +4220,8 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "connection",
@@ -3066,13 +4229,21 @@
                 "dragonlock"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3080,7 +4251,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/807aec/807aecac8acbd402c9cdb1db1ffe3a18.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -3095,8 +4292,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3104,8 +4301,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3113,21 +4310,8 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "connection",
@@ -3135,13 +4319,26 @@
                 "dragonlock"
             ],
             [
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -3149,7 +4346,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/515e26/515e26cf3db5dab6d0826da979c76bf6.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -3164,15 +4387,6 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "build",
                 "separate wall"
             ],
@@ -3180,6 +4394,15 @@
                 "component",
                 "collapsed",
                 "minimal-low"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3192,25 +4415,25 @@
             ],
             [
                 "connection",
-                "openforge"
+                "side",
+                "dragonlock"
             ],
             [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
-                "side",
-                "dragonlock"
+                "openforge"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3218,7 +4441,33 @@
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/96d5a9/96d5a9176bc0f5a14c7699348f576cfc.png"
             }
-        ]
+        ],
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ],
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ]
+                    },
+                    "optional": true
+                }
+            ]
+        }
     },
     {
         "type": "model",
@@ -3233,8 +4482,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3247,23 +4496,6 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
                 "component",
                 "collapsed",
                 "full"
@@ -3273,9 +4505,26 @@
                 "collapsed"
             ],
             [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3298,8 +4547,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3307,18 +4556,13 @@
                 "mirror"
             ],
             [
-                "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
                 "size",
                 "width",
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3326,21 +4570,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -3363,8 +4612,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3373,12 +4622,7 @@
             ],
             [
                 "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
-                "build",
-                "separate wall"
+                "collapsed"
             ],
             [
                 "texture",
@@ -3386,21 +4630,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -3423,8 +4672,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3437,8 +4686,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3446,26 +4695,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -3488,8 +4737,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3497,8 +4746,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3506,26 +4755,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -3548,30 +4797,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
                 "width",
                 2
-            ],
-            [
-                "build",
-                "separate wall"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "shape",
-                "wall"
             ],
             [
                 "component",
@@ -3583,9 +4815,26 @@
                 "collapsed"
             ],
             [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3608,8 +4857,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3622,8 +4876,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3631,26 +4885,21 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
+                "shape",
+                "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3673,13 +4922,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3692,8 +4936,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3701,21 +4945,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3738,13 +4987,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3752,8 +4996,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3761,21 +5005,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3798,13 +5047,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3817,8 +5061,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3826,21 +5070,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -3863,13 +5112,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3877,8 +5121,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3886,21 +5130,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -3923,8 +5172,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3932,8 +5186,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -3941,26 +5195,21 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
+                "shape",
+                "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -3983,8 +5232,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -3997,8 +5246,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4006,16 +5255,17 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
             ],
             [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -4023,9 +5273,8 @@
                 "minimal"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4048,8 +5297,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4062,8 +5311,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4071,26 +5320,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -4113,8 +5362,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4122,8 +5371,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4131,26 +5380,26 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -4173,8 +5422,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-low"
             ],
             [
                 "component",
@@ -4187,13 +5441,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "component",
-                "collapsed",
-                "minimal-low"
+                "collapsed"
             ],
             [
                 "texture",
@@ -4201,21 +5450,21 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4238,15 +5487,6 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "build",
                 "separate wall"
             ],
@@ -4256,26 +5496,35 @@
                 "minimal-low"
             ],
             [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "width",
+                2
             ],
             [
                 "component",
                 "collapsed"
             ],
             [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4298,8 +5547,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4307,8 +5556,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4316,16 +5565,17 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
             ],
             [
-                "component",
-                "collapsed"
+                "size",
+                "openlock",
+                "A"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -4333,9 +5583,8 @@
                 "minimal"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4358,8 +5607,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4372,8 +5621,13 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4381,17 +5635,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
             ],
             [
-                "component",
-                "collapsed",
-                "full"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4399,17 +5649,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4432,8 +5681,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4441,18 +5690,13 @@
                 "mirror"
             ],
             [
-                "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
                 "size",
                 "width",
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4460,12 +5704,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4473,17 +5718,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -4506,8 +5755,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4516,12 +5765,7 @@
             ],
             [
                 "component",
-                "collapsed",
-                "full-low"
-            ],
-            [
-                "build",
-                "separate wall"
+                "collapsed"
             ],
             [
                 "texture",
@@ -4529,12 +5773,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4542,17 +5787,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-low"
             ]
         ],
         "images": [
@@ -4575,8 +5824,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4589,8 +5838,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4598,17 +5847,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4616,17 +5861,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -4649,8 +5898,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4658,8 +5907,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4667,17 +5916,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full-minimal"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4685,17 +5930,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full-minimal"
             ]
         ],
         "images": [
@@ -4718,8 +5967,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4727,8 +5976,13 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4736,17 +5990,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
             ],
             [
-                "component",
-                "collapsed",
-                "full"
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4754,17 +6004,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4787,8 +6036,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4801,8 +6055,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4810,17 +6064,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4828,17 +6078,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4861,13 +6110,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -4880,8 +6124,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4889,12 +6133,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4903,16 +6148,20 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -4935,13 +6184,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4949,8 +6193,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -4958,12 +6202,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -4972,16 +6217,20 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -5004,13 +6253,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -5023,8 +6267,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -5032,12 +6276,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5045,17 +6290,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -5078,13 +6327,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-minimal"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -5092,8 +6336,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -5101,12 +6345,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5114,17 +6359,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "low-minimal"
             ]
         ],
         "images": [
@@ -5147,8 +6396,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "component",
+                "collapsed",
+                "low"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -5156,8 +6410,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -5165,17 +6419,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5183,17 +6433,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -5216,8 +6465,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
@@ -5230,8 +6479,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -5239,17 +6488,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5257,17 +6502,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -5290,8 +6539,8 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -5299,8 +6548,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed"
             ],
             [
                 "texture",
@@ -5308,17 +6557,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5326,17 +6571,21 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-full"
             ]
         ],
         "images": [
@@ -5359,8 +6608,13 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed",
+                "minimal-low"
             ],
             [
                 "component",
@@ -5373,13 +6627,8 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "component",
-                "collapsed",
-                "minimal-low"
+                "collapsed"
             ],
             [
                 "texture",
@@ -5387,12 +6636,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5400,17 +6650,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [
@@ -5433,15 +6682,6 @@
         },
         "tags": [
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "build",
                 "separate wall"
             ],
@@ -5451,17 +6691,27 @@
                 "minimal-low"
             ],
             [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ],
             [
                 "connection",
@@ -5469,17 +6719,16 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone"
             ]
         ],
         "images": [

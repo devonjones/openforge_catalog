@@ -64,6 +64,7 @@ def load_fixtures(conn: connection, alt: str):
 
 
 def _load_data(f):
+    sys.stderr.write(f"Loading {f}\n")
     with open(f, "r") as fh:
         if str(f).endswith(".json"):
             return json.load(fh)

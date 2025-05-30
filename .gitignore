@@ -50,3 +50,5 @@ db-data
 # yarn
 yarn.lock
 *.next
+
+tmp/

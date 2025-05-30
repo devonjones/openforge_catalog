@@ -288,6 +288,26 @@ def filter_shape(tags):
             tags.discard(("shape", "column"))
             tags.discard(("component", "column", "low"))
 
+    def _copy_base_shapes(tags):
+        copy_tags = [
+            "square", "angled", "curved", "convex", "concave", "radial", "corner", "wall"
+        ]
+        for tag in copy_tags:
+            if ("shape", "base", tag) in tags:
+                tags.add(("shape", tag))
+
+    def _check_floor_shapes(tags):
+        if ("shape", "floor") not in tags:
+            return
+        count = 0
+        for tag in tags:
+            if tag[0] == "shape":
+                count += 1
+        if count != 1:
+            return
+        tags.add(("shape", "square"))
+
+
     def _move_tag_chain(tags, old, new):
         def _compare_old(tag, old):
             if len(tag) < len(old):
@@ -428,7 +448,9 @@ def filter_shape(tags):
     if ("shape", "column") in tags:
         _check_columns(tags)
     _check_wall_low(tags)
-
+    if ("shape", "base") in tags:
+        _copy_base_shapes(tags)
+    _check_floor_shapes(tags)
 
 def parse_files(path, files, md5, verbose, upload, config):
 
@@ -528,12 +550,11 @@ def upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
     if s3_key_cache is not None and object_name in s3_key_cache:
         return object_name
     try:
-        sys.stderr.write(f"Testing: {file_path}\n")
-        object_information = s3_client.head_object(Bucket=bucket, Key=object_name)
+        s3_client.head_object(Bucket=bucket, Key=object_name)
     except ClientError as ce:
         if ce.response["Error"]["Code"] == "404":
             sys.stderr.write(f"Uploading: {file_path}\n")
-            response = s3_client.upload_fileobj(
+            s3_client.upload_fileobj(
                 io.BytesIO(open(file_path, "rb").read()), bucket, object_name
             )
         else:
@@ -565,12 +586,16 @@ def clean_files(path, files):
 def _extract_skip(metadata_files: list[str]) -> set[str]:
     skip = set()
     for metadata_file in metadata_files:
-        path, _ = os.path.split(metadata_file)
-        with open(metadata_file, "r") as f:
-            metadata = safe_load(f)
-        for key, value in metadata.items():
-            if value.get("ignore", False):
-                skip.add(os.path.join(path, key))
+        try:
+            path, _ = os.path.split(metadata_file)
+            with open(metadata_file, "r") as f:
+                metadata = safe_load(f)
+            for key, value in metadata.items():
+                if value.get("ignore", False):
+                    skip.add(os.path.join(path, key))
+        except Exception as e:
+            sys.stderr.write(f"Error reading metadata file: {metadata_file}\n")
+            raise e
     return skip
 
 

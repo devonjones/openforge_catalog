@@ -81,13 +81,25 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       }
       if (configValues.constrain) {
         const constrain = configValues.constrain;
+        // Collect all filter values from constrain
+        const filterTags = constrain.filter((c: any) => 'filter' in c).map((c: any) => c.filter);
         for (const key in constrain) {
           const data = constrain[key];
-          if (data.tag) {
+          if ('tag' in data && data.tag) {
             const constraintTag = data.tag;
             tagsFromOtherSelections.forEach(tag => {
               if (tag.startsWith(constraintTag)) {
-                tags.require.push(tag as string);
+                // Skip if any filter matches (exact or prefix) this tag
+                let skip = false;
+                for (const filterTag of filterTags) {
+                  if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
+                    skip = true;
+                    break;
+                  }
+                }
+                if (!skip) {
+                  tags.require.push(tag as string);
+                }
               }
             });
           }

@@ -10,11 +10,13 @@ export interface ConfigTag {
   tag: string;
 }
 
+export type ConstrainTag = { tag: string } | { filter: string };
+
 export interface ConfigTags {
   accept?: ConfigTag[];
   require?: ConfigTag[];
   deny?: ConfigTag[];
-  constrain?: ConfigTag[];
+  constrain?: ConstrainTag[];
 }
 
 export interface ConfigPart {
