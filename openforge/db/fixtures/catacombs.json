@@ -12,17 +12,17 @@
         },
         "tags": [
             [
-                "part",
-                "burial_slab"
+                "interface",
+                "loculus",
+                "slab"
             ],
             [
                 "texture",
                 "stone"
             ],
             [
-                "interface",
-                "loculus",
-                "slab"
+                "part",
+                "burial_slab"
             ]
         ],
         "images": [
@@ -45,17 +45,17 @@
         },
         "tags": [
             [
-                "part",
-                "burial_slab"
+                "interface",
+                "loculus",
+                "slab"
             ],
             [
                 "texture",
                 "stone"
             ],
             [
-                "interface",
-                "loculus",
-                "slab"
+                "part",
+                "burial_slab"
             ]
         ],
         "images": [
@@ -78,14 +78,6 @@
         },
         "tags": [
             [
-                "part",
-                "burial_slab"
-            ],
-            [
-                "texture",
-                "stone"
-            ],
-            [
                 "decoration",
                 "bundle"
             ],
@@ -93,6 +85,14 @@
                 "interface",
                 "loculus",
                 "slab"
+            ],
+            [
+                "texture",
+                "stone"
+            ],
+            [
+                "part",
+                "burial_slab"
             ]
         ],
         "images": [
@@ -115,21 +115,21 @@
         },
         "tags": [
             [
-                "decoration",
-                "skeleton"
-            ],
-            [
-                "part",
-                "burial_slab"
+                "interface",
+                "loculus",
+                "slab"
             ],
             [
                 "texture",
                 "stone"
             ],
             [
-                "interface",
-                "loculus",
-                "slab"
+                "part",
+                "burial_slab"
+            ],
+            [
+                "decoration",
+                "skeleton"
             ]
         ],
         "images": [
@@ -152,16 +152,8 @@
         },
         "tags": [
             [
-                "component",
-                "loculus"
-            ],
-            [
-                "texture",
-                "catacombs"
-            ],
-            [
-                "component",
-                "wall"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -169,9 +161,34 @@
                 1
             ],
             [
+                "size",
+                "openlock",
+                "S"
+            ],
+            [
+                "texture",
+                "catacombs"
+            ],
+            [
+                "component",
+                "loculus"
+            ],
+            [
                 "connection",
                 "openforge",
                 "split"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "bottom"
             ],
             [
                 "size",
@@ -179,25 +196,8 @@
                 2
             ],
             [
-                "size",
-                "openlock",
-                "S"
-            ],
-            [
-                "connection",
-                "bottom"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "build",
-                "thick wall"
             ]
         ],
         "images": [
@@ -281,6 +281,10 @@
         },
         "tags": [
             [
+                "part",
+                "loculus_arch"
+            ],
+            [
                 "texture",
                 "stone"
             ],
@@ -288,10 +292,6 @@
                 "interface",
                 "loculus",
                 "arch"
-            ],
-            [
-                "part",
-                "loculus_arch"
             ]
         ],
         "images": [
@@ -314,6 +314,10 @@
         },
         "tags": [
             [
+                "part",
+                "loculus_arch"
+            ],
+            [
                 "texture",
                 "stone"
             ],
@@ -321,10 +325,6 @@
                 "interface",
                 "loculus",
                 "arch"
-            ],
-            [
-                "part",
-                "loculus_arch"
             ]
         ],
         "images": [
@@ -347,16 +347,8 @@
         },
         "tags": [
             [
-                "component",
-                "loculus"
-            ],
-            [
-                "texture",
-                "catacombs"
-            ],
-            [
-                "component",
-                "wall"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -365,25 +357,33 @@
             ],
             [
                 "size",
-                "width",
-                2
-            ],
-            [
-                "size",
                 "openlock",
                 "S"
             ],
             [
-                "connection",
-                "openforge"
+                "texture",
+                "catacombs"
             ],
             [
-                "shape",
-                "square"
+                "component",
+                "loculus"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "build",
                 "thick wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
         "images": [

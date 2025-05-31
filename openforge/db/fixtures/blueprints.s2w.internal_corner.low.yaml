@@ -1,11 +1,11 @@
-- name: "S2W: Wall on Tile: Corner: Low (Single Piece)"
+- name: "S2W: Wall on Tile: Internal Corner: Low (Single Piece)"
   type: "blueprint"
   tags:
     - [object, tile]
     - [object, tile, wall_on_tile]
     - [build, s2w]
     - [build, s2w, single_piece]
-    - [shape, corner, low]
+    - [shape, internal_corner, low]
   config:
     parts:
       - name: column
@@ -15,37 +15,11 @@
             - tag: shape|column|low
             - tag: build|s2w
             - tag: size|column_shape|L
-          constrain:
-            - tag: connection|side
-      - name: right wall
-        tags:
-          require:
-            - tag: build|s2w
-            - tag: shape|corner|right
-            - tag: shape|wall|low
-            - tag: connection|openforge
-            - tag: size|width|2
-          constrain:
-            - tag: connection|side
-        fulfills:
-          - part: base
-      - name: left wall
-        tags:
-          require:
-            - tag: build|s2w
-            - tag: shape|corner|left
-            - tag: shape|wall|low
-            - tag: connection|openforge
-            - tag: size|width|2
-          constrain:
-            - tag: connection|side
-        fulfills:
-          - part: base
       - name: floor
         tags:
           require:
             - tag: shape|floor
-            - tag: shape|floor|corner
+            - tag: shape|floor|internal_corner
             - tag: build|s2w
             - tag: size|width|2
             - tag: size|depth|2
@@ -60,17 +34,15 @@
             - tag: shape|wall
             - tag: build|s2w
             - tag: shape|option|notch
-          constrain:
-            - tag: connection
 
-- name: "S2W: Wall on Tile: Corner: Low (Modular)"
+- name: "S2W: Wall on Tile: Internal Corner: Low (Modular)"
   type: "blueprint"
   tags:
     - [object, tile]
     - [object, tile, wall_on_tile]
     - [build, s2w]
     - [build, s2w, modular]
-    - [shape, corner, low]
+    - [shape, corner]
   config:
     parts:
       - name: column
@@ -80,27 +52,11 @@
             - tag: size|column_shape|L
           deny:
             - tag: build|s2w
-          constrain:
-            - tag: connection|side
-      - name: right wall
-        tags:
-          require:
-            - tag: shape|wall|low
-            - tag: size|width|1.5
-          constrain:
-            - tag: connection|side
-      - name: left wall
-        tags:
-          require:
-            - tag: shape|wall|low
-            - tag: size|width|1.5
-          constrain:
-            - tag: connection|side
       - name: floor
         tags:
           require:
             - tag: shape|floor
-            - tag: shape|floor|corner
+            - tag: shape|floor|internal_corner
             - tag: build|s2w
             - tag: size|width|2
             - tag: size|depth|2
@@ -109,12 +65,10 @@
           require:
             - tag: shape|base
             - tag: build|s2w
-            - tag: shape|base|corner
+            - tag: shape|base|internal_corner
             - tag: size|width|2
             - tag: size|depth|2
           deny:
             - tag: shape|wall
             - tag: shape|base|wall
             - tag: shape|option|notch
-          constrain:
-            - tag: connection

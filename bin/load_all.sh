@@ -14,5 +14,5 @@
 ./dropbox_scanner --verbose --subset=tiles/sewers --upload > ../openforge/db/fixtures/sewers.json.next
 
 pushd ../openforge/db/fixtures/
-rename 's/\.json\.next/.json/' *.json.next
+rename -f 's/\.json\.next/.json/' *.json.next
 popd

@@ -65,6 +65,8 @@
             - tag: shape|option|notch
           constrain:
             - tag: connection
+          filter:
+            - tag: connection|side
 
 - name: "S2W: Wall on Tile: Corner (Any, Modular)"
   type: "blueprint"
@@ -79,7 +81,6 @@
       - name: column
         tags:
           require:
-            - tag: shape|column|corner
             - tag: size|column_shape|L
           deny:
             - tag: shape|column|low
@@ -124,3 +125,5 @@
             - tag: shape|option|notch
           constrain:
             - tag: connection
+          filter:
+            - tag: connection|side
