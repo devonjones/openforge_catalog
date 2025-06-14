@@ -40,15 +40,16 @@ import type { TagNode, Blueprint, Paging } from '@/types';
 import { devLog } from '@/utils/log';
 
 export interface TagStore {
-  data: Record<string, TagNode>;
+  data: Record<string, any>;
   expandedNodes: Record<string, boolean>;
   selectedTags: string[];
   denyTags: string[];
-  blueprints: Blueprint[];
-  paging: Paging | null;
+  blueprints: any[];
+  paging: any;
   autoload: boolean;
   search_models: boolean;
   search_blueprints: boolean;
+  searchTerm: string | null;
   fetchData: () => Promise<void>;
   setData: (tagCounts: object) => void;
   toggleNode: (key: string) => void;
@@ -60,7 +61,8 @@ export interface TagStore {
   removeDenyTag: (tag: string) => void;
   setTagState: (tags: { require?: string[]; deny?: string[] }) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
-  setBlueprints: (blueprints: Blueprint[], paging: Paging | null) => void;
+  setBlueprints: (blueprints: any[], paging: any) => void;
+  setSearchTerm: (term: string | null) => void;
 }
 
 export const createTagStore = (autoload = false, search_models = false, search_blueprints = false) => {
@@ -74,6 +76,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     autoload,
     search_models,
     search_blueprints,
+    searchTerm: null,
     fetchData: async () => {
       const { search_models, search_blueprints } = get();
       const params = new URLSearchParams();
@@ -96,7 +99,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     },
     setData: (tagCounts: object) => {
       devLog('setData', tagCounts);
-      const data: Record<string, TagNode> = {};
+      const data: Record<string, any> = {};
 
       Object.entries(tagCounts).forEach(([key, count]) => {
         const tags = key.split('|');
@@ -123,7 +126,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       });
 
       // Aggregate counts for non-leaf nodes
-      const aggregateCounts = (node: TagNode) => {
+      const aggregateCounts = (node: any) => {
         if (!node) return 0;
         let total = node.__count || 0;
         let subTags = 0;
@@ -203,7 +206,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     },
     clearTags: () => {
       devLog('clearTags');
-      set({ selectedTags: [], denyTags: [] });
+      set({ selectedTags: [], denyTags: [], searchTerm: null });
       get().fetchBlueprints();
     },
     setTagState: (tags: { require?: string[]; deny?: string[] }) => {
@@ -214,8 +217,13 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       });
       get().fetchBlueprints();
     },
+    setSearchTerm: (term: string | null) => {
+      devLog('setSearchTerm', term);
+      set({ searchTerm: term });
+      get().fetchBlueprints();
+    },
     fetchBlueprints: async (params?: { next?: string; previous?: string }) => {
-      const { selectedTags, denyTags, search_models, search_blueprints } = get();
+      const { selectedTags, denyTags, search_models, search_blueprints, searchTerm } = get();
 
       const urlParams = new URLSearchParams();
       
@@ -225,12 +233,18 @@ export const createTagStore = (autoload = false, search_models = false, search_b
         if (search_blueprints) urlParams.set('blueprints', 'true');
       }
 
+      // Add search parameter if present
+      if (searchTerm) {
+        urlParams.set('search', searchTerm);
+      }
+
       // Add pagination parameters if provided
       if (params?.next) {
         urlParams.set('next', params.next);
       } else if (params?.previous) {
         urlParams.set('previous', params.previous);
       }
+
       const response = await fetch(`/api/blueprints/tags${urlParams.toString() ? '?' + urlParams.toString() : ''}`, {
         method: 'POST',
         headers: {

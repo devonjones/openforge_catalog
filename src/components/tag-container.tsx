@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
 
 const renderTags = (
@@ -46,13 +46,44 @@ const TagContainer = () => {
   const expandedNodes = useTagContext((state) => state.expandedNodes);
   const toggleNode = useTagContext((state) => state.toggleNode);
   const addTag = useTagContext((state) => state.addTag);
+  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
+  const searchTerm = useTagContext((state) => state.searchTerm);
+  const [searchInput, setSearchInput] = useState(searchTerm || "");
+
+  // Sync searchInput with searchTerm from store
+  React.useEffect(() => {
+    setSearchInput(searchTerm || "");
+  }, [searchTerm]);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
   };
 
+  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const term = searchInput.trim();
+      setSearchTerm(term || null);
+    }
+  }, [searchInput, setSearchTerm]);
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    if (!value) {
+      setSearchTerm(null);
+    }
+  }, [setSearchTerm]);
+
   return (
     <div className="tagContainer">
+      <input
+        type="text"
+        value={searchInput}
+        onChange={handleSearchChange}
+        onKeyDown={handleSearchKeyDown}
+        placeholder="Search blueprints..."
+        style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
+      />
       <div><strong>Browse Tags</strong></div>
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>

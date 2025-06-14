@@ -3,6 +3,7 @@ from psycopg.rows import dict_row
 from werkzeug.exceptions import NotFound
 from jsonschema.exceptions import ValidationError
 import boto3
+import re
 from botocore.config import Config
 from urllib.parse import urlparse
 
@@ -19,6 +20,13 @@ def get_blueprints():
             return jsonify(data)
 
 
+def _create_blueprint_words(data: dict):
+    words = set()
+    for t in data.get("tags", []):
+        words.update(re.split(r"[^a-zA-Z0-9]", t))
+    return list(words)
+
+
 def create_blueprint():
     try:
         validate_schema("blueprint.yaml", request.json)
@@ -27,7 +35,7 @@ def create_blueprint():
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             req_data = request.json
-            data = blueprint_sql.insert_blueprint(cursor, req_data)
+            data = blueprint_sql.insert_blueprint(cursor, req_data, words=_create_blueprint_words(req_data))
             if "tags" in req_data:
                 for tag in req_data["tags"]:
                     tag_sql.insert_tag(cursor, data["id"], tag)
