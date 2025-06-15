@@ -4,8 +4,10 @@ import React from 'react';
 import TagContainer from './tag-container';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
+import TabPartSearchInstructions from './tab-part-search-instructions';
 import { BlueprintProvider } from '@/contexts/blueprint-context';
 import { TagProvider } from '@/contexts/tag-context';
+import { useBlueprintContext } from '@/contexts/blueprint-context';
 
 const TabPartSearch: React.FC = () => {
   return (
@@ -19,12 +21,17 @@ const TabPartSearch: React.FC = () => {
             <ResultsContainer />
           </div>
           <div className='modelDetailsContainerWrapper'>
-            <BlueprintContainer />
+            <BlueprintSelector />
           </div>
         </div>
       </BlueprintProvider>
     </TagProvider>
   );
+};
+
+const BlueprintSelector: React.FC = () => {
+  const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
+  return blueprint ? <BlueprintContainer /> : <TabPartSearchInstructions />;
 };
 
 export default TabPartSearch; 

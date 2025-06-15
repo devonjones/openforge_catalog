@@ -177,19 +177,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault();
     clearTags();
-    // Update URL to remove tag parameters while preserving blueprint_id
-    if (typeof window !== 'undefined') {
-      const currentParams = new URLSearchParams(window.location.search);
-      const blueprintId = currentParams.get('blueprint_id');
-      
-      const newParams = new URLSearchParams();
-      if (blueprintId) {
-        newParams.set('blueprint_id', blueprintId);
-      }
-      
-      const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
-      window.history.pushState({}, '', newUrl);
-    }
+    setSelectedBlueprint(null);
   };
 
   const startCount = (paging?.start_count ?? 0) + 1;

@@ -207,6 +207,11 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     clearTags: () => {
       devLog('clearTags');
       set({ selectedTags: [], denyTags: [], searchTerm: null });
+      // Clear blueprint selection by setting it to null
+      const blueprintStore = (window as any).__BLUEPRINT_STORE__;
+      if (blueprintStore) {
+        blueprintStore.getState().setSelectedBlueprint(null);
+      }
       get().fetchBlueprints();
     },
     setTagState: (tags: { require?: string[]; deny?: string[] }) => {
