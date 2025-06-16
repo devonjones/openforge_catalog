@@ -120,6 +120,11 @@ def test_delete_blueprint(auth_client, test_db):
     assert response.status_code == 204
 
 def test_download_blueprint(client, test_db):
+    # Mock CloudFlare credentials
+    client.application.config["CLOUDFLARE_ENDPOINT"] = "https://test.endpoint"
+    client.application.config["CLOUDFLARE_ACCESS_KEY_ID"] = "test_key"
+    client.application.config["CLOUDFLARE_SECRET_ACCESS_KEY"] = "test_secret"
+    
     blueprint_id = setup_test_data(test_db)
     # Debugging: Print the UUID being used
     print(f"Using UUID: {blueprint_id}")
