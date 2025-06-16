@@ -40,18 +40,18 @@ import type { TagNode, Blueprint, Paging } from '@/types';
 import { devLog } from '@/utils/log';
 
 export interface TagStore {
-  data: Record<string, any>;
+  data: Record<string, TagNode>;
   expandedNodes: Record<string, boolean>;
   selectedTags: string[];
   denyTags: string[];
-  blueprints: any[];
-  paging: any;
+  blueprints: Blueprint[];
+  paging: Paging | null;
   autoload: boolean;
   search_models: boolean;
   search_blueprints: boolean;
   searchTerm: string | null;
   fetchData: () => Promise<void>;
-  setData: (tagCounts: object) => void;
+  setData: (tagCounts: Record<string, number>) => void;
   toggleNode: (key: string) => void;
   addTag: (tag: string) => void;
   addAllTags: (tags: string[]) => void;
@@ -61,7 +61,7 @@ export interface TagStore {
   removeDenyTag: (tag: string) => void;
   setTagState: (tags: { require?: string[]; deny?: string[] }) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
-  setBlueprints: (blueprints: any[], paging: any) => void;
+  setBlueprints: (blueprints: Blueprint[], paging: Paging) => void;
   setSearchTerm: (term: string | null) => void;
 }
 
@@ -97,9 +97,9 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       const tagCounts = result.tag_counts;
       get().setData(tagCounts);
     },
-    setData: (tagCounts: object) => {
+    setData: (tagCounts: Record<string, number>) => {
       devLog('setData', tagCounts);
-      const data: Record<string, any> = {};
+      const data: Record<string, TagNode> = {};
 
       Object.entries(tagCounts).forEach(([key, count]) => {
         const tags = key.split('|');
@@ -126,7 +126,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       });
 
       // Aggregate counts for non-leaf nodes
-      const aggregateCounts = (node: any) => {
+      const aggregateCounts = (node: TagNode) => {
         if (!node) return 0;
         let total = node.__count || 0;
         let subTags = 0;
