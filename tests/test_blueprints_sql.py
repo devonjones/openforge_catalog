@@ -150,12 +150,13 @@ def test_delete_all_blueprints(test_db):
                 blueprint_sql.insert_blueprint(curs, bp)
             
             # Delete all
-            rows = blueprint_sql.delete_all_blueprints(curs)
-            assert rows == 3
+            success = blueprint_sql.delete_all_blueprints(curs)
+            assert success is True
             
-            # Verify none exist
-            result = blueprint_sql.get_all_blueprints(curs)
-            assert len(result) == 0
+            # Verify no blueprints exist
+            curs.execute("SELECT COUNT(*) FROM blueprints")
+            count = curs.fetchone()["count"]
+            assert count == 0
 
 def test_md5_conflict(test_db):
     with test_db.pool.connection() as conn:
