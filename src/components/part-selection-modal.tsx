@@ -19,7 +19,7 @@ interface PartSelectionModalProps {
   tagsFromOtherSelections?: string[];
 }
 
-const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSelected, tagsFromOtherSelections = [] }: PartSelectionModalProps) => {
+const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSelected, tagsFromOtherSelections = [] }: PartSelectionModalProps): React.ReactPortal | null => {
   if (!isOpen) return null;
 
   return createPortal(

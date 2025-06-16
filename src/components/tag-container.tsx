@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useTagContext } from '@/contexts/tag-context';
 
 const useDebounce = <T,>(value: T, delay: number): T => {
@@ -18,10 +19,10 @@ const renderTags = (
   expandedNodes: Record<string, boolean>,
   toggleNode: (key: string) => void,
   handleAddTag: (tag: string) => void,
-  tagDescriptions: Record<string, string>
+  tagDescriptions: Record<string, string>,
+  onTagHover: (tag: string | null, rect?: DOMRect) => void
 ) => {
   return Object.entries(data).map(([tag, value], index) => {
-    
     if (tag.startsWith('__') || tag === 'children') return null;
 
     const key = `${level}-${tag}`;
@@ -43,7 +44,16 @@ const renderTags = (
               )}
             </span>
           )}
-          <span className="group relative">
+          <span
+            className="group relative"
+            onMouseEnter={e => {
+              if (description) {
+                const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                onTagHover(value.__name, rect);
+              }
+            }}
+            onMouseLeave={() => onTagHover(null)}
+          >
             {tag} {value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
               <span className="tagButton" onClick={() => handleAddTag(value.__name)}>
@@ -57,14 +67,9 @@ const renderTags = (
                 </svg>
               </span>
             )}
-            {description && (
-              <div className="absolute left-0 right-0 mx-auto top-full mt-1 w-full max-w-full p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 opacity-0 group-hover:opacity-100 z-50 transition-opacity duration-150 pointer-events-none">
-                {description}
-              </div>
-            )}
           </span>
         </div>
-        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions)}
+        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions, onTagHover)}
       </div>
     );
   });
@@ -82,6 +87,11 @@ const TagContainer = () => {
   const [searchInput, setSearchInput] = useState(searchTerm || "");
   const debouncedSearchInput = useDebounce(searchInput, 300);
 
+  // Tooltip state
+  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
+  const [tooltipRect, setTooltipRect] = useState<DOMRect | null>(null);
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
+
   // Fetch tag descriptions on mount
   useEffect(() => {
     fetchTagDescriptions();
@@ -96,6 +106,13 @@ const TagContainer = () => {
   useEffect(() => {
     setSearchTerm(debouncedSearchInput.trim() || null);
   }, [debouncedSearchInput, setSearchTerm]);
+
+  // Cleanup hover timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    };
+  }, []);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
@@ -112,6 +129,20 @@ const TagContainer = () => {
     setSearchInput(e.target.value);
   }, []);
 
+  // Tooltip handler with delay
+  const handleTagHover = (tag: string | null, rect?: DOMRect) => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    if (tag && rect) {
+      hoverTimeout.current = setTimeout(() => {
+        setHoveredTag(tag);
+        setTooltipRect(rect);
+      }, 500);
+    } else {
+      setHoveredTag(null);
+      setTooltipRect(null);
+    }
+  };
+
   return (
     <div className="tagContainer">
       <input
@@ -123,7 +154,29 @@ const TagContainer = () => {
         style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
       />
       <div><strong>Browse Tags</strong></div>
-      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, tagDescriptions)}</div>
+      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, tagDescriptions, handleTagHover)}</div>
+      {hoveredTag && tooltipRect && tagDescriptions[hoveredTag] && createPortal(
+        <div
+          style={{
+            position: 'fixed',
+            top: tooltipRect.top + tooltipRect.height + 4,
+            left: Math.max(8, tooltipRect.left - 100),
+            width: 400,
+            zIndex: 2000,
+            background: 'white',
+            border: '2px solid #333',
+            borderRadius: 8,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+            padding: 16,
+            color: '#222',
+            fontSize: 14,
+            pointerEvents: 'none',
+          }}
+        >
+          {tagDescriptions[hoveredTag]}
+        </div>,
+        document.body
+      )}
     </div>
   );
 };

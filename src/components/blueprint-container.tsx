@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Blueprint, ConfigPart } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
@@ -23,6 +23,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const [copied, setCopied] = useState(false);
   const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
   const [hoveredTag, setHoveredTag] = useState<string | null>(null);
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
   const tagDescriptions = useTagContext((state) => state.tagDescriptions);
   
   const shouldShowDownloadLink = (blueprint: Blueprint) => {
@@ -152,6 +153,21 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     );
   };
 
+  // Tooltip delay logic
+  const handleTagMouseEnter = (tag: string) => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHoveredTag(tag), 500);
+  };
+  const handleTagMouseLeave = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setHoveredTag(null);
+  };
+  useEffect(() => {
+    return () => {
+      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    };
+  }, []);
+
   if (!blueprint) {
     return <div>No Blueprint Selected</div>;
   }
@@ -194,8 +210,8 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
           {blueprint.tags.map(tag => (
             <span
               key={tag}
-              onMouseEnter={() => setHoveredTag(tag)}
-              onMouseLeave={() => setHoveredTag(null)}
+              onMouseEnter={() => handleTagMouseEnter(tag)}
+              onMouseLeave={handleTagMouseLeave}
             >
               <button
                 onClick={() => addTag(tag)}

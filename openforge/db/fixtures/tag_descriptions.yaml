@@ -37,6 +37,9 @@ scatter: |
 shape: |
   Shape holds tags that define the actual shape of the intended part, and some times the role the part has in a tile. 
 
+size: |
+  Size has the quantiative defintiions. the tile is 2 squares on the x, 4 squares on the y. A curve is 90 degrees or 45. This does have some qualitative tags as well.
+
 texture: |
   Texture holds tags that define the actual texture of the intended part. Dungeon stone, cut stone, towne, sewer, cave are all options for how to texture the tile.
 texture|dungeon_stone: Openforge's flagship. Dungeon stone has the most parts for building an incredible variety of tiles. So far as we are aware, dungeon stone is the most complete set of gaming tiles produced in industry. One thing to be aware of, when i comes to floors, there are two floor textures. Eroded is the first texture we ever designed, and it is showing it's age, but it's the most complete. Block is a better design, but it still is missing a few floors.
