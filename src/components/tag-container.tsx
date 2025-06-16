@@ -1,7 +1,16 @@
 'use client'
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
+
+const useDebounce = <T,>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+  return debouncedValue;
+};
 
 const renderTags = (
   data: Record<string, any>,
@@ -49,11 +58,17 @@ const TagContainer = () => {
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const searchTerm = useTagContext((state) => state.searchTerm);
   const [searchInput, setSearchInput] = useState(searchTerm || "");
+  const debouncedSearchInput = useDebounce(searchInput, 300);
 
   // Sync searchInput with searchTerm from store
   React.useEffect(() => {
     setSearchInput(searchTerm || "");
   }, [searchTerm]);
+
+  // Apply debounced search
+  useEffect(() => {
+    setSearchTerm(debouncedSearchInput.trim() || null);
+  }, [debouncedSearchInput, setSearchTerm]);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
@@ -67,12 +82,8 @@ const TagContainer = () => {
   }, [searchInput, setSearchTerm]);
 
   const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchInput(value);
-    if (!value) {
-      setSearchTerm(null);
-    }
-  }, [setSearchTerm]);
+    setSearchInput(e.target.value);
+  }, []);
 
   return (
     <div className="tagContainer">
