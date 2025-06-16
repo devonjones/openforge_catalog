@@ -23,4 +23,4 @@ def convert_tag_dict(tag_dict):
         return None
     if 'tag' in tag_dict and isinstance(tag_dict['tag'], list):
         tag_dict['tag'] = array_to_tag(tag_dict['tag'])
-    return tag_dict 
+    return tag_dict
