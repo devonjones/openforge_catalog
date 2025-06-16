@@ -16,9 +16,6 @@ def client(test_db):
     with flask_app.test_client() as client:
         yield client
 
-# Use a valid UUID for testing
-valid_uuid = uuid.uuid4()
-
 # Define test data
 test_blueprint_data = {
     "blueprint_name": "Test Blueprint",
@@ -29,21 +26,13 @@ test_blueprint_data = {
     "storage_address": "s3://openforge-models/test.blueprint"
 }
 
-# Use a valid UUID for testing
-test_blueprint_id = uuid.uuid4()
-
-# Use a valid MD5 hash for testing
-test_blueprint_md5 = "d41d8cd98f00b204e9800998ecf8427e"  # Example MD5 hash
-
 # Setup test data
 def setup_test_data(test_db):
     with test_db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = blueprint_sql.insert_blueprint(curs, test_blueprint_data)
             conn.commit()
-            # Debugging: Print the inserted blueprint data
-            print(f"Inserted blueprint: {blueprint}")
-            return blueprint["id"]
+            return blueprint
 
 def test_get_blueprints(client):
     resp = client.get('/api/blueprints')
@@ -57,31 +46,29 @@ def test_create_blueprint(auth_client):
         test_blueprint_md5 = response.json["file_md5"]
 
 def test_get_blueprint_by_id(auth_client, test_db):
-    blueprint_id = setup_test_data(test_db)
-    # Debugging: Print the UUID being used
-    print(f"Using UUID: {blueprint_id}")
-    response = auth_client.get(f'/api/blueprints/{blueprint_id}')
+    blueprint = setup_test_data(test_db)
+    response = auth_client.get(f'/api/blueprints/{blueprint["id"]}')
     assert response.status_code == 200
+    assert str(response.json["id"]) == str(blueprint["id"])
 
 def test_get_blueprint_by_md5(auth_client, test_db):
-    blueprint_id = setup_test_data(test_db)
-    # Debugging: Print the UUID being used
-    print(f"Using UUID: {blueprint_id}")
-    response = auth_client.get(f'/api/blueprints/md5/{test_blueprint_md5}')
+    blueprint = setup_test_data(test_db)
+    response = auth_client.get(f'/api/blueprints/md5/{blueprint["file_md5"]}')
     assert response.status_code == 200
+    assert str(response.json["id"]) == str(blueprint["id"])
 
 def test_update_blueprint(auth_client, test_db):
-    blueprint_id = setup_test_data(test_db)
+    blueprint = setup_test_data(test_db)
     
     # Test updating basic fields
     patch_data = {"blueprint_name": "Updated Blueprint"}
-    response = auth_client.patch(f'/api/blueprints/{blueprint_id}', json=patch_data)
+    response = auth_client.patch(f'/api/blueprints/{blueprint["id"]}', json=patch_data)
     assert response.status_code == 200
     assert response.json["blueprint_name"] == "Updated Blueprint"
     
     # Test updating tags
     patch_data = {"tags": ["new|tag1", "new|tag2"]}
-    response = auth_client.patch(f'/api/blueprints/{blueprint_id}', json=patch_data)
+    response = auth_client.patch(f'/api/blueprints/{blueprint["id"]}', json=patch_data)
     assert response.status_code == 200
     assert set(response.json["tags"]) == {"new|tag1", "new|tag2"}
     
@@ -92,7 +79,7 @@ def test_update_blueprint(auth_client, test_db):
             {"image_name": "new_image2", "image_url": "https://example.com/new2.png"}
         ]
     }
-    response = auth_client.patch(f'/api/blueprints/{blueprint_id}', json=patch_data)
+    response = auth_client.patch(f'/api/blueprints/{blueprint["id"]}', json=patch_data)
     assert response.status_code == 200
     assert len(response.json["images"]) == 2
     assert response.json["images"][0]["image_name"] == "new_image1"
@@ -105,7 +92,7 @@ def test_update_blueprint(auth_client, test_db):
         "tags": ["combined|tag"],
         "images": [{"image_name": "combined_image", "image_url": "https://example.com/combined.png"}]
     }
-    response = auth_client.patch(f'/api/blueprints/{blueprint_id}', json=patch_data)
+    response = auth_client.patch(f'/api/blueprints/{blueprint["id"]}', json=patch_data)
     assert response.status_code == 200
     assert set(response.json["tags"]) == {"combined|tag"}
     assert len(response.json["images"]) == 1
@@ -113,10 +100,8 @@ def test_update_blueprint(auth_client, test_db):
     assert response.json["images"][0]["image_url"] == "https://example.com/combined.png"
 
 def test_delete_blueprint(auth_client, test_db):
-    blueprint_id = setup_test_data(test_db)
-    # Debugging: Print the UUID being used
-    print(f"Using UUID: {blueprint_id}")
-    response = auth_client.delete(f'/api/blueprints/{blueprint_id}')
+    blueprint = setup_test_data(test_db)
+    response = auth_client.delete(f'/api/blueprints/{blueprint["id"]}')
     assert response.status_code == 204
 
 def test_download_blueprint(client, test_db):
@@ -125,10 +110,8 @@ def test_download_blueprint(client, test_db):
     client.application.config["CLOUDFLARE_ACCESS_KEY_ID"] = "test_key"
     client.application.config["CLOUDFLARE_SECRET_ACCESS_KEY"] = "test_secret"
     
-    blueprint_id = setup_test_data(test_db)
-    # Debugging: Print the UUID being used
-    print(f"Using UUID: {blueprint_id}")
-    resp = client.get(f'/api/blueprints/{blueprint_id}/download', headers={"Authorization": "Bearer test_token"})
+    blueprint = setup_test_data(test_db)
+    resp = client.get(f'/api/blueprints/{blueprint["id"]}/download', headers={"Authorization": "Bearer test_token"})
     assert resp.status_code == 302
 
 def test_create_blueprint_with_tags_and_images(auth_client):
