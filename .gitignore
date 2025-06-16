@@ -52,3 +52,5 @@ yarn.lock
 *.next
 
 tmp/
+.coverage
+coverage.xml

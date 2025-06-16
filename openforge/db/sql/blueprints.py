@@ -89,6 +89,8 @@ INSERT INTO blueprints (
     row = curs.fetchone()
     if row:
         return get_blueprint_by_id(curs, row["id"])
+    elif rescue_md5_conflict and data["file_md5"] is not sql.NULL:
+        return get_blueprint_by_md5(curs, data["file_md5"])
     else:
         raise UniqueViolation("MD5 not unique")
 
@@ -179,7 +181,7 @@ def delete_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
     return curs.rowcount
 
 
-def delete_all_blueprints(curs: cursor) -> dict:
+def delete_all_blueprints(curs: cursor) -> bool:
     query = sql.SQL("TRUNCATE blueprints CASCADE")
-    curs.execute(query)
-    return curs.rowcount
+    result = curs.execute(query)
+    return True
