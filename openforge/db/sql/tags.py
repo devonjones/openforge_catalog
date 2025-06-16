@@ -3,11 +3,11 @@ import json
 from pprint import pprint
 from psycopg import cursor, sql
 from openforge.db import get_logger
+from .tag_utils import tag_to_array, array_to_tag, convert_tag_dict
 
 
 def _convert_tag(tag: dict) -> dict:
-    tag["tag"] = "|".join(tag["tag"])
-    return tag
+    return convert_tag_dict(tag)
 
 
 def _convert_config(data: dict) -> dict:
@@ -47,6 +47,7 @@ SELECT id, blueprint_id, tag, created_at, updated_at
 
 
 def insert_tag(curs: cursor, blueprint_id: uuid.UUID, tag: str) -> dict:
+    tag_arr = tag_to_array(tag)
     query = sql.SQL(
         """
 WITH new_tags AS (
@@ -62,20 +63,21 @@ SELECT COALESCE(
   (SELECT id FROM tags WHERE blueprint_id = {blueprint_id} AND tag = {tag})
 ) AS id
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag_arr))
     get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return get_tag_by_id(curs, curs.fetchone()["id"])
 
 
 def delete_tag(curs: cursor, blueprint_id: uuid.UUID, tag: str) -> dict:
+    tag_arr = tag_to_array(tag)
     query = sql.SQL(
         """
 DELETE FROM tags
   WHERE blueprint_id = {blueprint_id}
     AND tag = {tag}
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag_arr))
     get_logger().debug(query.join("\n").as_string())
     curs.execute(query)
     return curs.rowcount
@@ -101,7 +103,7 @@ def delete_all_tags(curs: cursor) -> dict:
 
 
 def get_blueprint_ids_by_tag(curs: cursor, tag: str) -> list[uuid.UUID]:
-    tags = tag.split("|")
+    tags = tag_to_array(tag)
     query_list = [
         sql.SQL(
             """
@@ -112,14 +114,14 @@ SELECT DISTINCT blueprint_id
         ).format(tag=sql.Literal(tags.pop(0)))
     ]
     counter = 1
-    for tag in tags:
+    for t in tags:
         counter += 1
         query_list.append(
             sql.SQL(
                 """
     AND tag[{counter}] = {tag}
 """
-            ).format(tag=sql.Literal(tag), counter=sql.Literal(counter))
+            ).format(tag=sql.Literal(t), counter=sql.Literal(counter))
         )
     query = sql.Composed(query_list)
     get_logger().debug(query.join("\n").as_string())

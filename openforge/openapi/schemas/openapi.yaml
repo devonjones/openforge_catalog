@@ -541,6 +541,206 @@ paths:
           description: 'Not Authorized'
         '404':
           description: 'Image not found'
+  /api/tag-descriptions:
+    get:
+      tags:
+        - tag-descriptions
+      summary: Returns all tag descriptions
+      operationId: getAllTagDescriptions
+      description: Returns all tag descriptions
+      responses:
+        '200':
+          description: List of tag descriptions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDescriptionMap'
+    post:
+      tags:
+        - tag-descriptions
+      summary: Creates a tag description
+      operationId: createTagDescription
+      description: Creates a tag description
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '201':
+          description: Tag description created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDescription'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDescription'
+        description: Tag description to create
+  /api/tag-descriptions/{id}:
+    get:
+      tags:
+        - tag-descriptions
+      summary: Returns a tag description by id
+      operationId: getTagDescriptionById
+      description: Returns a tag description by id
+      parameters:
+        - in: path
+          name: id
+          description: Id of the tag description
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: A tag description
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDescription'
+        '404':
+          description: 'Tag description not found'
+    patch:
+      tags:
+        - tag-descriptions
+      summary: Updates a tag description
+      operationId: updateTagDescription
+      description: Updates a tag description
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: Id of the tag description
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDescription'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag description not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDescription'
+    delete:
+      tags:
+        - tag-descriptions
+      summary: Deletes a tag description
+      operationId: deleteTagDescription
+      description: Deletes a tag description
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          description: Id of the tag description
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Success
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag description not found'
+  /api/tag/{tag}/description:
+    get:
+      tags:
+        - tag-descriptions
+      summary: Returns tag descriptions by tag
+      operationId: getTagDescriptionByTag
+      description: Returns tag descriptions by tag, including hierarchical matches
+      parameters:
+        - in: path
+          name: tag
+          description: Tag to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of tag descriptions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagDescription'
+        '404':
+          description: 'Tag description not found'
+    patch:
+      tags:
+        - tag-descriptions
+      summary: Updates tag descriptions by tag
+      operationId: updateTagDescriptionByTag
+      description: Updates tag descriptions by tag
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag
+          description: Tag to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDescription'
+        '400':
+          description: 'invalid input, object invalid'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag description not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDescription'
+    delete:
+      tags:
+        - tag-descriptions
+      summary: Deletes tag descriptions by tag
+      operationId: deleteTagDescriptionByTag
+      description: Deletes tag descriptions by tag
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag
+          description: Tag to search for
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag description not found'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -662,3 +862,30 @@ components:
           items:
             type: string
             pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    TagDescription:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        tag:
+          type: string
+          description: Pipe-delimited tag string (e.g. "foo|bar")
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        full_tag:
+          type: string
+      required:
+        - tag
+      additionalProperties: false
+    TagDescriptionMap:
+      type: object
+      additionalProperties:
+        type: string
+      description: A mapping of tag strings to their descriptions

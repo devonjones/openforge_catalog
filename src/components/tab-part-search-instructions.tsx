@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
+import { tagToArray } from '../utils/tag-utils';
 
 const tagDescriptions: Record<string, string> = {
   'build|separate wall': 'Wall off of tile. Gives more gameplace space, harder to reason about tesselating. Recommended for builds that the GM does between sessions in prep',
@@ -55,7 +56,7 @@ const TagRow: React.FC<{ tags: string[]; addExampleTag: (tag: string) => void; t
   </div>
 );
 
-const TabPartSearchInstructions: React.FC = () => {
+export function TabPartSearchInstructions() {
   const addTag = useTagContext((state) => state.addTag);
   const removeTag = useTagContext((state) => state.removeTag);
   const selectedTags = useTagContext((state) => state.selectedTags);
@@ -205,6 +206,6 @@ const TabPartSearchInstructions: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default TabPartSearchInstructions; 

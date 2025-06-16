@@ -38,6 +38,7 @@
 import { createStore } from 'zustand';
 import type { TagNode, Blueprint, Paging } from '@/types';
 import { devLog } from '@/utils/log';
+import { tagToArray } from '../utils/tag-utils';
 
 export interface TagStore {
   data: Record<string, TagNode>;

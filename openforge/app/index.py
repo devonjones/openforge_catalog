@@ -5,6 +5,7 @@ from openforge.app import init_app
 import openforge.app.routes.blueprints as blueprint_routes
 import openforge.app.routes.tags as tag_routes
 import openforge.app.routes.images as image_routes
+import openforge.app.routes.tag_descriptions as tag_description_routes
 from openforge.app.routes import authenticate
 
 
@@ -101,6 +102,42 @@ def image(image_id):
         return image_routes.update_image(image_id)
     elif request.method == "DELETE":
         return image_routes.delete_image(image_id)
+
+
+####################
+### Tag Description routes
+####################
+
+
+@app.route("/api/tag-descriptions", methods=["GET", "POST"])
+@authenticate(methods=["POST"])
+def tag_descriptions():
+    if request.method == "GET":
+        return tag_description_routes.get_tag_descriptions()
+    elif request.method == "POST":
+        return tag_description_routes.create_tag_description()
+
+
+@app.route("/api/tag-descriptions/<tag_description_id>", methods=["GET", "PATCH", "DELETE"])
+@authenticate(methods=["PATCH", "DELETE"])
+def tag_description(tag_description_id):
+    if request.method == "GET":
+        return tag_description_routes.get_tag_description_by_id(tag_description_id)
+    elif request.method == "PATCH":
+        return tag_description_routes.update_tag_description(tag_description_id)
+    elif request.method == "DELETE":
+        return tag_description_routes.delete_tag_description(tag_description_id)
+
+
+@app.route("/api/tag/<tag>/description", methods=["GET", "PATCH", "DELETE"])
+@authenticate(methods=["PATCH", "DELETE"])
+def tag_description_by_tag(tag):
+    if request.method == "GET":
+        return tag_description_routes.get_tag_description_by_tag(tag)
+    elif request.method == "PATCH":
+        return tag_description_routes.update_tag_description_by_tag(tag)
+    elif request.method == "DELETE":
+        return tag_description_routes.delete_tag_description_by_tag(tag)
 
 
 def lambda_handler(event, context):
