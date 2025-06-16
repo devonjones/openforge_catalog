@@ -15,8 +15,6 @@ properties:
   updated_at:
     type: string
     format: date-time
-  full_tag:
-    type: string
 required:
   - tag
 additionalProperties: false 

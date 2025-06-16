@@ -54,18 +54,18 @@ WITH new_tags AS (
   INSERT INTO tags (
     blueprint_id, tag
   ) VALUES (
-    {blueprint_id}, %s
+    {blueprint_id}, {tag}
   ) ON CONFLICT DO NOTHING
   RETURNING id
 )
 SELECT COALESCE(
   (SELECT id FROM new_tags),
-  (SELECT id FROM tags WHERE blueprint_id = {blueprint_id} AND tag = %s)
+  (SELECT id FROM tags WHERE blueprint_id = {blueprint_id} AND tag = {tag})
 ) AS id
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id))
+    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag_arr))
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query, (tag_arr, tag_arr))
+    curs.execute(query)
     return get_tag_by_id(curs, curs.fetchone()["id"])
 
 
@@ -103,29 +103,29 @@ def delete_all_tags(curs: cursor) -> dict:
 
 
 def get_blueprint_ids_by_tag(curs: cursor, tag: str) -> list[uuid.UUID]:
-    tag_arr = tag_to_array(tag)
+    tags = tag_to_array(tag)
     query_list = [
         sql.SQL(
             """
 SELECT DISTINCT blueprint_id
   FROM tags
-  WHERE tag[1] = %s
+  WHERE tag[1] = {tag}
 """
-        )
+        ).format(tag=sql.Literal(tags.pop(0)))
     ]
     counter = 1
-    for tag in tag_arr[1:]:
+    for t in tags:
         counter += 1
         query_list.append(
             sql.SQL(
                 """
-    AND tag[{counter}] = %s
+    AND tag[{counter}] = {tag}
 """
-            ).format(counter=sql.Literal(counter))
+            ).format(tag=sql.Literal(t), counter=sql.Literal(counter))
         )
     query = sql.Composed(query_list)
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query.join("\n"), tag_arr)
+    curs.execute(query.join("\n"))
     return [row["blueprint_id"] for row in curs.fetchall()]
 
 

@@ -554,9 +554,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TagDescription'
+                $ref: '#/components/schemas/TagDescriptionMap'
     post:
       tags:
         - tag-descriptions
