@@ -80,7 +80,7 @@ Then run the tests:
 pytest tests/
 ```
 
-The tests use a separate schema (`test`) to avoid interfering with development data. Each test gets a clean database state.
+Each test gets a clean database state.
 
 ## Schema
 ### Blueprint type
