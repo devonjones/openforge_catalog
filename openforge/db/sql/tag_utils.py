@@ -15,18 +15,8 @@ def tag_to_array(tag: Union[str, List[str]]) -> List[str]:
         return tag.split("|")
     return list(tag)
 
-def array_to_tag(tag_array: List[str]) -> str:
-    """Convert a tag array to a pipe-delimited string.
-    
-    Args:
-        tag_array: List of tag components
-        
-    Returns:
-        Pipe-delimited string
-    """
-    if isinstance(tag_array, str):
-        return tag_array
-    return "|".join(tag_array)
+def array_to_tag(tag_array):
+    return "|".join(str(x) for x in tag_array)
 
 def convert_tag_dict(tag_dict):
     if tag_dict is None:

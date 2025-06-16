@@ -39,15 +39,17 @@
           "storage_address": {
             "type": "string"
           }
-        },
-        "required": ["file", "md5", "size"]
+        }
       },
       "tags": {
         "type": "array",
         "items": {
           "type": "array",
           "items": {
-            "type": "string"
+            "oneOf": [
+              { "type": "string" },
+              { "type": "number" }
+            ]
           }
         }
       },

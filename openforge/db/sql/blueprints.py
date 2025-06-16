@@ -89,7 +89,7 @@ INSERT INTO blueprints (
     row = curs.fetchone()
     if row:
         return get_blueprint_by_id(curs, row["id"])
-    elif rescue_md5_conflict and data["file_md5"] is not sql.NULL:
+    elif rescue_md5_conflict and data.get("file_md5") is not sql.NULL:
         return get_blueprint_by_md5(curs, data["file_md5"])
     else:
         raise UniqueViolation("MD5 not unique")

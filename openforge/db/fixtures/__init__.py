@@ -5,6 +5,7 @@ from pathlib import Path
 from psycopg import cursor, connection
 from psycopg.rows import dict_row
 from psycopg.errors import UniqueViolation
+import jsonschema
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper, safe_load
@@ -60,7 +61,13 @@ def _is_blueprint_fixture(data):
     try:
         validate_schema("blueprint.fixture.json", data)
         return True
-    except Exception:
+    except jsonschema.exceptions.ValidationError as e:
+        print(f"Schema validation failed: {e.message}")
+        print(f"Path: {'/'.join(str(p) for p in e.path)}")
+        print(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
+        return False
+    except Exception as e:
+        print(f"Unexpected error during validation: {str(e)}")
         return False
 
 
@@ -126,16 +133,21 @@ def _get_words(data: dict):
 
 
 def load_blueprint_fixture(curs: cursor, data: dict):
-    bp_data = _munge_blueprint(data)
     try:
+        bp_data = _munge_blueprint(data)
         bp = blueprint_sql.insert_blueprint(
-            curs, bp_data, rescue_md5_conflict=False, words=_get_words(data))
-        for tag in bp["tags"]:
+            curs, bp_data, rescue_md5_conflict=True, words=_get_words(data))
+        if bp is None:
+            return  # Skip this record if it's a duplicate
+        for tag in data["tags"]:
             tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
-    except UniqueViolation:
-        raise ValueError(f"MD5 not unique for {bp_data['blueprint_name']}")
+    except Exception as e:
+        from pprint import pprint
+        print("\nFailed record:")
+        pprint(data)
+        raise
 
 
 def load_tag_description_fixture(curs: cursor, data: dict):

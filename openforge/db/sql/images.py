@@ -93,16 +93,25 @@ def insert_blueprint_image(
 ) -> dict:
     query = sql.SQL(
         """
-INSERT INTO blueprint_images (
-  blueprint_id, image_id
-) VALUES (
-  {blueprint_id}, {image_id}
-) ON CONFLICT DO NOTHING
-RETURNING id
+WITH new_blueprint_images AS (
+  INSERT INTO blueprint_images (
+    blueprint_id, image_id
+  ) VALUES (
+    {blueprint_id}, {image_id}
+  ) ON CONFLICT DO NOTHING
+  RETURNING id
+)
+SELECT COALESCE(
+  (SELECT id FROM new_blueprint_images),
+  (SELECT id FROM blueprint_images WHERE blueprint_id = {blueprint_id} AND image_id = {image_id})
+) AS id
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), image_id=sql.Literal(image_id))
     curs.execute(query)
-    return get_blueprint_image_by_id(curs, curs.fetchone()["id"])
+    row = curs.fetchone()
+    if row:
+        return get_blueprint_image_by_id(curs, row["id"])
+    return None
 
 
 def insert_image_for_blueprint(
