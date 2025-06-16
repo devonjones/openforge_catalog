@@ -75,11 +75,11 @@ def delete_tag(curs: cursor, blueprint_id: uuid.UUID, tag: str) -> dict:
         """
 DELETE FROM tags
   WHERE blueprint_id = {blueprint_id}
-    AND tag = %s
+    AND tag = {tag}
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id))
+    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag_arr))
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query, (tag_arr,))
+    curs.execute(query)
     return curs.rowcount
 
 
