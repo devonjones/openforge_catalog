@@ -15,7 +15,9 @@ except ImportError:
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
-from openforge.db.sql.tag_utils import array_to_tag
+import openforge.db.sql.tag_descriptions as tag_description_sql
+from openforge.db.sql.tag_utils import array_to_tag, tag_to_array
+from openforge.openapi import validate_schema
 
 
 def find_fixtures(dir: str):
@@ -51,17 +53,40 @@ def clear_db(curs: cursor):
     tag_sql.delete_all_tags(curs)
     blueprint_sql.delete_all_blueprints(curs)
     image_sql.delete_all_images(curs)
+    tag_description_sql.delete_all_tag_descriptions(curs)
 
 
-def load_fixtures(conn: connection, alt: str):
-    ffiles = find_fixtures(alt)
+def _is_blueprint_fixture(data):
+    try:
+        validate_schema("blueprint.fixture.json", data)
+        return True
+    except Exception:
+        return False
+
+
+def _is_tag_description_fixture(data):
+    try:
+        validate_schema("tag_description.fixture.json", data)
+        return True
+    except Exception:
+        return False
+
+
+def load_fixtures(conn: connection, alt: str, files: list = None):
+    ffiles = files if files is not None else find_fixtures(alt)
     with conn.cursor(row_factory=dict_row) as curs:
         clear_db(curs)
         conn.commit()
         for f in ffiles:
             data = _load_data(f)
-            for rec in data:
-                load_fixture(curs, rec)
+            if _is_blueprint_fixture(data):
+                for rec in data:
+                    load_blueprint_fixture(curs, rec)
+            elif _is_tag_description_fixture(data):
+                load_tag_description_fixture(curs, data)
+            else:
+                raise ValueError(f"File {f} does not match any known fixture format")
+            conn.commit()
 
 
 def _load_data(f):
@@ -100,17 +125,26 @@ def _get_words(data: dict):
     return list(words)
 
 
-def load_fixture(curs: cursor, data: dict):
+def load_blueprint_fixture(curs: cursor, data: dict):
     bp_data = _munge_blueprint(data)
     try:
         bp = blueprint_sql.insert_blueprint(
-            curs, bp_data, rescue_md5_conflict=True, words=_get_words(data))
+            curs, bp_data, rescue_md5_conflict=False, words=_get_words(data))
         for tag in bp["tags"]:
             tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except UniqueViolation:
-        sys.stderr.write(f"MD5 not unique for {bp_data['blueprint_name']}\n")
+        raise ValueError(f"MD5 not unique for {bp_data['blueprint_name']}")
+
+
+def load_tag_description_fixture(curs: cursor, data: dict):
+    for tag, description in data.items():
+        tag_arr = tag_to_array(tag)
+        try:
+            tag_description_sql.insert_tag_description(curs, tag_arr, description)
+        except UniqueViolation:
+            raise ValueError(f"Tag description already exists for {tag}")
 
 
 def _munge_image(image: dict):

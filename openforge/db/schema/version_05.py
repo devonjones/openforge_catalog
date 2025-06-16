@@ -18,7 +18,7 @@ class SchemaVersion5(SchemaBase):
             """
 CREATE TABLE tag_descriptions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  tag TEXT ARRAY NOT NULL,
+  tag TEXT ARRAY NOT NULL UNIQUE,
   description TEXT,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

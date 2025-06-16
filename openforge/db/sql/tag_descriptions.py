@@ -135,3 +135,9 @@ DELETE FROM tag_descriptions
     if not result:
         raise NotFound("Tag description not found")
     return dict(result)
+
+
+def delete_all_tag_descriptions(curs) -> bool:
+    query = sql.SQL("TRUNCATE tag_descriptions CASCADE")
+    curs.execute(query)
+    return True

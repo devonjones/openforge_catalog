@@ -1,0 +1,71 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["type"],
+    "properties": {
+      "type": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "config": {
+        "type": "object"
+      },
+      "file_metadata": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string"
+          },
+          "md5": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "changed": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "storage_address": {
+            "type": "string"
+          }
+        },
+        "required": ["file", "md5", "size"]
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "image_name": {
+              "type": "string"
+            },
+            "image_url": {
+              "type": "string"
+            }
+          },
+          "required": ["image_name", "image_url"]
+        }
+      }
+    }
+  }
+} 
