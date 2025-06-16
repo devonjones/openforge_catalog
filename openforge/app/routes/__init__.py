@@ -1,5 +1,6 @@
 import os
 from functools import wraps
+from typing import Union
 
 from flask import request, jsonify
 from flask import current_app as app
@@ -21,7 +22,7 @@ def authenticate(methods: list[str]):
     return decorator
 
 
-def validate_api_token(token: str):
+def validate_api_token(token: Union[str, None]):
     def _get_api_token():
         parts = token.split(" ")
         if len(parts) == 1:
@@ -31,4 +32,6 @@ def validate_api_token(token: str):
                 return parts[1]
         raise ValueError("Invalid API token format")
 
+    if not token:
+        return False
     return _get_api_token() == app.config["API_TOKEN"]

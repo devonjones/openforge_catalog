@@ -76,4 +76,25 @@ def assert_blueprint_matches(blueprint: Dict[str, Any], expected: Dict[str, Any]
 
 def assert_tag_matches(tag, expected_tag, expected_blueprint_id):
     assert tag["tag"] == expected_tag
-    assert str(tag["blueprint_id"]) == str(expected_blueprint_id) 
+    assert str(tag["blueprint_id"]) == str(expected_blueprint_id)
+
+def setup_test_data(test_db, data: Dict[str, Any], insert_func) -> Dict[str, Any]:
+    """Generic function to set up test data in the database.
+    
+    Args:
+        test_db: Database connection
+        data: Test data dictionary
+        insert_func: Function to insert data into database
+        
+    Returns:
+        Dict containing the created data
+    """
+    with test_db.pool.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as curs:
+            # Handle functions that expect separate arguments
+            if insert_func.__name__ == 'insert_image':
+                result = insert_func(curs, data['image_name'], data['image_url'])
+            else:
+                result = insert_func(curs, data)
+            conn.commit()
+            return result 

@@ -13,6 +13,7 @@ from openforge.app.index import app as flask_app
 def client(test_db):
     flask_app.config['TESTING'] = True
     flask_app.db = test_db
+    flask_app.config['API_TOKEN'] = os.environ["API_TOKEN"]
     with flask_app.test_client() as client:
         yield client
 
