@@ -1,7 +1,16 @@
 'use client'
 
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
+
+const useDebounce = <T,>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+  return debouncedValue;
+};
 
 const renderTags = (
   data: Record<string, any>,
@@ -46,13 +55,46 @@ const TagContainer = () => {
   const expandedNodes = useTagContext((state) => state.expandedNodes);
   const toggleNode = useTagContext((state) => state.toggleNode);
   const addTag = useTagContext((state) => state.addTag);
+  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
+  const searchTerm = useTagContext((state) => state.searchTerm);
+  const [searchInput, setSearchInput] = useState(searchTerm || "");
+  const debouncedSearchInput = useDebounce(searchInput, 300);
+
+  // Sync searchInput with searchTerm from store
+  React.useEffect(() => {
+    setSearchInput(searchTerm || "");
+  }, [searchTerm]);
+
+  // Apply debounced search
+  useEffect(() => {
+    setSearchTerm(debouncedSearchInput.trim() || null);
+  }, [debouncedSearchInput, setSearchTerm]);
 
   const handleAddTag = (tag: string) => {
     addTag(tag);
   };
 
+  const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const term = searchInput.trim();
+      setSearchTerm(term || null);
+    }
+  }, [searchInput, setSearchTerm]);
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  }, []);
+
   return (
     <div className="tagContainer">
+      <input
+        type="text"
+        value={searchInput}
+        onChange={handleSearchChange}
+        onKeyDown={handleSearchKeyDown}
+        placeholder="Search blueprints..."
+        style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
+      />
       <div><strong>Browse Tags</strong></div>
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
     </div>

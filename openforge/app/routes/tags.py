@@ -80,6 +80,9 @@ def query_tags():
             limit = request.args.get("limit", 20)
             models = request.args.get("models", "true").lower() == "true"
             blueprints = request.args.get("blueprints", "false").lower() == "true"
+            search = request.args.get("search")
+            if search == "":
+                search = None
             bp_data = tag_sql.tag_search_blueprints(
                 cursor,
                 accept,
@@ -90,6 +93,7 @@ def query_tags():
                 limit,
                 models=models,
                 blueprints=blueprints,
+                search=search,
             )
             tag_data = tag_sql.tag_search_tags(
                 cursor,
@@ -101,6 +105,7 @@ def query_tags():
                 limit,
                 models=models,
                 blueprints=blueprints,
+                search=search,
             )
             image_data = tag_sql.tag_search_blueprint_images(
                 cursor,
@@ -112,9 +117,10 @@ def query_tags():
                 limit,
                 models=models,
                 blueprints=blueprints,
+                search=search,
             )
             count = tag_sql.tag_search_blueprint_count(
-                cursor, accept, require, deny, models=models, blueprints=blueprints
+                cursor, accept, require, deny, models=models, blueprints=blueprints, search=search
             )
             start_count = 0
             if len(bp_data) > 0:
@@ -126,9 +132,10 @@ def query_tags():
                     bp_data[0]["id"],
                     models=models,
                     blueprints=blueprints,
+                    search=search,
                 )
             tag_count = tag_sql.tag_search_tag_count(
-                cursor, accept, require, deny, models=models, blueprints=blueprints
+                cursor, accept, require, deny, models=models, blueprints=blueprints, search=search
             )
             tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)

@@ -18,12 +18,14 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const paging = useTagContext((state) => state.paging);
   const selectedTags = useTagContext((state) => state.selectedTags);
   const denyTags = useTagContext((state) => state.denyTags);
+  const searchTerm = useTagContext((state) => state.searchTerm);
   const removeTag = useTagContext((state) => state.removeTag);
   const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const fetchBlueprints = useTagContext((state) => state.fetchBlueprints);
   const setTagState = useTagContext((state) => state.setTagState);
   const autoload = useTagContext((state) => state.autoload);
+  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -38,6 +40,12 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
           addTag(tag);
         }
       });
+
+      // Handle search term
+      const searchParam = params.get('search');
+      if (searchParam) {
+        setSearchTerm(searchParam);
+      }
 
       // Handle blueprint selection
       const blueprintId = params.get('blueprint_id');
@@ -160,25 +168,16 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
 
   const createDeepLink = (tags: string[]) => {
     const params = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
-    return `${params}`;
+    if (searchTerm) {
+      return `${params}&search=${encodeURIComponent(searchTerm)}`;
+    }
+    return params;
   };
 
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault();
     clearTags();
-    // Update URL to remove tag parameters while preserving blueprint_id
-    if (typeof window !== 'undefined') {
-      const currentParams = new URLSearchParams(window.location.search);
-      const blueprintId = currentParams.get('blueprint_id');
-      
-      const newParams = new URLSearchParams();
-      if (blueprintId) {
-        newParams.set('blueprint_id', blueprintId);
-      }
-      
-      const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
-      window.history.pushState({}, '', newUrl);
-    }
+    setSelectedBlueprint(null);
   };
 
   const startCount = (paging?.start_count ?? 0) + 1;
@@ -187,31 +186,47 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   return (
     <div className='resultsContainer'>
       <h2>Blueprints</h2>
-      {selectedTags.length > 0 && (
+      {(selectedTags.length > 0 || searchTerm) && (
         <div className='selectedTagsContainer'>
           <div className='flex justify-between'>
             <div className='flex-1'>
-              <div className='selectedTagsContainer__header'>
-                Selected Tags
-                {!configValues && (
-                  <>
-                    - <a className='visibleLink' href={"/?" + createDeepLink(selectedTags)}>deeplink</a>&nbsp;
-                    <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(createDeepLink(selectedTags))}>
-                      <svg aria-hidden="true" focusable="false" className="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible">
-                        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
-                        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-                      </svg>
-                    </button>
-                  </>
-                )}
-              </div>
-              <ul>
-                {Array.from(new Set(selectedTags)).map((tag) => (
-                  <li key={tag}>
-                    {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
-                  </li>
-                ))}
-              </ul>
+              {searchTerm && (
+                <>
+                  <div className='selectedTagsContainer__header'>
+                    Search
+                  </div>
+                  <ul>
+                    <li>
+                      {searchTerm} <button className="tagButton" onClick={() => setSearchTerm(null)}>-</button>
+                    </li>
+                  </ul>
+                </>
+              )}
+              {selectedTags.length > 0 && (
+                <>
+                  <div className='selectedTagsContainer__header'>
+                    Selected Tags
+                    {!configValues && (
+                      <>
+                        - <a className='visibleLink' href={"/?" + createDeepLink(selectedTags)}>deeplink</a>&nbsp;
+                        <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(createDeepLink(selectedTags))}>
+                          <svg aria-hidden="true" focusable="false" className="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible">
+                            <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
+                            <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+                          </svg>
+                        </button>
+                      </>
+                    )}
+                  </div>
+                  <ul>
+                    {Array.from(new Set(selectedTags)).map((tag) => (
+                      <li key={tag}>
+                        {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
             {denyTags.length > 0 && (
               <div className='flex-1 ml-4'>

@@ -137,6 +137,7 @@ def tag_search_blueprints(
     limit: int = 20,
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
@@ -151,6 +152,7 @@ def tag_search_blueprints(
             limit,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY blueprints.blueprint_name"),
@@ -171,6 +173,7 @@ def tag_search_tags(
     limit: int = 20,
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> list[uuid.UUID]:
     parts = [
         sql.SQL("SELECT *"),
@@ -185,6 +188,7 @@ def tag_search_tags(
             limit,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bptags.blueprint_id"),
@@ -205,6 +209,7 @@ def tag_search_blueprint_images(
     limit: int = 20,
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> list[dict]:
     parts = [
         sql.SQL(
@@ -222,6 +227,7 @@ def tag_search_blueprint_images(
             limit,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
         sql.SQL("  ORDER BY bpi.blueprint_id"),
@@ -239,6 +245,7 @@ def tag_search_blueprint_count(
     deny: list[str],
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
@@ -251,6 +258,7 @@ def tag_search_blueprint_count(
             do_limit=False,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
     ]
@@ -268,6 +276,7 @@ def tag_search_blueprint_start_count(
     first: uuid.UUID,
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> int:
     parts = [
         sql.SQL("SELECT COUNT(*)"),
@@ -280,6 +289,7 @@ def tag_search_blueprint_start_count(
             do_limit=False,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
         sql.SQL(
@@ -299,6 +309,7 @@ def tag_search_tag_count(
     deny: list[str],
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> list[dict]:
     parts = [
         sql.SQL("SELECT COUNT(*) AS tag_count, t.tag"),
@@ -311,6 +322,7 @@ def tag_search_tag_count(
             do_limit=False,
             models=models,
             blueprints=blueprints,
+            search=search,
         ),
         sql.SQL("  )"),
         sql.SQL("  GROUP BY t.tag"),
@@ -331,6 +343,7 @@ def _query_tags_basics(
     do_limit: bool = True,
     models: bool = True,
     blueprints: bool = False,
+    search: str | None = None,
 ) -> sql.Composed:
     query_parts = [
         sql.SQL(
@@ -369,6 +382,13 @@ SELECT DISTINCT bp.id
                 "    %s bp2.blueprint_type = 'blueprint'"
                 % ("WHERE" if len(query_parts) <= 1 else "AND")
             )
+        )
+    if search:
+        query_parts.append(
+            sql.SQL(
+                "    %s to_tsvector('english', bp2.search_text) @@ websearch_to_tsquery('english', {search})"
+                % ("WHERE" if len(query_parts) <= 1 else "AND")
+            ).format(search=sql.Literal(search))
         )
     if next:
         query_parts.append(

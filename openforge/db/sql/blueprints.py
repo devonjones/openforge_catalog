@@ -1,5 +1,6 @@
 import json
 import uuid
+import re
 
 from psycopg import cursor, sql
 from psycopg.types.json import Jsonb
@@ -54,18 +55,26 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
     return [_convert_config(dict(row)) for row in curs.fetchall()]
 
 
+def _blueprint_search_text(data: dict, words: list[str]) -> str:
+    retwords = set()
+    retwords.update(words)
+    retwords.update(re.split(r"[^a-zA-Z0-9]", data["blueprint_name"]))
+    return " ".join(retwords)
+
+
 def insert_blueprint(
-    curs: cursor, data: dict, rescue_md5_conflict: bool = False
+    curs: cursor, data: dict, rescue_md5_conflict: bool = False, words: list[str] = []
 ) -> dict:
+    data["search_text"] = _blueprint_search_text(data, words)
     query_list = [
         sql.SQL(
             """
 INSERT INTO blueprints (
   blueprint_name, blueprint_type, config, file_md5, file_size, file_name,
-  full_name, file_changed_at, file_modified_at, storage_address
+  full_name, file_changed_at, file_modified_at, storage_address, search_text
 ) VALUES (
   {blueprint_name}, {blueprint_type}, {config}, {file_md5}, {file_size}, {file_name},
-  {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}
+  {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}, {search_text}
 )
 """
         ).format(**_blueprint_defaults(data))

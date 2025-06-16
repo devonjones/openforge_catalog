@@ -92,10 +92,18 @@ def _munge_blueprint(data: dict):
     return bp
 
 
+def _get_words(data: dict):
+    words = set()
+    for t in data.get("tags", []):
+        words.update([str(w) for w in t])
+    return list(words)
+
+
 def load_fixture(curs: cursor, data: dict):
     bp_data = _munge_blueprint(data)
     try:
-        bp = blueprint_sql.insert_blueprint(curs, bp_data, rescue_md5_conflict=True)
+        bp = blueprint_sql.insert_blueprint(
+            curs, bp_data, rescue_md5_conflict=True, words=_get_words(data))
         for tag in data.get("tags", []):
             tag_sql.insert_tag(curs, bp["id"], _munge_tag(tag))
         for image in data.get("images", []):
