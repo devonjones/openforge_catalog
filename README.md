@@ -67,6 +67,21 @@ If you want to load the fixtures, run `bin/fixtures`.
 
 Now you can run `yarn flask-dev` to start the flask server.
 
+### Testing
+To run the test suite, first create the test database:
+
+```bash
+PGPASSWORD=openforge createdb -U openforge -h localhost openforge_test
+```
+
+Then run the tests:
+
+```bash
+pytest tests/
+```
+
+The tests use a separate schema (`test`) to avoid interfering with development data. Each test gets a clean database state.
+
 ## Schema
 ### Blueprint type
 

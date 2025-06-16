@@ -8,7 +8,13 @@ LOGGER = logging.getLogger(__name__)
 class PgDB:
     def __init__(self, vars, ext_logger=None):
         self.database_url = db_url(vars, ext_logger)
-        self.pool = ConnectionPool(self.database_url)
+        self.pool = ConnectionPool(self.database_url, open=True)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.pool.close()
 
     def __del__(self):
         self.pool.close()

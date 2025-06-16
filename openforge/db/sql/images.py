@@ -123,7 +123,8 @@ def replace_images_for_blueprint(
         pass
     for image in images:
         insert_image_for_blueprint(curs, blueprint_id, image)
-    delete_images_by_ids(curs, image_ids)
+    if image_ids:  # Only delete if we have IDs to delete
+        delete_images_by_ids(curs, image_ids)
 
 
 def delete_images_for_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
