@@ -3,7 +3,7 @@ import uuid
 from werkzeug.exceptions import NotFound
 from psycopg.rows import dict_row
 import openforge.db.sql.blueprints as blueprint_sql
-from tests.test_helpers import create_test_blueprint, assert_blueprint_matches
+from .test_helpers import create_test_blueprint, assert_blueprint_matches
 
 def test_create_blueprint(test_db):
     with test_db.pool.connection() as conn:

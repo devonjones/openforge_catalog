@@ -1,8 +1,9 @@
 import pytest
 import uuid
+from werkzeug.exceptions import NotFound
 from psycopg.rows import dict_row
 import openforge.db.sql.tags as tag_sql
-from tests.test_helpers import create_test_blueprint, assert_tag_matches
+from .test_helpers import create_test_blueprint, assert_tag_matches
 import openforge.db.sql.blueprints as blueprint_sql
 
 def test_insert_and_get_tag(test_db):

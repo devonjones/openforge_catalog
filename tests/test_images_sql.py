@@ -4,7 +4,7 @@ from werkzeug.exceptions import NotFound
 from psycopg.rows import dict_row
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.blueprints as blueprint_sql
-from tests.test_helpers import create_test_image, assert_image_matches, create_test_blueprint
+from .test_helpers import create_test_image, assert_image_matches, create_test_blueprint
 
 def test_create_image(test_db):
     with test_db.pool.connection() as conn:
