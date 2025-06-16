@@ -181,4 +181,4 @@ def delete_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
 
 def delete_all_blueprints(curs: cursor):
     query = sql.SQL("TRUNCATE blueprints CASCADE")
-    curs.execute(query)
+    return curs.execute(query)
