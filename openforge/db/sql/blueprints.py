@@ -1,7 +1,6 @@
 import json
 import uuid
 import re
-from pprint import pprint
 
 from psycopg import cursor, sql
 from psycopg.types.json import Jsonb
