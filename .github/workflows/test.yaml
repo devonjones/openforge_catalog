@@ -46,11 +46,4 @@ jobs:
         PGDATABASE: openforge_test
         PGPORT: 5432
       run: |
-        pytest tests/ --cov=openforge --cov-report=xml
-        
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./coverage.xml
-        fail_ci_if_error: true
-        token: ${{ secrets.GITHUB_TOKEN }} 
+        pytest tests/ --cov=openforge
