@@ -38,14 +38,13 @@ def test_get_tag_descriptions(client, test_db):
     response = client.get('/api/tag-descriptions')
     assert response.status_code == 200
     assert len(response.json) == 1
-    assert response.json[0]["id"] == str(tag_desc["id"])
-    assert response.json[0]["tag"] == tag_desc["tag"]
-    assert response.json[0]["description"] == tag_desc["description"]
+    assert "foo|bar" in response.json
+    assert response.json["foo|bar"] == tag_desc["description"]
 
 
 def test_create_tag_description(auth_client, test_db):
     data = {
-        "tag": ["foo", "bar"],
+        "tag": "foo|bar",
         "description": "Test description"
     }
     response = auth_client.post('/api/tag-descriptions', json=data)

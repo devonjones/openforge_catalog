@@ -871,9 +871,8 @@ components:
           type: string
           pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
         tag:
-          type: array
-          items:
-            type: string
+          type: string
+          description: Pipe-delimited tag string (e.g. "foo|bar")
         description:
           type: string
         created_at:
@@ -887,3 +886,8 @@ components:
       required:
         - tag
       additionalProperties: false
+    TagDescriptionMap:
+      type: object
+      additionalProperties:
+        type: string
+      description: A mapping of tag strings to their descriptions

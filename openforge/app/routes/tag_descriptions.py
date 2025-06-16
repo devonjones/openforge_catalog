@@ -5,13 +5,14 @@ from jsonschema.exceptions import ValidationError
 
 import openforge.db.sql.tag_descriptions as tag_description_sql
 from openforge.openapi import validate_schema
+from openforge.db.sql.tag_utils import tag_to_array
 
 
 def get_tag_descriptions():
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tag_description_sql.get_all_tag_descriptions(cursor)
-            return jsonify(data)
+            return jsonify({tag_desc["tag"]: tag_desc["description"] for tag_desc in data})
 
 
 def create_tag_description():
@@ -21,8 +22,9 @@ def create_tag_description():
         return jsonify({"error": str(e)}), 400
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
+            tag = tag_to_array(request.json["tag"])
             data = tag_description_sql.insert_tag_description(
-                cursor, request.json["tag"], request.json.get("description")
+                cursor, tag, request.json.get("description")
             )
             return jsonify(data), 201
 

@@ -105,20 +105,12 @@ def load_fixture(curs: cursor, data: dict):
     try:
         bp = blueprint_sql.insert_blueprint(
             curs, bp_data, rescue_md5_conflict=True, words=_get_words(data))
-        for tag in data.get("tags", []):
-            tag_sql.insert_tag(curs, bp["id"], _munge_tag(tag))
+        for tag in bp["tags"]:
+            tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except UniqueViolation:
         sys.stderr.write(f"MD5 not unique for {bp_data['blueprint_name']}\n")
-
-
-def _munge_tag(tag: list):
-    return _tag_to_string(tag)
-
-
-def _tag_to_string(tag):
-    return array_to_tag(tag)
 
 
 def _munge_image(image: dict):

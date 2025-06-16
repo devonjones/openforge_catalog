@@ -69,11 +69,6 @@ export function TabPartSearchInstructions() {
     addTag(tag);
   };
 
-  const handleTagClick = (tag: string) => {
-    const tagArray = tagToArray(tag);
-    // ... existing code ...
-  };
-
   return (
     <div className="part-search-instructions p-6 max-w-3xl">
       <h1 className="text-3xl font-bold mb-6">Instructions (Part Search)</h1>

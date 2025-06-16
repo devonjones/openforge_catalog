@@ -135,14 +135,3 @@ DELETE FROM tag_descriptions
     if not result:
         raise NotFound("Tag description not found")
     return dict(result)
-
-
-def get_tag_descriptions_by_tag(curs, tag):
-    """Get tag descriptions by tag, including child tags."""
-    curs.execute("""
-        SELECT id, tag, description, created_at, updated_at
-        FROM tag_descriptions
-        WHERE tag @> %s
-        ORDER BY array_length(tag, 1), tag
-    """, (tag,))
-    return curs.fetchall() 
