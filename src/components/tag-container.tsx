@@ -17,7 +17,8 @@ const renderTags = (
   level = 0,
   expandedNodes: Record<string, boolean>,
   toggleNode: (key: string) => void,
-  handleAddTag: (tag: string) => void
+  handleAddTag: (tag: string) => void,
+  tagDescriptions: Record<string, string>
 ) => {
   return Object.entries(data).map(([tag, value], index) => {
     
@@ -26,6 +27,7 @@ const renderTags = (
     const key = `${level}-${tag}`;
     const isExpanded = expandedNodes[key] || false;
     const hasChildren = value.children && Object.keys(value.children).length > 0;
+    const description = tagDescriptions[value.__name];
 
     return (
       <div key={key} className="tagNode" style={{ marginLeft: level * 20 }}>
@@ -41,16 +43,28 @@ const renderTags = (
               )}
             </span>
           )}
-          <span>
+          <span className="group relative">
             {tag} {value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
               <span className="tagButton" onClick={() => handleAddTag(value.__name)}>
                 +
               </span>
             )}
+            {description && (
+              <span className="ml-1 text-gray-500 group-hover:text-gray-700">
+                <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </span>
+            )}
+            {description && (
+              <div className="absolute left-0 right-0 mx-auto top-full mt-1 w-full max-w-full p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 opacity-0 group-hover:opacity-100 z-50 transition-opacity duration-150 pointer-events-none">
+                {description}
+              </div>
+            )}
           </span>
         </div>
-        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag)}
+        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions)}
       </div>
     );
   });
@@ -63,8 +77,15 @@ const TagContainer = () => {
   const addTag = useTagContext((state) => state.addTag);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const searchTerm = useTagContext((state) => state.searchTerm);
+  const tagDescriptions = useTagContext((state) => state.tagDescriptions);
+  const fetchTagDescriptions = useTagContext((state) => state.fetchTagDescriptions);
   const [searchInput, setSearchInput] = useState(searchTerm || "");
   const debouncedSearchInput = useDebounce(searchInput, 300);
+
+  // Fetch tag descriptions on mount
+  useEffect(() => {
+    fetchTagDescriptions();
+  }, [fetchTagDescriptions]);
 
   // Sync searchInput with searchTerm from store
   React.useEffect(() => {
@@ -102,7 +123,7 @@ const TagContainer = () => {
         style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
       />
       <div><strong>Browse Tags</strong></div>
-      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag)}</div>
+      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, tagDescriptions)}</div>
     </div>
   );
 };

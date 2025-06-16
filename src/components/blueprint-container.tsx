@@ -22,6 +22,8 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const addAllTags = useTagContext((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
   const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
+  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
+  const tagDescriptions = useTagContext((state) => state.tagDescriptions);
   
   const shouldShowDownloadLink = (blueprint: Blueprint) => {
     if (blueprint.file_name) {
@@ -187,15 +189,36 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
       </h2>
       <p><strong>Type:</strong> {blueprint.blueprint_type}</p>
       <p><strong>Last Modified:</strong> {laterDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
-      <p>{blueprint.tags.map(tag => (
-        <button
-          key={tag}
-          onClick={() => addTag(tag)}
-          className="inline-block px-2 py-1 mr-2 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
-        >
-          {tag}
-        </button>
-      ))}</p>
+      <div className="relative">
+        <div className="flex flex-wrap gap-2">
+          {blueprint.tags.map(tag => (
+            <span
+              key={tag}
+              onMouseEnter={() => setHoveredTag(tag)}
+              onMouseLeave={() => setHoveredTag(null)}
+            >
+              <button
+                onClick={() => addTag(tag)}
+                className="inline-block px-2 py-1 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
+              >
+                {tag}
+                {tagDescriptions[tag] && (
+                  <span className="ml-1 text-gray-500">
+                    <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </span>
+                )}
+              </button>
+            </span>
+          ))}
+        </div>
+        {hoveredTag && tagDescriptions[hoveredTag] && (
+          <div className="absolute left-0 right-0 top-full mt-1 w-full max-w-[90vw] p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 z-50">
+            {tagDescriptions[hoveredTag]}
+          </div>
+        )}
+      </div>
       {!configValues && (
         <p>
           <strong>Find related:</strong>&nbsp;

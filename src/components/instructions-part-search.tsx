@@ -4,59 +4,43 @@ import React, { useState } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
 import { tagToArray } from '../utils/tag-utils';
 
-const tagDescriptions: Record<string, string> = {
-  'build|separate wall': 'Wall off of tile. Gives more gameplace space, harder to reason about tesselating. Recommended for builds that the GM does between sessions in prep',
-  'build|wall on tile': 'Wall is on the tile taking up half a floor. Gives less game space, so you probably need to alter maps a little to accomodate. Much easier to reason about quickly. Recommended for GMs who build the map during game time.',
-  'build|s2w': 'A combined system that lets you make wall on tile using separate wall components. This is the future, as it lets you use the same parts to accomplish both.  Most of the parts for this system are gagged as separate wall, only special parts used as adapters, or corners are labeled with this tag.',
-  'build|s-system': 'Combines a wall with a floor in a system that works pretty well for maps with lots of rooms with shared walls. Very easy to reason about',
-  'build|thick wall': 'Used generally for underground locations, and designed to be more visually impressive. Caves, mines, dwarven halls, sewers. Every wall takes up a full inch.',
-  'connection|dragonlock': 'the DragonLock system from Fat Dragon Games.',
-  'connection|openlock': 'The OpenLock system from Printable Scenery',
-  'connection|openforge': 'A system where the parts are all printed separately, including a base that has actual connection options. This system is designed for mixing and matching and maximum flexibility.',
-  'connection|magnetic|flex': 'A magnetic system designed for using spheres or disks',
-  'connection|side': 'Openlock, but on the side of walls',
-  'connection|pegs': 'Openlock\'s pegs which help register tiles sitting on top of tiles.',
-  'connection|openlock|topless': 'Openlock but with no bridging. easier to print and less fragile.',
-  'texture|dungeon_stone': 'Openforge\'s flagship. Dungeon stone has the most parts for building an incredible variety of tiles. So far as we are aware, dungeon stone is the most complete set of gaming tiles produced in industry. One thing to be aware of, when i comes to floors, there are two floor textures. Eroded is the first texture we ever designed, and it is showing it\'s age, but it\'s the most complete. Block is a better design, but it still is missing a few floors.',
-  'texture|cut-stone': 'Designed to be a plain tile texture that looks good enough, but is intended to not distract visually. The second most complete set.',
-  'texture|towne': 'Whattle and daube tudor style buildings. Offers a bunch of visual options.',
-  'texture|sewer': 'Sewers. Get your ick on.',
-  'texture|cave': 'Natural caves'
+const TagRow: React.FC<{ tags: string[]; addExampleTag: (tag: string) => void; tooltipAbove?: boolean }> = ({ tags, addExampleTag, tooltipAbove = false }) => {
+  const tagDescriptions = useTagContext((state) => state.tagDescriptions);
+  
+  return (
+    <div className="flex flex-wrap gap-2 relative">
+      {tags.map((tag) => {
+        const description = tagDescriptions[tag];
+        return (
+          <div key={tag} className="group">
+            <button
+              onClick={() => addExampleTag(tag)}
+              className="inline-block px-2 py-1 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
+            >
+              {tag}
+              {description && (
+                <span className="ml-1 text-gray-500 group-hover:text-gray-700">
+                  <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </span>
+              )}
+            </button>
+            {description && (
+              <div
+                className={`absolute left-0 right-0 mx-auto ${tooltipAbove ? 'bottom-full mb-1' : 'top-full mt-1'} w-full max-w-full p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 opacity-0 group-hover:opacity-100 z-50 transition-opacity duration-150 pointer-events-none`}
+              >
+                {description}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
-const TagRow: React.FC<{ tags: string[]; addExampleTag: (tag: string) => void; tooltipAbove?: boolean }> = ({ tags, addExampleTag, tooltipAbove = false }) => (
-  <div className="flex flex-wrap gap-2 relative">
-    {tags.map((tag) => {
-      const description = tagDescriptions[tag];
-      return (
-        <div key={tag} className="group">
-          <button
-            onClick={() => addExampleTag(tag)}
-            className="inline-block px-2 py-1 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
-          >
-            {tag}
-            {description && (
-              <span className="ml-1 text-gray-500 group-hover:text-gray-700">
-                <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </span>
-            )}
-          </button>
-          {description && (
-            <div
-              className={`absolute left-0 right-0 mx-auto ${tooltipAbove ? 'bottom-full mb-1' : 'top-full mt-1'} w-full max-w-full p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 opacity-0 group-hover:opacity-100 z-50 transition-opacity duration-150 pointer-events-none`}
-            >
-              {description}
-            </div>
-          )}
-        </div>
-      );
-    })}
-  </div>
-);
-
-export function TabPartSearchInstructions() {
+export function InstructionsPartSearch() {
   const addTag = useTagContext((state) => state.addTag);
   const removeTag = useTagContext((state) => state.removeTag);
   const selectedTags = useTagContext((state) => state.selectedTags);
@@ -208,4 +192,4 @@ export function TabPartSearchInstructions() {
   );
 }
 
-export default TabPartSearchInstructions; 
+export default InstructionsPartSearch; 

@@ -4,7 +4,7 @@ import React from 'react';
 import TagContainer from './tag-container';
 import ResultsContainer from './results-container';
 import BlueprintContainer from './blueprint-container';
-import TabPartSearchInstructions from './tab-part-search-instructions';
+import InstructionsPartSearch from './instructions-part-search';
 import { BlueprintProvider } from '@/contexts/blueprint-context';
 import { TagProvider } from '@/contexts/tag-context';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
@@ -31,7 +31,7 @@ const TabPartSearch: React.FC = () => {
 
 const BlueprintSelector: React.FC = () => {
   const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
-  return blueprint ? <BlueprintContainer /> : <TabPartSearchInstructions />;
+  return blueprint ? <BlueprintContainer /> : <InstructionsPartSearch />;
 };
 
 export default TabPartSearch; 
