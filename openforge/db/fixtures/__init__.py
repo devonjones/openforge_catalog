@@ -57,26 +57,44 @@ def clear_db(curs: cursor):
     tag_description_sql.delete_all_tag_descriptions(curs)
 
 
+class ValidationResult:
+    def __init__(self):
+        self.errors = []
+        self.is_valid = True
+
+    def add_error(self, error):
+        self.errors.append(error)
+        self.is_valid = False
+
+    def merge(self, other):
+        self.errors.extend(other.errors)
+        self.is_valid = self.is_valid and other.is_valid
+
+
 def _is_blueprint_fixture(data):
+    result = ValidationResult()
     try:
         validate_schema("blueprint.fixture.json", data)
-        return True
     except jsonschema.exceptions.ValidationError as e:
-        print(f"Schema validation failed: {e.message}")
-        print(f"Path: {'/'.join(str(p) for p in e.path)}")
-        print(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
-        return False
+        result.add_error(f"Schema validation failed: {e.message}")
+        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
+        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
     except Exception as e:
-        print(f"Unexpected error during validation: {str(e)}")
-        return False
+        result.add_error(f"Unexpected error during validation: {str(e)}")
+    return result
 
 
 def _is_tag_description_fixture(data):
+    result = ValidationResult()
     try:
         validate_schema("tag_description.fixture.json", data)
-        return True
-    except Exception:
-        return False
+    except jsonschema.exceptions.ValidationError as e:
+        result.add_error(f"Schema validation failed: {e.message}")
+        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
+        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
+    except Exception as e:
+        result.add_error(f"Unexpected error during validation: {str(e)}")
+    return result
 
 
 def load_fixtures(conn: connection, alt: str, files: list = None):
@@ -86,12 +104,19 @@ def load_fixtures(conn: connection, alt: str, files: list = None):
         conn.commit()
         for f in ffiles:
             data = _load_data(f)
-            if _is_blueprint_fixture(data):
+            blueprint_result = _is_blueprint_fixture(data)
+            tag_result = _is_tag_description_fixture(data)
+            
+            if blueprint_result.is_valid:
                 for rec in data:
                     load_blueprint_fixture(curs, rec)
-            elif _is_tag_description_fixture(data):
+            elif tag_result.is_valid:
                 load_tag_description_fixture(curs, data)
             else:
+                # Only show errors if all validations failed
+                print(f"\nValidation failed for {f}:")
+                for error in blueprint_result.errors + tag_result.errors:
+                    print(error)
                 raise ValueError(f"File {f} does not match any known fixture format")
             conn.commit()
 
