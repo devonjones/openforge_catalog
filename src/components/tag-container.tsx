@@ -32,7 +32,13 @@ const renderTags = (
         <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
           {hasChildren && (
             <span onClick={() => toggleNode(key)} className="expandButton">
-              {isExpanded ? '▼' : '▶'}
+              {hasChildren && (
+                isExpanded ? (
+                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }}><path d="M2 3L6 10L10 3Z" fill="currentColor"/></svg>
+                ) : (
+                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }}><path d="M3 2L10 6L3 10Z" fill="currentColor"/></svg>
+                )
+              )}
             </span>
           )}
           <span>
