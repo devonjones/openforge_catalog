@@ -3,11 +3,11 @@ import json
 from pprint import pprint
 from psycopg import cursor, sql
 from openforge.db import get_logger
+from .tag_utils import tag_to_array, array_to_tag, convert_tag_dict
 
 
 def _convert_tag(tag: dict) -> dict:
-    tag["tag"] = "|".join(tag["tag"])
-    return tag
+    return convert_tag_dict(tag)
 
 
 def _convert_config(data: dict) -> dict:
@@ -47,37 +47,39 @@ SELECT id, blueprint_id, tag, created_at, updated_at
 
 
 def insert_tag(curs: cursor, blueprint_id: uuid.UUID, tag: str) -> dict:
+    tag_arr = tag_to_array(tag)
     query = sql.SQL(
         """
 WITH new_tags AS (
   INSERT INTO tags (
     blueprint_id, tag
   ) VALUES (
-    {blueprint_id}, {tag}
+    {blueprint_id}, %s
   ) ON CONFLICT DO NOTHING
   RETURNING id
 )
 SELECT COALESCE(
   (SELECT id FROM new_tags),
-  (SELECT id FROM tags WHERE blueprint_id = {blueprint_id} AND tag = {tag})
+  (SELECT id FROM tags WHERE blueprint_id = {blueprint_id} AND tag = %s)
 ) AS id
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    ).format(blueprint_id=sql.Literal(blueprint_id))
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query)
+    curs.execute(query, (tag_arr, tag_arr))
     return get_tag_by_id(curs, curs.fetchone()["id"])
 
 
 def delete_tag(curs: cursor, blueprint_id: uuid.UUID, tag: str) -> dict:
+    tag_arr = tag_to_array(tag)
     query = sql.SQL(
         """
 DELETE FROM tags
   WHERE blueprint_id = {blueprint_id}
-    AND tag = {tag}
+    AND tag = %s
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id), tag=sql.Literal(tag.split("|")))
+    ).format(blueprint_id=sql.Literal(blueprint_id))
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query)
+    curs.execute(query, (tag_arr,))
     return curs.rowcount
 
 
@@ -101,29 +103,29 @@ def delete_all_tags(curs: cursor) -> dict:
 
 
 def get_blueprint_ids_by_tag(curs: cursor, tag: str) -> list[uuid.UUID]:
-    tags = tag.split("|")
+    tag_arr = tag_to_array(tag)
     query_list = [
         sql.SQL(
             """
 SELECT DISTINCT blueprint_id
   FROM tags
-  WHERE tag[1] = {tag}
+  WHERE tag[1] = %s
 """
-        ).format(tag=sql.Literal(tags.pop(0)))
+        )
     ]
     counter = 1
-    for tag in tags:
+    for tag in tag_arr[1:]:
         counter += 1
         query_list.append(
             sql.SQL(
                 """
-    AND tag[{counter}] = {tag}
+    AND tag[{counter}] = %s
 """
-            ).format(tag=sql.Literal(tag), counter=sql.Literal(counter))
+            ).format(counter=sql.Literal(counter))
         )
     query = sql.Composed(query_list)
     get_logger().debug(query.join("\n").as_string())
-    curs.execute(query.join("\n"))
+    curs.execute(query.join("\n"), tag_arr)
     return [row["blueprint_id"] for row in curs.fetchall()]
 
 

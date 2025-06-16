@@ -6,6 +6,7 @@ from jsonschema.exceptions import ValidationError
 
 import openforge.db.sql.tags as tag_sql
 from openforge.openapi import validate_schema
+from openforge.db.sql.tag_utils import array_to_tag
 
 
 def get_blueprint_tags(blueprint_id: uuid.UUID):
@@ -137,7 +138,7 @@ def query_tags():
             tag_count = tag_sql.tag_search_tag_count(
                 cursor, accept, require, deny, models=models, blueprints=blueprints, search=search
             )
-            tag_count = {"|".join(tag["tag"]): tag["tag_count"] for tag in tag_count}
+            tag_count = {array_to_tag(tag["tag"]): tag["tag_count"] for tag in tag_count}
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)
             paging = _munge_paging(bps, count, start_count)
@@ -166,13 +167,9 @@ def _munge_paging(bps: list[dict], total_count: int, start_count: int) -> dict:
 def _merge_blueprint_tag_data(bp_data: list[dict], tag_data: list[dict]) -> list[dict]:
     for bp in bp_data:
         bp["tags"] = [
-            _munge_tag(tag) for tag in tag_data if tag["blueprint_id"] == bp["id"]
+            array_to_tag(tag["tag"]) for tag in tag_data if tag["blueprint_id"] == bp["id"]
         ]
     return bp_data
-
-
-def _munge_tag(tag: dict) -> dict:
-    return "|".join(tag["tag"])
 
 
 def _merge_blueprint_image_data(

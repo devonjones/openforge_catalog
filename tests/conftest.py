@@ -52,7 +52,7 @@ def clean_tables(test_db):
     """Clean all tables before each test"""
     with test_db.pool.connection() as conn:
         with conn.cursor() as curs:
-            curs.execute(sql.SQL("TRUNCATE blueprints, tags, images, blueprint_images, documentation, blueprint_documentation CASCADE"))
+            curs.execute(sql.SQL("TRUNCATE blueprints, tags, images, blueprint_images, documentation, blueprint_documentation, tag_descriptions CASCADE"))
             conn.commit()
     yield
 

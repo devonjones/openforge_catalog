@@ -1,0 +1,23 @@
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+type: object
+properties:
+  id:
+    type: string
+    pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+  tag:
+    type: array
+    items:
+      type: string
+  description:
+    type: string
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  full_tag:
+    type: string
+required:
+  - tag
+additionalProperties: false 

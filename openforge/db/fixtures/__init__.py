@@ -15,6 +15,7 @@ except ImportError:
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
+from openforge.db.sql.tag_utils import array_to_tag
 
 
 def find_fixtures(dir: str):
@@ -113,7 +114,11 @@ def load_fixture(curs: cursor, data: dict):
 
 
 def _munge_tag(tag: list):
-    return "|".join(str(t) for t in tag)
+    return _tag_to_string(tag)
+
+
+def _tag_to_string(tag):
+    return array_to_tag(tag)
 
 
 def _munge_image(image: dict):

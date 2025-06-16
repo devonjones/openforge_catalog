@@ -2,6 +2,7 @@ import os
 import sys
 
 from yaml import safe_load
+from openforge.db.sql.tag_utils import tag_to_array
 
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
@@ -39,7 +40,7 @@ def apply_metadata(metadata, o):
         del metadata["auto"]
     if "tags" in metadata:
         for tag in metadata["tags"]:
-            o["tags"].add(tuple(tag.split("|")))
+            add_tag(o, tag)
         del metadata["tags"]
     if "config" in metadata:
         o["config"] = metadata["config"]
@@ -54,14 +55,10 @@ def apply_metadata_edit(edit, o):
     if "tags" in edit:
         if "add" in edit["tags"]:
             for tag in edit["tags"]["add"]:
-                o["tags"].add(tuple(tag.split("|")))
+                add_tag(o, tag)
         if "remove" in edit["tags"]:
             for tag in edit["tags"]["remove"]:
-                try:
-                    o["tags"].remove(tuple(tag.split("|")))
-                except KeyError as ke:
-                    print(o["tags"])
-                    raise ke
+                remove_tag(o, tag)
         del edit["tags"]
     assert len(edit) == 0, edit
 
@@ -197,3 +194,12 @@ def apply_thick_wall(o):
     )
     config["parts"] = parts
     o["config"] = config
+
+def add_tag(o: dict, tag: str):
+    if "tags" not in o:
+        o["tags"] = set()
+    o["tags"].add(tuple(tag_to_array(tag)))
+
+def remove_tag(o: dict, tag: str):
+    if "tags" in o:
+        o["tags"].remove(tuple(tag_to_array(tag)))
