@@ -6,5 +6,6 @@
   "labels": [
     "renovatebot"
   ],
-  "assignees": ["devonjones"]
+  "assignees": ["devonjones"],
+  "prHourlyLimit": 5
 }
