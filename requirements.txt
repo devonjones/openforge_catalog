@@ -9,6 +9,6 @@ jsonschema==4.23.0
 aws_lambda_wsgi==0.0.6
 python-dotenv==1.0.1
 boto3==1.38.38
-urllib3==2.3.0
+urllib3==2.4.0
 pytest==8.0.2
 pytest-cov==4.1.0
