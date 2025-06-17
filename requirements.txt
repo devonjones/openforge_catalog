@@ -11,4 +11,4 @@ python-dotenv==1.0.1
 boto3==1.38.38
 urllib3==2.4.0
 pytest==8.0.2
-pytest-cov==4.1.0
+pytest-cov==6.2.1
