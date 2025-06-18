@@ -1,5 +1,5 @@
 import { createTagStore } from '../tag-store';
-import type { Blueprint, Paging, TagNode } from '@/types';
+import type { Blueprint, Paging } from '@/types';
 
 // Mock fetch globally
 global.fetch = jest.fn();

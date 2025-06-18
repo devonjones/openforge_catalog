@@ -71,5 +71,5 @@ jobs:
           node-version: '18'
       - name: Install dependencies
         run: npm install
-      - name: Run ESLint
-        run: npx eslint src/ --ext .ts,.tsx --max-warnings 0
+      - name: Run linting and type checking
+        run: npm run lint:all

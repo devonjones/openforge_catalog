@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { InstructionsPartSearch } from '../instructions-part-search';
 import { useTagContext } from '@/contexts/tag-context';
+import type { TagStore } from '@/stores/tag-store';
 
 jest.mock('@/contexts/tag-context', () => ({
   useTagContext: jest.fn(),
@@ -19,12 +20,33 @@ describe('InstructionsPartSearch', () => {
   };
 
   beforeEach(() => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         addTag: mockAddTag,
         removeTag: mockRemoveTag,
         selectedTags: mockSelectedTags,
         tagDescriptions: mockTagDescriptions,
+        data: {},
+        expandedNodes: {},
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        searchTerm: null,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        toggleNode: jest.fn(),
+        addAllTags: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
+        setSearchTerm: jest.fn(),
+        fetchTagDescriptions: jest.fn(),
       })
     );
     jest.clearAllMocks();
@@ -67,12 +89,33 @@ describe('InstructionsPartSearch', () => {
   });
 
   it('calls addTag and removeTag correctly when clicking example tag', () => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         addTag: mockAddTag,
         removeTag: mockRemoveTag,
         selectedTags: ['build|s2w', 'build|separate wall'],
         tagDescriptions: mockTagDescriptions,
+        data: {},
+        expandedNodes: {},
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        searchTerm: null,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        toggleNode: jest.fn(),
+        addAllTags: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
+        setSearchTerm: jest.fn(),
+        fetchTagDescriptions: jest.fn(),
       })
     );
     render(<InstructionsPartSearch />);

@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useTagContext } from '@/contexts/tag-context';
+import type { TagNode } from '@/types';
 import './tag-container.css';
 
 const useDebounce = <T,>(value: T, delay: number): T => {
@@ -15,7 +16,7 @@ const useDebounce = <T,>(value: T, delay: number): T => {
 };
 
 const renderTags = (
-  data: Record<string, any>,
+  data: Record<string, TagNode>,
   level = 0,
   expandedNodes: Record<string, boolean>,
   toggleNode: (key: string) => void,
@@ -23,13 +24,13 @@ const renderTags = (
   tagDescriptions: Record<string, string>,
   onTagHover: (tag: string | null, rect?: DOMRect) => void
 ) => {
-  return Object.entries(data).map(([tag, value], index) => {
+  return Object.entries(data).map(([tag, value]) => {
     if (tag.startsWith('__') || tag === 'children') return null;
 
     const key = `${level}-${tag}`;
     const isExpanded = expandedNodes[key] || false;
     const hasChildren = value.children && Object.keys(value.children).length > 0;
-    const description = tagDescriptions[value.__name];
+    const description = tagDescriptions[value.__name as string];
 
     return (
       <div key={key} className="tagNode" style={{ marginLeft: level * 20 }}>
@@ -50,14 +51,14 @@ const renderTags = (
             onMouseEnter={e => {
               if (description) {
                 const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                onTagHover(value.__name, rect);
+                onTagHover(value.__name as string, rect);
               }
             }}
             onMouseLeave={() => onTagHover(null)}
           >
-            {tag} {value.__subTags > 0 && `(${value.__subTags}) `}
+            {tag} {typeof value.__subTags === 'number' && value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
-              <span className="tagButton" onClick={() => handleAddTag(value.__name)}>
+              <span className="tagButton" onClick={() => handleAddTag(value.__name as string)}>
                 +
               </span>
             )}
@@ -70,7 +71,7 @@ const renderTags = (
             )}
           </span>
         </div>
-        {isExpanded && hasChildren && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions, onTagHover)}
+        {isExpanded && hasChildren && value.children && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions, onTagHover)}
       </div>
     );
   });

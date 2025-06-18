@@ -5,11 +5,7 @@ import TabbedInterface from "@/components/tabbed-interface";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function RootLayout() {
 	return (
 		<html lang="en">
 			<body className={inter.className}>

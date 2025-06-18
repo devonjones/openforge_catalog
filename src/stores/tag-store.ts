@@ -38,7 +38,6 @@
 import { createStore } from 'zustand';
 import type { TagNode, Blueprint, Paging } from '@/types';
 import { devLog } from '@/utils/log';
-import { tagToArray } from '../utils/tag-utils';
 
 export interface TagStore {
   data: Record<string, TagNode>;
@@ -212,7 +211,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       devLog('clearTags');
       set({ selectedTags: [], denyTags: [], searchTerm: null });
       // Clear blueprint selection by setting it to null
-      const blueprintStore = (window as any).__BLUEPRINT_STORE__;
+      const blueprintStore = (window as { __BLUEPRINT_STORE__?: { getState: () => { setSelectedBlueprint: (blueprint: Blueprint | null) => void } } }).__BLUEPRINT_STORE__;
       if (blueprintStore) {
         blueprintStore.getState().setSelectedBlueprint(null);
       }

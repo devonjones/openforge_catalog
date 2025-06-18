@@ -24,7 +24,6 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
   };
 
   const handleOpenModal = () => {
-    const otherBlueprintTags = getOtherBlueprintTags(configSelections, title, blueprint);
     setIsModalOpen(true);
   };
 
@@ -71,8 +70,8 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     }
 
     if (tags.constrain && tags.constrain.length > 0) {
-      const tagConstraints = tags.constrain.filter((c: any) => 'tag' in c) as { tag: string }[];
-      const filterConstraints = tags.constrain.filter((c: any) => 'filter' in c) as { filter: string }[];
+      const tagConstraints = tags.constrain.filter((c: { tag?: string; filter?: string }) => 'tag' in c) as { tag: string }[];
+      const filterConstraints = tags.constrain.filter((c: { tag?: string; filter?: string }) => 'filter' in c) as { filter: string }[];
       if (tagConstraints.length > 0) {
         requirements.push(
           <div key="constrain" className="mt-2">
@@ -103,7 +102,7 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     return requirements;
   };
 
-  const otherBlueprintTags = getOtherBlueprintTags(configSelections, title, blueprint);
+  const otherBlueprintTags = blueprint ? getOtherBlueprintTags(configSelections, title, blueprint) : new Set<string>();
 
   return (
     <div className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group">
@@ -114,6 +113,7 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
         <div className="mt-2">
           <div className="font-medium">{selectedBlueprint.blueprint_name}</div>
           {selectedBlueprint.images[0] && (
+            // eslint-disable-next-line @next/next/no-img-element
             <img 
               src={selectedBlueprint.images[0].image_url} 
               alt={selectedBlueprint.blueprint_name}

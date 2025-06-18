@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import TagContainer from '../tag-container';
 import { useTagContext } from '@/contexts/tag-context';
+import type { TagStore } from '@/stores/tag-store';
 
 jest.mock('@/contexts/tag-context', () => ({
   useTagContext: jest.fn(),
@@ -42,7 +43,7 @@ describe('TagContainer', () => {
   const mockFetchTagDescriptions = jest.fn();
 
   beforeEach(() => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         data: mockData,
         expandedNodes: { '0-foo': true },
@@ -52,6 +53,23 @@ describe('TagContainer', () => {
         searchTerm: '',
         tagDescriptions: mockTagDescriptions,
         fetchTagDescriptions: mockFetchTagDescriptions,
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        addAllTags: jest.fn(),
+        removeTag: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
       })
     );
     jest.clearAllMocks();
@@ -95,7 +113,7 @@ describe('TagContainer', () => {
       }
     };
 
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         data: testData,
         expandedNodes: {},
@@ -105,6 +123,23 @@ describe('TagContainer', () => {
         searchTerm: null,
         tagDescriptions: testTagDescriptions,
         fetchTagDescriptions: jest.fn(),
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        addAllTags: jest.fn(),
+        removeTag: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
       })
     );
 
@@ -152,7 +187,7 @@ describe('TagContainer', () => {
   });
 
   it('syncs searchInput with searchTerm from store', () => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         data: mockData,
         expandedNodes: {},
@@ -162,6 +197,23 @@ describe('TagContainer', () => {
         searchTerm: 'preset',
         tagDescriptions: mockTagDescriptions,
         fetchTagDescriptions: mockFetchTagDescriptions,
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        addAllTags: jest.fn(),
+        removeTag: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
       })
     );
     render(<TagContainer />);
@@ -169,7 +221,7 @@ describe('TagContainer', () => {
   });
 
   it('handles no tags gracefully', () => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         data: {},
         expandedNodes: {},
@@ -179,6 +231,23 @@ describe('TagContainer', () => {
         searchTerm: '',
         tagDescriptions: {},
         fetchTagDescriptions: mockFetchTagDescriptions,
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        addAllTags: jest.fn(),
+        removeTag: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
       })
     );
     render(<TagContainer />);
@@ -186,7 +255,7 @@ describe('TagContainer', () => {
   });
 
   it('handles tag with no description', () => {
-    (useTagContext as jest.Mock).mockImplementation((selector: any) =>
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         data: {
           node: { __name: 'node', __subTags: 0, __count: 1, children: {} },
@@ -198,6 +267,23 @@ describe('TagContainer', () => {
         searchTerm: '',
         tagDescriptions: {},
         fetchTagDescriptions: mockFetchTagDescriptions,
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        addAllTags: jest.fn(),
+        removeTag: jest.fn(),
+        clearTags: jest.fn(),
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
       })
     );
     render(<TagContainer />);

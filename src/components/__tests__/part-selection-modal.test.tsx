@@ -3,16 +3,24 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import PartSelectionModal from '../part-selection-modal';
 
 jest.mock('@/contexts/blueprint-context', () => ({
-  BlueprintProvider: ({ children }: any) => <div data-testid="blueprint-provider">{children}</div>,
+  BlueprintProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="blueprint-provider">{children}</div>,
 }));
 jest.mock('@/contexts/tag-context', () => ({
-  TagProvider: ({ children }: any) => <div data-testid="tag-provider">{children}</div>,
+  TagProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="tag-provider">{children}</div>,
 }));
-jest.mock('../tag-container', () => () => <div data-testid="tag-container">TagContainer</div>);
-jest.mock('../results-container', () => () => <div data-testid="results-container">ResultsContainer</div>);
+jest.mock('../tag-container', () => {
+  const TagContainer = () => <div data-testid="tag-container">TagContainer</div>;
+  TagContainer.displayName = 'TagContainer';
+  return TagContainer;
+});
+jest.mock('../results-container', () => {
+  const ResultsContainer = () => <div data-testid="results-container">ResultsContainer</div>;
+  ResultsContainer.displayName = 'ResultsContainer';
+  return ResultsContainer;
+});
 jest.mock('../blueprint-container', () => ({
   __esModule: true,
-  default: ({ onPartSelected }: any) => (
+  default: ({ onPartSelected }: { onPartSelected?: (partName: string, blueprint: unknown) => void }) => (
     <div data-testid="blueprint-container">
       BlueprintContainer
       <button data-testid="select-part" onClick={() => onPartSelected && onPartSelected('partName', { blueprint_name: 'BP', images: [] })}>Select</button>
@@ -25,7 +33,7 @@ describe('PartSelectionModal', () => {
     isOpen: true,
     onClose: jest.fn(),
     partName: 'TestPart',
-    configValues: { foo: 'bar' },
+    configValues: { require: [], deny: [], accept: [], constrain: [] },
     onPartSelected: jest.fn(),
     tagsFromOtherSelections: ['tag1', 'tag2'],
   };

@@ -60,7 +60,6 @@ export function InstructionsPartSearch() {
   const removeTag = useTagContext((state) => state.removeTag);
   const selectedTags = useTagContext((state) => state.selectedTags);
   const tagDescriptions = useTagContext((state) => state.tagDescriptions);
-  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
 
   const addExampleTag = (tag: string) => {
     const section = tag.split('|')[0];

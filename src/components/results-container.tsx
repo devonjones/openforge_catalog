@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigTags } from '@/types';
 import './results-container.css';
 
 interface ResultsContainerProps {
-  configValues?: Record<string, any> | null;
+  configValues?: ConfigTags | null;
   tagsFromOtherSelections?: string[];
 }
 
@@ -64,7 +64,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
       window.history.replaceState({}, '', newUrl);
     }
-  }, [autoload]);
+  }, [autoload, addTag, blueprints, selectedTags, setSearchTerm, setSelectedBlueprint]);
 
   useEffect(() => {
     if (configValues) {
@@ -90,7 +90,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       if (configValues.constrain) {
         const constrain = configValues.constrain;
         // Collect all filter values from constrain
-        const filterTags = constrain.filter((c: any) => 'filter' in c).map((c: any) => c.filter);
+        const filterTags = constrain.filter((c: { tag?: string; filter?: string }) => 'filter' in c).map((c: { tag?: string; filter?: string }) => c.filter).filter((filter): filter is string => filter !== undefined);
         for (const key in constrain) {
           const data = constrain[key];
           if ('tag' in data && data.tag) {
@@ -115,7 +115,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       }
       setTagState(tags);
     }
-  }, [configValues, setTagState]);
+  }, [configValues, setTagState, tagsFromOtherSelections]);
 
   useEffect(() => {
     fetchBlueprints();

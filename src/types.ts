@@ -53,7 +53,7 @@ export interface TagNode {
   __totalCount?: number;
   __subTags?: number;
   children?: Record<string, TagNode>;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface Paging {

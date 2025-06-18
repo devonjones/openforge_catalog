@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import BlueprintContainer from '../blueprint-container';
 import { Blueprint, ConfigPart } from '@/types';
+import type { BlueprintStore } from '@/stores/blueprint-store';
+import type { TagStore } from '@/stores/tag-store';
 
 // Mock the contexts
 jest.mock('@/contexts/blueprint-context', () => ({
@@ -25,14 +27,18 @@ jest.mock('new-github-issue-url', () => jest.fn(() => 'https://github.com/devonj
 
 // Mock ConfigBox component
 jest.mock('../config-box', () => {
-  return function MockConfigBox({ title, value }: { title: string; value: any }) {
+  return function MockConfigBox({ title }: { title: string; value: unknown }) {
     return <div data-testid={`config-box-${title}`}>{title}</div>;
   };
 });
 
-const mockUseBlueprintContext = require('@/contexts/blueprint-context').useBlueprintContext;
-const mockUseTagContext = require('@/contexts/tag-context').useTagContext;
-const mockDownloadFiles = require('@/utils/download').downloadFiles;
+import { useBlueprintContext } from '@/contexts/blueprint-context';
+import { useTagContext } from '@/contexts/tag-context';
+import { downloadFiles } from '@/utils/download';
+
+const mockUseBlueprintContext = useBlueprintContext as jest.MockedFunction<typeof useBlueprintContext>;
+const mockUseTagContext = useTagContext as jest.MockedFunction<typeof useTagContext>;
+const mockDownloadFiles = downloadFiles as jest.MockedFunction<typeof downloadFiles>;
 
 // Mock window.location and navigator
 const mockClipboard = {
@@ -98,20 +104,46 @@ describe('BlueprintContainer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: mockBlueprint,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
 
-    mockUseTagContext.mockImplementation((selector: any) => {
-      const state = {
-        addTag: mockAddTag,
-        clearTags: mockClearTags,
-        addAllTags: mockAddAllTags,
+    mockUseTagContext.mockImplementation((selector) => {
+      const state: TagStore = {
+        data: {},
+        expandedNodes: {},
+        selectedTags: [],
+        denyTags: [],
+        blueprints: [],
+        paging: null,
+        autoload: false,
+        search_models: false,
+        search_blueprints: false,
+        searchTerm: null,
         tagDescriptions: mockTagDescriptions,
+        fetchData: jest.fn(),
+        setData: jest.fn(),
+        toggleNode: jest.fn(),
+        addTag: mockAddTag,
+        addAllTags: mockAddAllTags,
+        removeTag: jest.fn(),
+        clearTags: mockClearTags,
+        addDenyTag: jest.fn(),
+        removeDenyTag: jest.fn(),
+        setTagState: jest.fn(),
+        fetchBlueprints: jest.fn(),
+        setBlueprints: jest.fn(),
+        setSearchTerm: jest.fn(),
+        fetchTagDescriptions: jest.fn(),
       };
       return selector(state);
     });
@@ -140,10 +172,15 @@ describe('BlueprintContainer', () => {
   });
 
   it('renders "No Blueprint Selected" when no blueprint is selected', () => {
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: null,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -223,10 +260,15 @@ describe('BlueprintContainer', () => {
       },
     };
 
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: blueprintWithParts,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -264,10 +306,15 @@ describe('BlueprintContainer', () => {
       },
     };
 
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: nestedBlueprint,
         configSelections: mockConfigSelectionsWithNested,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -315,10 +362,15 @@ describe('BlueprintContainer', () => {
       },
     };
 
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: blueprintWithoutFile,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -354,10 +406,15 @@ describe('BlueprintContainer', () => {
       },
     };
 
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: blueprintWithFulfills,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -375,10 +432,15 @@ describe('BlueprintContainer', () => {
       file_modified_at: '2023-01-02T00:00:00Z',
     };
 
-    mockUseBlueprintContext.mockImplementation((selector: any) => {
-      const state = {
+    mockUseBlueprintContext.mockImplementation((selector) => {
+      const state: BlueprintStore = {
         selectedBlueprint: blueprintWithDifferentDates,
         configSelections: mockConfigSelections,
+        setSelectedBlueprint: jest.fn(),
+        fetchBlueprintById: jest.fn(),
+        fetchBlueprintByMd5: jest.fn(),
+        setConfigSelection: jest.fn(),
+        clearConfigSelections: jest.fn(),
       };
       return selector(state);
     });
@@ -389,15 +451,28 @@ describe('BlueprintContainer', () => {
   });
 
   it('handles cleanup of hover timeout on unmount', () => {
+    // Mock setTimeout and clearTimeout
+    const mockTimeoutId = 123;
+    const mockSetTimeout = jest.fn().mockReturnValue(mockTimeoutId);
+    const mockClearTimeout = jest.fn();
+    jest.spyOn(global, 'setTimeout').mockImplementation(mockSetTimeout);
+    jest.spyOn(global, 'clearTimeout').mockImplementation(mockClearTimeout);
+
     const { unmount } = render(<BlueprintContainer />);
 
     // Trigger hover to set up timeout
     const tagButton = screen.getByText('tag1');
     fireEvent.mouseEnter(tagButton);
 
+    // Verify setTimeout was called
+    expect(mockSetTimeout).toHaveBeenCalled();
+
     unmount();
 
-    // The cleanup should happen in useEffect
-    expect(mockRemoveEventListener).toHaveBeenCalledWith('popstate', expect.any(Function));
+    // Verify clearTimeout was called during cleanup
+    expect(mockClearTimeout).toHaveBeenCalledWith(mockTimeoutId);
+
+    // Restore original implementations
+    jest.restoreAllMocks();
   });
 }); 

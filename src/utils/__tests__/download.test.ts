@@ -9,15 +9,15 @@ describe('downloadFiles', () => {
   beforeEach(() => {
     createElementSpy = jest.spyOn(document, 'createElement').mockImplementation((tag: string) => {
       const el = document.createElementNS('http://www.w3.org/1999/xhtml', tag);
-      // @ts-ignore
+      // @ts-expect-error - Mocking style property for test
       el.style = {};
       return el;
     });
     appendChildSpy = jest.spyOn(document.body, 'appendChild').mockImplementation((node: Node) => node);
     removeChildSpy = jest.spyOn(document.body, 'removeChild').mockImplementation((node: Node) => node);
-    setTimeoutSpy = jest.spyOn(global, 'setTimeout').mockImplementation((fn: any) => {
+    setTimeoutSpy = jest.spyOn(global, 'setTimeout').mockImplementation((fn: () => void) => {
       fn();
-      return 1 as any;
+      return 1 as unknown as NodeJS.Timeout;
     });
   });
 

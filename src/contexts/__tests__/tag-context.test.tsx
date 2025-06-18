@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, act, waitFor } from '@testing-library/react';
 import { TagProvider, useTagContext } from '../tag-context';
 import { createStore } from 'zustand';
+import type { TagStore } from '@/stores/tag-store';
 
 // Mock fetch for async methods
 const fetchMock = jest.fn();
@@ -9,7 +10,7 @@ global.fetch = fetchMock;
 
 // Create a mock store that can actually update state
 const createMockTagStore = () => {
-  return createStore((set, get) => ({
+  return createStore((set) => ({
     data: {},
     expandedNodes: {},
     selectedTags: [],
@@ -24,7 +25,7 @@ const createMockTagStore = () => {
     fetchData: jest.fn(),
     setData: jest.fn(),
     toggleNode: (key: string) => {
-      set((state: any) => ({
+      set((state: TagStore) => ({
         expandedNodes: {
           ...state.expandedNodes,
           [key]: !state.expandedNodes[key],
@@ -32,7 +33,7 @@ const createMockTagStore = () => {
       }));
     },
     addTag: (tag: string) => {
-      set((state: any) => {
+      set((state: TagStore) => {
         if (!state.selectedTags.includes(tag)) {
           return { selectedTags: [...state.selectedTags, tag] };
         }
@@ -40,13 +41,13 @@ const createMockTagStore = () => {
       });
     },
     addAllTags: (tags: string[]) => {
-      set((state: any) => {
+      set((state: TagStore) => {
         const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
         return { selectedTags: uniqueTags };
       });
     },
     removeTag: (tag: string) => {
-      set((state: any) => ({
+      set((state: TagStore) => ({
         selectedTags: state.selectedTags.filter((t: string) => t !== tag),
       }));
     },
@@ -54,7 +55,7 @@ const createMockTagStore = () => {
       set({ selectedTags: [], denyTags: [], searchTerm: null });
     },
     addDenyTag: (tag: string) => {
-      set((state: any) => {
+      set((state: TagStore) => {
         if (!state.denyTags.includes(tag)) {
           return { denyTags: [...state.denyTags, tag] };
         }
@@ -62,7 +63,7 @@ const createMockTagStore = () => {
       });
     },
     removeDenyTag: (tag: string) => {
-      set((state: any) => ({
+      set((state: TagStore) => ({
         denyTags: state.denyTags.filter((t: string) => t !== tag),
       }));
     },
@@ -78,11 +79,11 @@ const createMockTagStore = () => {
     fetchBlueprints: async () => {
       fetchMock();
       set({ 
-        blueprints: [{ id: '1', blueprint_name: 'Test Blueprint' } as any],
-        paging: { total_count: 1 } as any
+        blueprints: [{ id: '1', blueprint_name: 'Test Blueprint' }],
+        paging: { total_count: 1 }
       });
     },
-    setBlueprints: (blueprints: any, paging: any) => {
+    setBlueprints: (blueprints: unknown[], paging: unknown) => {
       set({ blueprints, paging });
     },
     fetchTagDescriptions: async () => {
