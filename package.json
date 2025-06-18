@@ -11,7 +11,8 @@
     "lint": "next lint",
     "db-update": "bin/db_update up",
     "db-fixtures": "bin/fixtures",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
