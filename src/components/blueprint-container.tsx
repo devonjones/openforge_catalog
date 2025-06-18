@@ -8,6 +8,7 @@ import { formatFileSize } from '@/utils/format';
 import { downloadFiles } from '@/utils/download';
 import newGithubIssueUrl from 'new-github-issue-url';
 import ConfigBox from './config-box';
+import './blueprint-container.css';
 
 interface BlueprintContainerProps {
   configValues?: Record<string, any> | null;

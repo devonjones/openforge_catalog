@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useTagContext } from '@/contexts/tag-context';
-import { tagToArray } from '../utils/tag-utils';
 
 const TagRow: React.FC<{ tags: string[]; addExampleTag: (tag: string) => void; tooltipAbove?: boolean }> = ({ tags, addExampleTag, tooltipAbove = false }) => {
   const tagDescriptions = useTagContext((state) => state.tagDescriptions);

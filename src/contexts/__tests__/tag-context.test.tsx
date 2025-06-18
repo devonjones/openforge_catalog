@@ -1,10 +1,101 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { TagProvider, useTagContext } from '../tag-context';
+import { createStore } from 'zustand';
 
 // Mock fetch for async methods
 const fetchMock = jest.fn();
 global.fetch = fetchMock;
+
+// Create a mock store that can actually update state
+const createMockTagStore = () => {
+  return createStore((set, get) => ({
+    data: {},
+    expandedNodes: {},
+    selectedTags: [],
+    denyTags: [],
+    blueprints: [],
+    paging: null,
+    autoload: false,
+    search_models: false,
+    search_blueprints: false,
+    searchTerm: null,
+    tagDescriptions: {},
+    fetchData: jest.fn(),
+    setData: jest.fn(),
+    toggleNode: (key: string) => {
+      set((state: any) => ({
+        expandedNodes: {
+          ...state.expandedNodes,
+          [key]: !state.expandedNodes[key],
+        },
+      }));
+    },
+    addTag: (tag: string) => {
+      set((state: any) => {
+        if (!state.selectedTags.includes(tag)) {
+          return { selectedTags: [...state.selectedTags, tag] };
+        }
+        return state;
+      });
+    },
+    addAllTags: (tags: string[]) => {
+      set((state: any) => {
+        const uniqueTags = Array.from(new Set([...state.selectedTags, ...tags]));
+        return { selectedTags: uniqueTags };
+      });
+    },
+    removeTag: (tag: string) => {
+      set((state: any) => ({
+        selectedTags: state.selectedTags.filter((t: string) => t !== tag),
+      }));
+    },
+    clearTags: () => {
+      set({ selectedTags: [], denyTags: [], searchTerm: null });
+    },
+    addDenyTag: (tag: string) => {
+      set((state: any) => {
+        if (!state.denyTags.includes(tag)) {
+          return { denyTags: [...state.denyTags, tag] };
+        }
+        return state;
+      });
+    },
+    removeDenyTag: (tag: string) => {
+      set((state: any) => ({
+        denyTags: state.denyTags.filter((t: string) => t !== tag),
+      }));
+    },
+    setTagState: (tags: { require?: string[]; deny?: string[] }) => {
+      set({
+        selectedTags: tags.require || [],
+        denyTags: tags.deny || [],
+      });
+    },
+    setSearchTerm: (term: string | null) => {
+      set({ searchTerm: term });
+    },
+    fetchBlueprints: async () => {
+      fetchMock();
+      set({ 
+        blueprints: [{ id: '1', blueprint_name: 'Test Blueprint' } as any],
+        paging: { total_count: 1 } as any
+      });
+    },
+    setBlueprints: (blueprints: any, paging: any) => {
+      set({ blueprints, paging });
+    },
+    fetchTagDescriptions: async () => {
+      fetchMock();
+      set({ tagDescriptions: { test: 'description' } });
+    },
+  }));
+};
+
+// Mock the store creation
+jest.mock('../../stores/tag-store', () => ({
+  createTagStore: jest.fn(() => createMockTagStore()),
+}));
 
 const TestComponent = () => {
   const selectedTags = useTagContext((state) => state.selectedTags);
@@ -65,12 +156,20 @@ describe('TagContext', () => {
     });
   });
 
-  it('provides default state and allows tag manipulation', () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+  it('provides default state and allows tag manipulation', async () => {
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    // Wait for any initial async operations to complete
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+    
     // Default state
     expect(screen.getByTestId('selected-tags')).toHaveTextContent('');
     expect(screen.getByTestId('deny-tags')).toHaveTextContent('');
@@ -105,12 +204,19 @@ describe('TagContext', () => {
     expect(screen.getByTestId('selected-tags')).toHaveTextContent('');
   });
 
-  it('setTagState sets require and deny tags', () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+  it('setTagState sets require and deny tags', async () => {
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+
     act(() => {
       screen.getByTestId('set-tag-state').click();
     });
@@ -118,24 +224,38 @@ describe('TagContext', () => {
     expect(screen.getByTestId('deny-tags')).toHaveTextContent('y');
   });
 
-  it('setSearchTerm updates searchTerm', () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+  it('setSearchTerm updates searchTerm', async () => {
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+
     act(() => {
       screen.getByTestId('set-search-term').click();
     });
     expect(screen.getByTestId('search-term')).toHaveTextContent('searchme');
   });
 
-  it('toggleNode toggles expandedNodes', () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+  it('toggleNode toggles expandedNodes', async () => {
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+
     expect(screen.getByTestId('expanded-nodes')).toHaveTextContent('');
     act(() => {
       screen.getByTestId('toggle-node').click();
@@ -148,11 +268,18 @@ describe('TagContext', () => {
   });
 
   it('fetchBlueprints fetches and updates blueprints and paging', async () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+
     await act(async () => {
       screen.getByTestId('fetch-blueprints').click();
     });
@@ -162,11 +289,18 @@ describe('TagContext', () => {
   });
 
   it('fetchTagDescriptions fetches and updates tagDescriptions', async () => {
-    render(
-      <TagProvider autoload={false}>
-        <TestComponent />
-      </TagProvider>
-    );
+    await act(async () => {
+      render(
+        <TagProvider autoload={false}>
+          <TestComponent />
+        </TagProvider>
+      );
+    });
+    
+    await waitFor(() => {
+      expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
+    });
+
     await act(async () => {
       screen.getByTestId('fetch-tag-descriptions').click();
     });

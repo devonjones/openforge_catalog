@@ -4,7 +4,6 @@ export function getOtherBlueprintTags(configSelections: Record<string, any>, tit
   getSelectionsWithSamePrefix(configSelections, title).forEach(([_, bp]) => {
     bp.tags.forEach((tag: string) => otherBlueprintTags.add(tag));
   });
-  console.log(otherBlueprintTags);
   return otherBlueprintTags;
 }
 

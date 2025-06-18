@@ -197,11 +197,6 @@ describe('tags.ts', () => {
       expect(result).toEqual(new Set(['test', 'model', 'base', 'part2', 'component']));
     });
 
-    it('should log the result (console.log is mocked)', () => {
-      getOtherBlueprintTags(mockConfigSelections, 'part1', mockBlueprint);
-      expect(console.log).toHaveBeenCalledWith(expect.any(Set));
-    });
-
     it('should handle complex nested structure with multiple levels', () => {
       const complexSelections = {
         'base': { tags: ['base'] },
