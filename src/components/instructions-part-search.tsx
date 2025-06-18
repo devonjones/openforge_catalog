@@ -36,7 +36,7 @@ const TagRow: React.FC<{ tags: string[]; addExampleTag: (tag: string) => void; t
               {tag}
               {description && (
                 <span className="ml-1 text-gray-500 group-hover:text-gray-700">
-                  <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="tag description">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>

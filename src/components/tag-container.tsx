@@ -38,9 +38,9 @@ const renderTags = (
             <span onClick={() => toggleNode(key)} className="expandButton">
               {hasChildren && (
                 isExpanded ? (
-                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }}><path d="M2 3L6 10L10 3Z" fill="currentColor"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }} aria-label="collapse tag"><path d="M2 3L6 10L10 3Z" fill="currentColor"/></svg>
                 ) : (
-                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }}><path d="M3 2L10 6L3 10Z" fill="currentColor"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 12 12" style={{ display: 'inline', verticalAlign: 'middle' }} aria-label="expand tag"><path d="M3 2L10 6L3 10Z" fill="currentColor"/></svg>
                 )
               )}
             </span>
@@ -63,7 +63,7 @@ const renderTags = (
             )}
             {description && (
               <span className="ml-1 text-gray-500 group-hover:text-gray-700">
-                <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="tag expanded">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </span>
