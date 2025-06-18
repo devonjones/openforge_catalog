@@ -24,3 +24,17 @@
   margin-left: 5px;
   flex-shrink: 0;
 } 
+
+.tooltip {
+  position: fixed;
+  width: 400px;
+  z-index: 2000;
+  background: white;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  padding: 16px;
+  color: #222;
+  font-size: 14px;
+  pointer-events: none;
+}

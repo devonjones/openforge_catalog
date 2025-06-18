@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useTagContext } from '@/contexts/tag-context';
+import './tag-container.css';
 
 const useDebounce = <T,>(value: T, delay: number): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -157,20 +158,10 @@ const TagContainer = () => {
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, tagDescriptions, handleTagHover)}</div>
       {hoveredTag && tooltipRect && tagDescriptions[hoveredTag] && createPortal(
         <div
+          className="tooltip"
           style={{
-            position: 'fixed',
             top: tooltipRect.top + tooltipRect.height + 4,
-            left: Math.max(8, tooltipRect.left - 100),
-            width: 400,
-            zIndex: 2000,
-            background: 'white',
-            border: '2px solid #333',
-            borderRadius: 8,
-            boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
-            padding: 16,
-            color: '#222',
-            fontSize: 14,
-            pointerEvents: 'none',
+            left: Math.max(8, tooltipRect.left - 100)
           }}
         >
           {tagDescriptions[hoveredTag]}
