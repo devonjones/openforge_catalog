@@ -38,7 +38,7 @@ shape: |
   Shape holds tags that define the actual shape of the intended part, and some times the role the part has in a tile. 
 
 size: |
-  Size has the quantiative defintiions. the tile is 2 squares on the x, 4 squares on the y. A curve is 90 degrees or 45. This does have some qualitative tags as well.
+  Size has the quantitative definitions. the tile is 2 squares on the x, 4 squares on the y. A curve is 90 degrees or 45. This does have some qualitative tags as well.
 
 texture: |
   Texture holds tags that define the actual texture of the intended part. Dungeon stone, cut stone, towne, sewer, cave are all options for how to texture the tile.
