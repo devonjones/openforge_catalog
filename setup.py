@@ -11,7 +11,7 @@ setup(
     packages=["openforge"],
     scripts=["bin/db_update", "bin/dropbox_scanner", "bin/fixtures"],
     package_data={
-        "openforge/db/fixtures": ["*.json"],
+        "openforge/db/fixtures": ["*.json", "*.yaml"],
         "openforge/openapi": ["*.yaml"],
     },
 )

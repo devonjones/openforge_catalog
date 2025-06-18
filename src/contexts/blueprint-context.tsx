@@ -15,7 +15,7 @@ interface BlueprintProviderProps {
 }
 
 export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
-  const storeRef = useRef<BlueprintContext>();
+  const storeRef = useRef<BlueprintContext>(null);
   const searchParams = useSearchParams();
   const blueprintId = autoload ? searchParams.get('blueprint_id') : null;
   const md5 = autoload ? searchParams.get('md5') : null;

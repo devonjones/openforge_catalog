@@ -19,7 +19,7 @@ export function TagProvider({
   search_models?: boolean;
   search_blueprints?: boolean;
 }) {
-  const storeRef = useRef<TagContext>();
+  const storeRef = useRef<TagContext>(null);
   if (!storeRef.current) {
     storeRef.current = createTagStore(autoload, search_models, search_blueprints);
   }

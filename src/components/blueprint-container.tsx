@@ -8,9 +8,10 @@ import { formatFileSize } from '@/utils/format';
 import { downloadFiles } from '@/utils/download';
 import newGithubIssueUrl from 'new-github-issue-url';
 import ConfigBox from './config-box';
+import './blueprint-container.css';
 
 interface BlueprintContainerProps {
-  configValues?: Record<string, any> | null;
+  configValues?: { partName: string } | null;
   onPartSelected?: (partName: string, blueprint: Blueprint) => void;
 }
 
@@ -73,7 +74,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     };
 
     // Process all selected blueprints
-    Object.entries(configSelections).forEach(([_, bp]) => {
+    Object.entries(configSelections).forEach(([, bp]) => {
       processBlueprint(bp);
     });
 
@@ -277,8 +278,8 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         let fulfills: { part: string }[] = [];
         if (blueprint && blueprint.blueprint_config?.parts) {
           const parentPart = blueprint.blueprint_config.parts.find(p => p.name === partName);
-          if (parentPart && (parentPart as any).fulfills) {
-            fulfills = (parentPart as any).fulfills;
+          if (parentPart?.fulfills) {
+            fulfills = parentPart.fulfills;
           }
         }
         // Filter parts to be shown
@@ -295,6 +296,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
       <div>
         {blueprint.images.map((image) => (
           <div key={image.id}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={image.image_url} alt={image.image_name} />
           </div>
         ))}

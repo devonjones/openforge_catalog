@@ -9,8 +9,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "lint:all": "npm run lint && npm run type-check",
     "db-update": "bin/db_update up",
-    "db-fixtures": "bin/fixtures"
+    "db-fixtures": "bin/fixtures",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
@@ -30,8 +34,6 @@
     "clsx": "^2.1.1",
     "cmdk": "0.2.1",
     "concurrently": "^8.0.1",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
     "lucide-react": "^0.468.0",
     "new-github-issue-url": "^1.1.0",
     "next": "13.4.3",
@@ -46,7 +48,22 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@eslint/js": "^9.29.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.2",
+    "@types/jest": "^29.5.11",
     "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6"
+    "@types/react-dom": "^19.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.3.4",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^30.0.0",
+    "ts-jest": "^29.1.1",
+    "typescript-eslint": "^8.34.1"
   }
 }

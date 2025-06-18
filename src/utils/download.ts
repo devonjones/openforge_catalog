@@ -1,9 +1,12 @@
-export const downloadFiles = async (urls: string[]) => {
+export const navigate = (url: string) => {
+  window.location.href = url;
+};
+
+export const downloadFiles = async (urls: string[], nav: (url: string) => void = navigate) => {
   if (urls.length === 0) return;
   
   if (urls.length === 1) {
-    // For single file, use direct download
-    window.location.href = urls[0];
+    nav(urls[0]);
     return;
   }
 

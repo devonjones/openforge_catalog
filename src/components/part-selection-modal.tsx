@@ -7,14 +7,14 @@ import BlueprintContainer from './blueprint-container';
 import TagContainer from './tag-container';
 import { BlueprintProvider } from '@/contexts/blueprint-context';
 import { TagProvider } from '@/contexts/tag-context';
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigTags } from '@/types';
 import './part-selection-modal.css';
 
 interface PartSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   partName: string;
-  configValues: Record<string, any> | null;
+  configValues: ConfigTags | null;
   onPartSelected?: (partName: string, blueprint: Blueprint) => void;
   tagsFromOtherSelections?: string[];
 }

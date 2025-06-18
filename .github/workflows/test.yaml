@@ -7,7 +7,7 @@ on:
     branches: [ test, main ]
 
 jobs:
-  test:
+  python-test:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -47,3 +47,29 @@ jobs:
         PGPORT: 5432
       run: |
         pytest tests/ --cov=openforge
+
+  react-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run React tests
+        run: npm test
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run linting and type checking
+        run: npm run lint:all

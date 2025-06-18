@@ -38,7 +38,8 @@ export const createBlueprintStore = () => {
     setConfigSelection: (key: string, blueprint: Blueprint | null) => {
       const currentSelections = get().configSelections;
       if (blueprint === null) {
-        const { [key]: _, ...rest } = currentSelections;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { [key]: _unused, ...rest } = currentSelections;
         set({ configSelections: rest });
       } else {
         set({ configSelections: { ...currentSelections, [key]: blueprint } });
