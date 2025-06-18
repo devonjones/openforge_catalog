@@ -34,7 +34,7 @@
     "clsx": "^2.1.1",
     "cmdk": "0.2.1",
     "concurrently": "^8.0.1",
-    "lucide-react": "^0.468.0",
+    "lucide-react": "^0.517.0",
     "new-github-issue-url": "^1.1.0",
     "next": "13.4.3",
     "postcss": "8.4.23",
