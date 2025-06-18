@@ -2,7 +2,7 @@ build: |
   These tags are based around underlying system you want to use for building a tile. 
   Wall on Tile for example has a wall that takes up part of the floor space, but is much easier to reason about when setting up a map quickly while GMing, while Separate Wall has the wall outside the floor, giving more play room, 
   but is harder to tesselate.
-build|separate wall: Wall off of tile. Gives more gameplay space, harder to reason about tesselating. Recommended for builds that the GM does between sessions in prep
+build|separate wall: Wall off of tile. Gives more gameplay space, harder to reason about tesselating. Recommended for builds that the GM does between sessions in prep.  Separate walls are also used to build walls on tile via the s2w system.
 build|wall on tile: Wall is on the tile taking up half a floor. Gives less game space, so you probably need to alter maps a little to accomodate. Much easier to reason about quickly. Recommended for GMs who build the map during game time.
 build|s2w: A combined system that lets you make wall on tile using separate wall components. This is the future, as it lets you use the same parts to accomplish both.  Most of the parts for this system are gagged as separate wall, only special parts used as adapters, or corners are labeled with this tag.
 build|s-system: Combines a wall with a floor in a system that works pretty well for maps with lots of rooms with shared walls. Very easy to reason about
@@ -36,6 +36,9 @@ scatter: |
 
 shape: |
   Shape holds tags that define the actual shape of the intended part, and some times the role the part has in a tile. 
+
+size: |
+  Size has the quantitative definitions. the tile is 2 squares on the x, 4 squares on the y. A curve is 90 degrees or 45. This does have some qualitative tags as well.
 
 texture: |
   Texture holds tags that define the actual texture of the intended part. Dungeon stone, cut stone, towne, sewer, cave are all options for how to texture the tile.
