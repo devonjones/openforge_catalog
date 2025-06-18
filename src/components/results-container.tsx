@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
@@ -26,7 +26,9 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const setTagState = useTagContext((state) => state.setTagState);
   const autoload = useTagContext((state) => state.autoload);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
+  const fetchData = useTagContext((state) => state.fetchData);
   const [copied, setCopied] = useState(false);
+  const hasSetTagState = useRef(false);
 
   useEffect(() => {
     // Read URL parameters and add tags
@@ -67,32 +69,159 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   }, [autoload, addTag, blueprints, selectedTags, setSearchTerm, setSelectedBlueprint]);
 
   useEffect(() => {
-    if (configValues) {
+    if (fetchData && !hasSetTagState.current) {
+      // Check if fetchData returns a promise
+      const fetchDataResult = fetchData();
+      if (fetchDataResult && typeof fetchDataResult.then === 'function') {
+        fetchDataResult.then(() => {
+          // Only set tag state after fetchData completes
+          if (configValues) {
+            const tags = { require: [] as string[], deny: [] as string[] };
+            
+            // Process require tags
+            if (configValues.require) {
+              configValues.require.forEach((data) => {
+                if (data.tag) {
+                  tags.require.push(data.tag as string);
+                }
+              });
+            }
+            
+            // Process deny tags
+            if (configValues.deny) {
+              configValues.deny.forEach((data) => {
+                if (data.tag) {
+                  tags.deny.push(data.tag as string);
+                }
+              });
+            }
+            
+            // Process constrain tags
+            if (configValues.constrain) {
+              // Collect all filter values from constrain
+              const filterTags = configValues.constrain
+                .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
+                .map((c: { tag?: string; filter?: string }) => c.filter)
+                .filter((filter): filter is string => filter !== undefined);
+              
+              configValues.constrain.forEach((data) => {
+                if ('tag' in data && data.tag) {
+                  const constraintTag = data.tag;
+                  tagsFromOtherSelections.forEach(tag => {
+                    if (tag.startsWith(constraintTag)) {
+                      // Skip if any filter matches (exact or prefix) this tag
+                      let skip = false;
+                      for (const filterTag of filterTags) {
+                        if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
+                          skip = true;
+                          break;
+                        }
+                      }
+                      if (!skip) {
+                        tags.require.push(tag as string);
+                      }
+                    }
+                  });
+                }
+              });
+            }
+            
+            setTagState(tags);
+            hasSetTagState.current = true;
+          }
+        });
+      } else {
+        // fetchData is not a promise, set tag state immediately
+        if (configValues) {
+          const tags = { require: [] as string[], deny: [] as string[] };
+          
+          // Process require tags
+          if (configValues.require) {
+            configValues.require.forEach((data) => {
+              if (data.tag) {
+                tags.require.push(data.tag as string);
+              }
+            });
+          }
+          
+          // Process deny tags
+          if (configValues.deny) {
+            configValues.deny.forEach((data) => {
+              if (data.tag) {
+                tags.deny.push(data.tag as string);
+              }
+            });
+          }
+          
+          // Process constrain tags
+          if (configValues.constrain) {
+            // Collect all filter values from constrain
+            const filterTags = configValues.constrain
+              .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
+              .map((c: { tag?: string; filter?: string }) => c.filter)
+              .filter((filter): filter is string => filter !== undefined);
+            
+            configValues.constrain.forEach((data) => {
+              if ('tag' in data && data.tag) {
+                const constraintTag = data.tag;
+                tagsFromOtherSelections.forEach(tag => {
+                  if (tag.startsWith(constraintTag)) {
+                    // Skip if any filter matches (exact or prefix) this tag
+                    let skip = false;
+                    for (const filterTag of filterTags) {
+                      if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
+                        skip = true;
+                        break;
+                      }
+                    }
+                    if (!skip) {
+                      tags.require.push(tag as string);
+                    }
+                  }
+                });
+              }
+            });
+          }
+          
+          setTagState(tags);
+          hasSetTagState.current = true;
+        }
+      }
+    }
+  }, [configValues, setTagState, tagsFromOtherSelections, fetchData]);
+
+  // Handle changes to configValues or tagsFromOtherSelections after initial setup
+  useEffect(() => {
+    if (hasSetTagState.current && configValues) {
       const tags = { require: [] as string[], deny: [] as string[] };
+      
+      // Process require tags
       if (configValues.require) {
-        const require = configValues.require;
-        for (const key in require) {
-          const data = require[key];
+        configValues.require.forEach((data) => {
           if (data.tag) {
             tags.require.push(data.tag as string);
           }
-        }
+        });
       }
+      
+      // Process deny tags
       if (configValues.deny) {
-        const deny = configValues.deny;
-        for (const key in deny) {
-          const data = deny[key];
+        configValues.deny.forEach((data) => {
           if (data.tag) {
             tags.deny.push(data.tag as string);
           }
-        }
+        });
       }
+      
+      // Process constrain tags
       if (configValues.constrain) {
-        const constrain = configValues.constrain;
         // Collect all filter values from constrain
-        const filterTags = constrain.filter((c: { tag?: string; filter?: string }) => 'filter' in c).map((c: { tag?: string; filter?: string }) => c.filter).filter((filter): filter is string => filter !== undefined);
-        for (const key in constrain) {
-          const data = constrain[key];
+        const filterTags = configValues.constrain
+          .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
+          .map((c: { tag?: string; filter?: string }) => c.filter)
+          .filter((filter): filter is string => filter !== undefined);
+        
+        configValues.constrain.forEach((data) => {
           if ('tag' in data && data.tag) {
             const constraintTag = data.tag;
             tagsFromOtherSelections.forEach(tag => {
@@ -111,15 +240,12 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
               }
             });
           }
-        }
+        });
       }
+      
       setTagState(tags);
     }
   }, [configValues, setTagState, tagsFromOtherSelections]);
-
-  useEffect(() => {
-    fetchBlueprints();
-  }, [fetchBlueprints]);
 
   const copyToClipboard = (text: string) => {
     const currentUrl = window.location.href;
@@ -146,8 +272,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
     if (configValues) {
       // Check require section
       if (configValues.require) {
-        for (const key in configValues.require) {
-          const data = configValues.require[key];
+        for (const data of configValues.require) {
           if (data.tag === tag) {
             return false;
           }
@@ -155,8 +280,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       }
       // Check deny section
       if (configValues.deny) {
-        for (const key in configValues.deny) {
-          const data = configValues.deny[key];
+        for (const data of configValues.deny) {
           if (data.tag === tag) {
             return false;
           }

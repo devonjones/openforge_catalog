@@ -98,6 +98,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       });
       const result = await response.json();
       const tagCounts = result.tag_counts;
+      devLog('Fetched tag data:', tagCounts);
       get().setData(tagCounts);
     },
     setData: (tagCounts: Record<string, number>) => {
@@ -253,15 +254,17 @@ export const createTagStore = (autoload = false, search_models = false, search_b
         urlParams.set('previous', params.previous);
       }
 
+      const requestBody = {
+        require: selectedTags.map(tag => ({ tag })),
+        deny: denyTags.map(tag => ({ tag })),
+      };
+
       const response = await fetch(`/api/blueprints/tags${urlParams.toString() ? '?' + urlParams.toString() : ''}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          require: selectedTags.map(tag => ({ tag })),
-          deny: denyTags.map(tag => ({ tag })),
-        }),
+        body: JSON.stringify(requestBody),
       });
       const result = await response.json();
       devLog('Fetched blueprints:', result);
