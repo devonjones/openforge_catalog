@@ -278,8 +278,8 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         let fulfills: { part: string }[] = [];
         if (blueprint && blueprint.blueprint_config?.parts) {
           const parentPart = blueprint.blueprint_config.parts.find(p => p.name === partName);
-          if (parentPart && (parentPart as unknown as { fulfills?: { part: string }[] }).fulfills) {
-            fulfills = (parentPart as unknown as { fulfills: { part: string }[] }).fulfills;
+          if (parentPart?.fulfills) {
+            fulfills = parentPart.fulfills;
           }
         }
         // Filter parts to be shown

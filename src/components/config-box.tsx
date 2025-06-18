@@ -70,8 +70,8 @@ const ConfigBox = ({ title, value }: ConfigBoxProps) => {
     }
 
     if (tags.constrain && tags.constrain.length > 0) {
-      const tagConstraints = tags.constrain.filter((c: { tag?: string; filter?: string }) => 'tag' in c) as { tag: string }[];
-      const filterConstraints = tags.constrain.filter((c: { tag?: string; filter?: string }) => 'filter' in c) as { filter: string }[];
+      const tagConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'tag' in c) as { tag: string }[];
+      const filterConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'filter' in c) as { filter: string }[];
       if (tagConstraints.length > 0) {
         requirements.push(
           <div key="constrain" className="mt-2">

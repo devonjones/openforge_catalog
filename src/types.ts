@@ -22,6 +22,7 @@ export interface ConfigTags {
 export interface ConfigPart {
   name: string;
   tags: ConfigTags;
+  fulfills?: { part: string }[];
 }
 
 export interface BlueprintConfig {
