@@ -13,17 +13,28 @@ export interface SiblingSelection {
 /**
  * Filter out more specific tags from a set of tags.
  * A tag is considered more specific if it starts with another tag plus a pipe.
+ * Exact matches for the constraint tag are always included.
  * @param tags - Set of tags to filter
- * @returns Set of most general tags
+ * @param constraintTag - The constraint tag that was used to collect these tags
+ * @returns Set of most general tags plus exact matches
  */
-function filterSpecificTags(tags: Set<string>): Set<string> {
+function filterSpecificTags(tags: Set<string>, constraintTag: string): Set<string> {
   const result = new Set<string>();
   const tagsArray = Array.from(tags);
   
-  for (const tag of tagsArray) {
-    // Check if any other tag is a prefix of this tag (when adding a pipe)
+  // Always include exact matches for the constraint tag
+  const exactMatches = tagsArray.filter(tag => tag === constraintTag);
+  exactMatches.forEach(tag => result.add(tag));
+  
+  // For prefix matches (excluding exact matches), filter to most general
+  const prefixMatches = tagsArray.filter(tag => 
+    tag !== constraintTag && tag.startsWith(constraintTag + '|')
+  );
+  
+  for (const tag of prefixMatches) {
+    // Check if any other prefix match is a prefix of this tag
     let isMostGeneral = true;
-    for (const otherTag of tagsArray) {
+    for (const otherTag of prefixMatches) {
       if (otherTag !== tag && tag.startsWith(otherTag + '|')) {
         isMostGeneral = false;
         break;
@@ -136,7 +147,7 @@ export function processConfigValues(
 
         // Add the most general version of each matching tag
         if (matchingTags.size > 0) {
-          const generalTags = filterSpecificTags(matchingTags);
+          const generalTags = filterSpecificTags(matchingTags, constraintTag);
           generalTags.forEach(tag => requireTags.add(tag));
         }
       }

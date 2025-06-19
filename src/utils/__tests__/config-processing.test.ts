@@ -194,6 +194,27 @@ describe('config-processing', () => {
       });
     });
 
+    it('always includes exact matches for constraint tags', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture', 'texture|stone', 'texture|stone|rough'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture', 'texture|stone'], // Exact match 'texture' should always be included, plus most general prefix match
+        deny: []
+      });
+    });
+
     it('filters out more specific tags while keeping same-level tags', () => {
       const configValues: ConfigTags = {
         require: [],
