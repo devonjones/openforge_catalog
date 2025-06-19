@@ -5,6 +5,11 @@ export interface ProcessedTags {
   deny: string[];
 }
 
+export interface SiblingSelection {
+  partName: string;
+  tags: string[];
+}
+
 /**
  * Filter out more specific tags from a set of tags.
  * A tag is considered more specific if it starts with another tag plus a pipe.
@@ -23,12 +28,14 @@ function filterSpecificTags(tags: string[]): string[] {
 /**
  * Process config values to extract require, deny, and constrain tags
  * @param configValues - The configuration tags to process
- * @param tagsFromOtherSelections - Tags from actual blueprint selections to consider for constraints
+ * @param parentTags - Tags from the parent blueprint
+ * @param siblingSelections - Array of sibling part selections with their tags
  * @returns Object containing require and deny tag arrays
  */
 export function processConfigValues(
   configValues: ConfigTags | null,
-  tagsFromOtherSelections: string[] = []
+  parentTags: string[] = [],
+  siblingSelections: SiblingSelection[] = []
 ): ProcessedTags {
   const tags: ProcessedTags = { require: [], deny: [] };
 
@@ -54,7 +61,7 @@ export function processConfigValues(
     });
   }
 
-  // Process constrain tags - only consider tags from actual selections
+  // Process constrain tags
   if (configValues.constrain) {
     // Collect all filter values from constrain
     const filterTags = configValues.constrain
@@ -66,15 +73,42 @@ export function processConfigValues(
     configValues.constrain.forEach((data) => {
       if ('tag' in data && data.tag) {
         const constraintTag = data.tag;
-        // Only look at tags from actual selections
-        const matchingTags = tagsFromOtherSelections.filter(tag => {
+        const siblings = data.siblings;
+        const parent = data.parent !== false; // Default to true if not specified
+
+        // Collect tags from allowed sources
+        const allowedTags: string[] = [];
+
+        // Add parent tags if parent inheritance is enabled
+        if (parent) {
+          allowedTags.push(...parentTags);
+        }
+
+        // Add sibling tags based on siblings configuration
+        if (siblings === undefined) {
+          // Default behavior: consider all siblings
+          siblingSelections.forEach(sibling => {
+            allowedTags.push(...sibling.tags);
+          });
+        } else if (siblings.length > 0) {
+          // Specific siblings only
+          siblingSelections.forEach(sibling => {
+            if (siblings.includes(sibling.partName)) {
+              allowedTags.push(...sibling.tags);
+            }
+          });
+        }
+        // If siblings is empty array, don't add any sibling tags
+
+        // Filter tags that match the constraint type and don't match any filters
+        const matchingTags = allowedTags.filter(tag => {
           // Must match the constraint type
           if (!tag.startsWith(constraintTag)) {
             return false;
           }
           // Must not match any filters
           for (const filterTag of filterTags) {
-            if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
+            if (tag === filterTag || tag.startsWith(filterTag + '|') || filterTag.startsWith(tag + '|')) {
               return false;
             }
           }

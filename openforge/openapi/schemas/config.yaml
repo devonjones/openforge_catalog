@@ -8,8 +8,6 @@ properties:
       properties:
         name:
           type: string
-        id:
-          type: string
         tags:
           type: object
           properties:
@@ -40,11 +38,24 @@ properties:
             constrain:
               type: array
               items:
-                type: object
-                properties:
-                  tag:
-                    type: string
-                  additionalProperties: false
+                oneOf:
+                  - type: object
+                    properties:
+                      tag:
+                        type: string
+                      siblings:
+                        type: array
+                        items:
+                          type: string
+                      parent:
+                        type: boolean
+                        default: true
+                    additionalProperties: false
+                  - type: object
+                    properties:
+                      filter:
+                        type: string
+                    additionalProperties: false
           additionalProperties: false
   fulfills:
     type: array

@@ -29,7 +29,7 @@ const ConfigBox = ({ title, value, onHover, parentBlueprint }: ConfigBoxProps) =
     setIsModalOpen(true);
   };
 
-  const otherBlueprintTags = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint) : new Set<string>();
+  const { parentTags, siblingSelections } = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint) : { parentTags: [], siblingSelections: [] };
 
   return (
     <div 
@@ -76,7 +76,8 @@ const ConfigBox = ({ title, value, onHover, parentBlueprint }: ConfigBoxProps) =
         partName={title}
         configValues={value}
         onPartSelected={handlePartSelected}
-        tagsFromOtherSelections={Array.from(otherBlueprintTags)}
+        parentTags={parentTags}
+        siblingSelections={siblingSelections}
       />
     </div>
   );
