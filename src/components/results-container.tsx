@@ -1,9 +1,14 @@
 'use client'
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
+import { processConfigValues, createDeepLink } from '@/utils/config-processing';
+import { useUrlParameters } from '@/hooks/use-url-parameters';
+import { PaginationControls } from '@/components/ui/pagination-controls';
+import { SelectedTagsDisplay } from '@/components/results/selected-tags-display';
+import { BlueprintList } from '@/components/results/blueprint-list';
 import './results-container.css';
 
 interface ResultsContainerProps {
@@ -20,53 +25,14 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const denyTags = useTagContext((state) => state.denyTags);
   const searchTerm = useTagContext((state) => state.searchTerm);
   const removeTag = useTagContext((state) => state.removeTag);
-  const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const fetchBlueprints = useTagContext((state) => state.fetchBlueprints);
   const setTagState = useTagContext((state) => state.setTagState);
-  const autoload = useTagContext((state) => state.autoload);
-  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const fetchData = useTagContext((state) => state.fetchData);
+  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const [copied, setCopied] = useState(false);
-  const hasSetTagState = useRef(false);
-
-  useEffect(() => {
-    // Read URL parameters and add tags
-    if (typeof window !== 'undefined' && autoload) {
-      const params = new URLSearchParams(window.location.search);
-      
-      // Handle tags
-      const tagParams = params.getAll('tag');
-      tagParams.forEach(tag => {
-        if (!selectedTags.includes(tag)) {
-          addTag(tag);
-        }
-      });
-
-      // Handle search term
-      const searchParam = params.get('search');
-      if (searchParam) {
-        setSearchTerm(searchParam);
-      }
-
-      // Handle blueprint selection
-      const blueprintId = params.get('blueprint_id');
-      if (blueprintId) {
-        const blueprint = blueprints.find(b => b.id === blueprintId);
-        if (blueprint) {
-          setSelectedBlueprint(blueprint);
-        }
-      }
-
-      // Remove tag parameters from URL after processing
-      const newParams = new URLSearchParams();
-      if (blueprintId) {
-        newParams.set('blueprint_id', blueprintId);
-      }
-      const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
-      window.history.replaceState({}, '', newUrl);
-    }
-  }, [autoload, addTag, blueprints, selectedTags, setSearchTerm, setSelectedBlueprint]);
+  
+  const { hasSetTagState } = useUrlParameters();
 
   useEffect(() => {
     if (fetchData && !hasSetTagState.current) {
@@ -76,56 +42,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
         fetchDataResult.then(() => {
           // Only set tag state after fetchData completes
           if (configValues) {
-            const tags = { require: [] as string[], deny: [] as string[] };
-            
-            // Process require tags
-            if (configValues.require) {
-              configValues.require.forEach((data) => {
-                if (data.tag) {
-                  tags.require.push(data.tag as string);
-                }
-              });
-            }
-            
-            // Process deny tags
-            if (configValues.deny) {
-              configValues.deny.forEach((data) => {
-                if (data.tag) {
-                  tags.deny.push(data.tag as string);
-                }
-              });
-            }
-            
-            // Process constrain tags
-            if (configValues.constrain) {
-              // Collect all filter values from constrain
-              const filterTags = configValues.constrain
-                .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
-                .map((c: { tag?: string; filter?: string }) => c.filter)
-                .filter((filter): filter is string => filter !== undefined);
-              
-              configValues.constrain.forEach((data) => {
-                if ('tag' in data && data.tag) {
-                  const constraintTag = data.tag;
-                  tagsFromOtherSelections.forEach(tag => {
-                    if (tag.startsWith(constraintTag)) {
-                      // Skip if any filter matches (exact or prefix) this tag
-                      let skip = false;
-                      for (const filterTag of filterTags) {
-                        if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
-                          skip = true;
-                          break;
-                        }
-                      }
-                      if (!skip) {
-                        tags.require.push(tag as string);
-                      }
-                    }
-                  });
-                }
-              });
-            }
-            
+            const tags = processConfigValues(configValues, tagsFromOtherSelections);
             setTagState(tags);
             hasSetTagState.current = true;
           }
@@ -133,119 +50,21 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       } else {
         // fetchData is not a promise, set tag state immediately
         if (configValues) {
-          const tags = { require: [] as string[], deny: [] as string[] };
-          
-          // Process require tags
-          if (configValues.require) {
-            configValues.require.forEach((data) => {
-              if (data.tag) {
-                tags.require.push(data.tag as string);
-              }
-            });
-          }
-          
-          // Process deny tags
-          if (configValues.deny) {
-            configValues.deny.forEach((data) => {
-              if (data.tag) {
-                tags.deny.push(data.tag as string);
-              }
-            });
-          }
-          
-          // Process constrain tags
-          if (configValues.constrain) {
-            // Collect all filter values from constrain
-            const filterTags = configValues.constrain
-              .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
-              .map((c: { tag?: string; filter?: string }) => c.filter)
-              .filter((filter): filter is string => filter !== undefined);
-            
-            configValues.constrain.forEach((data) => {
-              if ('tag' in data && data.tag) {
-                const constraintTag = data.tag;
-                tagsFromOtherSelections.forEach(tag => {
-                  if (tag.startsWith(constraintTag)) {
-                    // Skip if any filter matches (exact or prefix) this tag
-                    let skip = false;
-                    for (const filterTag of filterTags) {
-                      if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
-                        skip = true;
-                        break;
-                      }
-                    }
-                    if (!skip) {
-                      tags.require.push(tag as string);
-                    }
-                  }
-                });
-              }
-            });
-          }
-          
+          const tags = processConfigValues(configValues, tagsFromOtherSelections);
           setTagState(tags);
           hasSetTagState.current = true;
         }
       }
     }
-  }, [configValues, setTagState, tagsFromOtherSelections, fetchData]);
+  }, [configValues, setTagState, tagsFromOtherSelections, fetchData, hasSetTagState]);
 
   // Handle changes to configValues or tagsFromOtherSelections after initial setup
   useEffect(() => {
     if (hasSetTagState.current && configValues) {
-      const tags = { require: [] as string[], deny: [] as string[] };
-      
-      // Process require tags
-      if (configValues.require) {
-        configValues.require.forEach((data) => {
-          if (data.tag) {
-            tags.require.push(data.tag as string);
-          }
-        });
-      }
-      
-      // Process deny tags
-      if (configValues.deny) {
-        configValues.deny.forEach((data) => {
-          if (data.tag) {
-            tags.deny.push(data.tag as string);
-          }
-        });
-      }
-      
-      // Process constrain tags
-      if (configValues.constrain) {
-        // Collect all filter values from constrain
-        const filterTags = configValues.constrain
-          .filter((c: { tag?: string; filter?: string }) => 'filter' in c)
-          .map((c: { tag?: string; filter?: string }) => c.filter)
-          .filter((filter): filter is string => filter !== undefined);
-        
-        configValues.constrain.forEach((data) => {
-          if ('tag' in data && data.tag) {
-            const constraintTag = data.tag;
-            tagsFromOtherSelections.forEach(tag => {
-              if (tag.startsWith(constraintTag)) {
-                // Skip if any filter matches (exact or prefix) this tag
-                let skip = false;
-                for (const filterTag of filterTags) {
-                  if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
-                    skip = true;
-                    break;
-                  }
-                }
-                if (!skip) {
-                  tags.require.push(tag as string);
-                }
-              }
-            });
-          }
-        });
-      }
-      
+      const tags = processConfigValues(configValues, tagsFromOtherSelections);
       setTagState(tags);
     }
-  }, [configValues, setTagState, tagsFromOtherSelections]);
+  }, [configValues, setTagState, tagsFromOtherSelections, hasSetTagState]);
 
   const copyToClipboard = (text: string) => {
     const currentUrl = window.location.href;
@@ -290,14 +109,6 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
     return true;
   };
 
-  const createDeepLink = (tags: string[]) => {
-    const params = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
-    if (searchTerm) {
-      return `${params}&search=${encodeURIComponent(searchTerm)}`;
-    }
-    return params;
-  };
-
   const handleClear = (e: React.MouseEvent) => {
     e.preventDefault();
     clearTags();
@@ -311,101 +122,37 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
     <div className='resultsContainer'>
       <h2>Blueprints</h2>
       {(selectedTags.length > 0 || searchTerm) && (
-        <div className='selectedTagsContainer'>
-          <div className='flex justify-between'>
-            <div className='flex-1'>
-              {searchTerm && (
-                <>
-                  <div className='selectedTagsContainer__header'>
-                    Search
-                  </div>
-                  <ul>
-                    <li>
-                      {searchTerm} <button className="tagButton" onClick={() => setSearchTerm(null)}>-</button>
-                    </li>
-                  </ul>
-                </>
-              )}
-              {selectedTags.length > 0 && (
-                <>
-                  <div className='selectedTagsContainer__header'>
-                    Selected Tags
-                    {!configValues && (
-                      <>
-                        - <a className='visibleLink' href={"/?" + createDeepLink(selectedTags)}>deeplink</a>&nbsp;
-                        <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(createDeepLink(selectedTags))}>
-                          <svg aria-hidden="true" focusable="false" className="octicon octicon-copy" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible">
-                            <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path>
-                            <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
-                          </svg>
-                        </button>
-                      </>
-                    )}
-                  </div>
-                  <ul>
-                    {Array.from(new Set(selectedTags)).map((tag) => (
-                      <li key={tag}>
-                        {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </div>
-            {denyTags.length > 0 && (
-              <div className='flex-1 ml-4'>
-                <div className='selectedTagsContainer__header'>
-                  Denied Tags
-                </div>
-                <ul>
-                  {denyTags.map((tag) => (
-                    <li key={tag} className="text-red-600">
-                      {tag} {isTagRemovable(tag) && <button className="tagButton" onClick={() => handleRemoveTag(tag)}>-</button>}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+        <>
+          <SelectedTagsDisplay
+            selectedTags={selectedTags}
+            denyTags={denyTags}
+            searchTerm={searchTerm}
+            configValues={configValues}
+            isTagRemovable={isTagRemovable}
+            onRemoveTag={handleRemoveTag}
+            onClearSearch={() => setSearchTerm(null)}
+            onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm)}
+            onCopyToClipboard={copyToClipboard}
+            copied={copied}
+          />
           {!configValues && <div className='selectedTagsContainer__header'><a className='visibleLink' href="#" onClick={handleClear}>clear</a></div>}
-        </div>
+        </>
       )}
 
-      <ul>
-        {blueprints.map((blueprint) => (
-          <li
-            key={blueprint.id}
-            onClick={() => handleSelect(blueprint)}
-            className={`blueprintListItem ${selectedBlueprint?.id === blueprint.id ? 'selected' : ''}`}
-          >
-            {blueprint.blueprint_name}
-          </li>
-        ))}
-      </ul>
+      <BlueprintList
+        blueprints={blueprints}
+        selectedBlueprint={selectedBlueprint}
+        onSelectBlueprint={handleSelect}
+      />
       
-      <div className="totalCount">
-        <strong>{startCount} - {endCount}</strong> of <strong>{paging?.total_count}</strong> that match your tags
-      </div>
-
-      <div className="pagination flex justify-between mt-4">
-        {paging?.previous_token && startCount > 1 &&(
-          <button
-            onClick={() => fetchBlueprints({ previous: paging.previous_token })}
-            className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Previous Page
-          </button>
-        )}
-        <div className="flex-grow"></div>
-        {paging?.next_token && endCount < paging.total_count && (
-          <button
-            onClick={() => fetchBlueprints({ next: paging.next_token })}
-            className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Next Page
-          </button>
-        )}
-      </div>
+      <PaginationControls
+        paging={paging}
+        startCount={startCount}
+        endCount={endCount}
+        totalCount={paging?.total_count ?? 0}
+        onPrevious={() => fetchBlueprints({ previous: paging?.previous_token })}
+        onNext={() => fetchBlueprints({ next: paging?.next_token })}
+      />
     </div>
   );
 };
