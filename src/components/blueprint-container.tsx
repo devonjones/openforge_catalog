@@ -51,18 +51,17 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     setNestedConfigs(newNestedConfigs);
   }, [configSelections]);
 
+  const handleCopySuccess = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const handleCopyToClipboard = (blueprint_md5: string) => {
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split("?")[0];
     const textToCopy = baseUrl + '?md5=' + blueprint_md5;
     
-    copyToClipboard(
-      textToCopy,
-      () => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-    );
+    copyToClipboard(textToCopy, handleCopySuccess);
   };
 
   const handleSwapTags = (e: React.MouseEvent, blueprint: Blueprint, tagType: string) => {

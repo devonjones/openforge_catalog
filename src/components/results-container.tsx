@@ -5,6 +5,7 @@ import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
 import { processConfigValues, createDeepLink } from '@/utils/config-processing';
+import { copyToClipboard } from '@/utils/clipboard';
 import { useUrlParameters } from '@/hooks/use-url-parameters';
 import { PaginationControls } from '@/components/ui/pagination-controls';
 import { SelectedTagsDisplay } from '@/components/results/selected-tags-display';
@@ -66,14 +67,6 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
     }
   }, [configValues, setTagState, tagsFromOtherSelections, hasSetTagState]);
 
-  const copyToClipboard = (text: string) => {
-    const currentUrl = window.location.href;
-    const urlWithoutParameters = currentUrl.split("?")[0];
-    navigator.clipboard.writeText(urlWithoutParameters + '?' + text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-  };
-
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
   };
@@ -118,6 +111,18 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const startCount = (paging?.start_count ?? 0) + 1;
   const endCount = startCount + blueprints.length - 1;
 
+  const handleCopySuccess = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyToClipboard = (text: string) => {
+    const currentUrl = window.location.href;
+    const urlWithoutParameters = currentUrl.split("?")[0];
+    const textToCopy = urlWithoutParameters + '?' + text;
+    copyToClipboard(textToCopy, handleCopySuccess);
+  };
+
   return (
     <div className='resultsContainer'>
       <h2>Blueprints</h2>
@@ -132,7 +137,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
             onRemoveTag={handleRemoveTag}
             onClearSearch={() => setSearchTerm(null)}
             onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm)}
-            onCopyToClipboard={copyToClipboard}
+            onCopyToClipboard={handleCopyToClipboard}
             copied={copied}
           />
           {!configValues && <div className='selectedTagsContainer__header'><a className='visibleLink' href="#" onClick={handleClear}>clear</a></div>}
