@@ -48,7 +48,7 @@ jobs:
 
       - name: Docker Build and Push
         if: ${{ ! inputs.use_cache }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./
           file: ./Dockerfile.api.deploy
