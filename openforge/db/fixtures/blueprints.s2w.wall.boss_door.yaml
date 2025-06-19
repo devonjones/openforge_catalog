@@ -89,3 +89,7 @@
           constrain:
             - tag: size|width
             - tag: size|depth
+            - tag: connection
+              siblings: [wall]
+            - filter: connection|side
+            - filter: connection|openforge

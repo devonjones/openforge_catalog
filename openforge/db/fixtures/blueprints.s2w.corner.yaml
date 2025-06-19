@@ -18,6 +18,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [right wall, left wall]
       - name: right wall
         tags:
           require:
@@ -29,6 +30,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [column, left wall]
         fulfills:
           - part: base
       - name: left wall
@@ -42,6 +44,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [right wall, column]
         fulfills:
           - part: base
       - name: floor
@@ -64,9 +67,6 @@
             - tag: shape|wall
             - tag: build|s2w
             - tag: shape|option|notch
-          constrain:
-            - tag: connection
-            - filter: connection|side
 
 - name: "S2W: Wall on Tile: Corner (Any, Modular)"
   type: "blueprint"
@@ -86,6 +86,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [right wall, left wall]
       - name: right wall
         tags:
           require:
@@ -95,6 +96,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [column, left wall]
       - name: left wall
         tags:
           require:
@@ -104,6 +106,7 @@
             - tag: shape|column|low
           constrain:
             - tag: connection|side
+              siblings: [right wall, column]
       - name: floor
         tags:
           require:
@@ -125,5 +128,6 @@
             - tag: shape|option|notch
           constrain:
             - tag: connection
+              siblings: [right wall, left wall]
             - filter: connection|side
             - filter: connection|openforge
