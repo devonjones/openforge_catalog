@@ -32,7 +32,7 @@
     "autoprefixer": "10.4.21",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cmdk": "0.2.1",
+    "cmdk": "1.1.1",
     "concurrently": "^9.0.0",
     "lucide-react": "^0.517.0",
     "new-github-issue-url": "^1.1.0",
