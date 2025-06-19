@@ -38,31 +38,32 @@ export function convertTagDict(tagDict: { tag: string[] }): { tag: string } {
  * @param configSelections - Current configuration selections
  * @param currentPartName - Name of the current part
  * @param parentBlueprint - The parent blueprint containing this config
- * @returns Set of tags from other selections and parent
+ * @returns Object containing parent tags and sibling selections
  */
 export function getOtherBlueprintTags(
   configSelections: Record<string, Blueprint>,
   currentPartName: string,
   parentBlueprint?: Blueprint
-): Set<string> {
-  const otherTags = new Set<string>();
-  
-  // Add tags from other selected parts
-  Object.entries(configSelections).forEach(([partName, bp]) => {
-    if (partName !== currentPartName) {
-      bp.tags.forEach(tag => otherTags.add(tag));
-    }
-  });
+): { parentTags: string[]; siblingSelections: { partName: string; tags: string[] }[] } {
+  const parentTags: string[] = [];
+  const siblingSelections: { partName: string; tags: string[] }[] = [];
   
   // Add tags from parent blueprint
   if (parentBlueprint) {
-    parentBlueprint.tags.forEach(tag => otherTags.add(tag));
+    parentTags.push(...parentBlueprint.tags);
   }
   
-  // Note: We no longer add tags from peer parts here, as those should only be 
-  // considered when processing specific constraints in processConfigValues
+  // Add tags from other selected parts as sibling selections
+  Object.entries(configSelections).forEach(([partName, bp]) => {
+    if (partName !== currentPartName) {
+      siblingSelections.push({
+        partName,
+        tags: bp.tags
+      });
+    }
+  });
   
-  return otherTags;
+  return { parentTags, siblingSelections };
 }
 
 /**

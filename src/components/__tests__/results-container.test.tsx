@@ -197,7 +197,13 @@ describe('ResultsContainer', () => {
       ]
     });
 
-    render(<ResultsContainer configValues={configValues} tagsFromOtherSelections={['base|level1|sub', 'base|level3|sub', 'other|tag']} />);
+    render(<ResultsContainer 
+      configValues={configValues} 
+      parentTags={[]}
+      siblingSelections={[
+        { partName: 'test-part', tags: ['base|level1|sub', 'base|level3|sub', 'other|tag'] }
+      ]}
+    />);
 
     expect(mockFunctions.setTagState).toHaveBeenCalledWith({
       require: ['base|level3|sub'], // Should include this as it starts with 'base' but doesn't match any filter

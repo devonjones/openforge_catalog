@@ -14,10 +14,11 @@ import './results-container.css';
 
 interface ResultsContainerProps {
   configValues?: ConfigTags | null;
-  tagsFromOtherSelections?: string[];
+  parentTags?: string[];
+  siblingSelections?: { partName: string; tags: string[] }[];
 }
 
-const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: ResultsContainerProps) => {
+const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [] }: ResultsContainerProps) => {
   const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
   const selectedBlueprint = useBlueprintContext((state) => state.selectedBlueprint);
   const blueprints = useTagContext((state) => state.blueprints);
@@ -43,7 +44,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
         fetchDataResult.then(() => {
           // Only set tag state after fetchData completes
           if (configValues) {
-            const tags = processConfigValues(configValues, tagsFromOtherSelections);
+            const tags = processConfigValues(configValues, parentTags, siblingSelections);
             setTagState(tags);
             hasSetTagState.current = true;
           }
@@ -51,21 +52,21 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       } else {
         // fetchData is not a promise, set tag state immediately
         if (configValues) {
-          const tags = processConfigValues(configValues, tagsFromOtherSelections);
+          const tags = processConfigValues(configValues, parentTags, siblingSelections);
           setTagState(tags);
           hasSetTagState.current = true;
         }
       }
     }
-  }, [configValues, setTagState, tagsFromOtherSelections, fetchData, hasSetTagState]);
+  }, [configValues, setTagState, parentTags, siblingSelections, fetchData, hasSetTagState]);
 
-  // Handle changes to configValues or tagsFromOtherSelections after initial setup
+  // Handle changes to configValues or parentTags or siblingSelections after initial setup
   useEffect(() => {
     if (hasSetTagState.current && configValues) {
-      const tags = processConfigValues(configValues, tagsFromOtherSelections);
+      const tags = processConfigValues(configValues, parentTags, siblingSelections);
       setTagState(tags);
     }
-  }, [configValues, setTagState, tagsFromOtherSelections, hasSetTagState]);
+  }, [configValues, setTagState, parentTags, siblingSelections, hasSetTagState]);
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
@@ -77,7 +78,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
 
   const isTagRemovable = (tag: string): boolean => {
     // Tag is not removable if it's from other selections
-    if (tagsFromOtherSelections.includes(tag)) {
+    if (parentTags.includes(tag) || siblingSelections.some(selection => selection.tags.includes(tag))) {
       return false;
     }
     // If configValues exists, check if the tag is in require or deny

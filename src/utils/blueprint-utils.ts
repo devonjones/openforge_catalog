@@ -61,7 +61,7 @@ export function shouldShowDownloadLink(
   
   if (blueprint.blueprint_config?.parts) {
     const requiredParts = blueprint.blueprint_config.parts.filter(part => 
-      part.tags.require && part.tags.require.length > 0
+      !part.optional && part.tags.require && part.tags.require.length > 0
     );
     
     return requiredParts.every(part => 
@@ -90,7 +90,7 @@ function checkPartRequirements(
   // Check if the selected blueprint has its own required parts
   if (selectedBlueprint.blueprint_config?.parts) {
     const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
-      nestedPart.tags.require && nestedPart.tags.require.length > 0
+      !nestedPart.optional && nestedPart.tags.require && nestedPart.tags.require.length > 0
     );
     return nestedRequiredParts.every(nestedPart => 
       checkPartRequirements(nestedPart, configSelections, `${currentPath}|${nestedPart.name}`)

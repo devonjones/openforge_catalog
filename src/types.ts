@@ -10,7 +10,9 @@ export interface ConfigTag {
   tag: string;
 }
 
-export type ConstrainTag = { tag: string } | { filter: string };
+export type ConstrainTag = 
+  | { tag: string; siblings?: string[]; parent?: boolean }
+  | { filter: string };
 
 export interface ConfigTags {
   accept?: ConfigTag[];
@@ -21,6 +23,7 @@ export interface ConfigTags {
 
 export interface ConfigPart {
   name: string;
+  optional?: boolean;
   tags: ConfigTags;
   fulfills?: { part: string }[];
 }

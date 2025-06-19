@@ -95,8 +95,10 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = ['base|level1|sub', 'base|level3|sub', 'other|tag'];
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const siblingSelections = [
+        { partName: 'wall', tags: ['base|level1|sub', 'base|level3|sub', 'other|tag'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: ['base|level3|sub'], // Should include this as it starts with 'base' but doesn't match any filter
@@ -115,8 +117,10 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = ['other|tag', 'different|tag'];
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const siblingSelections = [
+        { partName: 'wall', tags: ['other|tag', 'different|tag'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: [],
@@ -135,8 +139,10 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = ['base|level1'];
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const siblingSelections = [
+        { partName: 'wall', tags: ['base|level1'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: [], // Should be empty as the tag exactly matches the filter
@@ -155,8 +161,10 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = ['base|level1|sub'];
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const siblingSelections = [
+        { partName: 'wall', tags: ['base|level1|sub'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: [], // Should be empty as the tag starts with the filter
@@ -175,11 +183,34 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = ['base|level1'];
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const siblingSelections = [
+        { partName: 'wall', tags: ['base|level1'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: [], // Should be empty as the filter starts with the tag
+        deny: []
+      });
+    });
+
+    it('always includes exact matches for constraint tags', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture', 'texture|stone', 'texture|stone|rough'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture', 'texture|stone'], // Exact match 'texture' should always be included, plus most general prefix match
         deny: []
       });
     });
@@ -194,15 +225,17 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = [
-        'texture|wood',
-        'texture|dungeon_stone',
-        'texture|dungeon_stone|block',
-        'texture|cave|detailed',
-        'texture|cave'
+      const siblingSelections = [
+        { partName: 'wall', tags: [
+          'texture|wood',
+          'texture|dungeon_stone',
+          'texture|dungeon_stone|block',
+          'texture|cave|detailed',
+          'texture|cave'
+        ]}
       ];
 
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: ['texture|wood', 'texture|dungeon_stone', 'texture|cave'],
@@ -220,15 +253,17 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = [
-        'texture|stone',
-        'texture|stone|rough',
-        'texture|stone|rough|cracked',
-        'texture|wood',
-        'texture|wood|oak|stained'
+      const siblingSelections = [
+        { partName: 'wall', tags: [
+          'texture|stone',
+          'texture|stone|rough',
+          'texture|stone|rough|cracked',
+          'texture|wood',
+          'texture|wood|oak|stained'
+        ]}
       ];
 
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: ['texture|stone', 'texture|wood'],
@@ -246,17 +281,191 @@ describe('config-processing', () => {
         ]
       };
 
-      const tagsFromOtherSelections = [
-        'texture|dungeon_stone',
-        'texture|dungeon_stone|block',
-        'texture|cave',
-        'texture|cave|detailed'
+      const siblingSelections = [
+        { partName: 'wall', tags: [
+          'texture|dungeon_stone',
+          'texture|dungeon_stone|block',
+          'texture|cave',
+          'texture|cave|detailed'
+        ]}
       ];
 
-      const result = processConfigValues(configValues, tagsFromOtherSelections);
+      const result = processConfigValues(configValues, [], siblingSelections);
 
       expect(result).toEqual({
         require: ['texture|dungeon_stone', 'texture|cave'],
+        deny: []
+      });
+    });
+
+    it('inherits from parent tags when parent is enabled', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const parentTags = ['texture|dungeon_stone', 'connection|openforge'];
+      const result = processConfigValues(configValues, parentTags, []);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone'],
+        deny: []
+      });
+    });
+
+    it('does not inherit from parent when parent is disabled', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture', parent: false }
+        ]
+      };
+
+      const parentTags = ['texture|dungeon_stone', 'connection|openforge'];
+      const result = processConfigValues(configValues, parentTags, []);
+
+      expect(result).toEqual({
+        require: [],
+        deny: []
+      });
+    });
+
+    it('inherits from specific siblings when siblings array is provided', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture', siblings: ['wall'] }
+        ]
+      };
+
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|dungeon_stone'] },
+        { partName: 'floor', tags: ['texture|wood'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone'],
+        deny: []
+      });
+    });
+
+    it('does not inherit from siblings when siblings array is empty', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture', siblings: [] }
+        ]
+      };
+
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|dungeon_stone'] },
+        { partName: 'floor', tags: ['texture|wood'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
+
+      expect(result).toEqual({
+        require: [],
+        deny: []
+      });
+    });
+
+    it('inherits from all siblings when siblings is undefined', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|dungeon_stone'] },
+        { partName: 'floor', tags: ['texture|wood'] }
+      ];
+      const result = processConfigValues(configValues, [], siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone', 'texture|wood'],
+        deny: []
+      });
+    });
+
+    it('combines parent and sibling inheritance', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const parentTags = ['texture|dungeon_stone'];
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|wood'] }
+      ];
+      const result = processConfigValues(configValues, parentTags, siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone', 'texture|wood'],
+        deny: []
+      });
+    });
+
+    it('combines parent and specific sibling inheritance', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture', siblings: ['wall'] }
+        ]
+      };
+
+      const parentTags = ['texture|dungeon_stone'];
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|wood'] },
+        { partName: 'floor', tags: ['texture|stone'] }
+      ];
+      const result = processConfigValues(configValues, parentTags, siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone', 'texture|wood'],
+        deny: []
+      });
+    });
+
+    it('excludes parent when parent is false and uses specific siblings', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture', parent: false, siblings: ['wall'] }
+        ]
+      };
+
+      const parentTags = ['texture|dungeon_stone'];
+      const siblingSelections = [
+        { partName: 'wall', tags: ['texture|wood'] },
+        { partName: 'floor', tags: ['texture|stone'] }
+      ];
+      const result = processConfigValues(configValues, parentTags, siblingSelections);
+
+      expect(result).toEqual({
+        require: ['texture|wood'],
         deny: []
       });
     });

@@ -16,10 +16,11 @@ interface PartSelectionModalProps {
   partName: string;
   configValues: ConfigTags | null;
   onPartSelected?: (partName: string, blueprint: Blueprint) => void;
-  tagsFromOtherSelections?: string[];
+  parentTags?: string[];
+  siblingSelections?: { partName: string; tags: string[] }[];
 }
 
-const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSelected, tagsFromOtherSelections = [] }: PartSelectionModalProps): React.ReactPortal | null => {
+const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSelected, parentTags = [], siblingSelections = [] }: PartSelectionModalProps): React.ReactPortal | null => {
   if (!isOpen) return null;
 
   return createPortal(
@@ -47,7 +48,8 @@ const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSel
                   <div className="part-selection-modal__sidebar">
                     <ResultsContainer 
                       configValues={configValues} 
-                      tagsFromOtherSelections={tagsFromOtherSelections}
+                      parentTags={parentTags}
+                      siblingSelections={siblingSelections}
                     />
                   </div>
                   <div className="part-selection-modal__main">
