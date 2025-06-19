@@ -1,5 +1,5 @@
 import { tagToArray, arrayToTag, convertTagDict, getOtherBlueprintTags } from '../tag-utils';
-import { Blueprint, ConfigPart } from '@/types';
+import { Blueprint } from '@/types';
 
 describe('tagToArray', () => {
   it('splits a pipe-delimited string', () => {

@@ -14,7 +14,7 @@ interface ConfigBoxProps {
   peerParts?: ConfigPart[];
 }
 
-const ConfigBox = ({ title, value, onHover, parentBlueprint, peerParts }: ConfigBoxProps) => {
+const ConfigBox = ({ title, value, onHover, parentBlueprint }: ConfigBoxProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const configSelections = useBlueprintContext((state) => state.configSelections);
   const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
@@ -29,7 +29,7 @@ const ConfigBox = ({ title, value, onHover, parentBlueprint, peerParts }: Config
     setIsModalOpen(true);
   };
 
-  const otherBlueprintTags = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint, peerParts) : new Set<string>();
+  const otherBlueprintTags = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint) : new Set<string>();
 
   return (
     <div 
