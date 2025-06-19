@@ -66,56 +66,17 @@ Tags use pipe-delimited hierarchical structure: `category|subcategory|detail`
 
 ### Blueprint Composition System
 
-#### Configuration Structure
-Blueprints define parts with sophisticated tag-based requirements:
+Blueprints define sophisticated assembly patterns using a tag-based constraint system. The `config` section of each blueprint specifies required parts and their selection criteria through:
 
-```yaml
-config:
-  parts:
-    - name: base
-      tags:
-        require:
-          - tag: shape|base
-          - tag: shape|base|corner
-          - tag: size|width|2
-          - tag: size|depth|2
-        deny:
-          - tag: shape|wall
-          - tag: shape|base|wall
-          - tag: shape|option|notch
-        constrain:
-          - tag: connection
-          - filter: connection|side
-          - filter: connection|openforge
-```
+- **Part Definitions**: Named components with tag-based requirements
+- **Constraint Types**: require, accept, deny, and constrain mechanisms for part selection
+- **Dynamic Inheritance**: Parts inherit properties from parent blueprints and sibling selections
+- **Fulfillment System**: Parts can satisfy multiple requirements to handle integrated components
+- **Real-time Resolution**: Constraints update progressively as users make selections
 
-#### Constraint Resolution Logic
-1. **Require**: Must have these exact tags
-2. **Deny**: Must NOT have these tags
-3. **Constrain**: Inherit matching tag prefixes from parent blueprint and sibling parts
-4. **Filter**: Remove specific tag prefixes from constraint consideration (prevents cross-contamination between different connection systems)
+The system handles complex real-world scenarios like doorways that need both wall and floor textures, connection system isolation, and parts that provide multiple functions. Blueprint composition can be recursive, with blueprints referencing other blueprints as parts.
 
-#### Parent and Sibling Relationships
-When resolving constraints for a part within a blueprint:
-
-- **Parent**: The blueprint that defines this part in its `config.parts` array
-- **Siblings**: Other parts defined in the same blueprint's `config.parts` array
-- **Tag Inheritance**: Constrain tags collect from both parent blueprint's tags AND currently selected sibling parts' tags
-- **Scope Limitation**: Only looks one level - does NOT inherit from children of siblings (if a sibling part is itself a blueprint with sub-parts)
-
-**Example**: In a corner wall blueprint with parts `[column, right_wall, left_wall, floor, base]`:
-- When selecting a `base`, the parent is the corner wall blueprint
-- The siblings are `column`, `right_wall`, `left_wall`, and `floor`
-- If `left_wall` is selected and has `texture|dungeon_stone`, the `base` selection inherits that texture constraint
-- If `left_wall` itself needs a `left_wall|base` sub-part, the main `base` does NOT inherit tags from that sub-part
-
-**Example Problem**: Doorway has both `texture|dungeon_stone` (wall) and `texture|dungeon_stone|block` (floor), but base should only inherit general texture, not floor-specific texture.
-
-#### Recursive Composition
-- Blueprints can reference other blueprints as parts
-- System resolves recursively to concrete STL files
-- UI shows hierarchical part selection (e.g., "Parts Needed for left wall")
-- Final download is flat list of STL files
+**For detailed blueprint configuration syntax and constraint resolution mechanics, see [config-spec.md](config-spec.md).**
 
 ### File Management Pipeline
 
