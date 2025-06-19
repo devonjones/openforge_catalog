@@ -1,13 +1,23 @@
 'use client'
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Blueprint, ConfigPart } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
-import { downloadFiles } from '@/utils/download';
+import { shouldShowDownloadLink, collectDownloadUrls, getLatestModificationDate, downloadFiles } from '@/utils/blueprint-utils';
+import { buildNestedConfigs } from '@/utils/config-processing';
+import { copyToClipboard } from '@/utils/clipboard';
+import { swapTagsByType } from '@/utils/tag-utils';
+import { useBlueprintUrlCleanup } from '@/hooks/use-blueprint-url-cleanup';
 import newGithubIssueUrl from 'new-github-issue-url';
-import ConfigBox from './config-box';
+import TagRow from './ui/tag-row';
+import ConfigSection from './blueprint/config-section';
+import ImageGallery from './blueprint/image-gallery';
+import BlueprintHeader from './blueprint/blueprint-header';
+import BlueprintMeta from './blueprint/blueprint-meta';
+import BlueprintRelatedLinks from './blueprint/blueprint-related-links';
+import BlueprintActions from './blueprint/blueprint-actions';
 import './blueprint-container.css';
 
 interface BlueprintContainerProps {
@@ -23,151 +33,44 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const addAllTags = useTagContext((state) => state.addAllTags);
   const [copied, setCopied] = useState(false);
   const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
-  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
-  const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
-  const tagDescriptions = useTagContext((state) => state.tagDescriptions);
-  
-  const shouldShowDownloadLink = (blueprint: Blueprint) => {
-    if (blueprint.file_name) {
-      return true;
-    }
-    if (blueprint.blueprint_config?.parts) {
-      const requiredParts = blueprint.blueprint_config.parts.filter(part => 
-        part.tags.require && part.tags.require.length > 0
-      );
-      return requiredParts.every(part => {
-        const selectedBlueprint = configSelections[part.name];
-        if (!selectedBlueprint) return false;
-        
-        // Check if the selected blueprint has its own required parts
-        if (selectedBlueprint.blueprint_config?.parts) {
-          const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
-            nestedPart.tags.require && nestedPart.tags.require.length > 0
-          );
-          return nestedRequiredParts.every(nestedPart => 
-            configSelections[nestedPart.name] !== undefined
-          );
-        }
-        return true;
-      });
-    }
-    return false;
-  };
+
+  // Use custom hook for URL cleanup
+  useBlueprintUrlCleanup(blueprint);
 
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
-    const urls: string[] = [];
-    const processedBlueprints = new Set<string>();
-
-    // Add main blueprint download if it has a file_name
-    if (blueprint?.file_name) {
-      urls.push(`/api/blueprints/${blueprint.id}/download`);
-      processedBlueprints.add(blueprint.id);
-    }
-
-    // Add downloads for each selected part and its nested parts
-    const processBlueprint = (bp: Blueprint) => {
-      if (bp.file_name && !processedBlueprints.has(bp.id)) {
-        urls.push(`/api/blueprints/${bp.id}/download`);
-        processedBlueprints.add(bp.id);
-      }
-    };
-
-    // Process all selected blueprints
-    Object.entries(configSelections).forEach(([, bp]) => {
-      processBlueprint(bp);
-    });
-
+    if (!blueprint) return;
+    
+    const urls = collectDownloadUrls(blueprint, configSelections);
     downloadFiles(urls);
   };
 
   useEffect(() => {
-    // Handle URL cleanup and browser navigation
-    if (blueprint) {
-      // Remove blueprint_id from URL after it's been used
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('blueprint_id')) {
-        params.delete('blueprint_id');
-        const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
-        window.history.replaceState({}, '', newUrl);
-      }
-    }
-
-    // Handle browser back/forward buttons
-    const handlePopState = () => {
-      const params = new URLSearchParams(window.location.search);
-      const blueprintId = params.get('blueprint_id');
-      if (!blueprintId && blueprint) {
-        window.location.reload();
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, [blueprint]);
-
-  useEffect(() => {
     // Update nested configs when configSelections changes
-    const newNestedConfigs: Record<string, ConfigPart[]> = {};
-    
-    Object.entries(configSelections).forEach(([partName, bp]) => {
-      if (bp.blueprint_config?.parts) {
-        newNestedConfigs[partName] = bp.blueprint_config.parts;
-      }
-    });
-
+    const newNestedConfigs = buildNestedConfigs(configSelections);
     setNestedConfigs(newNestedConfigs);
   }, [configSelections]);
 
-  const copyToClipboard = (blueprint_md5: string) => {
+  const handleCopyToClipboard = (blueprint_md5: string) => {
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split("?")[0];
-    navigator.clipboard.writeText(baseUrl + '?md5=' + blueprint_md5);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const textToCopy = baseUrl + '?md5=' + blueprint_md5;
+    
+    copyToClipboard(
+      textToCopy,
+      () => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    );
   };
 
   const handleSwapTags = (e: React.MouseEvent, blueprint: Blueprint, tagType: string) => {
     e.preventDefault();
-    const newTags = blueprint.tags.filter(t => !t.startsWith(tagType));
+    const newTags = swapTagsByType(blueprint, tagType);
     clearTags();
     addAllTags(newTags);
   };
-
-  const renderConfigBoxes = (parts: ConfigPart[], parentPath: string[] = [], parentFulfills: { part: string }[] = []) => {
-    return (
-      <div className="flex flex-wrap">
-        {parts
-          .filter(part => !parentFulfills.some(f => f.part === part.name))
-          .map((part: ConfigPart) => {
-            const partPath = [...parentPath, part.name];
-            const key = partPath.join('|');
-            return (
-              <ConfigBox
-                key={key}
-                title={key}
-                value={part.tags}
-              />
-            );
-          })}
-      </div>
-    );
-  };
-
-  // Tooltip delay logic
-  const handleTagMouseEnter = (tag: string) => {
-    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
-    hoverTimeout.current = setTimeout(() => setHoveredTag(tag), 500);
-  };
-  const handleTagMouseLeave = () => {
-    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
-    setHoveredTag(null);
-  };
-  useEffect(() => {
-    return () => {
-      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
-    };
-  }, []);
 
   if (!blueprint) {
     return <div>No Blueprint Selected</div>;
@@ -179,128 +82,45 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     body: 'Model Reported: ' + window.location + '\n---\n\n\n'
   });
 
-  const laterDate = new Date(
-    Math.max(
-      new Date(blueprint.file_changed_at).getTime(),
-      new Date(blueprint.file_modified_at).getTime()
-    )
-  );
-
+  const laterDate = getLatestModificationDate(blueprint);
   const currentPath = window.location.pathname;
+  const deeplink = `${currentPath}?md5=${blueprint.file_md5}`;
 
   return (
     <div className='blueprintContainer'>
-      <h2>
-        <div title={blueprint.full_name}>{blueprint.blueprint_name}</div>
-        {!configValues && (
-          <div className="blueprintLinks">
-            <a className='visibleLink' href={`${currentPath}?md5=${blueprint.file_md5}`}>deeplink</a>&nbsp;
-            <button title={copied ? "url copied" : "Copy url to clipboard"} onClick={() => copyToClipboard(blueprint.file_md5)} className="copyButton">
-              <svg className="octicon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25Z"></path>
-              </svg>
-            </button>
-          </div>
-        )}
-      </h2>
-      <p><strong>Type:</strong> {blueprint.blueprint_type}</p>
-      <p><strong>Last Modified:</strong> {laterDate.toLocaleString()}, <strong>Size:</strong> {formatFileSize(blueprint.file_size)}</p>
-      <div className="relative">
-        <div className="flex flex-wrap gap-2">
-          {blueprint.tags.map(tag => (
-            <span
-              key={tag}
-              onMouseEnter={() => handleTagMouseEnter(tag)}
-              onMouseLeave={handleTagMouseLeave}
-            >
-              <button
-                onClick={() => addTag(tag)}
-                className="inline-block px-2 py-1 text-sm bg-blue-100 hover:bg-blue-200 rounded-md cursor-pointer"
-              >
-                {tag}
-                {tagDescriptions[tag] && (
-                  <span className="ml-1 text-gray-500">
-                    <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </span>
-                )}
-              </button>
-            </span>
-          ))}
-        </div>
-        {hoveredTag && tagDescriptions[hoveredTag] && (
-          <div className="absolute left-0 right-0 top-full mt-1 w-full max-w-[90vw] p-2 bg-gray-50 rounded-md shadow-lg text-sm text-gray-600 z-50">
-            {tagDescriptions[hoveredTag]}
-          </div>
-        )}
-      </div>
+      <BlueprintHeader
+        name={blueprint.blueprint_name}
+        fullName={blueprint.full_name}
+        deeplink={deeplink}
+        copied={copied}
+        onCopy={() => handleCopyToClipboard(blueprint.file_md5)}
+        showDeeplink={!configValues}
+      />
+      <BlueprintMeta
+        type={blueprint.blueprint_type}
+        lastModified={laterDate.toLocaleString()}
+        size={formatFileSize(blueprint.file_size)}
+      />
+      <TagRow 
+        tags={blueprint.tags} 
+        onTagClick={addTag}
+      />
       {!configValues && (
-        <p>
-          <strong>Find related:</strong>&nbsp;
-          <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'texture')}>textures</a>,&nbsp;
-          <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'size')}>sizes</a>,&nbsp;
-          <a className='visibleLink' href="#" onClick={(e) => handleSwapTags(e, blueprint, 'connection')}>connections</a>
-        </p>
+        <BlueprintRelatedLinks onSwap={(e, tagType) => handleSwapTags(e, blueprint, tagType)} />
       )}
-      <p>
-        <strong>
-          {configValues ? (
-            <a className='visibleLink' href="#" onClick={(e) => {
-              e.preventDefault();
-              if (onPartSelected && blueprint) {
-                onPartSelected(configValues.partName, blueprint);
-              }
-            }}>Select This Part</a>
-          ) : (
-            shouldShowDownloadLink(blueprint) && (
-              <a className='visibleLink' href="#" onClick={handleDownload}>Download</a>
-            )
-          )}
-        </strong>&nbsp;
-        (<a className='visibleLink' href={issue_url} target="_blank" rel="noopener noreferrer">Report Issue with this model</a>)</p>
-      
-      {!configValues && blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
-        <div className="mt-4">
-          <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
-          {renderConfigBoxes(
-            blueprint.blueprint_config.parts,
-            [],
-            blueprint.blueprint_config.fulfills || []
-          )}
-        </div>
-      )}
-
-      {/* Render nested configs for selected parts */}
-      {!configValues && Object.entries(nestedConfigs).map(([partName, parts]) => {
-        // Find fulfills for the part definition in the parent's config
-        let fulfills: { part: string }[] = [];
-        if (blueprint && blueprint.blueprint_config?.parts) {
-          const parentPart = blueprint.blueprint_config.parts.find(p => p.name === partName);
-          if (parentPart?.fulfills) {
-            fulfills = parentPart.fulfills;
-          }
-        }
-        // Filter parts to be shown
-        const filteredParts = parts.filter(part => !fulfills.some(f => f.part === part.name));
-        if (filteredParts.length === 0) return null;
-        return (
-          <div key={partName} className="mt-4">
-            <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
-            {renderConfigBoxes(filteredParts, [partName], fulfills)}
-          </div>
-        );
-      })}
-
-      <div>
-        {blueprint.images.map((image) => (
-          <div key={image.id}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image.image_url} alt={image.image_name} />
-          </div>
-        ))}
-      </div>
+      <BlueprintActions
+        configValues={configValues}
+        onSelectPart={configValues && onPartSelected ? () => onPartSelected(configValues.partName, blueprint) : null}
+        showDownload={shouldShowDownloadLink(blueprint, configSelections) && !configValues}
+        onDownload={handleDownload}
+        issueUrl={issue_url}
+      />
+      <ConfigSection 
+        blueprint={blueprint}
+        nestedConfigs={nestedConfigs}
+        configValues={configValues}
+      />
+      <ImageGallery blueprint={blueprint} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ConfigTags } from '@/types';
+import { ConfigTags, Blueprint, ConfigPart } from '@/types';
 
 export interface ProcessedTags {
   require: string[];
@@ -84,4 +84,23 @@ export function createDeepLink(tags: string[], searchTerm?: string | null): stri
     return `${params}&search=${encodeURIComponent(searchTerm)}`;
   }
   return params;
+}
+
+/**
+ * Build nested configs from configuration selections
+ * @param configSelections - Current configuration selections
+ * @returns Record of nested config parts by part name
+ */
+export function buildNestedConfigs(
+  configSelections: Record<string, Blueprint>
+): Record<string, ConfigPart[]> {
+  const newNestedConfigs: Record<string, ConfigPart[]> = {};
+  
+  Object.entries(configSelections).forEach(([partName, bp]) => {
+    if (bp.blueprint_config?.parts) {
+      newNestedConfigs[partName] = bp.blueprint_config.parts;
+    }
+  });
+
+  return newNestedConfigs;
 } 

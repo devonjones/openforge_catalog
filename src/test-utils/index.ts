@@ -78,4 +78,31 @@ export const setupTestEnvironment = () => {
 
 export const cleanupTestEnvironment = () => {
   jest.useRealTimers();
-}; 
+};
+
+let originalLocationProps: { search?: string; pathname?: string } | undefined;
+
+export function mockWindowLocation(props: Partial<Pick<Location, 'search' | 'pathname'>>) {
+  if (!originalLocationProps) {
+    originalLocationProps = {
+      search: window.location.search,
+      pathname: window.location.pathname,
+    };
+  }
+  
+  if (props.search !== undefined) window.location.search = props.search;
+  if (props.pathname !== undefined) window.location.pathname = props.pathname;
+}
+
+export function restoreWindowLocation() {
+  if (originalLocationProps) {
+    if (originalLocationProps.search !== undefined) window.location.search = originalLocationProps.search;
+    if (originalLocationProps.pathname !== undefined) window.location.pathname = originalLocationProps.pathname;
+    originalLocationProps = undefined;
+  }
+}
+
+export function mockHistoryReplaceState(fn = jest.fn()) {
+  window.history.replaceState = fn;
+  return fn;
+} 
