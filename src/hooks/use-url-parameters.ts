@@ -48,9 +48,13 @@ export function useUrlParameters() {
         newParams.set('blueprint_id', blueprintId);
       }
       const newUrl = `${window.location.pathname}${newParams.toString() ? '?' + newParams.toString() : ''}`;
-      window.history.replaceState({}, '', newUrl);
+
+      // Only update URL if it actually changed
+      if (newUrl !== window.location.href) {
+        window.history.replaceState({}, '', newUrl);
+      }
     }
-  }, [autoload, addTag, blueprints, selectedTags, setSearchTerm, setSelectedBlueprint]);
+  }, [autoload, selectedTags, addTag, setSearchTerm, blueprints, setSelectedBlueprint]);
 
   return { hasSetTagState };
 } 
