@@ -57,6 +57,15 @@ properties:
                         type: string
                     additionalProperties: false
           additionalProperties: false
+        fulfills:
+          type: array
+          items:
+            type: object
+            properties:
+              part:
+                type: string
+              additionalProperties: false
+      additionalProperties: false
   fulfills:
     type: array
     items:

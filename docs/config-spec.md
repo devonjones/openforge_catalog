@@ -16,6 +16,7 @@ config:
         deny: []                # Prohibited: Tags that disqualify parts
         constrain: []           # Dynamic: Inherit from parent/siblings
       fulfills: []              # Optional: Requirements this part satisfies
+  fulfills: []                  # Optional: Sibling requirements this blueprint satisfies
 ```
 
 ## Parts Array
@@ -160,6 +161,36 @@ parts:
 - **No sibling impact**: Does not affect sibling parts with the same name
 - **Use case**: When a part inherently includes functionality (e.g., walls that include their own base)
 
+### Blueprint-Level Fulfills
+```yaml
+config:
+  parts:
+    - name: "grate (right)"
+      tags:
+        require:
+          - tag: "interface|grate"
+    - name: "grate (left)"  
+      tags:
+        require:
+          - tag: "interface|grate"
+  fulfills:
+    - part: "column"
+    - part: "left wall"
+    - part: "right wall"
+```
+
+- **Scope**: Affects sibling parts when this blueprint is selected as a part in a larger composition
+- **Multi-part fulfillment**: Can fulfill multiple sibling requirements simultaneously
+- **Use case**: When a blueprint provides functionality that would normally require separate parts (e.g., integrated grate that includes structural elements)
+
+### Fulfillment Conflict Resolution
+Both part-level and blueprint-level fulfills can exist in the same blueprint and work together. However, conflicts are handled through **dynamic validation**:
+
+- **Conflict detection**: Multiple sources cannot fulfill the same requirement
+- **Real-time resolution**: When a fulfilling part is selected, conflicting parts are automatically removed from available options
+- **Automatic deselection**: Previously selected conflicting parts are automatically deselected
+- **Selection order independence**: Most recent selection "wins" and resolves conflicts automatically
+
 ## Resolution Process
 
 ### Part Selection Flow
@@ -214,7 +245,7 @@ parts:
         - filter: "connection|side"  # Don't inherit wall-specific connections
 ```
 
-### Self-Contained Parts
+### Integrated Components
 ```yaml
 parts:
   - name: "integrated_wall"
@@ -224,6 +255,30 @@ parts:
         - tag: "component|integrated"
     fulfills:
       - part: "base"  # This wall includes its own base
+
+config:
+  fulfills:
+    - part: "column"
+    - part: "floor"   # This entire blueprint replaces column and floor
+```
+
+### Complex Fulfillment
+```yaml
+# Blueprint that can replace multiple parts in a corner wall assembly
+config:
+  parts:
+    - name: "grate (right)"
+      tags:
+        require:
+          - tag: "interface|grate"
+    - name: "grate (left)"
+      tags:
+        require:
+          - tag: "interface|grate"
+  fulfills:
+    - part: "column"      # Replaces structural column
+    - part: "left wall"   # Includes left wall functionality  
+    - part: "right wall"  # Includes right wall functionality
 ```
 
 ## Design Principles
