@@ -206,14 +206,51 @@ describe('ResultsContainer', () => {
   });
 
   it('handles copy to clipboard integration', () => {
+    // Mock navigator.clipboard.writeText
+    const mockWriteText = jest.fn();
+    Object.assign(navigator, {
+      clipboard: {
+        writeText: mockWriteText,
+      },
+    });
+
+    // Set up context with selected tags and search term
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
+      selector({
+        blueprints,
+        paging,
+        selectedTags: ['foo', 'bar'],
+        denyTags: [],
+        searchTerm: 'search',
+        removeTag: mockFunctions.removeTag,
+        addTag: mockFunctions.addTag,
+        clearTags: mockFunctions.clearTags,
+        fetchBlueprints: mockFunctions.fetchBlueprints,
+        setTagState: mockFunctions.setTagState,
+        autoload: false,
+        setSearchTerm: mockFunctions.setSearchTerm,
+        data: {},
+        expandedNodes: {},
+        tagDescriptions: {},
+        fetchData: mockFunctions.fetchData,
+        setData: mockFunctions.setData,
+        toggleNode: mockFunctions.toggleNode,
+        addAllTags: mockFunctions.addAllTags,
+        addDenyTag: mockFunctions.addDenyTag,
+        removeDenyTag: mockFunctions.removeDenyTag,
+        setBlueprints: mockFunctions.setBlueprints,
+        fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
+        search_models: false,
+        search_blueprints: false,
+      })
+    );
+    
     render(<ResultsContainer />);
     
     const copyButton = screen.getByTitle('Copy url to clipboard');
     fireEvent.click(copyButton);
     
-    // The copy functionality doesn't call fetchBlueprints, it just copies to clipboard
-    // We can verify the button exists and is clickable
-    expect(copyButton).toBeInTheDocument();
+    expect(mockWriteText).toHaveBeenCalledWith('http://localhost/?tag=foo&tag=bar&search=search');
   });
 
   it('handles tag removability logic integration', () => {
