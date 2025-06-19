@@ -183,6 +183,83 @@ describe('config-processing', () => {
         deny: []
       });
     });
+
+    it('filters out more specific tags while keeping same-level tags', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const tagsFromOtherSelections = [
+        'texture|wood',
+        'texture|dungeon_stone',
+        'texture|dungeon_stone|block',
+        'texture|cave|detailed',
+        'texture|cave'
+      ];
+
+      const result = processConfigValues(configValues, tagsFromOtherSelections);
+
+      expect(result).toEqual({
+        require: ['texture|wood', 'texture|dungeon_stone', 'texture|cave'],
+        deny: []
+      });
+    });
+
+    it('handles multiple levels of tag specificity', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const tagsFromOtherSelections = [
+        'texture|stone',
+        'texture|stone|rough',
+        'texture|stone|rough|cracked',
+        'texture|wood',
+        'texture|wood|oak|stained'
+      ];
+
+      const result = processConfigValues(configValues, tagsFromOtherSelections);
+
+      expect(result).toEqual({
+        require: ['texture|stone', 'texture|wood'],
+        deny: []
+      });
+    });
+
+    it('selects tag with least segments when multiple tags match constraint', () => {
+      const configValues: ConfigTags = {
+        require: [],
+        deny: [],
+        accept: [],
+        constrain: [
+          { tag: 'texture' }
+        ]
+      };
+
+      const tagsFromOtherSelections = [
+        'texture|dungeon_stone',
+        'texture|dungeon_stone|block',
+        'texture|cave',
+        'texture|cave|detailed'
+      ];
+
+      const result = processConfigValues(configValues, tagsFromOtherSelections);
+
+      expect(result).toEqual({
+        require: ['texture|dungeon_stone', 'texture|cave'],
+        deny: []
+      });
+    });
   });
 
   describe('createDeepLink', () => {

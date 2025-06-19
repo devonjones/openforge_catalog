@@ -110,7 +110,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
     return requirements;
   };
 
-  const renderConfigBoxes = (parts: ConfigPart[], parentPath: string[] = [], parentFulfills: { part: string }[] = []) => {
+  const renderConfigBoxes = (parts: ConfigPart[], parentPath: string[] = [], parentFulfills: { part: string }[] = [], parentBlueprint?: Blueprint) => {
     return (
       <div className="relative">
         <div className="flex flex-wrap">
@@ -125,6 +125,8 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                   title={key}
                   value={part.tags}
                   onHover={(isHovering) => handleBoxHover(isHovering, key)}
+                  parentBlueprint={parentBlueprint}
+                  peerParts={parts}
                 />
               );
             })}
@@ -157,7 +159,8 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
           {renderConfigBoxes(
             blueprint.blueprint_config.parts,
             [],
-            blueprint.blueprint_config.fulfills || []
+            blueprint.blueprint_config.fulfills || [],
+            blueprint
           )}
         </div>
       )}
@@ -179,7 +182,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
         return (
           <div key={partName} className="mt-4">
             <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
-            {renderConfigBoxes(filteredParts, [partName], fulfills)}
+            {renderConfigBoxes(filteredParts, [partName], fulfills, blueprint)}
           </div>
         );
       })}

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Blueprint, ConfigTags } from '@/types';
+import { Blueprint, ConfigTags, ConfigPart } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import PartSelectionModal from '../part-selection-modal';
 import { getOtherBlueprintTags } from '@/utils/tag-utils';
@@ -10,11 +10,12 @@ interface ConfigBoxProps {
   title: string;
   value: ConfigTags;
   onHover?: (isHovering: boolean) => void;
+  parentBlueprint?: Blueprint;
+  peerParts?: ConfigPart[];
 }
 
-const ConfigBox = ({ title, value, onHover }: ConfigBoxProps) => {
+const ConfigBox = ({ title, value, onHover, parentBlueprint, peerParts }: ConfigBoxProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const blueprint = useBlueprintContext((state) => state.selectedBlueprint);
   const configSelections = useBlueprintContext((state) => state.configSelections);
   const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
   const selectedBlueprint = configSelections[title];
@@ -28,7 +29,7 @@ const ConfigBox = ({ title, value, onHover }: ConfigBoxProps) => {
     setIsModalOpen(true);
   };
 
-  const otherBlueprintTags = blueprint ? getOtherBlueprintTags(configSelections, title) : new Set<string>();
+  const otherBlueprintTags = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint, peerParts) : new Set<string>();
 
   return (
     <div 

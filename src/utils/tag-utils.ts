@@ -31,25 +31,45 @@ export function convertTagDict(tagDict: { tag: string[] }): { tag: string } {
     };
 }
 
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigPart } from '@/types';
 
 /**
- * Get other blueprint tags from config selections
+ * Get other blueprint tags from config selections, parent blueprint, and peer parts
  * @param configSelections - Current configuration selections
  * @param currentPartName - Name of the current part
- * @returns Set of tags from other selections
+ * @param parentBlueprint - The parent blueprint containing this config
+ * @param peerParts - Other parts at the same level (from the same config)
+ * @returns Set of tags from other selections, parent, and peers
  */
 export function getOtherBlueprintTags(
   configSelections: Record<string, Blueprint>,
-  currentPartName: string
+  currentPartName: string,
+  parentBlueprint?: Blueprint,
+  peerParts?: ConfigPart[]
 ): Set<string> {
   const otherTags = new Set<string>();
   
+  // Add tags from other selected parts
   Object.entries(configSelections).forEach(([partName, bp]) => {
     if (partName !== currentPartName) {
       bp.tags.forEach(tag => otherTags.add(tag));
     }
   });
+  
+  // Add tags from parent blueprint
+  if (parentBlueprint) {
+    parentBlueprint.tags.forEach(tag => otherTags.add(tag));
+  }
+  
+  // Add tags from peer parts (other parts at the same level)
+  if (peerParts) {
+    peerParts.forEach(part => {
+      if (part.name !== currentPartName) {
+        // Add tags from the part definition itself (if it has any)
+        // Note: ConfigPart doesn't have tags directly, but we could add them if needed
+      }
+    });
+  }
   
   return otherTags;
 }

@@ -6,6 +6,21 @@ export interface ProcessedTags {
 }
 
 /**
+ * Filter out more specific tags from a set of tags.
+ * A tag is considered more specific if it starts with another tag plus a pipe.
+ * @param tags - Array of tags to filter
+ * @returns Array of most general tags
+ */
+function filterSpecificTags(tags: string[]): string[] {
+  return tags.filter(tag => {
+    // Check if any other tag is a prefix of this tag (when adding a pipe)
+    return !tags.some(otherTag => 
+      otherTag !== tag && tag.startsWith(otherTag + '|')
+    );
+  });
+}
+
+/**
  * Process config values to extract require, deny, and constrain tags
  * @param configValues - The configuration tags to process
  * @param tagsFromOtherSelections - Tags from other selections to consider for constraints
@@ -50,6 +65,9 @@ export function processConfigValues(
     configValues.constrain.forEach((data) => {
       if ('tag' in data && data.tag) {
         const constraintTag = data.tag;
+        // Collect all matching tags that aren't filtered
+        const matchingTags: string[] = [];
+        
         tagsFromOtherSelections.forEach(tag => {
           if (tag.startsWith(constraintTag)) {
             // Skip if any filter matches (exact or prefix) this tag
@@ -61,10 +79,14 @@ export function processConfigValues(
               }
             }
             if (!skip) {
-              tags.require.push(tag);
+              matchingTags.push(tag);
             }
           }
         });
+
+        // Filter out more specific tags and add to requirements
+        const generalTags = filterSpecificTags(matchingTags);
+        tags.require.push(...generalTags);
       }
     });
   }
