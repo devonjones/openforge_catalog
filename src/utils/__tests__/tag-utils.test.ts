@@ -94,7 +94,12 @@ describe('getOtherBlueprintTags', () => {
     
     const result = getOtherBlueprintTags(configSelections, 'part1');
     
-    expect(result).toEqual(new Set(['shape|square', 'size|small']));
+    expect(result).toEqual({
+      parentTags: [],
+      siblingSelections: [
+        { partName: 'part2', tags: ['shape|square', 'size|small'] }
+      ]
+    });
   });
 
   it('excludes tags from the current part', () => {
@@ -105,7 +110,12 @@ describe('getOtherBlueprintTags', () => {
     
     const result = getOtherBlueprintTags(configSelections, 'part2');
     
-    expect(result).toEqual(new Set(['shape|round', 'size|large', 'texture|smooth']));
+    expect(result).toEqual({
+      parentTags: [],
+      siblingSelections: [
+        { partName: 'part1', tags: ['shape|round', 'size|large', 'texture|smooth'] }
+      ]
+    });
   });
 
   it('includes tags from parent blueprint when provided', () => {
@@ -115,7 +125,10 @@ describe('getOtherBlueprintTags', () => {
     
     const result = getOtherBlueprintTags(configSelections, 'part1', mockParentBlueprint);
     
-    expect(result).toEqual(new Set(['parent|tag1', 'parent|tag2']));
+    expect(result).toEqual({
+      parentTags: ['parent|tag1', 'parent|tag2'],
+      siblingSelections: []
+    });
   });
 
   it('combines tags from other parts and parent blueprint', () => {
@@ -126,7 +139,12 @@ describe('getOtherBlueprintTags', () => {
     
     const result = getOtherBlueprintTags(configSelections, 'part1', mockParentBlueprint);
     
-    expect(result).toEqual(new Set(['shape|square', 'size|small', 'parent|tag1', 'parent|tag2']));
+    expect(result).toEqual({
+      parentTags: ['parent|tag1', 'parent|tag2'],
+      siblingSelections: [
+        { partName: 'part2', tags: ['shape|square', 'size|small'] }
+      ]
+    });
   });
 
   it('returns empty set when no other parts or parent', () => {
@@ -134,6 +152,9 @@ describe('getOtherBlueprintTags', () => {
     
     const result = getOtherBlueprintTags(configSelections, 'part1');
     
-    expect(result).toEqual(new Set());
+    expect(result).toEqual({
+      parentTags: [],
+      siblingSelections: []
+    });
   });
 }); 

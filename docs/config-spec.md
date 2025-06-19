@@ -95,7 +95,7 @@ The constrain system enables **dynamic inheritance** of tag requirements from:
 #### Constrain Mechanics
 - **Tag prefix matching**: `tag: "texture"` inherits all tags starting with `texture|`
 - **Exact match priority**: Tags that exactly match the constraint are always included
-- **Specificity filtering**: Among prefix matches, only the most general (shortest) tags are included
+- **Specificity filtering**: Among prefix matches, only the most general (shortest) tags are included, excepting exact matches
 - **Real-time evaluation**: Constraints update as sibling parts are selected
 - **Progressive filtering**: Available options narrow with each selection
 - **Single-level scope**: Only looks at immediate parent and siblings, not deeper hierarchy
