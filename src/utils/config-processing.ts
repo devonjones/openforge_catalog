@@ -23,7 +23,7 @@ function filterSpecificTags(tags: string[]): string[] {
 /**
  * Process config values to extract require, deny, and constrain tags
  * @param configValues - The configuration tags to process
- * @param tagsFromOtherSelections - Tags from other selections to consider for constraints
+ * @param tagsFromOtherSelections - Tags from actual blueprint selections to consider for constraints
  * @returns Object containing require and deny tag arrays
  */
 export function processConfigValues(
@@ -54,7 +54,7 @@ export function processConfigValues(
     });
   }
 
-  // Process constrain tags
+  // Process constrain tags - only consider tags from actual selections
   if (configValues.constrain) {
     // Collect all filter values from constrain
     const filterTags = configValues.constrain
@@ -62,31 +62,30 @@ export function processConfigValues(
       .map((c: { tag?: string; filter?: string }) => c.filter)
       .filter((filter): filter is string => filter !== undefined);
 
+    // For each constraint tag type (e.g. 'texture', 'connection')
     configValues.constrain.forEach((data) => {
       if ('tag' in data && data.tag) {
         const constraintTag = data.tag;
-        // Collect all matching tags that aren't filtered
-        const matchingTags: string[] = [];
-        
-        tagsFromOtherSelections.forEach(tag => {
-          if (tag.startsWith(constraintTag)) {
-            // Skip if any filter matches (exact or prefix) this tag
-            let skip = false;
-            for (const filterTag of filterTags) {
-              if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
-                skip = true;
-                break;
-              }
-            }
-            if (!skip) {
-              matchingTags.push(tag);
+        // Only look at tags from actual selections
+        const matchingTags = tagsFromOtherSelections.filter(tag => {
+          // Must match the constraint type
+          if (!tag.startsWith(constraintTag)) {
+            return false;
+          }
+          // Must not match any filters
+          for (const filterTag of filterTags) {
+            if (tag === filterTag || tag.startsWith(filterTag) || filterTag.startsWith(tag)) {
+              return false;
             }
           }
+          return true;
         });
 
-        // Filter out more specific tags and add to requirements
-        const generalTags = filterSpecificTags(matchingTags);
-        tags.require.push(...generalTags);
+        // Add the most general version of each matching tag
+        if (matchingTags.length > 0) {
+          const generalTags = filterSpecificTags(matchingTags);
+          tags.require.push(...generalTags);
+        }
       }
     });
   }
