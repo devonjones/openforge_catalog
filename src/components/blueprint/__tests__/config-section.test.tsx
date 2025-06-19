@@ -204,8 +204,8 @@ describe('ConfigSection', () => {
     expect(screen.getByText('Required Tags:')).toBeInTheDocument();
     expect(screen.getByText('Denied Tags:')).toBeInTheDocument();
     expect(screen.getByText('Accepted Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Constrained Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Constraint Filtered Tags:')).toBeInTheDocument();
+    expect(screen.getByText('Constrained Tags (Inherited):')).toBeInTheDocument();
+    expect(screen.getByText('Constraint Filters:')).toBeInTheDocument();
     
     // Tag values should be visible
     expect(screen.getByText('required_tag')).toBeInTheDocument();
