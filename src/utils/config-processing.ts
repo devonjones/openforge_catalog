@@ -13,16 +13,28 @@ export interface SiblingSelection {
 /**
  * Filter out more specific tags from a set of tags.
  * A tag is considered more specific if it starts with another tag plus a pipe.
- * @param tags - Array of tags to filter
- * @returns Array of most general tags
+ * @param tags - Set of tags to filter
+ * @returns Set of most general tags
  */
-function filterSpecificTags(tags: string[]): string[] {
-  return tags.filter(tag => {
+function filterSpecificTags(tags: Set<string>): Set<string> {
+  const result = new Set<string>();
+  const tagsArray = Array.from(tags);
+  
+  for (const tag of tagsArray) {
     // Check if any other tag is a prefix of this tag (when adding a pipe)
-    return !tags.some(otherTag => 
-      otherTag !== tag && tag.startsWith(otherTag + '|')
-    );
-  });
+    let isMostGeneral = true;
+    for (const otherTag of tagsArray) {
+      if (otherTag !== tag && tag.startsWith(otherTag + '|')) {
+        isMostGeneral = false;
+        break;
+      }
+    }
+    if (isMostGeneral) {
+      result.add(tag);
+    }
+  }
+  
+  return result;
 }
 
 /**
@@ -37,17 +49,18 @@ export function processConfigValues(
   parentTags: string[] = [],
   siblingSelections: SiblingSelection[] = []
 ): ProcessedTags {
-  const tags: ProcessedTags = { require: [], deny: [] };
+  const requireTags = new Set<string>();
+  const denyTags = new Set<string>();
 
   if (!configValues) {
-    return tags;
+    return { require: [], deny: [] };
   }
 
   // Process require tags
   if (configValues.require) {
     configValues.require.forEach((data) => {
       if (data.tag) {
-        tags.require.push(data.tag);
+        requireTags.add(data.tag);
       }
     });
   }
@@ -56,7 +69,7 @@ export function processConfigValues(
   if (configValues.deny) {
     configValues.deny.forEach((data) => {
       if (data.tag) {
-        tags.deny.push(data.tag);
+        denyTags.add(data.tag);
       }
     });
   }
@@ -77,54 +90,63 @@ export function processConfigValues(
         const parent = data.parent !== false; // Default to true if not specified
 
         // Collect tags from allowed sources
-        const allowedTags: string[] = [];
+        const allowedTags = new Set<string>();
 
         // Add parent tags if parent inheritance is enabled
         if (parent) {
-          allowedTags.push(...parentTags);
+          parentTags.forEach(tag => allowedTags.add(tag));
         }
 
         // Add sibling tags based on siblings configuration
         if (siblings === undefined) {
           // Default behavior: consider all siblings
           siblingSelections.forEach(sibling => {
-            allowedTags.push(...sibling.tags);
+            sibling.tags.forEach(tag => allowedTags.add(tag));
           });
         } else if (siblings.length > 0) {
           // Specific siblings only
           siblingSelections.forEach(sibling => {
             if (siblings.includes(sibling.partName)) {
-              allowedTags.push(...sibling.tags);
+              sibling.tags.forEach(tag => allowedTags.add(tag));
             }
           });
         }
         // If siblings is empty array, don't add any sibling tags
 
         // Filter tags that match the constraint type and don't match any filters
-        const matchingTags = allowedTags.filter(tag => {
+        const matchingTags = new Set<string>();
+        const allowedTagsArray = Array.from(allowedTags);
+        for (const tag of allowedTagsArray) {
           // Must match the constraint type
           if (!tag.startsWith(constraintTag)) {
-            return false;
+            continue;
           }
           // Must not match any filters
+          let shouldInclude = true;
           for (const filterTag of filterTags) {
             if (tag === filterTag || tag.startsWith(filterTag + '|') || filterTag.startsWith(tag + '|')) {
-              return false;
+              shouldInclude = false;
+              break;
             }
           }
-          return true;
-        });
+          if (shouldInclude) {
+            matchingTags.add(tag);
+          }
+        }
 
         // Add the most general version of each matching tag
-        if (matchingTags.length > 0) {
+        if (matchingTags.size > 0) {
           const generalTags = filterSpecificTags(matchingTags);
-          tags.require.push(...generalTags);
+          generalTags.forEach(tag => requireTags.add(tag));
         }
       }
     });
   }
 
-  return tags;
+  return {
+    require: Array.from(requireTags),
+    deny: Array.from(denyTags)
+  };
 }
 
 /**

@@ -1,5 +1,6 @@
 import { downloadFiles, shouldShowDownloadLink, collectDownloadUrls, getLatestModificationDate } from '../blueprint-utils';
 import { createMockBlueprint } from '@/test-utils';
+import { Blueprint } from '@/types';
 
 describe('blueprint-utils', () => {
   describe('downloadFiles', () => {
@@ -199,6 +200,276 @@ describe('blueprint-utils', () => {
       
       const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
       expect(result).toBe(false);
+    });
+
+    it('returns true for blueprints with file_name', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'model',
+        file_name: 'test.stl',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z'
+      };
+
+      const result = shouldShowDownloadLink(blueprint, {});
+      expect(result).toBe(true);
+    });
+
+    it('returns false for blueprints without file_name and no config', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'blueprint',
+        file_name: '',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z'
+      };
+
+      const result = shouldShowDownloadLink(blueprint, {});
+      expect(result).toBe(false);
+    });
+
+    it('returns true when all required parts are selected', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'blueprint',
+        file_name: '',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'wall',
+              tags: {
+                require: [{ tag: 'shape|wall' }]
+              }
+            }
+          ]
+        }
+      };
+
+      const configSelections = {
+        'wall': {
+          id: 'wall-id',
+          blueprint_name: 'Wall Part',
+          blueprint_type: 'model',
+          file_name: 'wall.stl',
+          file_md5: 'wall-md5',
+          file_size: 500,
+          full_name: 'Wall Part',
+          created_at: '2023-01-01T00:00:00Z',
+          file_changed_at: '2023-01-01T00:00:00Z',
+          file_modified_at: '2023-01-01T00:00:00Z',
+          signed_url: 'wall-url',
+          storage_address: 'wall-address',
+          tags: ['shape|wall'],
+          images: [],
+          updated_at: '2023-01-01T00:00:00Z'
+        }
+      };
+
+      const result = shouldShowDownloadLink(blueprint, configSelections);
+      expect(result).toBe(true);
+    });
+
+    it('returns false when required parts are not selected', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'blueprint',
+        file_name: '',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'wall',
+              tags: {
+                require: [{ tag: 'shape|wall' }]
+              }
+            }
+          ]
+        }
+      };
+
+      const result = shouldShowDownloadLink(blueprint, {});
+      expect(result).toBe(false);
+    });
+
+    it('ignores optional parts when determining download availability', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'blueprint',
+        file_name: '',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'wall',
+              tags: {
+                require: [{ tag: 'shape|wall' }]
+              }
+            },
+            {
+              name: 'decoration',
+              optional: true,
+              tags: {
+                require: [{ tag: 'shape|decoration' }]
+              }
+            }
+          ]
+        }
+      };
+
+      const configSelections = {
+        'wall': {
+          id: 'wall-id',
+          blueprint_name: 'Wall Part',
+          blueprint_type: 'model',
+          file_name: 'wall.stl',
+          file_md5: 'wall-md5',
+          file_size: 500,
+          full_name: 'Wall Part',
+          created_at: '2023-01-01T00:00:00Z',
+          file_changed_at: '2023-01-01T00:00:00Z',
+          file_modified_at: '2023-01-01T00:00:00Z',
+          signed_url: 'wall-url',
+          storage_address: 'wall-address',
+          tags: ['shape|wall'],
+          images: [],
+          updated_at: '2023-01-01T00:00:00Z'
+        }
+        // Note: decoration is not selected but it's optional, so download should still be available
+      };
+
+      const result = shouldShowDownloadLink(blueprint, configSelections);
+      expect(result).toBe(true);
+    });
+
+    it('requires optional parts to be selected if they have require tags', () => {
+      const blueprint: Blueprint = {
+        id: 'test-id',
+        blueprint_name: 'Test Blueprint',
+        blueprint_type: 'blueprint',
+        file_name: '',
+        file_md5: 'test-md5',
+        file_size: 1000,
+        full_name: 'Test Blueprint',
+        created_at: '2023-01-01T00:00:00Z',
+        file_changed_at: '2023-01-01T00:00:00Z',
+        file_modified_at: '2023-01-01T00:00:00Z',
+        signed_url: 'test-url',
+        storage_address: 'test-address',
+        tags: [],
+        images: [],
+        updated_at: '2023-01-01T00:00:00Z',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'wall',
+              tags: {
+                require: [{ tag: 'shape|wall' }]
+              }
+            },
+            {
+              name: 'decoration',
+              optional: true,
+              tags: {
+                require: [{ tag: 'shape|decoration' }]
+              }
+            }
+          ]
+        }
+      };
+
+      const configSelections = {
+        'wall': {
+          id: 'wall-id',
+          blueprint_name: 'Wall Part',
+          blueprint_type: 'model',
+          file_name: 'wall.stl',
+          file_md5: 'wall-md5',
+          file_size: 500,
+          full_name: 'Wall Part',
+          created_at: '2023-01-01T00:00:00Z',
+          file_changed_at: '2023-01-01T00:00:00Z',
+          file_modified_at: '2023-01-01T00:00:00Z',
+          signed_url: 'wall-url',
+          storage_address: 'wall-address',
+          tags: ['shape|wall'],
+          images: [],
+          updated_at: '2023-01-01T00:00:00Z'
+        },
+        'decoration': {
+          id: 'decoration-id',
+          blueprint_name: 'Decoration Part',
+          blueprint_type: 'model',
+          file_name: 'decoration.stl',
+          file_md5: 'decoration-md5',
+          file_size: 200,
+          full_name: 'Decoration Part',
+          created_at: '2023-01-01T00:00:00Z',
+          file_changed_at: '2023-01-01T00:00:00Z',
+          file_modified_at: '2023-01-01T00:00:00Z',
+          signed_url: 'decoration-url',
+          storage_address: 'decoration-address',
+          tags: ['shape|decoration'],
+          images: [],
+          updated_at: '2023-01-01T00:00:00Z'
+        }
+      };
+
+      const result = shouldShowDownloadLink(blueprint, configSelections);
+      expect(result).toBe(true);
     });
   });
 

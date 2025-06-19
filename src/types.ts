@@ -23,6 +23,7 @@ export interface ConfigTags {
 
 export interface ConfigPart {
   name: string;
+  optional?: boolean;
   tags: ConfigTags;
   fulfills?: { part: string }[];
 }

@@ -8,6 +8,9 @@ properties:
       properties:
         name:
           type: string
+        optional:
+          type: boolean
+          default: false
         tags:
           type: object
           properties:

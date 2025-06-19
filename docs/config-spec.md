@@ -25,14 +25,23 @@ The `parts` array defines all components needed to build this blueprint. Each pa
 - A **model** (concrete STL file) that satisfies the constraints
 - A **blueprint** (composition) that itself contains parts
 
-### Part Name
+### Part Name and Properties
 ```yaml
 name: "base"
+optional: true    # Optional: Part can be skipped without blocking download
 ```
+
+**Part Name**:
 - Human-readable identifier for the part
 - Used in UI for part selection steps
 - Referenced by `fulfills` declarations in other parts
 - Must be unique within the blueprint's parts array
+
+**Optional Parts**:
+- **Default behavior**: All parts are required for download
+- **Optional parts**: `optional: true` allows users to skip this part
+- **Download enforcement**: Users cannot download until all required parts are selected
+- **Use case**: Parts that enhance but aren't essential to the blueprint functionality
 
 ## Tag Constraint System
 
@@ -85,6 +94,8 @@ The constrain system enables **dynamic inheritance** of tag requirements from:
 
 #### Constrain Mechanics
 - **Tag prefix matching**: `tag: "texture"` inherits all tags starting with `texture|`
+- **Exact match priority**: Tags that exactly match the constraint are always included
+- **Specificity filtering**: Among prefix matches, only the most general (shortest) tags are included
 - **Real-time evaluation**: Constraints update as sibling parts are selected
 - **Progressive filtering**: Available options narrow with each selection
 - **Single-level scope**: Only looks at immediate parent and siblings, not deeper hierarchy
@@ -122,7 +133,7 @@ constrain:
 ```yaml
 # Parent blueprint has: texture|dungeon_stone, connection|openforge
 # Sibling "wall" selected with: texture|dungeon_stone, connection|openforge|female
-# Sibling "floor" selected with: texture|dungeon_stone|block
+# Sibling "floor" selected with: texture|dungeon_stone|block, connection|side, connection|side|openlock
 
 parts:
   - name: "base"
@@ -130,13 +141,13 @@ parts:
       require:
         - tag: "shape|base"
       constrain:
-        - tag: "texture"        # Inherits from all: texture|dungeon_stone, texture|dungeon_stone|block
-          siblings: ["wall"]    # Restrict to wall only: texture|dungeon_stone
-        - tag: "connection"     # Inherits from parent + siblings: connection|openforge, connection|openforge|female
-          parent: false         # Exclude parent: connection|openforge|female
-        - filter: "connection|openforge"  # Remove: connection|openforge|female
+        - tag: "texture"        # Available: texture|dungeon_stone, texture|dungeon_stone|block
+          siblings: ["wall"]    # Restrict to wall: texture|dungeon_stone (exact + most general)
+        - tag: "connection|side" # Available: connection|side, connection|side|openlock  
+          parent: false         # From floor only: connection|side (exact) + connection|side|openlock (most general prefix)
+        - filter: "connection|openforge"  # Remove openforge variants
         
-# Final constraints: shape|base + texture|dungeon_stone + (empty connection tags)
+# Final constraints: shape|base + texture|dungeon_stone + connection|side + connection|side|openlock
 ```
 
 ### Constraint Conflicts
@@ -205,6 +216,31 @@ Both part-level and blueprint-level fulfills can exist in the same blueprint and
 - **Single-level constraints**: Each blueprint level resolves independently
 - **No constraint tunneling**: Parent constraints don't affect grandchild selections
 - **Independent fulfillment**: Each blueprint level handles its own fulfills declarations
+
+## Implementation Architecture
+
+The blueprint configuration system is split between frontend and backend responsibilities:
+
+### Frontend Responsibilities
+- **Constraint Resolution**: Processes `constrain` entries to compute inherited tags from parent and siblings
+- **Fulfillment Logic**: Handles all `fulfills` declarations for UI state management
+- **Dynamic Constraints**: Combines base constraints (accept/require/deny) with computed constraints from inheritance
+- **Conflict Resolution**: Automatically deselects conflicting parts when fulfillment conflicts occur
+- **Progressive Filtering**: Updates available options in real-time as parts are selected
+
+### Backend Responsibilities  
+- **Constraint Enforcement**: Only understands and enforces accept/require/deny constraints
+- **Tag Querying**: `/api/blueprint/tags/` endpoint filters blueprints based on provided constraints
+- **No Fulfillment Awareness**: Backend has no knowledge of fulfills declarations
+- **No Constraint Computation**: Backend does not process constrain entries or tag inheritance
+
+### API Interaction Flow
+1. **Frontend computes final constraints**: Processes constrain entries and current selections to generate accept/require/deny arrays
+2. **API call**: Frontend sends computed constraints to `/api/blueprint/tags/`
+3. **Backend filtering**: Backend returns matching blueprints (paginated, typically 20 results) and available tag options
+4. **UI updates**: Frontend uses results to update available selections and constraint options for remaining parts
+
+This separation allows the backend to remain stateless while the frontend handles the complex interactive constraint resolution process.
 
 ## Common Patterns
 

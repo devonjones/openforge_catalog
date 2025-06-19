@@ -124,6 +124,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                   key={key}
                   title={key}
                   value={part.tags}
+                  optional={part.optional}
                   onHover={(isHovering) => handleBoxHover(isHovering, key)}
                   parentBlueprint={parentBlueprint}
                   peerParts={parts}

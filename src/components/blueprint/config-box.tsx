@@ -9,12 +9,13 @@ import { getOtherBlueprintTags } from '@/utils/tag-utils';
 interface ConfigBoxProps {
   title: string;
   value: ConfigTags;
+  optional?: boolean;
   onHover?: (isHovering: boolean) => void;
   parentBlueprint?: Blueprint;
   peerParts?: ConfigPart[];
 }
 
-const ConfigBox = ({ title, value, onHover, parentBlueprint }: ConfigBoxProps) => {
+const ConfigBox = ({ title, value, optional, onHover, parentBlueprint }: ConfigBoxProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const configSelections = useBlueprintContext((state) => state.configSelections);
   const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
@@ -39,6 +40,11 @@ const ConfigBox = ({ title, value, onHover, parentBlueprint }: ConfigBoxProps) =
     >
       <h3 className="text-lg font-semibold mb-2 cursor-help">
         {title}
+        {optional && (
+          <span className="ml-2 text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
+            Optional
+          </span>
+        )}
         <span className="ml-1 text-gray-500 group-hover:text-gray-700">
           <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="tag description">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
