@@ -84,6 +84,122 @@ describe('blueprint-utils', () => {
       const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
       expect(result).toBe(true);
     });
+
+    it('handles 2 levels of nesting correctly', () => {
+      const blueprintWithConfig = createMockBlueprint({
+        file_name: '',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'parentPart',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const childBlueprint = createMockBlueprint({
+        id: '2',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'childPart',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const configSelections = {
+        parentPart: childBlueprint,
+        'parentPart|childPart': createMockBlueprint({ id: '3' })
+      };
+      
+      const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
+      expect(result).toBe(true);
+    });
+
+    it('handles 3 levels of nesting correctly', () => {
+      const blueprintWithConfig = createMockBlueprint({
+        file_name: '',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'level1',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const level2Blueprint = createMockBlueprint({
+        id: '2',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'level2',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const level3Blueprint = createMockBlueprint({
+        id: '3',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'level3',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const configSelections = {
+        level1: level2Blueprint,
+        'level1|level2': level3Blueprint,
+        'level1|level2|level3': createMockBlueprint({ id: '4' })
+      };
+      
+      const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
+      expect(result).toBe(true);
+    });
+
+    it('returns false when nested required parts are missing', () => {
+      const blueprintWithConfig = createMockBlueprint({
+        file_name: '',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'parentPart',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      const childBlueprint = createMockBlueprint({
+        id: '2',
+        blueprint_config: {
+          parts: [
+            {
+              name: 'childPart',
+              tags: { require: [{ tag: 'required_tag' }], deny: [], accept: [], constrain: [] }
+            }
+          ]
+        }
+      });
+      
+      // Missing the nested child part selection
+      const configSelections = {
+        parentPart: childBlueprint
+        // Missing: 'parentPart|childPart'
+      };
+      
+      const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
+      expect(result).toBe(false);
+    });
   });
 
   describe('collectDownloadUrls', () => {

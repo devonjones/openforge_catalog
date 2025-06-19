@@ -1,4 +1,4 @@
-import { Blueprint } from '@/types';
+import { Blueprint, ConfigPart } from '@/types';
 
 /**
  * Navigate to a URL (default implementation)
@@ -64,24 +64,40 @@ export function shouldShowDownloadLink(
       part.tags.require && part.tags.require.length > 0
     );
     
-    return requiredParts.every(part => {
-      const selectedBlueprint = configSelections[part.name];
-      if (!selectedBlueprint) return false;
-      
-      // Check if the selected blueprint has its own required parts
-      if (selectedBlueprint.blueprint_config?.parts) {
-        const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
-          nestedPart.tags.require && nestedPart.tags.require.length > 0
-        );
-        return nestedRequiredParts.every(nestedPart => 
-          configSelections[nestedPart.name] !== undefined
-        );
-      }
-      return true;
-    });
+    return requiredParts.every(part => 
+      checkPartRequirements(part, configSelections, part.name)
+    );
   }
   
   return false;
+}
+
+/**
+ * Recursively checks if all required parts in a nested hierarchy are selected
+ * @param part - The part to check
+ * @param configSelections - Current configuration selections
+ * @param currentPath - The current path in the hierarchy (e.g., "parent|child")
+ * @returns True if all required parts are selected
+ */
+function checkPartRequirements(
+  part: ConfigPart, 
+  configSelections: Record<string, Blueprint>, 
+  currentPath: string
+): boolean {
+  const selectedBlueprint = configSelections[currentPath];
+  if (!selectedBlueprint) return false;
+  
+  // Check if the selected blueprint has its own required parts
+  if (selectedBlueprint.blueprint_config?.parts) {
+    const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
+      nestedPart.tags.require && nestedPart.tags.require.length > 0
+    );
+    return nestedRequiredParts.every(nestedPart => 
+      checkPartRequirements(nestedPart, configSelections, `${currentPath}|${nestedPart.name}`)
+    );
+  }
+  
+  return true;
 }
 
 /**
