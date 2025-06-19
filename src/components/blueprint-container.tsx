@@ -7,9 +7,9 @@ import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
 import { shouldShowDownloadLink, collectDownloadUrls, getLatestModificationDate, downloadFiles } from '@/utils/blueprint-utils';
 import { buildNestedConfigs } from '@/utils/config-processing';
-import { copyToClipboard } from '@/utils/clipboard';
 import { swapTagsByType } from '@/utils/tag-utils';
 import { useBlueprintUrlCleanup } from '@/hooks/use-blueprint-url-cleanup';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 import newGithubIssueUrl from 'new-github-issue-url';
 import TagRow from './ui/tag-row';
 import ConfigSection from './blueprint/config-section';
@@ -31,7 +31,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const addTag = useTagContext((state) => state.addTag);
   const clearTags = useTagContext((state) => state.clearTags);
   const addAllTags = useTagContext((state) => state.addAllTags);
-  const [copied, setCopied] = useState(false);
+  const { copied, copyText } = useCopyToClipboard();
   const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
 
   // Use custom hook for URL cleanup
@@ -51,17 +51,11 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
     setNestedConfigs(newNestedConfigs);
   }, [configSelections]);
 
-  const handleCopySuccess = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleCopyToClipboard = (blueprint_md5: string) => {
     const currentUrl = window.location.href;
     const baseUrl = currentUrl.split("?")[0];
     const textToCopy = baseUrl + '?md5=' + blueprint_md5;
-    
-    copyToClipboard(textToCopy, handleCopySuccess);
+    copyText(textToCopy);
   };
 
   const handleSwapTags = (e: React.MouseEvent, blueprint: Blueprint, tagType: string) => {

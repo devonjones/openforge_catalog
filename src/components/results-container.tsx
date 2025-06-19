@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
 import { processConfigValues, createDeepLink } from '@/utils/config-processing';
-import { copyToClipboard } from '@/utils/clipboard';
 import { useUrlParameters } from '@/hooks/use-url-parameters';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 import { PaginationControls } from '@/components/ui/pagination-controls';
 import { SelectedTagsDisplay } from '@/components/results/selected-tags-display';
 import { BlueprintList } from '@/components/results/blueprint-list';
@@ -31,7 +31,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const setTagState = useTagContext((state) => state.setTagState);
   const fetchData = useTagContext((state) => state.fetchData);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
-  const [copied, setCopied] = useState(false);
+  const { copied, copyText } = useCopyToClipboard();
   
   const { hasSetTagState } = useUrlParameters();
 
@@ -111,16 +111,11 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const startCount = (paging?.start_count ?? 0) + 1;
   const endCount = startCount + blueprints.length - 1;
 
-  const handleCopySuccess = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const handleCopyToClipboard = (text: string) => {
     const currentUrl = window.location.href;
     const urlWithoutParameters = currentUrl.split("?")[0];
     const textToCopy = urlWithoutParameters + '?' + text;
-    copyToClipboard(textToCopy, handleCopySuccess);
+    copyText(textToCopy);
   };
 
   return (
