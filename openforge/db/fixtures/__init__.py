@@ -133,7 +133,6 @@ def _load_data(f):
 
 def _munge_blueprint(data: dict):
     bp = {}
-    print(data)
     bp["blueprint_type"] = data["type"]
     bp["blueprint_name"] = data.get("name")
     bp["blueprint_config"] = data.get("config", {})
