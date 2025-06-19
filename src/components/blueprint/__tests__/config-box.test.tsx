@@ -9,16 +9,17 @@ jest.mock('@/contexts/blueprint-context', () => ({
   useBlueprintContext: jest.fn(),
 }));
 
-jest.mock('../part-selection-modal', () => ({
+jest.mock('../../part-selection-modal', () => ({
   __esModule: true,
-  default: ({ isOpen, onClose, partName, onPartSelected }: {
+  default: ({ isOpen, onClose, partName, onPartSelected, configValues }: {
     isOpen: boolean;
     onClose: () => void;
     partName: string;
     onPartSelected: (partName: string, blueprint: unknown) => void;
+    configValues: unknown;
   }) =>
     isOpen ? (
-      <div data-testid="modal">
+      <div data-testid="modal" data-config-values={JSON.stringify(configValues)}>
         <button data-testid="modal-close" onClick={onClose}>Close</button>
         <button data-testid="modal-select" onClick={() => onPartSelected(partName, { blueprint_name: 'Selected Blueprint', images: [] })}>Select</button>
       </div>
@@ -68,20 +69,22 @@ describe('ConfigBox', () => {
     });
   });
 
-  it('renders title and tag requirements', () => {
+  it('renders title with tooltip icon', () => {
     render(<ConfigBox {...baseProps} />);
     expect(screen.getByText('TestPart')).toBeInTheDocument();
-    expect(screen.getByText('Required Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Accepted Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Denied Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Constrained Tags:')).toBeInTheDocument();
-    expect(screen.getByText('Constraint Filtered Tags:')).toBeInTheDocument();
-    expect(screen.getByText('foo')).toBeInTheDocument();
-    expect(screen.getByText('bar')).toBeInTheDocument();
-    expect(screen.getByText('baz')).toBeInTheDocument();
-    expect(screen.getByText('qux')).toBeInTheDocument();
-    expect(screen.getByText('c1')).toBeInTheDocument();
-    expect(screen.getByText('f1')).toBeInTheDocument();
+    expect(screen.getByLabelText('tag description')).toBeInTheDocument();
+  });
+
+  it('calls onHover when hovering over the box', () => {
+    const mockOnHover = jest.fn();
+    render(<ConfigBox {...baseProps} onHover={mockOnHover} />);
+    
+    const box = screen.getByText('TestPart').closest('div');
+    fireEvent.mouseEnter(box!);
+    expect(mockOnHover).toHaveBeenCalledWith(true);
+    
+    fireEvent.mouseLeave(box!);
+    expect(mockOnHover).toHaveBeenCalledWith(false);
   });
 
   it('opens and closes the modal', () => {

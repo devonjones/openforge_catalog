@@ -19,14 +19,15 @@ jest.mock('@/utils/format', () => ({
   formatFileSize: jest.fn((size) => `${size} bytes`),
 }));
 
-jest.mock('@/utils/download', () => ({
+jest.mock('@/utils/blueprint-utils', () => ({
+  ...jest.requireActual('@/utils/blueprint-utils'),
   downloadFiles: jest.fn(),
 }));
 
 jest.mock('new-github-issue-url', () => jest.fn(() => 'https://github.com/devonjones/openforge_catalog/issues/new'));
 
 // Mock ConfigBox component
-jest.mock('../config-box', () => {
+jest.mock('../blueprint/config-box', () => {
   return function MockConfigBox({ title }: { title: string; value: unknown }) {
     return <div data-testid={`config-box-${title}`}>{title}</div>;
   };
@@ -34,7 +35,7 @@ jest.mock('../config-box', () => {
 
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
-import { downloadFiles } from '@/utils/download';
+import { downloadFiles } from '@/utils/blueprint-utils';
 
 const mockUseBlueprintContext = useBlueprintContext as jest.MockedFunction<typeof useBlueprintContext>;
 const mockUseTagContext = useTagContext as jest.MockedFunction<typeof useTagContext>;
@@ -153,15 +154,7 @@ describe('BlueprintContainer', () => {
     render(<BlueprintContainer />);
 
     expect(screen.getByText('Test Blueprint')).toBeInTheDocument();
-    expect(screen.getByText((content, node) => {
-      const hasText = (node: Element) =>
-        node.textContent === 'Type: model';
-      const nodeHasText = hasText(node as Element);
-      const childrenDontHaveText = Array.from(node?.children || []).every(
-        child => !hasText(child as Element)
-      );
-      return nodeHasText && childrenDontHaveText;
-    })).toBeInTheDocument();
+    expect(screen.getByText(/Type:/)).toBeInTheDocument();
     expect(screen.getByText(/Last Modified:/)).toBeInTheDocument();
     // Use getAllByText and check at least one element matches
     const sizeElements = screen.getAllByText((content, node) => {

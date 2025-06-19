@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
 import { processConfigValues, createDeepLink } from '@/utils/config-processing';
 import { useUrlParameters } from '@/hooks/use-url-parameters';
+import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard';
 import { PaginationControls } from '@/components/ui/pagination-controls';
 import { SelectedTagsDisplay } from '@/components/results/selected-tags-display';
 import { BlueprintList } from '@/components/results/blueprint-list';
@@ -30,7 +31,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const setTagState = useTagContext((state) => state.setTagState);
   const fetchData = useTagContext((state) => state.fetchData);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
-  const [copied, setCopied] = useState(false);
+  const { copied, copyText } = useCopyToClipboard();
   
   const { hasSetTagState } = useUrlParameters();
 
@@ -65,14 +66,6 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
       setTagState(tags);
     }
   }, [configValues, setTagState, tagsFromOtherSelections, hasSetTagState]);
-
-  const copyToClipboard = (text: string) => {
-    const currentUrl = window.location.href;
-    const urlWithoutParameters = currentUrl.split("?")[0];
-    navigator.clipboard.writeText(urlWithoutParameters + '?' + text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
-  };
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
@@ -118,6 +111,13 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
   const startCount = (paging?.start_count ?? 0) + 1;
   const endCount = startCount + blueprints.length - 1;
 
+  const handleCopyToClipboard = (text: string) => {
+    const currentUrl = window.location.href;
+    const urlWithoutParameters = currentUrl.split("?")[0];
+    const textToCopy = urlWithoutParameters + '?' + text;
+    copyText(textToCopy);
+  };
+
   return (
     <div className='resultsContainer'>
       <h2>Blueprints</h2>
@@ -132,7 +132,7 @@ const ResultsContainer = ({ configValues, tagsFromOtherSelections = [] }: Result
             onRemoveTag={handleRemoveTag}
             onClearSearch={() => setSearchTerm(null)}
             onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm)}
-            onCopyToClipboard={copyToClipboard}
+            onCopyToClipboard={handleCopyToClipboard}
             copied={copied}
           />
           {!configValues && <div className='selectedTagsContainer__header'><a className='visibleLink' href="#" onClick={handleClear}>clear</a></div>}
