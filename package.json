@@ -37,7 +37,7 @@
     "lucide-react": "^0.517.0",
     "new-github-issue-url": "^1.1.0",
     "next": "13.5.11",
-    "postcss": "8.4.23",
+    "postcss": "8.5.6",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-merge": "^2.5.5",
