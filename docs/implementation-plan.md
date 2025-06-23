@@ -309,16 +309,22 @@ Response: {
 
 #### 5.1 Database Schema for Users
 
-```sql
 CREATE TABLE users (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    email text UNIQUE NOT NULL,
-    provider text NOT NULL, -- 'patreon' or 'google'
-    provider_id text NOT NULL,
+    email text NOT NULL,
     role text NOT NULL DEFAULT 'user',
     patreon_tier text,
     created_at timestamp DEFAULT now(),
     updated_at timestamp DEFAULT now()
+);
+
+CREATE TABLE user_identities (
+    provider text NOT NULL,
+    provider_id text NOT NULL,
+    user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now(),
+    PRIMARY KEY (provider, provider_id)
 );
 
 CREATE INDEX idx_users_email ON users(email);
