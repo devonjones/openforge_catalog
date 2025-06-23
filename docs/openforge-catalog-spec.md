@@ -49,7 +49,7 @@ blueprint_images: blueprint_id, image_id (many-to-many)
 documentation: id, documentation_name, document, documentation_type, created_by, updated_by, created_at, updated_at
 blueprint_documentation: blueprint_id, documentation_id (many-to-many)
 tag_documentation: id, tag (text[]), documentation_id, created_by, updated_by, created_at, updated_at
-documentation_images: id, namespace, image_name, image_id, created_by, updated_by, created_at
+documentation_images: id, namespace, image_name, image_id, created_by, updated_by, created_at, updated_at
 
 -- NEW: User management and authentication
 users: id, email, role, patreon_tier, created_at, updated_at
