@@ -149,10 +149,10 @@ CREATE INDEX idx_documentation_images_namespace ON documentation_images(namespac
 **Core endpoints:**
 ```typescript
 // CRUD for documentation
-GET/POST/PUT/DELETE /api/documentation/{id}
+GET/POST/PUT/DELETE /api/documentation/{doc_id}
 
 // Blueprint documentation (combined view)
-GET /api/blueprints/{id}/documentation
+GET /api/blueprints/{blueprint_id}/documentation
 Response: {
   blueprint_docs: Documentation[],
   tag_docs: { [tag: string]: Documentation[] },
@@ -161,7 +161,7 @@ Response: {
 
 // Tag documentation  
 GET/POST /api/tags/{tag}/documentation
-PUT/DELETE /api/tags/{tag}/documentation/{id}
+PUT/DELETE /api/tags/{tag}/documentation/{doc_id}
 
 // Image namespace management
 GET/POST /api/documentation/images/{namespace}
@@ -224,7 +224,7 @@ INSERT INTO tag_priorities (tag_category, tag_value, priority_score) VALUES
 
 **API endpoint:**
 ```typescript
-GET /api/blueprints/{id}/defaults
+GET /api/blueprints/{blueprint_id}/defaults
 Response: {
   parts: {
     [partName]: {
@@ -397,7 +397,7 @@ ALTER TABLE blueprints DROP COLUMN IF EXISTS changelog;
 
 **History endpoints with documentation:**
 ```typescript
-GET /api/blueprints/{id}/history
+GET /api/blueprints/{blueprint_id}/history
 Response: {
   versions: {
     id: string,
@@ -411,7 +411,7 @@ Response: {
 }
 
 // Create changelog for specific version
-POST /api/blueprints/{id}/changelog
+POST /api/blueprints/{blueprint_id}/changelog
 Body: { 
   document: string, // markdown content
   documentation_name: string 
@@ -466,7 +466,7 @@ Body: {
 
 **URL generation:**
 ```typescript
-GET /api/blueprints/{id}/customize-url
+GET /api/blueprints/{blueprint_id}/customize-url
 Response: {
   customizer_url: string,
   parameters: { [key: string]: any }
