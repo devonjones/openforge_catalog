@@ -36,8 +36,7 @@ CREATE TABLE tag_priorities (
     tag_value text NOT NULL,
     priority_score integer NOT NULL DEFAULT 0,
     created_at timestamp DEFAULT now(),
-    updated_at timestamp DEFAULT now(),
-    UNIQUE(tag_category, tag_value)
+    updated_at timestamp DEFAULT now()
 );
 
 CREATE INDEX idx_tag_priorities_category ON tag_priorities(tag_category);
@@ -103,7 +102,7 @@ CREATE INDEX idx_tag_priorities_score ON tag_priorities(priority_score DESC);
 
 **Update documentation table with types:**
 ```sql
-ALTER TABLE documentation ADD COLUMN documentation_type text NOT NULL DEFAULT 'instruction'; -- user who created it, FK to be added in Phase 5
+ALTER TABLE documentation ADD COLUMN documentation_type text NOT NULL DEFAULT 'instruction';
 ALTER TABLE documentation ADD COLUMN created_by uuid; -- user who created it
 ALTER TABLE documentation ADD COLUMN updated_by uuid; -- user who last updated it
 
@@ -149,7 +148,7 @@ CREATE INDEX idx_documentation_images_namespace ON documentation_images(namespac
 **Core endpoints:**
 ```typescript
 // CRUD for documentation
-GET/POST/PUT/DELETE /api/documentation/{doc_id}
+GET/POST/PUT/DELETE /api/documentation/{blueprint_id}
 
 // Blueprint documentation (combined view)
 GET /api/blueprints/{blueprint_id}/documentation
@@ -310,25 +309,19 @@ Response: {
 
 #### 5.1 Database Schema for Users
 
+```sql
 CREATE TABLE users (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    email text NOT NULL,
+    email text UNIQUE NOT NULL,
+    provider text NOT NULL, -- 'patreon' or 'google'
+    provider_id text NOT NULL,
     role text NOT NULL DEFAULT 'user',
     patreon_tier text,
     created_at timestamp DEFAULT now(),
     updated_at timestamp DEFAULT now()
 );
 
-CREATE TABLE user_identities (
-    provider text NOT NULL,
-    provider_id text NOT NULL,
-    user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    created_at timestamp DEFAULT now(),
-    updated_at timestamp DEFAULT now(),
-    PRIMARY KEY (provider, provider_id)
-);
-
-CREATE INDEX idx_user_identities_user_id ON user_identities(user_id);
+CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_provider ON users(provider, provider_id);
 ```
 

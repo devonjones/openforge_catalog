@@ -34,27 +34,29 @@ blueprints: id, blueprint_name, blueprint_type, config (jsonb), file_md5, file_s
            successor_id (uuid),             -- Points to newer version if deprecated
            predecessor_id (uuid),           -- Points to older version if this is an update
            openscad_source (text),          -- OpenSCAD file for customizable blueprints
+           created_by (uuid),               -- User who created this blueprint
+           updated_by (uuid)                -- User who last updated this blueprint
 
 -- Tag system (pipe-delimited hierarchical tags)
-tags: id, blueprint_id, tag (text[]), created_at, updated_at
-tag_descriptions: id, tag (text[]), description, created_at, updated_at
+tags: id, blueprint_id, tag (text[]), created_by, updated_by, created_at, updated_at
+tag_descriptions: id, tag (text[]), description, created_by, updated_by, created_at, updated_at
 
 -- Media associations
-images: id, image_name, image_url, created_at, updated_at
+images: id, image_name, image_url, created_by, updated_by, created_at, updated_at
 blueprint_images: blueprint_id, image_id (many-to-many)
 
 -- Documentation (tag-based composition with types and namespaced images)
 documentation: id, documentation_name, document, documentation_type, created_by, updated_by, created_at, updated_at
 blueprint_documentation: blueprint_id, documentation_id (many-to-many)
-tag_documentation: id, tag (text[]), documentation_id, created_at, updated_at
-documentation_images: id, namespace, image_name, image_id, created_at
+tag_documentation: id, tag (text[]), documentation_id, created_by, updated_by, created_at, updated_at
+documentation_images: id, namespace, image_name, image_id, created_by, updated_by, created_at
 
 -- NEW: User management and authentication
 users: id, email, role, patreon_tier, created_at, updated_at
 user_identities: provider, provider_id, user_id, created_at, updated_at
 
 -- NEW: Default preferences for blueprint composition
-tag_priorities: id, tag_category, tag_value, priority_score, created_at, updated_at
+tag_priorities: id, tag_category, tag_value, priority_score, created_by, updated_by, created_at, updated_at
 ```
 
 #### Tag System Architecture
@@ -146,6 +148,7 @@ The system handles complex real-world scenarios like doorways that need both wal
 #### OAuth-Only Authentication
 - **Patreon OAuth**: Primary integration with automatic tier detection
 - **Google OAuth**: Secondary option for non-Patreon users
+- **Multiple Provider Support**: Users can link multiple OAuth accounts to single profile
 - **No Traditional Registration**: Eliminates need for custom user management
 
 #### Role-Based Access Control
@@ -163,6 +166,8 @@ The system handles complex real-world scenarios like doorways that need both wal
 - Automatic account creation from Patreon supporter list
 - Tier-based feature access
 - Webhook integration for real-time tier updates
+- **Comprehensive Audit Trails**: All content creation and modification tracked by user
+- **Multi-provider Identity**: Single user profile can link multiple OAuth accounts
 
 ### Performance Characteristics
 
@@ -212,13 +217,13 @@ Excellent performance despite complex tag queries using sophisticated SQL with m
 #### API Design - **EXPANDED**
 RESTful API with comprehensive CRUD operations:
 - `/api/blueprints` - Blueprint management
-- `/api/blueprints/{id}/tags` - Tag management
+- `/api/blueprints/{blueprint_id}/tags` - Tag management
 - `/api/blueprints/tags` - Advanced tag querying with pagination
 - **NEW**: `/api/blueprints/component-alternatives` - Component swapping alternatives
 - `/api/images` - Image management
 - `/api/tag-descriptions` - Tag documentation
 - **NEW**: `/api/auth` - OAuth authentication endpoints
-- **NEW**: `/api/blueprints/{id}/history` - File version history
+- **NEW**: `/api/blueprints/{blueprint_id}/history` - File version history
 - **NEW**: `/api/admin/duplicates` - Administrative duplicate detection
 
 ## Roadmap and Development Priorities - **UPDATED**
