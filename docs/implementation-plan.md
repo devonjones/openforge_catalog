@@ -36,7 +36,8 @@ CREATE TABLE tag_priorities (
     tag_value text NOT NULL,
     priority_score integer NOT NULL DEFAULT 0,
     created_at timestamp DEFAULT now(),
-    updated_at timestamp DEFAULT now()
+    updated_at timestamp DEFAULT now(),
+    UNIQUE(tag_category, tag_value)
 );
 
 CREATE INDEX idx_tag_priorities_category ON tag_priorities(tag_category);
