@@ -328,7 +328,7 @@ CREATE TABLE user_identities (
     PRIMARY KEY (provider, provider_id)
 );
 
-CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_user_identities_user_id ON user_identities(user_id);
 CREATE INDEX idx_users_provider ON users(provider, provider_id);
 ```
 
