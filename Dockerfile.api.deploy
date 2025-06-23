@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.13.2025.06.18.18
+FROM public.ecr.aws/lambda/python:3.13.2025.06.19.12
 
 WORKDIR /var/task
 
