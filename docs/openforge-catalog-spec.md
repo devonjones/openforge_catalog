@@ -50,7 +50,8 @@ tag_documentation: id, tag (text[]), documentation_id, created_at, updated_at
 documentation_images: id, namespace, image_name, image_id, created_at
 
 -- NEW: User management and authentication
-users: id, email, provider, provider_id, role, patreon_tier, created_at, updated_at
+users: id, email, role, patreon_tier, created_at, updated_at
+user_identities: provider, provider_id, user_id, created_at, updated_at
 
 -- NEW: Default preferences for blueprint composition
 tag_priorities: id, tag_category, tag_value, priority_score, created_at, updated_at
