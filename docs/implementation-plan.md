@@ -148,7 +148,7 @@ CREATE INDEX idx_documentation_images_namespace ON documentation_images(namespac
 **Core endpoints:**
 ```typescript
 // CRUD for documentation
-GET/POST/PUT/DELETE /api/documentation/{blueprint_id}
+GET/POST/PUT/DELETE /api/documentation/{doc_id}
 
 // Blueprint documentation (combined view)
 GET /api/blueprints/{blueprint_id}/documentation
@@ -223,7 +223,7 @@ INSERT INTO tag_priorities (tag_category, tag_value, priority_score) VALUES
 
 **API endpoint:**
 ```typescript
-GET /api/blueprints/{blueprint_id}/defaults
+GET /api/blueprints/{id}/defaults
 Response: {
   parts: {
     [partName]: {
@@ -312,18 +312,23 @@ Response: {
 ```sql
 CREATE TABLE users (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    email text UNIQUE NOT NULL,
-    provider text NOT NULL, -- 'patreon' or 'google'
-    provider_id text NOT NULL,
+    email text NOT NULL,
     role text NOT NULL DEFAULT 'user',
     patreon_tier text,
     created_at timestamp DEFAULT now(),
     updated_at timestamp DEFAULT now()
 );
 
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_provider ON users(provider, provider_id);
-```
+CREATE TABLE user_identities (
+    provider text NOT NULL, -- 'patreon' or 'google'
+    provider_id text NOT NULL, -- OAuth provider's user ID
+    user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now(),
+    PRIMARY KEY (provider, provider_id)
+);
+
+CREATE INDEX idx_user_identities_user_id ON user_identities(user_id);
 
 #### 5.2 OAuth Integration
 
