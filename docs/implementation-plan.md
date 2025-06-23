@@ -103,7 +103,7 @@ CREATE INDEX idx_tag_priorities_score ON tag_priorities(priority_score DESC);
 
 **Update documentation table with types:**
 ```sql
-ALTER TABLE documentation ADD COLUMN documentation_type text NOT NULL DEFAULT 'instruction';
+ALTER TABLE documentation ADD COLUMN documentation_type text NOT NULL DEFAULT 'instruction'; -- user who created it, FK to be added in Phase 5
 ALTER TABLE documentation ADD COLUMN created_by uuid; -- user who created it
 ALTER TABLE documentation ADD COLUMN updated_by uuid; -- user who last updated it
 
