@@ -8,6 +8,8 @@ properties:
       properties:
         name:
           type: string
+        id:
+          type: string
         optional:
           type: boolean
           default: false

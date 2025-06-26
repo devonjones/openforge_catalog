@@ -12,17 +12,13 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "size",
-                "width",
-                1
             ],
             [
                 "connection",
@@ -30,11 +26,15 @@
             ],
             [
                 "shape",
+                "square"
+            ],
+            [
+                "shape",
                 "floor"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
             ]
         ],
@@ -95,21 +95,21 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
             ],
             [
-                "size",
-                "width",
-                1
+                "shape",
+                "square"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -117,8 +117,8 @@
             ],
             [
                 "size",
-                "depth",
-                2
+                "width",
+                1
             ]
         ],
         "images": [
@@ -178,21 +178,12 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "size",
@@ -201,7 +192,16 @@
             ],
             [
                 "shape",
+                "square"
+            ],
+            [
+                "shape",
                 "floor"
+            ],
+            [
+                "size",
+                "width",
+                1
             ]
         ],
         "images": [
@@ -261,8 +261,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
@@ -270,12 +270,12 @@
             ],
             [
                 "size",
-                "width",
-                1
+                "depth",
+                4
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "square"
             ],
             [
                 "shape",
@@ -283,8 +283,8 @@
             ],
             [
                 "size",
-                "depth",
-                4
+                "width",
+                1
             ]
         ],
         "images": [
@@ -344,17 +344,13 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "size",
-                "width",
-                2
             ],
             [
                 "connection",
@@ -362,12 +358,16 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
-                "depth",
-                1
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -427,12 +427,16 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -440,17 +444,13 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor"
-            ],
-            [
-                "size",
-                "depth",
-                2
             ]
         ],
         "images": [
@@ -510,8 +510,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
@@ -519,17 +519,17 @@
             ],
             [
                 "size",
-                "width",
-                2
+                "depth",
+                3
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "square"
             ],
             [
                 "size",
-                "depth",
-                3
+                "width",
+                2
             ],
             [
                 "shape",
@@ -593,8 +593,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
@@ -602,21 +602,21 @@
             ],
             [
                 "size",
+                "depth",
+                4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "size",
                 "width",
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "size",
-                "depth",
-                4
             ]
         ],
         "images": [
@@ -676,8 +676,9 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "texture",
@@ -688,6 +689,10 @@
                 "openforge"
             ],
             [
+                "shape",
+                "square"
+            ],
+            [
                 "size",
                 "width",
                 3
@@ -695,11 +700,6 @@
             [
                 "shape",
                 "floor"
-            ],
-            [
-                "size",
-                "depth",
-                1
             ]
         ],
         "images": [
@@ -759,20 +759,16 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -783,6 +779,10 @@
                 "size",
                 "depth",
                 2
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -842,16 +842,12 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "size",
@@ -860,12 +856,16 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
                 "width",
                 3
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -925,20 +925,12 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "pool"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor"
+                "texture",
+                "pool"
             ],
             [
                 "size",
@@ -946,9 +938,17 @@
                 4
             ],
             [
+                "shape",
+                "square"
+            ],
+            [
                 "size",
                 "width",
                 3
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -1008,16 +1008,13 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "size",
@@ -1025,13 +1022,16 @@
                 4
             ],
             [
-                "shape",
-                "floor"
+                "connection",
+                "openforge"
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "square"
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -1091,16 +1091,12 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "size",
@@ -1109,12 +1105,16 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
                 "depth",
                 2
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -1174,16 +1174,17 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                3
             ],
             [
                 "size",
@@ -1191,9 +1192,8 @@
                 4
             ],
             [
-                "size",
-                "depth",
-                3
+                "shape",
+                "square"
             ],
             [
                 "shape",
@@ -1257,16 +1257,12 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "pool"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "size",
@@ -1274,13 +1270,17 @@
                 4
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
                 "size",
                 "depth",
                 4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
         "images": [
@@ -1340,25 +1340,17 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
                 "texture",
                 "pool"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -1367,12 +1359,20 @@
             ],
             [
                 "shape",
+                "square"
+            ],
+            [
+                "shape",
                 "floor"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1424,34 +1424,16 @@
         "file_metadata": {
             "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.2x2.openforge.stl",
             "file": "pool#floor,pool+corner.2x2.openforge.stl",
-            "md5": "bf35d0483abae20b296c7b8e1dd103fe",
-            "size": 9790934,
-            "changed": "2025-05-28T14:46:36.929412",
-            "modified": "2020-03-06T19:20:08",
-            "storage_address": "https://objects.openforge.tools/models/bf35d0/bf35d0483abae20b296c7b8e1dd103fe.stl"
+            "md5": "ab0bc438a05872c494a0166ee655507c",
+            "size": 9830784,
+            "changed": "2025-06-18T20:53:01.423353",
+            "modified": "2025-06-18T20:53:01.419552",
+            "storage_address": "https://objects.openforge.tools/models/ab0bc4/ab0bc438a05872c494a0166ee655507c.stl"
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                2
             ],
             [
                 "texture",
@@ -1464,13 +1446,31 @@
             ],
             [
                 "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
                 "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/bf35d0/bf35d0483abae20b296c7b8e1dd103fe.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/ab0bc4/ab0bc438a05872c494a0166ee655507c.png"
             }
         ],
         "config": {
@@ -1518,31 +1518,23 @@
             "file": "pool#floor,pool+corner.3x3.openforge.stl",
             "md5": "e05d25188db823f5a3fdf760f3cc4dee",
             "size": 17489384,
-            "changed": "2025-05-28T14:46:36.933944",
+            "changed": "2025-06-18T20:53:12.440337",
             "modified": "2020-03-06T19:20:21",
             "storage_address": "https://objects.openforge.tools/models/e05d25/e05d25188db823f5a3fdf760f3cc4dee.stl"
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
                 "texture",
                 "pool"
+            ],
+            [
+                "size",
+                "width",
+                3
             ],
             [
                 "component",
@@ -1550,13 +1542,21 @@
                 "corner"
             ],
             [
+                "size",
+                "depth",
+                3
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "width",
-                3
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1610,26 +1610,14 @@
             "file": "pool#floor,pool+corner.4x4.openforge.stl",
             "md5": "bb537c4f61c9c224b41d761316cff600",
             "size": 26194484,
-            "changed": "2025-05-28T14:46:36.939954",
+            "changed": "2025-06-18T20:53:21.078934",
             "modified": "2020-03-06T19:20:49",
             "storage_address": "https://objects.openforge.tools/models/bb537c/bb537c4f61c9c224b41d761316cff600.stl"
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
             ],
             [
                 "texture",
@@ -1641,14 +1629,26 @@
                 4
             ],
             [
+                "size",
+                "depth",
+                4
+            ],
+            [
                 "component",
                 "pool",
                 "corner"
             ],
             [
-                "size",
-                "depth",
-                4
+                "shape",
+                "square"
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1708,25 +1708,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
-            ],
-            [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
@@ -1734,13 +1717,30 @@
                 "pool"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "component",
+                "pool",
+                "internal_corner"
+            ],
+            [
                 "shape",
                 "floor"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1800,6 +1800,14 @@
         },
         "tags": [
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
                 "shape",
                 "square"
             ],
@@ -1809,12 +1817,9 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
+                "size",
+                "depth",
+                2
             ],
             [
                 "component",
@@ -1822,17 +1827,12 @@
                 "internal_corner"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1892,12 +1892,17 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
+                "size",
+                "width",
+                3
             ],
             [
                 "size",
@@ -1905,8 +1910,8 @@
                 3
             ],
             [
-                "component",
-                "pool"
+                "shape",
+                "square"
             ],
             [
                 "component",
@@ -1914,17 +1919,12 @@
                 "internal_corner"
             ],
             [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "width",
-                3
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -1984,25 +1984,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
             ],
             [
                 "texture",
@@ -2017,6 +2000,23 @@
                 "size",
                 "depth",
                 4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "component",
+                "pool",
+                "internal_corner"
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2076,9 +2076,22 @@
         },
         "tags": [
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
                 "component",
                 "pool",
                 "stairs"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
@@ -2090,25 +2103,12 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2168,6 +2168,14 @@
         },
         "tags": [
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
                 "component",
                 "pool",
                 "stairs"
@@ -2182,25 +2190,17 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
                 "size",
                 "depth",
                 2
             ],
             [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2260,25 +2260,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ],
-            [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
@@ -2286,13 +2269,30 @@
                 "pool"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
                 "shape",
                 "floor"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2352,6 +2352,24 @@
         },
         "tags": [
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
                 "shape",
                 "square"
             ],
@@ -2361,30 +2379,12 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ],
-            [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2444,6 +2444,19 @@
         },
         "tags": [
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "pool"
+            ],
+            [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
                 "shape",
                 "square"
             ],
@@ -2453,30 +2466,17 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
                 "size",
                 "depth",
                 2
             ],
             [
-                "component",
-                "pool",
-                "wall"
-            ],
-            [
-                "texture",
-                "pool"
-            ],
-            [
                 "shape",
                 "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2536,16 +2536,22 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "texture",
+                "pool"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "pool"
+                "size",
+                "width",
+                3
             ],
             [
                 "component",
@@ -2553,22 +2559,16 @@
                 "wall"
             ],
             [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                1
+                "shape",
+                "square"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "width",
-                3
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2628,21 +2628,17 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "depth",
-                3
+                "texture",
+                "pool"
             ],
             [
-                "component",
-                "pool"
+                "size",
+                "width",
+                3
             ],
             [
                 "component",
@@ -2650,17 +2646,21 @@
                 "wall"
             ],
             [
-                "texture",
-                "pool"
+                "size",
+                "depth",
+                3
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "width",
-                3
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2720,21 +2720,9 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
+                "size",
+                "depth",
+                1
             ],
             [
                 "texture",
@@ -2746,13 +2734,25 @@
                 4
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2812,26 +2812,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
             ],
             [
                 "texture",
@@ -2843,8 +2825,26 @@
                 4
             ],
             [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [
@@ -2904,25 +2904,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
             ],
             [
                 "texture",
@@ -2937,6 +2920,23 @@
                 "size",
                 "depth",
                 4
+            ],
+            [
+                "component",
+                "pool",
+                "wall"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "pool"
             ]
         ],
         "images": [

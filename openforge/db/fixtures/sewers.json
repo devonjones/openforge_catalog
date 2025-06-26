@@ -12,12 +12,21 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "size",
+                "width",
+                1
             ],
             [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
@@ -26,15 +35,6 @@
             [
                 "size",
                 "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
                 1
             ]
         ],
@@ -95,17 +95,21 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
@@ -115,10 +119,6 @@
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -178,25 +178,25 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
-            ],
-            [
-                "shape",
-                "square"
             ],
             [
                 "size",
@@ -261,16 +261,16 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -278,13 +278,13 @@
                 3
             ],
             [
+                "texture",
+                "sewer"
+            ],
+            [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -344,8 +344,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -353,8 +357,8 @@
                 4
             ],
             [
-                "shape",
-                "floor"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
@@ -364,10 +368,6 @@
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -427,6 +427,11 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                1
+            ],
+            [
                 "connection",
                 "openlock"
             ],
@@ -435,21 +440,16 @@
                 "floor"
             ],
             [
+                "shape",
+                "square"
+            ],
+            [
                 "texture",
                 "sewer"
             ],
             [
                 "size",
                 "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
                 1
             ]
         ],
@@ -473,9 +473,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "shape",
+                "floor"
             ],
             [
                 "connection",
@@ -483,7 +482,12 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
@@ -493,10 +497,6 @@
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -519,9 +519,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "shape",
+                "floor"
             ],
             [
                 "connection",
@@ -529,15 +528,16 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
-            ],
-            [
-                "shape",
-                "square"
             ],
             [
                 "size",
@@ -565,16 +565,16 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "connection",
                 "openlock"
             ],
             [
                 "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "sewer"
+                "square"
             ],
             [
                 "size",
@@ -582,13 +582,13 @@
                 3
             ],
             [
+                "texture",
+                "sewer"
+            ],
+            [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -611,17 +611,21 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "connection",
                 "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
                 "width",
                 4
-            ],
-            [
-                "shape",
-                "floor"
             ],
             [
                 "texture",
@@ -631,10 +635,6 @@
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -658,8 +658,24 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 2
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "sluice"
             ],
             [
                 "component",
@@ -667,29 +683,13 @@
                 "corner"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
             ]
         ],
         "images": [
@@ -749,30 +749,26 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "component",
                 "sluice",
                 "cross"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
-            ],
-            [
                 "shape",
                 "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -780,8 +776,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -842,25 +842,12 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 2
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "shape",
                 "floor"
-            ],
-            [
-                "component",
-                "sluice",
-                "tee"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
@@ -868,12 +855,25 @@
             ],
             [
                 "component",
+                "sluice",
+                "tee"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
                 "sluice"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -933,34 +933,34 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
                 "square"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "component",
                 "sluice"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -1021,24 +1021,20 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 2
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
-            ],
-            [
                 "shape",
                 "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -1046,8 +1042,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1107,34 +1107,34 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "size",
                 "width",
                 4
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
-            ],
-            [
                 "shape",
                 "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
                 "sluice"
             ],
             [
-                "size",
-                "depth",
-                2
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1195,25 +1195,16 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 2
-            ],
-            [
-                "component",
-                "sluice",
-                "corner"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -1221,17 +1212,26 @@
                 "sewer_brick"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "component",
                 "sluice"
             ],
             [
+                "component",
+                "sluice",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
             ],
             [
-                "shape",
-                "square"
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1291,26 +1291,17 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "sluice",
-                "corner"
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "depth",
+                2
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
@@ -1321,9 +1312,18 @@
                 "sluice"
             ],
             [
+                "component",
+                "sluice",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1346,11 +1346,6 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
@@ -1360,12 +1355,13 @@
                 "cross"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "depth",
+                2
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
@@ -1377,8 +1373,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1401,26 +1401,17 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
+                "size",
+                "depth",
+                2
+            ],
+            [
                 "shape",
                 "floor"
-            ],
-            [
-                "component",
-                "sluice",
-                "tee"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
@@ -1428,12 +1419,21 @@
             ],
             [
                 "component",
+                "sluice",
+                "tee"
+            ],
+            [
+                "component",
                 "sluice"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1456,26 +1456,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
@@ -1484,6 +1470,20 @@
             [
                 "component",
                 "sluice"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -1506,21 +1506,17 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "depth",
+                2
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
@@ -1532,8 +1528,12 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1565,12 +1565,13 @@
                 4
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "depth",
+                2
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
@@ -1581,9 +1582,8 @@
                 "sluice"
             ],
             [
-                "size",
-                "depth",
-                2
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1606,26 +1606,21 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "sluice",
-                "corner"
-            ],
-            [
                 "connection",
                 "openlock"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -1637,13 +1632,18 @@
                 "sluice"
             ],
             [
+                "component",
+                "sluice",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
             ],
             [
-                "shape",
-                "square"
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -1666,9 +1666,8 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -1676,16 +1675,9 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "riser",
+                "high"
             ],
             [
                 "texture",
@@ -1693,9 +1685,17 @@
                 "sewer_brick"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "riser",
-                "high"
+                "riser"
             ]
         ],
         "images": [
@@ -1718,6 +1718,24 @@
         },
         "tags": [
             [
+                "texture",
+                "sewer"
+            ],
+            [
+                "shape",
+                "riser",
+                "high"
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -1728,26 +1746,8 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "riser"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "texture",
-                "sewer",
-                "sewer_brick"
-            ],
-            [
-                "shape",
-                "riser",
-                "high"
             ]
         ],
         "images": [
@@ -1770,26 +1770,13 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "riser"
-            ],
-            [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -1797,9 +1784,22 @@
                 "high"
             ],
             [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -1823,11 +1823,6 @@
         "tags": [
             [
                 "size",
-                "depth",
-                1
-            ],
-            [
-                "size",
                 "width",
                 1
             ],
@@ -1837,21 +1832,26 @@
                 "low"
             ],
             [
-                "connection",
-                "openforge"
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
-                "shape",
-                "riser"
+                "connection",
+                "openforge"
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -1874,9 +1874,27 @@
         },
         "tags": [
             [
+                "shape",
+                "riser",
+                "low"
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -1885,25 +1903,7 @@
             ],
             [
                 "shape",
-                "riser",
-                "low"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
                 "riser"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "texture",
-                "sewer",
-                "sewer_brick"
             ]
         ],
         "images": [
@@ -1926,26 +1926,14 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "shape",
                 "riser",
                 "low"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -1953,9 +1941,21 @@
                 "sewer_brick"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -1978,9 +1978,27 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
                 "shape",
                 "riser",
                 "mid"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -1988,26 +2006,8 @@
                 1
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "riser"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "texture",
-                "sewer",
-                "sewer_brick"
             ]
         ],
         "images": [
@@ -2030,9 +2030,9 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "shape",
@@ -2040,26 +2040,26 @@
                 "mid"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "riser"
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -2083,8 +2083,13 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 2
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "shape",
@@ -2096,22 +2101,17 @@
                 "openforge"
             ],
             [
-                "shape",
-                "riser"
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -2135,7 +2135,7 @@
         "tags": [
             [
                 "size",
-                "depth",
+                "width",
                 1
             ],
             [
@@ -2144,26 +2144,26 @@
                 "platform"
             ],
             [
-                "size",
-                "width",
-                1
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
-                "riser"
-            ],
-            [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -2186,9 +2186,27 @@
         },
         "tags": [
             [
+                "shape",
+                "riser",
+                "platform"
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -2197,25 +2215,7 @@
             ],
             [
                 "shape",
-                "riser",
-                "platform"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
                 "riser"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "texture",
-                "sewer",
-                "sewer_brick"
             ]
         ],
         "images": [
@@ -2238,26 +2238,14 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "shape",
                 "riser",
                 "platform"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -2265,9 +2253,21 @@
                 "sewer_brick"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "shape",
+                "riser"
             ]
         ],
         "images": [
@@ -2290,13 +2290,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -2304,12 +2299,13 @@
                 1
             ],
             [
-                "shape",
-                "riser"
+                "connection",
+                "openlock"
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "riser",
+                "high"
             ],
             [
                 "texture",
@@ -2318,8 +2314,12 @@
             ],
             [
                 "shape",
-                "riser",
-                "high"
+                "riser"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2342,26 +2342,17 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "texture",
+                "sewer"
             ],
             [
                 "connection",
                 "openlock"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "riser",
+                "high"
             ],
             [
                 "texture",
@@ -2370,8 +2361,17 @@
             ],
             [
                 "shape",
-                "riser",
-                "high"
+                "riser"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2394,21 +2394,22 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
+                "texture",
+                "sewer"
             ],
             [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "riser"
+                "size",
+                "depth",
+                2
             ],
             [
-                "texture",
-                "sewer"
+                "shape",
+                "riser",
+                "high"
             ],
             [
                 "texture",
@@ -2417,12 +2418,11 @@
             ],
             [
                 "shape",
-                "riser",
-                "high"
+                "riser"
             ],
             [
                 "size",
-                "depth",
+                "width",
                 2
             ]
         ],
@@ -2446,23 +2446,23 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "shape",
                 "riser",
                 "low"
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "shape",
@@ -2473,9 +2473,9 @@
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2498,18 +2498,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
             ],
             [
                 "shape",
@@ -2517,17 +2507,27 @@
                 "low"
             ],
             [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
                 "shape",
                 "riser"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2550,11 +2550,6 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
@@ -2564,12 +2559,9 @@
                 "low"
             ],
             [
-                "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -2577,9 +2569,17 @@
                 "sewer_brick"
             ],
             [
+                "shape",
+                "riser"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -2602,23 +2602,18 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                1
+            ],
+            [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "riser",
-                "mid"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "size",
-                "width",
-                1
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "shape",
@@ -2629,9 +2624,14 @@
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "riser",
+                "mid"
             ]
         ],
         "images": [
@@ -2654,18 +2654,26 @@
         },
         "tags": [
             [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
+                "shape",
+                "riser"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "shape",
-                "riser",
-                "mid"
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -2674,16 +2682,8 @@
             ],
             [
                 "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "riser",
+                "mid"
             ]
         ],
         "images": [
@@ -2706,26 +2706,13 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
-                "shape",
-                "riser",
-                "mid"
-            ],
-            [
-                "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -2733,9 +2720,22 @@
                 "sewer_brick"
             ],
             [
+                "shape",
+                "riser"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "shape",
+                "riser",
+                "mid"
             ]
         ],
         "images": [
@@ -2758,13 +2758,13 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "size",
+                "width",
+                1
             ],
             [
-                "size",
-                "depth",
-                1
+                "connection",
+                "openlock"
             ],
             [
                 "shape",
@@ -2772,9 +2772,9 @@
                 "platform"
             ],
             [
-                "size",
-                "width",
-                1
+                "texture",
+                "sewer",
+                "sewer_brick"
             ],
             [
                 "shape",
@@ -2785,9 +2785,9 @@
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2810,18 +2810,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
             ],
             [
                 "shape",
@@ -2829,17 +2819,27 @@
                 "platform"
             ],
             [
+                "texture",
+                "sewer",
+                "sewer_brick"
+            ],
+            [
                 "shape",
                 "riser"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "texture",
-                "sewer",
-                "sewer_brick"
+                "size",
+                "depth",
+                1
             ]
         ],
         "images": [
@@ -2862,11 +2862,6 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
@@ -2876,12 +2871,9 @@
                 "platform"
             ],
             [
-                "shape",
-                "riser"
-            ],
-            [
-                "texture",
-                "sewer"
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -2889,9 +2881,17 @@
                 "sewer_brick"
             ],
             [
+                "shape",
+                "riser"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
+            ],
+            [
+                "texture",
+                "sewer"
             ]
         ],
         "images": [
@@ -2915,16 +2915,8 @@
         "tags": [
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "wall"
+                "width",
+                1
             ],
             [
                 "size",
@@ -2932,12 +2924,8 @@
                 270
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "build",
-                "thick wall"
+                "connection",
+                "side"
             ],
             [
                 "shape",
@@ -2945,13 +2933,24 @@
                 "convex"
             ],
             [
-                "size",
-                "depth",
-                1
+                "build",
+                "thick wall"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -2959,26 +2958,27 @@
                 "IL"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
+                "component",
+                "wall"
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -2989,28 +2989,6 @@
         ],
         "config": {
             "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ]
-                    },
-                    "optional": true
-                },
                 {
                     "name": "base",
                     "tags": {
@@ -3055,16 +3033,8 @@
         "tags": [
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "wall"
+                "width",
+                1
             ],
             [
                 "size",
@@ -3072,44 +3042,16 @@
                 90
             ],
             [
-                "shape",
-                "corner"
+                "connection",
+                "side"
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
@@ -3117,8 +3059,44 @@
             ],
             [
                 "shape",
+                "corner"
+            ],
+            [
+                "shape",
                 "corner",
                 "concave"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3129,28 +3107,6 @@
         ],
         "config": {
             "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ]
-                    },
-                    "optional": true
-                },
                 {
                     "name": "base",
                     "tags": {
@@ -3195,16 +3151,8 @@
         "tags": [
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "wall"
+                "width",
+                1
             ],
             [
                 "size",
@@ -3212,12 +3160,12 @@
                 270
             ],
             [
-                "shape",
-                "corner"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
-                "openlock"
+                "side"
             ],
             [
                 "shape",
@@ -3229,13 +3177,16 @@
                 "thick wall"
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "wall"
             ],
             [
                 "shape",
-                "wall"
+                "square"
+            ],
+            [
+                "shape",
+                "corner"
             ],
             [
                 "size",
@@ -3243,22 +3194,27 @@
                 "IL"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
+                "component",
+                "wall"
             ],
             [
                 "texture",
                 "sewer"
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3282,16 +3238,8 @@
         "tags": [
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "wall"
+                "width",
+                1
             ],
             [
                 "size",
@@ -3299,44 +3247,20 @@
                 90
             ],
             [
-                "shape",
-                "corner"
+                "connection",
+                "openlock"
             ],
             [
                 "connection",
-                "openlock"
+                "side"
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
                 "wall"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
             ],
             [
                 "shape",
@@ -3344,8 +3268,40 @@
             ],
             [
                 "shape",
+                "corner"
+            ],
+            [
+                "shape",
                 "corner",
                 "concave"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3368,33 +3324,11 @@
         },
         "tags": [
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "build",
                 "thick wall"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
+                "component",
                 "wall"
             ],
             [
@@ -3404,7 +3338,29 @@
             ],
             [
                 "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "connection",
                 "openforge"
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3415,28 +3371,6 @@
         ],
         "config": {
             "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ]
-                    },
-                    "optional": true
-                },
                 {
                     "name": "base",
                     "tags": {
@@ -3480,35 +3414,16 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "connection",
-                "side"
+                "build",
+                "thick wall"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
+                "connection",
+                "side"
             ],
             [
                 "shape",
@@ -3517,6 +3432,25 @@
             [
                 "connection",
                 "openforge"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "sewer"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3527,28 +3461,6 @@
         ],
         "config": {
             "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ]
-                    },
-                    "optional": true
-                },
                 {
                     "name": "base",
                     "tags": {
@@ -3596,25 +3508,29 @@
                 "openlock"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "connection",
-                "side"
+                "build",
+                "thick wall"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "build",
-                "thick wall"
+                "size",
+                "width",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -3622,13 +3538,9 @@
                 1
             ],
             [
-                "shape",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [
@@ -3651,34 +3563,33 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openlock"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "sewer"
-            ],
-            [
-                "connection",
-                "side"
+                "build",
+                "thick wall"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "build",
-                "thick wall"
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "sewer"
             ],
             [
                 "size",
@@ -3686,8 +3597,9 @@
                 1
             ],
             [
-                "shape",
-                "wall"
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
         "images": [

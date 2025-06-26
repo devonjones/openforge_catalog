@@ -12,17 +12,17 @@
         },
         "tags": [
             [
-                "interface",
-                "loculus",
-                "slab"
+                "part",
+                "burial_slab"
             ],
             [
                 "texture",
                 "stone"
             ],
             [
-                "part",
-                "burial_slab"
+                "interface",
+                "loculus",
+                "slab"
             ]
         ],
         "images": [
@@ -45,17 +45,17 @@
         },
         "tags": [
             [
-                "interface",
-                "loculus",
-                "slab"
+                "part",
+                "burial_slab"
             ],
             [
                 "texture",
                 "stone"
             ],
             [
-                "part",
-                "burial_slab"
+                "interface",
+                "loculus",
+                "slab"
             ]
         ],
         "images": [
@@ -78,8 +78,12 @@
         },
         "tags": [
             [
-                "decoration",
-                "bundle"
+                "part",
+                "burial_slab"
+            ],
+            [
+                "texture",
+                "stone"
             ],
             [
                 "interface",
@@ -87,12 +91,8 @@
                 "slab"
             ],
             [
-                "texture",
-                "stone"
-            ],
-            [
-                "part",
-                "burial_slab"
+                "decoration",
+                "bundle"
             ]
         ],
         "images": [
@@ -115,21 +115,21 @@
         },
         "tags": [
             [
-                "interface",
-                "loculus",
-                "slab"
-            ],
-            [
-                "texture",
-                "stone"
-            ],
-            [
                 "part",
                 "burial_slab"
             ],
             [
                 "decoration",
                 "skeleton"
+            ],
+            [
+                "texture",
+                "stone"
+            ],
+            [
+                "interface",
+                "loculus",
+                "slab"
             ]
         ],
         "images": [
@@ -152,8 +152,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "texture",
+                "catacombs"
             ],
             [
                 "size",
@@ -162,16 +162,20 @@
             ],
             [
                 "size",
-                "openlock",
-                "S"
+                "width",
+                2
             ],
             [
-                "texture",
-                "catacombs"
+                "build",
+                "thick wall"
             ],
             [
                 "component",
-                "loculus"
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "connection",
@@ -179,25 +183,21 @@
                 "split"
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "connection",
-                "bottom"
-            ],
-            [
                 "size",
-                "width",
-                2
+                "openlock",
+                "S"
             ],
             [
                 "shape",
                 "square"
+            ],
+            [
+                "component",
+                "loculus"
+            ],
+            [
+                "connection",
+                "bottom"
             ]
         ],
         "images": [
@@ -285,13 +285,13 @@
                 "loculus_arch"
             ],
             [
-                "texture",
-                "stone"
-            ],
-            [
                 "interface",
                 "loculus",
                 "arch"
+            ],
+            [
+                "texture",
+                "stone"
             ]
         ],
         "images": [
@@ -318,13 +318,13 @@
                 "loculus_arch"
             ],
             [
-                "texture",
-                "stone"
-            ],
-            [
                 "interface",
                 "loculus",
                 "arch"
+            ],
+            [
+                "texture",
+                "stone"
             ]
         ],
         "images": [
@@ -347,8 +347,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "texture",
+                "catacombs"
             ],
             [
                 "size",
@@ -357,33 +357,33 @@
             ],
             [
                 "size",
-                "openlock",
-                "S"
-            ],
-            [
-                "texture",
-                "catacombs"
-            ],
-            [
-                "component",
-                "loculus"
-            ],
-            [
-                "component",
-                "wall"
+                "width",
+                2
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "width",
-                2
+                "openlock",
+                "S"
             ],
             [
                 "shape",
                 "square"
+            ],
+            [
+                "component",
+                "loculus"
             ]
         ],
         "images": [
