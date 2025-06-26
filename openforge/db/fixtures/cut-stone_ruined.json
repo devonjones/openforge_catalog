@@ -12,6 +12,19 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
                 "size",
                 "depth",
                 2
@@ -22,26 +35,13 @@
             ],
             [
                 "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
+                "cut-stone",
+                "ruined"
             ],
             [
                 "shape",
                 "floor",
                 "a"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -101,17 +101,12 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -120,8 +115,12 @@
             ],
             [
                 "shape",
-                "floor",
-                "b"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
@@ -129,8 +128,9 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor",
+                "b"
             ]
         ],
         "images": [
@@ -190,13 +190,12 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
-                "shape",
-                "floor"
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
@@ -204,22 +203,23 @@
                 "c"
             ],
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "size",
-                "width",
+                "depth",
                 2
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -279,17 +279,17 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "floor",
+                "d"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -298,17 +298,17 @@
             ],
             [
                 "shape",
-                "floor",
-                "d"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -368,8 +368,20 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -378,25 +390,13 @@
             ],
             [
                 "texture",
-                "cut-stone"
+                "cut-stone",
+                "ruined"
             ],
             [
                 "size",
                 "width",
                 1
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -456,8 +456,25 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -466,25 +483,8 @@
             ],
             [
                 "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -544,13 +544,25 @@
         },
         "tags": [
             [
-                "shape",
-                "floor"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
                 "width",
                 3
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -559,20 +571,8 @@
             ],
             [
                 "texture",
-                "cut-stone"
-            ],
-            [
-                "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -632,8 +632,12 @@
         },
         "tags": [
             [
-                "shape",
-                "floor"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -641,13 +645,12 @@
                 3
             ],
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor"
             ],
             [
-                "size",
-                "depth",
-                3
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -655,12 +658,9 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                3
             ]
         ],
         "images": [
@@ -720,17 +720,25 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "texture",
-                "cut-stone"
             ],
             [
                 "texture",
@@ -741,14 +749,6 @@
                 "size",
                 "width",
                 4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -808,17 +808,25 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "cut-stone"
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -829,14 +837,6 @@
                 "size",
                 "width",
                 4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -896,17 +896,20 @@
         },
         "tags": [
             [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
-                "size",
-                "depth",
-                4
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
@@ -915,16 +918,13 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 4
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "width",
+                4
             ]
         ],
         "images": [
@@ -984,22 +984,17 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "component",
                 "collapsed_blocks",
                 "a"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "cut-stone"
             ],
             [
                 "component",
@@ -1011,17 +1006,22 @@
                 2
             ],
             [
-                "texture",
-                "cut-stone",
-                "ruined"
+                "shape",
+                "floor"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "square"
+            ],
+            [
+                "texture",
+                "cut-stone",
+                "ruined"
             ]
         ],
         "images": [
@@ -1081,17 +1081,12 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -1104,16 +1099,21 @@
             ],
             [
                 "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
                 "square"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "component",
@@ -1178,17 +1178,17 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
+            ],
+            [
+                "component",
+                "collapsed_blocks",
+                "c"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -1200,22 +1200,22 @@
                 2
             ],
             [
-                "component",
-                "collapsed_blocks",
-                "c"
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ]
         ],
         "images": [
@@ -1275,22 +1275,12 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed_blocks",
-                "d"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -1302,17 +1292,27 @@
                 2
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
+                "component",
+                "collapsed_blocks",
+                "d"
             ]
         ],
         "images": [
@@ -1372,8 +1372,22 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "floor",
+                "a"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "size",
@@ -1385,28 +1399,9 @@
                 "floor"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "shape",
                 "floor",
                 "s2w"
-            ],
-            [
-                "shape",
-                "floor",
-                "internal_corner"
-            ],
-            [
-                "shape",
-                "floor",
-                "a"
             ],
             [
                 "texture",
@@ -1414,8 +1409,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor",
+                "internal_corner"
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1438,21 +1438,12 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1461,8 +1452,12 @@
             ],
             [
                 "shape",
-                "floor",
-                "b"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -1470,18 +1465,23 @@
                 "s2w"
             ],
             [
-                "shape",
-                "floor",
-                "internal_corner"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor",
+                "internal_corner"
+            ],
+            [
+                "shape",
+                "floor",
+                "b"
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1504,26 +1504,17 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
                 "floor",
                 "c"
-            ],
-            [
-                "texture",
-                "cut-stone"
             ],
             [
                 "size",
@@ -1532,13 +1523,17 @@
             ],
             [
                 "shape",
-                "floor",
-                "s2w"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor",
-                "internal_corner"
+                "s2w"
             ],
             [
                 "texture",
@@ -1546,8 +1541,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor",
+                "internal_corner"
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1570,21 +1570,17 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ],
             [
-                "size",
-                "depth",
-                2
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "cut-stone"
+                "floor",
+                "d"
             ],
             [
                 "size",
@@ -1593,18 +1589,17 @@
             ],
             [
                 "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "shape",
                 "floor",
                 "s2w"
-            ],
-            [
-                "shape",
-                "floor",
-                "internal_corner"
-            ],
-            [
-                "shape",
-                "floor",
-                "d"
             ],
             [
                 "texture",
@@ -1612,8 +1607,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor",
+                "internal_corner"
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1636,16 +1636,25 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "size",
@@ -1654,22 +1663,8 @@
             ],
             [
                 "shape",
-                "wall"
-            ],
-            [
-                "shape",
-                "floor",
-                "s2w"
-            ],
-            [
-                "shape",
                 "floor",
                 "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
             ],
             [
                 "texture",
@@ -1677,8 +1672,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "width",
+                1
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1701,16 +1701,16 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1718,18 +1718,18 @@
                 2
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
-                "wall"
+                "floor"
             ],
             [
                 "shape",
                 "floor",
                 "s2w"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -1742,8 +1742,8 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1766,21 +1766,16 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1789,7 +1784,12 @@
             ],
             [
                 "shape",
-                "wall"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -1807,8 +1807,8 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1831,12 +1831,16 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1844,22 +1848,18 @@
                 3
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "shape",
-                "wall"
+                "floor"
             ],
             [
                 "shape",
                 "floor",
                 "s2w"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -1872,8 +1872,8 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -1896,12 +1896,16 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1909,12 +1913,8 @@
                 3
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
-                "wall"
+                "floor"
             ],
             [
                 "shape",
@@ -1932,13 +1932,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "s2w"
+            ],
+            [
                 "size",
                 "depth",
                 3
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -1961,6 +1961,18 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "build",
                 "s2w"
             ],
@@ -1969,22 +1981,14 @@
                 "floor"
             ],
             [
-                "texture",
-                "cut-stone"
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "shape",
-                "floor",
-                "s2w"
             ],
             [
                 "shape",
@@ -2000,10 +2004,6 @@
                 "size",
                 "width",
                 4
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -2026,25 +2026,29 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "s2w"
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -2065,10 +2069,6 @@
                 "size",
                 "width",
                 4
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -2091,14 +2091,6 @@
         },
         "tags": [
             [
-                "build",
-                "s2w"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -2107,14 +2099,21 @@
                 "wall"
             ],
             [
-                "shape",
-                "floor",
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
                 "s2w"
             ],
             [
-                "size",
-                "depth",
-                4
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "shape",
@@ -2128,12 +2127,13 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 4
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "width",
+                4
             ]
         ],
         "images": [
@@ -2156,25 +2156,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsing_blocks"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -2183,12 +2174,21 @@
             ],
             [
                 "shape",
-                "wall"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor",
                 "s2w"
+            ],
+            [
+                "component",
+                "collapsing_blocks"
             ],
             [
                 "shape",
@@ -2206,8 +2206,8 @@
                 "a"
             ],
             [
-                "connection",
-                "openforge"
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -2230,25 +2230,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsing_blocks"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -2257,12 +2248,26 @@
             ],
             [
                 "shape",
-                "wall"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor",
                 "s2w"
+            ],
+            [
+                "component",
+                "collapsing_blocks"
+            ],
+            [
+                "component",
+                "collapsing_blocks",
+                "b"
             ],
             [
                 "shape",
@@ -2275,13 +2280,8 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsing_blocks",
-                "b"
-            ],
-            [
-                "connection",
-                "openforge"
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -2304,25 +2304,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsing_blocks"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
+                "texture",
+                "cut-stone"
             ],
             [
                 "shape",
-                "floor"
+                "wall"
             ],
             [
-                "texture",
-                "cut-stone"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -2331,7 +2322,12 @@
             ],
             [
                 "shape",
-                "wall"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
@@ -2340,8 +2336,7 @@
             ],
             [
                 "component",
-                "collapsing_blocks",
-                "c"
+                "collapsing_blocks"
             ],
             [
                 "shape",
@@ -2354,8 +2349,13 @@
                 "ruined"
             ],
             [
-                "connection",
-                "openforge"
+                "component",
+                "collapsing_blocks",
+                "c"
+            ],
+            [
+                "build",
+                "s2w"
             ]
         ],
         "images": [
@@ -2378,25 +2378,20 @@
         },
         "tags": [
             [
-                "component",
-                "collapsing_blocks"
+                "texture",
+                "cut-stone"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
                 "s2w"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "cut-stone"
             ],
             [
                 "size",
@@ -2405,12 +2400,21 @@
             ],
             [
                 "shape",
-                "wall"
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "shape",
                 "floor",
                 "s2w"
+            ],
+            [
+                "component",
+                "collapsing_blocks"
             ],
             [
                 "shape",
@@ -2426,10 +2430,6 @@
                 "component",
                 "collapsing_blocks",
                 "d"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
         "images": [
@@ -2452,17 +2452,25 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -2470,26 +2478,18 @@
                 2
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -2510,13 +2510,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2546,6 +2549,14 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -2556,26 +2567,18 @@
                 "full-minimal"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -2596,13 +2599,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2632,27 +2638,8 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "component",
@@ -2660,8 +2647,27 @@
                 "full"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -2682,13 +2688,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2718,18 +2727,21 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
+                "connection",
+                "openforge"
             ],
             [
-                "component",
-                "collapsed",
-                "low-full"
+                "build",
+                "separate wall"
             ],
             [
                 "component",
                 "collapsed"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "texture",
@@ -2737,17 +2749,14 @@
                 "ruined"
             ],
             [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -2768,13 +2777,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2796,11 +2808,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -2809,13 +2816,22 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "texture",
@@ -2823,17 +2839,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -2854,13 +2866,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2890,18 +2905,17 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
+                "connection",
+                "openforge"
             ],
             [
                 "component",
                 "collapsed"
             ],
             [
-                "texture",
-                "cut-stone",
-                "ruined"
+                "size",
+                "width",
+                2
             ],
             [
                 "component",
@@ -2909,17 +2923,18 @@
                 "low"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
+                "texture",
+                "cut-stone",
+                "ruined"
             ],
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -2940,13 +2955,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -2968,11 +2986,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -2981,13 +2994,22 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-full"
             ],
             [
                 "texture",
@@ -2995,17 +3017,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -3026,13 +3044,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3062,6 +3083,14 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -3072,26 +3101,18 @@
                 "minimal-low"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -3112,13 +3133,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3140,11 +3164,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -3153,13 +3172,22 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal"
             ],
             [
                 "texture",
@@ -3167,17 +3195,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -3198,13 +3222,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3226,17 +3253,25 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -3248,22 +3283,9 @@
                 "side"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3273,6 +3295,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3293,13 +3320,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3329,14 +3359,17 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
+                "connection",
+                "openforge"
             ],
             [
                 "component",
-                "collapsed",
-                "full-minimal"
+                "collapsed"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "connection",
@@ -3344,21 +3377,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "full-minimal"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3368,6 +3393,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3388,13 +3418,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3424,6 +3457,19 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -3433,27 +3479,9 @@
                 "side"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full"
             ],
             [
                 "connection",
@@ -3463,6 +3491,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3483,13 +3516,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3519,22 +3555,25 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "component",
-                "collapsed",
-                "low-full"
-            ],
-            [
                 "connection",
                 "side"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "texture",
@@ -3542,22 +3581,19 @@
                 "ruined"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3578,13 +3614,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3606,17 +3645,20 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -3629,21 +3671,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3653,6 +3687,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3673,13 +3712,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3709,6 +3751,14 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -3719,26 +3769,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3748,6 +3785,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3768,13 +3810,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3796,17 +3841,20 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -3819,21 +3867,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-full"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3843,6 +3883,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3863,13 +3908,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3899,14 +3947,17 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
+                "connection",
+                "openforge"
             ],
             [
                 "component",
-                "collapsed",
-                "minimal-low"
+                "collapsed"
+            ],
+            [
+                "size",
+                "width",
+                2
             ],
             [
                 "connection",
@@ -3914,21 +3965,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-low"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -3938,6 +3981,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -3958,13 +4006,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -3986,17 +4037,25 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -4005,16 +4064,12 @@
             ],
             [
                 "connection",
-                "side",
-                "dragonlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "side",
+                "dragonlock"
             ],
             [
                 "texture",
@@ -4022,17 +4077,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4053,13 +4104,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4089,9 +4143,21 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4104,30 +4170,18 @@
                 "full-minimal"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4148,13 +4202,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4184,36 +4241,8 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "side",
-                "dragonlock"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "component",
@@ -4221,8 +4250,36 @@
                 "full"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "side",
+                "dragonlock"
+            ],
+            [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -4243,13 +4300,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4279,9 +4339,25 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4289,35 +4365,19 @@
                 "dragonlock"
             ],
             [
-                "component",
-                "collapsed",
-                "low-full"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4338,13 +4398,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4366,11 +4429,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -4379,9 +4437,21 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4389,12 +4459,9 @@
                 "dragonlock"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "texture",
@@ -4402,17 +4469,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4433,13 +4496,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4469,9 +4535,21 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4479,12 +4557,9 @@
                 "dragonlock"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low"
             ],
             [
                 "texture",
@@ -4492,22 +4567,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4528,13 +4594,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4556,11 +4625,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -4569,9 +4633,21 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4579,12 +4655,9 @@
                 "dragonlock"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-full"
             ],
             [
                 "texture",
@@ -4592,17 +4665,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4623,13 +4692,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4659,9 +4731,21 @@
                 "wall"
             ],
             [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -4674,30 +4758,18 @@
                 "minimal-low"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4718,13 +4790,16 @@
                         ],
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "tag": "shape",
+                                "siblings": []
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|width",
+                                "siblings": []
                             },
                             {
-                                "tag": "texture"
+                                "tag": "texture",
+                                "siblings": []
                             }
                         ]
                     },
@@ -4754,6 +4829,15 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -4761,10 +4845,6 @@
             [
                 "connection",
                 "openlock"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "component",
@@ -4777,18 +4857,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4811,17 +4886,21 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -4834,10 +4913,6 @@
             ],
             [
                 "component",
-                "collapsed"
-            ],
-            [
-                "component",
                 "collapsed",
                 "mirror"
             ],
@@ -4847,13 +4922,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4876,17 +4951,21 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -4898,22 +4977,18 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -4944,6 +5019,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -4955,16 +5034,12 @@
             [
                 "component",
                 "collapsed",
-                "full-minimal"
-            ],
-            [
-                "component",
-                "collapsed"
+                "mirror"
             ],
             [
                 "component",
                 "collapsed",
-                "mirror"
+                "full-minimal"
             ],
             [
                 "texture",
@@ -4972,13 +5047,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5009,6 +5084,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5023,22 +5102,18 @@
                 "full-minimal"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5069,6 +5144,15 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5078,27 +5162,18 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5129,6 +5204,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5139,17 +5218,8 @@
             ],
             [
                 "component",
-                "collapsed"
-            ],
-            [
-                "component",
                 "collapsed",
                 "mirror"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
             ],
             [
                 "component",
@@ -5157,13 +5227,18 @@
                 "low"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone",
+                "ruined"
             ],
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -5194,6 +5269,14 @@
                 "wall"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5201,15 +5284,6 @@
             [
                 "connection",
                 "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
-            ],
-            [
-                "component",
-                "collapsed"
             ],
             [
                 "component",
@@ -5222,13 +5296,14 @@
                 "ruined"
             ],
             [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5259,6 +5334,14 @@
                 "wall"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5268,27 +5351,19 @@
                 "openlock"
             ],
             [
-                "component",
-                "collapsed",
-                "low-full"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5311,17 +5386,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5334,7 +5408,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "component",
@@ -5347,13 +5422,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5376,17 +5451,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5399,7 +5473,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "texture",
@@ -5407,13 +5482,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5444,6 +5519,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5454,7 +5533,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low"
             ],
             [
                 "texture",
@@ -5462,18 +5542,13 @@
                 "ruined"
             ],
             [
-                "component",
-                "collapsed",
-                "low"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5496,17 +5571,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5519,7 +5593,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal"
             ],
             [
                 "component",
@@ -5532,13 +5607,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5561,17 +5636,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5584,12 +5658,13 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "mirror"
             ],
             [
                 "component",
                 "collapsed",
-                "mirror"
+                "minimal-full"
             ],
             [
                 "texture",
@@ -5597,13 +5672,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5626,17 +5701,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5649,7 +5723,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-full"
             ],
             [
                 "texture",
@@ -5657,13 +5732,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5694,6 +5769,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5705,16 +5784,12 @@
             [
                 "component",
                 "collapsed",
-                "minimal-low"
-            ],
-            [
-                "component",
-                "collapsed"
+                "mirror"
             ],
             [
                 "component",
                 "collapsed",
-                "mirror"
+                "minimal-low"
             ],
             [
                 "texture",
@@ -5722,13 +5797,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5759,6 +5834,10 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -5773,22 +5852,18 @@
                 "minimal-low"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5811,17 +5886,16 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5834,7 +5908,8 @@
             ],
             [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal"
             ],
             [
                 "texture",
@@ -5842,13 +5917,13 @@
                 "ruined"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -5879,21 +5954,26 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed",
+                "full"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -5906,16 +5986,6 @@
                 "ruined"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
@@ -5923,6 +5993,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -5945,17 +6020,21 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -5964,15 +6043,11 @@
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -5985,11 +6060,6 @@
                 "ruined"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
@@ -5997,6 +6067,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6019,17 +6094,21 @@
         },
         "tags": [
             [
+                "texture",
+                "cut-stone"
+            ],
+            [
                 "component",
                 "collapsed",
                 "full-low"
             ],
             [
-                "texture",
-                "cut-stone"
-            ],
-            [
                 "shape",
                 "wall"
+            ],
+            [
+                "component",
+                "collapsed"
             ],
             [
                 "size",
@@ -6038,25 +6117,16 @@
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6066,6 +6136,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6096,9 +6171,17 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -6107,30 +6190,17 @@
             [
                 "component",
                 "collapsed",
-                "full-minimal"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
+                "mirror"
             ],
             [
                 "component",
                 "collapsed",
-                "mirror"
+                "full-minimal"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6140,6 +6210,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6170,9 +6245,17 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -6184,22 +6267,9 @@
                 "full-minimal"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6209,6 +6279,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6239,36 +6314,31 @@
                 "wall"
             ],
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "connection",
-                "side"
+                "component",
+                "collapsed",
+                "full"
             ],
             [
                 "component",
                 "collapsed"
             ],
             [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
-                "component",
-                "collapsed",
-                "full"
             ],
             [
                 "connection",
@@ -6278,6 +6348,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6308,21 +6383,21 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -6330,19 +6405,14 @@
                 "mirror"
             ],
             [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
                 "component",
                 "collapsed",
                 "low"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone",
+                "ruined"
             ],
             [
                 "connection",
@@ -6352,6 +6422,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6382,26 +6457,25 @@
                 "wall"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "collapsed",
-                "low-full"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -6414,18 +6488,19 @@
                 "ruined"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
             ],
             [
-                "build",
-                "separate wall"
+                "component",
+                "collapsed",
+                "low-full"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6456,12 +6531,34 @@
                 "wall"
             ],
             [
+                "build",
+                "separate wall"
+            ],
+            [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "texture",
+                "cut-stone",
+                "ruined"
+            ],
+            [
+                "connection",
+                "side",
                 "openlock"
             ],
             [
@@ -6470,31 +6567,9 @@
                 "low-full"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
-            ],
-            [
                 "size",
                 "openlock",
                 "A"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "build",
-                "separate wall"
             ]
         ],
         "images": [
@@ -6517,11 +6592,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -6530,21 +6600,26 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "component",
@@ -6557,11 +6632,6 @@
                 "ruined"
             ],
             [
-                "size",
-                "openlock",
-                "A"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
@@ -6569,6 +6639,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6591,11 +6666,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "low-minimal"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -6604,31 +6674,31 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "low-minimal"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6638,6 +6708,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6668,26 +6743,21 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
-            ],
-            [
-                "texture",
-                "cut-stone",
-                "ruined"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -6695,9 +6765,9 @@
                 "low"
             ],
             [
-                "size",
-                "openlock",
-                "A"
+                "texture",
+                "cut-stone",
+                "ruined"
             ],
             [
                 "connection",
@@ -6707,6 +6777,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6729,11 +6804,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -6742,21 +6812,21 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
-                "component",
-                "collapsed"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -6764,14 +6834,14 @@
                 "mirror"
             ],
             [
+                "component",
+                "collapsed",
+                "minimal-full"
+            ],
+            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6781,6 +6851,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6803,11 +6878,6 @@
         },
         "tags": [
             [
-                "component",
-                "collapsed",
-                "minimal-full"
-            ],
-            [
                 "texture",
                 "cut-stone"
             ],
@@ -6816,31 +6886,31 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "connection",
-                "openlock"
-            ],
-            [
-                "connection",
                 "side"
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "component",
-                "collapsed"
+                "collapsed",
+                "minimal-full"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6850,6 +6920,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6880,9 +6955,17 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -6891,30 +6974,17 @@
             [
                 "component",
                 "collapsed",
-                "minimal-low"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
+                "mirror"
             ],
             [
                 "component",
                 "collapsed",
-                "mirror"
+                "minimal-low"
             ],
             [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6924,6 +6994,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [
@@ -6954,9 +7029,17 @@
                 "wall"
             ],
             [
+                "component",
+                "collapsed"
+            ],
+            [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "connection",
+                "side"
             ],
             [
                 "connection",
@@ -6968,22 +7051,9 @@
                 "minimal-low"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "component",
-                "collapsed"
-            ],
-            [
                 "texture",
                 "cut-stone",
                 "ruined"
-            ],
-            [
-                "size",
-                "openlock",
-                "A"
             ],
             [
                 "connection",
@@ -6993,6 +7063,11 @@
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "A"
             ]
         ],
         "images": [

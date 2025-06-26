@@ -88,11 +88,11 @@ def apply_default_metadata(o):
 
 
 def is_openforge_wall(o):
-    tags = [("shape", "wall"), ("connection", "openforge")]
+    tags = [("shape", "wall"), ("connection", "openforge"), ("build", "separate wall")]
     neg_tags = [("build", "s2w"), ("shape", "floor"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
-    tags = [("shape", "wall", "low"), ("connection", "openforge"), ("build", "thick wall")]
+    tags = [("shape", "wall", "low"), ("connection", "openforge"), ("build", "separate wall")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
     return False
@@ -125,9 +125,9 @@ def apply_openforge_wall(o):
                     {"tag": "shape|base"},
                 ],
                 "constrain": [
-                    {"tag": "shape"},
-                    {"tag": "size|width"},
-                    {"tag": "texture"},
+                    {"tag": "shape", "siblings": []},
+                    {"tag": "size|width", "siblings": []},
+                    {"tag": "texture", "siblings": []},
                 ]
                 
             },
