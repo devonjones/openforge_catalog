@@ -82,7 +82,6 @@
             - tag: shape|base
             - tag: shape|base|wall
           deny:
-            - tag: shape|wall
             - tag: shape|base|corner
             - tag: shape|option|notch
           constrain:

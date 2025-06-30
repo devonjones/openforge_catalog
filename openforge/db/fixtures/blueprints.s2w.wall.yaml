@@ -79,7 +79,6 @@
             - tag: shape|base|wall
             - tag: build|s2w
           deny:
-            - tag: shape|wall
             - tag: shape|base|corner
             - tag: shape|option|notch
           constrain:
