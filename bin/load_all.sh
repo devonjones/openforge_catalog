@@ -9,6 +9,9 @@
 
 ./dropbox_scanner --verbose --subset=tiles/catacombs --upload > ../openforge/db/fixtures/catacombs.json.next
 ./dropbox_scanner --verbose --subset=tiles/cave --upload > ../openforge/db/fixtures/cave.json.next
+./dropbox_scanner --verbose --subset=tiles/cavern --upload > ../openforge/db/fixtures/cavern.json.next
+./dropbox_scanner --verbose --subset=tiles/dwarven_halls --upload > ../openforge/db/fixtures/dwarven_halls.json.next
+./dropbox_scanner --verbose --subset=tiles/mines --upload > ../openforge/db/fixtures/mines.json.next
 ./dropbox_scanner --verbose --subset=tiles/pool --upload > ../openforge/db/fixtures/pool.json.next
 ./dropbox_scanner --verbose --subset=tiles/legacy_sewers --upload > ../openforge/db/fixtures/legacy_sewers.json.next
 ./dropbox_scanner --verbose --subset=tiles/sewers --upload > ../openforge/db/fixtures/sewers.json.next
