@@ -21,3 +21,4 @@
 pushd ../openforge/db/fixtures/
 rename -f 's/\.json\.next/.json/' *.json.next
 popd
+
