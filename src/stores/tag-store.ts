@@ -81,7 +81,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     searchTerm: null,
     tagDescriptions: {},
     fetchData: async () => {
-      const { search_models, search_blueprints } = get();
+      const { search_models, search_blueprints, selectedTags, denyTags } = get();
       const params = new URLSearchParams();
       
       // Only add parameters when they differ from defaults
@@ -90,11 +90,17 @@ export const createTagStore = (autoload = false, search_models = false, search_b
         if (search_blueprints) params.set('blueprints', 'true');
       }
 
+      const requestBody = {
+        require: selectedTags.map(tag => ({ tag })),
+        deny: denyTags.map(tag => ({ tag })),
+      };
+
       const response = await fetch(`/api/blueprints/tags${params.toString() ? '?' + params.toString() : ''}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(requestBody),
       });
       const result = await response.json();
       const tagCounts = result.tag_counts;

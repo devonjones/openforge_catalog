@@ -288,7 +288,11 @@ describe('TagStore', () => {
 
       expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          require: [],
+          deny: []
+        })
       });
       expect(store.getState().data.tag1.__count).toBe(5);
       expect(store.getState().data.tag2.__count).toBe(3);
@@ -305,7 +309,33 @@ describe('TagStore', () => {
 
       expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=true', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          require: [],
+          deny: []
+        })
+      });
+    });
+
+    it('should include selected and deny tags in request body', async () => {
+      store.getState().addTag('selected-tag');
+      store.getState().addDenyTag('deny-tag');
+      
+      const mockTagCounts = { 'tag1': 5 };
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ tag_counts: mockTagCounts })
+      });
+
+      await store.getState().fetchData();
+
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          require: [{ tag: 'selected-tag' }],
+          deny: [{ tag: 'deny-tag' }]
+        })
       });
     });
   });
