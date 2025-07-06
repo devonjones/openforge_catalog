@@ -36,11 +36,13 @@ class TestMetadataFileReading:
     def test_get_metadata_file_valid(self):
         """Test reading valid metadata file."""
         metadata_content = {
-            "ignore": False,
-            "auto": True,
-            "tags": ["shape|wall", "connection|openforge"]
+            "test_file.stl": {
+                "ignore": False,
+                "auto": True,
+                "tags": ["shape|wall", "connection|openforge"]
+            }
         }
-        
+
         with tempfile.TemporaryDirectory() as temp_dir:
             metadata_file = os.path.join(temp_dir, "metadata.yaml")
             with open(metadata_file, "w") as f:
@@ -78,23 +80,25 @@ class TestMetadataFileReading:
     def test_get_metadata_file_valid_schema(self):
         """Test reading metadata file with valid schema."""
         metadata_content = {
-            "ignore": True,
-            "auto": False,
-            "tags": ["shape|wall", "connection|openforge"],
-            "config": {
-                "parts": [
-                    {
-                        "name": "base",
-                        "tags": {
-                            "require": [{"tag": "shape|base"}]
+            "test_file.stl": {
+                "ignore": True,
+                "auto": False,
+                "tags": ["shape|wall", "connection|openforge"],
+                "config": {
+                    "parts": [
+                        {
+                            "name": "base",
+                            "tags": {
+                                "require": [{"tag": "shape|base"}]
+                            }
                         }
+                    ]
+                },
+                "edit": {
+                    "tags": {
+                        "add": ["texture|stone"],
+                        "remove": ["shape|floor"]
                     }
-                ]
-            },
-            "edit": {
-                "tags": {
-                    "add": ["texture|stone"],
-                    "remove": ["shape|floor"]
                 }
             }
         }

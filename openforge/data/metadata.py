@@ -12,8 +12,20 @@ def get_metadata_file(path):
     if os.path.exists(metadata_file):
         with open(metadata_file, "r") as f:
             metadata = safe_load(f)
+            # Validate that the metadata file is a dictionary
+            if metadata is not None and not isinstance(metadata, dict):
+                raise ValueError("Metadata file must contain a dictionary")
+            
+            # Validate schema for each individual metadata entry
             if metadata is not None:
-                validate_schema("metadata.yaml", metadata)
+                for filename, entry in metadata.items():
+                    if not isinstance(filename, str):
+                        raise ValueError("Metadata file keys must be strings (filenames)")
+                    if not isinstance(entry, dict):
+                        raise ValueError("Metadata entries must be dictionaries")
+                    # Validate individual metadata entry
+                    validate_schema("metadata.yaml", entry)
+                
             return metadata
     return None
 

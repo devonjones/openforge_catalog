@@ -6,6 +6,7 @@ only calculating MD5s for files that have changed, dramatically improving perfor
 """
 
 import os
+import sys
 import json
 import hashlib
 from typing import Dict, List, Set, Optional, Tuple
@@ -17,13 +18,15 @@ from openforge.openapi import validate_schema
 class IncrementalScanner:
     """Handles incremental scanning of OpenForge files."""
     
-    def __init__(self, fixture_path: str):
+    def __init__(self, fixture_path: str, verbose: bool = False):
         """Initialize scanner with existing fixture file.
         
         Args:
             fixture_path: Path to existing fixture file (JSON or YAML)
+            verbose: Whether to output debug messages
         """
         self.fixture_path = fixture_path
+        self.verbose = verbose
         self.existing_data = self._load_fixture()
         self.subset_path = self._detect_subset_path()
         
@@ -123,12 +126,16 @@ class IncrementalScanner:
             file_path: Path to file
             
         Returns:
-            Dict with size and modified_at info
+            Dict with size and modified info
         """
         stat = os.stat(file_path)
+        # Use local time interpretation to match existing fixture files
+        local_time = datetime.fromtimestamp(stat.st_mtime)
+        final_time = local_time.isoformat()
+
         return {
             "size": stat.st_size,
-            "modified_at": datetime.fromtimestamp(stat.st_mtime, timezone.utc).replace(tzinfo=None).isoformat()
+            "modified": final_time
         }
         
     def _find_existing_entry(self, full_name: str) -> Optional[Dict]:
@@ -160,12 +167,15 @@ class IncrementalScanner:
         
         # Compare size and modification time
         if current_info["size"] != existing_metadata["size"]:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Size changed, recalculating MD5\n")
             return True
             
-        # Compare modification time (file_modified_at field)
-        if "file_modified_at" in existing_metadata:
-            if current_info["modified_at"] != existing_metadata["file_modified_at"]:
-                return True
+        # Compare modification time
+        if current_info["modified"] != existing_metadata["modified"]:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Modification time changed, recalculating MD5\n")
+            return True
                 
         return False
         
@@ -184,23 +194,53 @@ class IncrementalScanner:
         existing_md5 = existing_entry["file_metadata"]["md5"]
         new_md5 = new_entry["file_metadata"]["md5"]
         if existing_md5 != new_md5:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: MD5 changed for {file_path}: {existing_md5} -> {new_md5}\n")
+            return True
+            
+        # Check if modification time or size changed (even if MD5 didn't change)
+        existing_modified = existing_entry["file_metadata"]["modified"]
+        new_modified = new_entry["file_metadata"]["modified"]
+        existing_size = existing_entry["file_metadata"]["size"]
+        new_size = new_entry["file_metadata"]["size"]
+        
+        if existing_modified != new_modified or existing_size != new_size:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Modification time or size changed for {file_path}: modified {existing_modified} -> {new_modified}, size {existing_size} -> {new_size}\n")
             return True
             
         # Check if tags changed (compare as sets)
         existing_tags = set(tuple(tag) for tag in existing_entry.get("tags", []))
         new_tags = set(tuple(tag) for tag in new_entry.get("tags", []))
         if existing_tags != new_tags:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Tags changed for {file_path}\n")
             return True
             
         # Check if config changed
         existing_config = existing_entry.get("config", {})
         new_config = new_entry.get("config", {})
         if existing_config != new_config:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Config changed for {file_path}\n")
             return True
             
         return False
         
-    def process_file(self, file_path: str, full_name: str, tags: Set, config: Dict = None) -> Dict:
+    def _create_deprecation_entry(self, existing_entry: Dict) -> Dict:
+        """Create a deprecation entry from an existing entry.
+        
+        Args:
+            existing_entry: Existing fixture entry
+            
+        Returns:
+            Deprecation entry with deprecated flag
+        """
+        deprecation_entry = existing_entry.copy()
+        deprecation_entry["deprecated"] = True
+        return deprecation_entry
+        
+    def process_file(self, file_path: str, full_name: str, tags: Set, config: Dict = None) -> List[Dict]:
         """Process a single file with incremental logic.
         
         Args:
@@ -210,7 +250,7 @@ class IncrementalScanner:
             config: Config for the file
             
         Returns:
-            Processed fixture entry
+            List of processed fixture entries (may include deprecation entries)
         """
         existing_entry = self._find_existing_entry(full_name)
         
@@ -219,20 +259,20 @@ class IncrementalScanner:
             md5 = self._calculate_md5(file_path)
             file_info = self._get_file_info(file_path)
             
-            return {
+            return [{
                 "type": "model",
                 "file_metadata": {
                     "full_name": full_name,
                     "file": os.path.basename(file_path),
                     "md5": md5,
                     "size": file_info["size"],
-                    "file_modified_at": file_info["modified_at"],
+                    "file_modified_at": file_info["modified"],
                     "changed": datetime.now(timezone.utc).isoformat(),
-                    "modified": file_info["modified_at"]
+                    "modified": file_info["modified"]
                 },
                 "tags": tags,
                 "config": config or {}
-            }
+            }]
         else:
             # Existing file - check if MD5 needs recalculation
             if self._needs_md5_recalculation(file_path, existing_entry):
@@ -240,20 +280,45 @@ class IncrementalScanner:
                 md5 = self._calculate_md5(file_path)
                 file_info = self._get_file_info(file_path)
                 
-                new_entry = {
-                    "type": "model",
-                    "file_metadata": {
-                        "full_name": full_name,
-                        "file": os.path.basename(file_path),
-                        "md5": md5,
-                        "size": file_info["size"],
-                        "file_modified_at": file_info["modified_at"],
-                        "changed": datetime.now(timezone.utc).isoformat(),
-                        "modified": file_info["modified_at"]
-                    },
-                    "tags": tags,
-                    "config": config or {}
-                }
+                # Check if MD5 actually changed
+                if md5 != existing_entry["file_metadata"]["md5"]:
+                    # MD5 changed - create deprecation entry for old MD5 and new entry for new MD5
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: MD5 changed for {file_path}: {existing_entry['file_metadata']['md5']} -> {md5}\n")
+                    
+                    deprecation_entry = self._create_deprecation_entry(existing_entry)
+                    new_entry = {
+                        "type": "model",
+                        "file_metadata": {
+                            "full_name": full_name,
+                            "file": os.path.basename(file_path),
+                            "md5": md5,
+                            "size": file_info["size"],
+                            "file_modified_at": file_info["modified"],
+                            "changed": datetime.now(timezone.utc).isoformat(),
+                            "modified": file_info["modified"]
+                        },
+                        "tags": tags,
+                        "config": config or {}
+                    }
+                    return [deprecation_entry, new_entry]
+                else:
+                    # MD5 didn't change, just metadata fields changed
+                    new_entry = {
+                        "type": "model",
+                        "file_metadata": {
+                            "full_name": full_name,
+                            "file": os.path.basename(file_path),
+                            "md5": md5,
+                            "size": file_info["size"],
+                            "file_modified_at": file_info["modified"],
+                            "changed": datetime.now(timezone.utc).isoformat(),
+                            "modified": file_info["modified"]
+                        },
+                        "tags": tags,
+                        "config": config or {}
+                    }
+                    return [new_entry]
             else:
                 # Copy existing file_metadata but update other fields
                 new_entry = {
@@ -267,7 +332,7 @@ class IncrementalScanner:
                 # The changed field should remain exactly as it was in the existing entry
                 # The file_metadata.copy() already preserves the original changed field
                 
-            return new_entry
+                return [new_entry]
             
     def get_subset_path(self) -> str:
         """Get detected subset path.
@@ -404,34 +469,37 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                 config_dict = metadata.get("config", {})
             
             # Use incremental scanner to process the file
-            result = scanner.process_file(full_file, file, t, config_dict)
+            results = scanner.process_file(full_file, file, t, config_dict)
             
-            # Add metadata flag
-            result["metadata"] = metadata is not None
-            
-            # Apply metadata and default metadata
-            if metadata:
-                apply_metadata(metadata, result)
-            apply_default_metadata(result)
-            
-            # Validate
-            validate(result)
-            
-            # Handle upload if needed
-            if upload:
-                if "md5" not in result["file_metadata"]:
-                    raise Exception("MD5 is required for upload")
+            # Process each result (may be multiple if MD5 changed)
+            for result in results:
+                # Add metadata flag
+                result["metadata"] = metadata is not None
                 
-                model_address = _upload_file(result["file_metadata"], full_file, s3_client, "models", s3_key_cache)
-                result["file_metadata"]["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
+                # Apply metadata and default metadata
+                if metadata:
+                    apply_metadata(metadata, result)
+                apply_default_metadata(result)
                 
-                thumb_path = _create_thumbnail(full_file)
-                thumb_address = _upload_file(result["file_metadata"], thumb_path, s3_client, "thumbnails", s3_key_cache)
-                images = result.get("images", [])
-                images.append(_create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}"))
-                result["images"] = images
+                # Validate
+                validate(result)
+                
+                # Handle upload if needed (only for non-deprecated entries)
+                if upload and not result.get("deprecated"):
+                    if "md5" not in result["file_metadata"]:
+                        raise Exception("MD5 is required for upload")
+                    
+                    model_address = _upload_file(result["file_metadata"], full_file, s3_client, "models", s3_key_cache)
+                    result["file_metadata"]["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
+                    
+                    thumb_path = _create_thumbnail(full_file)
+                    thumb_address = _upload_file(result["file_metadata"], thumb_path, s3_client, "thumbnails", s3_key_cache)
+                    images = result.get("images", [])
+                    images.append(_create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}"))
+                    result["images"] = images
+                
+                newfiles.append(result)
             
-            newfiles.append(result)
             current_files.add(file)
             
         except Exception as e:
@@ -462,27 +530,54 @@ def print_incremental_diff(files, scanner, verbose=False):
         existing_entry = scanner._find_existing_entry(file["file_metadata"]["full_name"])
         if existing_entry:
             # Check if this file has changes
-            if scanner._has_changes_for_output("", existing_entry, file):
-                modified.append(file["file_metadata"]["full_name"])
-                
-                # Track what changed (only if verbose)
-                if verbose:
-                    changes = {}
-                    if file["file_metadata"]["md5"] != existing_entry["file_metadata"]["md5"]:
-                        changes["md5"] = {
-                            "old": existing_entry["file_metadata"]["md5"],
-                            "new": file["file_metadata"]["md5"]
-                        }
-                    if file.get("tags") != existing_entry.get("tags"):
-                        changes["tags"] = {
-                            "old": list(existing_entry.get("tags", [])),
-                            "new": list(file.get("tags", []))
-                        }
-                    if file.get("config") != existing_entry.get("config"):
-                        changes["config"] = "changed"
+            if scanner._has_changes_for_output(file["file_metadata"]["full_name"], existing_entry, file):
+                # Check if MD5 changed - if so, treat as addition and removal
+                if file["file_metadata"]["md5"] != existing_entry["file_metadata"]["md5"]:
+                    # MD5 changed - this is a removal of old entry and addition of new entry
+                    removed.append(file["file_metadata"]["full_name"])
+                    added.append(file["file_metadata"]["full_name"])
+                else:
+                    # Other changes (tags, config, modification time, size) - treat as modification
+                    modified.append(file["file_metadata"]["full_name"])
                     
-                    if changes:
-                        modified_details[file["file_metadata"]["full_name"]] = changes
+                    # Track what changed (only if verbose)
+                    if verbose:
+                        changes = {}
+                        
+                        # Check modification time changes
+                        if file["file_metadata"]["modified"] != existing_entry["file_metadata"]["modified"]:
+                            changes["modified"] = {
+                                "old": existing_entry["file_metadata"]["modified"],
+                                "new": file["file_metadata"]["modified"]
+                            }
+                        
+                        # Check size changes
+                        if file["file_metadata"]["size"] != existing_entry["file_metadata"]["size"]:
+                            changes["size"] = {
+                                "old": existing_entry["file_metadata"]["size"],
+                                "new": file["file_metadata"]["size"]
+                            }
+                        
+                        # Check tags changes (compare as sets to handle unordered nature)
+                        existing_tags = set(tuple(tag) for tag in existing_entry.get("tags", []))
+                        new_tags = set(tuple(tag) for tag in file.get("tags", []))
+                        if existing_tags != new_tags:
+                            changes["tags"] = {
+                                "old": list(existing_entry.get("tags", [])),
+                                "new": list(file.get("tags", []))
+                            }
+                        
+                        # Check config changes (deep comparison)
+                        existing_config = existing_entry.get("config", {})
+                        new_config = file.get("config", {})
+                        if existing_config != new_config:
+                            changes["config"] = {
+                                "old": existing_config,
+                                "new": new_config
+                            }
+                        
+                        if changes:
+                            modified_details[file["file_metadata"]["full_name"]] = changes
         else:
             added.append(file["file_metadata"]["full_name"])
     
@@ -515,7 +610,7 @@ def print_incremental_changes(files, scanner):
         existing_entry = scanner._find_existing_entry(file["file_metadata"]["full_name"])
         if existing_entry:
             # Only include if there are changes
-            if scanner._has_changes_for_output("", existing_entry, file):
+            if scanner._has_changes_for_output(file["file_metadata"]["full_name"], existing_entry, file):
                 changed_files.append(file)
         else:
             # New file - always include

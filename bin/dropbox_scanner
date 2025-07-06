@@ -31,7 +31,7 @@ def main(path, subset, md5, verbose, upload, update, dry_run, incremental):
     if update:
         # Incremental mode
         try:
-            scanner = IncrementalScanner(update)
+            scanner = IncrementalScanner(update, verbose)
             subset = scanner.get_subset_path()
             if verbose:
                 print(f"Detected subset path: {subset}")
