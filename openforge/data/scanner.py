@@ -7,12 +7,12 @@ extracting metadata, tags, and generating database records.
 
 import re
 import os
-import io
 import sys
 import hashlib
 import datetime
 import json
 
+from openforge.openapi import validate_schema
 from . import sizes
 from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
 from .metadata import metadata_ignore, metadata_auto
@@ -21,25 +21,10 @@ try:
     from yaml import CLoader as Loader, CDumper as Dumper, safe_load
 except ImportError:
     from yaml import Loader, Dumper, safe_load
-
-try:
-    import sh
-except ImportError:
-    sh = None
-
-try:
-    import boto3
-    from botocore.client import Config
-    from botocore.exceptions import ClientError
-except ImportError:
-    boto3 = None
-    ClientError = None
-
-try:
-    from openforge.openapi import validate_schema
-except ImportError:
-    def validate_schema(schema_file, data):
-        pass
+import sh
+import boto3
+from botocore.client import Config
+from botocore.exceptions import ClientError
 
 
 def parse_texture(texture, tags):
@@ -522,9 +507,8 @@ def upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
     except ClientError as ce:
         if ce.response["Error"]["Code"] == "404":
             sys.stderr.write(f"Uploading: {file_path}\n")
-            s3_client.upload_fileobj(
-                io.BytesIO(open(file_path, "rb").read()), bucket, object_name
-            )
+            with open(file_path, "rb") as file_handle:
+                s3_client.upload_fileobj(file_handle, bucket, object_name)
         else:
             raise ce
     return object_name

@@ -1,8 +1,6 @@
 from importlib import resources as impresources
-from pathlib import Path
 
 from yaml import safe_load
-import jsonschema
 from jsonschema.validators import Draft202012Validator
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
@@ -26,9 +24,14 @@ def create_registry():
             # Load the referenced schema
             referenced_schema = load_schema(uri)
             return Resource.from_contents(referenced_schema)
-        except Exception:
+        except (FileNotFoundError, OSError):
+            # These indicate the schema file doesn't exist or can't be accessed
             from referencing.exceptions import NoSuchResource
             raise NoSuchResource(ref=uri)
+        except Exception as e:
+            # Let other exceptions (like YAML parsing errors) propagate
+            # This provides better debugging information
+            raise e
     
     # Create a registry with our custom retrieval function
     registry = Registry(retrieve=retrieve_schema)

@@ -30,8 +30,8 @@ For each file in the subset:
 - Example: `tiles/dungeon_stone` from `tiles/dungeon_stone/floor/...`
 
 ### 5. Output Strategy
-- **Normal mode**: Write complete updated fixture to `<fixture_file>.next`
-- **Dry-run mode**: Output diff format showing only incremental changes
+- **Normal mode**: Write complete updated fixture to standard output (conventionally redirected to `<fixture_file>.next`)
+- **Dry-run mode**: Output diff format showing only incremental changes to standard output
 - **Deprecation**: Keep original `file_metadata` but add `deprecated: true` field
 
 ### 6. Schema Updates
@@ -44,13 +44,13 @@ For each file in the subset:
 
 ## Example Usage
 ```bash
-# Update dungeon_stone fixture incrementally
+# Update dungeon_stone fixture incrementally (outputs to stdout)
 ./dropbox_scanner --update ../openforge/db/fixtures/dungeon_stone.json --verbose --upload
 
-# Preview changes without writing files
+# Preview changes without writing files (outputs diff to stdout)
 ./dropbox_scanner --update ../openforge/db/fixtures/dungeon_stone.json --dry-run
 
-# Updated load_all.sh would use --update for each subset
+# Updated load_all.sh would use --update for each subset (redirected to .next files)
 ./dropbox_scanner --update ../openforge/db/fixtures/dungeon_stone.json --verbose --upload > ../openforge/db/fixtures/dungeon_stone.json.next
 ```
 
