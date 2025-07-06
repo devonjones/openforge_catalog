@@ -55,9 +55,9 @@ class TestMetadataFileReading:
             metadata_file = os.path.join(temp_dir, "metadata.yaml")
             with open(metadata_file, "w") as f:
                 f.write("invalid: yaml: content: [")
-            
-            result = get_metadata_file(temp_dir)
-            assert result is None
+
+            with pytest.raises(Exception):
+                get_metadata_file(temp_dir)
     
     def test_get_metadata_file_invalid_schema(self):
         """Test reading metadata file with invalid schema."""
@@ -65,15 +65,15 @@ class TestMetadataFileReading:
             "invalid_field": "should_not_be_allowed",
             "tags": ["shape|wall"]
         }
-        
+
         with tempfile.TemporaryDirectory() as temp_dir:
             metadata_file = os.path.join(temp_dir, "metadata.yaml")
             with open(metadata_file, "w") as f:
                 yaml.dump(metadata_content, f)
-            
-            # Should return None due to validation error
-            result = get_metadata_file(temp_dir)
-            assert result is None
+
+            # Should raise exception due to validation error
+            with pytest.raises(Exception):
+                get_metadata_file(temp_dir)
     
     def test_get_metadata_file_valid_schema(self):
         """Test reading metadata file with valid schema."""
@@ -534,15 +534,15 @@ class TestMetadataSchemaValidation:
         with pytest.raises(Exception):
             validate_schema("metadata.yaml", invalid_metadata)
     
-    def test_invalid_tag_format(self):
-        """Test that invalid tag format fails validation."""
-        invalid_metadata = {
+    def test_tag_format_with_spaces(self):
+        """Test that tag format with spaces is now valid."""
+        metadata_with_spaces = {
             "tags": ["invalid tag format", "shape|wall"]
         }
         
         from openforge.openapi import validate_schema
-        with pytest.raises(Exception):
-            validate_schema("metadata.yaml", invalid_metadata)
+        # Should not raise exception since we removed pattern restrictions
+        validate_schema("metadata.yaml", metadata_with_spaces)
     
     def test_empty_metadata_valid(self):
         """Test that empty metadata is valid."""

@@ -10,15 +10,11 @@ from openforge.openapi import validate_schema
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
     if os.path.exists(metadata_file):
-        try:
-            with open(metadata_file, "r") as f:
-                metadata = safe_load(f)
-                if metadata is not None:
-                    validate_schema("metadata.yaml", metadata)
-                return metadata
-        except Exception as e:
-            sys.stderr.write(f"Error reading metadata file: {e}\n")
-            return None
+        with open(metadata_file, "r") as f:
+            metadata = safe_load(f)
+            if metadata is not None:
+                validate_schema("metadata.yaml", metadata)
+            return metadata
     return None
 
 

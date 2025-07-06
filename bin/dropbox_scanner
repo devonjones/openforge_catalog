@@ -6,6 +6,10 @@ import sys
 from openforge.data.scanner import (
     find_files, clean_files, parse_files, print_files
 )
+from openforge.data.incremental import (
+    IncrementalScanner, parse_files_incremental, 
+    print_incremental_diff, print_incremental_changes
+)
 
 import click
 from dotenv import dotenv_values
@@ -18,12 +22,44 @@ from dotenv import dotenv_values
 @click.option("--md5/--no-md5", default=True, help="Calculate MD5 hash for files")
 @click.option("--verbose/--no-verbose", default=False, help="Verbose output")
 @click.option("--upload/--no-upload", default=False, help="Upload files to R2")
-def main(path, subset, md5, verbose, upload):
+@click.option("--update", help="Update existing fixture file incrementally")
+@click.option("--dry-run", is_flag=True, help="Preview changes without writing files")
+@click.option("--incremental", is_flag=True, help="Output only changed data by full_path")
+def main(path, subset, md5, verbose, upload, update, dry_run, incremental):
     config = dotenv_values(".env")
+    
+    if update:
+        # Incremental mode
+        try:
+            scanner = IncrementalScanner(update)
+            subset = scanner.get_subset_path()
+            if verbose:
+                print(f"Detected subset path: {subset}")
+        except Exception as e:
+            print(f"Error loading fixture file: {e}", file=sys.stderr)
+            sys.exit(1)
+    
     files = find_files(path, subset)
     files = clean_files(path, files)
-    files = parse_files(path, files, md5, verbose, upload, config)
-    print_files(files)
+    
+    if update:
+        # Use incremental processing
+        files = parse_files_incremental(path, files, scanner, verbose, upload, config, dry_run, incremental)
+        
+        # Handle different output modes
+        if dry_run:
+            # Output diff format showing only changes
+            print_incremental_diff(files, scanner, verbose)
+        elif incremental:
+            # Output only changed data by full_path
+            print_incremental_changes(files, scanner)
+        else:
+            # Normal mode - output complete updated fixture
+            print_files(files)
+    else:
+        # Use normal processing
+        files = parse_files(path, files, md5, verbose, upload, config)
+        print_files(files)
 
 
 if __name__ == "__main__":
