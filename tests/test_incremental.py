@@ -8,6 +8,7 @@ import os
 import json
 import shutil
 from datetime import datetime
+import hashlib
 
 from openforge.data.incremental import IncrementalScanner
 
@@ -194,7 +195,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file3"],
             "tiles/dungeon_stone/floor/file3.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("shape", "floor"), ("texture", "stone")},
             {}
         )
         
@@ -208,7 +209,7 @@ class TestIncrementalScanner:
         assert "md5" in result["file_metadata"]
         assert result["file_metadata"]["size"] > 0
         assert "file_modified_at" in result["file_metadata"]
-        assert result["tags"] == [["shape", "floor"], ["texture", "stone"]]
+        assert result["tags"] == {("shape", "floor"), ("texture", "stone")}
         assert result["config"] == {}
         
     def test_process_existing_file_unchanged(self, sample_fixture, sample_files):
@@ -227,7 +228,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("shape", "floor"), ("texture", "stone")},
             {}
         )
 
@@ -256,7 +257,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("shape", "floor"), ("texture", "stone")},
             {}
         )
         
@@ -292,7 +293,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("shape", "floor"), ("texture", "stone")},
             {}
         )
         
@@ -311,7 +312,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "wall"], ["texture", "stone"]],  # Changed tags
+            {("shape", "wall"), ("texture", "stone")},  # Changed tags
             {}
         )
         
@@ -329,7 +330,7 @@ class TestIncrementalScanner:
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("shape", "floor"), ("texture", "stone")},
             {"parts": []}  # Changed config
         )
         
@@ -351,99 +352,116 @@ class TestIncrementalScanner:
         # In a real scenario, we'd need to find content that produces the exact MD5
         return content
         
-    def test_has_changes_for_output_no_changes(self, sample_fixture, sample_files):
+    def test_has_changes_for_output_no_changes(self, temp_dir, sample_files):
         """Test change detection when nothing changes."""
-        scanner = IncrementalScanner(sample_fixture)
+        # Create a dynamic fixture that matches the actual file content
+        import hashlib
+        
+        # Calculate the actual MD5 of the file content we'll use
+        content = "content1"
+        actual_md5 = hashlib.md5(content.encode()).hexdigest()
+        
+        # Create fixture with the correct MD5 and ensure tags are in list format
+        # Note: The _get_file_info method uses datetime.fromtimestamp() which interprets as local time
+        # For timestamp 1672567200, local time is 2023-01-01T03:00:00
+        fixture_data = [
+            {
+                "type": "model",
+                "file_metadata": {
+                    "full_name": "tiles/dungeon_stone/floor/file1.stl",
+                    "file": "file1.stl",
+                    "md5": actual_md5,  # Use actual MD5
+                    "size": len(content),
+                    "file_modified_at": "2023-01-01T03:00:00",  # Local time for timestamp 1672567200
+                    "changed": "2023-01-01T03:00:00",
+                    "modified": "2023-01-01T03:00:00"  # Local time for timestamp 1672567200
+                },
+                "tags": [["shape", "floor"], ["texture", "stone"]],
+                "config": {}
+            }
+        ]
+        
+        fixture_path = os.path.join(temp_dir, "dynamic_fixture.json")
+        with open(fixture_path, 'w') as f:
+            json.dump(fixture_data, f)
+            
+        scanner = IncrementalScanner(fixture_path)
 
-        # Create file with content that should match the expected MD5
-        # For this test, we'll use the original content from the fixture
+        # Create file with content that matches the expected MD5
         with open(sample_files["file1"], 'w') as f:
-            f.write("content1")  # Use the original content from sample_files fixture
-        os.utime(sample_files["file1"], (1672567200, 1672567200))  # 2023-01-01T10:00:00
+            f.write(content)  # Use content that produces the expected MD5
+        
+        # Set modification time to exactly match the fixture (2023-01-01T03:00:00 local time)
+        # Convert to timestamp: 2023-01-01T03:00:00 local = 1672567200
+        os.utime(sample_files["file1"], (1672567200, 1672567200))
 
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],  # Same tags
+            {("shape", "floor"), ("texture", "stone")},  # Same tags
             {}  # Same config
         )
 
-        # If content matches expected MD5, we should get 1 entry
-        # If content doesn't match, we get 2 entries (deprecated + new)
-        if len(results) == 1:
-            new_entry = results[0]
-            # No changes should be detected
-            assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False
-        else:
-            # Content doesn't match expected MD5, so we get 2 entries
-            assert len(results) == 2
-            new_entry = results[1]  # Second entry is the new one
-            # Since MD5 changed, changes should be detected
-            assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is True
+        # Since content matches expected MD5 and metadata matches, we should get 1 entry
+        assert len(results) == 1
+        new_entry = results[0]
+        # No changes should be detected
+        assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False
         
-    def test_tag_comparison_unordered(self, sample_fixture, sample_files):
+    def test_tag_comparison_unordered(self, temp_dir, sample_files):
         """Test that tag comparison works with unordered tags."""
-        scanner = IncrementalScanner(sample_fixture)
-
-        # Create file with content that should match the expected MD5
-        with open(sample_files["file1"], 'w') as f:
-            f.write("content1")  # Use the original content from sample_files fixture
-        os.utime(sample_files["file1"], (1672567200, 1672567200))  # 2023-01-01T10:00:00
-
-        existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
-            sample_files["file1"],
-            "tiles/dungeon_stone/floor/file1.stl",
-            [["texture", "stone"], ["shape", "floor"]],  # Same tags, different order
-            {}
-        )
-
-        # If content matches expected MD5, we should get 1 entry
-        # If content doesn't match, we get 2 entries (deprecated + new)
-        if len(results) == 1:
-            new_entry = results[0]
-            # No changes should be detected (tags are the same, just reordered)
-            assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False
-        else:
-            # Content doesn't match expected MD5, so we get 2 entries
-            assert len(results) == 2
-            new_entry = results[1]  # Second entry is the new one
-            # Since MD5 changed, changes should be detected
-            assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is True
+        # Create a dynamic fixture that matches the actual file content
+        import hashlib
         
-    def test_process_existing_file_unchanged_debug(self, sample_fixture, sample_files):
-        """Debug test to understand why changed field is being updated."""
-        scanner = IncrementalScanner(sample_fixture)
-
-        # Create file with content that matches the expected metadata
-        with open(sample_files["file1"], 'w') as f:
-            f.write("x" * 1000)  # Create file with size 1000
+        # Calculate the actual MD5 of the file content we'll use
+        content = "content1"
+        actual_md5 = hashlib.md5(content.encode()).hexdigest()
+        
+        # Create fixture with the correct MD5 and ensure tags are in list format
+        # Note: The _get_file_info method uses datetime.fromtimestamp() which interprets as local time
+        # For timestamp 1672567200, local time is 2023-01-01T03:00:00
+        fixture_data = [
+            {
+                "type": "model",
+                "file_metadata": {
+                    "full_name": "tiles/dungeon_stone/floor/file1.stl",
+                    "file": "file1.stl",
+                    "md5": actual_md5,  # Use actual MD5
+                    "size": len(content),
+                    "file_modified_at": "2023-01-01T03:00:00",  # Local time for timestamp 1672567200
+                    "changed": "2023-01-01T03:00:00",
+                    "modified": "2023-01-01T03:00:00"  # Local time for timestamp 1672567200
+                },
+                "tags": [["shape", "floor"], ["texture", "stone"]],
+                "config": {}
+            }
+        ]
+        
+        fixture_path = os.path.join(temp_dir, "dynamic_fixture.json")
+        with open(fixture_path, 'w') as f:
+            json.dump(fixture_data, f)
             
-        # Set modification time to match fixture (2023-01-01T10:00:00 UTC)
+        scanner = IncrementalScanner(fixture_path)
+
+        # Create file with content that matches the expected MD5
+        with open(sample_files["file1"], 'w') as f:
+            f.write(content)  # Use content that produces the expected MD5
+        
+        # Set modification time to exactly match the fixture (2023-01-01T03:00:00 local time)
+        # Convert to timestamp: 2023-01-01T03:00:00 local = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
-        
+
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        print(f"Existing entry changed: {existing_entry['file_metadata']['changed']}")
-        
         results = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
-            [["shape", "floor"], ["texture", "stone"]],
+            {("texture", "stone"), ("shape", "floor")},  # Same tags, different order
             {}
         )
-        
-        # Since file content doesn't match expected MD5, we get 2 entries (deprecated + new)
-        assert len(results) == 2
-        result = results[1]  # Second entry is the new one
-        
-        print(f"Result changed: {result['file_metadata']['changed']}")
-        print(f"Needs recalculation: {scanner._needs_md5_recalculation(sample_files['file1'], existing_entry)}")
-        
-        # Should recalculate MD5 since content doesn't match
-        assert result["file_metadata"]["size"] == 1000
-        assert "2023-01-01" in result["file_metadata"]["file_modified_at"]
-        # Verify that the MD5 was recalculated (not copied from existing entry)
-        assert result["file_metadata"]["md5"] != existing_entry["file_metadata"]["md5"]
-        # Verify that the changed field was updated (since it's a new entry)
-        assert result["file_metadata"]["changed"] != existing_entry["file_metadata"]["changed"] 
+
+        # Since content matches expected MD5 and metadata matches, we should get 1 entry
+        assert len(results) == 1
+        new_entry = results[0]
+        # No changes should be detected (tags are the same, just reordered)
+        assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False 

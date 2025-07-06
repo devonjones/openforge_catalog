@@ -2,6 +2,7 @@
 
 # pylint: disable=E1101,C0114,C0116
 import sys
+import os
 
 from openforge.data.scanner import (
     find_files, clean_files, parse_files, print_files
@@ -13,6 +14,8 @@ from openforge.data.incremental import (
 
 import click
 from dotenv import dotenv_values
+import jsonschema.exceptions
+import yaml
 
 @click.command()
 @click.option(
@@ -26,41 +29,60 @@ from dotenv import dotenv_values
 @click.option("--dry-run", is_flag=True, help="Preview changes without writing files")
 @click.option("--incremental", is_flag=True, help="Output only changed data by full_path")
 def main(path, subset, md5, verbose, upload, update, dry_run, incremental):
-    config = dotenv_values(".env")
+    """Run dropbox scanner with incremental or full scan mode."""
+    # Load config from .env file in bin directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    env_path = os.path.join(script_dir, ".env")
+    
+    try:
+        config = dotenv_values(env_path)
+        if verbose and not config:
+            print("Warning: No .env file found or .env file is empty", file=sys.stderr)
+    except FileNotFoundError:
+        if verbose:
+            print(f"Warning: .env file not found at {env_path}, using environment variables only", file=sys.stderr)
+        config = {}
     
     if update:
-        # Incremental mode
-        try:
-            scanner = IncrementalScanner(update, verbose)
-            subset = scanner.get_subset_path()
-            if verbose:
-                print(f"Detected subset path: {subset}")
-        except Exception as e:
-            print(f"Error loading fixture file: {e}", file=sys.stderr)
-            sys.exit(1)
+        run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config)
+    else:
+        run_full_scan_mode(path, subset, md5, verbose, upload, config)
+
+
+def run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config):
+    """Run incremental scanning workflow."""
+    try:
+        scanner = IncrementalScanner(update, verbose)
+        subset = scanner.get_subset_path()
+        if verbose:
+            print(f"Detected subset path: {subset}")
+    except (FileNotFoundError, ValueError, jsonschema.exceptions.ValidationError, yaml.YAMLError, OSError) as e:
+        print(f"Error loading fixture file: {e}", file=sys.stderr)
+        sys.exit(1)
     
     files = find_files(path, subset)
     files = clean_files(path, files)
+    files = parse_files_incremental(path, files, scanner, verbose, upload, config, dry_run, incremental)
     
-    if update:
-        # Use incremental processing
-        files = parse_files_incremental(path, files, scanner, verbose, upload, config, dry_run, incremental)
-        
-        # Handle different output modes
-        if dry_run:
-            # Output diff format showing only changes
-            print_incremental_diff(files, scanner, verbose)
-        elif incremental:
-            # Output only changed data by full_path
-            print_incremental_changes(files, scanner)
-        else:
-            # Normal mode - output complete updated fixture
-            print_files(files)
+    # Handle different output modes
+    if dry_run:
+        # Output diff format showing only changes
+        print_incremental_diff(files, scanner, verbose)
+    elif incremental:
+        # Output only changed data by full_path
+        print_incremental_changes(files, scanner)
     else:
-        # Use normal processing
-        files = parse_files(path, files, md5, verbose, upload, config)
+        # Normal mode - output complete updated fixture
         print_files(files)
 
 
+def run_full_scan_mode(path, subset, md5, verbose, upload, config):
+    """Run normal scanning workflow."""
+    files = find_files(path, subset)
+    files = clean_files(path, files)
+    files = parse_files(path, files, md5, verbose, upload, config)
+    print_files(files)
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

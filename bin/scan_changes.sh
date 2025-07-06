@@ -27,26 +27,25 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Find all JSON files in fixtures directory
-json_files=($(find "$FIXTURES_DIR" -name "*.json" -type f | sort))
+# Find all JSON files in fixtures directory and process them safely
+file_count=0
 
-if [ ${#json_files[@]} -eq 0 ]; then
-    echo "No JSON fixture files found in $FIXTURES_DIR"
-    exit 1
-fi
-
-for fixture_file in "${json_files[@]}"; do
+while IFS= read -r -d '' fixture_file; do
+    ((file_count++))
+    
     # Extract the base name for display
     fixture_name=$(basename "$fixture_file" .json)
     
     echo "=== $fixture_name ==="
     
     # Run the incremental scanner in dry-run mode
-    if [ -n "$VERBOSE_FLAG" ]; then
-        python "$PROJECT_ROOT/bin/dropbox_scanner" --update "$fixture_file" --dry-run $VERBOSE_FLAG
-    else
-        python "$PROJECT_ROOT/bin/dropbox_scanner" --update "$fixture_file" --dry-run
-    fi
+    python "$PROJECT_ROOT/bin/dropbox_scanner" --update "$fixture_file" --dry-run $VERBOSE_FLAG
     
     echo
-done 
+done < <(find "$FIXTURES_DIR" -name "*.json" -type f -print0 | sort -z)
+
+# Check if any files were found
+if [ $file_count -eq 0 ]; then
+    echo "No JSON fixture files found in $FIXTURES_DIR"
+    exit 1
+fi 

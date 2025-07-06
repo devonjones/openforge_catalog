@@ -76,4 +76,4 @@ A file is considered "updated" if any of the following change:
 - Focuses on performance improvement for the scanning workflow
 - Maintains backward compatibility with existing fixture formats
 - Prepares for the full versioning system in later phases
-- Most functionality should be implemented in `openforge/data/` as `dropbox_scanner` is a thin wrapper 
+- Most functionality should be implemented in `openforge/data/` as `dropbox_scanner` is a thin wrapper

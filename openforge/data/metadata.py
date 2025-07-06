@@ -14,15 +14,15 @@ def get_metadata_file(path):
             metadata = safe_load(f)
             # Validate that the metadata file is a dictionary
             if metadata is not None and not isinstance(metadata, dict):
-                raise ValueError("Metadata file must contain a dictionary")
+                raise ValueError(f"Metadata file '{metadata_file}' must contain a dictionary, but found type {type(metadata).__name__}")
             
             # Validate schema for each individual metadata entry
             if metadata is not None:
                 for filename, entry in metadata.items():
                     if not isinstance(filename, str):
-                        raise ValueError("Metadata file keys must be strings (filenames)")
+                        raise ValueError(f"In metadata file '{metadata_file}', found non-string key: {filename}")
                     if not isinstance(entry, dict):
-                        raise ValueError("Metadata entries must be dictionaries")
+                        raise ValueError(f"In metadata file '{metadata_file}', entry for key '{filename}' must be a dictionary, but found type {type(entry).__name__}")
                     # Validate individual metadata entry
                     validate_schema("metadata.yaml", entry)
                 

@@ -9,17 +9,26 @@ import os
 import sys
 import json
 import hashlib
+import traceback
 from typing import Dict, List, Set, Optional, Tuple
 from datetime import datetime, timezone
+import time
 
 from openforge.openapi import validate_schema
+from yaml import safe_load
+import boto3
+from botocore.client import Config
+import sh
+from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
+from .scanner import parse_file_tags, validate, print_files
+from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 
 
 class IncrementalScanner:
     """Handles incremental scanning of OpenForge files."""
     
     def __init__(self, fixture_path: str, verbose: bool = False):
-        """Initialize scanner with existing fixture file.
+        """Initialize incremental scanner.
         
         Args:
             fixture_path: Path to existing fixture file (JSON or YAML)
@@ -28,6 +37,7 @@ class IncrementalScanner:
         self.fixture_path = fixture_path
         self.verbose = verbose
         self.existing_data = self._load_fixture()
+        self.existing_data_map = {item["file_metadata"]["full_name"]: item for item in self.existing_data}
         self.subset_path = self._detect_subset_path()
         
     def _load_fixture(self) -> List[Dict]:
@@ -48,7 +58,6 @@ class IncrementalScanner:
                 data = json.load(f)
             else:
                 # Assume YAML
-                from yaml import safe_load
                 data = safe_load(f)
                 
         # Validate schema
@@ -113,11 +122,14 @@ class IncrementalScanner:
         Returns:
             MD5 hash as hex string
         """
+        start_time = time.time()
         hash_md5 = hashlib.md5()
         with open(file_path, "rb") as f:
             for chunk in iter(lambda: f.read(4096), b""):
                 hash_md5.update(chunk)
-        return hash_md5.hexdigest()
+        md5_hash = hash_md5.hexdigest()
+        
+        return md5_hash
         
     def _get_file_info(self, file_path: str) -> Dict:
         """Get file metadata including size and modification time.
@@ -147,10 +159,32 @@ class IncrementalScanner:
         Returns:
             Existing entry or None
         """
-        for item in self.existing_data:
-            if item["file_metadata"]["full_name"] == full_name:
-                return item
-        return None
+        return self.existing_data_map.get(full_name)
+        
+    def _has_file_changed(self, file_path: str, existing_entry: Dict) -> bool:
+        """Check if a file has changed by comparing metadata.
+        
+        Args:
+            file_path: Path to current file
+            existing_entry: Existing fixture entry
+            
+        Returns:
+            True if file has changed, False if identical
+        """
+        if existing_entry is None:
+            return True  # New file, consider it "changed"
+            
+        current_info = self._get_file_info(file_path)
+        existing_metadata = existing_entry["file_metadata"]
+        
+        # Compare size and modification time
+        if current_info["size"] != existing_metadata["size"]:
+            return True
+            
+        if current_info["modified"] != existing_metadata["modified"]:
+            return True
+            
+        return False
         
     def _needs_md5_recalculation(self, file_path: str, existing_entry: Dict) -> bool:
         """Determine if MD5 needs to be recalculated.
@@ -167,14 +201,10 @@ class IncrementalScanner:
         
         # Compare size and modification time
         if current_info["size"] != existing_metadata["size"]:
-            if self.verbose:
-                sys.stderr.write(f"DEBUG: Size changed, recalculating MD5\n")
             return True
             
         # Compare modification time
         if current_info["modified"] != existing_metadata["modified"]:
-            if self.verbose:
-                sys.stderr.write(f"DEBUG: Modification time changed, recalculating MD5\n")
             return True
                 
         return False
@@ -253,13 +283,14 @@ class IncrementalScanner:
             List of processed fixture entries (may include deprecation entries)
         """
         existing_entry = self._find_existing_entry(full_name)
+        file_changed = self._has_file_changed(file_path, existing_entry)
         
         if existing_entry is None:
             # New file - always calculate MD5
             md5 = self._calculate_md5(file_path)
             file_info = self._get_file_info(file_path)
             
-            return [{
+            result = [{
                 "type": "model",
                 "file_metadata": {
                     "full_name": full_name,
@@ -301,7 +332,7 @@ class IncrementalScanner:
                         "tags": tags,
                         "config": config or {}
                     }
-                    return [deprecation_entry, new_entry]
+                    result = [deprecation_entry, new_entry]
                 else:
                     # MD5 didn't change, just metadata fields changed
                     new_entry = {
@@ -318,7 +349,7 @@ class IncrementalScanner:
                         "tags": tags,
                         "config": config or {}
                     }
-                    return [new_entry]
+                    result = [new_entry]
             else:
                 # Copy existing file_metadata but update other fields
                 new_entry = {
@@ -332,8 +363,10 @@ class IncrementalScanner:
                 # The changed field should remain exactly as it was in the existing entry
                 # The file_metadata.copy() already preserves the original changed field
                 
-                return [new_entry]
-            
+                result = [new_entry]
+        
+        return result, file_changed
+        
     def get_subset_path(self) -> str:
         """Get detected subset path.
         
@@ -368,13 +401,6 @@ class IncrementalScanner:
 
 def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_run, incremental):
     """Parse files using incremental scanner logic."""
-    import os
-    import sys
-    import boto3
-    from botocore.client import Config
-    import sh
-    from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
-    from .scanner import parse_file_tags, validate, print_files
     
     def _get_metadata(path, fn):
         data = get_metadata_file(path)
@@ -382,64 +408,18 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
             if fn in data:
                 metadata = data[fn]
                 # Validate individual metadata entry
-                from openforge.openapi import validate_schema
                 validate_schema("metadata.yaml", metadata)
                 return metadata
         return None
 
-    def _get_s3_client(config):
-        s3_client = boto3.client(
-            service_name="s3",
-            endpoint_url=config["CLOUDFLARE_ENDPOINT"],
-            aws_access_key_id=config["AWS_ACCESS_KEY_ID"],
-            aws_secret_access_key=config["AWS_SECRET_ACCESS_KEY"],
-            config=Config(signature_version="s3v4"),
-            region_name="auto",
-        )
-        return s3_client
 
-    def _create_image(name, url):
-        return {"image_name": name, "image_url": url}
-
-    def _upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
-        bucket = "openforge-models"
-        _, fn = os.path.split(file_path)
-        parts = fn.split(".")
-        extension = parts.pop()
-        object_name = f"{object_path}/{f['md5'][:6]}/{f['md5']}.{extension}"
-        # Check cache first
-        if s3_key_cache is not None and object_name in s3_key_cache:
-            return object_name
-        try:
-            s3_client.head_object(Bucket=bucket, Key=object_name)
-        except Exception as ce:
-            if hasattr(ce, 'response') and ce.response["Error"]["Code"] == "404":
-                sys.stderr.write(f"Uploading: {file_path}\n")
-                with open(file_path, "rb") as file_handle:
-                    s3_client.upload_fileobj(file_handle, bucket, object_name)
-            else:
-                raise ce
-        return object_name
-
-    def _create_thumbnail(file_path):
-        path, fn = os.path.split(file_path)
-        parts = fn.split(".")
-        _ = parts.pop()
-        base = ".".join(parts)
-        thumb_path = os.path.join(path, f"{base}-thumb.png")
-        sh.stl_thumb(file_path, thumb_path)
-        return thumb_path
 
     newfiles = []
-    s3_client = _get_s3_client(config) if upload else None
-    # S3 key cache
-    s3_key_cache = set()
-    if upload:
-        bucket = "openforge-models"
-        paginator = s3_client.get_paginator('list_objects_v2')
-        for page in paginator.paginate(Bucket=bucket):
-            for obj in page.get('Contents', []):
-                s3_key_cache.add(obj['Key'])
+    s3_client = get_s3_client(config) if upload else None
+    # S3 key cache - pre-fetch for efficient upload checking
+    # Skip cache if dry_run or if explicitly disabled for performance
+    skip_cache = dry_run or config.get("SKIP_S3_CACHE", False)
+    s3_key_cache = set() if skip_cache else (get_s3_key_cache(s3_client, config, verbose) if upload else set())
 
     # Track current files for missing file detection
     current_files = set()
@@ -469,7 +449,7 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                 config_dict = metadata.get("config", {})
             
             # Use incremental scanner to process the file
-            results = scanner.process_file(full_file, file, t, config_dict)
+            results, file_changed = scanner.process_file(full_file, file, t, config_dict)
             
             # Process each result (may be multiple if MD5 changed)
             for result in results:
@@ -489,14 +469,21 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                     if "md5" not in result["file_metadata"]:
                         raise Exception("MD5 is required for upload")
                     
-                    model_address = _upload_file(result["file_metadata"], full_file, s3_client, "models", s3_key_cache)
+                    model_address = upload_file(result["file_metadata"], full_file, s3_client, "models", s3_key_cache, config, verbose)
                     result["file_metadata"]["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
                     
-                    thumb_path = _create_thumbnail(full_file)
-                    thumb_address = _upload_file(result["file_metadata"], thumb_path, s3_client, "thumbnails", s3_key_cache)
-                    images = result.get("images", [])
-                    images.append(_create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}"))
-                    result["images"] = images
+                    # Only create thumbnail if file has changed
+                    if file_changed:
+                        thumb_path = create_thumbnail(full_file)
+                        thumb_address = upload_file(result["file_metadata"], thumb_path, s3_client, "thumbnails", s3_key_cache, config, verbose)
+                        images = result.get("images", [])
+                        images.append(create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}"))
+                        result["images"] = images
+                    else:
+                        # Use existing thumbnail from fixture
+                        existing_entry = scanner._find_existing_entry(file)
+                        if existing_entry and "images" in existing_entry:
+                            result["images"] = existing_entry["images"]
                 
                 newfiles.append(result)
             
@@ -504,9 +491,8 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
             
         except Exception as e:
             sys.stderr.write(f"ERROR processing file {file}: {e}\n")
-            import traceback
             traceback.print_exc()
-            sys.exit(1)
+            raise
 
     # Add missing files as deprecated
     missing_files = scanner.get_missing_files(current_files)
@@ -517,7 +503,6 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
 
 def print_incremental_diff(files, scanner, verbose=False):
     """Print diff format showing only incremental changes."""
-    import json
     
     added = []
     modified = []
@@ -581,11 +566,10 @@ def print_incremental_diff(files, scanner, verbose=False):
         else:
             added.append(file["file_metadata"]["full_name"])
     
-    # Check for missing files
-    current_files = {file["file_metadata"]["full_name"] for file in files if not file.get("deprecated")}
-    missing_files = scanner.get_missing_files(current_files)
-    for file in missing_files:
-        removed.append(file["file_metadata"]["full_name"])
+    # Check for missing files (already included in files list with deprecated: true)
+    for file in files:
+        if file.get("deprecated"):
+            removed.append(file["file_metadata"]["full_name"])
     
     result = {
         "added": added,
@@ -602,23 +586,18 @@ def print_incremental_diff(files, scanner, verbose=False):
 
 def print_incremental_changes(files, scanner):
     """Print only changed data by full_path."""
-    from .scanner import print_files
     
     changed_files = []
-    
-    for file in files:
-        existing_entry = scanner._find_existing_entry(file["file_metadata"]["full_name"])
-        if existing_entry:
-            # Only include if there are changes
-            if scanner._has_changes_for_output(file["file_metadata"]["full_name"], existing_entry, file):
-                changed_files.append(file)
-        else:
-            # New file - always include
-            changed_files.append(file)
-    
-    # Include deprecated files
     for file in files:
         if file.get("deprecated"):
             changed_files.append(file)
-    
+            continue
+
+        existing_entry = scanner._find_existing_entry(file["file_metadata"]["full_name"])
+        # A file is a change if it's new or its content/metadata has changed.
+        if not existing_entry or scanner._has_changes_for_output(
+            file["file_metadata"]["full_name"], existing_entry, file
+        ):
+            changed_files.append(file)
+
     print_files(changed_files) 
