@@ -4,14 +4,21 @@ import sys
 from yaml import safe_load
 from openforge.db.sql.tag_utils import tag_to_array
 
+from openforge.openapi import validate_schema
+
+
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
     if os.path.exists(metadata_file):
         try:
             with open(metadata_file, "r") as f:
-                return safe_load(f)
+                metadata = safe_load(f)
+                if metadata is not None:
+                    validate_schema("metadata.yaml", metadata)
+                return metadata
         except Exception as e:
             sys.stderr.write(f"Error reading metadata file: {e}\n")
+            return None
     return None
 
 
@@ -103,6 +110,7 @@ def is_openforge_floor(o):
     neg_tags = [("build", "s2w"), ("shape", "wall"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
+    return False
 
 
 def is_thick_wall(o):
@@ -110,6 +118,7 @@ def is_thick_wall(o):
     neg_tags = [("build", "s2w"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
+    return False
 
 
 def apply_openforge_wall(o):
@@ -202,4 +211,6 @@ def add_tag(o: dict, tag: str):
 
 def remove_tag(o: dict, tag: str):
     if "tags" in o:
-        o["tags"].remove(tuple(tag_to_array(tag)))
+        tag_tuple = tuple(tag_to_array(tag))
+        if tag_tuple in o["tags"]:
+            o["tags"].remove(tag_tuple)

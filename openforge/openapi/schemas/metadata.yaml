@@ -1,0 +1,35 @@
+"$schema": "https://json-schema.org/draft/2020-12/schema"
+type: object
+properties:
+  ignore:
+    type: boolean
+    default: false
+  auto:
+    type: boolean
+    default: true
+  tags:
+    type: array
+    items:
+      type: string
+      pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
+  config:
+    "$ref": "config.yaml"
+  edit:
+    type: object
+    properties:
+      tags:
+        type: object
+        properties:
+          add:
+            type: array
+            items:
+              type: string
+              pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
+          remove:
+            type: array
+            items:
+              type: string
+              pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
+        additionalProperties: false
+    additionalProperties: false
+additionalProperties: false 

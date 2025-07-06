@@ -12,7 +12,7 @@ properties:
       - model
       - blueprint
   blueprint_config:
-    type: object
+    "$ref": "config.yaml"
   file_md5:
     type: string
   file_size:

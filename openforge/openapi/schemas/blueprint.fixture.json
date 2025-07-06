@@ -11,7 +11,7 @@
         "type": "string"
       },
       "config": {
-        "type": "object"
+        "$ref": "config.yaml"
       },
       "file_metadata": {
         "type": "object",
@@ -67,6 +67,10 @@
           },
           "required": ["image_name", "image_url"]
         }
+      },
+      "metadata": {
+        "type": "boolean",
+        "description": "Whether this entry was created from a metadata.yaml file"
       }
     }
   }
