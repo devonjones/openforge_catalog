@@ -12,26 +12,26 @@
         },
         "tags": [
             [
+                "component",
+                "sluice",
+                "corner"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "sluice",
-                "corner"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
                 "square"
             ],
             [
-                "shape",
-                "floor"
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
@@ -43,10 +43,11 @@
                 2
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -109,21 +110,16 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "sluice",
-                "cross"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
                 "square"
             ],
             [
-                "shape",
-                "floor"
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
@@ -135,10 +131,16 @@
                 2
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "sluice",
+                "cross"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -201,12 +203,8 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "component",
@@ -215,7 +213,11 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
@@ -227,10 +229,11 @@
                 2
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -293,17 +296,13 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
                 "component",
                 "sluice",
                 "straight"
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "component",
@@ -312,7 +311,11 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "size",
@@ -324,10 +327,11 @@
                 "sluice"
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -386,26 +390,22 @@
         "tags": [
             [
                 "size",
-                "width",
-                2
-            ],
-            [
-                "size",
                 "depth",
                 1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
             ],
             [
                 "component",
                 "sluice",
                 "straight"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "component",
@@ -414,17 +414,22 @@
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
                 "sluice"
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -483,21 +488,13 @@
         "tags": [
             [
                 "size",
-                "width",
-                2
-            ],
-            [
-                "size",
                 "depth",
                 1
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "width",
+                2
             ],
             [
                 "component",
@@ -509,14 +506,23 @@
                 "floor"
             ],
             [
-                "component",
-                "sluice"
+                "shape",
+                "square"
             ],
             [
                 "texture",
                 "legacy_sewers"
+            ],
+            [
+                "component",
+                "sluice"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -579,14 +585,6 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
                 "component",
                 "sluice",
                 "straight"
@@ -594,6 +592,14 @@
             [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
@@ -605,10 +611,11 @@
                 2
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -666,26 +673,26 @@
         },
         "tags": [
             [
+                "component",
+                "sluice",
+                "tee"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
                 "square"
             ],
             [
-                "component",
-                "sluice",
-                "tee"
-            ],
-            [
-                "shape",
-                "floor"
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "component",
@@ -697,10 +704,11 @@
                 2
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -758,8 +766,9 @@
         },
         "tags": [
             [
-                "component",
-                "wall"
+                "size",
+                "angle",
+                270
             ],
             [
                 "size",
@@ -767,16 +776,12 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
+                "component",
+                "wall"
             ],
             [
                 "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
+                "wall"
             ],
             [
                 "size",
@@ -789,22 +794,16 @@
                 1
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "size",
-                "angle",
-                270
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "shape",
-                "wall"
+                "square"
+            ],
+            [
+                "shape",
+                "corner"
             ],
             [
                 "shape",
@@ -812,10 +811,20 @@
                 "convex"
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -867,8 +876,9 @@
         },
         "tags": [
             [
-                "component",
-                "wall"
+                "size",
+                "angle",
+                90
             ],
             [
                 "size",
@@ -876,8 +886,31 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "corner",
+                "concave"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "shape",
@@ -889,42 +922,19 @@
             ],
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "shape",
-                "corner",
-                "concave"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "size",
                 "corner_shape",
                 "IL"
-            ],
-            [
-                "size",
-                "angle",
-                90
-            ],
-            [
-                "shape",
-                "wall"
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
-                "texture",
-                "legacy_sewers"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -976,17 +986,17 @@
         },
         "tags": [
             [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "depth",
                 1
             ],
             [
-                "connection",
-                "openforge"
+                "component",
+                "wall"
+            ],
+            [
+                "shape",
+                "wall"
             ],
             [
                 "shape",
@@ -998,23 +1008,24 @@
                 1
             ],
             [
-                "shape",
-                "wall"
+                "texture",
+                "legacy_sewers"
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
-                "texture",
-                "legacy_sewers"
-            ],
-            [
                 "size",
                 "openlock",
                 "I"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1066,10 +1077,6 @@
         },
         "tags": [
             [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "depth",
                 1
@@ -1080,31 +1087,36 @@
                 2
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "openlock",
-                "S"
+                "component",
+                "wall"
             ],
             [
                 "shape",
                 "wall"
             ],
             [
-                "build",
-                "thick wall"
+                "shape",
+                "square"
             ],
             [
                 "texture",
                 "legacy_sewers"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "openlock",
+                "S"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",

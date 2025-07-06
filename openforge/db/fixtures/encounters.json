@@ -12,6 +12,22 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
                 "size",
                 "depth",
                 1
@@ -20,24 +36,9 @@
                 "size",
                 "width",
                 1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -95,9 +96,13 @@
         },
         "tags": [
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "width",
+                2
             ],
             [
                 "shape",
@@ -109,18 +114,15 @@
             ],
             [
                 "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
+                "depth",
+                1
             ],
             [
                 "shape",
                 "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -183,8 +185,8 @@
                 2
             ],
             [
-                "texture",
-                "necro"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -196,14 +198,15 @@
                 "square"
             ],
             [
-                "connection",
-                "openforge"
+                "texture",
+                "necro"
             ],
             [
                 "shape",
                 "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -262,8 +265,12 @@
         "tags": [
             [
                 "size",
-                "depth",
-                1
+                "width",
+                3
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
@@ -274,19 +281,16 @@
                 "necro"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "size",
-                "width",
-                3
+                "depth",
+                1
             ],
             [
                 "shape",
                 "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -344,12 +348,9 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "necro"
+                "size",
+                "width",
+                3
             ],
             [
                 "connection",
@@ -361,15 +362,19 @@
                 3
             ],
             [
-                "size",
-                "width",
-                3
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "shape",
                 "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -428,8 +433,12 @@
         "tags": [
             [
                 "size",
-                "depth",
-                1
+                "width",
+                4
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "shape",
@@ -440,19 +449,16 @@
                 "necro"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "floor"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "width",
-                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -515,27 +521,28 @@
                 2
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                4
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "size",
-                "width",
-                4
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "shape",
+                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -593,6 +600,15 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "shape",
                 "square"
             ],
@@ -608,17 +624,9 @@
             [
                 "shape",
                 "floor"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "width",
-                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -676,13 +684,16 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                4
-            ],
-            [
                 "component",
                 "alter_base"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "shape",
@@ -690,23 +701,21 @@
                 "necromantic_circle"
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "size",
                 "width",
                 4
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -764,9 +773,12 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                4
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "shape",
@@ -774,23 +786,21 @@
                 "necromantic_circle"
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "size",
                 "width",
                 4
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -848,13 +858,29 @@
         },
         "tags": [
             [
+                "connection",
+                "side"
+            ],
+            [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
                 "shape",
-                "corner"
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "component",
@@ -862,36 +888,21 @@
                 "left"
             ],
             [
-                "connection",
-                "side",
-                "dragonlock"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
                 "size",
                 "openlock",
                 "A"
             ],
             [
+                "connection",
+                "side",
+                "dragonlock"
+            ],
+            [
                 "shape",
-                "wall"
+                "corner"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -912,39 +923,34 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "component",
-                "wall",
-                "left"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "texture",
-                "necro"
+                "build",
+                "s2w"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
+                "size",
+                "width",
+                2
             ],
             [
-                "build",
-                "s2w"
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall",
+                "left"
             ],
             [
                 "size",
@@ -953,9 +959,15 @@
             ],
             [
                 "shape",
-                "wall"
+                "corner"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -976,22 +988,16 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side",
-                "dragonlock"
-            ],
-            [
                 "connection",
                 "side"
+            ],
+            [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "component",
@@ -999,16 +1005,22 @@
                 "right"
             ],
             [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
                 "texture",
                 "necro"
             ],
             [
                 "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "s2w"
+                "side",
+                "dragonlock"
             ],
             [
                 "size",
@@ -1017,9 +1029,10 @@
             ],
             [
                 "shape",
-                "wall"
+                "corner"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1040,39 +1053,29 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "corner_wall"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "component",
-                "corner_wall",
-                "right"
-            ],
-            [
-                "texture",
-                "necro"
+                "build",
+                "s2w"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
+                "size",
+                "width",
+                2
             ],
             [
-                "build",
-                "s2w"
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "size",
@@ -1080,10 +1083,21 @@
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "component",
+                "corner_wall"
+            ],
+            [
+                "component",
+                "corner_wall",
+                "right"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1104,14 +1118,16 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "build",
+                "s2w"
             ],
             [
-                "shape",
-                "floor",
-                "s2w"
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "shape",
@@ -1119,7 +1135,13 @@
             ],
             [
                 "shape",
-                "floor"
+                "floor",
+                "s2w"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ],
             [
                 "size",
@@ -1127,18 +1149,11 @@
                 1
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "s2w"
+                "shape",
+                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1159,9 +1174,12 @@
         },
         "tags": [
             [
-                "shape",
-                "floor",
+                "build",
                 "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1169,8 +1187,17 @@
                 2
             ],
             [
+                "texture",
+                "necro"
+            ],
+            [
                 "shape",
                 "corner"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "shape",
@@ -1180,20 +1207,9 @@
                 "size",
                 "depth",
                 2
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "s2w"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1214,13 +1230,21 @@
         },
         "tags": [
             [
-                "shape",
-                "floor",
+                "size",
+                "width",
+                3
+            ],
+            [
+                "build",
                 "s2w"
             ],
             [
-                "shape",
-                "corner"
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "size",
@@ -1229,26 +1253,19 @@
             ],
             [
                 "shape",
-                "floor"
+                "corner"
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
+                "shape",
+                "floor",
                 "s2w"
             ],
             [
-                "size",
-                "width",
-                3
+                "shape",
+                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1269,18 +1286,29 @@
         },
         "tags": [
             [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
                 "shape",
                 "floor",
                 "s2w"
             ],
             [
-                "size",
-                "depth",
-                4
-            ],
-            [
                 "shape",
-                "corner"
+                "floor"
             ],
             [
                 "size",
@@ -1288,22 +1316,12 @@
                 4
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "s2w"
+                "size",
+                "depth",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1324,9 +1342,20 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "shape",
@@ -1334,8 +1363,9 @@
                 "s2w"
             ],
             [
-                "shape",
-                "floor"
+                "size",
+                "depth",
+                1
             ],
             [
                 "size",
@@ -1343,22 +1373,11 @@
                 1
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "shape",
+                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1379,9 +1398,25 @@
         },
         "tags": [
             [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "width",
+                2
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "shape",
@@ -1390,30 +1425,15 @@
             ],
             [
                 "size",
-                "width",
-                2
+                "depth",
+                1
             ],
             [
                 "shape",
                 "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1434,14 +1454,30 @@
         },
         "tags": [
             [
-                "shape",
-                "floor",
+                "build",
                 "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "size",
                 "width",
                 2
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "shape",
@@ -1451,24 +1487,9 @@
                 "size",
                 "depth",
                 2
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1490,8 +1511,24 @@
         "tags": [
             [
                 "size",
-                "depth",
-                1
+                "width",
+                3
+            ],
+            [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "shape",
@@ -1499,31 +1536,16 @@
                 "s2w"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
-            ],
-            [
-                "size",
-                "width",
-                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1544,9 +1566,25 @@
         },
         "tags": [
             [
-                "shape",
-                "floor",
+                "size",
+                "width",
+                3
+            ],
+            [
+                "build",
                 "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "size",
@@ -1555,30 +1593,15 @@
             ],
             [
                 "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
+                "floor",
                 "s2w"
             ],
             [
-                "size",
-                "width",
-                3
+                "shape",
+                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1599,9 +1622,20 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "shape",
@@ -1610,30 +1644,20 @@
             ],
             [
                 "size",
-                "width",
-                4
+                "depth",
+                1
             ],
             [
                 "shape",
                 "floor"
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "size",
+                "width",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1654,14 +1678,25 @@
         },
         "tags": [
             [
-                "shape",
-                "floor",
+                "build",
                 "s2w"
             ],
             [
-                "size",
-                "width",
-                4
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "shape",
+                "floor",
+                "s2w"
             ],
             [
                 "shape",
@@ -1673,22 +1708,12 @@
                 2
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "size",
+                "width",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1709,14 +1734,29 @@
         },
         "tags": [
             [
+                "build",
+                "s2w"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "shape",
                 "floor",
                 "s2w"
             ],
             [
-                "size",
-                "depth",
-                4
+                "shape",
+                "floor"
             ],
             [
                 "size",
@@ -1724,26 +1764,12 @@
                 4
             ],
             [
-                "shape",
-                "floor"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "build",
-                "s2w"
+                "size",
+                "depth",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1765,14 +1791,15 @@
         "tags": [
             [
                 "scatter",
-                "necromancer",
-                "exsanguination_alter"
+                "alter"
             ],
             [
                 "scatter",
-                "alter"
+                "necromancer",
+                "exsanguination_alter"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1793,6 +1820,18 @@
         },
         "tags": [
             [
+                "connection",
+                "dragonlock"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "I"
@@ -1803,22 +1842,11 @@
                 "I"
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "connection",
-                "dragonlock"
-            ],
-            [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1839,9 +1867,17 @@
         },
         "tags": [
             [
+                "connection",
+                "dragonlock"
+            ],
+            [
                 "size",
                 "openlock",
                 "L"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "size",
@@ -1853,18 +1889,11 @@
                 "separate wall"
             ],
             [
-                "connection",
-                "dragonlock"
-            ],
-            [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1885,9 +1914,12 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "O"
+                "connection",
+                "dragonlock"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "build",
@@ -1895,22 +1927,20 @@
             ],
             [
                 "size",
+                "openlock",
+                "O"
+            ],
+            [
+                "size",
                 "column_shape",
                 "O"
             ],
             [
-                "connection",
-                "dragonlock"
-            ],
-            [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1932,12 +1962,20 @@
         "tags": [
             [
                 "size",
-                "openlock",
+                "column_shape",
                 "T"
             ],
             [
+                "connection",
+                "dragonlock"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
                 "size",
-                "column_shape",
+                "openlock",
                 "T"
             ],
             [
@@ -1945,18 +1983,11 @@
                 "separate wall"
             ],
             [
-                "connection",
-                "dragonlock"
-            ],
-            [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1977,12 +2008,16 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "connection",
                 "dragonlock"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -1997,12 +2032,9 @@
             [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2023,6 +2055,18 @@
         },
         "tags": [
             [
+                "texture",
+                "necro"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "I"
@@ -2033,22 +2077,11 @@
                 "I"
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2074,9 +2107,17 @@
                 "L"
             ],
             [
+                "texture",
+                "necro"
+            ],
+            [
                 "size",
                 "column_shape",
                 "L"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "build",
@@ -2085,16 +2126,9 @@
             [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2115,13 +2149,21 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "O"
+                "texture",
+                "necro"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "build",
                 "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "O"
             ],
             [
                 "size",
@@ -2131,16 +2173,9 @@
             [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2162,12 +2197,20 @@
         "tags": [
             [
                 "size",
-                "openlock",
+                "column_shape",
                 "T"
             ],
             [
+                "texture",
+                "necro"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
                 "size",
-                "column_shape",
+                "openlock",
                 "T"
             ],
             [
@@ -2177,16 +2220,9 @@
             [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2207,6 +2243,14 @@
         },
         "tags": [
             [
+                "texture",
+                "necro"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
                 "build",
                 "separate wall"
             ],
@@ -2223,16 +2267,9 @@
             [
                 "shape",
                 "column"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2253,21 +2290,21 @@
         },
         "tags": [
             [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "shape",
+                "wall"
             ],
             [
                 "texture",
                 "necro"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "component",
@@ -2279,10 +2316,11 @@
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2332,9 +2370,20 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "BA"
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "build",
@@ -2346,22 +2395,12 @@
                 1.5
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "openlock",
+                "BA"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2411,6 +2450,27 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "build",
                 "separate wall"
             ],
@@ -2418,29 +2478,9 @@
                 "size",
                 "openlock",
                 "D"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2490,25 +2530,8 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "size",
@@ -2518,8 +2541,26 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                1
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2569,36 +2610,37 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "Q"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "texture",
-                "necro"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
                 "component",
                 "wall"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2648,30 +2690,25 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "build",
-                "separate wall"
-            ],
-            [
                 "connection",
                 "side"
-            ],
-            [
-                "texture",
-                "necro"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
+                "size",
+                "width",
+                2
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
             ],
             [
                 "component",
@@ -2683,10 +2720,16 @@
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2736,17 +2779,28 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "BA"
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "build",
                 "separate wall"
-            ],
-            [
-                "connection",
-                "side"
             ],
             [
                 "size",
@@ -2754,27 +2808,17 @@
                 1.5
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "openlock",
+                "BA"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2824,6 +2868,31 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "build",
                 "separate wall"
             ],
@@ -2834,35 +2903,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2912,34 +2957,12 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "size",
@@ -2949,8 +2972,31 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3000,13 +3046,33 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "Q"
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3015,30 +3081,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3088,13 +3135,29 @@
         },
         "tags": [
             [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "connection",
@@ -3102,36 +3165,21 @@
                 "dragonlock"
             ],
             [
-                "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3181,13 +3229,24 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "BA"
+                "connection",
+                "side"
             ],
             [
-                "build",
-                "separate wall"
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "connection",
@@ -3195,8 +3254,8 @@
                 "dragonlock"
             ],
             [
-                "connection",
-                "side"
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3204,27 +3263,17 @@
                 1.5
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "openlock",
+                "BA"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3274,13 +3323,38 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
+                "size",
+                "width",
+                3
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
             ],
             [
                 "connection",
                 "openforge",
                 "dragonlock"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3289,35 +3363,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3367,39 +3417,12 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "connection",
-                "openforge",
-                "dragonlock"
-            ],
-            [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "size",
@@ -3409,8 +3432,36 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openforge",
+                "dragonlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3460,18 +3511,38 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "Q"
             ],
             [
                 "connection",
+                "side"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
                 "openforge",
                 "dragonlock"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -3480,30 +3551,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3558,20 +3610,20 @@
                 2
             ],
             [
-                "build",
-                "separate wall"
+                "shape",
+                "wall"
             ],
             [
                 "texture",
                 "necro"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "size",
@@ -3579,10 +3631,11 @@
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3603,9 +3656,20 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "BA"
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "build",
@@ -3617,22 +3681,12 @@
                 1.5
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "openlock",
+                "BA"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3653,27 +3707,6 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "size",
-                "openlock",
-                "D"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "width",
                 3
@@ -3681,8 +3714,30 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "D"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3703,27 +3758,6 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "IA"
@@ -3731,8 +3765,30 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                1
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3753,36 +3809,37 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "Q"
             ],
             [
-                "size",
-                "width",
-                4
+                "shape",
+                "wall"
             ],
             [
                 "texture",
                 "necro"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "component",
                 "wall"
             ],
             [
-                "shape",
-                "wall"
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                4
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3803,34 +3860,29 @@
         },
         "tags": [
             [
+                "connection",
+                "side"
+            ],
+            [
                 "size",
                 "width",
                 2
             ],
             [
-                "build",
-                "separate wall"
-            ],
-            [
-                "connection",
-                "side"
+                "shape",
+                "wall"
             ],
             [
                 "texture",
                 "necro"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "size",
@@ -3838,10 +3890,16 @@
                 "A"
             ],
             [
-                "shape",
-                "wall"
+                "build",
+                "separate wall"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3862,17 +3920,28 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "BA"
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "build",
                 "separate wall"
-            ],
-            [
-                "connection",
-                "side"
             ],
             [
                 "size",
@@ -3880,27 +3949,17 @@
                 1.5
             ],
             [
-                "texture",
-                "necro"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
             ],
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
+                "size",
+                "openlock",
+                "BA"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3921,6 +3980,31 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
                 "build",
                 "separate wall"
             ],
@@ -3931,35 +4015,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3980,34 +4040,8 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "connection",
                 "side"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "size",
@@ -4017,8 +4051,35 @@
             [
                 "shape",
                 "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4039,13 +4100,33 @@
         },
         "tags": [
             [
-                "build",
-                "separate wall"
-            ],
-            [
                 "size",
                 "openlock",
                 "Q"
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "texture",
+                "necro"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "build",
+                "separate wall"
             ],
             [
                 "size",
@@ -4054,30 +4135,11 @@
             ],
             [
                 "connection",
-                "side"
-            ],
-            [
-                "texture",
-                "necro"
-            ],
-            [
-                "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "shape",
-                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",

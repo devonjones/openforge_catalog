@@ -25,6 +25,7 @@
                 "slab"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -58,6 +59,7 @@
                 "slab"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -86,15 +88,16 @@
                 "stone"
             ],
             [
+                "decoration",
+                "bundle"
+            ],
+            [
                 "interface",
                 "loculus",
                 "slab"
-            ],
-            [
-                "decoration",
-                "bundle"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -132,6 +135,7 @@
                 "slab"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -156,9 +160,8 @@
                 "catacombs"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "loculus"
             ],
             [
                 "size",
@@ -166,16 +169,16 @@
                 2
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
+                "connection",
+                "openforge"
             ],
             [
                 "connection",
-                "openforge"
+                "bottom"
+            ],
+            [
+                "build",
+                "thick wall"
             ],
             [
                 "connection",
@@ -193,13 +196,15 @@
             ],
             [
                 "component",
-                "loculus"
+                "wall"
             ],
             [
-                "connection",
-                "bottom"
+                "size",
+                "depth",
+                1
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -285,15 +290,16 @@
                 "loculus_arch"
             ],
             [
+                "texture",
+                "stone"
+            ],
+            [
                 "interface",
                 "loculus",
                 "arch"
-            ],
-            [
-                "texture",
-                "stone"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -318,15 +324,16 @@
                 "loculus_arch"
             ],
             [
+                "texture",
+                "stone"
+            ],
+            [
                 "interface",
                 "loculus",
                 "arch"
-            ],
-            [
-                "texture",
-                "stone"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -351,9 +358,8 @@
                 "catacombs"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "loculus"
             ],
             [
                 "size",
@@ -361,16 +367,12 @@
                 2
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "connection",
                 "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
             ],
             [
                 "size",
@@ -383,9 +385,15 @@
             ],
             [
                 "component",
-                "loculus"
+                "wall"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",

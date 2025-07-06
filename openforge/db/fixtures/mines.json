@@ -18,14 +18,15 @@
             ],
             [
                 "scatter",
-                "mine"
+                "mine",
+                "beam"
             ],
             [
                 "scatter",
-                "mine",
-                "beam"
+                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -52,14 +53,15 @@
             ],
             [
                 "scatter",
-                "mine"
+                "mine",
+                "beam"
             ],
             [
                 "scatter",
-                "mine",
-                "beam"
+                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -85,16 +87,17 @@
                 "brace"
             ],
             [
-                "scatter",
-                "mine"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
+            ],
+            [
+                "scatter",
+                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -121,14 +124,15 @@
             ],
             [
                 "scatter",
-                "mine"
+                "mine",
+                "beam"
             ],
             [
                 "scatter",
-                "mine",
-                "beam"
+                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -149,34 +153,12 @@
         },
         "tags": [
             [
-                "component",
-                "tracks",
-                "cross"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
             ],
             [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "component",
-                "tracks"
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "texture",
-                "mine"
             ],
             [
                 "component",
@@ -187,8 +169,31 @@
                 "size",
                 "depth",
                 4
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "component",
+                "tracks",
+                "cross"
+            ],
+            [
+                "component",
+                "tracks"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -246,17 +251,21 @@
         },
         "tags": [
             [
-                "component",
-                "tracks",
-                "cross"
-            ],
-            [
-                "connection",
-                "openforge"
+                "shape",
+                "floor"
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "size",
+                "depth",
+                4
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -265,22 +274,19 @@
             ],
             [
                 "component",
+                "tracks",
+                "cross"
+            ],
+            [
+                "component",
                 "tracks"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
-            ],
-            [
-                "size",
-                "depth",
-                4
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -338,31 +344,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
-                "component",
-                "tracks",
-                "curved"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "component",
-                "tracks"
             ],
             [
                 "shape",
@@ -371,8 +358,28 @@
             [
                 "texture",
                 "mine"
+            ],
+            [
+                "component",
+                "tracks",
+                "curved"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "tracks"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -435,11 +442,6 @@
                 "tee"
             ],
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
             ],
@@ -448,8 +450,16 @@
                 "floor"
             ],
             [
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
             ],
             [
@@ -457,14 +467,12 @@
                 "tracks"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "size",
+                "depth",
+                2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -522,26 +530,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "component",
-                "tracks"
             ],
             [
                 "shape",
@@ -550,8 +540,27 @@
             [
                 "texture",
                 "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "tracks"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -609,11 +618,6 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
                 "connection",
                 "openforge"
             ],
@@ -622,8 +626,16 @@
                 "floor"
             ],
             [
+                "shape",
+                "square"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
                 "size",
-                "depth",
+                "width",
                 2
             ],
             [
@@ -631,14 +643,12 @@
                 "tracks"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "size",
+                "depth",
+                2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -696,26 +706,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "component",
-                "tracks"
             ],
             [
                 "shape",
@@ -724,8 +716,27 @@
             [
                 "texture",
                 "mine"
+            ],
+            [
+                "size",
+                "depth",
+                3
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "tracks"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -783,25 +794,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "shape",
                 "floor"
-            ],
-            [
-                "texture",
-                "mine"
-            ],
-            [
-                "component",
-                "tracks"
             ],
             [
                 "shape",
@@ -811,8 +805,26 @@
                 "size",
                 "depth",
                 4
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
+                "tracks"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -871,16 +883,17 @@
         "tags": [
             [
                 "size",
-                "corner_shape",
+                "openlock",
                 "IL"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "square"
             ],
             [
-                "build",
-                "thick wall"
+                "size",
+                "width",
+                1
             ],
             [
                 "shape",
@@ -888,18 +901,8 @@
                 "convex"
             ],
             [
-                "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "size",
-                "width",
-                1
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -908,18 +911,28 @@
             ],
             [
                 "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "size",
                 "angle",
                 270
             ],
             [
-                "shape",
-                "square"
+                "build",
+                "thick wall"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -940,22 +953,9 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
                 "shape",
                 "corner",
                 "concave"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "size",
@@ -964,12 +964,16 @@
             ],
             [
                 "shape",
-                "corner"
+                "square"
             ],
             [
                 "size",
                 "width",
                 1
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -978,18 +982,28 @@
             ],
             [
                 "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "size",
                 "angle",
                 90
             ],
             [
-                "shape",
-                "square"
+                "build",
+                "thick wall"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1011,30 +1025,12 @@
         "tags": [
             [
                 "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "corner",
-                "convex"
-            ],
-            [
-                "size",
                 "openlock",
                 "IL"
             ],
             [
                 "shape",
-                "corner"
+                "square"
             ],
             [
                 "size",
@@ -1042,13 +1038,13 @@
                 1
             ],
             [
-                "connection",
-                "side",
-                "openlock"
+                "shape",
+                "corner",
+                "convex"
             ],
             [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1057,18 +1053,37 @@
             ],
             [
                 "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "size",
                 "angle",
                 270
             ],
             [
-                "shape",
-                "square"
+                "build",
+                "thick wall"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1089,22 +1104,9 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
                 "shape",
                 "corner",
                 "concave"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "size",
@@ -1113,7 +1115,7 @@
             ],
             [
                 "shape",
-                "corner"
+                "square"
             ],
             [
                 "size",
@@ -1121,13 +1123,8 @@
                 1
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1136,18 +1133,37 @@
             ],
             [
                 "size",
+                "corner_shape",
+                "IL"
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "size",
                 "angle",
                 90
             ],
             [
-                "shape",
-                "square"
+                "build",
+                "thick wall"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1168,26 +1184,18 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "door",
+                "double"
             ],
             [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
                 "width",
                 4
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "door",
-                "double"
             ],
             [
                 "size",
@@ -1196,13 +1204,22 @@
             ],
             [
                 "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
                 "door"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1254,21 +1271,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "build",
                 "thick wall"
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1277,13 +1285,23 @@
             ],
             [
                 "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "component",
                 "door"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1335,21 +1353,13 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1362,10 +1372,19 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1417,21 +1436,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "build",
                 "thick wall"
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1444,10 +1454,20 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1499,16 +1519,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1526,10 +1538,19 @@
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1581,21 +1602,13 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
                 "width",
                 4
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "size",
@@ -1608,10 +1621,19 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1663,23 +1685,10 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "size",
@@ -1687,8 +1696,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1696,10 +1705,24 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1777,26 +1800,13 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -1804,10 +1814,24 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1859,6 +1883,29 @@
         },
         "tags": [
             [
+                "interface",
+                "mine",
+                "beam",
+                "magnetic"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -1869,33 +1916,11 @@
                 "b"
             ],
             [
-                "interface",
-                "mine",
-                "beam",
-                "magnetic"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1973,6 +1998,23 @@
         },
         "tags": [
             [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -1985,25 +2027,9 @@
             [
                 "connection",
                 "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2055,27 +2081,14 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2088,10 +2101,24 @@
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2169,21 +2196,8 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2196,10 +2210,24 @@
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2251,23 +2279,14 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2275,19 +2294,29 @@
                 4
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "depth",
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2365,17 +2394,8 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2383,19 +2403,29 @@
                 4
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
                 "size",
                 "depth",
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2447,30 +2477,13 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2483,10 +2496,28 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2538,30 +2569,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
                 "build",
                 "thick wall"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2574,10 +2587,29 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2629,25 +2661,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2660,15 +2675,33 @@
                 "a"
             ],
             [
+                "connection",
+                "side"
+            ],
+            [
                 "size",
                 "width",
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2720,30 +2753,13 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
                 "width",
                 4
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
             ],
             [
                 "size",
@@ -2756,10 +2772,28 @@
                 "a"
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2811,23 +2845,10 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "size",
@@ -2835,17 +2856,8 @@
                 1
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -2853,10 +2865,33 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2934,6 +2969,32 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "component",
                 "wall",
                 "b"
@@ -2943,37 +3004,12 @@
                 "openforge"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3025,6 +3061,33 @@
         },
         "tags": [
             [
+                "interface",
+                "mine",
+                "beam",
+                "magnetic"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -3035,42 +3098,16 @@
                 "b"
             ],
             [
-                "interface",
-                "mine",
-                "beam",
-                "magnetic"
-            ],
-            [
                 "connection",
                 "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3148,6 +3185,27 @@
         },
         "tags": [
             [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
                 "size",
                 "width",
                 2
@@ -3162,32 +3220,12 @@
                 "openforge"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3239,36 +3277,14 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -3276,15 +3292,38 @@
                 1
             ],
             [
+                "connection",
+                "side"
+            ],
+            [
                 "size",
                 "width",
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3362,6 +3401,32 @@
         },
         "tags": [
             [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "component",
                 "wall",
                 "b"
@@ -3371,37 +3436,12 @@
                 "openforge"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3453,23 +3493,14 @@
         },
         "tags": [
             [
-                "component",
-                "wall",
-                "b"
-            ],
-            [
                 "interface",
                 "mine",
                 "beam",
                 "magnetic"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -3477,28 +3508,38 @@
                 4
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "component",
-                "wall"
+                "size",
+                "depth",
+                1
             ],
             [
                 "connection",
                 "side"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "wall"
             ],
             [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
+            ],
+            [
+                "component",
+                "wall",
+                "b"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3576,6 +3617,32 @@
         },
         "tags": [
             [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "component",
                 "wall",
                 "b"
@@ -3585,37 +3652,12 @@
                 "openforge"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "mine"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3667,17 +3709,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "component",
+                "wooden"
             ],
             [
                 "size",
@@ -3685,13 +3718,8 @@
                 1
             ],
             [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -3699,10 +3727,25 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "component",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3723,17 +3766,21 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
                 "build",
                 "thick wall"
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -3746,19 +3793,16 @@
                 "low"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
                 "size",
-                "depth",
-                1
+                "width",
+                2
             ],
             [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3779,12 +3823,17 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -3797,24 +3846,20 @@
                 "low"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "size",
                 "width",
                 3
             ],
             [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3835,17 +3880,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -3853,24 +3893,30 @@
                 4
             ],
             [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "component",
-                "wooden"
-            ],
-            [
                 "size",
                 "depth",
                 1
             ],
             [
-                "texture",
-                "mine"
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "component",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3891,15 +3937,34 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "component",
                 "wall",
                 "low"
             ],
@@ -3909,18 +3974,8 @@
                 "II"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "component",
-                "wooden"
+                "build",
+                "thick wall"
             ],
             [
                 "size",
@@ -3928,19 +3983,11 @@
                 "II"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3961,22 +4008,8 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "component",
+                "wooden"
             ],
             [
                 "size",
@@ -3985,7 +4018,7 @@
             ],
             [
                 "shape",
-                "corner"
+                "square"
             ],
             [
                 "size",
@@ -3993,13 +4026,8 @@
                 1
             ],
             [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4007,14 +4035,34 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "corner_shape",
+                "IL"
             ],
             [
-                "texture",
-                "mine"
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "component",
+                "wall",
+                "low"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4035,22 +4083,13 @@
         },
         "tags": [
             [
+                "component",
+                "wooden"
+            ],
+            [
                 "size",
                 "corner_shape",
                 "IO"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ],
             [
                 "size",
@@ -4058,13 +4097,12 @@
                 1
             ],
             [
-                "component",
-                "wall",
-                "low"
+                "shape",
+                "square"
             ],
             [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4073,7 +4111,13 @@
             ],
             [
                 "shape",
-                "square"
+                "wall",
+                "low"
+            ],
+            [
+                "component",
+                "wall",
+                "low"
             ],
             [
                 "size",
@@ -4081,10 +4125,15 @@
                 "IO"
             ],
             [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4105,22 +4154,12 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "shape",
-                "wall",
-                "low"
+                "square"
             ],
             [
                 "size",
@@ -4128,13 +4167,13 @@
                 1
             ],
             [
-                "component",
-                "wall",
-                "low"
+                "texture",
+                "mine"
             ],
             [
-                "component",
-                "wooden"
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -4142,19 +4181,30 @@
                 1
             ],
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "component",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4175,17 +4225,21 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "shape",
-                "wall",
-                "low"
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4194,8 +4248,13 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
             ],
             [
                 "component",
@@ -4203,28 +4262,20 @@
                 "low"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
             ],
             [
                 "size",
                 "openlock",
                 "IX"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4246,20 +4297,20 @@
         "tags": [
             [
                 "component",
-                "transition",
-                "HHHL"
+                "wooden"
             ],
             [
-                "component",
-                "transition"
+                "shape",
+                "square"
             ],
             [
-                "connection",
-                "openforge"
+                "size",
+                "width",
+                1
             ],
             [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4268,36 +4319,37 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
+            ],
+            [
+                "component",
+                "transition"
+            ],
+            [
+                "component",
+                "transition",
+                "HHHL"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
             ],
             [
                 "size",
                 "openlock",
                 "IX"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4349,25 +4401,12 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
                 "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "wooden"
             ],
             [
                 "shape",
-                "wall"
+                "square"
             ],
             [
                 "size",
@@ -4375,12 +4414,13 @@
                 1
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
                 "texture",
                 "mine"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -4388,20 +4428,33 @@
                 1
             ],
             [
-                "size",
-                "openlock",
-                "IT"
+                "component",
+                "transition"
             ],
             [
                 "shape",
-                "square"
+                "wall"
             ],
             [
                 "component",
                 "transition",
                 "HHL"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "IT"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4423,15 +4476,20 @@
         "tags": [
             [
                 "component",
-                "transition"
+                "wooden"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "square"
             ],
             [
-                "build",
-                "thick wall"
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4440,16 +4498,25 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
+            ],
+            [
+                "component",
+                "transition"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "component",
-                "wooden"
+                "size",
+                "openlock",
+                "IX"
+            ],
+            [
+                "build",
+                "thick wall"
             ],
             [
                 "component",
@@ -4457,24 +4524,11 @@
                 "HHLL"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
-            ],
-            [
-                "size",
-                "openlock",
-                "IX"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4527,20 +4581,7 @@
         "tags": [
             [
                 "component",
-                "transition"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "wooden"
             ],
             [
                 "size",
@@ -4549,12 +4590,7 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "component",
-                "transition",
-                "HL"
+                "square"
             ],
             [
                 "size",
@@ -4563,11 +4599,12 @@
             ],
             [
                 "component",
-                "wall"
+                "transition",
+                "HL"
             ],
             [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4575,14 +4612,32 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "corner_shape",
+                "IL"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4634,9 +4689,8 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
+                "component",
+                "wooden"
             ],
             [
                 "component",
@@ -4644,20 +4698,8 @@
                 "HLH"
             ],
             [
-                "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
                 "shape",
-                "wall"
+                "square"
             ],
             [
                 "size",
@@ -4665,8 +4707,13 @@
                 1
             ],
             [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -4674,19 +4721,28 @@
                 1
             ],
             [
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4708,11 +4764,7 @@
         "tags": [
             [
                 "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
+                "wooden"
             ],
             [
                 "component",
@@ -4720,13 +4772,8 @@
                 "HLHL"
             ],
             [
-                "size",
-                "corner_shape",
-                "IX"
-            ],
-            [
-                "build",
-                "thick wall"
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -4734,12 +4781,13 @@
                 1
             ],
             [
-                "component",
-                "wall"
+                "texture",
+                "mine"
             ],
             [
-                "component",
-                "wooden"
+                "size",
+                "corner_shape",
+                "IX"
             ],
             [
                 "size",
@@ -4747,19 +4795,28 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "component",
+                "transition"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
             ],
             [
                 "size",
                 "openlock",
                 "IX"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4811,21 +4868,35 @@
         },
         "tags": [
             [
+                "component",
+                "wooden"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
                 "size",
                 "corner_shape",
                 "IT"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "component",
                 "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "shape",
@@ -4837,18 +4908,8 @@
                 "HLL"
             ],
             [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
+                "build",
+                "thick wall"
             ],
             [
                 "size",
@@ -4856,14 +4917,11 @@
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4885,15 +4943,25 @@
         "tags": [
             [
                 "component",
-                "transition"
+                "wooden"
             ],
             [
-                "connection",
-                "openforge"
+                "component",
+                "transition",
+                "HLLL"
             ],
             [
-                "build",
-                "thick wall"
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -4902,41 +4970,32 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
+            ],
+            [
+                "component",
+                "transition"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "transition",
-                "HLLL"
-            ],
-            [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
             ],
             [
                 "size",
                 "openlock",
                 "IX"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4989,20 +5048,7 @@
         "tags": [
             [
                 "component",
-                "transition"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "wooden"
             ],
             [
                 "size",
@@ -5011,12 +5057,7 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "component",
-                "transition",
-                "LH"
+                "square"
             ],
             [
                 "size",
@@ -5024,12 +5065,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5037,14 +5074,37 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "corner_shape",
+                "IL"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "transition",
+                "LH"
+            ],
+            [
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "corner"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5096,32 +5156,6 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
-                "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
                 "component",
                 "wooden"
             ],
@@ -5132,13 +5166,8 @@
             ],
             [
                 "size",
-                "depth",
+                "width",
                 1
-            ],
-            [
-                "size",
-                "openlock",
-                "IT"
             ],
             [
                 "shape",
@@ -5147,8 +5176,40 @@
             [
                 "texture",
                 "mine"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IT"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "size",
+                "openlock",
+                "IT"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5169,25 +5230,12 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
                 "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "wooden"
             ],
             [
                 "shape",
-                "wall"
+                "square"
             ],
             [
                 "size",
@@ -5195,13 +5243,13 @@
                 1
             ],
             [
-                "component",
-                "transition",
-                "LHL"
+                "texture",
+                "mine"
             ],
             [
-                "component",
-                "wooden"
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -5209,19 +5257,33 @@
                 1
             ],
             [
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "component",
+                "transition",
+                "LHL"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5242,30 +5304,8 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
                 "component",
-                "transition"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
+                "wooden"
             ],
             [
                 "component",
@@ -5273,8 +5313,22 @@
                 "LLH"
             ],
             [
-                "component",
-                "wooden"
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -5282,19 +5336,28 @@
                 1
             ],
             [
+                "component",
+                "transition"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5316,20 +5379,11 @@
         "tags": [
             [
                 "component",
-                "transition"
+                "wooden"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "openlock",
-                "II"
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -5337,17 +5391,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "II"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5355,14 +5400,33 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "component",
+                "transition"
             ],
             [
-                "texture",
-                "mine"
+                "size",
+                "openlock",
+                "II"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "II"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5414,12 +5478,8 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "size",
@@ -5427,12 +5487,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5440,10 +5496,19 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5495,25 +5560,16 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
                 "build",
                 "thick wall"
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5521,10 +5577,20 @@
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                2
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5576,20 +5642,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
                 "component",
                 "wooden"
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5602,10 +5660,19 @@
                 3
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5657,12 +5724,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
-                "build",
-                "thick wall"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5670,23 +5737,24 @@
                 4
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
-            ],
-            [
                 "size",
                 "depth",
                 1
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5738,17 +5806,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "openlock",
-                "II"
+                "shape",
+                "square"
             ],
             [
                 "size",
@@ -5756,17 +5819,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "II"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5774,14 +5828,29 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "openlock",
+                "II"
             ],
             [
-                "texture",
-                "mine"
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "II"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5833,17 +5902,8 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "size",
@@ -5852,7 +5912,7 @@
             ],
             [
                 "shape",
-                "corner"
+                "square"
             ],
             [
                 "size",
@@ -5860,12 +5920,8 @@
                 1
             ],
             [
-                "component",
-                "wall"
-            ],
-            [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5873,14 +5929,28 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "corner_shape",
+                "IL"
             ],
             [
-                "texture",
-                "mine"
+                "shape",
+                "corner"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5932,17 +6002,13 @@
         },
         "tags": [
             [
+                "component",
+                "wooden"
+            ],
+            [
                 "size",
                 "corner_shape",
                 "IO"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
             ],
             [
                 "size",
@@ -5950,12 +6016,12 @@
                 1
             ],
             [
-                "component",
-                "wall"
+                "shape",
+                "square"
             ],
             [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -5963,8 +6029,8 @@
                 1
             ],
             [
-                "shape",
-                "square"
+                "component",
+                "wall"
             ],
             [
                 "size",
@@ -5972,10 +6038,15 @@
                 "IO"
             ],
             [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -6027,21 +6098,12 @@
         },
         "tags": [
             [
-                "size",
-                "corner_shape",
-                "IT"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "build",
-                "thick wall"
+                "component",
+                "wooden"
             ],
             [
                 "shape",
-                "wall"
+                "square"
             ],
             [
                 "size",
@@ -6049,8 +6111,13 @@
                 1
             ],
             [
-                "component",
-                "wooden"
+                "texture",
+                "mine"
+            ],
+            [
+                "size",
+                "corner_shape",
+                "IT"
             ],
             [
                 "size",
@@ -6058,19 +6125,24 @@
                 1
             ],
             [
+                "shape",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
                 "size",
                 "openlock",
                 "IT"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -6091,12 +6163,21 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
+                "component",
+                "wooden"
             ],
             [
-                "build",
-                "thick wall"
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "texture",
+                "mine"
             ],
             [
                 "size",
@@ -6105,7 +6186,7 @@
             ],
             [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
@@ -6113,28 +6194,20 @@
                 "wall"
             ],
             [
-                "component",
-                "wooden"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "texture",
-                "mine"
+                "build",
+                "thick wall"
             ],
             [
                 "size",
                 "openlock",
                 "IX"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",

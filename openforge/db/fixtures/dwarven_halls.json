@@ -12,19 +12,6 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "size",
                 "width",
                 1
@@ -34,10 +21,24 @@
                 "dwarven_halls"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -95,8 +96,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -104,16 +105,16 @@
                 1
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -121,6 +122,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -178,8 +180,12 @@
         },
         "tags": [
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "size",
@@ -191,12 +197,8 @@
                 "openforge"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -204,6 +206,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -261,13 +264,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "square"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -275,18 +273,24 @@
                 1
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
                 "connection",
                 "openforge"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -345,13 +349,16 @@
         "tags": [
             [
                 "size",
-                "width",
+                "depth",
                 3
             ],
             [
-                "size",
-                "depth",
-                3
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "shape",
+                "floor"
             ],
             [
                 "shape",
@@ -362,14 +369,12 @@
                 "openforge"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "shape",
-                "floor"
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -427,8 +432,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -436,8 +441,8 @@
                 1
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "floor"
             ],
             [
                 "size",
@@ -445,14 +450,15 @@
                 4
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "square"
             ],
             [
-                "shape",
-                "floor"
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -510,19 +516,6 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
                 "texture",
                 "dwarven_halls"
             ],
@@ -534,8 +527,22 @@
                 "size",
                 "depth",
                 2
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -593,21 +600,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "size",
                 "depth",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "width",
                 4
             ],
             [
@@ -617,8 +611,22 @@
             [
                 "shape",
                 "floor"
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -676,19 +684,6 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "size",
                 "width",
                 1
@@ -698,10 +693,24 @@
                 "dwarven_halls"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "floor"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -722,12 +731,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -735,12 +740,16 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "floor"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -748,6 +757,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -768,8 +778,12 @@
         },
         "tags": [
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "size",
@@ -781,12 +795,8 @@
                 "openlock"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -794,6 +804,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -814,17 +825,8 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -832,14 +834,24 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "floor"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "shape",
-                "floor"
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -861,21 +873,8 @@
         "tags": [
             [
                 "size",
-                "width",
-                3
-            ],
-            [
-                "size",
                 "depth",
                 3
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
             ],
             [
                 "texture",
@@ -884,8 +883,22 @@
             [
                 "shape",
                 "floor"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -906,12 +919,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -919,19 +928,24 @@
                 1
             ],
             [
+                "shape",
+                "floor"
+            ],
+            [
                 "size",
                 "width",
                 4
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "square"
             ],
             [
-                "shape",
-                "floor"
+                "connection",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -952,19 +966,6 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
                 "texture",
                 "dwarven_halls"
             ],
@@ -976,8 +977,22 @@
                 "size",
                 "depth",
                 2
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -998,21 +1013,8 @@
         },
         "tags": [
             [
-                "shape",
-                "square"
-            ],
-            [
                 "size",
                 "depth",
-                4
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "width",
                 4
             ],
             [
@@ -1022,8 +1024,22 @@
             [
                 "shape",
                 "floor"
+            ],
+            [
+                "size",
+                "width",
+                4
+            ],
+            [
+                "shape",
+                "square"
+            ],
+            [
+                "connection",
+                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1049,17 +1065,8 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "component",
@@ -1070,10 +1077,20 @@
                 "openforge"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1131,17 +1148,8 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "component",
@@ -1152,8 +1160,17 @@
                 "openforge"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -1161,6 +1178,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1218,17 +1236,13 @@
         },
         "tags": [
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "floor"
             ],
             [
                 "size",
                 "depth",
                 2
-            ],
-            [
-                "shape",
-                "square"
             ],
             [
                 "component",
@@ -1239,8 +1253,12 @@
                 "openforge"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ],
             [
                 "size",
@@ -1248,6 +1266,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1305,22 +1324,8 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "component",
@@ -1331,10 +1336,25 @@
                 "openforge"
             ],
             [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1392,22 +1412,13 @@
         },
         "tags": [
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
                 "size",
                 "depth",
                 3
             ],
             [
                 "shape",
-                "square"
+                "floor"
             ],
             [
                 "component",
@@ -1418,10 +1429,20 @@
                 "openforge"
             ],
             [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1479,9 +1500,12 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
             ],
             [
                 "size",
@@ -1489,26 +1513,24 @@
                 4
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
                 "connection",
                 "openforge"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
-                "floor"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1566,17 +1588,18 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
                 "size",
                 "width",
                 4
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "shape",
-                "square"
             ],
             [
                 "component",
@@ -1587,15 +1610,15 @@
                 "openforge"
             ],
             [
-                "shape",
-                "floor"
+                "texture",
+                "dwarven_halls"
             ],
             [
-                "size",
-                "depth",
-                2
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1653,13 +1676,21 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
                 "size",
                 "width",
                 4
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "connection",
+                "openforge"
             ],
             [
                 "size",
@@ -1667,22 +1698,15 @@
                 4
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1740,13 +1764,25 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                1
+            ],
+            [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
                 "connection",
                 "openlock"
             ],
             [
-                "size",
-                "width",
-                1
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -1754,22 +1790,11 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1790,8 +1815,20 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
                 "connection",
                 "openlock"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -1799,20 +1836,8 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ],
             [
                 "size",
@@ -1820,6 +1845,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1840,6 +1866,19 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
                 "connection",
                 "openlock"
             ],
@@ -1848,21 +1887,8 @@
                 "dwarven_halls"
             ],
             [
-                "size",
-                "depth",
-                2
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ],
             [
                 "size",
@@ -1870,6 +1896,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1890,17 +1917,16 @@
         },
         "tags": [
             [
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
                 "connection",
                 "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "dwarven_halls"
             ],
             [
                 "size",
@@ -1908,18 +1934,20 @@
                 3
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1940,12 +1968,21 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "size",
+                "depth",
+                3
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "size",
@@ -1953,23 +1990,15 @@
                 3
             ],
             [
-                "size",
-                "depth",
-                3
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -1990,13 +2019,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "shape",
+                "floor"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "knotwork"
             ],
             [
                 "size",
@@ -2004,22 +2032,24 @@
                 4
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "texture",
                 "dwarven_halls"
             ],
             [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2040,13 +2070,26 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "shape",
+                "floor"
+            ],
+            [
+                "size",
+                "depth",
+                2
             ],
             [
                 "size",
                 "width",
                 4
+            ],
+            [
+                "component",
+                "knotwork"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "texture",
@@ -2055,21 +2098,9 @@
             [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "depth",
-                2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2090,8 +2121,12 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "shape",
+                "floor"
+            ],
+            [
+                "component",
+                "knotwork"
             ],
             [
                 "size",
@@ -2099,8 +2134,8 @@
                 4
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "connection",
+                "openlock"
             ],
             [
                 "size",
@@ -2108,18 +2143,15 @@
                 4
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "knotwork"
-            ],
-            [
-                "shape",
-                "floor"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2141,17 +2173,34 @@
         "tags": [
             [
                 "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "connection",
+                "side"
+            ],
+            [
+                "size",
                 "width",
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IL"
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -2163,36 +2212,20 @@
             ],
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "openforge"
+                "depth",
+                1
             ],
             [
                 "connection",
                 "side",
                 "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2249,9 +2282,8 @@
                 "IO"
             ],
             [
-                "size",
-                "corner_shape",
-                "IO"
+                "connection",
+                "side"
             ],
             [
                 "size",
@@ -2259,13 +2291,21 @@
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IO"
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -2276,27 +2316,21 @@
                 "dwarven_halls"
             ],
             [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "openforge"
+                "size",
+                "depth",
+                1
             ],
             [
                 "connection",
                 "side",
                 "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2348,18 +2382,34 @@
         },
         "tags": [
             [
+                "connection",
+                "side"
+            ],
+            [
                 "size",
                 "width",
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
+            ],
+            [
+                "shape",
+                "wall"
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -2370,8 +2420,14 @@
                 "dwarven_halls"
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IT"
             ],
             [
                 "size",
@@ -2380,31 +2436,10 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "size",
-                "openlock",
-                "IT"
-            ],
-            [
-                "shape",
-                "wall"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2456,18 +2491,25 @@
         },
         "tags": [
             [
+                "connection",
+                "side"
+            ],
+            [
                 "size",
                 "width",
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -2479,8 +2521,13 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IX"
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ],
             [
                 "shape",
@@ -2492,23 +2539,12 @@
                 "IX"
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
+                "size",
+                "corner_shape",
+                "IX"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2560,8 +2596,13 @@
         },
         "tags": [
             [
+                "size",
+                "openlock",
+                "IL"
+            ],
+            [
                 "connection",
-                "openlock"
+                "side"
             ],
             [
                 "size",
@@ -2569,9 +2610,17 @@
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IL"
             ],
             [
                 "component",
@@ -2587,32 +2636,20 @@
             ],
             [
                 "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
+                "depth",
+                1
             ],
             [
                 "connection",
                 "side",
                 "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2638,9 +2675,8 @@
                 "IO"
             ],
             [
-                "size",
-                "corner_shape",
-                "IO"
+                "connection",
+                "side"
             ],
             [
                 "size",
@@ -2648,44 +2684,46 @@
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IO"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "connection",
-                "openlock"
+                "build",
+                "thick wall"
             ],
             [
                 "texture",
                 "dwarven_halls"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
+                "size",
+                "depth",
+                1
             ],
             [
                 "connection",
                 "side",
                 "openlock"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2707,7 +2745,7 @@
         "tags": [
             [
                 "connection",
-                "openlock"
+                "side"
             ],
             [
                 "size",
@@ -2715,9 +2753,21 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "wall"
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ],
             [
                 "component",
@@ -2732,8 +2782,14 @@
                 "dwarven_halls"
             ],
             [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "size",
+                "openlock",
+                "IT"
             ],
             [
                 "size",
@@ -2742,27 +2798,10 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "size",
-                "openlock",
-                "IT"
-            ],
-            [
-                "shape",
-                "wall"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2784,7 +2823,7 @@
         "tags": [
             [
                 "connection",
-                "openlock"
+                "side"
             ],
             [
                 "size",
@@ -2792,9 +2831,12 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openlock"
             ],
             [
                 "component",
@@ -2810,8 +2852,13 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IX"
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ],
             [
                 "shape",
@@ -2823,19 +2870,12 @@
                 "IX"
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "side"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
+                "size",
+                "corner_shape",
+                "IX"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2857,27 +2897,17 @@
         "tags": [
             [
                 "size",
+                "openlock",
+                "IL"
+            ],
+            [
+                "size",
                 "width",
                 1
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "openlock",
-                "IL"
+                "shape",
+                "corner"
             ],
             [
                 "size",
@@ -2885,27 +2915,38 @@
                 "IL"
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
                 "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
+                "wall",
+                "low"
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "shape",
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "component",
                 "wall",
                 "low"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -2932,18 +2973,34 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IO"
-            ],
-            [
-                "size",
                 "width",
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IO"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -2951,31 +3008,16 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
                 "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3001,9 +3043,25 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -3011,16 +3069,14 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "size",
+                "depth",
+                1
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "openlock",
+                "IT"
             ],
             [
                 "size",
@@ -3029,23 +3085,10 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "openlock",
-                "IT"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3071,9 +3114,25 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -3081,17 +3140,9 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "size",
-                "corner_shape",
-                "IX"
-            ],
-            [
-                "build",
-                "thick wall"
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -3103,19 +3154,12 @@
                 "IX"
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "size",
+                "corner_shape",
+                "IX"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3136,8 +3180,9 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
+                "size",
+                "openlock",
+                "IL"
             ],
             [
                 "size",
@@ -3145,23 +3190,12 @@
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
             ],
             [
-                "component",
-                "wall",
-                "low"
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "openlock",
-                "IL"
+                "connection",
+                "openlock"
             ],
             [
                 "size",
@@ -3169,23 +3203,34 @@
                 "IL"
             ],
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
                 "build",
                 "thick wall"
             ],
             [
-                "shape",
-                "square"
+                "texture",
+                "dwarven_halls"
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "shape",
+                "component",
                 "wall",
                 "low"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3212,18 +3257,34 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IO"
-            ],
-            [
-                "size",
                 "width",
                 1
             ],
             [
+                "shape",
+                "corner"
+            ],
+            [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IO"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -3231,31 +3292,16 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "build",
-                "thick wall"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
                 "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3276,18 +3322,30 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -3295,16 +3353,14 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "size",
+                "depth",
+                1
             ],
             [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "openlock",
+                "IT"
             ],
             [
                 "size",
@@ -3313,19 +3369,10 @@
             ],
             [
                 "shape",
-                "corner"
-            ],
-            [
-                "size",
-                "openlock",
-                "IT"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3346,18 +3393,30 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "size",
-                "depth",
-                1
+                "shape",
+                "corner"
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "component",
@@ -3365,17 +3424,9 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "size",
-                "corner_shape",
-                "IX"
-            ],
-            [
-                "build",
-                "thick wall"
+                "depth",
+                1
             ],
             [
                 "shape",
@@ -3387,15 +3438,12 @@
                 "IX"
             ],
             [
-                "shape",
-                "corner"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
+                "size",
+                "corner_shape",
+                "IX"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3417,12 +3465,15 @@
         "tags": [
             [
                 "component",
+                "door"
+            ],
+            [
+                "component",
                 "wall"
             ],
             [
-                "size",
-                "depth",
-                1
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -3433,12 +3484,9 @@
                 "dwarven_halls"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "door"
+                "size",
+                "depth",
+                1
             ],
             [
                 "component",
@@ -3451,6 +3499,7 @@
                 2
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3517,12 +3566,11 @@
             ],
             [
                 "component",
-                "wall"
+                "door"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "wall"
             ],
             [
                 "build",
@@ -3533,8 +3581,9 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "door"
+                "size",
+                "depth",
+                1
             ],
             [
                 "component",
@@ -3547,6 +3596,7 @@
                 2
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3581,13 +3631,16 @@
         },
         "tags": [
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "door"
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -3598,12 +3651,9 @@
                 "dwarven_halls"
             ],
             [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "door"
+                "size",
+                "depth",
+                1
             ],
             [
                 "size",
@@ -3611,6 +3661,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3666,9 +3717,8 @@
                 "openlock"
             ],
             [
-                "size",
-                "depth",
-                1
+                "component",
+                "door"
             ],
             [
                 "component",
@@ -3683,8 +3733,9 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "door"
+                "size",
+                "depth",
+                1
             ],
             [
                 "size",
@@ -3692,6 +3743,7 @@
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3712,7 +3764,7 @@
         },
         "tags": [
             [
-                "part",
+                "interface",
                 "door",
                 "dwarven"
             ],
@@ -3725,11 +3777,12 @@
                 "door"
             ],
             [
-                "interface",
+                "part",
                 "door",
                 "dwarven"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3750,12 +3803,21 @@
         },
         "tags": [
             [
-                "component",
-                "plinth"
+                "size",
+                "depth",
+                2
             ],
             [
                 "component",
                 "wall"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "plinth"
             ],
             [
                 "build",
@@ -3769,17 +3831,9 @@
                 "size",
                 "width",
                 2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "size",
-                "depth",
-                2
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3847,22 +3901,25 @@
             ],
             [
                 "size",
+                "width",
+                1
+            ],
+            [
+                "size",
                 "corner_shape",
                 "IO"
             ],
             [
-                "size",
-                "width",
-                1
+                "component",
+                "sentinel"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "size",
-                "depth",
-                1
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -3873,12 +3930,9 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "sentinel"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "component",
@@ -3886,10 +3940,11 @@
                 "1"
             ],
             [
-                "connection",
-                "openforge"
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -3947,22 +4002,30 @@
             ],
             [
                 "size",
+                "width",
+                1
+            ],
+            [
+                "component",
+                "sentinel",
+                "2"
+            ],
+            [
+                "size",
                 "corner_shape",
                 "IO"
             ],
             [
-                "size",
-                "width",
-                1
+                "component",
+                "sentinel"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "size",
-                "depth",
-                1
+                "connection",
+                "openforge"
             ],
             [
                 "build",
@@ -3973,23 +4036,16 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "sentinel"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
                 "square"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "sentinel",
-                "2"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4041,13 +4097,13 @@
         },
         "tags": [
             [
-                "size",
-                "openlock",
-                "IO"
+                "component",
+                "sentinel",
+                "3"
             ],
             [
                 "size",
-                "corner_shape",
+                "openlock",
                 "IO"
             ],
             [
@@ -4056,13 +4112,29 @@
                 1
             ],
             [
+                "size",
+                "corner_shape",
+                "IO"
+            ],
+            [
+                "component",
+                "sentinel"
+            ],
+            [
                 "component",
                 "wall"
             ],
             [
-                "component",
-                "sentinel",
-                "3"
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -4070,26 +4142,11 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "sentinel"
-            ],
-            [
                 "shape",
                 "square"
-            ],
-            [
-                "connection",
-                "openforge"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4147,17 +4204,8 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IO"
-            ],
-            [
-                "size",
                 "width",
                 1
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "component",
@@ -4166,30 +4214,40 @@
             ],
             [
                 "size",
-                "depth",
-                1
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
+                "corner_shape",
+                "IO"
             ],
             [
                 "component",
                 "sentinel"
             ],
             [
-                "shape",
-                "square"
+                "component",
+                "wall"
             ],
             [
                 "connection",
                 "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4241,8 +4299,9 @@
         },
         "tags": [
             [
-                "component",
-                "plinth"
+                "size",
+                "depth",
+                2
             ],
             [
                 "connection",
@@ -4251,6 +4310,10 @@
             [
                 "component",
                 "wall"
+            ],
+            [
+                "component",
+                "plinth"
             ],
             [
                 "build",
@@ -4264,13 +4327,9 @@
                 "size",
                 "width",
                 2
-            ],
-            [
-                "size",
-                "depth",
-                2
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4311,6 +4370,11 @@
             ],
             [
                 "size",
+                "width",
+                1
+            ],
+            [
+                "size",
                 "corner_shape",
                 "IO"
             ],
@@ -4319,18 +4383,12 @@
                 "openlock"
             ],
             [
-                "size",
-                "width",
-                1
+                "component",
+                "sentinel"
             ],
             [
                 "component",
                 "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
             ],
             [
                 "build",
@@ -4341,19 +4399,21 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "sentinel"
-            ],
-            [
-                "shape",
-                "square"
+                "size",
+                "depth",
+                1
             ],
             [
                 "component",
                 "sentinel",
                 "1"
+            ],
+            [
+                "shape",
+                "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4380,6 +4440,16 @@
             ],
             [
                 "size",
+                "width",
+                1
+            ],
+            [
+                "component",
+                "sentinel",
+                "2"
+            ],
+            [
+                "size",
                 "corner_shape",
                 "IO"
             ],
@@ -4388,18 +4458,12 @@
                 "openlock"
             ],
             [
-                "size",
-                "width",
-                1
+                "component",
+                "sentinel"
             ],
             [
                 "component",
                 "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
             ],
             [
                 "build",
@@ -4410,19 +4474,16 @@
                 "dwarven_halls"
             ],
             [
-                "component",
-                "sentinel"
+                "size",
+                "depth",
+                1
             ],
             [
                 "shape",
                 "square"
-            ],
-            [
-                "component",
-                "sentinel",
-                "2"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4443,9 +4504,19 @@
         },
         "tags": [
             [
+                "component",
+                "sentinel",
+                "3"
+            ],
+            [
                 "size",
                 "openlock",
                 "IO"
+            ],
+            [
+                "size",
+                "width",
+                1
             ],
             [
                 "size",
@@ -4457,18 +4528,20 @@
                 "openlock"
             ],
             [
-                "size",
-                "width",
-                1
+                "component",
+                "sentinel"
             ],
             [
                 "component",
                 "wall"
             ],
             [
-                "component",
-                "sentinel",
-                "3"
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -4476,22 +4549,11 @@
                 1
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "component",
-                "sentinel"
-            ],
-            [
                 "shape",
                 "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4518,21 +4580,8 @@
             ],
             [
                 "size",
-                "corner_shape",
-                "IO"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
                 "width",
                 1
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "component",
@@ -4541,26 +4590,40 @@
             ],
             [
                 "size",
-                "depth",
-                1
+                "corner_shape",
+                "IO"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
+                "connection",
+                "openlock"
             ],
             [
                 "component",
                 "sentinel"
             ],
             [
+                "component",
+                "wall"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
                 "shape",
                 "square"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4581,10 +4644,8 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "dwarven",
-                "axe"
+                "scatter",
+                "statue"
             ],
             [
                 "interface",
@@ -4596,15 +4657,18 @@
                 "axe"
             ],
             [
-                "scatter",
-                "statue"
+                "decoration",
+                "statue",
+                "sentinel"
             ],
             [
                 "decoration",
                 "statue",
-                "sentinel"
+                "dwarven",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4625,10 +4689,8 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "dwarven",
-                "axe"
+                "scatter",
+                "statue"
             ],
             [
                 "interface",
@@ -4640,15 +4702,18 @@
                 "axe"
             ],
             [
-                "scatter",
-                "statue"
+                "decoration",
+                "statue",
+                "sentinel"
             ],
             [
                 "decoration",
                 "statue",
-                "sentinel"
+                "dwarven",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4669,12 +4734,17 @@
         },
         "tags": [
             [
-                "interface",
-                "plinth"
+                "scatter",
+                "statue"
             ],
             [
                 "scatter",
-                "statue"
+                "statue",
+                "hammer"
+            ],
+            [
+                "interface",
+                "plinth"
             ],
             [
                 "decoration",
@@ -4683,16 +4753,12 @@
                 "hammer"
             ],
             [
-                "scatter",
-                "statue",
-                "hammer"
-            ],
-            [
                 "decoration",
                 "statue",
                 "sentinel"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4713,30 +4779,31 @@
         },
         "tags": [
             [
+                "scatter",
+                "statue"
+            ],
+            [
+                "scatter",
+                "statue",
+                "sword"
+            ],
+            [
                 "interface",
                 "plinth"
             ],
             [
-                "scatter",
-                "statue"
+                "decoration",
+                "statue",
+                "sentinel"
             ],
             [
                 "decoration",
                 "statue",
                 "dwarven",
                 "sword"
-            ],
-            [
-                "scatter",
-                "statue",
-                "sword"
-            ],
-            [
-                "decoration",
-                "statue",
-                "sentinel"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4757,11 +4824,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "axe"
-            ],
-            [
                 "scatter",
                 "statue",
                 "axe"
@@ -4769,8 +4831,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4791,11 +4859,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "axe"
-            ],
-            [
                 "scatter",
                 "statue",
                 "axe"
@@ -4803,8 +4866,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4825,11 +4894,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "axe"
-            ],
-            [
                 "scatter",
                 "statue",
                 "axe"
@@ -4837,8 +4901,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4859,11 +4929,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "axe"
-            ],
-            [
                 "scatter",
                 "statue",
                 "axe"
@@ -4871,8 +4936,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "axe"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4893,11 +4964,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "hammer"
-            ],
-            [
                 "scatter",
                 "statue",
                 "hammer"
@@ -4905,8 +4971,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "hammer"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4927,11 +4999,6 @@
         },
         "tags": [
             [
-                "decoration",
-                "statue",
-                "hammer"
-            ],
-            [
                 "scatter",
                 "statue",
                 "hammer"
@@ -4939,8 +5006,14 @@
             [
                 "scatter",
                 "statue"
+            ],
+            [
+                "decoration",
+                "statue",
+                "hammer"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4966,15 +5039,16 @@
                 "sword"
             ],
             [
+                "scatter",
+                "statue"
+            ],
+            [
                 "decoration",
                 "statue",
                 "sword"
-            ],
-            [
-                "scatter",
-                "statue"
             ]
         ],
+        "metadata": true,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -4995,10 +5069,6 @@
         },
         "tags": [
             [
-                "connection",
-                "openforge"
-            ],
-            [
                 "build",
                 "thick wall"
             ],
@@ -5012,13 +5082,13 @@
                 1
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "component",
-                "wall"
             ],
             [
                 "connection",
@@ -5026,10 +5096,15 @@
                 "openlock"
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5089,9 +5164,18 @@
                 "side"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
+            ],
+            [
+                "connection",
+                "side",
+                "openlock"
             ],
             [
                 "component",
@@ -5102,20 +5186,12 @@
                 "openforge"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "size",
                 "width",
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5167,11 +5243,6 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                3
-            ],
-            [
                 "build",
                 "thick wall"
             ],
@@ -5180,17 +5251,13 @@
                 "side"
             ],
             [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "openforge"
             ],
             [
                 "connection",
@@ -5198,10 +5265,20 @@
                 "openlock"
             ],
             [
-                "texture",
-                "dwarven_halls"
+                "connection",
+                "openforge"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5258,7 +5335,16 @@
             ],
             [
                 "connection",
+                "side",
+                "openlock"
+            ],
+            [
+                "connection",
                 "side"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -5266,28 +5352,20 @@
                 1
             ],
             [
-                "component",
-                "wall"
+                "size",
+                "width",
+                4
             ],
             [
                 "connection",
                 "openforge"
             ],
             [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "texture",
-                "dwarven_halls"
+                "component",
+                "wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5347,9 +5425,18 @@
                 "side"
             ],
             [
+                "connection",
+                "side",
+                "openlock"
+            ],
+            [
                 "size",
                 "width",
                 1
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -5357,23 +5444,15 @@
                 1
             ],
             [
+                "connection",
+                "openlock"
+            ],
+            [
                 "component",
                 "wall"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "connection",
-                "openlock"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5402,19 +5481,6 @@
                 "side"
             ],
             [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "openlock"
-            ],
-            [
                 "connection",
                 "side",
                 "openlock"
@@ -5425,10 +5491,24 @@
             ],
             [
                 "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "size",
                 "width",
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5449,30 +5529,12 @@
         },
         "tags": [
             [
-                "size",
-                "width",
-                3
-            ],
-            [
                 "build",
                 "thick wall"
             ],
             [
                 "connection",
                 "side"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "connection",
-                "openlock"
             ],
             [
                 "connection",
@@ -5482,8 +5544,27 @@
             [
                 "texture",
                 "dwarven_halls"
+            ],
+            [
+                "size",
+                "depth",
+                1
+            ],
+            [
+                "connection",
+                "openlock"
+            ],
+            [
+                "component",
+                "wall"
+            ],
+            [
+                "size",
+                "width",
+                3
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5512,9 +5593,23 @@
                 "side"
             ],
             [
+                "connection",
+                "side",
+                "openlock"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
+            ],
+            [
+                "size",
+                "width",
+                4
             ],
             [
                 "component",
@@ -5523,22 +5618,9 @@
             [
                 "connection",
                 "openlock"
-            ],
-            [
-                "connection",
-                "side",
-                "openlock"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "texture",
-                "dwarven_halls"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5560,12 +5642,25 @@
         "tags": [
             [
                 "size",
-                "depth",
+                "width",
                 1
             ],
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
-                "width",
+                "depth",
                 1
             ],
             [
@@ -5574,23 +5669,11 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "build",
                 "thick wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5611,6 +5694,23 @@
         },
         "tags": [
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
@@ -5621,28 +5721,12 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
-            ],
-            [
                 "size",
                 "width",
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5663,6 +5747,24 @@
         },
         "tags": [
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
@@ -5673,28 +5775,11 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "build",
                 "thick wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5716,6 +5801,24 @@
         "tags": [
             [
                 "size",
+                "width",
+                4
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "connection",
+                "openforge"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
+                "size",
                 "depth",
                 1
             ],
@@ -5725,28 +5828,11 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
                 "build",
                 "thick wall"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5767,21 +5853,16 @@
         },
         "tags": [
             [
-                "connection",
-                "openlock"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
                 "size",
                 "width",
                 1
             ],
             [
-                "component",
+                "connection",
+                "openlock"
+            ],
+            [
+                "shape",
                 "wall",
                 "low"
             ],
@@ -5790,15 +5871,21 @@
                 "dwarven_halls"
             ],
             [
-                "build",
-                "thick wall"
+                "size",
+                "depth",
+                1
             ],
             [
-                "shape",
+                "component",
                 "wall",
                 "low"
+            ],
+            [
+                "build",
+                "thick wall"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5823,6 +5910,19 @@
                 "openlock"
             ],
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "build",
+                "thick wall"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
@@ -5833,24 +5933,12 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
-            ],
-            [
                 "size",
                 "width",
                 2
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5875,6 +5963,20 @@
                 "openlock"
             ],
             [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "size",
+                "width",
+                3
+            ],
+            [
+                "texture",
+                "dwarven_halls"
+            ],
+            [
                 "size",
                 "depth",
                 1
@@ -5885,24 +5987,11 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
                 "build",
                 "thick wall"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
@@ -5923,8 +6012,22 @@
         },
         "tags": [
             [
+                "size",
+                "width",
+                4
+            ],
+            [
                 "connection",
                 "openlock"
+            ],
+            [
+                "shape",
+                "wall",
+                "low"
+            ],
+            [
+                "texture",
+                "dwarven_halls"
             ],
             [
                 "size",
@@ -5937,24 +6040,11 @@
                 "low"
             ],
             [
-                "texture",
-                "dwarven_halls"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
                 "build",
                 "thick wall"
-            ],
-            [
-                "shape",
-                "wall",
-                "low"
             ]
         ],
+        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
