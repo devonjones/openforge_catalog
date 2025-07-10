@@ -54,3 +54,5 @@ yarn.lock
 tmp/
 .coverage
 coverage.xml
+
+.cursor
