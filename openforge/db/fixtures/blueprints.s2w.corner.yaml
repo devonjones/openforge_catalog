@@ -83,6 +83,7 @@
           require:
             - tag: size|column_shape|L
           deny:
+            - tag: build|s2w
             - tag: shape|column|low
           constrain:
             - tag: connection|side

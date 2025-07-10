@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation';
 
 type BlueprintContext = StoreApi<BlueprintStore> | null;
 
-const BlueprintContext = createContext<BlueprintContext>(null);
+export const BlueprintContext = createContext<BlueprintContext>(null);
 
 interface BlueprintProviderProps {
   children: React.ReactNode;

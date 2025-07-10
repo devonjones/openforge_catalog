@@ -36,30 +36,67 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   
   const { hasSetTagState } = useUrlParameters();
 
+  // Helper function to compare tag arrays for equality
+  const areTagArraysUnsortedEqual = (a: string[], b: string[]): boolean => {
+    if (a.length !== b.length) return false;
+    // Create copies before sorting to avoid mutating original arrays
+    const sortedA = [...a].sort();
+    const sortedB = [...b].sort();
+    return JSON.stringify(sortedA) === JSON.stringify(sortedB);
+  };
+
   useEffect(() => {
-    if (configValues && !hasSetTagState.current) {
-      const tags = processConfigValues(configValues, parentTags, siblingSelections);
-      
-      if (fetchData) {
-        // Check if fetchData returns a promise
-        const fetchDataResult = fetchData();
-        if (fetchDataResult && typeof fetchDataResult.then === 'function') {
-          fetchDataResult.then(() => {
-            setTagState(tags);
-            hasSetTagState.current = true;
-          });
-        } else {
-          // fetchData is not a promise, set tag state immediately
-          setTagState(tags);
+    if (configValues) {
+      let isCancelled = false;
+
+      const derivedTags = processConfigValues(configValues, parentTags, siblingSelections);
+
+      const setTags = () => {
+        if (!isCancelled) {
+          setTagState(derivedTags);
           hasSetTagState.current = true;
         }
+      };
+
+      if (!hasSetTagState.current) {
+        // Initial setup
+        if (fetchData) {
+          const result = fetchData();
+          if (result && typeof result.then === 'function') {
+            result.then(setTags);
+          } else {
+            setTags();
+          }
+        } else {
+          setTags();
+        }
       } else {
-        // No fetchData, set tag state immediately
-        setTagState(tags);
-        hasSetTagState.current = true;
+        // Handle updates to props after initial setup
+        // Preserve user-added tags while updating derived ones
+        const userAddedTags = selectedTags.filter(tag => 
+          !derivedTags.require?.includes(tag) && 
+          !derivedTags.deny?.includes(tag)
+        );
+        
+        const mergedTags = {
+          require: [...(derivedTags.require || []), ...userAddedTags],
+          deny: derivedTags.deny || []
+        };
+        
+        // Compare arrays to prevent infinite loops
+        const requireChanged = !areTagArraysUnsortedEqual(mergedTags.require || [], selectedTags);
+        const denyChanged = !areTagArraysUnsortedEqual(mergedTags.deny || [], denyTags);
+
+        if (requireChanged || denyChanged) {
+          setTagState(mergedTags);
+        }
       }
+
+      return () => {
+        isCancelled = true;
+      };
     }
-  }, [configValues, setTagState, parentTags, siblingSelections, fetchData, hasSetTagState]);
+  }, [configValues, parentTags, siblingSelections, fetchData, setTagState, hasSetTagState, selectedTags, denyTags]);
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
