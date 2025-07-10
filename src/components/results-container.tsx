@@ -37,36 +37,29 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   const { hasSetTagState } = useUrlParameters();
 
   useEffect(() => {
-    if (fetchData && !hasSetTagState.current) {
-      // Check if fetchData returns a promise
-      const fetchDataResult = fetchData();
-      if (fetchDataResult && typeof fetchDataResult.then === 'function') {
-        fetchDataResult.then(() => {
-          // Only set tag state after fetchData completes
-          if (configValues) {
-            const tags = processConfigValues(configValues, parentTags, siblingSelections);
+    if (configValues && !hasSetTagState.current) {
+      const tags = processConfigValues(configValues, parentTags, siblingSelections);
+      
+      if (fetchData) {
+        // Check if fetchData returns a promise
+        const fetchDataResult = fetchData();
+        if (fetchDataResult && typeof fetchDataResult.then === 'function') {
+          fetchDataResult.then(() => {
             setTagState(tags);
             hasSetTagState.current = true;
-          }
-        });
-      } else {
-        // fetchData is not a promise, set tag state immediately
-        if (configValues) {
-          const tags = processConfigValues(configValues, parentTags, siblingSelections);
+          });
+        } else {
+          // fetchData is not a promise, set tag state immediately
           setTagState(tags);
           hasSetTagState.current = true;
         }
+      } else {
+        // No fetchData, set tag state immediately
+        setTagState(tags);
+        hasSetTagState.current = true;
       }
     }
   }, [configValues, setTagState, parentTags, siblingSelections, fetchData, hasSetTagState]);
-
-  // Handle changes to configValues or parentTags or siblingSelections after initial setup
-  useEffect(() => {
-    if (hasSetTagState.current && configValues) {
-      const tags = processConfigValues(configValues, parentTags, siblingSelections);
-      setTagState(tags);
-    }
-  }, [configValues, setTagState, parentTags, siblingSelections, hasSetTagState]);
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
