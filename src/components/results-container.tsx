@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
@@ -35,6 +35,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   const { copied, copyText } = useCopyToClipboard();
   
   const { hasSetTagState } = useUrlParameters();
+  const lastProcessedConfig = useRef<string>('');
 
   // Helper function to compare tag arrays for equality
   const areTagArraysUnsortedEqual = (a: string[], b: string[]): boolean => {
@@ -42,12 +43,19 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
     // Create copies before sorting to avoid mutating original arrays
     const sortedA = [...a].sort();
     const sortedB = [...b].sort();
-    return JSON.stringify(sortedA) === JSON.stringify(sortedB);
+    return sortedA.every((value, index) => value === sortedB[index]);
   };
 
   useEffect(() => {
     if (configValues) {
       let isCancelled = false;
+
+      // Create a hash of the current config to prevent unnecessary updates
+      const configHash = JSON.stringify({ configValues, parentTags, siblingSelections });
+      if (configHash === lastProcessedConfig.current) {
+        return; // Skip if config hasn't actually changed
+      }
+      lastProcessedConfig.current = configHash;
 
       const derivedTags = processConfigValues(configValues, parentTags, siblingSelections);
 
@@ -78,9 +86,13 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
           !derivedTags.deny?.includes(tag)
         );
         
+        // Ensure we always work with arrays, even if derivedTags properties are undefined/null
+        const derivedRequire = Array.isArray(derivedTags.require) ? derivedTags.require : [];
+        const derivedDeny = Array.isArray(derivedTags.deny) ? derivedTags.deny : [];
+        
         const mergedTags = {
-          require: [...(derivedTags.require || []), ...userAddedTags],
-          deny: derivedTags.deny || []
+          require: [...derivedRequire, ...userAddedTags],
+          deny: derivedDeny
         };
         
         // Compare arrays to prevent infinite loops
