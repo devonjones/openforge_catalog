@@ -178,6 +178,9 @@ describe('ResultsContainer', () => {
       deny: [{ tag: 'denied1' }, { tag: 'denied2' }],
     });
 
+    // Mock fetchData to return undefined (synchronous)
+    mockFunctions.fetchData.mockReturnValue(undefined);
+
     render(<ResultsContainer configValues={configValues} />);
 
     expect(mockFunctions.setTagState).toHaveBeenCalledWith({
@@ -196,6 +199,9 @@ describe('ResultsContainer', () => {
         { filter: 'base|level2' }
       ]
     });
+
+    // Mock fetchData to return undefined (synchronous)
+    mockFunctions.fetchData.mockReturnValue(undefined);
 
     render(<ResultsContainer 
       configValues={configValues} 
