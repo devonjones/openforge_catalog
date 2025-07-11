@@ -10,15 +10,23 @@ from openforge.openapi import validate_schema
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
     if os.path.exists(metadata_file):
-        try:
-            with open(metadata_file, "r") as f:
-                metadata = safe_load(f)
-                if metadata is not None:
-                    validate_schema("metadata.yaml", metadata)
-                return metadata
-        except Exception as e:
-            sys.stderr.write(f"Error reading metadata file: {e}\n")
-            return None
+        with open(metadata_file, "r") as f:
+            metadata = safe_load(f)
+            # Validate that the metadata file is a dictionary
+            if metadata is not None and not isinstance(metadata, dict):
+                raise ValueError(f"Metadata file '{metadata_file}' must contain a dictionary, but found type {type(metadata).__name__}")
+            
+            # Validate schema for each individual metadata entry
+            if metadata is not None:
+                for filename, entry in metadata.items():
+                    if not isinstance(filename, str):
+                        raise ValueError(f"In metadata file '{metadata_file}', found non-string key: {filename}")
+                    if not isinstance(entry, dict):
+                        raise ValueError(f"In metadata file '{metadata_file}', entry for key '{filename}' must be a dictionary, but found type {type(entry).__name__}")
+                    # Validate individual metadata entry
+                    validate_schema("metadata.yaml", entry)
+                
+            return metadata
     return None
 
 

@@ -16,6 +16,7 @@ from openforge.openapi import validate_schema
 from . import sizes
 from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
 from .metadata import metadata_ignore, metadata_auto
+from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 
 try:
     from yaml import CLoader as Loader, CDumper as Dumper, safe_load
@@ -416,30 +417,12 @@ def parse_files(path, files, md5, verbose, upload, config):
                 return data[fn]
         return None
 
-    def _get_s3_client(config):
-        s3_client = boto3.client(
-            service_name="s3",
-            endpoint_url=config["CLOUDFLARE_ENDPOINT"],
-            aws_access_key_id=config["AWS_ACCESS_KEY_ID"],
-            aws_secret_access_key=config["AWS_SECRET_ACCESS_KEY"],
-            config=Config(signature_version="s3v4"),
-            region_name="auto",
-        )
-        return s3_client
 
-    def _create_image(name, url):
-        return {"image_name": name, "image_url": url}
 
     newfiles = []
-    s3_client = _get_s3_client(config)
-    # S3 key cache
-    s3_key_cache = set()
-    if upload:
-        bucket = "openforge-models"
-        paginator = s3_client.get_paginator('list_objects_v2')
-        for page in paginator.paginate(Bucket=bucket):
-            for obj in page.get('Contents', []):
-                s3_key_cache.add(obj['Key'])
+    s3_client = get_s3_client(config)
+    # S3 key cache - pre-fetch for efficient upload checking
+    s3_key_cache = get_s3_key_cache(s3_client, config, verbose) if upload else set()
     for file in files:
         if verbose:
             sys.stderr.write(f"Processing: {file}\n")
@@ -468,13 +451,13 @@ def parse_files(path, files, md5, verbose, upload, config):
         if upload:
             if not md5:
                 raise Exception("MD5 is required for upload")
-            model_address = upload_file(f, full_file, s3_client, "models", s3_key_cache)
+            model_address = upload_file(f, full_file, s3_client, "models", s3_key_cache, config, verbose)
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
             thumb_path = create_thumbnail(full_file)
-            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails", s3_key_cache)
+            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails", s3_key_cache, config, verbose)
             images = o.get("images", [])
             images.append(
-                _create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
+                create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
             )
             o["images"] = images
         parse_file_tags(f, t, metadata)
@@ -493,35 +476,7 @@ def validate(o):
         validate_schema("config.yaml", o["config"])
 
 
-def upload_file(f, file_path, s3_client, object_path, s3_key_cache=None):
-    bucket = "openforge-models"
-    _, fn = os.path.split(file_path)
-    parts = fn.split(".")
-    extension = parts.pop()
-    object_name = f"{object_path}/{f['md5'][:6]}/{f['md5']}.{extension}"
-    # Check cache first
-    if s3_key_cache is not None and object_name in s3_key_cache:
-        return object_name
-    try:
-        s3_client.head_object(Bucket=bucket, Key=object_name)
-    except ClientError as ce:
-        if ce.response["Error"]["Code"] == "404":
-            sys.stderr.write(f"Uploading: {file_path}\n")
-            with open(file_path, "rb") as file_handle:
-                s3_client.upload_fileobj(file_handle, bucket, object_name)
-        else:
-            raise ce
-    return object_name
 
-
-def create_thumbnail(file_path):
-    path, fn = os.path.split(file_path)
-    parts = fn.split(".")
-    _ = parts.pop()
-    base = ".".join(parts)
-    thumb_path = os.path.join(path, f"{base}-thumb.png")
-    sh.stl_thumb(file_path, thumb_path)
-    return thumb_path
 
 
 def clean_files(path, files):

@@ -11,7 +11,6 @@ properties:
     type: array
     items:
       type: string
-      pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
   config:
     "$ref": "config.yaml"
   edit:
@@ -24,12 +23,10 @@ properties:
             type: array
             items:
               type: string
-              pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
           remove:
             type: array
             items:
               type: string
-              pattern: "^[a-zA-Z0-9_]+(\\|[a-zA-Z0-9_]+)*$"
         additionalProperties: false
     additionalProperties: false
 additionalProperties: false 
