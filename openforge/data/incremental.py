@@ -141,11 +141,9 @@ class IncrementalScanner:
             Dict with size and modified info
         """
         stat = os.stat(file_path)
-        # Use local time interpretation to match existing fixture files
-        # This is intentional - existing fixtures were created with local time,
-        # and changing to UTC would break timestamp comparisons
-        local_time = datetime.fromtimestamp(stat.st_mtime)
-        final_time = local_time.isoformat()
+        # Use UTC time interpretation for consistent behavior across environments
+        utc_time = datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc)
+        final_time = utc_time.isoformat()
 
         return {
             "size": stat.st_size,

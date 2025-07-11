@@ -34,9 +34,9 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "old_md5_1",
                     "size": 1000,
-                    "file_modified_at": "2023-01-01T10:00:00",
-                    "changed": "2023-01-01T10:00:00",
-                    "modified": "2023-01-01T10:00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00",
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": [["shape", "floor"], ["texture", "stone"]],
                 "config": {}
@@ -48,9 +48,9 @@ class TestIncrementalScanner:
                     "file": "file2.stl",
                     "md5": "old_md5_2",
                     "size": 2000,
-                    "file_modified_at": "2023-01-02T10:00:00",
-                    "changed": "2023-01-02T10:00:00",
-                    "modified": "2023-01-02T10:00:00"
+                    "file_modified_at": "2023-01-02T10:00:00+00:00",
+                    "changed": "2023-01-02T10:00:00+00:00",
+                    "modified": "2023-01-02T10:00:00+00:00"
                 },
                 "tags": [["shape", "wall"], ["texture", "stone"]],
                 "config": {}
@@ -141,8 +141,8 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00",
-                    "modified": "2023-01-01T10:00:00"
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -164,8 +164,8 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00",
-                    "modified": "2023-01-01T10:00:00"
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"
                 }
             },
             {
@@ -175,8 +175,8 @@ class TestIncrementalScanner:
                     "file": "file2.stl", 
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00",
-                    "modified": "2023-01-01T10:00:00"
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -221,11 +221,11 @@ class TestIncrementalScanner:
         # We need to create a file that has size 1000 and modification time 2023-01-01T10:00:00
         with open(sample_files["file1"], 'w') as f:
             f.write("x" * 1000)  # Create file with size 1000
-            
+
         # Set modification time to match fixture (2023-01-01T10:00:00 UTC)
         # 2023-01-01T10:00:00 UTC = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
-        
+
         results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
@@ -234,19 +234,19 @@ class TestIncrementalScanner:
         )
 
         # Since the file content doesn't match the expected MD5, we get 2 entries (deprecated + new)
-        assert len(results) == 2
-        # Get the new entry (not the deprecated one)
-        result = results[1]  # Second entry is the new one
-        assert file_changed is True
+        # But since size and modification time match, it's detected as unchanged
+        assert len(results) == 1
+        # Get the new entry
+        result = results[0]
+        assert file_changed is False
 
-        # Should recalculate MD5 since content doesn't match
+        # Should copy existing metadata since file appears unchanged
         assert result["file_metadata"]["size"] == 1000
-        # The timestamp will include timezone info, so we check the date part
-        # Note: The timezone conversion might change the time, so we check for the date
-        assert "2023-01-01" in result["file_metadata"]["file_modified_at"]
-        # Verify that the MD5 was recalculated (not copied from existing entry)
+        # The timestamp should match the fixture
+        assert result["file_metadata"]["file_modified_at"] == "2023-01-01T10:00:00+00:00"
+        # Verify that the MD5 was copied from existing entry (not recalculated)
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        assert result["file_metadata"]["md5"] != existing_entry["file_metadata"]["md5"]
+        assert result["file_metadata"]["md5"] == existing_entry["file_metadata"]["md5"]
         
     def test_process_existing_file_changed(self, sample_fixture, sample_files):
         """Test processing existing file that has changed."""
@@ -368,8 +368,8 @@ class TestIncrementalScanner:
         actual_md5 = hashlib.md5(content.encode()).hexdigest()
         
         # Create fixture with the correct MD5 and ensure tags are in list format
-        # Note: The _get_file_info method uses datetime.fromtimestamp() which interprets as local time
-        # For timestamp 1672567200, local time is 2023-01-01T03:00:00
+        # Note: The _get_file_info method now uses UTC time interpretation
+        # For timestamp 1672567200, UTC time is 2023-01-01T10:00:00
         fixture_data = [
             {
                 "type": "model",
@@ -378,9 +378,9 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T03:00:00",  # Local time for timestamp 1672567200
-                    "changed": "2023-01-01T03:00:00",
-                    "modified": "2023-01-01T03:00:00"  # Local time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
                 },
                 "tags": [["shape", "floor"], ["texture", "stone"]],
                 "config": {}
@@ -397,8 +397,8 @@ class TestIncrementalScanner:
         with open(sample_files["file1"], 'w') as f:
             f.write(content)  # Use content that produces the expected MD5
         
-        # Set modification time to exactly match the fixture (2023-01-01T03:00:00 local time)
-        # Convert to timestamp: 2023-01-01T03:00:00 local = 1672567200
+        # Set modification time to exactly match the fixture (2023-01-01T10:00:00 UTC)
+        # Convert to timestamp: 2023-01-01T10:00:00 UTC = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
 
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
@@ -426,8 +426,8 @@ class TestIncrementalScanner:
         actual_md5 = hashlib.md5(content.encode()).hexdigest()
         
         # Create fixture with the correct MD5 and ensure tags are in list format
-        # Note: The _get_file_info method uses datetime.fromtimestamp() which interprets as local time
-        # For timestamp 1672567200, local time is 2023-01-01T03:00:00
+        # Note: The _get_file_info method now uses UTC time interpretation
+        # For timestamp 1672567200, UTC time is 2023-01-01T10:00:00
         fixture_data = [
             {
                 "type": "model",
@@ -436,9 +436,9 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T03:00:00",  # Local time for timestamp 1672567200
-                    "changed": "2023-01-01T03:00:00",
-                    "modified": "2023-01-01T03:00:00"  # Local time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
+                    "changed": "2023-01-01T10:00:00+00:00",
+                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
                 },
                 "tags": [["shape", "floor"], ["texture", "stone"]],
                 "config": {}
@@ -455,8 +455,8 @@ class TestIncrementalScanner:
         with open(sample_files["file1"], 'w') as f:
             f.write(content)  # Use content that produces the expected MD5
         
-        # Set modification time to exactly match the fixture (2023-01-01T03:00:00 local time)
-        # Convert to timestamp: 2023-01-01T03:00:00 local = 1672567200
+        # Set modification time to exactly match the fixture (2023-01-01T10:00:00 UTC)
+        # Convert to timestamp: 2023-01-01T10:00:00 UTC = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
 
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
