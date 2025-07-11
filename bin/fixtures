@@ -11,7 +11,11 @@ import click
 @click.command()
 @click.option("--alt", default="")
 @click.option("--fixture", help="Load only the specified fixture file")
-def main(alt, fixture):
+@click.option("--incremental", is_flag=True, help="Enable incremental loading mode")
+@click.option("--dry-run", is_flag=True, help="Preview changes without applying")
+@click.option("--update", help="Specify fixture file for incremental update")
+@click.option("--compare-only", is_flag=True, help="Show comparison results only")
+def main(alt, fixture, incremental, dry_run, update, compare_only):
     with PgDB(os.environ) as db:
         with db.pool.connection() as conn:
             if fixture:
@@ -20,10 +24,10 @@ def main(alt, fixture):
                 if not ffiles:
                     sys.stderr.write(f"Fixture {fixture} not found in fixtures directory\n")
                     sys.exit(1)
-                load_fixtures(conn, alt, ffiles)
+                load_fixtures(conn, alt, ffiles, incremental=incremental, dry_run=dry_run)
             else:
                 # Otherwise load all fixtures
-                load_fixtures(conn, alt)
+                load_fixtures(conn, alt, incremental=incremental, dry_run=dry_run)
 
 
 if __name__ == "__main__":

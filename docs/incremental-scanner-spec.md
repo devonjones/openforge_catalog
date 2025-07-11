@@ -71,6 +71,32 @@ A file is considered "updated" if any of the following change:
 - No `file_metadata` on any element → error
 - Cannot determine subset path → error
 
+## Error Handling and Transaction Requirements
+
+### Fail-Fast Behavior
+- **No exception catching**: Any error should immediately terminate the operation
+- **Immediate rollback**: Database transaction should be rolled back on any error
+- **Clear error messages**: Provide specific error information for debugging
+
+### All-or-Nothing Database Operations
+- **Transaction wrapping**: All database operations must be wrapped in transactions
+- **Automatic rollback**: Any error triggers automatic transaction rollback
+- **No partial updates**: Either all changes succeed or none do
+
+### Error Conditions That Trigger Rollback
+- Schema validation failures
+- Database constraint violations
+- Missing required data (file_metadata, etc.)
+- Invalid fixture file formats
+- Network or connection errors
+- Any unhandled exceptions during processing
+
+### Error Reporting
+- Provide clear error messages with context
+- Include file path and line number where possible
+- Log validation errors before raising exceptions
+- Maintain error state for debugging
+
 ## Implementation Notes
 - This is part of Phase 1 of the implementation plan
 - Focuses on performance improvement for the scanning workflow

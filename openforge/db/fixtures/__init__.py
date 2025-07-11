@@ -97,28 +97,58 @@ def _is_tag_description_fixture(data):
     return result
 
 
-def load_fixtures(conn: connection, alt: str, files: list = None):
+def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = False, dry_run: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
-    with conn.cursor(row_factory=dict_row) as curs:
-        clear_db(curs)
-        conn.commit()
+    
+    if incremental:
+        # Import here to avoid circular imports
+        from .incremental import IncrementalFixturesLoader
+        
+        loader = IncrementalFixturesLoader(conn, verbose=True)
         for f in ffiles:
             data = _load_data(f)
             blueprint_result = _is_blueprint_fixture(data)
             tag_result = _is_tag_description_fixture(data)
             
             if blueprint_result.is_valid:
-                for rec in data:
-                    load_blueprint_fixture(curs, rec)
+                changes = loader.compare_fixture_data(data)
+                if dry_run:
+                    print_comparison_results(changes)
+                else:
+                    # Use transaction to ensure all-or-nothing behavior
+                    with conn.transaction():
+                        loader.apply_incremental_changes(changes)
             elif tag_result.is_valid:
-                load_tag_description_fixture(curs, data)
+                # Tag descriptions are handled differently - they don't have file_metadata
+                # For now, skip tag descriptions in incremental mode
+                sys.stderr.write(f"Skipping tag description fixture in incremental mode: {f}\n")
             else:
-                # Only show errors if all validations failed
-                print(f"\nValidation failed for {f}:")
+                print(f"Validation failed for {f}")
                 for error in blueprint_result.errors + tag_result.errors:
                     print(error)
                 raise ValueError(f"File {f} does not match any known fixture format")
-            conn.commit()
+    else:
+        # Existing full replacement logic
+        with conn.cursor(row_factory=dict_row) as curs:
+            # Use transaction to ensure all-or-nothing behavior
+            with conn.transaction():
+                clear_db(curs)
+                for f in ffiles:
+                    data = _load_data(f)
+                    blueprint_result = _is_blueprint_fixture(data)
+                    tag_result = _is_tag_description_fixture(data)
+                    
+                    if blueprint_result.is_valid:
+                        for rec in data:
+                            load_blueprint_fixture(curs, rec)
+                    elif tag_result.is_valid:
+                        load_tag_description_fixture(curs, data)
+                    else:
+                        # Only show errors if all validations failed
+                        print(f"\nValidation failed for {f}:")
+                        for error in blueprint_result.errors + tag_result.errors:
+                            print(error)
+                        raise ValueError(f"File {f} does not match any known fixture format")
 
 
 def _load_data(f):
@@ -136,6 +166,15 @@ def _munge_blueprint(data: dict):
     bp["blueprint_type"] = data["type"]
     bp["blueprint_name"] = data.get("name")
     bp["blueprint_config"] = data.get("config", {})
+    
+    # Phase 1 fields
+    bp["deprecated"] = data.get("deprecated", False)
+    bp["successor_id"] = data.get("successor_id")
+    bp["predecessor_id"] = data.get("predecessor_id")
+    bp["consolidated_paths"] = data.get("consolidated_paths", [])
+    bp["openscad_source"] = data.get("openscad_source")
+    bp["changelog"] = data.get("changelog")
+    
     if "file_metadata" in data:
         if not bp["blueprint_name"]:
             bp["blueprint_name"] = data["file_metadata"]["file"]
@@ -186,3 +225,36 @@ def load_tag_description_fixture(curs: cursor, data: dict):
 def _munge_image(image: dict):
     # placeholder for additional work if needed
     return image
+
+
+def print_comparison_results(changes):
+    """Print comparison results in a user-friendly format."""
+    print(f"\nComparison Results:")
+    print(f"  Added: {len(changes.added)}")
+    print(f"  Modified: {len(changes.modified)}")
+    print(f"  Deprecated: {len(changes.deprecated)}")
+    print(f"  Consolidated: {len(changes.consolidated)}")
+    print(f"  Errors: {len(changes.errors)}")
+    
+    if changes.added:
+        print(f"\nAdded blueprints:")
+        for item in changes.added:
+            name = item.get("file_metadata", {}).get("full_name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.modified:
+        print(f"\nModified blueprints:")
+        for item in changes.modified:
+            name = item.get("file_metadata", {}).get("full_name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.deprecated:
+        print(f"\nDeprecated blueprints:")
+        for item in changes.deprecated:
+            name = item.get("full_name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.errors:
+        print(f"\nErrors:")
+        for error in changes.errors:
+            print(f"  - {error}")

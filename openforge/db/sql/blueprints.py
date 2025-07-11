@@ -18,6 +18,13 @@ def _blueprint_defaults(data: dict) -> dict:
         "file_changed_at": sql.NULL,
         "file_modified_at": sql.NULL,
         "storage_address": sql.NULL,
+        # Phase 1 fields
+        "consolidated_paths": sql.NULL,
+        "deprecated": False,
+        "successor_id": sql.NULL,
+        "predecessor_id": sql.NULL,
+        "openscad_source": sql.NULL,
+        "changelog": sql.NULL,
     }
     defaults.update(data)
     defaults = _convert_blueprint_config(defaults)
@@ -47,6 +54,7 @@ def get_all_blueprints(curs: cursor) -> list[dict]:
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
        file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
 """
@@ -71,10 +79,12 @@ def insert_blueprint(
             """
 INSERT INTO blueprints (
   blueprint_name, blueprint_type, config, file_md5, file_size, file_name,
-  full_name, file_changed_at, file_modified_at, storage_address, search_text
+  full_name, file_changed_at, file_modified_at, storage_address, search_text,
+  consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog
 ) VALUES (
   {blueprint_name}, {blueprint_type}, {config}, {file_md5}, {file_size}, {file_name},
-  {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}, {search_text}
+  {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}, {search_text},
+  {consolidated_paths}, {deprecated}, {successor_id}, {predecessor_id}, {openscad_source}, {changelog}
 )
 """
         ).format(**_blueprint_defaults(data))
@@ -100,6 +110,7 @@ def get_blueprint_by_id(curs: cursor, blueprint_id: uuid.UUID) -> dict:
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
        file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
   WHERE id = {blueprint_id}
@@ -117,6 +128,7 @@ def get_blueprint_by_md5(curs: cursor, md5: str) -> dict:
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
        file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
   WHERE file_md5 = {md5}
@@ -149,6 +161,13 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         "file_changed_at",
         "file_modified_at",
         "storage_address",
+        # Phase 1 fields
+        "consolidated_paths",
+        "deprecated",
+        "successor_id",
+        "predecessor_id",
+        "openscad_source",
+        "changelog",
     ]
 
     comma = ""
@@ -185,3 +204,92 @@ def delete_all_blueprints(curs: cursor) -> bool:
     query = sql.SQL("TRUNCATE blueprints CASCADE")
     result = curs.execute(query)
     return True
+
+
+def get_blueprints_by_full_name(curs: cursor, full_name: str) -> list[dict]:
+    """Get all blueprints with the given full_name (for path consolidation)."""
+    query = sql.SQL(
+        """
+SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
+       created_at, updated_at
+  FROM blueprints
+  WHERE full_name = {full_name}
+  ORDER BY created_at DESC
+"""
+    ).format(full_name=sql.Literal(full_name))
+    curs.execute(query)
+    return [_convert_config(dict(row)) for row in curs.fetchall()]
+
+
+def get_blueprints_by_md5(curs: cursor, md5: str) -> list[dict]:
+    """Get all blueprints with the given MD5 (for versioning)."""
+    query = sql.SQL(
+        """
+SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
+       created_at, updated_at
+  FROM blueprints
+  WHERE file_md5 = {md5}
+  ORDER BY created_at DESC
+"""
+    ).format(md5=sql.Literal(md5))
+    curs.execute(query)
+    return [_convert_config(dict(row)) for row in curs.fetchall()]
+
+
+def get_non_deprecated_blueprints(curs: cursor) -> list[dict]:
+    """Get all non-deprecated blueprints for comparison."""
+    query = sql.SQL(
+        """
+SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
+       created_at, updated_at
+  FROM blueprints
+  WHERE deprecated = false
+  ORDER BY full_name, created_at DESC
+"""
+    )
+    curs.execute(query)
+    return [_convert_config(dict(row)) for row in curs.fetchall()]
+
+
+def mark_blueprint_deprecated(curs: cursor, blueprint_id: uuid.UUID, successor_id: uuid.UUID = None) -> dict:
+    """Mark a blueprint as deprecated with optional successor."""
+    data = {"deprecated": True}
+    if successor_id:
+        data["successor_id"] = successor_id
+    
+    return update_blueprint(curs, blueprint_id, data)
+
+
+def create_version_relationship(curs: cursor, predecessor_id: uuid.UUID, successor_id: uuid.UUID) -> None:
+    """Create predecessor/successor relationship between blueprints."""
+    # Update predecessor to point to successor
+    query = sql.SQL(
+        """
+UPDATE blueprints 
+  SET successor_id = {successor_id}, updated_at = NOW()
+  WHERE id = {predecessor_id}
+"""
+    ).format(
+        successor_id=sql.Literal(successor_id),
+        predecessor_id=sql.Literal(predecessor_id)
+    )
+    curs.execute(query)
+    
+    # Update successor to point to predecessor
+    query = sql.SQL(
+        """
+UPDATE blueprints 
+  SET predecessor_id = {predecessor_id}, updated_at = NOW()
+  WHERE id = {successor_id}
+"""
+    ).format(
+        predecessor_id=sql.Literal(predecessor_id),
+        successor_id=sql.Literal(successor_id)
+    )
+    curs.execute(query)
