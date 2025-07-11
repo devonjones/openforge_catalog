@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, createRef } from 'react';
 import { Blueprint, ConfigPart, ConfigTags } from '@/types';
 import ConfigBox from './config-box';
+import { useBlueprintContext } from '@/contexts/blueprint-context';
 
 interface BlueprintConfigSectionProps {
   blueprint: Blueprint;
@@ -15,8 +16,21 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
   nestedConfigs, 
   configValues 
 }) => {
-  const [delayedHoveredPart, setDelayedHoveredPart] = useState<string | null>(null);
+  // Move hover state to top level
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [tooltipDirection, setTooltipDirection] = useState<'up' | 'down'>('down');
   const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
+  const configSelections = useBlueprintContext((state) => state.configSelections);
+  // Store refs for config boxes by key
+  const configBoxRefs = useRef<{ [key: string]: React.RefObject<HTMLDivElement | null> }>({});
+
+  // Helper to get or create a ref for a config box
+  const getConfigBoxRef = (key: string) => {
+    if (!configBoxRefs.current[key]) {
+      configBoxRefs.current[key] = createRef<HTMLDivElement>();
+    }
+    return configBoxRefs.current[key];
+  };
 
   useEffect(() => {
     return () => {
@@ -24,14 +38,31 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
     };
   }, []);
 
+  // Unified hover handler with direction logic
   const handleBoxHover = (isHovering: boolean, key: string) => {
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
     if (isHovering) {
+      // Clear any existing hover state immediately when starting to hover a new box
+      setHoveredKey(null);
       hoverTimeout.current = setTimeout(() => {
-        setDelayedHoveredPart(key);
+        setHoveredKey(key);
+        // Check direction
+        const ref = getConfigBoxRef(key);
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const spaceBelow = window.innerHeight - rect.bottom;
+          const tooltipHeight = 220; // estimate, or could measure
+          if (spaceBelow < tooltipHeight && rect.top > tooltipHeight) {
+            setTooltipDirection('up');
+          } else {
+            setTooltipDirection('down');
+          }
+        } else {
+          setTooltipDirection('down');
+        }
       }, 1000);
     } else {
-      setDelayedHoveredPart(null);
+      setHoveredKey(null);
     }
   };
 
@@ -164,6 +195,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
     return requirements;
   };
 
+  // Pass hoveredKey and handleBoxHover recursively
   const renderConfigBoxes = (parts: ConfigPart[], parentPath: string[] = [], parentFulfills: { part: string }[] = [], parentBlueprint?: Blueprint) => {
     return (
       <div className="relative">
@@ -173,6 +205,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
             .map((part: ConfigPart) => {
               const partPath = [...parentPath, part.name];
               const key = partPath.join('|');
+              const ref = getConfigBoxRef(key);
               return (
                 <ConfigBox
                   key={key}
@@ -182,27 +215,27 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                   onHover={(isHovering) => handleBoxHover(isHovering, key)}
                   parentBlueprint={parentBlueprint}
                   peerParts={parts}
+                  boxRef={ref}
                 />
               );
             })}
         </div>
-        {delayedHoveredPart && (
-          <div className="text-sm bg-white border rounded p-4 shadow-lg z-50 pointer-events-none mt-2 max-w-md">
+        {/* Only show tooltip for the globally hovered key */}
+        {hoveredKey && parts.some(p => [...parentPath, p.name].join('|') === hoveredKey) && (
+          <div
+            className={`text-sm bg-white border rounded p-4 shadow-lg z-50 pointer-events-none max-w-md ${tooltipDirection === 'up' ? 'absolute bottom-full mb-2' : 'mt-2'}`}
+            style={tooltipDirection === 'up' ? { left: 0 } : {}}
+          >
             {(() => {
               const part = parts.find(p => {
                 const partPath = [...parentPath, p.name];
-                return partPath.join('|') === delayedHoveredPart;
+                return partPath.join('|') === hoveredKey;
               });
-              
               if (!part?.tags) return null;
-              
               const tooltipContent = [];
-              
-              // Add constraint source information if there are constrain entries
               if (part.tags.constrain && part.tags.constrain.length > 0) {
                 const hasParentInheritance = part.tags.constrain.some(c => 'tag' in c && c.parent !== false);
                 const hasSiblingInheritance = part.tags.constrain.some(c => 'tag' in c);
-                
                 if (hasParentInheritance && parentBlueprint) {
                   tooltipContent.push(
                     <div key="parent-info" className="mb-2 p-2 bg-blue-50 rounded">
@@ -214,7 +247,6 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                     </div>
                   );
                 }
-                
                 if (hasSiblingInheritance && parts.length > 1) {
                   const siblingNames = parts
                     .filter(p => p.name !== part.name)
@@ -229,14 +261,11 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                   );
                 }
               }
-              
-              // Add the main tag requirements
               tooltipContent.push(
                 <div key="requirements">
                   {renderTagRequirements(part.tags, part)}
                 </div>
               );
-              
               return tooltipContent;
             })()}
           </div>
@@ -277,11 +306,14 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
         // Filter parts to be shown
         const filteredParts = parts.filter(part => !fulfills.some(f => f.part === part.name));
         if (filteredParts.length === 0) return null;
-        
+
+        // Look up the selected blueprint for this partName
+        const selectedParentBlueprint = configSelections[partName] || blueprint;
+
         return (
           <div key={partName} className="mt-4">
             <h3 className="text-xl font-semibold mb-2">Parts Needed for {partName}</h3>
-            {renderConfigBoxes(filteredParts, [partName], fulfills, blueprint)}
+            {renderConfigBoxes(filteredParts, [partName], fulfills, selectedParentBlueprint)}
           </div>
         );
       })}
