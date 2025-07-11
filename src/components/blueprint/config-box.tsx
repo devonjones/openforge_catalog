@@ -13,20 +13,23 @@ interface ConfigBoxProps {
   onHover?: (isHovering: boolean) => void;
   parentBlueprint?: Blueprint;
   peerParts?: ConfigPart[];
+  boxRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const ConfigBox = ({ title, value, optional, onHover, parentBlueprint }: ConfigBoxProps) => {
+const ConfigBox = ({ title, value, optional, onHover, parentBlueprint, boxRef }: ConfigBoxProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const configSelections = useBlueprintContext((state) => state.configSelections);
   const setConfigSelection = useBlueprintContext((state) => state.setConfigSelection);
   const selectedBlueprint = configSelections[title];
 
   const handlePartSelected = (partName: string, blueprint: Blueprint) => {
+    onHover?.(false);
     setConfigSelection(title, blueprint);
     setIsModalOpen(false);
   };
 
   const handleOpenModal = () => {
+    onHover?.(false);
     setIsModalOpen(true);
   };
 
@@ -37,6 +40,7 @@ const ConfigBox = ({ title, value, optional, onHover, parentBlueprint }: ConfigB
       className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group"
       onMouseEnter={() => onHover?.(true)}
       onMouseLeave={() => onHover?.(false)}
+      ref={boxRef}
     >
       <h3 className="text-lg font-semibold mb-2 cursor-help">
         {title}

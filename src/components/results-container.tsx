@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { Blueprint, ConfigTags } from '@/types';
@@ -35,38 +35,80 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   const { copied, copyText } = useCopyToClipboard();
   
   const { hasSetTagState } = useUrlParameters();
+  const lastProcessedConfig = useRef<string>('');
+
+  // Helper function to compare tag arrays for equality
+  const areTagArraysUnsortedEqual = (a: string[], b: string[]): boolean => {
+    if (a.length !== b.length) return false;
+    // Create copies before sorting to avoid mutating original arrays
+    const sortedA = [...a].sort();
+    const sortedB = [...b].sort();
+    return sortedA.every((value, index) => value === sortedB[index]);
+  };
 
   useEffect(() => {
-    if (fetchData && !hasSetTagState.current) {
-      // Check if fetchData returns a promise
-      const fetchDataResult = fetchData();
-      if (fetchDataResult && typeof fetchDataResult.then === 'function') {
-        fetchDataResult.then(() => {
-          // Only set tag state after fetchData completes
-          if (configValues) {
-            const tags = processConfigValues(configValues, parentTags, siblingSelections);
-            setTagState(tags);
-            hasSetTagState.current = true;
-          }
-        });
-      } else {
-        // fetchData is not a promise, set tag state immediately
-        if (configValues) {
-          const tags = processConfigValues(configValues, parentTags, siblingSelections);
-          setTagState(tags);
+    if (configValues) {
+      let isCancelled = false;
+
+      // Create a hash of the current config to prevent unnecessary updates
+      const configHash = JSON.stringify({ configValues, parentTags, siblingSelections });
+      if (configHash === lastProcessedConfig.current) {
+        return; // Skip if config hasn't actually changed
+      }
+      lastProcessedConfig.current = configHash;
+
+      const derivedTags = processConfigValues(configValues, parentTags, siblingSelections);
+
+      const setTags = () => {
+        if (!isCancelled) {
+          setTagState(derivedTags);
           hasSetTagState.current = true;
         }
-      }
-    }
-  }, [configValues, setTagState, parentTags, siblingSelections, fetchData, hasSetTagState]);
+      };
 
-  // Handle changes to configValues or parentTags or siblingSelections after initial setup
-  useEffect(() => {
-    if (hasSetTagState.current && configValues) {
-      const tags = processConfigValues(configValues, parentTags, siblingSelections);
-      setTagState(tags);
+      if (!hasSetTagState.current) {
+        // Initial setup
+        if (fetchData) {
+          const result = fetchData();
+          if (result && typeof result.then === 'function') {
+            result.then(setTags);
+          } else {
+            setTags();
+          }
+        } else {
+          setTags();
+        }
+      } else {
+        // Handle updates to props after initial setup
+        // Preserve user-added tags while updating derived ones
+        const userAddedTags = selectedTags.filter(tag => 
+          !derivedTags.require?.includes(tag) && 
+          !derivedTags.deny?.includes(tag)
+        );
+        
+        // Ensure we always work with arrays, even if derivedTags properties are undefined/null
+        const derivedRequire = Array.isArray(derivedTags.require) ? derivedTags.require : [];
+        const derivedDeny = Array.isArray(derivedTags.deny) ? derivedTags.deny : [];
+        
+        const mergedTags = {
+          require: [...derivedRequire, ...userAddedTags],
+          deny: derivedDeny
+        };
+        
+        // Compare arrays to prevent infinite loops
+        const requireChanged = !areTagArraysUnsortedEqual(mergedTags.require || [], selectedTags);
+        const denyChanged = !areTagArraysUnsortedEqual(mergedTags.deny || [], denyTags);
+
+        if (requireChanged || denyChanged) {
+          setTagState(mergedTags);
+        }
+      }
+
+      return () => {
+        isCancelled = true;
+      };
     }
-  }, [configValues, setTagState, parentTags, siblingSelections, hasSetTagState]);
+  }, [configValues, parentTags, siblingSelections, fetchData, setTagState, hasSetTagState, selectedTags, denyTags]);
 
   const handleSelect = (blueprint: Blueprint) => {
     setSelectedBlueprint(blueprint);
