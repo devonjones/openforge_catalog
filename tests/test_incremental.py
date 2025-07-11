@@ -192,7 +192,7 @@ class TestIncrementalScanner:
         """Test processing a new file."""
         scanner = IncrementalScanner(sample_fixture)
         
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file3"],
             "tiles/dungeon_stone/floor/file3.stl",
             {("shape", "floor"), ("texture", "stone")},
@@ -202,6 +202,7 @@ class TestIncrementalScanner:
         # New files return a single entry
         assert len(results) == 1
         result = results[0]
+        assert file_changed is True
         
         assert result["type"] == "model"
         assert result["file_metadata"]["full_name"] == "tiles/dungeon_stone/floor/file3.stl"
@@ -225,7 +226,7 @@ class TestIncrementalScanner:
         # 2023-01-01T10:00:00 UTC = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
         
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "floor"), ("texture", "stone")},
@@ -236,6 +237,7 @@ class TestIncrementalScanner:
         assert len(results) == 2
         # Get the new entry (not the deprecated one)
         result = results[1]  # Second entry is the new one
+        assert file_changed is True
 
         # Should recalculate MD5 since content doesn't match
         assert result["file_metadata"]["size"] == 1000
@@ -254,7 +256,7 @@ class TestIncrementalScanner:
         with open(sample_files["file1"], 'w') as f:
             f.write("modified content")
             
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "floor"), ("texture", "stone")},
@@ -264,6 +266,7 @@ class TestIncrementalScanner:
         # Changed files return 2 entries (deprecated + new) since content doesn't match expected MD5
         assert len(results) == 2
         result = results[1]  # Second entry is the new one
+        assert file_changed is True
         
         # Should recalculate MD5
         assert result["file_metadata"]["md5"] != "old_md5_1"
@@ -290,7 +293,7 @@ class TestIncrementalScanner:
             f.write("modified content")
             
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "floor"), ("texture", "stone")},
@@ -301,6 +304,7 @@ class TestIncrementalScanner:
         assert len(results) == 2
         # Get the new entry (not the deprecated one)
         new_entry = results[1]  # Second entry is the new one
+        assert file_changed is True
         
         assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is True
         
@@ -309,7 +313,7 @@ class TestIncrementalScanner:
         scanner = IncrementalScanner(sample_fixture)
         
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "wall"), ("texture", "stone")},  # Changed tags
@@ -319,6 +323,7 @@ class TestIncrementalScanner:
         # Since file content doesn't match expected MD5, we get 2 entries (deprecated + new)
         assert len(results) == 2
         new_entry = results[1]  # Second entry is the new one
+        assert file_changed is True
         
         assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is True
         
@@ -327,7 +332,7 @@ class TestIncrementalScanner:
         scanner = IncrementalScanner(sample_fixture)
         
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "floor"), ("texture", "stone")},
@@ -337,6 +342,7 @@ class TestIncrementalScanner:
         # Since file content doesn't match expected MD5, we get 2 entries (deprecated + new)
         assert len(results) == 2
         new_entry = results[1]  # Second entry is the new one
+        assert file_changed is True
         
         assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is True
         
@@ -396,7 +402,7 @@ class TestIncrementalScanner:
         os.utime(sample_files["file1"], (1672567200, 1672567200))
 
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("shape", "floor"), ("texture", "stone")},  # Same tags
@@ -406,6 +412,7 @@ class TestIncrementalScanner:
         # Since content matches expected MD5 and metadata matches, we should get 1 entry
         assert len(results) == 1
         new_entry = results[0]
+        assert file_changed is False
         # No changes should be detected
         assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False
         
@@ -453,7 +460,7 @@ class TestIncrementalScanner:
         os.utime(sample_files["file1"], (1672567200, 1672567200))
 
         existing_entry = scanner._find_existing_entry("tiles/dungeon_stone/floor/file1.stl")
-        results = scanner.process_file(
+        results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
             {("texture", "stone"), ("shape", "floor")},  # Same tags, different order
@@ -463,5 +470,6 @@ class TestIncrementalScanner:
         # Since content matches expected MD5 and metadata matches, we should get 1 entry
         assert len(results) == 1
         new_entry = results[0]
+        assert file_changed is False
         # No changes should be detected (tags are the same, just reordered)
         assert scanner._has_changes_for_output(sample_files["file1"], existing_entry, new_entry) is False 

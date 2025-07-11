@@ -142,6 +142,8 @@ class IncrementalScanner:
         """
         stat = os.stat(file_path)
         # Use local time interpretation to match existing fixture files
+        # This is intentional - existing fixtures were created with local time,
+        # and changing to UTC would break timestamp comparisons
         local_time = datetime.fromtimestamp(stat.st_mtime)
         final_time = local_time.isoformat()
 
@@ -186,28 +188,7 @@ class IncrementalScanner:
             
         return False
         
-    def _needs_md5_recalculation(self, file_path: str, existing_entry: Dict) -> bool:
-        """Determine if MD5 needs to be recalculated.
-        
-        Args:
-            file_path: Path to current file
-            existing_entry: Existing fixture entry
-            
-        Returns:
-            True if MD5 should be recalculated
-        """
-        current_info = self._get_file_info(file_path)
-        existing_metadata = existing_entry["file_metadata"]
-        
-        # Compare size and modification time
-        if current_info["size"] != existing_metadata["size"]:
-            return True
-            
-        # Compare modification time
-        if current_info["modified"] != existing_metadata["modified"]:
-            return True
-                
-        return False
+
         
     def _has_changes_for_output(self, file_path: str, existing_entry: Dict, new_entry: Dict) -> bool:
         """Determine if file has changes that should trigger output.
@@ -270,7 +251,7 @@ class IncrementalScanner:
         deprecation_entry["deprecated"] = True
         return deprecation_entry
         
-    def process_file(self, file_path: str, full_name: str, tags: Set, config: Dict = None) -> List[Dict]:
+    def process_file(self, file_path: str, full_name: str, tags: Set, config: Dict = None) -> Tuple[List[Dict], bool]:
         """Process a single file with incremental logic.
         
         Args:
@@ -280,7 +261,7 @@ class IncrementalScanner:
             config: Config for the file
             
         Returns:
-            List of processed fixture entries (may include deprecation entries)
+            Tuple of (list of processed fixture entries, whether file changed)
         """
         existing_entry = self._find_existing_entry(full_name)
         file_changed = self._has_file_changed(file_path, existing_entry)
@@ -306,7 +287,7 @@ class IncrementalScanner:
             }]
         else:
             # Existing file - check if MD5 needs recalculation
-            if self._needs_md5_recalculation(file_path, existing_entry):
+            if self._has_file_changed(file_path, existing_entry):
                 # Recalculate MD5
                 md5 = self._calculate_md5(file_path)
                 file_info = self._get_file_info(file_path)
