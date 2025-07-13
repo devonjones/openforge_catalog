@@ -152,7 +152,15 @@ def _munge_blueprint(data: dict):
 def _get_words(data: dict):
     words = set()
     for t in data.get("tags", []):
-        words.update([str(w) for w in t])
+        if isinstance(t, list):
+            # Old format: ["shape", "floor"] -> extract words
+            words.update(str(w) for w in t)
+        elif isinstance(t, str):
+            # New format: "shape|floor" -> split into words
+            words.update(t.split("|"))
+        else:
+            # Fallback
+            words.add(str(t))
     return list(words)
 
 
@@ -164,7 +172,17 @@ def load_blueprint_fixture(curs: cursor, data: dict):
         if bp is None:
             return  # Skip this record if it's a duplicate
         for tag in data["tags"]:
-            tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
+            if isinstance(tag, list):
+                # Old format: ["shape", "floor"] -> convert to database format
+                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
+            elif isinstance(tag, str):
+                # New format: "shape|floor" -> convert to array, then to database format
+                tag_array = tag_to_array(tag)
+                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+            else:
+                # Fallback: treat as string
+                tag_array = tag_to_array(str(tag))
+                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except Exception as e:

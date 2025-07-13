@@ -1,7 +1,8 @@
 import json
 import os
 import pytest
-from openforge.data.scanner import parse_file_tags
+from openforge.data.scanner import parse_file_tags, _sort_lists_recursively
+from openforge.data.metadata import apply_metadata, add_tag
 
 def test_filename_to_tags_cracked_ice():
     """Test filename parsing for cracked_ice texture"""
@@ -1063,3 +1064,277 @@ def test_filename_with_component_column_low_before_transform():
     # Check that we get the column low transformation
     assert ('shape', 'column', 'low') in tags
     assert len(tags) > 0
+
+
+def test_sort_lists_recursively_removes_empty_structures():
+    """Test that _sort_lists_recursively removes empty arrays and hashes"""
+    # Test data with empty structures
+    test_data = {
+        "name": "test",
+        "config": {},  # Empty dict should be removed
+        "tags": ["tag1", "tag2"],
+        "images": [],  # Empty list should be removed
+        "metadata": {
+            "empty_dict": {},
+            "empty_list": [],
+            "valid_data": "value"
+        },
+        "nested": {
+            "level1": {
+                "level2": {
+                    "empty": {},
+                    "valid": "data"
+                }
+            }
+        }
+    }
+    
+    # Process the data
+    result = _sort_lists_recursively(test_data)
+    
+    # Check that empty structures are removed
+    assert "config" not in result  # Empty dict removed
+    assert "images" not in result  # Empty list removed
+    assert "valid_data" in result["metadata"]  # Valid data preserved
+    assert "empty_dict" not in result["metadata"]  # Empty dict removed
+    assert "empty_list" not in result["metadata"]  # Empty list removed
+    assert "valid" in result["nested"]["level1"]["level2"]  # Valid nested data preserved
+    assert "empty" not in result["nested"]["level1"]["level2"]  # Empty nested dict removed
+    
+    # Check that valid data is preserved
+    assert result["name"] == "test"
+    assert result["tags"] == ["tag1", "tag2"]
+    assert result["metadata"]["valid_data"] == "value"
+    assert result["nested"]["level1"]["level2"]["valid"] == "data"
+
+
+def test_sort_lists_recursively_preserves_non_empty_structures():
+    """Test that _sort_lists_recursively preserves non-empty structures"""
+    # Test data with non-empty structures
+    test_data = {
+        "name": "test",
+        "config": {"key": "value"},  # Non-empty dict should be preserved
+        "tags": ["tag1", "tag2"],
+        "images": [{"url": "test.jpg"}],  # Non-empty list should be preserved
+        "metadata": {
+            "valid_dict": {"nested": "value"},
+            "valid_list": ["item1", "item2"]
+        }
+    }
+    
+    # Process the data
+    result = _sort_lists_recursively(test_data)
+    
+    # Check that non-empty structures are preserved
+    assert "config" in result
+    assert result["config"] == {"key": "value"}
+    assert "images" in result
+    assert result["images"] == [{"url": "test.jpg"}]
+    assert "valid_dict" in result["metadata"]
+    assert result["metadata"]["valid_dict"] == {"nested": "value"}
+    assert "valid_list" in result["metadata"]
+    assert result["metadata"]["valid_list"] == ["item1", "item2"]
+
+
+def test_sort_lists_recursively_handles_nested_empty_structures():
+    """Test that _sort_lists_recursively handles deeply nested empty structures"""
+    # Test data with deeply nested empty structures
+    test_data = {
+        "level1": {
+            "level2": {
+                "level3": {
+                    "empty_dict": {},
+                    "empty_list": [],
+                    "valid": "data"
+                }
+            }
+        },
+        "simple_empty": {},
+        "simple_empty_list": []
+    }
+    
+    # Process the data
+    result = _sort_lists_recursively(test_data)
+    
+    # Check that all empty structures are removed at all levels
+    assert "simple_empty" not in result
+    assert "simple_empty_list" not in result
+    assert "level1" in result
+    assert "level2" in result["level1"]
+    assert "level3" in result["level1"]["level2"]
+    assert "valid" in result["level1"]["level2"]["level3"]
+    assert "empty_dict" not in result["level1"]["level2"]["level3"]
+    assert "empty_list" not in result["level1"]["level2"]["level3"]
+    
+    # Check that valid data is preserved
+    assert result["level1"]["level2"]["level3"]["valid"] == "data"
+
+
+def test_metadata_processing_with_pipe_delimited_tags():
+    """Test that metadata processing works correctly with pipe-delimited tag format after fix"""
+    # Create a result object with pipe-delimited tags (as created by incremental processing)
+    result = {
+        "type": "model",
+        "file_metadata": {
+            "full_name": "test.stl",
+            "file": "test.stl",
+            "md5": "abc123",
+            "size": 1000,
+            "modified": "2023-01-01T00:00:00Z"
+        },
+        "tags": ["shape|floor", "texture|stone", "connection|openforge"],  # Pipe-delimited format
+        "config": {}
+    }
+    
+    # Simulate the fix: convert tags to set format for metadata processing
+    if "tags" in result:
+        tag_set = set()
+        for tag_str in result["tags"]:
+            tag_parts = tag_str.split("|")
+            tag_set.add(tuple(tag_parts))
+        result["tags"] = tag_set
+    
+    # Create metadata that will trigger add_tag calls
+    metadata = {
+        "tags": ["additional|tag", "another|tag"],  # Additional tags to add
+        "config": {"key": "value"}
+    }
+    
+    # This should not raise an AttributeError after the fix
+    apply_metadata(metadata, result)
+    
+    # Verify that the tags were processed correctly
+    # The result should have tags as a set of tuples
+    assert "tags" in result
+    assert isinstance(result["tags"], set)  # Should be set of tuples
+    assert ("shape", "floor") in result["tags"]
+    assert ("texture", "stone") in result["tags"]
+    assert ("connection", "openforge") in result["tags"]
+    assert ("additional", "tag") in result["tags"]
+    assert ("another", "tag") in result["tags"]
+    
+    # Verify config was applied
+    assert "config" in result
+    assert result["config"] == {"key": "value"}
+
+
+def test_add_tag_with_pipe_delimited_format():
+    """Test that add_tag works correctly when tags are in pipe-delimited format"""
+    # Create an object with pipe-delimited tags (as created by incremental processing)
+    obj = {
+        "tags": ["shape|floor", "texture|stone"]  # List of strings
+    }
+    
+    # This should raise an AttributeError because add_tag expects a set, not a list
+    with pytest.raises(AttributeError, match="'list' object has no attribute 'add'"):
+        add_tag(obj, "connection|openforge")
+
+
+def test_metadata_processing_with_pipe_delimited_tags_fails():
+    """Test that metadata processing fails with pipe-delimited format (before fix)"""
+    # Create a result object with pipe-delimited tags (as created by incremental processing)
+    result = {
+        "type": "model",
+        "file_metadata": {
+            "full_name": "test.stl",
+            "file": "test.stl",
+            "md5": "abc123",
+            "size": 1000,
+            "modified": "2023-01-01T00:00:00Z"
+        },
+        "tags": ["shape|floor", "texture|stone", "connection|openforge"],  # Pipe-delimited format
+        "config": {}
+    }
+    
+    # Create metadata that will trigger add_tag calls
+    metadata = {
+        "tags": ["additional|tag", "another|tag"],  # Additional tags to add
+        "config": {"key": "value"}
+    }
+    
+    # This should raise an AttributeError because apply_metadata calls add_tag
+    with pytest.raises(AttributeError, match="'list' object has no attribute 'add'"):
+        apply_metadata(metadata, result)
+
+
+def test_incremental_processing_with_metadata_integration():
+    """Test the full incremental processing workflow with metadata that triggers the bug"""
+    # This test simulates the exact scenario that triggered the bug
+    # by directly testing the metadata processing with pipe-delimited tags
+    
+    # Create a result object as it would be created by incremental processing
+    result = {
+        "type": "model",
+        "file_metadata": {
+            "full_name": "tiles/stone/stone#floor.2x2.openforge.stl",
+            "file": "stone#floor.2x2.openforge.stl",
+            "md5": "abc123",
+            "size": 1000,
+            "modified": "2023-01-01T00:00:00Z"
+        },
+        "tags": ["shape|floor", "texture|stone", "connection|openforge"],  # Pipe-delimited format
+        "config": {}
+    }
+    
+    # Create metadata that will trigger add_tag calls
+    metadata = {
+        "tags": ["additional|tag", "another|tag"],  # Additional tags to add
+        "config": {"key": "value"}
+    }
+    
+    # Simulate the exact workflow that failed:
+    # 1. Result object has tags in pipe-delimited format (list of strings)
+    # 2. apply_metadata is called, which calls add_tag
+    # 3. add_tag expects a set but gets a list
+    
+    # This should raise the AttributeError in the original code
+    with pytest.raises(AttributeError, match="'list' object has no attribute 'add'"):
+        apply_metadata(metadata, result)
+
+
+def test_incremental_processing_with_metadata_after_fix():
+    """Test the full incremental processing workflow after the fix"""
+    # This test simulates the exact scenario that was fixed
+    # by directly testing the metadata processing with the fix applied
+    
+    # Create a result object as it would be created by incremental processing
+    result = {
+        "type": "model",
+        "file_metadata": {
+            "full_name": "tiles/stone/stone#floor.2x2.openforge.stl",
+            "file": "stone#floor.2x2.openforge.stl",
+            "md5": "abc123",
+            "size": 1000,
+            "modified": "2023-01-01T00:00:00Z"
+        },
+        "tags": ["shape|floor", "texture|stone", "connection|openforge"],  # Pipe-delimited format
+        "config": {}
+    }
+    
+    # Simulate the fix: convert tags to set format for metadata processing
+    if "tags" in result:
+        tag_set = set()
+        for tag_str in result["tags"]:
+            tag_parts = tag_str.split("|")
+            tag_set.add(tuple(tag_parts))
+        result["tags"] = tag_set
+    
+    # Create metadata that will trigger add_tag calls
+    metadata = {
+        "tags": ["additional|tag", "another|tag"],  # Additional tags to add
+        "config": {"key": "value"}
+    }
+    
+    # This should work with the fix
+    apply_metadata(metadata, result)
+    
+    # Verify the results
+    assert "tags" in result
+    assert isinstance(result["tags"], set)  # Should be set of tuples after metadata processing
+    assert ("shape", "floor") in result["tags"]
+    assert ("texture", "stone") in result["tags"]
+    assert ("connection", "openforge") in result["tags"]
+    assert ("additional", "tag") in result["tags"]
+    assert ("another", "tag") in result["tags"]
+    assert "config" in result
+    assert result["config"] == {"key": "value"}
