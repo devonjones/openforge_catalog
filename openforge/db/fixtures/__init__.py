@@ -159,8 +159,8 @@ def _get_words(data: dict):
             # New format: "shape|floor" -> split into words
             words.update(t.split("|"))
         else:
-            # Fallback
-            words.add(str(t))
+            # Fail fast for unexpected tag types
+            raise TypeError(f"Unsupported tag type {type(t).__name__}: {t}")
     return list(words)
 
 
@@ -180,9 +180,8 @@ def load_blueprint_fixture(curs: cursor, data: dict):
                 tag_array = tag_to_array(tag)
                 tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
             else:
-                # Fallback: treat as string
-                tag_array = tag_to_array(str(tag))
-                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+                # Fail fast for unexpected tag types
+                raise TypeError(f"Unsupported tag type {type(tag).__name__}: {tag}")
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except Exception as e:

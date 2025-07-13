@@ -543,14 +543,14 @@ def find_files(path, subset):
     return retfiles
 
 
-def _sort_lists_recursively(obj):
+def _sort_and_clean_recursively(obj):
     """Recursively sort all lists and dictionary keys in a JSON-serializable object for consistent output.
-    Also removes empty arrays and hashes."""
+    Also removes empty arrays and hashes in a single pass for performance."""
     if isinstance(obj, dict):
         # Sort dictionary keys and recursively sort values, filtering out empty values
         result = {}
         for k, v in sorted(obj.items()):
-            processed_v = _sort_lists_recursively(v)
+            processed_v = _sort_and_clean_recursively(v)
             # Only include non-empty values
             if processed_v is not None and processed_v != {} and processed_v != []:
                 result[k] = processed_v
@@ -570,12 +570,12 @@ def _sort_lists_recursively(obj):
                 return str(item)
         
         # Process and filter out empty items
-        processed_items = [_sort_lists_recursively(item) for item in obj]
+        processed_items = [_sort_and_clean_recursively(item) for item in obj]
         filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
         return sorted(filtered_items, key=sort_key)
     elif isinstance(obj, (set, tuple)):
         # For sets and tuples, convert to sorted list with string comparison
-        processed_items = [_sort_lists_recursively(item) for item in obj]
+        processed_items = [_sort_and_clean_recursively(item) for item in obj]
         filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
         return sorted(filtered_items, key=str)
     else:
@@ -589,5 +589,5 @@ def print_files(files):
         raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
     # Sort all lists recursively for consistent git diffs
-    sorted_files = _sort_lists_recursively(files)
+    sorted_files = _sort_and_clean_recursively(files)
     print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))

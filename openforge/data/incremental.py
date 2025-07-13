@@ -20,7 +20,7 @@ import boto3
 from botocore.client import Config
 import sh
 from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
-from .scanner import parse_file_tags, validate, print_files, _sort_lists_recursively, _convert_tags_to_pipe_delimited
+from .scanner import parse_file_tags, validate, print_files, _sort_and_clean_recursively, _convert_tags_to_pipe_delimited
 from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 
 
@@ -389,8 +389,8 @@ def _normalize_tags_to_pipe_delimited(tags):
             # New format: already pipe-delimited
             normalized.append(tag)
         else:
-            # Fallback: convert to string
-            normalized.append(str(tag))
+            # Fail fast: only list and string types are supported
+            raise TypeError(f"Unsupported tag type: {type(tag)}. Expected list or str, got {type(tag)} with value: {tag}")
     return normalized
 
 
@@ -600,7 +600,7 @@ def print_incremental_diff(files, scanner, verbose=False):
         result["modified_details"] = modified_details
     
     # Sort all lists recursively for consistent git diffs
-    sorted_result = _sort_lists_recursively(result)
+    sorted_result = _sort_and_clean_recursively(result)
     print(json.dumps(sorted_result, indent=2, sort_keys=True))
 
 

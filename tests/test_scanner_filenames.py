@@ -1,7 +1,7 @@
 import json
 import os
 import pytest
-from openforge.data.scanner import parse_file_tags, _sort_lists_recursively
+from openforge.data.scanner import parse_file_tags, _sort_and_clean_recursively
 from openforge.data.metadata import apply_metadata, add_tag
 
 def test_filename_to_tags_cracked_ice():
@@ -1066,8 +1066,8 @@ def test_filename_with_component_column_low_before_transform():
     assert len(tags) > 0
 
 
-def test_sort_lists_recursively_removes_empty_structures():
-    """Test that _sort_lists_recursively removes empty arrays and hashes"""
+def test_sort_and_clean_recursively_removes_empty_structures():
+    """Test that _sort_and_clean_recursively removes empty arrays and hashes"""
     # Test data with empty structures
     test_data = {
         "name": "test",
@@ -1090,7 +1090,7 @@ def test_sort_lists_recursively_removes_empty_structures():
     }
     
     # Process the data
-    result = _sort_lists_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data)
     
     # Check that empty structures are removed
     assert "config" not in result  # Empty dict removed
@@ -1123,7 +1123,7 @@ def test_sort_lists_recursively_preserves_non_empty_structures():
     }
     
     # Process the data
-    result = _sort_lists_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data)
     
     # Check that non-empty structures are preserved
     assert "config" in result
@@ -1154,7 +1154,7 @@ def test_sort_lists_recursively_handles_nested_empty_structures():
     }
     
     # Process the data
-    result = _sort_lists_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data)
     
     # Check that all empty structures are removed at all levels
     assert "simple_empty" not in result
