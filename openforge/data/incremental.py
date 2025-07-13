@@ -61,8 +61,7 @@ class IncrementalScanner:
                 data = safe_load(f)
                 
         # Validate schema
-        # TODO: Re-enable after fixtures are updated to pipe-delimited format
-        # validate_schema("blueprint.fixture.json", data)
+        validate_schema("blueprint.fixture.json", data)
         
         # Ensure all entries have file_metadata
         for item in data:
@@ -602,7 +601,7 @@ def print_incremental_diff(files, scanner, verbose=False):
     
     # Sort all lists recursively for consistent git diffs
     sorted_result = _sort_lists_recursively(result)
-    print(json.dumps(sorted_result, indent=2))
+    print(json.dumps(sorted_result, indent=2, sort_keys=True))
 
 
 def print_incremental_changes(files, scanner):

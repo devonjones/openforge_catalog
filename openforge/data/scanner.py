@@ -560,8 +560,9 @@ def _sort_lists_recursively(obj):
         # Convert each item to a sortable representation
         def sort_key(item):
             if isinstance(item, dict):
-                # Use the first key as a sort key, or a default if empty
-                return next(iter(item.keys()), "")
+                # Create a stable, sortable representation of the dictionary
+                # to ensure consistent sorting.
+                return json.dumps(item, sort_keys=True)
             elif isinstance(item, (list, tuple, set)):
                 # For nested sequences, use the first element as sort key
                 return str(item[0]) if item else ""
@@ -589,4 +590,4 @@ def print_files(files):
 
     # Sort all lists recursively for consistent git diffs
     sorted_files = _sort_lists_recursively(files)
-    print(json.dumps(sorted_files, default=set_handler, indent=4))
+    print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))
