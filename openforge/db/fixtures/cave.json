@@ -17,10 +17,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -83,10 +83,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -149,10 +149,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -215,10 +215,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -281,10 +281,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -347,10 +347,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -413,10 +413,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -479,10 +479,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -545,10 +545,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -611,10 +611,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -677,10 +677,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -743,10 +743,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -809,10 +809,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -875,10 +875,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -941,10 +941,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1007,10 +1007,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1073,10 +1073,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1139,10 +1139,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1205,10 +1205,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1271,10 +1271,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1337,10 +1337,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1403,10 +1403,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1469,10 +1469,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1535,10 +1535,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1595,10 +1595,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1657,10 +1657,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1720,10 +1720,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1783,10 +1783,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1846,10 +1846,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1909,10 +1909,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1973,10 +1973,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2038,10 +2038,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2103,10 +2103,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2168,10 +2168,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2233,10 +2233,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2297,10 +2297,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2362,10 +2362,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2427,10 +2427,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2492,10 +2492,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2557,10 +2557,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2625,10 +2625,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2693,10 +2693,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2761,10 +2761,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2829,10 +2829,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2897,10 +2897,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2965,10 +2965,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3035,10 +3035,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3105,10 +3105,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3175,10 +3175,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3245,10 +3245,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3315,10 +3315,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3385,10 +3385,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3455,10 +3455,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3525,10 +3525,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3595,10 +3595,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3665,10 +3665,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3735,10 +3735,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3805,10 +3805,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3869,10 +3869,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3933,10 +3933,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3997,10 +3997,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4061,10 +4061,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4125,10 +4125,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4189,10 +4189,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4253,10 +4253,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4317,10 +4317,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4382,10 +4382,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4439,71 +4439,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "fracture slope",
-                    "tags": {
-                        "deny": [
-                            {
-                                "tag": "connection|side"
-                            },
-                            {
-                                "tag": "connection|side|dragonlock"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "interface|cave|fracture slope"
-                            },
-                            {
-                                "tag": "size|width|4"
-                            },
-                            {
-                                "tag": "size|depth|1"
-                            },
-                            {
-                                "tag": "texture|cave|sandstone"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T20:03:33.389315+00:00",
-            "file": "cave%sandstone+3#wall,slope.SB.openforge,bottom.stl",
-            "file_modified_at": "2024-09-16T23:12:32.470122+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/cave%sandstone+3#wall,slope.SB.openforge,bottom.stl",
-            "md5": "3f286f863a72445df0bb0bdce44170ed",
-            "modified": "2024-09-16T23:12:32.470122+00:00",
-            "size": 9712684,
-            "storage_address": "https://objects.openforge.tools/models/3f286f/3f286f863a72445df0bb0bdce44170ed.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f286f/3f286f863a72445df0bb0bdce44170ed.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|slope",
-            "connection|bottom",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -4512,10 +4447,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4576,10 +4511,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4640,10 +4575,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4704,10 +4639,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4768,10 +4703,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4832,10 +4767,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4896,10 +4831,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4962,10 +4897,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5028,10 +4963,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5094,10 +5029,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5160,10 +5095,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5226,10 +5161,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5292,10 +5227,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5358,10 +5293,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5424,10 +5359,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5491,10 +5426,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5550,68 +5485,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "fracture slope",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|cave|fracture slope"
-                            },
-                            {
-                                "tag": "size|width|4"
-                            },
-                            {
-                                "tag": "size|depth|1"
-                            },
-                            {
-                                "tag": "texture|cave|sandstone"
-                            },
-                            {
-                                "tag": "connection|side"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T20:05:03.506827+00:00",
-            "file": "cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
-            "file_modified_at": "2024-09-16T23:12:24.650074+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
-            "md5": "23b167296c4c73c6a2d112d07e4d1f31",
-            "modified": "2024-09-16T23:12:24.650074+00:00",
-            "size": 9368884,
-            "storage_address": "https://objects.openforge.tools/models/23b167/23b167296c4c73c6a2d112d07e4d1f31.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/23b167/23b167296c4c73c6a2d112d07e4d1f31.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|slope",
-            "connection|bottom",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -5620,10 +5493,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5686,10 +5559,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5752,10 +5625,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5818,10 +5691,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5884,10 +5757,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5950,10 +5823,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6016,10 +5889,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6082,10 +5955,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6148,10 +6021,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6214,10 +6087,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6280,10 +6153,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6346,10 +6219,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6412,10 +6285,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6478,10 +6351,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6544,10 +6417,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6611,10 +6484,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6670,68 +6543,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "fracture slope",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|cave|fracture slope"
-                            },
-                            {
-                                "tag": "size|width|4"
-                            },
-                            {
-                                "tag": "size|depth|1"
-                            },
-                            {
-                                "tag": "texture|cave|sandstone"
-                            },
-                            {
-                                "tag": "connection|side|dragonlock"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T20:06:41.866399+00:00",
-            "file": "cave%sandstone+3#wall,slope.SB.openforge,side+dragonlock,bottom.stl",
-            "file_modified_at": "2024-09-16T23:12:27.913354+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side+dragonlock/cave%sandstone+3#wall,slope.SB.openforge,side+dragonlock,bottom.stl",
-            "md5": "b5a818654f38cd5ac8cebfb292515f96",
-            "modified": "2024-09-16T23:12:27.913354+00:00",
-            "size": 9440984,
-            "storage_address": "https://objects.openforge.tools/models/b5a818/b5a818654f38cd5ac8cebfb292515f96.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b5a818/b5a818654f38cd5ac8cebfb292515f96.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|slope",
-            "connection|bottom",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -6740,10 +6551,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6806,10 +6617,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6872,10 +6683,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -6938,10 +6749,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -7004,10 +6815,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -7070,10 +6881,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -7143,10 +6954,75 @@
                                 "tag": "interface|cave|fracture slope"
                             },
                             {
+                                "tag": "size|depth|1"
+                            },
+                            {
                                 "tag": "size|width|4"
                             },
                             {
+                                "tag": "texture|cave|sandstone"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T20:03:33.389315+00:00",
+            "file": "cave%sandstone+3#wall,slope.SB.openforge,bottom.stl",
+            "file_modified_at": "2024-09-16T23:12:32.470122+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/cave%sandstone+3#wall,slope.SB.openforge,bottom.stl",
+            "md5": "3f286f863a72445df0bb0bdce44170ed",
+            "modified": "2024-09-16T23:12:32.470122+00:00",
+            "size": 9712684,
+            "storage_address": "https://objects.openforge.tools/models/3f286f/3f286f863a72445df0bb0bdce44170ed.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f286f/3f286f863a72445df0bb0bdce44170ed.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|slope",
+            "connection|bottom",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "fracture slope",
+                    "tags": {
+                        "deny": [
+                            {
+                                "tag": "connection|side"
+                            },
+                            {
+                                "tag": "connection|side|dragonlock"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "interface|cave|fracture slope"
+                            },
+                            {
                                 "tag": "size|depth|1"
+                            },
+                            {
+                                "tag": "size|width|4"
                             },
                             {
                                 "tag": "texture|cave|sandstone"
@@ -7197,19 +7073,81 @@
                     "tags": {
                         "require": [
                             {
-                                "tag": "interface|cave|fracture slope"
+                                "tag": "connection|side"
                             },
                             {
-                                "tag": "size|width|4"
+                                "tag": "interface|cave|fracture slope"
                             },
                             {
                                 "tag": "size|depth|1"
                             },
                             {
-                                "tag": "texture|cave|sandstone"
+                                "tag": "size|width|4"
                             },
                             {
+                                "tag": "texture|cave|sandstone"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T20:05:03.506827+00:00",
+            "file": "cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
+            "file_modified_at": "2024-09-16T23:12:24.650074+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
+            "md5": "23b167296c4c73c6a2d112d07e4d1f31",
+            "modified": "2024-09-16T23:12:24.650074+00:00",
+            "size": 9368884,
+            "storage_address": "https://objects.openforge.tools/models/23b167/23b167296c4c73c6a2d112d07e4d1f31.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/23b167/23b167296c4c73c6a2d112d07e4d1f31.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|slope",
+            "connection|bottom",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "fracture slope",
+                    "tags": {
+                        "require": [
+                            {
                                 "tag": "connection|side"
+                            },
+                            {
+                                "tag": "interface|cave|fracture slope"
+                            },
+                            {
+                                "tag": "size|depth|1"
+                            },
+                            {
+                                "tag": "size|width|4"
+                            },
+                            {
+                                "tag": "texture|cave|sandstone"
                             }
                         ]
                     }
@@ -7240,6 +7178,68 @@
             "connection|openlock",
             "connection|side",
             "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "fracture slope",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "connection|side|dragonlock"
+                            },
+                            {
+                                "tag": "interface|cave|fracture slope"
+                            },
+                            {
+                                "tag": "size|depth|1"
+                            },
+                            {
+                                "tag": "size|width|4"
+                            },
+                            {
+                                "tag": "texture|cave|sandstone"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T20:06:41.866399+00:00",
+            "file": "cave%sandstone+3#wall,slope.SB.openforge,side+dragonlock,bottom.stl",
+            "file_modified_at": "2024-09-16T23:12:27.913354+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side+dragonlock/cave%sandstone+3#wall,slope.SB.openforge,side+dragonlock,bottom.stl",
+            "md5": "b5a818654f38cd5ac8cebfb292515f96",
+            "modified": "2024-09-16T23:12:27.913354+00:00",
+            "size": 9440984,
+            "storage_address": "https://objects.openforge.tools/models/b5a818/b5a818654f38cd5ac8cebfb292515f96.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b5a818/b5a818654f38cd5ac8cebfb292515f96.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|slope",
+            "connection|bottom",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
             "shape|square",
             "shape|wall",
             "size|depth|1",

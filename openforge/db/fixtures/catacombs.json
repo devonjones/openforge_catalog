@@ -41,10 +41,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -125,10 +125,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [

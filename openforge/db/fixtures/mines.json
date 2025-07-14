@@ -17,10 +17,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -85,10 +85,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -152,10 +152,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -219,10 +219,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -286,10 +286,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -352,10 +352,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -418,10 +418,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -484,10 +484,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -544,10 +544,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -605,10 +605,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -665,10 +665,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -725,10 +725,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -785,10 +785,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -845,10 +845,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -897,32 +897,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -931,71 +905,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:37:20.184671+00:00",
-            "file": "mine#wall+b.1x1.openforge,magnetic_post.stl",
-            "file_modified_at": "2025-06-29T14:44:53.008733+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.1x1.openforge,magnetic_post.stl",
-            "md5": "556642880c589ad787a625a36e249bc3",
-            "modified": "2025-06-29T14:44:53.008733+00:00",
-            "size": 12712584,
-            "storage_address": "https://objects.openforge.tools/models/556642/556642880c589ad787a625a36e249bc3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/556642/556642880c589ad787a625a36e249bc3.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|1",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -1044,32 +957,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -1078,71 +965,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:37:27.743952+00:00",
-            "file": "mine#wall+b.2x1.openforge,magnetic_post.stl",
-            "file_modified_at": "2025-06-29T14:48:47.232650+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.2x1.openforge,magnetic_post.stl",
-            "md5": "46fb0e10be9f61908720f0e0d1a68884",
-            "modified": "2025-06-29T14:48:47.232650+00:00",
-            "size": 22618084,
-            "storage_address": "https://objects.openforge.tools/models/46fb0e/46fb0e10be9f61908720f0e0d1a68884.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/46fb0e/46fb0e10be9f61908720f0e0d1a68884.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|2",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -1191,32 +1017,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -1225,71 +1025,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:37:36.810022+00:00",
-            "file": "mine#wall+b.3x1.openforge,magnetic_post.stl",
-            "file_modified_at": "2025-06-29T14:49:08.688456+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.3x1.openforge,magnetic_post.stl",
-            "md5": "d006e98c13429a3500e41e3b1a79094e",
-            "modified": "2025-06-29T14:49:08.688456+00:00",
-            "size": 31939684,
-            "storage_address": "https://objects.openforge.tools/models/d006e9/d006e98c13429a3500e41e3b1a79094e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d006e9/d006e98c13429a3500e41e3b1a79094e.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|3",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -1338,32 +1077,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -1372,71 +1085,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:37:46.615695+00:00",
-            "file": "mine#wall+b.4x1.openforge,magnetic_post.stl",
-            "file_modified_at": "2025-06-29T14:49:46.251907+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.4x1.openforge,magnetic_post.stl",
-            "md5": "9b543a05608283669676d8ee6aa2a3a6",
-            "modified": "2025-06-29T14:49:46.251907+00:00",
-            "size": 38516084,
-            "storage_address": "https://objects.openforge.tools/models/9b543a/9b543a05608283669676d8ee6aa2a3a6.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9b543a/9b543a05608283669676d8ee6aa2a3a6.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|4",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -1493,10 +1145,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1555,10 +1207,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1617,10 +1269,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1679,10 +1331,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1733,32 +1385,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -1767,73 +1393,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:38:09.066569+00:00",
-            "file": "mine#wall+b.1x1.openforge,side,magnetic_post.stl",
-            "file_modified_at": "2019-10-21T14:35:40+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.1x1.openforge,side,magnetic_post.stl",
-            "md5": "ed77a0dac1c4ea872a22ecaa6e173f5d",
-            "modified": "2019-10-21T14:35:40+00:00",
-            "size": 11689084,
-            "storage_address": "https://objects.openforge.tools/models/ed77a0/ed77a0dac1c4ea872a22ecaa6e173f5d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/ed77a0/ed77a0dac1c4ea872a22ecaa6e173f5d.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|1",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -1884,32 +1447,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -1918,73 +1455,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:38:15.111075+00:00",
-            "file": "mine#wall+b.2x1.openforge,side,magnetic_post.stl",
-            "file_modified_at": "2019-10-21T14:36:25+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.2x1.openforge,side,magnetic_post.stl",
-            "md5": "159f538bc1933fea7d1fa7ae26be295b",
-            "modified": "2019-10-21T14:36:25+00:00",
-            "size": 21609884,
-            "storage_address": "https://objects.openforge.tools/models/159f53/159f538bc1933fea7d1fa7ae26be295b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/159f53/159f538bc1933fea7d1fa7ae26be295b.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|2",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -2035,32 +1509,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -2069,73 +1517,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:38:23.044669+00:00",
-            "file": "mine#wall+b.3x1.openforge,side,magnetic_post.stl",
-            "file_modified_at": "2019-10-21T14:37:05+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.3x1.openforge,side,magnetic_post.stl",
-            "md5": "45182da820f4d41f4a30031065027646",
-            "modified": "2019-10-21T14:37:05+00:00",
-            "size": 31105784,
-            "storage_address": "https://objects.openforge.tools/models/45182d/45182da820f4d41f4a30031065027646.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/45182d/45182da820f4d41f4a30031065027646.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|3",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -2186,32 +1571,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "brace",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam|magnetic"
-                            },
-                            {
-                                "tag": "scatter|mine|brace"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "beam",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "interface|mine|beam"
-                            },
-                            {
-                                "tag": "scatter|mine|beam"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "base",
                     "optional": true,
                     "tags": {
@@ -2220,73 +1579,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
-                            },
-                            {
                                 "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:38:35.096304+00:00",
-            "file": "mine#wall+b.4x1.openforge,side,magnetic_post.stl",
-            "file_modified_at": "2019-10-21T14:37:45+00:00",
-            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.4x1.openforge,side,magnetic_post.stl",
-            "md5": "2b79f53855797a3fbba2de4ac65a23bf",
-            "modified": "2019-10-21T14:37:45+00:00",
-            "size": 37527584,
-            "storage_address": "https://objects.openforge.tools/models/2b79f5/2b79f53855797a3fbba2de4ac65a23bf.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/2b79f5/2b79f53855797a3fbba2de4ac65a23bf.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "component|wall|b",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "interface|mine|beam|magnetic",
-            "size|depth|1",
-            "size|width|4",
-            "texture|mine"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
                             },
                             {
                                 "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
                             }
                         ],
                         "deny": [
@@ -2345,10 +1641,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2410,10 +1706,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2475,10 +1771,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2541,10 +1837,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2606,10 +1902,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2671,10 +1967,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2737,10 +2033,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2801,10 +2097,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2861,10 +2157,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2921,10 +2217,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2981,10 +2277,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3041,10 +2337,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3104,10 +2400,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3168,10 +2464,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3231,10 +2527,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3278,6 +2574,710 @@
             "size|depth|1",
             "size|openlock|IX",
             "size|width|1",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:37:20.184671+00:00",
+            "file": "mine#wall+b.1x1.openforge,magnetic_post.stl",
+            "file_modified_at": "2025-06-29T14:44:53.008733+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.1x1.openforge,magnetic_post.stl",
+            "md5": "556642880c589ad787a625a36e249bc3",
+            "modified": "2025-06-29T14:44:53.008733+00:00",
+            "size": 12712584,
+            "storage_address": "https://objects.openforge.tools/models/556642/556642880c589ad787a625a36e249bc3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/556642/556642880c589ad787a625a36e249bc3.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|1",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:37:27.743952+00:00",
+            "file": "mine#wall+b.2x1.openforge,magnetic_post.stl",
+            "file_modified_at": "2025-06-29T14:48:47.232650+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.2x1.openforge,magnetic_post.stl",
+            "md5": "46fb0e10be9f61908720f0e0d1a68884",
+            "modified": "2025-06-29T14:48:47.232650+00:00",
+            "size": 22618084,
+            "storage_address": "https://objects.openforge.tools/models/46fb0e/46fb0e10be9f61908720f0e0d1a68884.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/46fb0e/46fb0e10be9f61908720f0e0d1a68884.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|2",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:37:36.810022+00:00",
+            "file": "mine#wall+b.3x1.openforge,magnetic_post.stl",
+            "file_modified_at": "2025-06-29T14:49:08.688456+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.3x1.openforge,magnetic_post.stl",
+            "md5": "d006e98c13429a3500e41e3b1a79094e",
+            "modified": "2025-06-29T14:49:08.688456+00:00",
+            "size": 31939684,
+            "storage_address": "https://objects.openforge.tools/models/d006e9/d006e98c13429a3500e41e3b1a79094e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d006e9/d006e98c13429a3500e41e3b1a79094e.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|3",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:37:46.615695+00:00",
+            "file": "mine#wall+b.4x1.openforge,magnetic_post.stl",
+            "file_modified_at": "2025-06-29T14:49:46.251907+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/mine#wall+b.4x1.openforge,magnetic_post.stl",
+            "md5": "9b543a05608283669676d8ee6aa2a3a6",
+            "modified": "2025-06-29T14:49:46.251907+00:00",
+            "size": 38516084,
+            "storage_address": "https://objects.openforge.tools/models/9b543a/9b543a05608283669676d8ee6aa2a3a6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9b543a/9b543a05608283669676d8ee6aa2a3a6.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|4",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:38:09.066569+00:00",
+            "file": "mine#wall+b.1x1.openforge,side,magnetic_post.stl",
+            "file_modified_at": "2019-10-21T14:35:40+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.1x1.openforge,side,magnetic_post.stl",
+            "md5": "ed77a0dac1c4ea872a22ecaa6e173f5d",
+            "modified": "2019-10-21T14:35:40+00:00",
+            "size": 11689084,
+            "storage_address": "https://objects.openforge.tools/models/ed77a0/ed77a0dac1c4ea872a22ecaa6e173f5d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ed77a0/ed77a0dac1c4ea872a22ecaa6e173f5d.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|1",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:38:15.111075+00:00",
+            "file": "mine#wall+b.2x1.openforge,side,magnetic_post.stl",
+            "file_modified_at": "2019-10-21T14:36:25+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.2x1.openforge,side,magnetic_post.stl",
+            "md5": "159f538bc1933fea7d1fa7ae26be295b",
+            "modified": "2019-10-21T14:36:25+00:00",
+            "size": 21609884,
+            "storage_address": "https://objects.openforge.tools/models/159f53/159f538bc1933fea7d1fa7ae26be295b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/159f53/159f538bc1933fea7d1fa7ae26be295b.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|2",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:38:23.044669+00:00",
+            "file": "mine#wall+b.3x1.openforge,side,magnetic_post.stl",
+            "file_modified_at": "2019-10-21T14:37:05+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.3x1.openforge,side,magnetic_post.stl",
+            "md5": "45182da820f4d41f4a30031065027646",
+            "modified": "2019-10-21T14:37:05+00:00",
+            "size": 31105784,
+            "storage_address": "https://objects.openforge.tools/models/45182d/45182da820f4d41f4a30031065027646.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/45182d/45182da820f4d41f4a30031065027646.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|3",
+            "texture|mine"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "brace",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam|magnetic"
+                            },
+                            {
+                                "tag": "scatter|mine|brace"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "beam",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|mine|beam"
+                            },
+                            {
+                                "tag": "scatter|mine|beam"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:38:35.096304+00:00",
+            "file": "mine#wall+b.4x1.openforge,side,magnetic_post.stl",
+            "file_modified_at": "2019-10-21T14:37:45+00:00",
+            "full_name": "tiles/mines/thick_wall/walls/side/mine#wall+b.4x1.openforge,side,magnetic_post.stl",
+            "md5": "2b79f53855797a3fbba2de4ac65a23bf",
+            "modified": "2019-10-21T14:37:45+00:00",
+            "size": 37527584,
+            "storage_address": "https://objects.openforge.tools/models/2b79f5/2b79f53855797a3fbba2de4ac65a23bf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2b79f5/2b79f53855797a3fbba2de4ac65a23bf.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "component|wall|b",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "interface|mine|beam|magnetic",
+            "size|depth|1",
+            "size|width|4",
             "texture|mine"
         ],
         "type": "model"

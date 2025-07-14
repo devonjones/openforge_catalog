@@ -17,10 +17,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -82,10 +82,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -147,10 +147,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -212,10 +212,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -277,10 +277,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -342,10 +342,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -407,10 +407,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -472,10 +472,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -516,6 +516,72 @@
             "size|depth|4",
             "size|width|4",
             "texture|large_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T18:31:47.900757+00:00",
+            "file": "towne#floor+wood,portal.6x6.openforge.stl",
+            "file_modified_at": "2022-01-30T23:17:47.833653+00:00",
+            "full_name": "tiles/building_facades/yawning_portal/portal/towne#floor+wood,portal.6x6.openforge.stl",
+            "md5": "319d7136513a50d7f3777c651f7a5b51",
+            "modified": "2022-01-30T23:17:47.833653+00:00",
+            "size": 35132384,
+            "storage_address": "https://objects.openforge.tools/models/319d71/319d7136513a50d7f3777c651f7a5b51.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/319d71/319d7136513a50d7f3777c651f7a5b51.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|portal",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|wood",
+            "size|depth|6",
+            "size|width|6",
+            "texture|towne"
         ],
         "type": "model"
     },
@@ -4752,153 +4818,6 @@
             "size|openlock|D",
             "size|width|3",
             "texture|stone_brick"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T18:31:47.900757+00:00",
-            "file": "towne#floor+wood,portal.6x6.openforge.stl",
-            "file_modified_at": "2022-01-30T23:17:47.833653+00:00",
-            "full_name": "tiles/building_facades/yawning_portal/portal/towne#floor+wood,portal.6x6.openforge.stl",
-            "md5": "319d7136513a50d7f3777c651f7a5b51",
-            "modified": "2022-01-30T23:17:47.833653+00:00",
-            "size": 35132384,
-            "storage_address": "https://objects.openforge.tools/models/319d71/319d7136513a50d7f3777c651f7a5b51.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/319d71/319d7136513a50d7f3777c651f7a5b51.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|portal",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|wood",
-            "size|depth|6",
-            "size|width|6",
-            "texture|towne"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "changed": "2025-06-30T12:25:21.537540",
-            "file": "ironbound_wood#column.col+I.openlock.stl",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "modified": "2021-06-28T09:51:10.741293",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "changed": "2025-06-30T12:25:12.391055",
-            "file": "ironbound_wood#column.col+T.openlock.stl",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
-            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
-            "modified": "2021-06-28T11:23:43.346098",
-            "size": 5874584,
-            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "changed": "2025-06-30T12:25:12.393066",
-            "file": "ironbound_wood#column.col+X.openlock.stl",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
-            "md5": "c361239d1cc7c41a34848f80536bd59d",
-            "modified": "2021-06-28T09:10:24.643360",
-            "size": 3739584,
-            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|ironbound_wood"
         ],
         "type": "model"
     },

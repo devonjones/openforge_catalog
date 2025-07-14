@@ -17,10 +17,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -82,10 +82,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -147,10 +147,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -212,10 +212,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -277,10 +277,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -342,10 +342,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -407,10 +407,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -472,10 +472,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -537,10 +537,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -603,10 +603,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -669,10 +669,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -735,10 +735,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -801,10 +801,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -867,10 +867,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -933,10 +933,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -999,10 +999,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1059,10 +1059,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1124,10 +1124,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1189,10 +1189,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1255,10 +1255,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1312,6 +1312,566 @@
         "config": {
             "parts": [
                 {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:29:58.055563+00:00",
+            "file": "dwarven_halls#wall,door.2x1.openforge.stl",
+            "file_modified_at": "2018-09-15T14:20:42+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/door/dwarven_halls#wall,door.2x1.openforge.stl",
+            "md5": "87b5527405bcdb2706961ac173937b59",
+            "modified": "2018-09-15T14:20:42+00:00",
+            "size": 19029384,
+            "storage_address": "https://objects.openforge.tools/models/87b552/87b5527405bcdb2706961ac173937b59.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/87b552/87b5527405bcdb2706961ac173937b59.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|door",
+            "component|wall",
+            "connection|openforge",
+            "size|depth|1",
+            "size|width|2",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:10.542760+00:00",
+            "file": "dwarven_halls#wall,sentinel+1.IO.openforge.stl",
+            "file_modified_at": "2025-06-29T15:41:27.334353+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+1.IO.openforge.stl",
+            "md5": "40546fb73317e157bf7520718479e33c",
+            "modified": "2025-06-29T15:41:27.334353+00:00",
+            "size": 14603184,
+            "storage_address": "https://objects.openforge.tools/models/40546f/40546fb73317e157bf7520718479e33c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/40546f/40546fb73317e157bf7520718479e33c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|sentinel",
+            "component|sentinel|1",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|corner_shape|IO",
+            "size|depth|1",
+            "size|openlock|IO",
+            "size|width|1",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:14.224734+00:00",
+            "file": "dwarven_halls#wall,sentinel+2.IO.openforge.stl",
+            "file_modified_at": "2025-06-29T15:43:25.096012+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+2.IO.openforge.stl",
+            "md5": "a85afe2f2b4ad067ba7f854178997c74",
+            "modified": "2025-06-29T15:43:25.096012+00:00",
+            "size": 22801584,
+            "storage_address": "https://objects.openforge.tools/models/a85afe/a85afe2f2b4ad067ba7f854178997c74.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a85afe/a85afe2f2b4ad067ba7f854178997c74.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|sentinel",
+            "component|sentinel|2",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|corner_shape|IO",
+            "size|depth|1",
+            "size|openlock|IO",
+            "size|width|1",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:16.954465+00:00",
+            "file": "dwarven_halls#wall,sentinel+3.IO.openforge.stl",
+            "file_modified_at": "2025-06-29T15:44:18.261517+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+3.IO.openforge.stl",
+            "md5": "996e3262bc42c4db44fec8dd84836bf5",
+            "modified": "2025-06-29T15:44:18.261517+00:00",
+            "size": 15746584,
+            "storage_address": "https://objects.openforge.tools/models/996e32/996e3262bc42c4db44fec8dd84836bf5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/996e32/996e3262bc42c4db44fec8dd84836bf5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|sentinel",
+            "component|sentinel|3",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|corner_shape|IO",
+            "size|depth|1",
+            "size|openlock|IO",
+            "size|width|1",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:19.214941+00:00",
+            "file": "dwarven_halls#wall,sentinel+4.IO.openforge.stl",
+            "file_modified_at": "2025-06-29T15:45:32.355609+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+4.IO.openforge.stl",
+            "md5": "46f177253866ad3fd0598f91a648f0bb",
+            "modified": "2025-06-29T15:45:32.355609+00:00",
+            "size": 15115584,
+            "storage_address": "https://objects.openforge.tools/models/46f177/46f177253866ad3fd0598f91a648f0bb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/46f177/46f177253866ad3fd0598f91a648f0bb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|sentinel",
+            "component|sentinel|4",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|corner_shape|IO",
+            "size|depth|1",
+            "size|openlock|IO",
+            "size|width|1",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:53.909543+00:00",
+            "file": "dwarven_halls#wall.1x1.openforge,side.stl",
+            "file_modified_at": "2018-05-20T15:55:54+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.1x1.openforge,side.stl",
+            "md5": "c307999f104e16ddce93e1a3a9c9cf3b",
+            "modified": "2018-05-20T15:55:54+00:00",
+            "size": 15640384,
+            "storage_address": "https://objects.openforge.tools/models/c30799/c307999f104e16ddce93e1a3a9c9cf3b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c30799/c307999f104e16ddce93e1a3a9c9cf3b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|1",
+            "size|width|1",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:30:58.048791+00:00",
+            "file": "dwarven_halls#wall.2x1.openforge,side.stl",
+            "file_modified_at": "2018-05-20T05:23:16+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.2x1.openforge,side.stl",
+            "md5": "580c1791a63c53e022986483e8ef8075",
+            "modified": "2018-05-20T05:23:16+00:00",
+            "size": 29462684,
+            "storage_address": "https://objects.openforge.tools/models/580c17/580c1791a63c53e022986483e8ef8075.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/580c17/580c1791a63c53e022986483e8ef8075.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|1",
+            "size|width|2",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:31:03.859858+00:00",
+            "file": "dwarven_halls#wall.3x1.openforge,side.stl",
+            "file_modified_at": "2018-09-16T14:30:44+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.3x1.openforge,side.stl",
+            "md5": "7f790cabdbbdddad3faf5ffadf912057",
+            "modified": "2018-09-16T14:30:44+00:00",
+            "size": 46616784,
+            "storage_address": "https://objects.openforge.tools/models/7f790c/7f790cabdbbdddad3faf5ffadf912057.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7f790c/7f790cabdbbdddad3faf5ffadf912057.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|1",
+            "size|width|3",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:31:11.533934+00:00",
+            "file": "dwarven_halls#wall.4x1.openforge,side.stl",
+            "file_modified_at": "2018-05-20T18:55:53+00:00",
+            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.4x1.openforge,side.stl",
+            "md5": "0c879d2e87fcbecb054410302b9037c3",
+            "modified": "2018-05-20T18:55:53+00:00",
+            "size": 60796284,
+            "storage_address": "https://objects.openforge.tools/models/0c879d/0c879d2e87fcbecb054410302b9037c3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0c879d/0c879d2e87fcbecb054410302b9037c3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|1",
+            "size|width|4",
+            "texture|dwarven_halls"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
                     "name": "door",
                     "tags": {
                         "require": [
@@ -1330,10 +1890,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1427,66 +1987,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:29:58.055563+00:00",
-            "file": "dwarven_halls#wall,door.2x1.openforge.stl",
-            "file_modified_at": "2018-09-15T14:20:42+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/door/dwarven_halls#wall,door.2x1.openforge.stl",
-            "md5": "87b5527405bcdb2706961ac173937b59",
-            "modified": "2018-09-15T14:20:42+00:00",
-            "size": 19029384,
-            "storage_address": "https://objects.openforge.tools/models/87b552/87b5527405bcdb2706961ac173937b59.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/87b552/87b5527405bcdb2706961ac173937b59.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|door",
-            "component|wall",
-            "connection|openforge",
-            "size|depth|1",
-            "size|width|2",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
                     "name": "statue",
                     "tags": {
                         "require": [
@@ -1505,10 +2005,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1557,262 +2057,6 @@
         "config": {
             "parts": [
                 {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:10.542760+00:00",
-            "file": "dwarven_halls#wall,sentinel+1.IO.openforge.stl",
-            "file_modified_at": "2025-06-29T15:41:27.334353+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+1.IO.openforge.stl",
-            "md5": "40546fb73317e157bf7520718479e33c",
-            "modified": "2025-06-29T15:41:27.334353+00:00",
-            "size": 14603184,
-            "storage_address": "https://objects.openforge.tools/models/40546f/40546fb73317e157bf7520718479e33c.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/40546f/40546fb73317e157bf7520718479e33c.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|sentinel",
-            "component|sentinel|1",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|corner_shape|IO",
-            "size|depth|1",
-            "size|openlock|IO",
-            "size|width|1",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:14.224734+00:00",
-            "file": "dwarven_halls#wall,sentinel+2.IO.openforge.stl",
-            "file_modified_at": "2025-06-29T15:43:25.096012+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+2.IO.openforge.stl",
-            "md5": "a85afe2f2b4ad067ba7f854178997c74",
-            "modified": "2025-06-29T15:43:25.096012+00:00",
-            "size": 22801584,
-            "storage_address": "https://objects.openforge.tools/models/a85afe/a85afe2f2b4ad067ba7f854178997c74.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a85afe/a85afe2f2b4ad067ba7f854178997c74.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|sentinel",
-            "component|sentinel|2",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|corner_shape|IO",
-            "size|depth|1",
-            "size|openlock|IO",
-            "size|width|1",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:16.954465+00:00",
-            "file": "dwarven_halls#wall,sentinel+3.IO.openforge.stl",
-            "file_modified_at": "2025-06-29T15:44:18.261517+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+3.IO.openforge.stl",
-            "md5": "996e3262bc42c4db44fec8dd84836bf5",
-            "modified": "2025-06-29T15:44:18.261517+00:00",
-            "size": 15746584,
-            "storage_address": "https://objects.openforge.tools/models/996e32/996e3262bc42c4db44fec8dd84836bf5.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/996e32/996e3262bc42c4db44fec8dd84836bf5.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|sentinel",
-            "component|sentinel|3",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|corner_shape|IO",
-            "size|depth|1",
-            "size|openlock|IO",
-            "size|width|1",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:19.214941+00:00",
-            "file": "dwarven_halls#wall,sentinel+4.IO.openforge.stl",
-            "file_modified_at": "2025-06-29T15:45:32.355609+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/sentinels/openforge/dwarven_halls#wall,sentinel+4.IO.openforge.stl",
-            "md5": "46f177253866ad3fd0598f91a648f0bb",
-            "modified": "2025-06-29T15:45:32.355609+00:00",
-            "size": 15115584,
-            "storage_address": "https://objects.openforge.tools/models/46f177/46f177253866ad3fd0598f91a648f0bb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/46f177/46f177253866ad3fd0598f91a648f0bb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|sentinel",
-            "component|sentinel|4",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|corner_shape|IO",
-            "size|depth|1",
-            "size|openlock|IO",
-            "size|width|1",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
                     "name": "statue",
                     "tags": {
                         "require": [
@@ -1848,250 +2092,6 @@
             "connection|openlock",
             "size|depth|2",
             "size|width|2",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:53.909543+00:00",
-            "file": "dwarven_halls#wall.1x1.openforge,side.stl",
-            "file_modified_at": "2018-05-20T15:55:54+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.1x1.openforge,side.stl",
-            "md5": "c307999f104e16ddce93e1a3a9c9cf3b",
-            "modified": "2018-05-20T15:55:54+00:00",
-            "size": 15640384,
-            "storage_address": "https://objects.openforge.tools/models/c30799/c307999f104e16ddce93e1a3a9c9cf3b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c30799/c307999f104e16ddce93e1a3a9c9cf3b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|1",
-            "size|width|1",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:30:58.048791+00:00",
-            "file": "dwarven_halls#wall.2x1.openforge,side.stl",
-            "file_modified_at": "2018-05-20T05:23:16+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.2x1.openforge,side.stl",
-            "md5": "580c1791a63c53e022986483e8ef8075",
-            "modified": "2018-05-20T05:23:16+00:00",
-            "size": 29462684,
-            "storage_address": "https://objects.openforge.tools/models/580c17/580c1791a63c53e022986483e8ef8075.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/580c17/580c1791a63c53e022986483e8ef8075.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|1",
-            "size|width|2",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:31:03.859858+00:00",
-            "file": "dwarven_halls#wall.3x1.openforge,side.stl",
-            "file_modified_at": "2018-09-16T14:30:44+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.3x1.openforge,side.stl",
-            "md5": "7f790cabdbbdddad3faf5ffadf912057",
-            "modified": "2018-09-16T14:30:44+00:00",
-            "size": 46616784,
-            "storage_address": "https://objects.openforge.tools/models/7f790c/7f790cabdbbdddad3faf5ffadf912057.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7f790c/7f790cabdbbdddad3faf5ffadf912057.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|1",
-            "size|width|3",
-            "texture|dwarven_halls"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:31:11.533934+00:00",
-            "file": "dwarven_halls#wall.4x1.openforge,side.stl",
-            "file_modified_at": "2018-05-20T18:55:53+00:00",
-            "full_name": "tiles/dwarven_halls/thick_wall/walls/openforge/dwarven_halls#wall.4x1.openforge,side.stl",
-            "md5": "0c879d2e87fcbecb054410302b9037c3",
-            "modified": "2018-05-20T18:55:53+00:00",
-            "size": 60796284,
-            "storage_address": "https://objects.openforge.tools/models/0c879d/0c879d2e87fcbecb054410302b9037c3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/0c879d/0c879d2e87fcbecb054410302b9037c3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|1",
-            "size|width|4",
             "texture|dwarven_halls"
         ],
         "type": "model"

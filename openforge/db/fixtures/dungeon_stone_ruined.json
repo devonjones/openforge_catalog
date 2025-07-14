@@ -17,10 +17,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -84,10 +84,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -151,10 +151,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -218,10 +218,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -285,10 +285,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -352,10 +352,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -419,10 +419,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -486,10 +486,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -553,10 +553,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -620,10 +620,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -687,10 +687,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -754,10 +754,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -823,10 +823,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -892,10 +892,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -961,10 +961,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1030,10 +1030,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1097,10 +1097,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1164,10 +1164,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1231,10 +1231,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1298,10 +1298,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1365,10 +1365,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1432,10 +1432,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1499,10 +1499,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1566,10 +1566,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1633,10 +1633,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1700,10 +1700,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1767,10 +1767,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1836,10 +1836,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1905,10 +1905,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1974,10 +1974,10 @@
                                 "tag": "shape"
                             },
                             {
-                                "tag": "size|width"
+                                "tag": "size|depth"
                             },
                             {
-                                "tag": "size|depth"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2021,6 +2021,195 @@
             "size|width|2",
             "texture|dungeon_stone",
             "texture|dungeon_stone|eroded",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:27:51.941791+00:00",
+            "file": "dungeon_stone+ruined#wall,collapsed_section.S.openforge.stl",
+            "file_modified_at": "2021-06-30T05:03:56.843495+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.S.openforge.stl",
+            "md5": "977d8953645fc5a870bc82b17102f751",
+            "modified": "2021-06-30T05:03:56.843495+00:00",
+            "size": 10120934,
+            "storage_address": "https://objects.openforge.tools/models/977d89/977d8953645fc5a870bc82b17102f751.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/977d89/977d8953645fc5a870bc82b17102f751.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|collapsed_section",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:27:53.998518+00:00",
+            "file": "dungeon_stone+ruined#wall,collapsed_section.SA.openforge.stl",
+            "file_modified_at": "2021-06-30T15:36:36.957084+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.SA.openforge.stl",
+            "md5": "a9a7765cd4b9cc8c35d9efc47724909b",
+            "modified": "2021-06-30T15:36:36.957084+00:00",
+            "size": 13778434,
+            "storage_address": "https://objects.openforge.tools/models/a9a776/a9a7765cd4b9cc8c35d9efc47724909b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a9a776/a9a7765cd4b9cc8c35d9efc47724909b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|collapsed_section",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|depth|1",
+            "size|openlock|SA",
+            "size|width|3",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "changed": "2025-07-12T23:27:57.003300+00:00",
+            "file": "dungeon_stone+ruined#wall,collapsed_section.SB.openforge.stl",
+            "file_modified_at": "2021-06-30T17:20:14.103522+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.SB.openforge.stl",
+            "md5": "35acb1ed576b5206132a270007d0c48e",
+            "modified": "2021-06-30T17:20:14.103522+00:00",
+            "size": 18483984,
+            "storage_address": "https://objects.openforge.tools/models/35acb1/35acb1ed576b5206132a270007d0c48e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/35acb1/35acb1ed576b5206132a270007d0c48e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|collapsed_section",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|dungeon_stone",
             "texture|dungeon_stone|ruined"
         ],
         "type": "model"
@@ -4877,195 +5066,6 @@
             "shape|wall",
             "size|openlock|A",
             "size|width|2",
-            "texture|dungeon_stone",
-            "texture|dungeon_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:27:51.941791+00:00",
-            "file": "dungeon_stone+ruined#wall,collapsed_section.S.openforge.stl",
-            "file_modified_at": "2021-06-30T05:03:56.843495+00:00",
-            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.S.openforge.stl",
-            "md5": "977d8953645fc5a870bc82b17102f751",
-            "modified": "2021-06-30T05:03:56.843495+00:00",
-            "size": 10120934,
-            "storage_address": "https://objects.openforge.tools/models/977d89/977d8953645fc5a870bc82b17102f751.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/977d89/977d8953645fc5a870bc82b17102f751.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|collapsed_section",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|dungeon_stone",
-            "texture|dungeon_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:27:53.998518+00:00",
-            "file": "dungeon_stone+ruined#wall,collapsed_section.SA.openforge.stl",
-            "file_modified_at": "2021-06-30T15:36:36.957084+00:00",
-            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.SA.openforge.stl",
-            "md5": "a9a7765cd4b9cc8c35d9efc47724909b",
-            "modified": "2021-06-30T15:36:36.957084+00:00",
-            "size": 13778434,
-            "storage_address": "https://objects.openforge.tools/models/a9a776/a9a7765cd4b9cc8c35d9efc47724909b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a9a776/a9a7765cd4b9cc8c35d9efc47724909b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|collapsed_section",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|depth|1",
-            "size|openlock|SA",
-            "size|width|3",
-            "texture|dungeon_stone",
-            "texture|dungeon_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "changed": "2025-07-12T23:27:57.003300+00:00",
-            "file": "dungeon_stone+ruined#wall,collapsed_section.SB.openforge.stl",
-            "file_modified_at": "2021-06-30T17:20:14.103522+00:00",
-            "full_name": "tiles/dungeon_stone+ruined/thick_wall/walls/wall+collapsed_section/dungeon_stone+ruined#wall,collapsed_section.SB.openforge.stl",
-            "md5": "35acb1ed576b5206132a270007d0c48e",
-            "modified": "2021-06-30T17:20:14.103522+00:00",
-            "size": 18483984,
-            "storage_address": "https://objects.openforge.tools/models/35acb1/35acb1ed576b5206132a270007d0c48e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/35acb1/35acb1ed576b5206132a270007d0c48e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|collapsed_section",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
             "texture|dungeon_stone",
             "texture|dungeon_stone|ruined"
         ],

@@ -580,7 +580,8 @@ def print_incremental_diff(files, scanner, verbose=False):
         result["modified_details"] = modified_details
     
     # Sort all lists recursively for consistent git diffs
-    sorted_result = _sort_and_clean_recursively(result)
+    # Exclude config.parts from sorting to preserve order
+    sorted_result = _sort_and_clean_recursively(result, exclude_paths=["config.parts"])
     print(json.dumps(sorted_result, indent=2, sort_keys=True))
 
 
