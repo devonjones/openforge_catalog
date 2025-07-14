@@ -464,10 +464,8 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                             # Old format: ["shape", "floor"] -> convert to tuple
                             tag_set.add(tuple(tag_item))
                         else:
-                            # Fallback: convert to string, then split
-                            tag_str = str(tag_item)
-                            tag_parts = tag_str.split("|")
-                            tag_set.add(tuple(tag_parts))
+                            # Fail fast for unsupported tag types
+                            raise TypeError(f"Unsupported tag type: {type(tag_item)}. Expected list or str, got {type(tag_item)} with value: {tag_item}")
                     result["tags"] = tag_set
                 
                 # Apply metadata and default metadata
