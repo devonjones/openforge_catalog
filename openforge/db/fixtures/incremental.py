@@ -14,6 +14,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 from openforge.db.sql.tag_utils import array_to_tag
+from openforge.data.transformers import DeprecatedEntryTransformer
 
 
 class ComparisonResult:
@@ -60,6 +61,7 @@ class IncrementalFixturesLoader:
         self.conn = conn
         self.verbose = verbose
         self.existing_blueprints = self._load_existing_blueprints()
+        self.transformer = DeprecatedEntryTransformer()
         
     def _load_existing_blueprints(self) -> Dict[str, Dict]:
         """Load existing blueprints from database for comparison.
@@ -149,20 +151,30 @@ class IncrementalFixturesLoader:
             
         # Check modification time (normalize timestamp formats)
         existing_modified = existing_bp["file_modified_at"]
-        new_modified = fixture_item["file_metadata"]["modified"]
+        new_modified = fixture_item["file_metadata"]["file_modified_at"]
         
-        # Normalize both to ISO format for comparison
+        # Handle datetime comparison - convert both to strings for comparison
         if existing_modified and new_modified:
-            # Convert existing format (space separator) to ISO format (T separator)
-            if ' ' in existing_modified and 'T' not in existing_modified:
-                existing_modified = existing_modified.replace(' ', 'T')
-            if ' ' in new_modified and 'T' not in new_modified:
-                new_modified = new_modified.replace(' ', 'T')
-        
-        if existing_modified != new_modified:
-            if self.verbose:
-                sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['modified']}\n")
-            return True
+            # Convert datetime to string if needed
+            if hasattr(existing_modified, 'isoformat'):
+                existing_modified_str = existing_modified.isoformat()
+            else:
+                existing_modified_str = str(existing_modified)
+            
+            # Normalize new_modified to ISO format if it's a string
+            if isinstance(new_modified, str):
+                if ' ' in new_modified and 'T' not in new_modified:
+                    new_modified_str = new_modified.replace(' ', 'T')
+                else:
+                    new_modified_str = new_modified
+            else:
+                new_modified_str = str(new_modified)
+            
+            # Compare normalized strings
+            if existing_modified_str != new_modified_str:
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
+                return True
             
         # Check size
         if fixture_item["file_metadata"]["size"] != existing_bp["file_size"]:
@@ -240,11 +252,15 @@ class IncrementalFixturesLoader:
         """Handle deprecation of an existing blueprint."""
         blueprint_id = deprecated_bp["id"]
         
+        # Remove tags and images for deprecated blueprint
+        tag_sql.delete_all_blueprint_tags(curs, blueprint_id)
+        image_sql.delete_images_for_blueprint(curs, blueprint_id)
+        
         # Mark as deprecated
         blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id)
         
         if self.verbose:
-            sys.stderr.write(f"Deprecated blueprint {blueprint_id}\n")
+            sys.stderr.write(f"Deprecated blueprint {blueprint_id} and removed tags/images\n")
             
     def _handle_addition(self, curs: cursor, new_item: Dict):
         """Handle addition of a new blueprint."""
@@ -327,8 +343,7 @@ class IncrementalFixturesLoader:
             bp["file_size"] = data["file_metadata"]["size"]
             bp["file_name"] = data["file_metadata"]["file"]
             bp["full_name"] = data["file_metadata"]["full_name"]
-            bp["file_changed_at"] = data["file_metadata"]["changed"]
-            bp["file_modified_at"] = data["file_metadata"]["modified"]
+            bp["file_modified_at"] = data["file_metadata"]["file_modified_at"]
             bp["storage_address"] = data["file_metadata"].get("storage_address")
         return bp
         
@@ -348,3 +363,17 @@ class IncrementalFixturesLoader:
         """Create predecessor/successor relationship between blueprints."""
         with self.conn.cursor(row_factory=dict_row) as curs:
             blueprint_sql.create_version_relationship(curs, predecessor_id, successor_id) 
+
+    def transform_deprecated_entries(self, fixtures: List[Dict]) -> List[Dict]:
+        """Transform deprecated entries to current schema format.
+        
+        This should be called before schema validation to ensure all
+        deprecated entries conform to the current fixture format.
+        
+        Args:
+            fixtures: List of fixture objects
+            
+        Returns:
+            List of fixtures with deprecated entries transformed
+        """
+        return self.transformer.transform_list(fixtures) 

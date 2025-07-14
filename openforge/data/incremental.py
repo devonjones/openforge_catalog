@@ -23,20 +23,23 @@ from .metadata import get_metadata_file, apply_metadata, apply_default_metadata,
 from .scanner import parse_file_tags, validate, print_files, _sort_and_clean_recursively, _convert_tags_to_pipe_delimited
 from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 from openforge.db.sql.tag_utils import process_tag
+from openforge.data.transformers import DeprecatedEntryTransformer
 
 
 class IncrementalScanner:
     """Handles incremental scanning of OpenForge files."""
     
-    def __init__(self, fixture_path: str, verbose: bool = False):
+    def __init__(self, fixture_path: str, verbose: bool = False, skip_schema_validation: bool = False):
         """Initialize incremental scanner.
         
         Args:
             fixture_path: Path to existing fixture file (JSON or YAML)
             verbose: Whether to output debug messages
+            skip_schema_validation: Whether to skip schema validation for old fixture files
         """
         self.fixture_path = fixture_path
         self.verbose = verbose
+        self.skip_schema_validation = skip_schema_validation
         self.existing_data = self._load_fixture()
         self.existing_data_map = {item["file_metadata"]["full_name"]: item for item in self.existing_data}
         self.subset_path = self._detect_subset_path()
@@ -61,8 +64,12 @@ class IncrementalScanner:
                 # Assume YAML
                 data = safe_load(f)
                 
-        # Validate schema
-        validate_schema("blueprint.fixture.json", data)
+        # Validate schema (unless skipped)
+        if not self.skip_schema_validation:
+            validate_schema("blueprint.fixture.json", data)
+        else:
+            if self.verbose:
+                sys.stderr.write("Skipping schema validation for old fixture file\n")
         
         # Ensure all entries have file_metadata
         for item in data:
@@ -148,7 +155,7 @@ class IncrementalScanner:
 
         return {
             "size": stat.st_size,
-            "modified": final_time
+            "file_modified_at": final_time
         }
         
     def _find_existing_entry(self, full_name: str) -> Optional[Dict]:
@@ -182,7 +189,12 @@ class IncrementalScanner:
         if current_info["size"] != existing_metadata["size"]:
             return True
             
-        if current_info["modified"] != existing_metadata["modified"]:
+        # Get existing modification time, falling back to 'modified' if 'file_modified_at' doesn't exist
+        existing_modified = existing_metadata.get("file_modified_at")
+        if existing_modified is None:
+            existing_modified = existing_metadata.get("modified")
+            
+        if current_info["file_modified_at"] != existing_modified:
             return True
             
         return False
@@ -209,8 +221,10 @@ class IncrementalScanner:
             return True
             
         # Check if modification time or size changed (even if MD5 didn't change)
-        existing_modified = existing_entry["file_metadata"]["modified"]
-        new_modified = new_entry["file_metadata"]["modified"]
+        existing_modified = existing_entry["file_metadata"].get("file_modified_at")
+        if existing_modified is None:
+            existing_modified = existing_entry["file_metadata"].get("modified")
+        new_modified = new_entry["file_metadata"]["file_modified_at"]
         existing_size = existing_entry["file_metadata"]["size"]
         new_size = new_entry["file_metadata"]["size"]
         
@@ -277,9 +291,7 @@ class IncrementalScanner:
                     "file": os.path.basename(file_path),
                     "md5": md5,
                     "size": file_info["size"],
-                    "file_modified_at": file_info["modified"],
-                    "changed": datetime.now(timezone.utc).isoformat(),
-                    "modified": file_info["modified"]
+                    "file_modified_at": file_info["file_modified_at"]
                 },
                 "tags": _convert_tags_to_pipe_delimited(tags),
                 "config": config or {}
@@ -305,9 +317,7 @@ class IncrementalScanner:
                             "file": os.path.basename(file_path),
                             "md5": md5,
                             "size": file_info["size"],
-                            "file_modified_at": file_info["modified"],
-                            "changed": datetime.now(timezone.utc).isoformat(),
-                            "modified": file_info["modified"]
+                            "file_modified_at": file_info["file_modified_at"]
                         },
                         "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {}
@@ -322,9 +332,7 @@ class IncrementalScanner:
                             "file": os.path.basename(file_path),
                             "md5": md5,
                             "size": file_info["size"],
-                            "file_modified_at": file_info["modified"],
-                            "changed": datetime.now(timezone.utc).isoformat(),
-                            "modified": file_info["modified"]
+                            "file_modified_at": file_info["file_modified_at"]
                         },
                         "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {}
@@ -377,6 +385,18 @@ class IncrementalScanner:
                 missing.append(deprecation_entry)
                 
         return missing
+        
+    def get_existing_deprecated_files(self) -> List[Dict]:
+        """Get all existing deprecated entries from the fixture file.
+        
+        Returns:
+            List of existing deprecated entries
+        """
+        deprecated = []
+        for item in self.existing_data:
+            if item.get("deprecated", False):
+                deprecated.append(item)
+        return deprecated
 
 
 def _normalize_tags_to_pipe_delimited(tags):
@@ -494,7 +514,15 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
 
     # Add missing files as deprecated
     missing_files = scanner.get_missing_files(current_files)
+    if missing_files and verbose:
+        sys.stderr.write(f"Creating {len(missing_files)} deprecation entries for missing files\n")
     newfiles.extend(missing_files)
+    
+    # Add existing deprecated files from the fixture
+    existing_deprecated = scanner.get_existing_deprecated_files()
+    if existing_deprecated and verbose:
+        sys.stderr.write(f"Preserving {len(existing_deprecated)} existing deprecated entries\n")
+    newfiles.extend(existing_deprecated)
 
     return newfiles
 
@@ -528,10 +556,10 @@ def print_incremental_diff(files, scanner, verbose=False):
                         changes = {}
                         
                         # Check modification time changes
-                        if file["file_metadata"]["modified"] != existing_entry["file_metadata"]["modified"]:
+                        if file["file_metadata"]["file_modified_at"] != existing_entry["file_metadata"]["file_modified_at"]:
                             changes["modified"] = {
-                                "old": existing_entry["file_metadata"]["modified"],
-                                "new": file["file_metadata"]["modified"]
+                                "old": existing_entry["file_metadata"]["file_modified_at"],
+                                "new": file["file_metadata"]["file_modified_at"]
                             }
                         
                         # Check size changes
@@ -589,9 +617,11 @@ def print_incremental_changes(files, scanner):
     """Print only changed data by full_path."""
     
     changed_files = []
+    deprecated_files = []
+    
     for file in files:
         if file.get("deprecated"):
-            changed_files.append(file)
+            deprecated_files.append(file)
             continue
 
         existing_entry = scanner._find_existing_entry(file["file_metadata"]["full_name"])
@@ -601,4 +631,32 @@ def print_incremental_changes(files, scanner):
         ):
             changed_files.append(file)
 
-    print_files(changed_files) 
+    # Transform deprecated entries to fix their schema
+    transformer = DeprecatedEntryTransformer()
+    transformed_deprecated = transformer.transform_list(deprecated_files)
+    
+    # Combine non-deprecated changed files with transformed deprecated files
+    final_files = changed_files + transformed_deprecated
+
+    print_files(final_files)
+
+
+def print_files_with_transformer(files):
+    """Print files with transformer applied to deprecated entries."""
+    # Apply transformer to the entire list - it will only transform deprecated entries
+    transformer = DeprecatedEntryTransformer()
+    transformed_files = transformer.transform_list(files)
+    
+    # Use the original print_files function but exclude top-level array from sorting
+    from .scanner import print_files, _sort_and_clean_recursively
+    import json
+    
+    def set_handler(obj):
+        if isinstance(obj, (set, tuple)):
+            return list(obj)
+        raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
+    # Sort all lists recursively for consistent git diffs, but preserve top-level array order
+    # Exclude config.parts from sorting to preserve order, and exclude top-level array (empty path)
+    sorted_files = _sort_and_clean_recursively(transformed_files, exclude_paths=["config.parts", ""])
+    print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True)) 

@@ -359,51 +359,43 @@ SELECT DISTINCT bp.id
     query_parts.append(_query_tags_include(accept, require))
     if query_parts[-1] == sql.Composed([]):
         query_parts = query_parts[:-1]
+    
+    # Always exclude deprecated blueprints first
+    query_parts.append(sql.SQL("    WHERE bp2.deprecated = false"))
+    
     deny_parts = []
     if len(deny) > 0:
         for d in deny:
             deny_parts.append(
-                sql.SQL(
-                    "    %s bp2.id NOT IN ("
-                    % ("WHERE" if len(query_parts) <= 1 else "AND")
-                )
+                sql.SQL("    AND bp2.id NOT IN (")
             )
             deny_parts.append(_query_tags_deny([d]))
             deny_parts.append(sql.SQL("    )"))
-
+    
     if models:
         query_parts.append(
-            sql.SQL(
-                "    %s bp2.blueprint_type = 'model'"
-                % ("WHERE" if len(query_parts) <= 1 else "AND")
-            )
+            sql.SQL("    AND bp2.blueprint_type = 'model'")
         )
     if blueprints:
         query_parts.append(
-            sql.SQL(
-                "    %s bp2.blueprint_type = 'blueprint'"
-                % ("WHERE" if len(query_parts) <= 1 else "AND")
-            )
+            sql.SQL("    AND bp2.blueprint_type = 'blueprint'")
         )
     if search:
         query_parts.append(
             sql.SQL(
-                "    %s to_tsvector('english', bp2.search_text) @@ websearch_to_tsquery('english', {search})"
-                % ("WHERE" if len(query_parts) <= 1 else "AND")
+                "    AND to_tsvector('english', bp2.search_text) @@ websearch_to_tsquery('english', {search})"
             ).format(search=sql.Literal(search))
         )
     if next:
         query_parts.append(
             sql.SQL(
-                "        %s bp2.blueprint_name > (SELECT blueprint_name FROM blueprints WHERE id = {next})"
-                % ("WHERE" if len(query_parts) <= 1 else "AND")
+                "        AND bp2.blueprint_name > (SELECT blueprint_name FROM blueprints WHERE id = {next})"
             ).format(next=sql.Literal(next))
         )
     elif previous:
         query_parts.append(
             sql.SQL(
-                "        %s bp2.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {previous})"
-                % ("WHERE" if len(query_parts) <= 1 else "AND")
+                "        AND bp2.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {previous})"
             ).format(previous=sql.Literal(previous))
         )
     end_parts = [
@@ -430,9 +422,8 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
     joins = []
     wheres = []
     counter = 0
-    where = "WHERE"
 
-    def _query_tag_require(counter: int, where: str, require_tag: str) -> int:
+    def _query_tag_require(counter: int, require_tag: str) -> int:
         tags_name = "tags_%s" % counter
         joins.append(
             sql.SQL("    JOIN tags AS {table} ON bp2.id = {table}.blueprint_id").format(
@@ -441,14 +432,14 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
         )
         tags = require_tag.split("|")
         wheres.append(
-            sql.SQL("  %s {table}.tag = {tags}" % where).format(
+            sql.SQL("  AND {table}.tag = {tags}").format(
                 table=sql.Identifier(tags_name),
                 tags=sql.Literal(tags),
             )
         )
         return counter + 1
 
-    def _query_tag_accept(counter: int, where: str, accept_tag: str) -> int:
+    def _query_tag_accept(counter: int, accept_tag: str) -> int:
         tags_name = "tags_%s" % counter
         joins.append(
             sql.SQL("    JOIN tags AS {table} ON bp2.id = {table}.blueprint_id").format(
@@ -456,7 +447,7 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
             )
         )
         tags = accept_tag.split("|")
-        wheres.append(sql.SQL("  %s (" % where))
+        wheres.append(sql.SQL("  AND ("))
         t = 1
         sql_and = ""
         for tag in tags:
@@ -473,12 +464,10 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
 
     for req in require:
         if "tag" in req:
-            counter = _query_tag_require(counter, where, req["tag"])
-            where = "  AND"
+            counter = _query_tag_require(counter, req["tag"])
     for acc in accept:
         if "tag" in acc:
-            counter = _query_tag_accept(counter, where, acc["tag"])
-            where = "  AND"
+            counter = _query_tag_accept(counter, acc["tag"])
     return sql.Composed(joins + wheres).join("\n")
 
 
@@ -495,7 +484,9 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
         neg_joins = []
         neg_wheres = []
         neg_counter = 0
-        neg_where = "WHERE"
+
+        # Always exclude deprecated blueprints first
+        neg_wheres.append(sql.SQL("  WHERE bp_neg.deprecated = false"))
 
         for d in deny:
             if "tag" in d:
@@ -507,11 +498,11 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
                     ).format(table=sql.Identifier(neg_tags_name))
                 )
                 neg_wheres.append(
-                    sql.SQL("  %s {table}.tag = {tags}" % neg_where).format(
+                    sql.SQL("    AND {table}.tag = {tags}").format(
                         table=sql.Identifier(neg_tags_name),
                         tags=sql.Literal(neg_tags),
                     )
                 )
-                neg_where = "  OR"
                 neg_counter += 1
+    
     return sql.Composed(deny_parts + neg_joins + neg_wheres).join("\n      ")

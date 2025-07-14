@@ -28,11 +28,7 @@
           "full_name": {
             "type": "string"
           },
-          "changed": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modified": {
+          "file_modified_at": {
             "type": "string",
             "format": "date-time"
           },

@@ -21,9 +21,6 @@ properties:
     type: string
   full_name:
     type: string
-  file_changed_at:
-    type: string
-    format: date-time
   file_modified_at:
     type: string
     format: date-time

@@ -114,8 +114,7 @@ def _munge_blueprint(data: dict):
         bp["file_size"] = data["file_metadata"]["size"]
         bp["file_name"] = data["file_metadata"]["file"]
         bp["full_name"] = data["file_metadata"]["full_name"]
-        bp["file_changed_at"] = data["file_metadata"]["changed"]
-        bp["file_modified_at"] = data["file_metadata"]["modified"]
+        bp["file_modified_at"] = data["file_metadata"]["file_modified_at"]
         bp["storage_address"] = data["file_metadata"].get("storage_address")
     return bp
 ```

@@ -451,8 +451,7 @@ def parse_files(path, files, md5, verbose, upload, config):
                 f["md5"] = md5hash
         stat = os.stat(full_file)
         f["size"] = stat.st_size
-        f["changed"] = datetime.datetime.fromtimestamp(stat.st_ctime).isoformat()
-        f["modified"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
+        f["file_modified_at"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
         if upload:
             if not md5:
                 raise Exception("MD5 is required for upload")

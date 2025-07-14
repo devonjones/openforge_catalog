@@ -50,7 +50,7 @@ def create_mock_fixture_item(full_name, md5, tags=None, images=None):
             "full_name": full_name,
             "md5": md5,
             "size": 1000,
-            "modified": "2020-01-01T12:00:00"
+            "file_modified_at": "2020-01-01T12:00:00"
         },
         "tags": tags or [],
         "images": images or [],
@@ -222,8 +222,7 @@ class TestIncrementalFixturesLoader:
                 "md5": "abc123",
                 "size": 1000,
                 "full_name": "test.stl",
-                "changed": "2020-01-01T12:00:00",
-                "modified": "2020-01-01T12:00:00",
+                "file_modified_at": "2020-01-01T12:00:00",
                 "storage_address": "https://example.com/test.stl"
             }
         }

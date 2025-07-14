@@ -9,7 +9,8 @@ from openforge.data.scanner import (
 )
 from openforge.data.incremental import (
     IncrementalScanner, parse_files_incremental, 
-    print_incremental_diff, print_incremental_changes
+    print_incremental_diff, print_incremental_changes,
+    print_files_with_transformer
 )
 
 import click
@@ -28,7 +29,8 @@ import yaml
 @click.option("--update", help="Update existing fixture file incrementally")
 @click.option("--dry-run", is_flag=True, help="Preview changes without writing files")
 @click.option("--incremental", is_flag=True, help="Output only changed data by full_path")
-def main(path, subset, md5, verbose, upload, update, dry_run, incremental):
+@click.option("--skip-schema-validation", is_flag=True, help="Skip schema validation for old fixture files")
+def main(path, subset, md5, verbose, upload, update, dry_run, incremental, skip_schema_validation):
     """Run dropbox scanner with incremental or full scan mode."""
     # Load config from .env file in bin directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -39,15 +41,15 @@ def main(path, subset, md5, verbose, upload, update, dry_run, incremental):
         print(f"Warning: No .env file found at {env_path} or is empty, using environment variables only", file=sys.stderr)
     
     if update:
-        run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config)
+        run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config, skip_schema_validation)
     else:
         run_full_scan_mode(path, subset, md5, verbose, upload, config)
 
 
-def run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config):
+def run_incremental_mode(path, subset, verbose, upload, update, dry_run, incremental, config, skip_schema_validation):
     """Run incremental scanning workflow."""
     try:
-        scanner = IncrementalScanner(update, verbose)
+        scanner = IncrementalScanner(update, verbose, skip_schema_validation=skip_schema_validation)
         subset = scanner.get_subset_path()
         if verbose:
             print(f"Detected subset path: {subset}", file=sys.stderr)
@@ -67,8 +69,8 @@ def run_incremental_mode(path, subset, verbose, upload, update, dry_run, increme
         # Output only changed data by full_path
         print_incremental_changes(files, scanner)
     else:
-        # Normal mode - output complete updated fixture
-        print_files(files)
+        # Normal mode - output complete updated fixture with transformer applied
+        print_files_with_transformer(files)
 
 
 def run_full_scan_mode(path, subset, md5, verbose, upload, config):

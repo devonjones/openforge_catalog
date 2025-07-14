@@ -97,7 +97,7 @@ def _is_tag_description_fixture(data):
     return result
 
 
-def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = False, dry_run: bool = False):
+def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
     
     if incremental:
@@ -182,8 +182,7 @@ def _munge_blueprint(data: dict):
         bp["file_size"] = data["file_metadata"]["size"]
         bp["file_name"] = data["file_metadata"]["file"]
         bp["full_name"] = data["file_metadata"]["full_name"]
-        bp["file_changed_at"] = data["file_metadata"]["changed"]
-        bp["file_modified_at"] = data["file_metadata"]["modified"]
+        bp["file_modified_at"] = data["file_metadata"]["file_modified_at"]
         bp["storage_address"] = data["file_metadata"].get("storage_address")
     return bp
 

@@ -34,9 +34,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "old_md5_1",
                     "size": 1000,
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}
@@ -49,8 +47,7 @@ class TestIncrementalScanner:
                     "md5": "old_md5_2",
                     "size": 2000,
                     "file_modified_at": "2023-01-02T10:00:00+00:00",
-                    "changed": "2023-01-02T10:00:00+00:00",
-                    "modified": "2023-01-02T10:00:00+00:00"
+                    "file_modified_at": "2023-01-02T10:00:00+00:00"
                 },
                 "tags": ["shape|wall", "texture|stone"],
                 "config": {}
@@ -141,8 +138,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -164,8 +160,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             },
             {
@@ -175,8 +170,7 @@ class TestIncrementalScanner:
                     "file": "file2.stl", 
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -376,9 +370,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}
@@ -434,9 +426,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}

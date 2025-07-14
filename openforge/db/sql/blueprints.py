@@ -15,7 +15,6 @@ def _blueprint_defaults(data: dict) -> dict:
         "file_size": sql.NULL,
         "file_name": sql.NULL,
         "full_name": sql.NULL,
-        "file_changed_at": sql.NULL,
         "file_modified_at": sql.NULL,
         "storage_address": sql.NULL,
         # Phase 1 fields
@@ -53,7 +52,7 @@ def get_all_blueprints(curs: cursor) -> list[dict]:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
@@ -79,11 +78,11 @@ def insert_blueprint(
             """
 INSERT INTO blueprints (
   blueprint_name, blueprint_type, config, file_md5, file_size, file_name,
-  full_name, file_changed_at, file_modified_at, storage_address, search_text,
+  full_name, file_modified_at, storage_address, search_text,
   consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog
 ) VALUES (
   {blueprint_name}, {blueprint_type}, {config}, {file_md5}, {file_size}, {file_name},
-  {full_name}, {file_changed_at}, {file_modified_at}, {storage_address}, {search_text},
+  {full_name}, {file_modified_at}, {storage_address}, {search_text},
   {consolidated_paths}, {deprecated}, {successor_id}, {predecessor_id}, {openscad_source}, {changelog}
 )
 """
@@ -109,7 +108,7 @@ def get_blueprint_by_id(curs: cursor, blueprint_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
@@ -127,7 +126,7 @@ def get_blueprint_by_md5(curs: cursor, md5: str) -> dict:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
@@ -158,7 +157,6 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         "file_size",
         "file_name",
         "full_name",
-        "file_changed_at",
         "file_modified_at",
         "storage_address",
         # Phase 1 fields
@@ -211,11 +209,11 @@ def get_blueprints_by_full_name(curs: cursor, full_name: str) -> list[dict]:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
-  WHERE full_name = {full_name}
+  WHERE full_name = {full_name} AND deprecated = false
   ORDER BY created_at DESC
 """
     ).format(full_name=sql.Literal(full_name))
@@ -228,7 +226,24 @@ def get_blueprints_by_md5(curs: cursor, md5: str) -> list[dict]:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
+       consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
+       created_at, updated_at
+  FROM blueprints
+  WHERE file_md5 = {md5}
+  ORDER BY created_at DESC
+"""
+    ).format(md5=sql.Literal(md5))
+    curs.execute(query)
+    return [_convert_config(dict(row)) for row in curs.fetchall()]
+
+
+def get_blueprints_by_md5_including_deprecated(curs: cursor, md5: str) -> list[dict]:
+    """Get all blueprints with the given MD5 including deprecated ones (for versioning)."""
+    query = sql.SQL(
+        """
+SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
@@ -245,7 +260,7 @@ def get_non_deprecated_blueprints(curs: cursor) -> list[dict]:
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
-       file_name, full_name, file_changed_at, file_modified_at, storage_address,
+       file_name, full_name, file_modified_at, storage_address,
        consolidated_paths, deprecated, successor_id, predecessor_id, openscad_source, changelog,
        created_at, updated_at
   FROM blueprints
