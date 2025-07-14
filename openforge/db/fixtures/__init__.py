@@ -161,40 +161,14 @@ def _load_data(f):
         raise ValueError(f"Unsupported file type: {f}")
 
 
+from .utils import munge_blueprint, get_words
+
 def _munge_blueprint(data: dict):
-    bp = {}
-    bp["blueprint_type"] = data["type"]
-    bp["blueprint_name"] = data.get("name")
-    bp["blueprint_config"] = data.get("config", {})
-    
-    # Phase 1 fields
-    bp["deprecated"] = data.get("deprecated", False)
-    bp["successor_id"] = data.get("successor_id")
-    bp["consolidated_paths"] = data.get("consolidated_paths", [])
-    
-    # Fields for separate tables (not stored in blueprints table)
-    bp["openscad_source"] = data.get("openscad_source")
-    bp["changelog"] = data.get("changelog")
-    
-    if "file_metadata" in data:
-        if not bp["blueprint_name"]:
-            bp["blueprint_name"] = data["file_metadata"]["file"]
-        bp["file_md5"] = data["file_metadata"]["md5"]
-        bp["file_size"] = data["file_metadata"]["size"]
-        bp["file_name"] = data["file_metadata"]["file"]
-        bp["full_name"] = data["file_metadata"]["full_name"]
-        bp["file_modified_at"] = data["file_metadata"]["file_modified_at"]
-        bp["storage_address"] = data["file_metadata"].get("storage_address")
-    return bp
+    return munge_blueprint(data)
 
 
 def _get_words(data: dict):
-    words = set()
-    for t in data.get("tags", []):
-        def extract_words(tag_array):
-            words.update(str(w) for w in tag_array)
-        process_tag(t, extract_words)
-    return list(words)
+    return get_words(data)
 
 
 def load_blueprint_fixture(curs: cursor, data: dict):

@@ -24,6 +24,7 @@ from .scanner import parse_file_tags, validate, print_files, _sort_and_clean_rec
 from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 from openforge.db.sql.tag_utils import process_tag
 from openforge.data.transformers import DeprecatedEntryTransformer
+from .utils import set_handler
 
 
 class IncrementalScanner:
@@ -169,6 +170,20 @@ class IncrementalScanner:
         """
         return self.existing_data_map.get(full_name)
         
+    def _get_existing_modified_time(self, existing_metadata: Dict) -> str:
+        """Get existing modification time with fallback for old 'modified' key.
+        
+        Args:
+            existing_metadata: File metadata dictionary
+            
+        Returns:
+            Modification time string or None
+        """
+        existing_modified = existing_metadata.get("file_modified_at")
+        if existing_modified is None:
+            existing_modified = existing_metadata.get("modified")
+        return existing_modified
+        
     def _has_file_changed(self, file_path: str, existing_entry: Dict) -> bool:
         """Check if a file has changed by comparing metadata.
         
@@ -189,11 +204,7 @@ class IncrementalScanner:
         if current_info["size"] != existing_metadata["size"]:
             return True
             
-        # Get existing modification time, falling back to 'modified' if 'file_modified_at' doesn't exist
-        existing_modified = existing_metadata.get("file_modified_at")
-        if existing_modified is None:
-            existing_modified = existing_metadata.get("modified")
-            
+        existing_modified = self._get_existing_modified_time(existing_metadata)
         if current_info["file_modified_at"] != existing_modified:
             return True
             
@@ -221,9 +232,7 @@ class IncrementalScanner:
             return True
             
         # Check if modification time or size changed (even if MD5 didn't change)
-        existing_modified = existing_entry["file_metadata"].get("file_modified_at")
-        if existing_modified is None:
-            existing_modified = existing_entry["file_metadata"].get("modified")
+        existing_modified = self._get_existing_modified_time(existing_entry["file_metadata"])
         new_modified = new_entry["file_metadata"]["file_modified_at"]
         existing_size = existing_entry["file_metadata"]["size"]
         new_size = new_entry["file_metadata"]["size"]
@@ -570,8 +579,9 @@ def print_incremental_diff(files, scanner, verbose=False):
                             }
                         
                         # Check tags changes (compare as sets to handle unordered nature)
+                        # existing_entry tags are arrays, file tags are pipe-delimited strings
                         existing_tags = set(tuple(tag) for tag in existing_entry.get("tags", []))
-                        new_tags = set(tuple(tag) for tag in file.get("tags", []))
+                        new_tags = set(tuple(tag.split('|')) for tag in file.get("tags", []))
                         if existing_tags != new_tags:
                             changes["tags"] = {
                                 "old": list(existing_entry.get("tags", [])),
@@ -647,12 +657,6 @@ def print_files_with_transformer(files):
     transformer = DeprecatedEntryTransformer()
     transformed_files = transformer.transform_list(files)
     
-    # Use the original print_files function but exclude top-level array from sorting
-    from .scanner import print_files, _sort_and_clean_recursively
-    import json
-    
-    from .utils import set_handler
-
     # Sort all lists recursively for consistent git diffs, but preserve top-level array order
     # Exclude config.parts from sorting to preserve order, and exclude top-level array (empty path)
     sorted_files = _sort_and_clean_recursively(transformed_files, exclude_paths=["config.parts", ""])

@@ -7,6 +7,7 @@ comparing with existing database records and only updating what has changed.
 
 import sys
 from typing import Dict, List, Set, Optional, Tuple
+from datetime import datetime
 from psycopg import connection, cursor
 from psycopg.rows import dict_row
 
@@ -15,6 +16,38 @@ import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 from openforge.db.sql.tag_utils import array_to_tag
 from openforge.data.transformers import DeprecatedEntryTransformer
+from .utils import munge_blueprint, get_words
+
+
+def _parse_timestamp(timestamp) -> Optional[datetime]:
+    """Parse timestamp into datetime object, handling various formats.
+    
+    Args:
+        timestamp: Timestamp as string, datetime object, or other format
+        
+    Returns:
+        datetime object if parsing successful, None otherwise
+    """
+    if timestamp is None:
+        return None
+        
+    # If already a datetime object, return it
+    if isinstance(timestamp, datetime):
+        return timestamp
+        
+    # Convert to string for parsing
+    timestamp_str = str(timestamp)
+    
+    try:
+        # Try parsing as ISO format first
+        return datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+    except ValueError:
+        try:
+            # Try parsing with space separator (common format)
+            return datetime.fromisoformat(timestamp_str.replace(' ', 'T'))
+        except ValueError:
+            # If all parsing fails, return None
+            return None
 
 
 class ComparisonResult:
@@ -72,19 +105,39 @@ class IncrementalFixturesLoader:
         with self.conn.cursor(row_factory=dict_row) as curs:
             blueprints = blueprint_sql.get_non_deprecated_blueprints(curs)
             
-        # Create mapping by full_name for efficient lookup and load tags and images
+        # Get all blueprint IDs for batch loading
+        blueprint_ids = [bp["id"] for bp in blueprints]
+        
+        # Batch load all tags and images
+        with self.conn.cursor(row_factory=dict_row) as curs:
+            all_tags = tag_sql.get_tags_for_blueprints(curs, blueprint_ids)
+            all_images = image_sql.get_images_for_blueprints(curs, blueprint_ids)
+        
+        # Group tags by blueprint_id
+        tags_by_blueprint = {}
+        for tag in all_tags:
+            bp_id = tag["blueprint_id"]
+            if bp_id not in tags_by_blueprint:
+                tags_by_blueprint[bp_id] = []
+            tags_by_blueprint[bp_id].append(tag["tag"])
+        
+        # Group images by blueprint_id
+        images_by_blueprint = {}
+        for image in all_images:
+            bp_id = image["blueprint_id"]
+            if bp_id not in images_by_blueprint:
+                images_by_blueprint[bp_id] = []
+            # Remove blueprint_id from image dict to match expected format
+            image_copy = {k: v for k, v in image.items() if k != "blueprint_id"}
+            images_by_blueprint[bp_id].append(image_copy)
+        
+        # Create final mapping
         blueprint_map = {}
         for bp in blueprints:
             full_name = bp.get("full_name")
             if full_name:
-                # Load tags for this blueprint
-                with self.conn.cursor(row_factory=dict_row) as curs:
-                    tags = tag_sql.get_tags(curs, bp["id"])
-                    bp["tags"] = [tag["tag"] for tag in tags]
-                    
-                    # Load images for this blueprint
-                    images = image_sql.get_images_for_blueprint(curs, bp["id"])
-                    bp["images"] = images
+                bp["tags"] = tags_by_blueprint.get(bp["id"], [])
+                bp["images"] = images_by_blueprint.get(bp["id"], [])
                 blueprint_map[full_name] = bp
                 
         if self.verbose:
@@ -149,32 +202,29 @@ class IncrementalFixturesLoader:
                 sys.stderr.write(f"DEBUG: MD5 changed for {full_name}: {existing_bp['file_md5']} -> {fixture_item['file_metadata']['md5']}\n")
             return True
             
-        # Check modification time (normalize timestamp formats)
+        # Check modification time using robust datetime comparison
         existing_modified = existing_bp["file_modified_at"]
         new_modified = fixture_item["file_metadata"]["file_modified_at"]
         
-        # Handle datetime comparison - convert both to strings for comparison
         if existing_modified and new_modified:
-            # Convert datetime to string if needed
-            if hasattr(existing_modified, 'isoformat'):
-                existing_modified_str = existing_modified.isoformat()
-            else:
-                existing_modified_str = str(existing_modified)
+            # Parse both timestamps into datetime objects
+            existing_dt = _parse_timestamp(existing_modified)
+            new_dt = _parse_timestamp(new_modified)
             
-            # Normalize new_modified to ISO format if it's a string
-            if isinstance(new_modified, str):
-                if ' ' in new_modified and 'T' not in new_modified:
-                    new_modified_str = new_modified.replace(' ', 'T')
-                else:
-                    new_modified_str = new_modified
+            # Compare datetime objects if both parsed successfully
+            if existing_dt is not None and new_dt is not None:
+                if existing_dt != new_dt:
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
+                    return True
             else:
-                new_modified_str = str(new_modified)
-            
-            # Compare normalized strings
-            if existing_modified_str != new_modified_str:
-                if self.verbose:
-                    sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
-                return True
+                # Fallback to string comparison if parsing failed
+                existing_str = str(existing_modified)
+                new_str = str(new_modified)
+                if existing_str != new_str:
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
+                    return True
             
         # Check size
         if fixture_item["file_metadata"]["size"] != existing_bp["file_size"]:
@@ -183,8 +233,9 @@ class IncrementalFixturesLoader:
             return True
             
         # Check tags (compare as sets to handle unordered nature)
+        # existing_bp tags are arrays from database, fixture_item tags are pipe-delimited strings
         existing_tags = set(tuple(tag) for tag in existing_bp.get("tags", []))
-        new_tags = set(tuple(tag) for tag in fixture_item.get("tags", []))
+        new_tags = set(tuple(tag.split('|')) for tag in fixture_item.get("tags", []))
         if existing_tags != new_tags:
             if self.verbose:
                 sys.stderr.write(f"DEBUG: Tags changed for {full_name}\n")
@@ -243,8 +294,6 @@ class IncrementalFixturesLoader:
             for consolidated_item in changes.consolidated:
                 self._handle_consolidation(curs, consolidated_item)
                 
-            self.conn.commit()
-            
         if self.verbose:
             sys.stderr.write(f"Applied {changes.summary()}\n")
             
@@ -323,37 +372,11 @@ class IncrementalFixturesLoader:
             
     def _munge_blueprint(self, data: dict) -> dict:
         """Convert fixture format to database format."""
-        bp = {}
-        bp["blueprint_type"] = data["type"]
-        bp["blueprint_name"] = data.get("name")
-        bp["blueprint_config"] = data.get("config", {})
-        
-        # Phase 1 fields
-        bp["deprecated"] = data.get("deprecated", False)
-        bp["successor_id"] = data.get("successor_id")
-        bp["consolidated_paths"] = data.get("consolidated_paths", [])
-        
-        # Fields for separate tables (not stored in blueprints table)
-        bp["openscad_source"] = data.get("openscad_source")
-        bp["changelog"] = data.get("changelog")
-        
-        if "file_metadata" in data:
-            if not bp["blueprint_name"]:
-                bp["blueprint_name"] = data["file_metadata"]["file"]
-            bp["file_md5"] = data["file_metadata"]["md5"]
-            bp["file_size"] = data["file_metadata"]["size"]
-            bp["file_name"] = data["file_metadata"]["file"]
-            bp["full_name"] = data["file_metadata"]["full_name"]
-            bp["file_modified_at"] = data["file_metadata"]["file_modified_at"]
-            bp["storage_address"] = data["file_metadata"].get("storage_address")
-        return bp
+        return munge_blueprint(data)
         
     def _get_words(self, data: dict) -> list[str]:
         """Extract search words from blueprint data."""
-        words = set()
-        for t in data.get("tags", []):
-            words.update([str(w) for w in t])
-        return list(words)
+        return get_words(data)
         
     def create_deprecation_entry(self, blueprint_id: str, successor_id: str = None):
         """Mark blueprint as deprecated with optional successor."""

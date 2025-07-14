@@ -102,6 +102,34 @@ def delete_all_tags(curs: cursor) -> dict:
     return curs.rowcount
 
 
+def get_tags_for_blueprints(curs: cursor, blueprint_ids: list[uuid.UUID]) -> list[dict]:
+    """Get all tags for multiple blueprints in a single query.
+    
+    Args:
+        curs: Database cursor
+        blueprint_ids: List of blueprint IDs to get tags for
+        
+    Returns:
+        List of tag dictionaries with blueprint_id included
+    """
+    if not blueprint_ids:
+        return []
+        
+    query = sql.SQL(
+        """
+SELECT id, blueprint_id, tag, created_at, updated_at
+  FROM tags
+  WHERE blueprint_id IN ({blueprint_ids})
+  ORDER BY blueprint_id, tag
+"""
+    ).format(
+        blueprint_ids=sql.SQL(",").join(sql.Literal(bp_id) for bp_id in blueprint_ids)
+    )
+    get_logger().debug(query.join("\n").as_string())
+    curs.execute(query)
+    return [_convert_tag(row) for row in curs.fetchall()]
+
+
 def get_blueprint_ids_by_tag(curs: cursor, tag: str) -> list[uuid.UUID]:
     tags = tag_to_array(tag)
     query_list = [

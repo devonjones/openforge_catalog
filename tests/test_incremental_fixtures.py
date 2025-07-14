@@ -43,7 +43,21 @@ def create_mock_blueprint(full_name, md5, tags=None, images=None):
 
 
 def create_mock_fixture_item(full_name, md5, tags=None, images=None):
-    """Create a mock fixture item for testing."""
+    """Create a mock fixture item for testing.
+    
+    Note: Fixture items use pipe-delimited strings for tags, not arrays.
+    """
+    # Convert array tags to pipe-delimited strings to match real fixture format
+    if tags:
+        fixture_tags = []
+        for tag in tags:
+            if isinstance(tag, list):
+                fixture_tags.append("|".join(str(t) for t in tag))
+            else:
+                fixture_tags.append(str(tag))
+    else:
+        fixture_tags = []
+        
     return {
         "type": "model",
         "file_metadata": {
@@ -52,7 +66,7 @@ def create_mock_fixture_item(full_name, md5, tags=None, images=None):
             "size": 1000,
             "file_modified_at": "2020-01-01T12:00:00"
         },
-        "tags": tags or [],
+        "tags": fixture_tags,
         "images": images or [],
         "config": {}
     }
@@ -89,8 +103,7 @@ class TestIncrementalFixturesLoader:
     def test_has_significant_changes_tags_change(self, mock_loader):
         """Test _has_significant_changes with tags change."""
         existing = create_mock_blueprint("test.stl", "abc123")
-        fixture = create_mock_fixture_item("test.stl", "abc123")
-        fixture["tags"] = [["new", "tag"]]
+        fixture = create_mock_fixture_item("test.stl", "abc123", tags=[["new", "tag"]])
         
         result = mock_loader._has_significant_changes(fixture, existing)
         assert result, f"Expected changes for tags change, got {result}"
@@ -112,6 +125,28 @@ class TestIncrementalFixturesLoader:
         
         result = mock_loader._has_significant_changes(fixture, existing)
         assert result, f"Expected changes for config change, got {result}"
+    
+    def test_has_significant_changes_tag_format_comparison(self, mock_loader):
+        """Test _has_significant_changes with proper tag format comparison.
+        
+        This test verifies that the comparison correctly handles:
+        - Database tags: arrays like [['shape', 'floor']]
+        - Fixture tags: pipe-delimited strings like ['shape|floor']
+        """
+        # Database blueprint with array tags
+        existing = create_mock_blueprint("test.stl", "abc123", tags=[["shape", "floor"], ["material", "stone"]])
+        
+        # Fixture with pipe-delimited tags (same content)
+        fixture = create_mock_fixture_item("test.stl", "abc123", tags=[["shape", "floor"], ["material", "stone"]])
+        
+        # Should detect no changes since tags are equivalent
+        result = mock_loader._has_significant_changes(fixture, existing)
+        assert not result, f"Expected no changes for equivalent tags, got {result}"
+        
+        # Test with different tags
+        fixture_different = create_mock_fixture_item("test.stl", "abc123", tags=[["shape", "wall"], ["material", "stone"]])
+        result = mock_loader._has_significant_changes(fixture_different, existing)
+        assert result, f"Expected changes for different tags, got {result}"
     
     def test_compare_fixture_data_new_file(self, mock_loader):
         """Test compare_fixture_data with new file."""
