@@ -1,6 +1,7 @@
 """Shared utilities for fixture processing."""
 
 from typing import Dict
+from openforge.db.sql.tag_utils import tag_to_array
 
 
 def munge_blueprint(data: dict) -> dict:
@@ -52,5 +53,7 @@ def get_words(data: dict) -> list[str]:
     """
     words = set()
     for t in data.get("tags", []):
-        words.update([str(w) for w in t])
+        # Convert tag to array (handles both pipe-delimited strings and arrays)
+        tag_array = tag_to_array(t)
+        words.update(str(w) for w in tag_array)
     return list(words) 

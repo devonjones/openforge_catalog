@@ -119,9 +119,10 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                     with conn.transaction():
                         loader.apply_incremental_changes(changes)
             elif tag_result.is_valid:
-                # Tag descriptions are handled differently - they don't have file_metadata
-                # For now, skip tag descriptions in incremental mode
-                sys.stderr.write(f"Skipping tag description fixture in incremental mode: {f}\n")
+                # Tag description fixtures store a different type of data (tag descriptions)
+                # and don't have file_metadata, so they are intentionally skipped in incremental mode
+                # This is permanent behavior - tag descriptions are not file-based data
+                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
             else:
                 print(f"Validation failed for {f}")
                 for error in blueprint_result.errors + tag_result.errors:
