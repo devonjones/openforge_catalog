@@ -13,9 +13,7 @@ import click
 @click.option("--fixture", help="Load only the specified fixture file")
 @click.option("--full-replacement", is_flag=True, help="Use full replacement mode (wipes all data)")
 @click.option("--dry-run", is_flag=True, help="Preview changes without applying")
-@click.option("--update", help="Specify fixture file for incremental update")
-@click.option("--compare-only", is_flag=True, help="Show comparison results only")
-def main(alt, fixture, full_replacement, dry_run, update, compare_only):
+def main(alt, fixture, full_replacement, dry_run):
     with PgDB(os.environ) as db:
         with db.pool.connection() as conn:
             if fixture:
