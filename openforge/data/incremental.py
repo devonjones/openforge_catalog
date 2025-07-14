@@ -19,9 +19,10 @@ from yaml import safe_load
 import boto3
 from botocore.client import Config
 import sh
-from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
-from .scanner import parse_file_tags, validate, print_files
+from .metadata import get_metadata_file, apply_metadata, apply_default_metadata, convert_tags_for_metadata
+from .scanner import parse_file_tags, validate, print_files, _sort_and_clean_recursively, _convert_tags_to_pipe_delimited
 from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
+from openforge.db.sql.tag_utils import process_tag
 
 
 class IncrementalScanner:
@@ -141,11 +142,9 @@ class IncrementalScanner:
             Dict with size and modified info
         """
         stat = os.stat(file_path)
-        # Use local time interpretation to match existing fixture files
-        # This is intentional - existing fixtures were created with local time,
-        # and changing to UTC would break timestamp comparisons
-        local_time = datetime.fromtimestamp(stat.st_mtime)
-        final_time = local_time.isoformat()
+        # Use UTC time interpretation for consistent behavior across environments
+        utc_time = datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc)
+        final_time = utc_time.isoformat()
 
         return {
             "size": stat.st_size,
@@ -220,9 +219,9 @@ class IncrementalScanner:
                 sys.stderr.write(f"DEBUG: Modification time or size changed for {file_path}: modified {existing_modified} -> {new_modified}, size {existing_size} -> {new_size}\n")
             return True
             
-        # Check if tags changed (compare as sets)
-        existing_tags = set(tuple(tag) for tag in existing_entry.get("tags", []))
-        new_tags = set(tuple(tag) for tag in new_entry.get("tags", []))
+        # Check if tags changed (compare as sets of pipe-delimited strings)
+        existing_tags = set(_normalize_tags_to_pipe_delimited(existing_entry.get("tags", [])))
+        new_tags = set(_normalize_tags_to_pipe_delimited(new_entry.get("tags", [])))
         if existing_tags != new_tags:
             if self.verbose:
                 sys.stderr.write(f"DEBUG: Tags changed for {file_path}\n")
@@ -282,7 +281,7 @@ class IncrementalScanner:
                     "changed": datetime.now(timezone.utc).isoformat(),
                     "modified": file_info["modified"]
                 },
-                "tags": tags,
+                "tags": _convert_tags_to_pipe_delimited(tags),
                 "config": config or {}
             }]
         else:
@@ -310,7 +309,7 @@ class IncrementalScanner:
                             "changed": datetime.now(timezone.utc).isoformat(),
                             "modified": file_info["modified"]
                         },
-                        "tags": tags,
+                        "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {}
                     }
                     result = [deprecation_entry, new_entry]
@@ -327,7 +326,7 @@ class IncrementalScanner:
                             "changed": datetime.now(timezone.utc).isoformat(),
                             "modified": file_info["modified"]
                         },
-                        "tags": tags,
+                        "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {}
                     }
                     result = [new_entry]
@@ -336,7 +335,7 @@ class IncrementalScanner:
                 new_entry = {
                     "type": "model",
                     "file_metadata": existing_entry["file_metadata"].copy(),
-                    "tags": tags,
+                    "tags": _convert_tags_to_pipe_delimited(tags),
                     "config": config or {}
                 }
                 # Keep the original changed timestamp when copying existing metadata
@@ -378,6 +377,16 @@ class IncrementalScanner:
                 missing.append(deprecation_entry)
                 
         return missing
+
+
+def _normalize_tags_to_pipe_delimited(tags):
+    """Convert tags to pipe-delimited format, handling both old array format and new string format."""
+    normalized = []
+    for tag in tags:
+        def to_pipe_delimited(tag_array):
+            normalized.append("|".join(str(item) for item in tag_array))
+        process_tag(tag, to_pipe_delimited)
+    return normalized
 
 
 def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_run, incremental):
@@ -437,10 +446,18 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                 # Add metadata flag
                 result["metadata"] = metadata is not None
                 
+                # Convert tags back to set format for metadata processing
+                if "tags" in result:
+                    result["tags"] = convert_tags_for_metadata(result["tags"])
+                
                 # Apply metadata and default metadata
                 if metadata:
                     apply_metadata(metadata, result)
                 apply_default_metadata(result)
+                
+                # Convert tags back to pipe-delimited format for output
+                if "tags" in result:
+                    result["tags"] = _convert_tags_to_pipe_delimited(result["tags"])
                 
                 # Validate
                 validate(result)
@@ -562,7 +579,9 @@ def print_incremental_diff(files, scanner, verbose=False):
     if verbose and modified_details:
         result["modified_details"] = modified_details
     
-    print(json.dumps(result, indent=2))
+    # Sort all lists recursively for consistent git diffs
+    sorted_result = _sort_and_clean_recursively(result)
+    print(json.dumps(sorted_result, indent=2, sort_keys=True))
 
 
 def print_incremental_changes(files, scanner):

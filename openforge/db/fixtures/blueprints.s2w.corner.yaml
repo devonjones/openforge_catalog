@@ -1,11 +1,11 @@
 - name: "S2W: Wall on Tile: Corner (Any, Single Piece)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, single_piece]
-    - [shape, corner]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|single_piece
+    - shape|corner
   config:
     parts:
       - name: column
@@ -71,11 +71,11 @@
 - name: "S2W: Wall on Tile: Corner (Any, Modular)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, modular]
-    - [shape, corner]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|modular
+    - shape|corner
   config:
     parts:
       - name: column

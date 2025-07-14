@@ -1,12 +1,12 @@
 - name: "S2W: Wall on Tile: Wall: Drain (Single Piece)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, single_piece]
-    - [component, drain]
-    - [shape, wall]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|single_piece
+    - component|drain
+    - shape|wall
   config:
     parts:
       - name: wall
@@ -48,12 +48,12 @@
 - name: "S2W: Wall on Tile: Wall: Drain (Modular)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, modular]
-    - [component, drain]
-    - [shape, wall]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|modular
+    - component|drain
+    - shape|wall
   config:
     parts:
       - name: wall

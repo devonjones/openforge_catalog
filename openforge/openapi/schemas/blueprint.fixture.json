@@ -44,13 +44,8 @@
       "tags": {
         "type": "array",
         "items": {
-          "type": "array",
-          "items": {
-            "oneOf": [
-              { "type": "string" },
-              { "type": "number" }
-            ]
-          }
+          "type": "string",
+          "description": "Pipe-delimited tag (e.g., 'shape|floor', 'texture|stone')"
         }
       },
       "images": {
