@@ -331,8 +331,9 @@ class IncrementalFixturesLoader:
         # Phase 1 fields
         bp["deprecated"] = data.get("deprecated", False)
         bp["successor_id"] = data.get("successor_id")
-        bp["predecessor_id"] = data.get("predecessor_id")
         bp["consolidated_paths"] = data.get("consolidated_paths", [])
+        
+        # Fields for separate tables (not stored in blueprints table)
         bp["openscad_source"] = data.get("openscad_source")
         bp["changelog"] = data.get("changelog")
         
@@ -359,10 +360,7 @@ class IncrementalFixturesLoader:
         with self.conn.cursor(row_factory=dict_row) as curs:
             return blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id, successor_id)
             
-    def create_version_relationship(self, predecessor_id: str, successor_id: str):
-        """Create predecessor/successor relationship between blueprints."""
-        with self.conn.cursor(row_factory=dict_row) as curs:
-            blueprint_sql.create_version_relationship(curs, predecessor_id, successor_id) 
+ 
 
     def transform_deprecated_entries(self, fixtures: List[Dict]) -> List[Dict]:
         """Transform deprecated entries to current schema format.

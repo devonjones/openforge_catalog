@@ -651,10 +651,7 @@ def print_files_with_transformer(files):
     from .scanner import print_files, _sort_and_clean_recursively
     import json
     
-    def set_handler(obj):
-        if isinstance(obj, (set, tuple)):
-            return list(obj)
-        raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+    from .utils import set_handler
 
     # Sort all lists recursively for consistent git diffs, but preserve top-level array order
     # Exclude config.parts from sorting to preserve order, and exclude top-level array (empty path)

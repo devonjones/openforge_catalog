@@ -32,8 +32,6 @@ blueprints: id, blueprint_name, blueprint_type, config (jsonb), file_md5, file_s
            consolidated_paths (text[]),     -- All filesystem locations for this file
            deprecated (boolean),            -- Whether this version is deprecated
            successor_id (uuid),             -- Points to newer version if deprecated
-           predecessor_id (uuid),           -- Points to older version if this is an update
-           openscad_source (text),          -- OpenSCAD file for customizable blueprints
            created_by (uuid),               -- User who created this blueprint
            updated_by (uuid)                -- User who last updated this blueprint
 
@@ -45,11 +43,11 @@ tag_descriptions: id, tag (text[]), description, created_by, updated_by, created
 images: id, image_name, image_url, created_by, updated_by, created_at, updated_at
 blueprint_images: blueprint_id, image_id (many-to-many)
 
--- Documentation (tag-based composition with types and namespaced images)
-documentation: id, documentation_name, document, documentation_type, created_by, updated_by, created_at, updated_at
-blueprint_documentation: blueprint_id, documentation_id (many-to-many)
-tag_documentation: id, tag (text[]), documentation_id, created_by, updated_by, created_at, updated_at
-documentation_images: id, namespace, image_name, image_id, created_by, updated_by, created_at, updated_at
+-- Documentation (direct blueprint association)
+blueprint_documentation: id, blueprint_id, document, document_type (documentation_type_enum), created_at, updated_at
+
+-- OpenSCAD source files
+openscad_source: id, blueprint_id, openscad, created_at, updated_at
 
 -- NEW: User management and authentication
 users: id, email, role, patreon_tier (patreon_tier_enum), created_at, updated_at
@@ -147,12 +145,11 @@ The system handles complex real-world scenarios like doorways that need both wal
 - **Path Tombstoning**: Detection of file moves and deletions across scans
 
 #### NEW: Documentation and Knowledge System
-- **Markdown-based Documentation**: Rich text instructions with image support
-- **Documentation Types**: Instructions, changelogs, tag guides, tutorials
-- **Tag-based Documentation**: Automatic composition of blueprint + tag documentation
-- **Namespaced Images**: Reusable images across documentation with markdown reference
-- **Version Changelogs**: Detailed change documentation using full documentation system
-- **Combined Rendering**: Blueprint instructions enhanced with relevant tag documentation
+- **Text-based Documentation**: Simple text documentation for changelogs
+- **Documentation Types**: Extensible enum starting with 'changelog'
+- **Direct Blueprint Association**: Documentation directly linked to blueprints
+- **Version Changelogs**: Detailed change documentation using blueprint_documentation table
+- **Extensible Design**: Ready for additional documentation types in future
 
 ### Authentication and Authorization System - **NEW**
 
@@ -360,7 +357,7 @@ Excellent performance despite complex tag queries using sophisticated SQL with m
 4. Select blueprint for assembly - **now pre-populated with defaults**
 5. **NEW**: Use component swap buttons for quick texture/style changes
 6. Fine-tune parts step-by-step with guided filtering
-7. **NEW**: Access customization for parametric models
+7. **NEW**: Access customization for parametric models (via openscad_source table)
 8. Review final part list with thumbnails
 9. Download individual STL files or **NEW**: view file history
 10. **NEW**: Submit individual requests (premium patrons)
@@ -371,7 +368,7 @@ Excellent performance despite complex tag queries using sophisticated SQL with m
 - **Parametric Customization**: Web-based tile base generation
 - **Real-time Preview**: 3D rendering before STL export
 - **NEW: Deep Linking**: Direct integration from catalog with tag pre-population
-- **NEW: Blueprint Integration**: openscad_source field links blueprints to customizable versions
+- **NEW: Blueprint Integration**: openscad_source table links blueprints to customizable versions
 - **Limitations**: Boolean reliability issues with textured surfaces
 - **Future**: Blender + Geometry Nodes for complex textured parametric generation
 
@@ -385,6 +382,7 @@ RESTful API with comprehensive CRUD operations:
 - `/api/tag-descriptions` - Tag documentation
 - **NEW**: `/api/auth` - OAuth authentication endpoints
 - **NEW**: `/api/blueprints/{blueprint_id}/history` - File version history
+- **NEW**: `/api/blueprints/{blueprint_id}/documentation` - Blueprint documentation management
 - **NEW**: `/api/admin/duplicates` - Administrative duplicate detection
 - **NEW**: `/api/voting/*` - Complete voting system API
 - **NEW**: `/api/patron-requests/*` - Patron request management

@@ -20,13 +20,9 @@ Enhance the fixtures loading system to support incremental updates, versioning, 
 ALTER TABLE blueprints ADD COLUMN consolidated_paths text[];
 ALTER TABLE blueprints ADD COLUMN deprecated boolean DEFAULT false;
 ALTER TABLE blueprints ADD COLUMN successor_id uuid;
-ALTER TABLE blueprints ADD COLUMN predecessor_id uuid;
-ALTER TABLE blueprints ADD COLUMN openscad_source text;
-ALTER TABLE blueprints ADD COLUMN changelog text;
 
 -- Indexes for performance
 CREATE INDEX idx_blueprints_successor ON blueprints(successor_id);
-CREATE INDEX idx_blueprints_predecessor ON blueprints(predecessor_id);
 CREATE INDEX idx_blueprints_md5 ON blueprints(file_md5);
 ```
 
@@ -75,7 +71,7 @@ class IncrementalFixturesLoader:
     def create_deprecation_entry(self, blueprint_id: str, successor_id: str = None):
         """Mark blueprint as deprecated with optional successor."""
         
-    def create_version_relationship(self, predecessor_id: str, successor_id: str):
+    def create_version_relationship(self, successor_id: str):
         """Create predecessor/successor relationship between blueprints."""
 ```
 
@@ -102,10 +98,7 @@ def _munge_blueprint(data: dict):
     # NEW: Phase 1 fields
     bp["deprecated"] = data.get("deprecated", False)
     bp["successor_id"] = data.get("successor_id")
-    bp["predecessor_id"] = data.get("predecessor_id")
     bp["consolidated_paths"] = data.get("consolidated_paths", [])
-    bp["openscad_source"] = data.get("openscad_source")
-    bp["changelog"] = data.get("changelog")
     
     if "file_metadata" in data:
         if not bp["blueprint_name"]:

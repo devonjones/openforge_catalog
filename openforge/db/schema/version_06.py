@@ -46,35 +46,9 @@ ALTER TABLE blueprints
         curs.execute(query)
         print("  added successor_id column")
 
-        # Add predecessor_id UUID (nullable)
-        query = sql.SQL(
-            """
-ALTER TABLE blueprints 
-  ADD COLUMN predecessor_id UUID
-"""
-        )
-        curs.execute(query)
-        print("  added predecessor_id column")
 
-        # Add openscad_source text (nullable)
-        query = sql.SQL(
-            """
-ALTER TABLE blueprints 
-  ADD COLUMN openscad_source TEXT
-"""
-        )
-        curs.execute(query)
-        print("  added openscad_source column")
 
-        # Add changelog text (nullable)
-        query = sql.SQL(
-            """
-ALTER TABLE blueprints 
-  ADD COLUMN changelog TEXT
-"""
-        )
-        curs.execute(query)
-        print("  added changelog column")
+
 
     def create_phase_1_indexes(self, curs: cursor):
         """Create indexes for Phase 1 fields for performance."""
@@ -89,15 +63,7 @@ CREATE INDEX idx_blueprints_successor
         curs.execute(query)
         print("  created idx_blueprints_successor index")
 
-        # Index for predecessor_id
-        query = sql.SQL(
-            """
-CREATE INDEX idx_blueprints_predecessor 
-  ON blueprints(predecessor_id)
-"""
-        )
-        curs.execute(query)
-        print("  created idx_blueprints_predecessor index")
+
 
         # Index for file_md5 (if not already exists)
         query = sql.SQL(
@@ -116,9 +82,7 @@ CREATE INDEX IF NOT EXISTS idx_blueprints_md5
         curs.execute(query)
         print("  dropped idx_blueprints_successor index")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_blueprints_predecessor")
-        curs.execute(query)
-        print("  dropped idx_blueprints_predecessor index")
+
 
         query = sql.SQL("DROP INDEX IF EXISTS idx_blueprints_md5")
         curs.execute(query)
@@ -129,9 +93,6 @@ CREATE INDEX IF NOT EXISTS idx_blueprints_md5
         
         # Drop columns in reverse order
         columns = [
-            "changelog",
-            "openscad_source", 
-            "predecessor_id",
             "successor_id",
             "deprecated",
             "consolidated_paths"

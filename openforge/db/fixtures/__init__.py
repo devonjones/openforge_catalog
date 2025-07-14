@@ -170,8 +170,9 @@ def _munge_blueprint(data: dict):
     # Phase 1 fields
     bp["deprecated"] = data.get("deprecated", False)
     bp["successor_id"] = data.get("successor_id")
-    bp["predecessor_id"] = data.get("predecessor_id")
     bp["consolidated_paths"] = data.get("consolidated_paths", [])
+    
+    # Fields for separate tables (not stored in blueprints table)
     bp["openscad_source"] = data.get("openscad_source")
     bp["changelog"] = data.get("changelog")
     

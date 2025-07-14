@@ -46,7 +46,6 @@ class TestIncrementalScanner:
                     "file": "file2.stl",
                     "md5": "old_md5_2",
                     "size": 2000,
-                    "file_modified_at": "2023-01-02T10:00:00+00:00",
                     "file_modified_at": "2023-01-02T10:00:00+00:00"
                 },
                 "tags": ["shape|wall", "texture|stone"],

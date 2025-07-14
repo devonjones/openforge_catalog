@@ -213,7 +213,7 @@ class TestIncrementalFixturesLoader:
             "config": {"test": "value"},
             "deprecated": False,
             "successor_id": None,
-            "predecessor_id": None,
+    
             "consolidated_paths": [],
             "openscad_source": "test.scad",
             "changelog": "Test changelog",
