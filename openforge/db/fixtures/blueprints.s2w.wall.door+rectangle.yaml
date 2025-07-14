@@ -1,12 +1,12 @@
 - name: "S2W: Wall on Tile: Wall: Rectangular Door (Single Piece)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, single_piece]
-    - [component, door, rectangular]
-    - [shape, wall]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|single_piece
+    - component|door|rectangular
+    - shape|wall
   config:
     parts:
       - name: wall
@@ -48,12 +48,12 @@
 - name: "S2W: Wall on Tile: Wall: Rectangular Door (Modular)"
   type: "blueprint"
   tags:
-    - [object, tile]
-    - [object, tile, wall_on_tile]
-    - [build, s2w]
-    - [build, s2w, modular]
-    - [component, door, rectangular]
-    - [shape, wall]
+    - object|tile
+    - object|tile|wall_on_tile
+    - build|s2w
+    - build|s2w|modular
+    - component|door|rectangular
+    - shape|wall
   config:
     parts:
       - name: wall

@@ -38,7 +38,7 @@ class TestIncrementalScanner:
                     "changed": "2023-01-01T10:00:00+00:00",
                     "modified": "2023-01-01T10:00:00+00:00"
                 },
-                "tags": [["shape", "floor"], ["texture", "stone"]],
+                "tags": ["shape|floor", "texture|stone"],
                 "config": {}
             },
             {
@@ -52,7 +52,7 @@ class TestIncrementalScanner:
                     "changed": "2023-01-02T10:00:00+00:00",
                     "modified": "2023-01-02T10:00:00+00:00"
                 },
-                "tags": [["shape", "wall"], ["texture", "stone"]],
+                "tags": ["shape|wall", "texture|stone"],
                 "config": {}
             }
         ]
@@ -210,7 +210,7 @@ class TestIncrementalScanner:
         assert "md5" in result["file_metadata"]
         assert result["file_metadata"]["size"] > 0
         assert "file_modified_at" in result["file_metadata"]
-        assert result["tags"] == {("shape", "floor"), ("texture", "stone")}
+        assert result["tags"] == ["shape|floor", "texture|stone"]
         assert result["config"] == {}
         
     def test_process_existing_file_unchanged(self, sample_fixture, sample_files):
@@ -382,7 +382,7 @@ class TestIncrementalScanner:
                     "changed": "2023-01-01T10:00:00+00:00",
                     "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
                 },
-                "tags": [["shape", "floor"], ["texture", "stone"]],
+                "tags": ["shape|floor", "texture|stone"],
                 "config": {}
             }
         ]
@@ -440,7 +440,7 @@ class TestIncrementalScanner:
                     "changed": "2023-01-01T10:00:00+00:00",
                     "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
                 },
-                "tags": [["shape", "floor"], ["texture", "stone"]],
+                "tags": ["shape|floor", "texture|stone"],
                 "config": {}
             }
         ]

@@ -409,6 +409,11 @@ def parse_file_tags(file_info, tags, metadata):
     filter_shape(tags)
 
 
+def _convert_tags_to_pipe_delimited(tags_set):
+    """Convert a set of tag tuples to a list of pipe-delimited strings."""
+    return ["|".join(str(item) for item in tag) for tag in sorted(tags_set)]
+
+
 def parse_files(path, files, md5, verbose, upload, config):
     def _get_metadata(path, fn):
         data = get_metadata_file(path)
@@ -465,6 +470,8 @@ def parse_files(path, files, md5, verbose, upload, config):
             o["metadata"] = True
         apply_metadata(metadata, o)
         apply_default_metadata(o)
+        # Convert tags from set of tuples to list of pipe-delimited strings
+        o["tags"] = _convert_tags_to_pipe_delimited(t)
         validate(o)
         del f["path"]
         newfiles.append(o)
@@ -536,10 +543,51 @@ def find_files(path, subset):
     return retfiles
 
 
+def _sort_and_clean_recursively(obj):
+    """Recursively sort all lists and dictionary keys in a JSON-serializable object for consistent output.
+    Also removes empty arrays and hashes in a single pass for performance."""
+    if isinstance(obj, dict):
+        # Sort dictionary keys and recursively sort values, filtering out empty values
+        result = {}
+        for k, v in sorted(obj.items()):
+            processed_v = _sort_and_clean_recursively(v)
+            # Only include non-empty values
+            if processed_v is not None and processed_v != {} and processed_v != []:
+                result[k] = processed_v
+        return result
+    elif isinstance(obj, list):
+        # For lists containing dictionaries, we need to sort by a stable key
+        # Convert each item to a sortable representation
+        def sort_key(item):
+            if isinstance(item, dict):
+                # Create a stable, sortable representation of the dictionary
+                # to ensure consistent sorting.
+                return json.dumps(item, sort_keys=True)
+            elif isinstance(item, (list, tuple, set)):
+                # For nested sequences, use the first element as sort key
+                return str(item[0]) if item else ""
+            else:
+                return str(item)
+        
+        # Process and filter out empty items
+        processed_items = [_sort_and_clean_recursively(item) for item in obj]
+        filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
+        return sorted(filtered_items, key=sort_key)
+    elif isinstance(obj, (set, tuple)):
+        # For sets and tuples, convert to sorted list with string comparison
+        processed_items = [_sort_and_clean_recursively(item) for item in obj]
+        filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
+        return sorted(filtered_items, key=str)
+    else:
+        return obj
+
+
 def print_files(files):
     def set_handler(obj):
         if isinstance(obj, (set, tuple)):
             return list(obj)
         raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
 
-    print(json.dumps(files, default=set_handler, indent=4))
+    # Sort all lists recursively for consistent git diffs
+    sorted_files = _sort_and_clean_recursively(files)
+    print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))

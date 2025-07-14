@@ -1,66 +1,83 @@
 [
     {
-        "type": "model",
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.1x1.openforge.stl",
+            "changed": "2025-07-12T23:40:40.735620+00:00",
             "file": "pool#floor.1x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:50+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.1x1.openforge.stl",
             "md5": "9828372cd5ed6bdfbdfda244c667326b",
+            "modified": "2020-03-07T02:20:50+00:00",
             "size": 820384,
-            "changed": "2024-04-14T19:52:07.751087",
-            "modified": "2020-03-06T19:20:50",
             "storage_address": "https://objects.openforge.tools/models/982837/9828372cd5ed6bdfbdfda244c667326b.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/982837/9828372cd5ed6bdfbdfda244c667326b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -69,82 +86,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.1x2.openforge.stl",
+            "changed": "2025-07-12T23:40:41.616994+00:00",
             "file": "pool#floor.1x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:52+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.1x2.openforge.stl",
             "md5": "975d7787dbc8b435e7ff657ae5531ff7",
+            "modified": "2020-03-07T02:20:52+00:00",
             "size": 1612984,
-            "changed": "2024-04-14T19:52:07.753084",
-            "modified": "2020-03-06T19:20:52",
             "storage_address": "https://objects.openforge.tools/models/975d77/975d7787dbc8b435e7ff657ae5531ff7.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/975d77/975d7787dbc8b435e7ff657ae5531ff7.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -153,82 +151,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.1x3.openforge.stl",
+            "changed": "2025-07-12T23:40:42.499985+00:00",
             "file": "pool#floor.1x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:54+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.1x3.openforge.stl",
             "md5": "132b339ccab071bc9f1fc7bf46de389d",
+            "modified": "2020-03-07T02:20:54+00:00",
             "size": 2415784,
-            "changed": "2024-04-14T19:52:07.755086",
-            "modified": "2020-03-06T19:20:54",
             "storage_address": "https://objects.openforge.tools/models/132b33/132b339ccab071bc9f1fc7bf46de389d.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/132b33/132b339ccab071bc9f1fc7bf46de389d.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -237,82 +216,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.1x4.openforge.stl",
+            "changed": "2025-07-12T23:40:43.573434+00:00",
             "file": "pool#floor.1x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:58+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.1x4.openforge.stl",
             "md5": "5d227fd982e326320ed4856faa9ac8a6",
+            "modified": "2020-03-07T02:20:58+00:00",
             "size": 3228584,
-            "changed": "2024-04-14T19:52:07.756592",
-            "modified": "2020-03-06T19:20:58",
             "storage_address": "https://objects.openforge.tools/models/5d227f/5d227fd982e326320ed4856faa9ac8a6.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/5d227f/5d227fd982e326320ed4856faa9ac8a6.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -321,82 +281,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.2x1.openforge.stl",
+            "changed": "2025-07-12T23:40:44.374448+00:00",
             "file": "pool#floor.2x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:00+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.2x1.openforge.stl",
             "md5": "aba159123c839bfbf4d8da8a0b6c2c1a",
+            "modified": "2020-03-07T02:21:00+00:00",
             "size": 1608084,
-            "changed": "2024-04-14T19:52:07.757600",
-            "modified": "2020-03-06T19:21:00",
             "storage_address": "https://objects.openforge.tools/models/aba159/aba159123c839bfbf4d8da8a0b6c2c1a.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/aba159/aba159123c839bfbf4d8da8a0b6c2c1a.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -405,82 +346,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.2x2.openforge.stl",
+            "changed": "2025-07-12T23:40:45.325392+00:00",
             "file": "pool#floor.2x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:03+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.2x2.openforge.stl",
             "md5": "af0df88aea5df0dd7892b470f92e265b",
+            "modified": "2020-03-07T02:21:03+00:00",
             "size": 3182534,
-            "changed": "2024-04-14T19:52:07.760115",
-            "modified": "2020-03-06T19:21:03",
             "storage_address": "https://objects.openforge.tools/models/af0df8/af0df88aea5df0dd7892b470f92e265b.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/af0df8/af0df88aea5df0dd7892b470f92e265b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -489,82 +411,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.2x3.openforge.stl",
+            "changed": "2025-07-12T23:40:47.451988+00:00",
             "file": "pool#floor.2x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:08+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.2x3.openforge.stl",
             "md5": "0779a7602fdcf69346cbe8b173ce02ca",
+            "modified": "2020-03-07T02:21:08+00:00",
             "size": 4772384,
-            "changed": "2024-04-14T19:52:07.761115",
-            "modified": "2020-03-06T19:21:08",
             "storage_address": "https://objects.openforge.tools/models/0779a7/0779a7602fdcf69346cbe8b173ce02ca.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0779a7/0779a7602fdcf69346cbe8b173ce02ca.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -573,82 +476,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.2x4.openforge.stl",
+            "changed": "2025-07-12T23:40:48.783720+00:00",
             "file": "pool#floor.2x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:14+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.2x4.openforge.stl",
             "md5": "90531eb03948890fc2e4fe5cd50b328b",
+            "modified": "2020-03-07T02:21:14+00:00",
             "size": 6353284,
-            "changed": "2024-04-14T19:52:07.763116",
-            "modified": "2020-03-06T19:21:14",
             "storage_address": "https://objects.openforge.tools/models/90531e/90531eb03948890fc2e4fe5cd50b328b.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/90531e/90531eb03948890fc2e4fe5cd50b328b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -657,82 +541,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.3x1.openforge.stl",
+            "changed": "2025-07-12T23:40:49.977257+00:00",
             "file": "pool#floor.3x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:16+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.3x1.openforge.stl",
             "md5": "607fbeade92e5c19991bc6885e8820e2",
+            "modified": "2020-03-07T02:21:16+00:00",
             "size": 2407084,
-            "changed": "2024-04-14T19:52:07.765115",
-            "modified": "2020-03-06T19:21:16",
             "storage_address": "https://objects.openforge.tools/models/607fbe/607fbeade92e5c19991bc6885e8820e2.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/607fbe/607fbeade92e5c19991bc6885e8820e2.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -741,82 +606,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.3x2.openforge.stl",
+            "changed": "2025-07-12T23:40:51.176272+00:00",
             "file": "pool#floor.3x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:20+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.3x2.openforge.stl",
             "md5": "04efe3b354e8b49905ab2435c3e7ab19",
+            "modified": "2020-03-07T02:21:20+00:00",
             "size": 4775784,
-            "changed": "2024-04-14T19:52:07.766115",
-            "modified": "2020-03-06T19:21:20",
             "storage_address": "https://objects.openforge.tools/models/04efe3/04efe3b354e8b49905ab2435c3e7ab19.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/04efe3/04efe3b354e8b49905ab2435c3e7ab19.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -825,82 +671,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.3x3.openforge.stl",
+            "changed": "2025-07-12T23:40:52.655595+00:00",
             "file": "pool#floor.3x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:29+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.3x3.openforge.stl",
             "md5": "bb035a19fa347c6e27e51ba68afa78ed",
+            "modified": "2020-03-07T02:21:29+00:00",
             "size": 7173984,
-            "changed": "2024-04-14T19:52:07.768262",
-            "modified": "2020-03-06T19:21:29",
             "storage_address": "https://objects.openforge.tools/models/bb035a/bb035a19fa347c6e27e51ba68afa78ed.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/bb035a/bb035a19fa347c6e27e51ba68afa78ed.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -909,82 +736,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.3x4.openforge.stl",
+            "changed": "2025-07-12T23:40:54.433687+00:00",
             "file": "pool#floor.3x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:38+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.3x4.openforge.stl",
             "md5": "7f7d9a333840a21efa06e57adae4d988",
+            "modified": "2020-03-07T02:21:38+00:00",
             "size": 9527284,
-            "changed": "2024-04-14T19:52:07.770262",
-            "modified": "2020-03-06T19:21:38",
             "storage_address": "https://objects.openforge.tools/models/7f7d9a/7f7d9a333840a21efa06e57adae4d988.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/7f7d9a/7f7d9a333840a21efa06e57adae4d988.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -993,82 +801,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.4x1.openforge.stl",
+            "changed": "2025-07-12T23:40:55.537893+00:00",
             "file": "pool#floor.4x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:41+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.4x1.openforge.stl",
             "md5": "a9072a8dbe96db0fd2b60ddd98862103",
+            "modified": "2020-03-07T02:21:41+00:00",
             "size": 3050884,
-            "changed": "2024-04-14T19:52:07.772261",
-            "modified": "2020-03-06T19:21:41",
             "storage_address": "https://objects.openforge.tools/models/a9072a/a9072a8dbe96db0fd2b60ddd98862103.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/a9072a/a9072a8dbe96db0fd2b60ddd98862103.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1077,82 +866,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.4x2.openforge.stl",
+            "changed": "2025-07-12T23:40:57.206777+00:00",
             "file": "pool#floor.4x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:48+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.4x2.openforge.stl",
             "md5": "46238274f1a3174f65fef155494e82af",
+            "modified": "2020-03-07T02:21:48+00:00",
             "size": 6350884,
-            "changed": "2024-04-14T19:52:07.774262",
-            "modified": "2020-03-06T19:21:48",
             "storage_address": "https://objects.openforge.tools/models/462382/46238274f1a3174f65fef155494e82af.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/462382/46238274f1a3174f65fef155494e82af.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1161,82 +931,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.4x3.openforge.stl",
+            "changed": "2025-07-12T23:40:59.168241+00:00",
             "file": "pool#floor.4x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:21:57+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.4x3.openforge.stl",
             "md5": "11ab0025933936a05258294c3a9a0f4f",
+            "modified": "2020-03-07T02:21:57+00:00",
             "size": 9543984,
-            "changed": "2024-04-14T19:52:07.775262",
-            "modified": "2020-03-06T19:21:57",
             "storage_address": "https://objects.openforge.tools/models/11ab00/11ab0025933936a05258294c3a9a0f4f.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/11ab00/11ab0025933936a05258294c3a9a0f4f.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1245,82 +996,63 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor/pool#floor.4x4.openforge.stl",
+            "changed": "2025-07-12T23:41:01.454459+00:00",
             "file": "pool#floor.4x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:09+00:00",
+            "full_name": "tiles/pool/floors/floor/pool#floor.4x4.openforge.stl",
             "md5": "4852a3eacf840e87596c14d24309218f",
+            "modified": "2020-03-07T02:22:09+00:00",
             "size": 12699284,
-            "changed": "2024-04-14T19:52:07.777369",
-            "modified": "2020-03-06T19:22:09",
             "storage_address": "https://objects.openforge.tools/models/4852a3/4852a3eacf840e87596c14d24309218f.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/4852a3/4852a3eacf840e87596c14d24309218f.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1329,91 +1061,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.1x1.openforge.stl",
+            "changed": "2025-07-12T23:41:02.876974+00:00",
             "file": "pool#floor,pool+corner.1x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:00+00:00",
+            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.1x1.openforge.stl",
             "md5": "0797a814cd6f811ccb992c170e55990a",
+            "modified": "2020-03-07T02:20:00+00:00",
             "size": 4067484,
-            "changed": "2025-05-28T14:46:36.923908",
-            "modified": "2020-03-06T19:20:00",
             "storage_address": "https://objects.openforge.tools/models/0797a8/0797a814cd6f811ccb992c170e55990a.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "corner"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0797a8/0797a814cd6f811ccb992c170e55990a.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1422,91 +1128,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.2x2.openforge.stl",
+            "changed": "2025-07-12T23:41:04.862232+00:00",
             "file": "pool#floor,pool+corner.2x2.openforge.stl",
+            "file_modified_at": "2025-06-19T02:53:01.419552+00:00",
+            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.2x2.openforge.stl",
             "md5": "ab0bc438a05872c494a0166ee655507c",
+            "modified": "2025-06-19T02:53:01.419552+00:00",
             "size": 9830784,
-            "changed": "2025-06-18T20:53:01.423353",
-            "modified": "2025-06-18T20:53:01.419552",
             "storage_address": "https://objects.openforge.tools/models/ab0bc4/ab0bc438a05872c494a0166ee655507c.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "corner"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/ab0bc4/ab0bc438a05872c494a0166ee655507c.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1515,91 +1195,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.3x3.openforge.stl",
+            "changed": "2025-07-12T23:41:07.798829+00:00",
             "file": "pool#floor,pool+corner.3x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:21+00:00",
+            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.3x3.openforge.stl",
             "md5": "e05d25188db823f5a3fdf760f3cc4dee",
+            "modified": "2020-03-07T02:20:21+00:00",
             "size": 17489384,
-            "changed": "2025-06-18T20:53:12.440337",
-            "modified": "2020-03-06T19:20:21",
             "storage_address": "https://objects.openforge.tools/models/e05d25/e05d25188db823f5a3fdf760f3cc4dee.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "corner"
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/e05d25/e05d25188db823f5a3fdf760f3cc4dee.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1608,91 +1262,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.4x4.openforge.stl",
+            "changed": "2025-07-12T23:41:12.467255+00:00",
             "file": "pool#floor,pool+corner.4x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:20:49+00:00",
+            "full_name": "tiles/pool/floors/floor#corner/pool#floor,pool+corner.4x4.openforge.stl",
             "md5": "bb537c4f61c9c224b41d761316cff600",
+            "modified": "2020-03-07T02:20:49+00:00",
             "size": 26194484,
-            "changed": "2025-06-18T20:53:21.078934",
-            "modified": "2020-03-06T19:20:49",
             "storage_address": "https://objects.openforge.tools/models/bb537c/bb537c4f61c9c224b41d761316cff600.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "corner"
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/bb537c/bb537c4f61c9c224b41d761316cff600.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1701,91 +1329,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.1x1.openforge.stl",
+            "changed": "2025-07-12T23:41:14.099805+00:00",
             "file": "pool#floor,pool+internal_corner.1x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:10+00:00",
+            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.1x1.openforge.stl",
             "md5": "f90e15e494f11c2e28a127adc9c5f51d",
+            "modified": "2020-03-07T02:22:10+00:00",
             "size": 1418084,
-            "changed": "2025-05-28T14:52:58.492292",
-            "modified": "2020-03-06T19:22:10",
             "storage_address": "https://objects.openforge.tools/models/f90e15/f90e15e494f11c2e28a127adc9c5f51d.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/f90e15/f90e15e494f11c2e28a127adc9c5f51d.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|internal_corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1794,91 +1396,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.2x2.openforge.stl",
+            "changed": "2025-07-12T23:41:15.279965+00:00",
             "file": "pool#floor,pool+internal_corner.2x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:15+00:00",
+            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.2x2.openforge.stl",
             "md5": "35d92b27a11186ab2e973846f4e616fc",
+            "modified": "2020-03-07T02:22:15+00:00",
             "size": 3778834,
-            "changed": "2025-05-28T14:52:58.497359",
-            "modified": "2020-03-06T19:22:15",
             "storage_address": "https://objects.openforge.tools/models/35d92b/35d92b27a11186ab2e973846f4e616fc.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/35d92b/35d92b27a11186ab2e973846f4e616fc.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|internal_corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1887,91 +1463,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.3x3.openforge.stl",
+            "changed": "2025-07-12T23:41:16.949830+00:00",
             "file": "pool#floor,pool+internal_corner.3x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:25+00:00",
+            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.3x3.openforge.stl",
             "md5": "d0b9217e1f2c25916e3d0299ac44fcd7",
+            "modified": "2020-03-07T02:22:25+00:00",
             "size": 7768684,
-            "changed": "2025-05-28T14:52:58.501866",
-            "modified": "2020-03-06T19:22:25",
             "storage_address": "https://objects.openforge.tools/models/d0b921/d0b9217e1f2c25916e3d0299ac44fcd7.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/d0b921/d0b9217e1f2c25916e3d0299ac44fcd7.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|internal_corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -1980,91 +1530,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.4x4.openforge.stl",
+            "changed": "2025-07-12T23:41:18.982664+00:00",
             "file": "pool#floor,pool+internal_corner.4x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:40+00:00",
+            "full_name": "tiles/pool/floors/floor#internal_corner/pool#floor,pool+internal_corner.4x4.openforge.stl",
             "md5": "572f0b3288178c01249b792c7b66c9a8",
+            "modified": "2020-03-07T02:22:40+00:00",
             "size": 13292684,
-            "changed": "2025-05-28T14:52:58.505883",
-            "modified": "2020-03-06T19:22:40",
             "storage_address": "https://objects.openforge.tools/models/572f0b/572f0b3288178c01249b792c7b66c9a8.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "internal_corner"
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/572f0b/572f0b3288178c01249b792c7b66c9a8.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|internal_corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2073,91 +1597,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#stairs/pool#floor,pool+stairs.2x1.openforge.stl",
+            "changed": "2025-07-12T23:41:21.049409+00:00",
             "file": "pool#floor,pool+stairs.2x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:22:54+00:00",
+            "full_name": "tiles/pool/floors/floor#stairs/pool#floor,pool+stairs.2x1.openforge.stl",
             "md5": "b390b119a48c1ba464cf4c186f5d2546",
+            "modified": "2020-03-07T02:22:54+00:00",
             "size": 10183384,
-            "changed": "2025-05-28T14:51:40.612666",
-            "modified": "2020-03-06T19:22:54",
             "storage_address": "https://objects.openforge.tools/models/b390b1/b390b119a48c1ba464cf4c186f5d2546.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "stairs"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/b390b1/b390b119a48c1ba464cf4c186f5d2546.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|stairs",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2166,91 +1664,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#stairs/pool#floor,pool+stairs.2x2.openforge.stl",
+            "changed": "2025-07-12T23:41:22.811031+00:00",
             "file": "pool#floor,pool+stairs.2x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:04+00:00",
+            "full_name": "tiles/pool/floors/floor#stairs/pool#floor,pool+stairs.2x2.openforge.stl",
             "md5": "482f5e78fd8565bdd10b030eda2a9d7e",
+            "modified": "2020-03-07T02:23:04+00:00",
             "size": 9840434,
-            "changed": "2025-05-28T14:51:40.618666",
-            "modified": "2020-03-06T19:23:04",
             "storage_address": "https://objects.openforge.tools/models/482f5e/482f5e78fd8565bdd10b030eda2a9d7e.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool",
-                "stairs"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/482f5e/482f5e78fd8565bdd10b030eda2a9d7e.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|stairs",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2259,91 +1731,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.1x1.openforge.stl",
+            "changed": "2025-07-12T23:41:26.603558+00:00",
             "file": "pool#floor,pool+wall.1x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:09+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.1x1.openforge.stl",
             "md5": "c25f5a168f8c7b7deebdcc899c0eb2e4",
+            "modified": "2020-03-07T02:23:09+00:00",
             "size": 2717084,
-            "changed": "2025-05-28T14:52:01.540490",
-            "modified": "2020-03-06T19:23:09",
             "storage_address": "https://objects.openforge.tools/models/c25f5a/c25f5a168f8c7b7deebdcc899c0eb2e4.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/c25f5a/c25f5a168f8c7b7deebdcc899c0eb2e4.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2352,91 +1798,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.2x1.openforge.stl",
+            "changed": "2025-07-12T23:41:28.047478+00:00",
             "file": "pool#floor,pool+wall.2x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:15+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.2x1.openforge.stl",
             "md5": "185ddc981f19b2fc5ac2214030db5a1b",
+            "modified": "2020-03-07T02:23:15+00:00",
             "size": 5307684,
-            "changed": "2025-05-28T14:52:01.544053",
-            "modified": "2020-03-06T19:23:15",
             "storage_address": "https://objects.openforge.tools/models/185ddc/185ddc981f19b2fc5ac2214030db5a1b.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/185ddc/185ddc981f19b2fc5ac2214030db5a1b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2445,91 +1865,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.2x2.openforge.stl",
+            "changed": "2025-07-12T23:41:29.836826+00:00",
             "file": "pool#floor,pool+wall.2x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:21+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.2x2.openforge.stl",
             "md5": "b81bd06f49a22976760dc530e631ad8b",
+            "modified": "2020-03-07T02:23:21+00:00",
             "size": 6874434,
-            "changed": "2025-05-28T14:52:01.548049",
-            "modified": "2020-03-06T19:23:21",
             "storage_address": "https://objects.openforge.tools/models/b81bd0/b81bd06f49a22976760dc530e631ad8b.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/b81bd0/b81bd06f49a22976760dc530e631ad8b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2538,91 +1932,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.3x1.openforge.stl",
+            "changed": "2025-07-12T23:41:31.335608+00:00",
             "file": "pool#floor,pool+wall.3x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:29+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.3x1.openforge.stl",
             "md5": "1ae0db80cb32816c7775d4f3a539bc94",
+            "modified": "2020-03-07T02:23:29+00:00",
             "size": 7873884,
-            "changed": "2025-05-28T14:52:01.551559",
-            "modified": "2020-03-06T19:23:29",
             "storage_address": "https://objects.openforge.tools/models/1ae0db/1ae0db80cb32816c7775d4f3a539bc94.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/1ae0db/1ae0db80cb32816c7775d4f3a539bc94.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2631,91 +1999,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.3x3.openforge.stl",
+            "changed": "2025-07-12T23:41:33.407794+00:00",
             "file": "pool#floor,pool+wall.3x3.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:42+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.3x3.openforge.stl",
             "md5": "55988766d50e4b73175fb85c4a292d9f",
+            "modified": "2020-03-07T02:23:42+00:00",
             "size": 12616784,
-            "changed": "2025-05-28T14:52:01.554567",
-            "modified": "2020-03-06T19:23:42",
             "storage_address": "https://objects.openforge.tools/models/559887/55988766d50e4b73175fb85c4a292d9f.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                3
-            ],
-            [
-                "size",
-                "depth",
-                3
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/559887/55988766d50e4b73175fb85c4a292d9f.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|3",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2724,91 +2066,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x1.openforge.stl",
+            "changed": "2025-07-12T23:41:35.131521+00:00",
             "file": "pool#floor,pool+wall.4x1.openforge.stl",
+            "file_modified_at": "2020-03-07T02:23:59+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x1.openforge.stl",
             "md5": "5d26dc8c8af2fb0f8aa03cbafa9c410d",
+            "modified": "2020-03-07T02:23:59+00:00",
             "size": 10179384,
-            "changed": "2025-05-28T14:52:01.558572",
-            "modified": "2020-03-06T19:23:59",
             "storage_address": "https://objects.openforge.tools/models/5d26dc/5d26dc8c8af2fb0f8aa03cbafa9c410d.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/5d26dc/5d26dc8c8af2fb0f8aa03cbafa9c410d.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2817,91 +2133,65 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x2.openforge.stl",
+            "changed": "2025-07-12T23:41:38.172691+00:00",
             "file": "pool#floor,pool+wall.4x2.openforge.stl",
+            "file_modified_at": "2020-03-07T02:24:12+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x2.openforge.stl",
             "md5": "4fbaf7dcd6a7e917eb8fd24251dc658c",
+            "modified": "2020-03-07T02:24:12+00:00",
             "size": 13513984,
-            "changed": "2025-05-28T14:52:01.562714",
-            "modified": "2020-03-06T19:24:12",
             "storage_address": "https://objects.openforge.tools/models/4fbaf7/4fbaf7dcd6a7e917eb8fd24251dc658c.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/4fbaf7/4fbaf7dcd6a7e917eb8fd24251dc658c.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
                             {
                                 "tag": "shape"
                             },
@@ -2910,111 +2200,49 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x4.openforge.stl",
+            "changed": "2025-07-12T23:41:41.690473+00:00",
             "file": "pool#floor,pool+wall.4x4.openforge.stl",
+            "file_modified_at": "2020-03-07T02:24:33+00:00",
+            "full_name": "tiles/pool/floors/floor#wall/pool#floor,pool+wall.4x4.openforge.stl",
             "md5": "3bff4ed7c005bf6b43611a6671580c77",
+            "modified": "2020-03-07T02:24:33+00:00",
             "size": 19843984,
-            "changed": "2025-05-28T14:52:01.565715",
-            "modified": "2020-03-06T19:24:33",
             "storage_address": "https://objects.openforge.tools/models/3bff4e/3bff4ed7c005bf6b43611a6671580c77.stl"
         },
-        "tags": [
-            [
-                "texture",
-                "pool"
-            ],
-            [
-                "size",
-                "width",
-                4
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "depth",
-                4
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "pool"
-            ],
-            [
-                "component",
-                "pool",
-                "wall"
-            ]
-        ],
-        "metadata": false,
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/3bff4e/3bff4ed7c005bf6b43611a6671580c77.png"
             }
         ],
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            }
-                        ]
-                    },
-                    "optional": true
-                }
-            ]
-        }
+        "metadata": false,
+        "tags": [
+            "component|pool",
+            "component|pool|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|pool"
+        ],
+        "type": "model"
     }
 ]

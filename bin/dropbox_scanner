@@ -50,7 +50,7 @@ def run_incremental_mode(path, subset, verbose, upload, update, dry_run, increme
         scanner = IncrementalScanner(update, verbose)
         subset = scanner.get_subset_path()
         if verbose:
-            print(f"Detected subset path: {subset}")
+            print(f"Detected subset path: {subset}", file=sys.stderr)
     except (FileNotFoundError, ValueError, jsonschema.exceptions.ValidationError, yaml.YAMLError, OSError) as e:
         print(f"Error loading fixture file: {e}", file=sys.stderr)
         sys.exit(1)
