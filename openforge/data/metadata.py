@@ -212,6 +212,26 @@ def apply_thick_wall(o):
     config["parts"] = parts
     o["config"] = config
 
+def convert_tags_for_metadata(tags):
+    """Convert tags from list of strings to set of tuples for metadata processing.
+    
+    Args:
+        tags: List of tag strings or arrays
+        
+    Returns:
+        Set of tag tuples
+    """
+    tag_set = set()
+    for tag_item in tags:
+        if isinstance(tag_item, str):
+            tag_parts = tag_item.split("|")
+            tag_set.add(tuple(tag_parts))
+        elif isinstance(tag_item, list):
+            tag_set.add(tuple(tag_item))
+        else:
+            raise TypeError(f"Unsupported tag type: {type(tag_item)}. Expected list or str, got {type(tag_item)} with value: {tag_item}")
+    return tag_set
+
 def add_tag(o: dict, tag: str):
     if "tags" not in o:
         o["tags"] = set()

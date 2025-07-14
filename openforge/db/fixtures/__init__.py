@@ -17,7 +17,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.tag_descriptions as tag_description_sql
-from openforge.db.sql.tag_utils import array_to_tag, tag_to_array
+from openforge.db.sql.tag_utils import array_to_tag, tag_to_array, process_tag
 from openforge.openapi import validate_schema
 
 
@@ -152,15 +152,9 @@ def _munge_blueprint(data: dict):
 def _get_words(data: dict):
     words = set()
     for t in data.get("tags", []):
-        if isinstance(t, list):
-            # Old format: ["shape", "floor"] -> extract words
-            words.update(str(w) for w in t)
-        elif isinstance(t, str):
-            # New format: "shape|floor" -> split into words
-            words.update(t.split("|"))
-        else:
-            # Fail fast for unexpected tag types
-            raise TypeError(f"Unsupported tag type {type(t).__name__}: {t}")
+        def extract_words(tag_array):
+            words.update(str(w) for w in tag_array)
+        process_tag(t, extract_words)
     return list(words)
 
 
@@ -172,16 +166,9 @@ def load_blueprint_fixture(curs: cursor, data: dict):
         if bp is None:
             return  # Skip this record if it's a duplicate
         for tag in data["tags"]:
-            if isinstance(tag, list):
-                # Old format: ["shape", "floor"] -> convert to database format
-                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
-            elif isinstance(tag, str):
-                # New format: "shape|floor" -> convert to array, then to database format
-                tag_array = tag_to_array(tag)
+            def insert_tag_to_db(tag_array):
                 tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
-            else:
-                # Fail fast for unexpected tag types
-                raise TypeError(f"Unsupported tag type {type(tag).__name__}: {tag}")
+            process_tag(tag, insert_tag_to_db)
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except Exception as e:

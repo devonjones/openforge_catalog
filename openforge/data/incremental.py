@@ -19,9 +19,10 @@ from yaml import safe_load
 import boto3
 from botocore.client import Config
 import sh
-from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
+from .metadata import get_metadata_file, apply_metadata, apply_default_metadata, convert_tags_for_metadata
 from .scanner import parse_file_tags, validate, print_files, _sort_and_clean_recursively, _convert_tags_to_pipe_delimited
 from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
+from openforge.db.sql.tag_utils import process_tag
 
 
 class IncrementalScanner:
@@ -382,15 +383,9 @@ def _normalize_tags_to_pipe_delimited(tags):
     """Convert tags to pipe-delimited format, handling both old array format and new string format."""
     normalized = []
     for tag in tags:
-        if isinstance(tag, list):
-            # Old format: ["shape", "floor"] -> "shape|floor"
-            normalized.append("|".join(str(item) for item in tag))
-        elif isinstance(tag, str):
-            # New format: already pipe-delimited
-            normalized.append(tag)
-        else:
-            # Fail fast: only list and string types are supported
-            raise TypeError(f"Unsupported tag type: {type(tag)}. Expected list or str, got {type(tag)} with value: {tag}")
+        def to_pipe_delimited(tag_array):
+            normalized.append("|".join(str(item) for item in tag_array))
+        process_tag(tag, to_pipe_delimited)
     return normalized
 
 
@@ -453,20 +448,7 @@ def parse_files_incremental(path, files, scanner, verbose, upload, config, dry_r
                 
                 # Convert tags back to set format for metadata processing
                 if "tags" in result:
-                    # Convert from list of strings back to set of tuples for metadata processing
-                    tag_set = set()
-                    for tag_item in result["tags"]:
-                        if isinstance(tag_item, str):
-                            # New format: "shape|floor" -> split into parts
-                            tag_parts = tag_item.split("|")
-                            tag_set.add(tuple(tag_parts))
-                        elif isinstance(tag_item, list):
-                            # Old format: ["shape", "floor"] -> convert to tuple
-                            tag_set.add(tuple(tag_item))
-                        else:
-                            # Fail fast for unsupported tag types
-                            raise TypeError(f"Unsupported tag type: {type(tag_item)}. Expected list or str, got {type(tag_item)} with value: {tag_item}")
-                    result["tags"] = tag_set
+                    result["tags"] = convert_tags_for_metadata(result["tags"])
                 
                 # Apply metadata and default metadata
                 if metadata:
