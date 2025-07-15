@@ -63,24 +63,29 @@ FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 **Create sessions table for admin authentication:**
 ```sql
 -- Sessions table for admin authentication
+-- Sessions last for 30 days and are automatically cleaned up after expiration
 CREATE TABLE admin_sessions (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    session_token text NOT NULL UNIQUE,
-    api_key_hash text NOT NULL, -- Hashed version of API key for security
+    session_token_hash text NOT NULL UNIQUE, -- Hashed version of session token for security
     created_at timestamp DEFAULT now(),
-    expires_at timestamp NOT NULL,
-    last_used_at timestamp DEFAULT now()
+    expires_at timestamp NOT NULL, -- Set to created_at + 30 days
+    last_used_at timestamp DEFAULT now() -- Updated at most once per hour to avoid performance issues
 );
 
 -- Indexes for performance
-CREATE INDEX idx_admin_sessions_token ON admin_sessions(session_token);
+CREATE INDEX idx_admin_sessions_token ON admin_sessions(session_token_hash);
 CREATE INDEX idx_admin_sessions_expires ON admin_sessions(expires_at);
 
--- Trigger function to update last_used_at column
+-- Trigger function to update last_used_at column (only if more than 1 hour has passed)
 CREATE OR REPLACE FUNCTION update_last_used_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.last_used_at = now();
+    -- Only update last_used_at if more than 1 hour has passed since last update
+    -- This prevents performance issues from frequent session validations
+    IF NEW.last_used_at IS NULL OR 
+       EXTRACT(EPOCH FROM (now() - NEW.last_used_at)) > 3600 THEN -- 3600 seconds = 1 hour
+        NEW.last_used_at = now();
+    END IF;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
@@ -230,6 +235,49 @@ Headers: { Authorization: Bearer <session_token> }
 Response: { success: boolean }
 ```
 
+**Session management implementation:**
+```python
+import hashlib
+import secrets
+from datetime import datetime, timedelta
+
+class SessionService:
+    def create_session(self, api_key: str) -> Dict:
+        """Create new admin session (30 days duration)."""
+        # Verify API key matches environment variable
+        if api_key != os.environ.get('ADMIN_API_KEY'):
+            raise ValueError("Invalid API key")
+        
+        # Generate secure session token
+        session_token = secrets.token_urlsafe(32)
+        session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+        
+        # Set expiration to 30 days from now
+        expires_at = datetime.utcnow() + timedelta(days=30)
+        
+        # Store hash in database
+        session_id = self.db.insert_session(session_token_hash, expires_at)
+        
+        return {
+            "session_token": session_token,
+            "expires_at": expires_at.isoformat()
+        }
+    
+    def validate_session(self, session_token: str) -> bool:
+        """Validate session token."""
+        session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+        return self.db.validate_session_hash(session_token_hash)
+    
+    def delete_session(self, session_token: str) -> bool:
+        """Delete session (logout)."""
+        session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+        return self.db.delete_session_by_hash(session_token_hash)
+    
+    def cleanup_expired_sessions(self) -> int:
+        """Clean up expired sessions (run periodically)."""
+        return self.db.delete_expired_sessions()
+```
+
 ### 2.9 Changelog History API
 
 **Endpoint for retrieving changelog history:**
@@ -240,8 +288,8 @@ Response: {
   changelogs: {
     blueprint_id: string,
     blueprint_name: string,
-    changelog: string,
-    created_at: string,
+    changelog: string | null, // null if blueprint has no changelog documentation
+    created_at: string | null, // null if no changelog documentation
     version_info: {
       deprecated: boolean,
       successor_id?: string
@@ -353,31 +401,29 @@ class TagConverter(BaseConverter):
 app.url_map.converters['tag'] = TagConverter
 
 # Route definitions
+# Note: Service layer will accept either tag arrays or pipe-delimited strings
+# based on compatibility with existing code and database operations
 @app.route('/api/tags/<tag:tag_array>/documentation')
 def get_tag_documentation(tag_array):
     # tag_array is already ["texture", "dungeon_stone"]
-    pipe_delimited_tag = '|'.join(tag_array)
-    return get_tag_documentation_service(pipe_delimited_tag)
+    # Pass the array directly to the service layer for better consistency
+    return get_tag_documentation_service(tag_array)
 
 @app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>')
 def get_tag_documentation_entry(tag_array, doc_id):
-    pipe_delimited_tag = '|'.join(tag_array)
-    return get_tag_documentation_entry_service(pipe_delimited_tag, doc_id)
+    return get_tag_documentation_entry_service(tag_array, doc_id)
 
 @app.route('/api/tags/<tag:tag_array>/documentation', methods=['POST'])
 def create_tag_documentation(tag_array):
-    pipe_delimited_tag = '|'.join(tag_array)
-    return create_tag_documentation_service(pipe_delimited_tag, request.json)
+    return create_tag_documentation_service(tag_array, request.json)
 
 @app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>', methods=['PUT'])
 def update_tag_documentation(tag_array, doc_id):
-    pipe_delimited_tag = '|'.join(tag_array)
-    return update_tag_documentation_service(pipe_delimited_tag, doc_id, request.json)
+    return update_tag_documentation_service(tag_array, doc_id, request.json)
 
 @app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>', methods=['DELETE'])
 def delete_tag_documentation(tag_array, doc_id):
-    pipe_delimited_tag = '|'.join(tag_array)
-    return delete_tag_documentation_service(pipe_delimited_tag, doc_id)
+    return delete_tag_documentation_service(tag_array, doc_id)
 ```
 
 **Create documentation service classes:**
@@ -386,14 +432,25 @@ class DocumentationService:
     def get_blueprint_documentation(self, blueprint_id: str) -> List[Dict]:
         """Get all documentation for a blueprint."""
         
-    def get_tag_documentation(self, tag_array: List[str]) -> List[Dict]:
-        """Get documentation for a specific tag."""
+    def get_tag_documentation(self, tag_input: Union[List[str], str]) -> List[Dict]:
+        """Get documentation for a specific tag.
+        
+        Args:
+            tag_input: Either a tag array (["texture", "dungeon_stone"]) or 
+                      pipe-delimited string ("texture|dungeon_stone") based on 
+                      compatibility with existing code and database operations
+        """
         
     def create_blueprint_documentation(self, blueprint_id: str, data: Dict) -> Dict:
         """Create new documentation for a blueprint."""
         
-    def create_tag_documentation(self, tag_array: List[str], data: Dict) -> Dict:
-        """Create new documentation for a tag."""
+    def create_tag_documentation(self, tag_input: Union[List[str], str], data: Dict) -> Dict:
+        """Create new documentation for a tag.
+        
+        Args:
+            tag_input: Either a tag array or pipe-delimited string based on compatibility
+            data: Documentation data
+        """
         
     def get_changelog_history(self, blueprint_id: str, limit: int = 10, offset: int = 0) -> Dict:
         """Get recursive changelog history for a blueprint."""
