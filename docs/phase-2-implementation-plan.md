@@ -30,9 +30,6 @@ CREATE TYPE image_type_enum AS ENUM ('thumbnail', 'documentation');
 -- Add image_type column to images table
 ALTER TABLE images ADD COLUMN image_type image_type_enum NOT NULL DEFAULT 'thumbnail';
 
--- Update existing records to be thumbnails
-UPDATE images SET image_type = 'thumbnail' WHERE image_type IS NULL;
-
 -- Create index for performance
 CREATE INDEX idx_images_type ON images(image_type);
 ```
@@ -79,10 +76,19 @@ CREATE TABLE admin_sessions (
 CREATE INDEX idx_admin_sessions_token ON admin_sessions(session_token);
 CREATE INDEX idx_admin_sessions_expires ON admin_sessions(expires_at);
 
+-- Trigger function to update last_used_at column
+CREATE OR REPLACE FUNCTION update_last_used_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.last_used_at = now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Trigger for automatic last_used_at updates
 CREATE TRIGGER update_admin_sessions_last_used 
 BEFORE UPDATE ON admin_sessions
-FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column();
 ```
 
 ## API Implementation
@@ -133,19 +139,19 @@ Response: { success: boolean }
 **Core endpoints for tag documentation:**
 ```typescript
 // Get documentation for a specific tag
-GET /api/tags/{pipe_delimited_tag}/documentation
+GET /api/tags/texture/dungeon_stone/documentation
 Response: {
   documentation: TagDocumentation[]
 }
 
 // Get specific tag documentation entry
-GET /api/tags/{pipe_delimited_tag}/documentation/{doc_id}
+GET /api/tags/texture/dungeon_stone/documentation/{doc_id}
 Response: {
   documentation: TagDocumentation
 }
 
 // Create documentation for tag (requires API key)
-POST /api/tags/{pipe_delimited_tag}/documentation
+POST /api/tags/texture/dungeon_stone/documentation
 Body: { 
   document: string,
   document_type: 'instructions'
@@ -155,7 +161,7 @@ Response: {
 }
 
 // Update specific tag documentation entry (requires API key)
-PUT /api/tags/{pipe_delimited_tag}/documentation/{doc_id}
+PUT /api/tags/texture/dungeon_stone/documentation/{doc_id}
 Body: { 
   document: string,
   document_type: 'instructions'
@@ -165,7 +171,7 @@ Response: {
 }
 
 // Delete specific tag documentation entry (requires API key)
-DELETE /api/tags/{pipe_delimited_tag}/documentation/{doc_id}
+DELETE /api/tags/texture/dungeon_stone/documentation/{doc_id}
 Response: { success: boolean }
 ```
 
@@ -290,6 +296,7 @@ BEGIN
         SELECT 
             b.id,
             b.blueprint_name,
+            b.successor_id,
             bd.document,
             bd.created_at,
             0 as depth
@@ -304,22 +311,74 @@ BEGIN
         SELECT 
             b.id,
             b.blueprint_name,
+            b.successor_id,
             bd.document,
             bd.created_at,
             cc.depth + 1
         FROM blueprints b
         LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
             AND bd.document_type = 'changelog'
-        INNER JOIN changelog_chain cc ON b.id = cc.blueprint_id
-        WHERE cc.depth < $2
+        INNER JOIN changelog_chain cc ON b.id = cc.successor_id
+        WHERE cc.depth < $2 AND cc.successor_id IS NOT NULL
     )
-    SELECT * FROM changelog_chain
-    ORDER BY depth DESC, created_at DESC;
+    SELECT 
+        cc.id, 
+        cc.blueprint_name, 
+        cc.document, 
+        cc.created_at, 
+        cc.depth 
+    FROM changelog_chain cc
+    ORDER BY depth ASC, created_at DESC;
 END;
 $$ LANGUAGE plpgsql;
 ```
 
 ### 2.12 Backend Services
+
+**Flask routing with custom tag converter:**
+```python
+from werkzeug.routing import BaseConverter
+
+# Custom converter for tag arrays
+class TagConverter(BaseConverter):
+    def to_python(self, value):
+        # Convert "texture/dungeon_stone" to ["texture", "dungeon_stone"]
+        return value.split('/')
+    
+    def to_url(self, value):
+        # Convert ["texture", "dungeon_stone"] to "texture/dungeon_stone"
+        return '/'.join(value)
+
+# Register the converter
+app.url_map.converters['tag'] = TagConverter
+
+# Route definitions
+@app.route('/api/tags/<tag:tag_array>/documentation')
+def get_tag_documentation(tag_array):
+    # tag_array is already ["texture", "dungeon_stone"]
+    pipe_delimited_tag = '|'.join(tag_array)
+    return get_tag_documentation_service(pipe_delimited_tag)
+
+@app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>')
+def get_tag_documentation_entry(tag_array, doc_id):
+    pipe_delimited_tag = '|'.join(tag_array)
+    return get_tag_documentation_entry_service(pipe_delimited_tag, doc_id)
+
+@app.route('/api/tags/<tag:tag_array>/documentation', methods=['POST'])
+def create_tag_documentation(tag_array):
+    pipe_delimited_tag = '|'.join(tag_array)
+    return create_tag_documentation_service(pipe_delimited_tag, request.json)
+
+@app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>', methods=['PUT'])
+def update_tag_documentation(tag_array, doc_id):
+    pipe_delimited_tag = '|'.join(tag_array)
+    return update_tag_documentation_service(pipe_delimited_tag, doc_id, request.json)
+
+@app.route('/api/tags/<tag:tag_array>/documentation/<doc_id>', methods=['DELETE'])
+def delete_tag_documentation(tag_array, doc_id):
+    pipe_delimited_tag = '|'.join(tag_array)
+    return delete_tag_documentation_service(pipe_delimited_tag, doc_id)
+```
 
 **Create documentation service classes:**
 ```python
