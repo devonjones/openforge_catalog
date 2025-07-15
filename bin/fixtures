@@ -13,7 +13,8 @@ import click
 @click.option("--fixture", help="Load only the specified fixture file")
 @click.option("--full-replacement", is_flag=True, help="Use full replacement mode (wipes all data)")
 @click.option("--dry-run", is_flag=True, help="Preview changes without applying")
-def main(alt, fixture, full_replacement, dry_run):
+@click.option("--verbose", is_flag=True, help="Enable verbose debug output")
+def main(alt, fixture, full_replacement, dry_run, verbose):
     with PgDB(os.environ) as db:
         with db.pool.connection() as conn:
             if fixture:
@@ -22,10 +23,10 @@ def main(alt, fixture, full_replacement, dry_run):
                 if not ffiles:
                     sys.stderr.write(f"Fixture {fixture} not found in fixtures directory\n")
                     sys.exit(1)
-                load_fixtures(conn, alt, ffiles, incremental=not full_replacement, dry_run=dry_run)
+                load_fixtures(conn, alt, ffiles, incremental=not full_replacement, dry_run=dry_run, verbose=verbose)
             else:
                 # Otherwise load all fixtures
-                load_fixtures(conn, alt, incremental=not full_replacement, dry_run=dry_run)
+                load_fixtures(conn, alt, incremental=not full_replacement, dry_run=dry_run, verbose=verbose)
 
 
 if __name__ == "__main__":

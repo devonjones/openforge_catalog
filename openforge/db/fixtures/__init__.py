@@ -73,61 +73,51 @@ class ValidationResult:
 
 def _is_blueprint_fixture(data):
     result = ValidationResult()
-    try:
-        validate_schema("blueprint.fixture.json", data)
-    except jsonschema.exceptions.ValidationError as e:
-        result.add_error(f"Schema validation failed: {e.message}")
-        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
-        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
-    except Exception as e:
-        result.add_error(f"Unexpected error during validation: {str(e)}")
+    validate_schema("blueprint.fixture.json", data)
     return result
 
 
 def _is_tag_description_fixture(data):
     result = ValidationResult()
-    try:
-        validate_schema("tag_description.fixture.json", data)
-    except jsonschema.exceptions.ValidationError as e:
-        result.add_error(f"Schema validation failed: {e.message}")
-        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
-        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
-    except Exception as e:
-        result.add_error(f"Unexpected error during validation: {str(e)}")
+    validate_schema("tag_description.fixture.json", data)
     return result
 
 
-def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False):
+def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
     
     if incremental:
         # Import here to avoid circular imports
         from .incremental import IncrementalFixturesLoader
         
-        loader = IncrementalFixturesLoader(conn, verbose=True)
+        loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
-            data = _load_data(f)
-            blueprint_result = _is_blueprint_fixture(data)
-            tag_result = _is_tag_description_fixture(data)
+            data = _load_data(f, verbose=verbose)
             
-            if blueprint_result.is_valid:
-                changes = loader.compare_fixture_data(data)
-                if dry_run:
-                    print_comparison_results(changes)
-                else:
-                    # Use transaction to ensure all-or-nothing behavior
-                    with conn.transaction():
-                        loader.apply_incremental_changes(changes)
-            elif tag_result.is_valid:
-                # Tag description fixtures store a different type of data (tag descriptions)
-                # and don't have file_metadata, so they are intentionally skipped in incremental mode
-                # This is permanent behavior - tag descriptions are not file-based data
-                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
-            else:
-                print(f"Validation failed for {f}")
-                for error in blueprint_result.errors + tag_result.errors:
-                    print(error)
-                raise ValueError(f"File {f} does not match any known fixture format")
+            # Try blueprint fixture validation first
+            try:
+                _is_blueprint_fixture(data)
+                # If we get here, it's a valid blueprint fixture
+                # Use transaction to ensure all-or-nothing behavior
+                with conn.transaction():
+                    with conn.cursor(row_factory=dict_row) as curs:
+                        changes = loader.compare_fixture_data(data, curs=curs)
+                        if dry_run:
+                            print_comparison_results(changes)
+                        else:
+                            loader.apply_incremental_changes(changes, curs=curs)
+            except Exception as blueprint_error:
+                # Try tag description fixture validation
+                try:
+                    _is_tag_description_fixture(data)
+                    # If we get here, it's a valid tag description fixture
+                    # Tag description fixtures store a different type of data (tag descriptions)
+                    # and don't have file_metadata, so they are intentionally skipped in incremental mode
+                    # This is permanent behavior - tag descriptions are not file-based data
+                    sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
+                except Exception as tag_error:
+                    # Neither validation passed, raise the original blueprint error
+                    raise blueprint_error
     else:
         # Existing full replacement logic
         with conn.cursor(row_factory=dict_row) as curs:
@@ -135,25 +125,28 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
             with conn.transaction():
                 clear_db(curs)
                 for f in ffiles:
-                    data = _load_data(f)
-                    blueprint_result = _is_blueprint_fixture(data)
-                    tag_result = _is_tag_description_fixture(data)
+                    data = _load_data(f, verbose=verbose)
                     
-                    if blueprint_result.is_valid:
+                    # Try blueprint fixture validation first
+                    try:
+                        _is_blueprint_fixture(data)
+                        # If we get here, it's a valid blueprint fixture
                         for rec in data:
                             load_blueprint_fixture(curs, rec)
-                    elif tag_result.is_valid:
-                        load_tag_description_fixture(curs, data)
-                    else:
-                        # Only show errors if all validations failed
-                        print(f"\nValidation failed for {f}:")
-                        for error in blueprint_result.errors + tag_result.errors:
-                            print(error)
-                        raise ValueError(f"File {f} does not match any known fixture format")
+                    except Exception as blueprint_error:
+                        # Try tag description fixture validation
+                        try:
+                            _is_tag_description_fixture(data)
+                            # If we get here, it's a valid tag description fixture
+                            load_tag_description_fixture(curs, data)
+                        except Exception as tag_error:
+                            # Neither validation passed, raise the original blueprint error
+                            raise blueprint_error
 
 
-def _load_data(f):
-    sys.stderr.write(f"Loading {f}\n")
+def _load_data(f, verbose=False):
+    if verbose:
+        sys.stderr.write(f"Loading {f}\n")
     with open(f, "r") as fh:
         if str(f).endswith(".json"):
             return json.load(fh)
@@ -218,13 +211,19 @@ def print_comparison_results(changes):
     if changes.added:
         print(f"\nAdded blueprints:")
         for item in changes.added:
-            name = item.get("file_metadata", {}).get("full_name", "unknown")
+            if "file_metadata" in item:
+                name = item.get("file_metadata", {}).get("full_name", "unknown")
+            else:
+                name = item.get("name", "unknown")
             print(f"  - {name}")
             
     if changes.modified:
         print(f"\nModified blueprints:")
         for item in changes.modified:
-            name = item.get("file_metadata", {}).get("full_name", "unknown")
+            if "file_metadata" in item:
+                name = item.get("file_metadata", {}).get("full_name", "unknown")
+            else:
+                name = item.get("name", "unknown")
             print(f"  - {name}")
             
     if changes.deprecated:

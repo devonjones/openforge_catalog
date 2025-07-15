@@ -7,14 +7,14 @@ comparing with existing database records and only updating what has changed.
 
 import sys
 from typing import Dict, List, Set, Optional, Tuple
-from datetime import datetime
+from datetime import datetime, timezone
 from psycopg import connection, cursor
 from psycopg.rows import dict_row
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
-from openforge.db.sql.tag_utils import array_to_tag
+from openforge.db.sql.tag_utils import array_to_tag, process_tag
 from openforge.data.transformers import DeprecatedEntryTransformer
 from .utils import munge_blueprint, get_words
 
@@ -39,12 +39,17 @@ def _parse_timestamp(timestamp) -> Optional[datetime]:
     timestamp_str = str(timestamp)
     
     try:
-        # Try parsing as ISO format first
-        return datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+        # Try parsing as ISO format first (handles timezone info)
+        dt = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+        # Normalize to UTC if timezone info is present
+        if dt.tzinfo is not None:
+            dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
+        return dt
     except ValueError:
         try:
-            # Try parsing with space separator (common format)
-            return datetime.fromisoformat(timestamp_str.replace(' ', 'T'))
+            # Try parsing with space separator (common format without timezone)
+            dt = datetime.fromisoformat(timestamp_str.replace(' ', 'T'))
+            return dt
         except ValueError:
             # If all parsing fails, return None
             return None
@@ -59,6 +64,7 @@ class ComparisonResult:
         self.deprecated = [] # Deprecated blueprints
         self.consolidated = [] # Path consolidation updates
         self.errors = []     # Processing errors
+        self.version_changes = {}  # Map of deprecated blueprint ID to new fixture item
         
     def has_changes(self) -> bool:
         """Check if there are any changes to apply."""
@@ -93,17 +99,23 @@ class IncrementalFixturesLoader:
         """
         self.conn = conn
         self.verbose = verbose
-        self.existing_blueprints = self._load_existing_blueprints()
         self.transformer = DeprecatedEntryTransformer()
         
-    def _load_existing_blueprints(self) -> Dict[str, Dict]:
+    def _load_existing_blueprints(self, curs: cursor = None) -> Dict[str, Dict]:
         """Load existing blueprints from database for comparison.
         
+        Args:
+            curs: Optional cursor to use (for transaction context)
+            
         Returns:
             Dictionary mapping full_name to blueprint data with tags and images loaded
         """
-        with self.conn.cursor(row_factory=dict_row) as curs:
+        # Use provided cursor or create new one
+        if curs is not None:
             blueprints = blueprint_sql.get_non_deprecated_blueprints(curs)
+        else:
+            with self.conn.cursor(row_factory=dict_row) as curs:
+                blueprints = blueprint_sql.get_non_deprecated_blueprints(curs)
             
         # Get all blueprint IDs for batch loading
         blueprint_ids = [bp["id"] for bp in blueprints]
@@ -136,62 +148,212 @@ class IncrementalFixturesLoader:
         for bp in blueprints:
             full_name = bp.get("full_name")
             if full_name:
+                # File-based blueprint - use full_name as key
                 bp["tags"] = tags_by_blueprint.get(bp["id"], [])
                 bp["images"] = images_by_blueprint.get(bp["id"], [])
                 blueprint_map[full_name] = bp
+            elif bp.get("blueprint_type") == "blueprint":
+                # Configuration blueprint - use blueprint_name as key
+                blueprint_name = bp.get("blueprint_name")
+                if blueprint_name:
+                    bp["tags"] = tags_by_blueprint.get(bp["id"], [])
+                    bp["images"] = images_by_blueprint.get(bp["id"], [])
+                    blueprint_map[blueprint_name] = bp
                 
         if self.verbose:
             sys.stderr.write(f"Loaded {len(blueprint_map)} existing blueprints with tags and images\n")
             
         return blueprint_map
         
-    def compare_fixture_data(self, fixture_data: List[Dict]) -> ComparisonResult:
+    def _find_deprecated_blueprint(self, full_name: str) -> Optional[Dict]:
+        """Find a deprecated blueprint by full_name.
+        
+        Args:
+            full_name: Full name of the blueprint to find
+            
+        Returns:
+            Deprecated blueprint data if found, None otherwise
+        """
+        with self.conn.cursor(row_factory=dict_row) as curs:
+            query = """
+                SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+                       file_name, full_name, file_modified_at, storage_address,
+                       consolidated_paths, deprecated, successor_id,
+                       created_at, updated_at
+                FROM blueprints
+                WHERE full_name = %s AND deprecated = true
+                ORDER BY created_at DESC
+                LIMIT 1
+            """
+            curs.execute(query, (full_name,))
+            result = curs.fetchone()
+            
+            if result:
+                # Load tags and images for the deprecated blueprint
+                blueprint_id = result["id"]
+                
+                # Get tags
+                tags = tag_sql.get_tags(curs, blueprint_id)
+                result["tags"] = [tag["tag"] for tag in tags]
+                
+                # Get images
+                images = image_sql.get_images_for_blueprint(curs, blueprint_id)
+                result["images"] = list(images)
+                
+                return result
+                
+            return None
+        
+    def compare_fixture_data(self, fixture_data: List[Dict], curs: cursor = None, skip_load_existing: bool = False) -> ComparisonResult:
         """Compare fixture data with existing database records.
         
         Args:
             fixture_data: List of blueprint fixture objects
+            curs: Optional cursor to use (for transaction context)
+            skip_load_existing: If True, skip loading existing blueprints (for testing)
             
         Returns:
             ComparisonResult with changes detected
         """
+        # Load existing blueprints within transaction context (unless skipped for testing)
+        if skip_load_existing:
+            # Use existing blueprints that were set up for testing
+            existing_blueprints = self.existing_blueprints
+        elif curs is not None:
+            existing_blueprints = self._load_existing_blueprints(curs)
+        else:
+            # Fallback for standalone usage
+            existing_blueprints = self._load_existing_blueprints()
+        
         result = ComparisonResult()
         
         for fixture_item in fixture_data:
-            self._compare_single_item(fixture_item, result)
+            self._compare_single_item(fixture_item, result, existing_blueprints)
                     
         return result
         
-    def _compare_single_item(self, fixture_item: Dict, result: ComparisonResult):
+    def _compare_single_item(self, fixture_item: Dict, result: ComparisonResult, existing_blueprints: Dict[str, Dict]):
         """Compare a single fixture item with existing data."""
+        # Handle non-file-based blueprints (type "blueprint") that don't have file_metadata
         if "file_metadata" not in fixture_item:
-            # Skip items without file_metadata (tag descriptions, etc.)
+            # For non-file-based blueprints, use the name as the identifier
+            blueprint_name = fixture_item.get("name")
+            if not blueprint_name:
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: Skipping blueprint without name or file_metadata\n")
+                return
+                
+            # Check if this configuration blueprint already exists
+            existing_bp = existing_blueprints.get(blueprint_name)
+            
+            if existing_bp is None:
+                # New configuration blueprint
+                result.added.append(fixture_item)
+                if self.verbose:
+                    sys.stderr.write(f"ADDED CONFIG: {blueprint_name}\n")
+            else:
+                # Check if configuration blueprint has changes
+                if self._has_config_changes(fixture_item, existing_bp):
+                    result.modified.append(fixture_item)
+                    if self.verbose:
+                        sys.stderr.write(f"MODIFIED CONFIG: {blueprint_name}\n")
             return
             
+        # Handle file-based blueprints (type "model") with file_metadata
         full_name = fixture_item["file_metadata"]["full_name"]
         md5 = fixture_item["file_metadata"]["md5"]
         
-        existing_bp = self.existing_blueprints.get(full_name)
+        existing_bp = existing_blueprints.get(full_name)
         
         if existing_bp is None:
-            # New file
-            result.added.append(fixture_item)
-            if self.verbose:
-                sys.stderr.write(f"ADDED: {full_name}\n")
+            # Check if there's a deprecated version of this file
+            deprecated_bp = self._find_deprecated_blueprint(full_name)
+            if deprecated_bp and deprecated_bp["file_md5"] != md5 and not deprecated_bp.get("successor_id"):
+                # Version change: deprecated version exists with different MD5 and no successor
+                result.deprecated.append(deprecated_bp)
+                result.added.append(fixture_item)
+                # Track the version change relationship
+                result.version_changes[deprecated_bp["id"]] = fixture_item
+                # Always show version changes
+                sys.stderr.write(f"VERSION CHANGE: {full_name} ({deprecated_bp['file_md5']} -> {md5})\n")
+            elif deprecated_bp and deprecated_bp.get("successor_id"):
+                # Deprecated blueprint already has successor - skip entirely
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: Skipping {full_name} - deprecated blueprint already has successor_id\n")
+            else:
+                # Check if this file is already in consolidated_paths of any existing blueprint
+                already_consolidated = False
+                for bp in existing_blueprints.values():
+                    consolidated_paths = bp.get("consolidated_paths", [])
+                    if full_name in consolidated_paths:
+                        already_consolidated = True
+                        if self.verbose:
+                            sys.stderr.write(f"DEBUG: Skipping {full_name} - already in consolidated_paths of {bp['full_name']}\n")
+                        break
+                
+                if not already_consolidated:
+                    # New file
+                    result.added.append(fixture_item)
+                    # Always show what was added
+                    sys.stderr.write(f"ADDED: {full_name}\n")
         else:
             # Existing file - check for changes
             if self._has_significant_changes(fixture_item, existing_bp):
-                if md5 != existing_bp["file_md5"]:
-                    # MD5 changed - this is a version change
+                if md5 != existing_bp["file_md5"] and not existing_bp.get("successor_id"):
+                    # MD5 changed - this is a version change (only if no successor)
                     result.deprecated.append(existing_bp)
                     result.added.append(fixture_item)
                     if self.verbose:
-                        sys.stderr.write(f"VERSION CHANGE: {full_name} ({existing_bp['file_md5']} -> {md5})\n")
+                        sys.stderr.write(f"VERSION CHANGE: {full_name} ({existing_bp['file_md5']}")
+                    result.version_changes[existing_bp["id"]] = fixture_item
+                    # Always show version changes
+                    sys.stderr.write(f"VERSION CHANGE: {full_name} ({existing_bp['file_md5']} -> {md5})\n")
+                elif md5 != existing_bp["file_md5"] and existing_bp.get("successor_id"):
+                    # MD5 changed but already has successor - skip version change
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: Skipping version change detection for {full_name} - existing blueprint already has successor_id\n")
+                    result.added.append(fixture_item)
+                    sys.stderr.write(f"ADDED: {full_name}\n")
                 else:
                     # Other changes (tags, config, etc.)
                     result.modified.append(fixture_item)
                     if self.verbose:
                         sys.stderr.write(f"MODIFIED: {full_name}\n")
                         
+    def _has_config_changes(self, fixture_item: Dict, existing_bp: Dict) -> bool:
+        """Check if configuration blueprint has changes compared to existing blueprint.
+        
+        Args:
+            fixture_item: New fixture item
+            existing_bp: Existing blueprint from database
+            
+        Returns:
+            True if configuration has changed
+        """
+        blueprint_name = fixture_item.get("name", "")
+        
+        # Check tags (compare as sets to handle unordered nature)
+        existing_tags = set(existing_bp.get("tags", []))
+        new_tags = set(fixture_item.get("tags", []))
+        if existing_tags != new_tags:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Tags changed for config blueprint {blueprint_name}\n")
+                sys.stderr.write(f"  Existing: {sorted(existing_tags)}\n")
+                sys.stderr.write(f"  New: {sorted(new_tags)}\n")
+            return True
+            
+        # Check config
+        existing_config = existing_bp.get("blueprint_config", {})
+        new_config = fixture_item.get("config", {})
+        if existing_config != new_config:
+            if self.verbose:
+                sys.stderr.write(f"DEBUG: Config changed for config blueprint {blueprint_name}\n")
+                sys.stderr.write(f"  Existing: {existing_config}\n")
+                sys.stderr.write(f"  New: {new_config}\n")
+            return True
+            
+        return False
+        
     def _has_significant_changes(self, fixture_item: Dict, existing_bp: Dict) -> bool:
         """Check if fixture item has significant changes compared to existing blueprint."""
         full_name = fixture_item["file_metadata"]["full_name"]
@@ -211,20 +373,17 @@ class IncrementalFixturesLoader:
             existing_dt = _parse_timestamp(existing_modified)
             new_dt = _parse_timestamp(new_modified)
             
-            # Compare datetime objects if both parsed successfully
-            if existing_dt is not None and new_dt is not None:
-                if existing_dt != new_dt:
-                    if self.verbose:
-                        sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
-                    return True
-            else:
-                # Fallback to string comparison if parsing failed
-                existing_str = str(existing_modified)
-                new_str = str(new_modified)
-                if existing_str != new_str:
-                    if self.verbose:
-                        sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
-                    return True
+            # Fail fast if timestamp parsing fails
+            if existing_dt is None:
+                raise ValueError(f"Failed to parse existing timestamp for {full_name}: {existing_modified}")
+            if new_dt is None:
+                raise ValueError(f"Failed to parse new timestamp for {full_name}: {new_modified}")
+            
+            # Compare datetime objects
+            if existing_dt != new_dt:
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: Modified time changed for {full_name}: {existing_bp['file_modified_at']} -> {fixture_item['file_metadata']['file_modified_at']}\n")
+                return True
             
         # Check size
         if fixture_item["file_metadata"]["size"] != existing_bp["file_size"]:
@@ -233,9 +392,9 @@ class IncrementalFixturesLoader:
             return True
             
         # Check tags (compare as sets to handle unordered nature)
-        # existing_bp tags are arrays from database, fixture_item tags are pipe-delimited strings
-        existing_tags = set(tuple(tag) for tag in existing_bp.get("tags", []))
-        new_tags = set(tuple(tag.split('|')) for tag in fixture_item.get("tags", []))
+        # Both existing_bp tags and fixture_item tags are pipe-delimited strings
+        existing_tags = set(existing_bp.get("tags", []))
+        new_tags = set(fixture_item.get("tags", []))
         if existing_tags != new_tags:
             if self.verbose:
                 sys.stderr.write(f"DEBUG: Tags changed for {full_name}\n")
@@ -265,51 +424,111 @@ class IncrementalFixturesLoader:
             
         return False
         
-    def apply_incremental_changes(self, changes: ComparisonResult, dry_run: bool = False):
+    def apply_incremental_changes(self, changes: ComparisonResult, dry_run: bool = False, curs: cursor = None):
         """Apply incremental changes to database.
         
         Args:
             changes: ComparisonResult with changes to apply
             dry_run: If True, don't actually apply changes
+            curs: Optional cursor to use (for transaction context)
         """
         if dry_run:
             if self.verbose:
                 sys.stderr.write(f"DRY RUN: Would apply {changes.summary()}\n")
             return
             
-        with self.conn.cursor(row_factory=dict_row) as curs:
-            # Process deprecations first
-            for deprecated_bp in changes.deprecated:
+        # Use provided cursor or create new one
+        if curs is not None:
+            # Use the provided cursor (from outer transaction context)
+            self._apply_changes_with_cursor(curs, changes)
+        else:
+            # Create new cursor context (fallback for standalone usage)
+            with self.conn.cursor(row_factory=dict_row) as curs:
+                self._apply_changes_with_cursor(curs, changes)
+                
+        # Always show the summary of what was applied
+        sys.stderr.write(f"Applied {changes.summary()}\n")
+        
+    def _apply_changes_with_cursor(self, curs: cursor, changes: ComparisonResult):
+        """Apply changes using the provided cursor."""
+        # Load existing blueprints for modification handling
+        existing_blueprints = self._load_existing_blueprints(curs)
+        
+        # Track new blueprint IDs for version change linking
+        new_blueprint_ids = {}
+        new_blueprint_ids_by_md5 = {}
+        
+        # Process additions first to get the new blueprint IDs
+        for new_item in changes.added:
+            new_bp = self._handle_addition(curs, new_item)
+            if new_bp:
+                if "file_metadata" in new_item:
+                    # File-based blueprint
+                    full_name = new_item["file_metadata"]["full_name"]
+                    md5 = new_item["file_metadata"]["md5"]
+                    new_blueprint_ids[full_name] = new_bp["id"]
+                    new_blueprint_ids_by_md5[md5] = new_bp["id"]
+                else:
+                    # Configuration blueprint
+                    blueprint_name = new_item.get("name")
+                    if blueprint_name:
+                        new_blueprint_ids[blueprint_name] = new_bp["id"]
+        
+        # Process deprecations with successor linking for version changes
+        for deprecated_bp in changes.deprecated:
+            # Check if this is a version change
+            successor_fixture = changes.version_changes.get(deprecated_bp["id"])
+            if successor_fixture and not deprecated_bp.get("successor_id"):
+                # This is a version change - link to the new blueprint by MD5
+                successor_md5 = successor_fixture["file_metadata"]["md5"]
+                successor_id = new_blueprint_ids_by_md5.get(successor_md5)
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: Version change for {deprecated_bp['full_name']}\n")
+                    sys.stderr.write(f"  Deprecated ID: {deprecated_bp['id']}\n")
+                    sys.stderr.write(f"  Deprecated MD5: {deprecated_bp['file_md5']}\n")
+                    sys.stderr.write(f"  Successor MD5: {successor_md5}\n")
+                    sys.stderr.write(f"  Successor ID: {successor_id}\n")
+                    sys.stderr.write(f"  Available new_blueprint_ids_by_md5: {list(new_blueprint_ids_by_md5.keys())}\n")
+                self._handle_deprecation(curs, deprecated_bp, successor_id)
+            else:
+                # This is just a deprecation (not a version change) or already has successor
+                if self.verbose and successor_fixture and deprecated_bp.get("successor_id"):
+                    sys.stderr.write(f"DEBUG: Skipping version change for {deprecated_bp['full_name']} - already has successor_id\n")
                 self._handle_deprecation(curs, deprecated_bp)
-                
-            # Process additions
-            for new_item in changes.added:
-                self._handle_addition(curs, new_item)
-                
-            # Process modifications
-            for modified_item in changes.modified:
-                self._handle_modification(curs, modified_item)
-                
-            # Process consolidations
-            for consolidated_item in changes.consolidated:
-                self._handle_consolidation(curs, consolidated_item)
-                
-        if self.verbose:
-            sys.stderr.write(f"Applied {changes.summary()}\n")
             
-    def _handle_deprecation(self, curs: cursor, deprecated_bp: Dict):
-        """Handle deprecation of an existing blueprint."""
+        # Process modifications
+        for modified_item in changes.modified:
+            self._handle_modification(curs, modified_item, existing_blueprints)
+            
+        # Process consolidations
+        for consolidated_item in changes.consolidated:
+            self._handle_consolidation(curs, consolidated_item)
+            
+    def _handle_deprecation(self, curs: cursor, deprecated_bp: Dict, successor_id: Optional[str] = None):
+        """Handle deprecation of an existing blueprint.
+        
+        Args:
+            curs: Database cursor
+            deprecated_bp: Blueprint to deprecate
+            successor_id: Optional ID of the successor blueprint (for version changes)
+        """
         blueprint_id = deprecated_bp["id"]
         
         # Remove tags and images for deprecated blueprint
         tag_sql.delete_all_blueprint_tags(curs, blueprint_id)
         image_sql.delete_images_for_blueprint(curs, blueprint_id)
         
-        # Mark as deprecated
-        blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id)
+        # Mark as deprecated, only setting successor_id if not already set
+        if successor_id and not deprecated_bp.get("successor_id"):
+            blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id, successor_id)
+        else:
+            blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id)
         
         if self.verbose:
-            sys.stderr.write(f"Deprecated blueprint {blueprint_id} and removed tags/images\n")
+            if successor_id:
+                sys.stderr.write(f"Deprecated blueprint {blueprint_id} and linked to successor {successor_id}\n")
+            else:
+                sys.stderr.write(f"Deprecated blueprint {blueprint_id} and removed tags/images\n")
             
     def _handle_addition(self, curs: cursor, new_item: Dict):
         """Handle addition of a new blueprint."""
@@ -323,21 +542,71 @@ class IncrementalFixturesLoader:
         )
         
         if bp:
-            # Insert tags
-            for tag in new_item.get("tags", []):
-                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
-                
-            # Insert images
-            for image in new_item.get("images", []):
-                image_sql.insert_image_for_blueprint(curs, bp["id"], image)
-                
-        if self.verbose:
-            sys.stderr.write(f"Added blueprint {bp['id'] if bp else 'skipped'}\n")
+            # Handle file-based blueprints with MD5 conflict checking
+            if "file_metadata" in new_item:
+                # Check if the returned blueprint matches our fixture data
+                # This handles the case where there's an MD5 conflict with a different file
+                if bp["full_name"] != new_item["file_metadata"]["full_name"]:
+                    # The returned blueprint is different from what we're trying to add
+                    # This means there's an MD5 conflict with a different file
+                    # We should add the new path to consolidated_paths
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: MD5 conflict detected for {new_item['file_metadata']['full_name']}\n")
+                        sys.stderr.write(f"  Existing blueprint: {bp['full_name']}\n")
+                        sys.stderr.write(f"  New blueprint: {new_item['file_metadata']['full_name']}\n")
+                        sys.stderr.write(f"  Adding to consolidated_paths for blueprint {bp['id']}\n")
+                    
+                    # Add the new path to consolidated_paths
+                    existing_paths = bp.get("consolidated_paths", [])
+                    new_path = new_item["file_metadata"]["full_name"]
+                    if new_path not in existing_paths:
+                        existing_paths.append(new_path)
+                        # Update the blueprint with the new consolidated_paths
+                        update_data = {"consolidated_paths": existing_paths}
+                        blueprint_sql.update_blueprint(curs, bp["id"], update_data)
+                        
+                    if self.verbose:
+                        sys.stderr.write(f"Added path to consolidated_paths for blueprint {bp['id']}\n")
+                else:
+                    # Normal case - insert tags and images for new blueprint
+                    for tag in new_item.get("tags", []):
+                        def insert_tag_to_db(tag_array):
+                            tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+                        process_tag(tag, insert_tag_to_db)
+                        
+                    for image in new_item.get("images", []):
+                        image_sql.insert_image_for_blueprint(curs, bp["id"], image)
+                        
+                    if self.verbose:
+                        sys.stderr.write(f"Added blueprint {bp['id']}\n")
+            else:
+                # Configuration blueprint - insert tags and images
+                for tag in new_item.get("tags", []):
+                    def insert_tag_to_db(tag_array):
+                        tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+                    process_tag(tag, insert_tag_to_db)
+                    
+                for image in new_item.get("images", []):
+                    image_sql.insert_image_for_blueprint(curs, bp["id"], image)
+                    
+                if self.verbose:
+                    sys.stderr.write(f"Added configuration blueprint {bp['id']}\n")
+        else:
+            if self.verbose:
+                sys.stderr.write(f"Added blueprint skipped\n")
             
-    def _handle_modification(self, curs: cursor, modified_item: Dict):
+        return bp
+            
+    def _handle_modification(self, curs: cursor, modified_item: Dict, existing_blueprints: Dict[str, Dict]):
         """Handle modification of an existing blueprint."""
-        full_name = modified_item["file_metadata"]["full_name"]
-        existing_bp = self.existing_blueprints.get(full_name)
+        if "file_metadata" in modified_item:
+            # File-based blueprint
+            full_name = modified_item["file_metadata"]["full_name"]
+            existing_bp = existing_blueprints.get(full_name)
+        else:
+            # Configuration blueprint
+            blueprint_name = modified_item.get("name")
+            existing_bp = existing_blueprints.get(blueprint_name)
         
         if not existing_bp:
             # Shouldn't happen, but handle gracefully
@@ -353,7 +622,9 @@ class IncrementalFixturesLoader:
         # Update tags (delete old, insert new)
         tag_sql.delete_all_blueprint_tags(curs, blueprint_id)
         for tag in modified_item.get("tags", []):
-            tag_sql.insert_tag(curs, blueprint_id, array_to_tag(tag))
+            def insert_tag_to_db(tag_array):
+                tag_sql.insert_tag(curs, blueprint_id, array_to_tag(tag_array))
+            process_tag(tag, insert_tag_to_db)
             
         # Update images (delete old, insert new)
         image_sql.delete_images_for_blueprint(curs, blueprint_id)
@@ -361,7 +632,8 @@ class IncrementalFixturesLoader:
             image_sql.insert_image_for_blueprint(curs, blueprint_id, image)
             
         if self.verbose:
-            sys.stderr.write(f"Modified blueprint {blueprint_id}\n")
+            blueprint_name = existing_bp.get("blueprint_name", "unknown")
+            sys.stderr.write(f"Modified blueprint {blueprint_id} ({blueprint_name})\n")
             
     def _handle_consolidation(self, curs: cursor, consolidated_item: Dict):
         """Handle path consolidation (file moved but same MD5)."""

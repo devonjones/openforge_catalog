@@ -29,7 +29,21 @@ def create_mock_connection():
 
 
 def create_mock_blueprint(full_name, md5, tags=None, images=None):
-    """Create a mock blueprint for testing."""
+    """Create a mock blueprint for testing.
+    
+    Note: Database blueprints return pipe-delimited string tags, not arrays.
+    """
+    # Convert array tags to pipe-delimited strings to match database format
+    if tags:
+        db_tags = []
+        for tag in tags:
+            if isinstance(tag, list):
+                db_tags.append("|".join(str(t) for t in tag))
+            else:
+                db_tags.append(str(tag))
+    else:
+        db_tags = []
+        
     return {
         "id": f"test-{md5[:8]}",
         "full_name": full_name,
@@ -37,7 +51,7 @@ def create_mock_blueprint(full_name, md5, tags=None, images=None):
         "file_size": 1000,
         "file_modified_at": "2020-01-01T12:00:00",
         "blueprint_config": {},
-        "tags": tags or [],
+        "tags": db_tags,
         "images": images or []
     }
 
@@ -152,7 +166,7 @@ class TestIncrementalFixturesLoader:
         """Test compare_fixture_data with new file."""
         fixture_data = [create_mock_fixture_item("new.stl", "new123")]
         
-        result = mock_loader.compare_fixture_data(fixture_data)
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
         assert len(result.added) == 1
         assert result.added[0]["file_metadata"]["full_name"] == "new.stl"
@@ -167,7 +181,7 @@ class TestIncrementalFixturesLoader:
         
         fixture_data = [create_mock_fixture_item("existing.stl", "abc123")]
         
-        result = mock_loader.compare_fixture_data(fixture_data)
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
         assert len(result.added) == 0
         assert len(result.modified) == 0
@@ -185,7 +199,7 @@ class TestIncrementalFixturesLoader:
                                                tags=[["new", "tag"]], 
                                                images=[{"image_name": "new", "image_url": "new.jpg"}])]
         
-        result = mock_loader.compare_fixture_data(fixture_data)
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
         assert len(result.added) == 0
         assert len(result.modified) == 1
@@ -200,7 +214,7 @@ class TestIncrementalFixturesLoader:
         
         fixture_data = [create_mock_fixture_item("version_change.stl", "new789")]
         
-        result = mock_loader.compare_fixture_data(fixture_data)
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
         # Version changes create both a new addition and a deprecation
         assert len(result.added) == 1
@@ -208,6 +222,126 @@ class TestIncrementalFixturesLoader:
         assert len(result.modified) == 0
         assert len(result.deprecated) == 1
         assert result.deprecated[0]["full_name"] == "version_change.stl"
+    
+    def test_compare_fixture_data_config_blueprint_new(self, mock_loader):
+        """Test compare_fixture_data with new configuration blueprint."""
+        fixture_data = [{
+            "type": "blueprint",
+            "name": "Test Config Blueprint",
+            "tags": ["test|config"],
+            "config": {"test": "value"}
+        }]
+        
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
+        
+        assert len(result.added) == 1
+        assert result.added[0]["name"] == "Test Config Blueprint"
+        assert len(result.modified) == 0
+        assert len(result.deprecated) == 0
+    
+    def test_compare_fixture_data_config_blueprint_existing_no_changes(self, mock_loader):
+        """Test compare_fixture_data with existing configuration blueprint and no changes."""
+        mock_loader.existing_blueprints = {
+            "Test Config Blueprint": {
+                "id": "test-config-123",
+                "blueprint_name": "Test Config Blueprint",
+                "blueprint_type": "blueprint",
+                "blueprint_config": {"test": "value"},
+                "tags": ["test|config"],
+                "images": []
+            }
+        }
+        
+        fixture_data = [{
+            "type": "blueprint",
+            "name": "Test Config Blueprint",
+            "tags": ["test|config"],
+            "config": {"test": "value"}
+        }]
+        
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
+        
+        assert len(result.added) == 0
+        assert len(result.modified) == 0
+        assert len(result.deprecated) == 0
+    
+    def test_compare_fixture_data_config_blueprint_modified(self, mock_loader):
+        """Test compare_fixture_data with modified configuration blueprint."""
+        mock_loader.existing_blueprints = {
+            "Test Config Blueprint": {
+                "id": "test-config-123",
+                "blueprint_name": "Test Config Blueprint",
+                "blueprint_type": "blueprint",
+                "blueprint_config": {"old": "value"},
+                "tags": ["old|tag"],
+                "images": []
+            }
+        }
+        
+        fixture_data = [{
+            "type": "blueprint",
+            "name": "Test Config Blueprint",
+            "tags": ["new|tag"],
+            "config": {"new": "value"}
+        }]
+        
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
+        
+        assert len(result.added) == 0
+        assert len(result.modified) == 1
+        assert result.modified[0]["name"] == "Test Config Blueprint"
+        assert len(result.deprecated) == 0
+    
+    def test_has_config_changes_no_changes(self, mock_loader):
+        """Test _has_config_changes with no changes."""
+        existing = {
+            "blueprint_name": "Test Config",
+            "blueprint_config": {"test": "value"},
+            "tags": ["test|tag"]
+        }
+        
+        fixture = {
+            "name": "Test Config",
+            "config": {"test": "value"},
+            "tags": ["test|tag"]
+        }
+        
+        result = mock_loader._has_config_changes(fixture, existing)
+        assert not result, f"Expected no changes, got {result}"
+    
+    def test_has_config_changes_tags_change(self, mock_loader):
+        """Test _has_config_changes with tags change."""
+        existing = {
+            "blueprint_name": "Test Config",
+            "blueprint_config": {"test": "value"},
+            "tags": ["old|tag"]
+        }
+        
+        fixture = {
+            "name": "Test Config",
+            "config": {"test": "value"},
+            "tags": ["new|tag"]
+        }
+        
+        result = mock_loader._has_config_changes(fixture, existing)
+        assert result, f"Expected changes for tags change, got {result}"
+    
+    def test_has_config_changes_config_change(self, mock_loader):
+        """Test _has_config_changes with config change."""
+        existing = {
+            "blueprint_name": "Test Config",
+            "blueprint_config": {"old": "value"},
+            "tags": ["test|tag"]
+        }
+        
+        fixture = {
+            "name": "Test Config",
+            "config": {"new": "value"},
+            "tags": ["test|tag"]
+        }
+        
+        result = mock_loader._has_config_changes(fixture, existing)
+        assert result, f"Expected changes for config change, got {result}"
     
     def test_compare_fixture_data_mixed_changes(self, mock_loader):
         """Test compare_fixture_data with mixed changes."""
@@ -226,7 +360,7 @@ class TestIncrementalFixturesLoader:
             create_mock_fixture_item("version_change.stl", "new789")  # Version change
         ]
         
-        result = mock_loader.compare_fixture_data(fixture_data)
+        result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
         # Verify results
         assert len(result.added) == 2  # new.stl + version_change.stl
