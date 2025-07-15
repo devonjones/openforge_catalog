@@ -45,8 +45,8 @@ CREATE TABLE tags_documentation (
     tag text[] NOT NULL, -- Full tag array (e.g., ["texture", "dungeon_stone"])
     document text NOT NULL,
     document_type documentation_type_enum NOT NULL DEFAULT 'instructions',
-    created_at timestamp DEFAULT now(),
-    updated_at timestamp DEFAULT now()
+    created_at timestamptz DEFAULT now(),
+    updated_at timestamptz DEFAULT now()
 );
 
 -- Indexes for performance
@@ -69,9 +69,9 @@ FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TABLE sessions (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     session_token_hash text NOT NULL UNIQUE, -- Hashed version of session token for security
-    created_at timestamp DEFAULT now(),
-    expires_at timestamp NOT NULL, -- Set to created_at + 30 days
-    last_used_at timestamp NOT NULL DEFAULT now() -- Updated at most once per hour to avoid performance issues
+    created_at timestamptz DEFAULT now(),
+    expires_at timestamptz NOT NULL, -- Set to created_at + 30 days
+    last_used_at timestamptz NOT NULL DEFAULT now() -- Updated at most once per hour to avoid performance issues
 );
 
 -- Indexes for performance
@@ -264,7 +264,7 @@ class SessionService:
         session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
         
         # Set expiration to 30 days from now
-        expires_at = datetime.utcnow() + timedelta(days=30)
+        expires_at = datetime.now(timezone.utc) + timedelta(days=30)
         
         # Store hash in database
         session_id = self.db.insert_session(session_token_hash, expires_at)
@@ -281,7 +281,7 @@ class SessionService:
             
             # First validate the session exists and is not expired
             session = self.db.get_session_by_hash(session_token_hash)
-            if not session or session['expires_at'] < datetime.utcnow():
+            if not session or session['expires_at'] < datetime.now(timezone.utc):
                 return False
             
             # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
@@ -374,7 +374,9 @@ class SchemaVersion9(SchemaBase):
         self.drop_sessions_table(curs)
         self.drop_tags_documentation_table(curs)
         self.remove_image_type_support(curs)
-        self.remove_documentation_type_extension(curs)
+        # Note: PostgreSQL doesn't support dropping ENUM values
+        # The 'instructions' value will remain in documentation_type_enum
+        # This is acceptable as it doesn't break existing functionality
 ```
 
 ### 2.11 SQL Functions
@@ -598,8 +600,10 @@ const AdminNavigation = () => {
 
 ### 2.15 Documentation Editor
 
-**Create documentation editor component:**
+**Create documentation editor component using @uiw/react-md-editor:**
 ```typescript
+import MDEditor from '@uiw/react-md-editor';
+
 const DocumentationEditor = ({ 
   blueprintId, 
   tagArray, 
@@ -609,18 +613,134 @@ const DocumentationEditor = ({
   const [images, setImages] = useState<Image[]>([]);
   const [showImagePicker, setShowImagePicker] = useState(false);
   
-  // Markdown editor with image support
-  // Image picker modal
-  // Save/update functionality
+  // Custom image upload handler for MDEditor
+  const handleImageUpload = async (file: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    const response = await fetch('/api/admin/images', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${sessionToken}` },
+      body: formData
+    });
+    
+    const { image } = await response.json();
+    return image.url; // Return URL for markdown insertion
+  };
+  
+  return (
+    <div className="documentation-editor">
+      <MDEditor
+        value={content}
+        onChange={setContent}
+        preview="edit"
+        height={400}
+        onDrop={handleImageUpload}
+        textareaProps={{
+          placeholder: "Enter documentation content...",
+        }}
+        commands={[
+          // Custom image picker command
+          {
+            name: 'image-picker',
+            keyCommand: 'image-picker',
+            buttonProps: { 'aria-label': 'Insert image from library' },
+            icon: <ImageIcon />,
+            execute: () => setShowImagePicker(true)
+          }
+        ]}
+      />
+      
+      {showImagePicker && (
+        <ImagePicker 
+          onSelect={(image) => {
+            // Insert image markdown at cursor position
+            const imageMarkdown = `![${image.image_name}](${image.url})`;
+            // MDEditor will handle cursor insertion
+            setShowImagePicker(false);
+          }}
+          onClose={() => setShowImagePicker(false)}
+        />
+      )}
+    </div>
+  );
 };
 
-const ImagePicker = ({ onSelect }: { onSelect: (image: Image) => void }) => {
+const ImagePicker = ({ 
+  onSelect, 
+  onClose 
+}: { 
+  onSelect: (image: Image) => void;
+  onClose: () => void;
+}) => {
   const [images, setImages] = useState<Image[]>([]);
   const [filter, setFilter] = useState('');
+  const [uploading, setUploading] = useState(false);
   
-  // Load documentation images
-  // Filter by name
-  // Drag and drop upload
+  useEffect(() => {
+    // Load documentation images
+    fetch('/api/admin/images?type=documentation')
+      .then(res => res.json())
+      .then(data => setImages(data.images));
+  }, []);
+  
+  const filteredImages = images.filter(img => 
+    img.image_name.toLowerCase().includes(filter.toLowerCase())
+  );
+  
+  const handleFileUpload = async (file: File) => {
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      const response = await fetch('/api/admin/images', {
+        method: 'POST',
+        body: formData
+      });
+      const { image } = await response.json();
+      setImages(prev => [image, ...prev]);
+      onSelect(image);
+    } catch (error) {
+      console.error('Upload failed:', error);
+    } finally {
+      setUploading(false);
+    }
+  };
+  
+  return (
+    <div className="image-picker-modal">
+      <div className="image-picker-header">
+        <input
+          type="text"
+          placeholder="Search images..."
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0])}
+          disabled={uploading}
+        />
+      </div>
+      
+      <div className="image-grid">
+        {filteredImages.map(image => (
+          <div 
+            key={image.id} 
+            className="image-item"
+            onClick={() => onSelect(image)}
+          >
+            <img src={image.url} alt={image.image_name} />
+            <span>{image.image_name}</span>
+          </div>
+        ))}
+      </div>
+      
+      <button onClick={onClose}>Close</button>
+    </div>
+  );
 };
 ```
 
