@@ -62,9 +62,10 @@ FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 **Create sessions table for admin authentication:**
 ```sql
--- Sessions table for admin authentication
+-- Sessions table for authentication (currently used for admin sessions)
 -- Sessions last for 30 days and are automatically cleaned up after expiration
-CREATE TABLE admin_sessions (
+-- To invalidate a compromised session, simply delete the session record
+CREATE TABLE sessions (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     session_token_hash text NOT NULL UNIQUE, -- Hashed version of session token for security
     created_at timestamp DEFAULT now(),
@@ -73,8 +74,8 @@ CREATE TABLE admin_sessions (
 );
 
 -- Indexes for performance
-CREATE INDEX idx_admin_sessions_token ON admin_sessions(session_token_hash);
-CREATE INDEX idx_admin_sessions_expires ON admin_sessions(expires_at);
+CREATE INDEX idx_sessions_token ON sessions(session_token_hash);
+CREATE INDEX idx_sessions_expires ON sessions(expires_at);
 
 -- Trigger function to update last_used_at column (only if more than 1 hour has passed)
 CREATE OR REPLACE FUNCTION update_last_used_at_column()
@@ -94,10 +95,25 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger for automatic last_used_at updates
-CREATE TRIGGER update_admin_sessions_last_used 
-BEFORE UPDATE ON admin_sessions
+-- Trigger function to set last_used_at on INSERT
+CREATE OR REPLACE FUNCTION set_last_used_at_on_insert()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Always set last_used_at to current time on INSERT
+    NEW.last_used_at := now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger for automatic last_used_at updates on UPDATE
+CREATE TRIGGER update_sessions_last_used 
+BEFORE UPDATE ON sessions
 FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column();
+
+-- Trigger for automatic last_used_at initialization on INSERT
+CREATE TRIGGER set_sessions_last_used_on_insert
+BEFORE INSERT ON sessions
+FOR EACH ROW EXECUTE FUNCTION set_last_used_at_on_insert();
 ```
 
 ## API Implementation
@@ -148,19 +164,23 @@ Response: { success: boolean }
 **Core endpoints for tag documentation:**
 ```typescript
 // Get documentation for a specific tag
-GET /api/tags/texture/dungeon_stone/documentation
+// URL: /api/tags/texture/dungeon_stone/documentation
+// Flask router converts "texture/dungeon_stone" to ["texture", "dungeon_stone"] via TagConverter
+GET /api/tags/{tag_array}/documentation
 Response: {
   documentation: TagDocumentation[]
 }
 
 // Get specific tag documentation entry
-GET /api/tags/texture/dungeon_stone/documentation/{doc_id}
+// URL: /api/tags/texture/dungeon_stone/documentation/123
+GET /api/tags/{tag_array}/documentation/{doc_id}
 Response: {
   documentation: TagDocumentation
 }
 
 // Create documentation for tag (requires API key)
-POST /api/tags/texture/dungeon_stone/documentation
+// URL: /api/tags/texture/dungeon_stone/documentation
+POST /api/tags/{tag_array}/documentation
 Body: { 
   document: string,
   document_type: 'instructions'
@@ -170,7 +190,8 @@ Response: {
 }
 
 // Update specific tag documentation entry (requires API key)
-PUT /api/tags/texture/dungeon_stone/documentation/{doc_id}
+// URL: /api/tags/texture/dungeon_stone/documentation/123
+PUT /api/tags/{tag_array}/documentation/{doc_id}
 Body: { 
   document: string,
   document_type: 'instructions'
@@ -180,7 +201,8 @@ Response: {
 }
 
 // Delete specific tag documentation entry (requires API key)
-DELETE /api/tags/texture/dungeon_stone/documentation/{doc_id}
+// URL: /api/tags/texture/dungeon_stone/documentation/123
+DELETE /api/tags/{tag_array}/documentation/{doc_id}
 Response: { success: boolean }
 ```
 
@@ -215,7 +237,7 @@ Response: { success: boolean }
 
 ### 2.8 Session Management API
 
-**Core endpoints for session management:**
+**Core endpoints for session management (currently admin-only):**
 ```typescript
 // Create admin session
 POST /api/admin/sessions
@@ -247,7 +269,7 @@ from datetime import datetime, timedelta
 
 class SessionService:
     def create_session(self, api_key: str) -> Dict:
-        """Create new admin session (30 days duration)."""
+        """Create new session (30 days duration, currently admin-only)."""
         # Verify API key matches environment variable (constant-time comparison)
         # Will crash on deploy if ADMIN_API_KEY is not set (fail-fast behavior)
         if not secrets.compare_digest(api_key, os.environ['ADMIN_API_KEY']):
@@ -270,37 +292,56 @@ class SessionService:
     
     def validate_session(self, session_token: str) -> bool:
         """Validate session token and update last_used_at (throttled by trigger)."""
-        session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
-        
-        # First validate the session exists and is not expired
-        session = self.db.get_session_by_hash(session_token_hash)
-        if not session or session['expires_at'] < datetime.utcnow():
+        try:
+            session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+            
+            # First validate the session exists and is not expired
+            session = self.db.get_session_by_hash(session_token_hash)
+            if not session or session['expires_at'] < datetime.utcnow():
+                return False
+            
+            # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
+            # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
+            try:
+                self.db.update_session_last_used(session_token_hash)
+            except Exception as update_error:
+                # Log the error but don't fail validation - the session is still valid
+                # The last_used_at update is a performance optimization, not critical
+                logger.warning(f"Failed to update session last_used_at: {update_error}")
+            
+            return True
+            
+        except Exception as e:
+            # Log the error and fail validation gracefully
+            logger.error(f"Session validation failed: {e}")
             return False
-        
-        # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
-        # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
-        self.db.update_session_last_used(session_token_hash)
-        
-        return True
     
     def delete_session(self, session_token: str) -> bool:
-        """Delete session (logout)."""
-        session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
-        return self.db.delete_session_by_hash(session_token_hash)
+        """Delete session (logout). To invalidate compromised sessions, simply delete the record."""
+        try:
+            session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
+            return self.db.delete_session_by_hash(session_token_hash)
+        except Exception as e:
+            logger.error(f"Session deletion failed: {e}")
+            return False
     
     def cleanup_expired_sessions(self) -> int:
         """Clean up expired sessions (run periodically)."""
-        return self.db.delete_expired_sessions()
+        try:
+            return self.db.delete_expired_sessions()
+        except Exception as e:
+            logger.error(f"Session cleanup failed: {e}")
+            return 0
 
 # Database methods for session management
 class SessionDatabase:
     def get_session_by_hash(self, session_token_hash: str) -> Optional[Dict]:
         """Get session by token hash."""
-        # SELECT * FROM admin_sessions WHERE session_token_hash = %s
+        # SELECT * FROM sessions WHERE session_token_hash = %s
         
     def update_session_last_used(self, session_token_hash: str) -> bool:
         """Update last_used_at for session (triggers throttled update)."""
-        # UPDATE admin_sessions SET last_used_at = now() WHERE session_token_hash = %s
+        # UPDATE sessions SET last_used_at = now() WHERE session_token_hash = %s
         # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
         
     def validate_session_hash(self, session_token_hash: str) -> bool:
@@ -342,11 +383,11 @@ class SchemaVersion9(SchemaBase):
         self.extend_documentation_type_enum(curs)
         self.add_image_type_support(curs)
         self.create_tags_documentation_table(curs)
-        self.create_admin_sessions_table(curs)
+        self.create_sessions_table(curs)
         self.migrate_existing_images(curs)
 
     def down_impl(self, curs: cursor):
-        self.drop_admin_sessions_table(curs)
+        self.drop_sessions_table(curs)
         self.drop_tags_documentation_table(curs)
         self.remove_image_type_support(curs)
         self.remove_documentation_type_extension(curs)
@@ -468,30 +509,21 @@ class DocumentationService:
     def get_blueprint_documentation(self, blueprint_id: str) -> List[Dict]:
         """Get all documentation for a blueprint."""
         
-    def get_tag_documentation(self, tag_input: Union[List[str], str]) -> List[Dict]:
+    def get_tag_documentation(self, tag_array: List[str]) -> List[Dict]:
         """Get documentation for a specific tag.
         
         Args:
-            tag_input: Either a tag array (["texture", "dungeon_stone"]) or 
-                      pipe-delimited string ("texture|dungeon_stone"). 
-                      The service layer accepts BOTH formats to maintain compatibility 
-                      with existing code patterns. Route handlers will pass arrays, 
-                      but internal service calls may use strings based on database 
-                      query patterns and existing utility functions.
+            tag_array: A tag array (e.g., ["texture", "dungeon_stone"]) from the Flask route
         """
         
     def create_blueprint_documentation(self, blueprint_id: str, data: Dict) -> Dict:
         """Create new documentation for a blueprint."""
         
-    def create_tag_documentation(self, tag_input: Union[List[str], str], data: Dict) -> Dict:
+    def create_tag_documentation(self, tag_array: List[str], data: Dict) -> Dict:
         """Create new documentation for a tag.
         
         Args:
-            tag_input: Either a tag array or pipe-delimited string. 
-                      The service layer accepts BOTH formats to maintain compatibility 
-                      with existing code patterns. Route handlers will pass arrays, 
-                      but internal service calls may use strings based on database 
-                      query patterns and existing utility functions.
+            tag_array: A tag array (e.g., ["texture", "dungeon_stone"]) from the Flask route
             data: Documentation data
         """
         
