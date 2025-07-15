@@ -82,9 +82,13 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Only update last_used_at if more than 1 hour has passed since last update
     -- This prevents performance issues from frequent session validations
-    IF NEW.last_used_at IS NULL OR 
-       EXTRACT(EPOCH FROM (now() - NEW.last_used_at)) > 3600 THEN -- 3600 seconds = 1 hour
-        NEW.last_used_at = now();
+    -- Use OLD.last_used_at to compare against the value currently in the database
+    IF OLD.last_used_at IS NULL OR 
+       EXTRACT(EPOCH FROM (now() - OLD.last_used_at)) > 3600 THEN -- 3600 seconds = 1 hour
+        NEW.last_used_at := now();
+    ELSE
+        -- Revert to old value if update happens within the one-hour window
+        NEW.last_used_at := OLD.last_used_at;
     END IF;
     RETURN NEW;
 END;
@@ -244,8 +248,9 @@ from datetime import datetime, timedelta
 class SessionService:
     def create_session(self, api_key: str) -> Dict:
         """Create new admin session (30 days duration)."""
-        # Verify API key matches environment variable
-        if api_key != os.environ.get('ADMIN_API_KEY'):
+        # Verify API key matches environment variable (constant-time comparison)
+        # Will crash on deploy if ADMIN_API_KEY is not set (fail-fast behavior)
+        if not secrets.compare_digest(api_key, os.environ['ADMIN_API_KEY']):
             raise ValueError("Invalid API key")
         
         # Generate secure session token
