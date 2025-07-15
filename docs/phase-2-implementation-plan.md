@@ -254,8 +254,13 @@ Response: { success: boolean }
 **Session management implementation:**
 ```python
 import hashlib
+import os
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+from typing import Optional, Dict
+import logging
+
+logger = logging.getLogger(__name__)
 
 class SessionService:
     def create_session(self, api_key: str) -> Dict:
@@ -280,7 +285,7 @@ class SessionService:
             "expires_at": expires_at.isoformat()
         }
     
-        def validate_session(self, session_token: str) -> Optional[Dict]:
+    def validate_session(self, session_token: str) -> Optional[Dict]:
         """Validate session token and update last_used_at (throttled by trigger). Returns safe session data if valid."""
         try:
             session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
@@ -613,8 +618,19 @@ const AdminNavigation = () => {
 ### 2.15 Documentation Editor
 
 **Create documentation editor component using @uiw/react-md-editor:**
+
+**Note:** For Next.js applications, use dynamic import to avoid SSR issues:
+```typescript
+import dynamic from "next/dynamic";
+const MDEditor = dynamic(
+  () => import("@uiw/react-md-editor"),
+  { ssr: false }
+);
+```
 ```typescript
 import MDEditor from '@uiw/react-md-editor';
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
 
 const DocumentationEditor = ({ 
   blueprintId, 
@@ -640,24 +656,13 @@ const DocumentationEditor = ({
     return image.url; // Return URL for markdown insertion
   };
   
-  // Insert image markdown at current cursor position
+  // Insert image markdown using the editor's API
   const insertImageMarkdown = (image: Image) => {
     const imageMarkdown = `![${image.image_name}](${image.url})`;
     
-    if (editorRef.current) {
-      // Get current cursor position and insert the markdown
-      const textarea = editorRef.current.textarea;
-      const start = textarea.selectionStart;
-      const end = textarea.selectionEnd;
-      
-      const newContent = content.substring(0, start) + imageMarkdown + content.substring(end);
-      setContent(newContent);
-      
-      // Set cursor position after the inserted markdown
-      setTimeout(() => {
-        textarea.setSelectionRange(start + imageMarkdown.length, start + imageMarkdown.length);
-        textarea.focus();
-      }, 0);
+    // Use the editor's built-in API for text insertion
+    if (editorRef.current && editorRef.current.api) {
+      editorRef.current.api.replaceSelection(imageMarkdown);
     }
   };
   
@@ -680,7 +685,8 @@ const DocumentationEditor = ({
             keyCommand: 'image-picker',
             buttonProps: { 'aria-label': 'Insert image from library' },
             icon: <ImageIcon />,
-            execute: () => setShowImagePicker(true)
+            execute: () => setShowImagePicker(true),
+            value: () => setShowImagePicker(true)
           }
         ]}
       />
