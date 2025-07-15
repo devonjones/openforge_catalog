@@ -269,9 +269,19 @@ class SessionService:
         }
     
     def validate_session(self, session_token: str) -> bool:
-        """Validate session token."""
+        """Validate session token and update last_used_at (throttled by trigger)."""
         session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
-        return self.db.validate_session_hash(session_token_hash)
+        
+        # First validate the session exists and is not expired
+        session = self.db.get_session_by_hash(session_token_hash)
+        if not session or session['expires_at'] < datetime.utcnow():
+            return False
+        
+        # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
+        # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
+        self.db.update_session_last_used(session_token_hash)
+        
+        return True
     
     def delete_session(self, session_token: str) -> bool:
         """Delete session (logout)."""
@@ -281,6 +291,21 @@ class SessionService:
     def cleanup_expired_sessions(self) -> int:
         """Clean up expired sessions (run periodically)."""
         return self.db.delete_expired_sessions()
+
+# Database methods for session management
+class SessionDatabase:
+    def get_session_by_hash(self, session_token_hash: str) -> Optional[Dict]:
+        """Get session by token hash."""
+        # SELECT * FROM admin_sessions WHERE session_token_hash = %s
+        
+    def update_session_last_used(self, session_token_hash: str) -> bool:
+        """Update last_used_at for session (triggers throttled update)."""
+        # UPDATE admin_sessions SET last_used_at = now() WHERE session_token_hash = %s
+        # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
+        
+    def validate_session_hash(self, session_token_hash: str) -> bool:
+        """Legacy method - use get_session_by_hash + update_session_last_used instead."""
+        # Deprecated: Use the new validation flow above
 ```
 
 ### 2.9 Changelog History API
@@ -340,7 +365,9 @@ CREATE OR REPLACE FUNCTION get_blueprint_changelog_history(
     blueprint_name text,
     changelog text,
     created_at timestamp,
-    depth integer
+    depth integer,
+    successor_id uuid,
+    deprecated boolean
 ) AS $$
 BEGIN
     RETURN QUERY
@@ -352,7 +379,8 @@ BEGIN
             b.successor_id,
             bd.document,
             bd.created_at,
-            0 as depth
+            0 as depth,
+            b.deprecated
         FROM blueprints b
         LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
             AND bd.document_type = 'changelog'
@@ -367,7 +395,8 @@ BEGIN
             b.successor_id,
             bd.document,
             bd.created_at,
-            cc.depth + 1
+            cc.depth + 1,
+            b.deprecated
         FROM blueprints b
         LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
             AND bd.document_type = 'changelog'
@@ -379,7 +408,9 @@ BEGIN
         cc.blueprint_name, 
         cc.document, 
         cc.created_at, 
-        cc.depth 
+        cc.depth,
+        cc.successor_id,
+        cc.deprecated
     FROM changelog_chain cc
     ORDER BY depth ASC, created_at DESC;
 END;
@@ -442,8 +473,11 @@ class DocumentationService:
         
         Args:
             tag_input: Either a tag array (["texture", "dungeon_stone"]) or 
-                      pipe-delimited string ("texture|dungeon_stone") based on 
-                      compatibility with existing code and database operations
+                      pipe-delimited string ("texture|dungeon_stone"). 
+                      The service layer accepts BOTH formats to maintain compatibility 
+                      with existing code patterns. Route handlers will pass arrays, 
+                      but internal service calls may use strings based on database 
+                      query patterns and existing utility functions.
         """
         
     def create_blueprint_documentation(self, blueprint_id: str, data: Dict) -> Dict:
@@ -453,7 +487,11 @@ class DocumentationService:
         """Create new documentation for a tag.
         
         Args:
-            tag_input: Either a tag array or pipe-delimited string based on compatibility
+            tag_input: Either a tag array or pipe-delimited string. 
+                      The service layer accepts BOTH formats to maintain compatibility 
+                      with existing code patterns. Route handlers will pass arrays, 
+                      but internal service calls may use strings based on database 
+                      query patterns and existing utility functions.
             data: Documentation data
         """
         
