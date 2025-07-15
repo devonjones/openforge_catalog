@@ -26,10 +26,6 @@ def munge_blueprint(data: dict) -> dict:
     bp["successor_id"] = data.get("successor_id")
     bp["consolidated_paths"] = data.get("consolidated_paths", [])
     
-    # Fields for separate tables (not stored in blueprints table)
-    bp["openscad_source"] = data.get("openscad_source")
-    bp["changelog"] = data.get("changelog")
-    
     if "file_metadata" in data:
         if not bp["blueprint_name"]:
             bp["blueprint_name"] = data["file_metadata"]["file"]

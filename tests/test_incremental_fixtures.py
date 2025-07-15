@@ -382,10 +382,7 @@ class TestIncrementalFixturesLoader:
             "config": {"test": "value"},
             "deprecated": False,
             "successor_id": None,
-    
             "consolidated_paths": [],
-            "openscad_source": "test.scad",
-            "changelog": "Test changelog",
             "file_metadata": {
                 "file": "test.stl",
                 "md5": "abc123",
@@ -406,8 +403,8 @@ class TestIncrementalFixturesLoader:
         assert result["file_size"] == 1000
         assert result["file_name"] == "test.stl"
         assert result["full_name"] == "test.stl"
-        assert result["openscad_source"] == "test.scad"
-        assert result["changelog"] == "Test changelog"
+        # Note: openscad_source and changelog fields are no longer extracted
+        # as they are not stored in the blueprints table
     
     def test_get_words(self, mock_loader):
         """Test _get_words method."""

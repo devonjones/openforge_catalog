@@ -579,7 +579,7 @@ def _process_dict(obj, exclude_paths, current_path):
 def _process_list(obj, exclude_paths, current_path):
     """Process list objects - sort unless excluded."""
     # Check if current path should be excluded from sorting
-    should_exclude = any(current_path.endswith(exclude_path) for exclude_path in exclude_paths)
+    should_exclude = current_path in exclude_paths
     
     # Process items recursively
     processed_items = [_sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj]

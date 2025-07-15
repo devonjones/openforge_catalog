@@ -579,9 +579,9 @@ def print_incremental_diff(files, scanner, verbose=False):
                             }
                         
                         # Check tags changes (compare as sets to handle unordered nature)
-                        # existing_entry tags are arrays, file tags are pipe-delimited strings
-                        existing_tags = set(tuple(tag) for tag in existing_entry.get("tags", []))
-                        new_tags = set(tuple(tag.split('|')) for tag in file.get("tags", []))
+                        # Normalize both existing and new tags to pipe-delimited format for comparison
+                        existing_tags = set(_normalize_tags_to_pipe_delimited(existing_entry.get("tags", [])))
+                        new_tags = set(_normalize_tags_to_pipe_delimited(file.get("tags", [])))
                         if existing_tags != new_tags:
                             changes["tags"] = {
                                 "old": list(existing_entry.get("tags", [])),

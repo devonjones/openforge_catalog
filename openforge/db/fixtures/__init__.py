@@ -57,30 +57,17 @@ def clear_db(curs: cursor):
     tag_description_sql.delete_all_tag_descriptions(curs)
 
 
-class ValidationResult:
-    def __init__(self):
-        self.errors = []
-        self.is_valid = True
 
-    def add_error(self, error):
-        self.errors.append(error)
-        self.is_valid = False
-
-    def merge(self, other):
-        self.errors.extend(other.errors)
-        self.is_valid = self.is_valid and other.is_valid
 
 
 def _is_blueprint_fixture(data):
-    result = ValidationResult()
+    """Validate data against the blueprint fixture schema."""
     validate_schema("blueprint.fixture.json", data)
-    return result
 
 
 def _is_tag_description_fixture(data):
-    result = ValidationResult()
+    """Validate data against the tag description fixture schema."""
     validate_schema("tag_description.fixture.json", data)
-    return result
 
 
 def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
@@ -92,9 +79,17 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
         
         loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
+            # Check if this is a tag description fixture by filename
+            # Tag description fixtures store a different type of data (tag descriptions)
+            # and don't have file_metadata, so they are intentionally skipped in incremental mode
+            # This is permanent behavior - tag descriptions are not file-based data
+            if "tag_description" in str(f):
+                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
+                continue
+            
             data = _load_data(f, verbose=verbose)
             
-            # Try blueprint fixture validation first
+            # Try blueprint fixture validation
             try:
                 _is_blueprint_fixture(data)
                 # If we get here, it's a valid blueprint fixture
@@ -107,17 +102,8 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                         else:
                             loader.apply_incremental_changes(changes, curs=curs)
             except Exception as blueprint_error:
-                # Try tag description fixture validation
-                try:
-                    _is_tag_description_fixture(data)
-                    # If we get here, it's a valid tag description fixture
-                    # Tag description fixtures store a different type of data (tag descriptions)
-                    # and don't have file_metadata, so they are intentionally skipped in incremental mode
-                    # This is permanent behavior - tag descriptions are not file-based data
-                    sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
-                except Exception as tag_error:
-                    # Neither validation passed, raise the original blueprint error
-                    raise blueprint_error
+                # Blueprint validation failed, raise the error
+                raise blueprint_error
     else:
         # Existing full replacement logic
         with conn.cursor(row_factory=dict_row) as curs:
