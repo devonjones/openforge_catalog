@@ -261,7 +261,7 @@ class SessionService:
     def create_session(self, api_key: str) -> Dict:
         """Create new session (30 days duration, currently admin-only)."""
         # Verify API key matches environment variable (constant-time comparison)
-        # Will crash on deploy if ADMIN_API_KEY is not set (fail-fast behavior)
+        # Raises KeyError at runtime if ADMIN_API_KEY is not set (fail-fast behavior)
         if not secrets.compare_digest(api_key, os.environ['ADMIN_API_KEY']):
             raise ValueError("Invalid API key")
         
@@ -280,16 +280,16 @@ class SessionService:
             "expires_at": expires_at.isoformat()
         }
     
-    def validate_session(self, session_token: str) -> bool:
-        """Validate session token and update last_used_at (throttled by trigger)."""
+        def validate_session(self, session_token: str) -> Optional[Dict]:
+        """Validate session token and update last_used_at (throttled by trigger). Returns safe session data if valid."""
         try:
             session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
-            
+
             # First validate the session exists and is not expired
             session = self.db.get_session_by_hash(session_token_hash)
             if not session or session['expires_at'] < datetime.now(timezone.utc):
-                return False
-            
+                return None
+
             # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
             # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
             try:
@@ -298,13 +298,19 @@ class SessionService:
                 # Log the error but don't fail validation - the session is still valid
                 # The last_used_at update is a performance optimization, not critical
                 logger.warning(f"Failed to update session last_used_at: {update_error}")
-            
-            return True
-            
+
+            # Return safe session data (exclude sensitive fields like session_token_hash)
+            return {
+                'id': session['id'],
+                'created_at': session['created_at'],
+                'expires_at': session['expires_at'],
+                'last_used_at': session['last_used_at']
+            }
+
         except Exception as e:
             # Log the error and fail validation gracefully
             logger.error(f"Session validation failed: {e}")
-            return False
+            return None
     
     def delete_session(self, session_token: str) -> bool:
         """Delete session (logout). To invalidate compromised sessions, simply delete the record."""
@@ -445,7 +451,7 @@ BEGIN
         cc.successor_id,
         cc.deprecated
     FROM changelog_chain cc
-    ORDER BY depth ASC, created_at DESC;
+    ORDER BY depth ASC, created_at DESC NULLS LAST;
 END;
 $$ LANGUAGE plpgsql;
 ```
@@ -707,7 +713,8 @@ const ImagePicker = ({
     // Load documentation images
     fetch('/api/admin/images?type=documentation')
       .then(res => res.json())
-      .then(data => setImages(data.images));
+      .then(data => setImages(data.images))
+      .catch(e => console.error("Failed to load documentation images:", e));
   }, []);
   
   const filteredImages = images.filter(img => 
