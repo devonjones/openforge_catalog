@@ -28,6 +28,7 @@ ALTER TYPE documentation_type_enum ADD VALUE 'instructions';
 CREATE TYPE image_type_enum AS ENUM ('thumbnail', 'documentation');
 
 -- Add image_type column to images table
+-- NOT NULL DEFAULT 'thumbnail' automatically sets all existing images as thumbnails
 ALTER TABLE images ADD COLUMN image_type image_type_enum NOT NULL DEFAULT 'thumbnail';
 
 -- Create index for performance
@@ -70,7 +71,7 @@ CREATE TABLE sessions (
     session_token_hash text NOT NULL UNIQUE, -- Hashed version of session token for security
     created_at timestamp DEFAULT now(),
     expires_at timestamp NOT NULL, -- Set to created_at + 30 days
-    last_used_at timestamp DEFAULT now() -- Updated at most once per hour to avoid performance issues
+    last_used_at timestamp NOT NULL DEFAULT now() -- Updated at most once per hour to avoid performance issues
 );
 
 -- Indexes for performance
@@ -83,9 +84,7 @@ RETURNS TRIGGER AS $$
 BEGIN
     -- Only update last_used_at if more than 1 hour has passed since last update
     -- This prevents performance issues from frequent session validations
-    -- Use OLD.last_used_at to compare against the value currently in the database
-    IF OLD.last_used_at IS NULL OR 
-       EXTRACT(EPOCH FROM (now() - OLD.last_used_at)) > 3600 THEN -- 3600 seconds = 1 hour
+    IF EXTRACT(EPOCH FROM (now() - OLD.last_used_at)) > 3600 THEN -- 3600 seconds = 1 hour
         NEW.last_used_at := now();
     ELSE
         -- Revert to old value if update happens within the one-hour window
@@ -95,25 +94,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger function to set last_used_at on INSERT
-CREATE OR REPLACE FUNCTION set_last_used_at_on_insert()
-RETURNS TRIGGER AS $$
-BEGIN
-    -- Always set last_used_at to current time on INSERT
-    NEW.last_used_at := now();
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
 -- Trigger for automatic last_used_at updates on UPDATE
 CREATE TRIGGER update_sessions_last_used 
 BEFORE UPDATE ON sessions
 FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column();
-
--- Trigger for automatic last_used_at initialization on INSERT
-CREATE TRIGGER set_sessions_last_used_on_insert
-BEFORE INSERT ON sessions
-FOR EACH ROW EXECUTE FUNCTION set_last_used_at_on_insert();
 ```
 
 ## API Implementation
