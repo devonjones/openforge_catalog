@@ -102,6 +102,12 @@ FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column();
 
 ## API Implementation
 
+**Authentication Note:** All protected endpoints accept either:
+- API key in request headers: `Authorization: Bearer <api_key>`
+- Active session cookie (established via `/api/admin/sessions`)
+
+**Note:** Existing endpoints that currently require API keys will be updated to also accept active session cookies, providing a consistent authentication experience across the entire API.
+
 ### 2.5 Blueprint Documentation API
 
 **Core endpoints for blueprint documentation:**
@@ -118,7 +124,7 @@ Response: {
   documentation: BlueprintDocumentation
 }
 
-// Create documentation for blueprint (requires API key)
+// Create documentation for blueprint (requires API key or active session)
 POST /api/blueprints/{blueprint_id}/documentation
 Body: { 
   document: string,
@@ -128,7 +134,7 @@ Response: {
   documentation: BlueprintDocumentation
 }
 
-// Update specific documentation entry (requires API key)
+// Update specific documentation entry (requires API key or active session)
 PUT /api/blueprints/{blueprint_id}/documentation/{doc_id}
 Body: { 
   document: string,
@@ -138,7 +144,7 @@ Response: {
   documentation: BlueprintDocumentation
 }
 
-// Delete specific documentation entry (requires API key)
+// Delete specific documentation entry (requires API key or active session)
 DELETE /api/blueprints/{blueprint_id}/documentation/{doc_id}
 Response: { success: boolean }
 ```
@@ -162,7 +168,7 @@ Response: {
   documentation: TagDocumentation
 }
 
-// Create documentation for tag (requires API key)
+// Create documentation for tag (requires API key or active session)
 // URL: /api/tags/texture/dungeon_stone/documentation
 POST /api/tags/{tag_array}/documentation
 Body: { 
@@ -173,7 +179,7 @@ Response: {
   documentation: TagDocumentation
 }
 
-// Update specific tag documentation entry (requires API key)
+// Update specific tag documentation entry (requires API key or active session)
 // URL: /api/tags/texture/dungeon_stone/documentation/123
 PUT /api/tags/{tag_array}/documentation/{doc_id}
 Body: { 
@@ -184,7 +190,7 @@ Response: {
   documentation: TagDocumentation
 }
 
-// Delete specific tag documentation entry (requires API key)
+// Delete specific tag documentation entry (requires API key or active session)
 // URL: /api/tags/texture/dungeon_stone/documentation/123
 DELETE /api/tags/{tag_array}/documentation/{doc_id}
 Response: { success: boolean }
@@ -194,27 +200,27 @@ Response: { success: boolean }
 
 **Core endpoints for image management:**
 ```typescript
-// Get all documentation images (requires API key)
+// Get all documentation images (requires API key or active session)
 GET /api/admin/images?type=documentation
 Response: {
   images: Image[]
 }
 
-// Upload new documentation image (requires API key)
+// Upload new documentation image (requires API key or active session)
 POST /api/admin/images
 Body: FormData with file
 Response: {
   image: Image
 }
 
-// Update image name (requires API key)
+// Update image name (requires API key or active session)
 PUT /api/admin/images/{image_id}
 Body: { image_name: string }
 Response: {
   image: Image
 }
 
-// Delete image (requires API key)
+// Delete image (requires API key or active session)
 DELETE /api/admin/images/{image_id}
 Response: { success: boolean }
 ```
@@ -391,7 +397,7 @@ CREATE OR REPLACE FUNCTION get_blueprint_changelog_history(
     blueprint_id uuid,
     blueprint_name text,
     changelog text,
-    created_at timestamp,
+    created_at timestamptz,
     depth integer,
     successor_id uuid,
     deprecated boolean
@@ -612,6 +618,7 @@ const DocumentationEditor = ({
   const [content, setContent] = useState('');
   const [images, setImages] = useState<Image[]>([]);
   const [showImagePicker, setShowImagePicker] = useState(false);
+  const editorRef = useRef<any>(null);
   
   // Custom image upload handler for MDEditor
   const handleImageUpload = async (file: File): Promise<string> => {
@@ -620,7 +627,6 @@ const DocumentationEditor = ({
     
     const response = await fetch('/api/admin/images', {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${sessionToken}` },
       body: formData
     });
     
@@ -628,9 +634,31 @@ const DocumentationEditor = ({
     return image.url; // Return URL for markdown insertion
   };
   
+  // Insert image markdown at current cursor position
+  const insertImageMarkdown = (image: Image) => {
+    const imageMarkdown = `![${image.image_name}](${image.url})`;
+    
+    if (editorRef.current) {
+      // Get current cursor position and insert the markdown
+      const textarea = editorRef.current.textarea;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      
+      const newContent = content.substring(0, start) + imageMarkdown + content.substring(end);
+      setContent(newContent);
+      
+      // Set cursor position after the inserted markdown
+      setTimeout(() => {
+        textarea.setSelectionRange(start + imageMarkdown.length, start + imageMarkdown.length);
+        textarea.focus();
+      }, 0);
+    }
+  };
+  
   return (
     <div className="documentation-editor">
       <MDEditor
+        ref={editorRef}
         value={content}
         onChange={setContent}
         preview="edit"
@@ -654,9 +682,7 @@ const DocumentationEditor = ({
       {showImagePicker && (
         <ImagePicker 
           onSelect={(image) => {
-            // Insert image markdown at cursor position
-            const imageMarkdown = `![${image.image_name}](${image.url})`;
-            // MDEditor will handle cursor insertion
+            insertImageMarkdown(image);
             setShowImagePicker(false);
           }}
           onClose={() => setShowImagePicker(false)}
