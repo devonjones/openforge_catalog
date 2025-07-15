@@ -451,8 +451,7 @@ def parse_files(path, files, md5, verbose, upload, config):
                 f["md5"] = md5hash
         stat = os.stat(full_file)
         f["size"] = stat.st_size
-        f["changed"] = datetime.datetime.fromtimestamp(stat.st_ctime).isoformat()
-        f["modified"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
+        f["file_modified_at"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
         if upload:
             if not md5:
                 raise Exception("MD5 is required for upload")
@@ -543,51 +542,83 @@ def find_files(path, subset):
     return retfiles
 
 
-def _sort_and_clean_recursively(obj):
+def _sort_and_clean_recursively(obj, exclude_paths=None, current_path=""):
     """Recursively sort all lists and dictionary keys in a JSON-serializable object for consistent output.
-    Also removes empty arrays and hashes in a single pass for performance."""
+    Also removes empty arrays and hashes in a single pass for performance.
+    
+    Args:
+        obj: The object to sort and clean
+        exclude_paths: Optional list of JSON paths to exclude from sorting (e.g., ["config.parts"])
+        current_path: Current JSON path for checking exclusions
+    """
+    if exclude_paths is None:
+        exclude_paths = []
+    
     if isinstance(obj, dict):
-        # Sort dictionary keys and recursively sort values, filtering out empty values
-        result = {}
-        for k, v in sorted(obj.items()):
-            processed_v = _sort_and_clean_recursively(v)
-            # Only include non-empty values
-            if processed_v is not None and processed_v != {} and processed_v != []:
-                result[k] = processed_v
-        return result
+        return _process_dict(obj, exclude_paths, current_path)
     elif isinstance(obj, list):
-        # For lists containing dictionaries, we need to sort by a stable key
-        # Convert each item to a sortable representation
-        def sort_key(item):
-            if isinstance(item, dict):
-                # Create a stable, sortable representation of the dictionary
-                # to ensure consistent sorting.
-                return json.dumps(item, sort_keys=True)
-            elif isinstance(item, (list, tuple, set)):
-                # For nested sequences, use the first element as sort key
-                return str(item[0]) if item else ""
-            else:
-                return str(item)
-        
-        # Process and filter out empty items
-        processed_items = [_sort_and_clean_recursively(item) for item in obj]
-        filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
-        return sorted(filtered_items, key=sort_key)
+        return _process_list(obj, exclude_paths, current_path)
     elif isinstance(obj, (set, tuple)):
-        # For sets and tuples, convert to sorted list with string comparison
-        processed_items = [_sort_and_clean_recursively(item) for item in obj]
-        filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
-        return sorted(filtered_items, key=str)
+        return _process_sequence(obj, exclude_paths, current_path)
     else:
         return obj
 
 
+def _process_dict(obj, exclude_paths, current_path):
+    """Process dictionary objects - sort keys and recursively process values."""
+    result = {}
+    for k, v in sorted(obj.items()):
+        next_path = f"{current_path}.{k}" if current_path else k
+        processed_v = _sort_and_clean_recursively(v, exclude_paths, next_path)
+        # Only include non-empty values
+        if processed_v is not None and processed_v != {} and processed_v != []:
+            result[k] = processed_v
+    return result
+
+
+def _process_list(obj, exclude_paths, current_path):
+    """Process list objects - sort unless excluded."""
+    # Check if current path should be excluded from sorting
+    should_exclude = current_path in exclude_paths
+    
+    # Process items recursively
+    processed_items = [_sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj]
+    filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
+    
+    if should_exclude:
+        # Don't sort this list, preserve original order
+        return filtered_items
+    else:
+        # Sort the list
+        return _sort_list_items(filtered_items)
+
+
+def _process_sequence(obj, exclude_paths, current_path):
+    """Process set/tuple objects - convert to sorted list."""
+    processed_items = [_sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj]
+    filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
+    return sorted(filtered_items, key=str)
+
+
+def _sort_list_items(items):
+    """Sort list items using a stable sort key."""
+    def sort_key(item):
+        if isinstance(item, dict):
+            # Create a stable, sortable representation of the dictionary
+            return json.dumps(item, sort_keys=True)
+        elif isinstance(item, (list, tuple, set)):
+            # For nested sequences, use the first element as sort key
+            return str(item[0]) if item else ""
+        else:
+            return str(item)
+    
+    return sorted(items, key=sort_key)
+
+
 def print_files(files):
-    def set_handler(obj):
-        if isinstance(obj, (set, tuple)):
-            return list(obj)
-        raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+    from .utils import set_handler
 
     # Sort all lists recursively for consistent git diffs
-    sorted_files = _sort_and_clean_recursively(files)
+    # Exclude config.parts from sorting to preserve order
+    sorted_files = _sort_and_clean_recursively(files, exclude_paths=["config.parts"])
     print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))

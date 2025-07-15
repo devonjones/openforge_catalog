@@ -17,15 +17,30 @@ This document outlines the implementation strategy for the major enhancements to
 ALTER TABLE blueprints ADD COLUMN consolidated_paths text[];
 ALTER TABLE blueprints ADD COLUMN deprecated boolean DEFAULT false;
 ALTER TABLE blueprints ADD COLUMN successor_id uuid;
-ALTER TABLE blueprints ADD COLUMN predecessor_id uuid;
-ALTER TABLE blueprints ADD COLUMN openscad_source text;
-ALTER TABLE blueprints ADD COLUMN changelog text;
 
 -- Indexes for performance
 CREATE INDEX idx_blueprints_deprecated ON blueprints(deprecated);
 CREATE INDEX idx_blueprints_successor ON blueprints(successor_id);
-CREATE INDEX idx_blueprints_predecessor ON blueprints(predecessor_id);
 CREATE INDEX idx_blueprints_md5 ON blueprints(file_md5);
+```
+
+**Create openscad_source table:**
+```sql
+CREATE TABLE openscad_source (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    blueprint_id uuid NOT NULL REFERENCES blueprints(id) ON DELETE CASCADE,
+    openscad text NOT NULL,
+    created_at timestamp DEFAULT now(),
+    updated_at timestamp DEFAULT now()
+);
+
+-- Indexes for performance
+CREATE INDEX idx_openscad_source_blueprint_id ON openscad_source(blueprint_id);
+
+-- Trigger for automatic updated_at timestamp updates
+CREATE TRIGGER update_openscad_source_updated_at 
+BEFORE UPDATE ON openscad_source
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
 
 **Create tag priorities table:**
@@ -101,100 +116,88 @@ CREATE INDEX idx_tag_priorities_score ON tag_priorities(priority_score DESC);
 
 #### 2.1 Database Schema for Documentation
 
-**Update documentation table with types:**
+**Create new blueprint_documentation table:**
 ```sql
-ALTER TABLE documentation ADD COLUMN documentation_type text NOT NULL DEFAULT 'instruction';
-ALTER TABLE documentation ADD COLUMN created_by uuid; -- user who created it
-ALTER TABLE documentation ADD COLUMN updated_by uuid; -- user who last updated it
+-- Create documentation_type_enum for extensibility
+CREATE TYPE documentation_type_enum AS ENUM ('changelog');
 
--- New table for tag-based documentation
-CREATE TABLE tag_documentation (
+-- New blueprint_documentation table
+CREATE TABLE blueprint_documentation (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    tag text[] NOT NULL,
-    documentation_id uuid NOT NULL REFERENCES documentation(id),
+    blueprint_id uuid NOT NULL REFERENCES blueprints(id) ON DELETE CASCADE,
+    document text NOT NULL,
+    document_type documentation_type_enum NOT NULL DEFAULT 'changelog',
     created_at timestamp DEFAULT now(),
     updated_at timestamp DEFAULT now()
 );
 
--- Image namespace system for documentation
-CREATE TABLE documentation_images (
-    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    namespace text NOT NULL, -- e.g., 'blueprints', 'tags', 'changelogs'
-    image_name text NOT NULL,
-    image_id uuid NOT NULL REFERENCES images(id),
-    created_at timestamp DEFAULT now(),
-    UNIQUE(namespace, image_name)
-);
+-- Indexes for performance
+CREATE INDEX idx_blueprint_documentation_blueprint_id ON blueprint_documentation(blueprint_id);
+CREATE INDEX idx_blueprint_documentation_type ON blueprint_documentation(document_type);
 
-CREATE INDEX idx_tag_documentation_tag ON tag_documentation USING gin(tag);
-CREATE INDEX idx_documentation_type ON documentation(documentation_type);
-CREATE INDEX idx_documentation_images_namespace ON documentation_images(namespace);
+-- Trigger for automatic updated_at timestamp updates
+CREATE TRIGGER update_blueprint_documentation_updated_at 
+BEFORE UPDATE ON blueprint_documentation
+FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
 
 #### 2.2 Documentation Types and Structure
 
-**Documentation types:**
-- `instruction` - Blueprint assembly instructions
-- `changelog` - File version change descriptions  
-- `tag_guide` - Tag usage explanations
-- `tutorial` - Feature tutorials and guides
+**Documentation types (extensible enum):**
+- `changelog` - File version change descriptions (initial type)
 
-**Markdown with image references:**
-- Support standard markdown image syntax: `![alt text](image_name.jpg)`
-- Image resolution via namespace lookup
-- Automatic image availability validation
+**Text-based documentation:**
+- Simple text field for changelog entries
+- Future extensibility for additional documentation types
+- Direct relationship to blueprints via blueprint_id
 
 #### 2.3 Documentation API Implementation
 
 **Core endpoints:**
 ```typescript
-// CRUD for documentation
-GET/POST/PUT/DELETE /api/documentation/{doc_id}
-
-// Blueprint documentation (combined view)
+// Blueprint documentation
 GET /api/blueprints/{blueprint_id}/documentation
 Response: {
-  blueprint_docs: Documentation[],
-  tag_docs: { [tag: string]: Documentation[] },
-  rendered_html: string // server-side markdown rendering
+  documentation: BlueprintDocumentation[]
 }
 
-// Tag documentation  
-GET/POST /api/tags/{tag}/documentation
-PUT/DELETE /api/tags/{tag}/documentation/{doc_id}
+// Create changelog for specific blueprint
+POST /api/blueprints/{blueprint_id}/documentation
+Body: { 
+  document: string,
+  document_type: 'changelog'
+}
 
-// Image namespace management
-GET/POST /api/documentation/images/{namespace}
-DELETE /api/documentation/images/{namespace}/{image_name}
+// Update specific documentation entry
+PUT /api/blueprints/{blueprint_id}/documentation/{doc_id}
+DELETE /api/blueprints/{blueprint_id}/documentation/{doc_id}
 ```
 
 #### 2.4 Frontend Documentation Interface
 
 **Blueprint documentation display:**
-- Combined view showing blueprint + tag documentation
-- Markdown rendering with image support
-- Collapsible sections for each tag's documentation
+- Simple text display for changelog entries
+- List of documentation entries by type
 - Edit mode for authenticated admin users
 
 **Admin documentation editor:**
-- Markdown editor with live preview
-- Image upload and namespace management
-- Documentation type selection
-- Tag association interface
+- Simple text editor for changelog entries
+- Documentation type selection (extensible)
+- Direct association with blueprints
 
 #### 2.5 Initial Content Migration
 
-**Test with blueprint documentation:**
-- Create instruction documentation for ~20 existing blueprints
-- Establish documentation patterns and templates
-- Test image referencing system
-- Validate combined rendering logic
+**Test with blueprint changelogs:**
+- Create changelog documentation for ~20 existing blueprints
+- Establish changelog patterns and templates
+- Test simple text documentation system
+- Validate direct blueprint association
 
 **Success Criteria:**
-- Documentation system handles markdown + images correctly
-- Blueprint + tag documentation combines properly
+- Documentation system handles text changelogs correctly
+- Blueprint documentation association works properly
 - Admin interface allows efficient content creation
-- System ready for changelog integration in later phases
+- System ready for additional documentation types in future phases
 
 ## Phase 3: Tag Priority System and Default Population
 
@@ -402,19 +405,18 @@ Response: {
   versions: {
     id: string,
     created_at: string,
-    changelog_docs: Documentation[], // type='changelog'
+    changelog_docs: BlueprintDocumentation[], // document_type='changelog'
     file_size: number,
     deprecated: boolean,
-    successor_id?: string,
-    predecessor_id?: string
+    successor_id?: string
   }[]
 }
 
 // Create changelog for specific version
-POST /api/blueprints/{blueprint_id}/changelog
+POST /api/blueprints/{blueprint_id}/documentation
 Body: { 
-  document: string, // markdown content
-  documentation_name: string 
+  document: string, // text content
+  document_type: 'changelog'
 }
 ```
 
@@ -452,10 +454,10 @@ Body: {
 
 #### 7.1 Blueprint Metadata Updates
 
-**Populate openscad_source field:**
+**Populate openscad_source table:**
 - Identify blueprints with customizable versions
 - Map to corresponding OpenSCAD files
-- Update blueprint records with source file paths
+- Create openscad_source records linked to blueprints
 
 #### 7.2 Deep Linking Implementation
 

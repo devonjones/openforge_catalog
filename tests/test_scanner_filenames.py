@@ -1090,7 +1090,7 @@ def test_sort_and_clean_recursively_removes_empty_structures():
     }
     
     # Process the data
-    result = _sort_and_clean_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data, exclude_paths=["config.parts"])
     
     # Check that empty structures are removed
     assert "config" not in result  # Empty dict removed
@@ -1123,7 +1123,7 @@ def test_sort_lists_recursively_preserves_non_empty_structures():
     }
     
     # Process the data
-    result = _sort_and_clean_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data, exclude_paths=["config.parts"])
     
     # Check that non-empty structures are preserved
     assert "config" in result
@@ -1154,7 +1154,7 @@ def test_sort_lists_recursively_handles_nested_empty_structures():
     }
     
     # Process the data
-    result = _sort_and_clean_recursively(test_data)
+    result = _sort_and_clean_recursively(test_data, exclude_paths=["config.parts"])
     
     # Check that all empty structures are removed at all levels
     assert "simple_empty" not in result
@@ -1168,6 +1168,39 @@ def test_sort_lists_recursively_handles_nested_empty_structures():
     
     # Check that valid data is preserved
     assert result["level1"]["level2"]["level3"]["valid"] == "data"
+
+
+def test_sort_and_clean_recursively_excludes_config_parts():
+    """Test that _sort_and_clean_recursively excludes config.parts from sorting"""
+    # Test data with config.parts that should preserve order
+    test_data = {
+        "name": "test",
+        "config": {
+            "parts": [
+                {"name": "part3", "tags": {"require": [{"tag": "shape|wall"}]}},
+                {"name": "part1", "tags": {"require": [{"tag": "shape|base"}]}},
+                {"name": "part2", "tags": {"require": [{"tag": "shape|floor"}]}}
+            ]
+        },
+        "tags": ["tag2", "tag1", "tag3"],  # This should be sorted
+        "other_list": ["item3", "item1", "item2"]  # This should be sorted
+    }
+    
+    # Process the data
+    result = _sort_and_clean_recursively(test_data, exclude_paths=["config.parts"])
+    
+    # Check that config.parts order is preserved (not sorted)
+    assert "config" in result
+    assert "parts" in result["config"]
+    parts = result["config"]["parts"]
+    assert len(parts) == 3
+    assert parts[0]["name"] == "part3"  # Original order preserved
+    assert parts[1]["name"] == "part1"  # Original order preserved
+    assert parts[2]["name"] == "part2"  # Original order preserved
+    
+    # Check that other lists are sorted
+    assert result["tags"] == ["tag1", "tag2", "tag3"]  # Sorted
+    assert result["other_list"] == ["item1", "item2", "item3"]  # Sorted
 
 
 def test_metadata_processing_with_pipe_delimited_tags():

@@ -8,12 +8,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -21,6 +15,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -38,12 +38,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:12.386112+00:00",
             "file": "necro#floor.1x1.openforge.stl",
             "file_modified_at": "2024-03-11T22:04:10.784837+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.1x1.openforge.stl",
             "md5": "f5534a5235caefc58703bcc41a449886",
-            "modified": "2024-03-11T22:04:10.784837+00:00",
             "size": 2356184,
             "storage_address": "https://objects.openforge.tools/models/f5534a/f5534a5235caefc58703bcc41a449886.stl"
         },
@@ -73,12 +71,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -86,6 +78,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -103,12 +101,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:13.459896+00:00",
             "file": "necro#floor.2x1.openforge.stl",
             "file_modified_at": "2024-03-11T22:11:44.575682+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.2x1.openforge.stl",
             "md5": "9f7ebb0fb179e4a2d9770f8820cef99e",
-            "modified": "2024-03-11T22:11:44.575682+00:00",
             "size": 4688684,
             "storage_address": "https://objects.openforge.tools/models/9f7ebb/9f7ebb0fb179e4a2d9770f8820cef99e.stl"
         },
@@ -138,12 +134,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -151,6 +141,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -168,12 +164,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:14.877893+00:00",
             "file": "necro#floor.2x2.openforge.stl",
             "file_modified_at": "2024-03-11T22:15:14.142747+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.2x2.openforge.stl",
             "md5": "3e6054e5b4614e04d848499f95958888",
-            "modified": "2024-03-11T22:15:14.142747+00:00",
             "size": 8667784,
             "storage_address": "https://objects.openforge.tools/models/3e6054/3e6054e5b4614e04d848499f95958888.stl"
         },
@@ -203,12 +197,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -216,6 +204,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -233,12 +227,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:16.212461+00:00",
             "file": "necro#floor.3x1.openforge.stl",
             "file_modified_at": "2024-03-12T22:38:14.116473+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.3x1.openforge.stl",
             "md5": "68722ad0fe26fd84b19e50eb855107f9",
-            "modified": "2024-03-12T22:38:14.116473+00:00",
             "size": 6569484,
             "storage_address": "https://objects.openforge.tools/models/68722a/68722ad0fe26fd84b19e50eb855107f9.stl"
         },
@@ -268,12 +260,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -281,6 +267,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -298,12 +290,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:18.776508+00:00",
             "file": "necro#floor.3x3.openforge.stl",
             "file_modified_at": "2024-03-12T22:37:19.224803+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.3x3.openforge.stl",
             "md5": "3a6a6355df2055f4553c026cd6e3da45",
-            "modified": "2024-03-12T22:37:19.224803+00:00",
             "size": 18584984,
             "storage_address": "https://objects.openforge.tools/models/3a6a63/3a6a6355df2055f4553c026cd6e3da45.stl"
         },
@@ -333,12 +323,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -346,6 +330,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -363,12 +353,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:21.080858+00:00",
             "file": "necro#floor.4x1.openforge.stl",
             "file_modified_at": "2024-03-12T22:37:01.553000+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.4x1.openforge.stl",
             "md5": "d600f09f0a2d0695f3eca25458de5571",
-            "modified": "2024-03-12T22:37:01.553000+00:00",
             "size": 8734284,
             "storage_address": "https://objects.openforge.tools/models/d600f0/d600f09f0a2d0695f3eca25458de5571.stl"
         },
@@ -398,12 +386,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -411,6 +393,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -428,12 +416,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:24.927025+00:00",
             "file": "necro#floor.4x2.openforge.stl",
             "file_modified_at": "2024-03-12T22:30:24.281923+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.4x2.openforge.stl",
             "md5": "3d85f54e935a4e4d6bd2b6358da2e98f",
-            "modified": "2024-03-12T22:30:24.281923+00:00",
             "size": 16787284,
             "storage_address": "https://objects.openforge.tools/models/3d85f5/3d85f54e935a4e4d6bd2b6358da2e98f.stl"
         },
@@ -463,12 +449,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -476,6 +456,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -493,12 +479,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:29.664098+00:00",
             "file": "necro#floor.4x4.openforge.stl",
             "file_modified_at": "2024-03-12T22:54:38.017356+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.4x4.openforge.stl",
             "md5": "adbf77adbde15c006eeebe667cbf3e5e",
-            "modified": "2024-03-12T22:54:38.017356+00:00",
             "size": 32872784,
             "storage_address": "https://objects.openforge.tools/models/adbf77/adbf77adbde15c006eeebe667cbf3e5e.stl"
         },
@@ -528,12 +512,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -541,6 +519,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -558,12 +542,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:33.467397+00:00",
             "file": "necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
             "file_modified_at": "2024-04-23T02:13:31.307243+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
             "md5": "5ce0eb9fe940602da6e8c10406aa90ea",
-            "modified": "2024-04-23T02:13:31.307243+00:00",
             "size": 24727884,
             "storage_address": "https://objects.openforge.tools/models/5ce0eb/5ce0eb9fe940602da6e8c10406aa90ea.stl"
         },
@@ -594,12 +576,6 @@
                     "tags": {
                         "constrain": [
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
                                 "tag": "shape"
                             },
                             {
@@ -607,6 +583,12 @@
                             },
                             {
                                 "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
                             }
                         ],
                         "deny": [
@@ -624,12 +606,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:32:37.122750+00:00",
             "file": "necro#floor+necromantic_circle.4x4.openforge.stl",
             "file_modified_at": "2024-04-21T23:14:07.375495+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle.4x4.openforge.stl",
             "md5": "d3de91c153e9928c06f7c9a198487fda",
-            "modified": "2024-04-21T23:14:07.375495+00:00",
             "size": 25929084,
             "storage_address": "https://objects.openforge.tools/models/d3de91/d3de91c153e9928c06f7c9a198487fda.stl"
         },
@@ -646,6 +626,744 @@
             "shape|floor|necromantic_circle",
             "size|depth|4",
             "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,wall+left.2x.openforge,side+dragonlock.stl",
+            "file_modified_at": "2024-03-19T03:47:33.020041+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+left.2x.openforge,side+dragonlock.stl",
+            "md5": "049e3718f5b6204440ac198c7dc4edad",
+            "size": 13014484,
+            "storage_address": "https://objects.openforge.tools/models/049e37/049e3718f5b6204440ac198c7dc4edad.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/049e37/049e3718f5b6204440ac198c7dc4edad.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall|left",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,wall+left.2x.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:47:14.927022+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+left.2x.openforge,side.stl",
+            "md5": "2d5fada50208b23b0288c31d3a41d2ac",
+            "size": 12679084,
+            "storage_address": "https://objects.openforge.tools/models/2d5fad/2d5fada50208b23b0288c31d3a41d2ac.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2d5fad/2d5fada50208b23b0288c31d3a41d2ac.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall|left",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,wall+right.2x.openforge,side+dragonlock.stl",
+            "file_modified_at": "2024-03-19T03:47:24.515548+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+right.2x.openforge,side+dragonlock.stl",
+            "md5": "f5100a649185ffdd2759fc1b9dbd5700",
+            "size": 13001084,
+            "storage_address": "https://objects.openforge.tools/models/f5100a/f5100a649185ffdd2759fc1b9dbd5700.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f5100a/f5100a649185ffdd2759fc1b9dbd5700.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall|right",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner_wall+right.2x.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:47:02.545080+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner_wall+right.2x.openforge,side.stl",
+            "md5": "4a59e295db9bb1e160a8cc15b92ef7c6",
+            "size": 12664884,
+            "storage_address": "https://objects.openforge.tools/models/4a59e2/4a59e295db9bb1e160a8cc15b92ef7c6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4a59e2/4a59e295db9bb1e160a8cc15b92ef7c6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|corner_wall",
+            "component|corner_wall|right",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,floor+s2w.1x1.openforge.stl",
+            "file_modified_at": "2024-03-14T20:49:01.591935+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.1x1.openforge.stl",
+            "md5": "99de0d15d4ea38836252f1942f08b98b",
+            "size": 615684,
+            "storage_address": "https://objects.openforge.tools/models/99de0d/99de0d15d4ea38836252f1942f08b98b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/99de0d/99de0d15d4ea38836252f1942f08b98b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|corner",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|1",
+            "size|width|1",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,floor+s2w.2x2.openforge.stl",
+            "file_modified_at": "2024-03-14T20:53:33.113921+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.2x2.openforge.stl",
+            "md5": "c77ba8878b575426c6b542084025cdfc",
+            "size": 5287184,
+            "storage_address": "https://objects.openforge.tools/models/c77ba8/c77ba8878b575426c6b542084025cdfc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c77ba8/c77ba8878b575426c6b542084025cdfc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|corner",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,floor+s2w.3x3.openforge.stl",
+            "file_modified_at": "2024-03-14T21:03:55.349599+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.3x3.openforge.stl",
+            "md5": "7d490381589be2906cd95b6139908141",
+            "size": 13573384,
+            "storage_address": "https://objects.openforge.tools/models/7d4903/7d490381589be2906cd95b6139908141.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7d4903/7d490381589be2906cd95b6139908141.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|corner",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|3",
+            "size|width|3",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#corner,floor+s2w.4x4.openforge.stl",
+            "file_modified_at": "2024-03-14T21:15:24.063949+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.4x4.openforge.stl",
+            "md5": "91feee4f6d2113e0e86b8032b6632bd2",
+            "size": 25630384,
+            "storage_address": "https://objects.openforge.tools/models/91feee/91feee4f6d2113e0e86b8032b6632bd2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/91feee/91feee4f6d2113e0e86b8032b6632bd2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|corner",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|4",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.1x1.openforge.stl",
+            "file_modified_at": "2024-03-14T16:15:41.593406+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.1x1.openforge.stl",
+            "md5": "a89b7f861654cc68f03f66e2dd48f030",
+            "size": 1151584,
+            "storage_address": "https://objects.openforge.tools/models/a89b7f/a89b7f861654cc68f03f66e2dd48f030.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a89b7f/a89b7f861654cc68f03f66e2dd48f030.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|1",
+            "size|width|1",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.2x1.openforge.stl",
+            "file_modified_at": "2024-03-14T16:15:09.559695+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.2x1.openforge.stl",
+            "md5": "410f83dd6e30066dc349e7b884be2305",
+            "size": 2697384,
+            "storage_address": "https://objects.openforge.tools/models/410f83/410f83dd6e30066dc349e7b884be2305.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/410f83/410f83dd6e30066dc349e7b884be2305.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|1",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.2x2.openforge.stl",
+            "file_modified_at": "2024-03-14T16:14:33.873255+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.2x2.openforge.stl",
+            "md5": "762654b6ca18b00c00a94ca77fe1c723",
+            "size": 6705384,
+            "storage_address": "https://objects.openforge.tools/models/762654/762654b6ca18b00c00a94ca77fe1c723.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/762654/762654b6ca18b00c00a94ca77fe1c723.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.3x1.openforge.stl",
+            "file_modified_at": "2024-03-14T16:13:39.431554+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.3x1.openforge.stl",
+            "md5": "adddfea72a7ec68452c906f9478b2466",
+            "size": 3914484,
+            "storage_address": "https://objects.openforge.tools/models/adddfe/adddfea72a7ec68452c906f9478b2466.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/adddfe/adddfea72a7ec68452c906f9478b2466.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|1",
+            "size|width|3",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.3x3.openforge.stl",
+            "file_modified_at": "2024-03-14T16:13:00.076230+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.3x3.openforge.stl",
+            "md5": "32c2c68b53f29ed280de6ab9207405ed",
+            "size": 16668384,
+            "storage_address": "https://objects.openforge.tools/models/32c2c6/32c2c68b53f29ed280de6ab9207405ed.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/32c2c6/32c2c68b53f29ed280de6ab9207405ed.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|3",
+            "size|width|3",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.4x1.openforge.stl",
+            "file_modified_at": "2024-03-14T16:10:26.249010+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x1.openforge.stl",
+            "md5": "eff1372d04f23c6d3390109a34d2223e",
+            "size": 5051884,
+            "storage_address": "https://objects.openforge.tools/models/eff137/eff1372d04f23c6d3390109a34d2223e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/eff137/eff1372d04f23c6d3390109a34d2223e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|1",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.4x2.openforge.stl",
+            "file_modified_at": "2024-03-14T16:09:27.523972+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x2.openforge.stl",
+            "md5": "b83d1a0ab3cf21def4532814cceac5d5",
+            "size": 13663984,
+            "storage_address": "https://objects.openforge.tools/models/b83d1a/b83d1a0ab3cf21def4532814cceac5d5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b83d1a/b83d1a0ab3cf21def4532814cceac5d5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#wall,floor+s2w.4x4.openforge.stl",
+            "file_modified_at": "2024-03-14T16:18:36.089667+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x4.openforge.stl",
+            "md5": "c2079cbff8b9c8c3553e69888b419eac",
+            "size": 30353684,
+            "storage_address": "https://objects.openforge.tools/models/c2079c/c2079cbff8b9c8c3553e69888b419eac.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c2079c/c2079cbff8b9c8c3553e69888b419eac.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|wall",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "size|depth|4",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro_exsanguination_alter.stl",
+            "file_modified_at": "2024-04-21T23:11:00.402775+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/scatter/necro_exsanguination_alter.stl",
+            "md5": "393766e4a6abd9188fadfe05a5e5e4cf",
+            "size": 37340784,
+            "storage_address": "https://objects.openforge.tools/models/393766/393766e4a6abd9188fadfe05a5e5e4cf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/393766/393766e4a6abd9188fadfe05a5e5e4cf.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "scatter|alter",
+            "scatter|necromancer|exsanguination_alter"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+I.dragonlock.stl",
+            "file_modified_at": "2024-03-10T20:48:19.501322+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+I.dragonlock.stl",
+            "md5": "d25db181d333a74b99384b506368e819",
+            "size": 3749484,
+            "storage_address": "https://objects.openforge.tools/models/d25db1/d25db181d333a74b99384b506368e819.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d25db1/d25db181d333a74b99384b506368e819.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|column",
+            "size|column_shape|I",
+            "size|openlock|I",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+L.dragonlock.stl",
+            "file_modified_at": "2024-03-10T20:48:57.467301+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+L.dragonlock.stl",
+            "md5": "6b18a43a4f7c36cef94938499816d481",
+            "size": 3667384,
+            "storage_address": "https://objects.openforge.tools/models/6b18a4/6b18a43a4f7c36cef94938499816d481.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b18a4/6b18a43a4f7c36cef94938499816d481.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|column",
+            "size|column_shape|L",
+            "size|openlock|L",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+O.dragonlock.stl",
+            "file_modified_at": "2024-03-10T20:49:15.563221+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+O.dragonlock.stl",
+            "md5": "8d5a91bfbb9abd89aaa63ba46b9eb180",
+            "size": 3564684,
+            "storage_address": "https://objects.openforge.tools/models/8d5a91/8d5a91bfbb9abd89aaa63ba46b9eb180.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8d5a91/8d5a91bfbb9abd89aaa63ba46b9eb180.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|column",
+            "size|column_shape|O",
+            "size|openlock|O",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+T.dragonlock.stl",
+            "file_modified_at": "2024-03-10T20:49:47.634226+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+T.dragonlock.stl",
+            "md5": "d566a64f030d7bacb2adffa08b909837",
+            "size": 3722784,
+            "storage_address": "https://objects.openforge.tools/models/d566a6/d566a64f030d7bacb2adffa08b909837.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d566a6/d566a64f030d7bacb2adffa08b909837.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|column",
+            "size|column_shape|T",
+            "size|openlock|T",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+X.dragonlock.stl",
+            "file_modified_at": "2024-03-10T20:50:00.733804+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+X.dragonlock.stl",
+            "md5": "05625932c965c88a99886269f217a918",
+            "size": 3709184,
+            "storage_address": "https://objects.openforge.tools/models/056259/05625932c965c88a99886269f217a918.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/056259/05625932c965c88a99886269f217a918.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|column",
+            "size|column_shape|X",
+            "size|openlock|X",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+I.openlock.stl",
+            "file_modified_at": "2024-03-10T20:48:06.430385+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+I.openlock.stl",
+            "md5": "90a8dd028b5d3b0e09afc897065d624a",
+            "size": 3415284,
+            "storage_address": "https://objects.openforge.tools/models/90a8dd/90a8dd028b5d3b0e09afc897065d624a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/90a8dd/90a8dd028b5d3b0e09afc897065d624a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|I",
+            "size|openlock|I",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+L.openlock.stl",
+            "file_modified_at": "2024-03-10T20:48:46.078928+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+L.openlock.stl",
+            "md5": "02c8c3098e0765a49febde54050d0ecc",
+            "size": 3309484,
+            "storage_address": "https://objects.openforge.tools/models/02c8c3/02c8c3098e0765a49febde54050d0ecc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/02c8c3/02c8c3098e0765a49febde54050d0ecc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|L",
+            "size|openlock|L",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+O.openlock.stl",
+            "file_modified_at": "2024-03-10T20:49:25.825177+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+O.openlock.stl",
+            "md5": "3ab1d5b4a1747e02fbbe0400e4072964",
+            "size": 3207684,
+            "storage_address": "https://objects.openforge.tools/models/3ab1d5/3ab1d5b4a1747e02fbbe0400e4072964.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3ab1d5/3ab1d5b4a1747e02fbbe0400e4072964.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|O",
+            "size|openlock|O",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+T.openlock.stl",
+            "file_modified_at": "2024-03-10T20:49:36.500918+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+T.openlock.stl",
+            "md5": "c567b7dda658bdb3f0c7c99ccd9819eb",
+            "size": 3259584,
+            "storage_address": "https://objects.openforge.tools/models/c567b7/c567b7dda658bdb3f0c7c99ccd9819eb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c567b7/c567b7dda658bdb3f0c7c99ccd9819eb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|T",
+            "size|openlock|T",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "necro#column.col+X.openlock.stl",
+            "file_modified_at": "2024-03-10T20:50:11.351292+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+X.openlock.stl",
+            "md5": "792af7b1f8f7b7f21b38b8b4acf4958e",
+            "size": 3135384,
+            "storage_address": "https://objects.openforge.tools/models/792af7/792af7b1f8f7b7f21b38b8b4acf4958e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/792af7/792af7b1f8f7b7f21b38b8b4acf4958e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|X",
+            "size|openlock|X",
             "texture|necro"
         ],
         "type": "model"
@@ -678,12 +1396,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:40.182507+00:00",
             "file": "necro#wall.A.openforge.stl",
             "file_modified_at": "2024-03-19T03:43:01.377183+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/necro#wall.A.openforge.stl",
             "md5": "ea46e72bf154c6c366ba424518943916",
-            "modified": "2024-03-19T03:43:01.377183+00:00",
             "size": 15562384,
             "storage_address": "https://objects.openforge.tools/models/ea46e7/ea46e72bf154c6c366ba424518943916.stl"
         },
@@ -733,12 +1449,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:42.428464+00:00",
             "file": "necro#wall.BA.openforge.stl",
             "file_modified_at": "2024-03-19T03:45:32.345318+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/necro#wall.BA.openforge.stl",
             "md5": "676cd47c5da317d541ad089f1de1b2ad",
-            "modified": "2024-03-19T03:45:32.345318+00:00",
             "size": 12663684,
             "storage_address": "https://objects.openforge.tools/models/676cd4/676cd47c5da317d541ad089f1de1b2ad.stl"
         },
@@ -788,12 +1502,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:46.393911+00:00",
             "file": "necro#wall.D.openforge.stl",
             "file_modified_at": "2024-03-19T03:51:19.299864+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/necro#wall.D.openforge.stl",
             "md5": "004114532ec9edfe929fc498f291263c",
-            "modified": "2024-03-19T03:51:19.299864+00:00",
             "size": 20266484,
             "storage_address": "https://objects.openforge.tools/models/004114/004114532ec9edfe929fc498f291263c.stl"
         },
@@ -843,12 +1555,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:48.805519+00:00",
             "file": "necro#wall.IA.openforge.stl",
             "file_modified_at": "2024-03-19T03:55:58.335743+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/necro#wall.IA.openforge.stl",
             "md5": "a10004ce40ca1aac3f82739fe84adb56",
-            "modified": "2024-03-19T03:55:58.335743+00:00",
             "size": 11950284,
             "storage_address": "https://objects.openforge.tools/models/a10004/a10004ce40ca1aac3f82739fe84adb56.stl"
         },
@@ -898,12 +1608,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:52.113251+00:00",
             "file": "necro#wall.Q.openforge.stl",
             "file_modified_at": "2024-03-19T03:54:03.709245+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/necro#wall.Q.openforge.stl",
             "md5": "20203fdfc03e1d83579615381747454d",
-            "modified": "2024-03-19T03:54:03.709245+00:00",
             "size": 25422984,
             "storage_address": "https://objects.openforge.tools/models/20203f/20203fdfc03e1d83579615381747454d.stl"
         },
@@ -953,12 +1661,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:54.988283+00:00",
             "file": "necro#wall.A.openforge,side.stl",
             "file_modified_at": "2024-03-19T03:43:15.004594+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.A.openforge,side.stl",
             "md5": "995f0dc500db370f26de65d6d5cbab37",
-            "modified": "2024-03-19T03:43:15.004594+00:00",
             "size": 15598384,
             "storage_address": "https://objects.openforge.tools/models/995f0d/995f0dc500db370f26de65d6d5cbab37.stl"
         },
@@ -1010,12 +1716,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:33:57.163896+00:00",
             "file": "necro#wall.BA.openforge,side.stl",
             "file_modified_at": "2024-03-19T03:45:48.355236+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.BA.openforge,side.stl",
             "md5": "baba999f9363e9138704781287af8ec0",
-            "modified": "2024-03-19T03:45:48.355236+00:00",
             "size": 12681284,
             "storage_address": "https://objects.openforge.tools/models/baba99/baba999f9363e9138704781287af8ec0.stl"
         },
@@ -1067,12 +1771,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:00.232315+00:00",
             "file": "necro#wall.D.openforge,side.stl",
             "file_modified_at": "2024-03-19T03:51:28.720284+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.D.openforge,side.stl",
             "md5": "032a151c66a9ed44a9cbad45bebbbfb0",
-            "modified": "2024-03-19T03:51:28.720284+00:00",
             "size": 20304184,
             "storage_address": "https://objects.openforge.tools/models/032a15/032a151c66a9ed44a9cbad45bebbbfb0.stl"
         },
@@ -1124,12 +1826,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:02.735522+00:00",
             "file": "necro#wall.IA.openforge,side.stl",
             "file_modified_at": "2024-03-19T03:56:07.796339+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.IA.openforge,side.stl",
             "md5": "6104ae967b7f24b119ad22ec34b09d33",
-            "modified": "2024-03-19T03:56:07.796339+00:00",
             "size": 11982584,
             "storage_address": "https://objects.openforge.tools/models/6104ae/6104ae967b7f24b119ad22ec34b09d33.stl"
         },
@@ -1181,12 +1881,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:06.266111+00:00",
             "file": "necro#wall.Q.openforge,side.stl",
             "file_modified_at": "2024-03-19T03:54:20.426090+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.Q.openforge,side.stl",
             "md5": "95e4995e853aef015f327c49af8f1162",
-            "modified": "2024-03-19T03:54:20.426090+00:00",
             "size": 25486784,
             "storage_address": "https://objects.openforge.tools/models/95e499/95e4995e853aef015f327c49af8f1162.stl"
         },
@@ -1238,12 +1936,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:09.052260+00:00",
             "file": "necro#wall.A.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:43:32.237772+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.A.openforge+dragonlock,side.stl",
             "md5": "137493ced39130e81a0d00ac3f2b121f",
-            "modified": "2024-03-19T03:43:32.237772+00:00",
             "size": 16268484,
             "storage_address": "https://objects.openforge.tools/models/137493/137493ced39130e81a0d00ac3f2b121f.stl"
         },
@@ -1296,12 +1992,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:11.651176+00:00",
             "file": "necro#wall.BA.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:46:00.397666+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.BA.openforge+dragonlock,side.stl",
             "md5": "abdc092a94c3e6aeb2a5dd2e4b50ecbe",
-            "modified": "2024-03-19T03:46:00.397666+00:00",
             "size": 13351684,
             "storage_address": "https://objects.openforge.tools/models/abdc09/abdc092a94c3e6aeb2a5dd2e4b50ecbe.stl"
         },
@@ -1354,12 +2048,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:14.971193+00:00",
             "file": "necro#wall.D.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:51:43.714000+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.D.openforge+dragonlock,side.stl",
             "md5": "b6ae152bbd88187e817d0b02b24d894e",
-            "modified": "2024-03-19T03:51:43.714000+00:00",
             "size": 20965284,
             "storage_address": "https://objects.openforge.tools/models/b6ae15/b6ae152bbd88187e817d0b02b24d894e.stl"
         },
@@ -1412,12 +2104,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:17.492684+00:00",
             "file": "necro#wall.IA.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:56:17.668867+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.IA.openforge+dragonlock,side.stl",
             "md5": "56f0d83e9089999082bfc78620fdf55c",
-            "modified": "2024-03-19T03:56:17.668867+00:00",
             "size": 12656184,
             "storage_address": "https://objects.openforge.tools/models/56f0d8/56f0d83e9089999082bfc78620fdf55c.stl"
         },
@@ -1470,12 +2160,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T23:34:20.734613+00:00",
             "file": "necro#wall.Q.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:54:32.014688+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.Q.openforge+dragonlock,side.stl",
             "md5": "75b176822100f2ae47c3e41556450bda",
-            "modified": "2024-03-19T03:54:32.014688+00:00",
             "size": 26155184,
             "storage_address": "https://objects.openforge.tools/models/75b176/75b176822100f2ae47c3e41556450bda.stl"
         },
@@ -1502,804 +2190,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:32:39.480374+00:00",
-            "file": "necro#corner,wall+left.2x.openforge,side+dragonlock.stl",
-            "file_modified_at": "2024-03-19T03:47:33.020041+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+left.2x.openforge,side+dragonlock.stl",
-            "md5": "049e3718f5b6204440ac198c7dc4edad",
-            "modified": "2024-03-19T03:47:33.020041+00:00",
-            "size": 13014484,
-            "storage_address": "https://objects.openforge.tools/models/049e37/049e3718f5b6204440ac198c7dc4edad.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/049e37/049e3718f5b6204440ac198c7dc4edad.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall|left",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|corner",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:41.648720+00:00",
-            "file": "necro#corner,wall+left.2x.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:47:14.927022+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+left.2x.openforge,side.stl",
-            "md5": "2d5fada50208b23b0288c31d3a41d2ac",
-            "modified": "2024-03-19T03:47:14.927022+00:00",
-            "size": 12679084,
-            "storage_address": "https://objects.openforge.tools/models/2d5fad/2d5fada50208b23b0288c31d3a41d2ac.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/2d5fad/2d5fada50208b23b0288c31d3a41d2ac.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall|left",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:43.541165+00:00",
-            "file": "necro#corner,wall+right.2x.openforge,side+dragonlock.stl",
-            "file_modified_at": "2024-03-19T03:47:24.515548+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner,wall+right.2x.openforge,side+dragonlock.stl",
-            "md5": "f5100a649185ffdd2759fc1b9dbd5700",
-            "modified": "2024-03-19T03:47:24.515548+00:00",
-            "size": 13001084,
-            "storage_address": "https://objects.openforge.tools/models/f5100a/f5100a649185ffdd2759fc1b9dbd5700.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f5100a/f5100a649185ffdd2759fc1b9dbd5700.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall|right",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|corner",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:46.994164+00:00",
-            "file": "necro#corner_wall+right.2x.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:47:02.545080+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/corner/necro#corner_wall+right.2x.openforge,side.stl",
-            "md5": "4a59e295db9bb1e160a8cc15b92ef7c6",
-            "modified": "2024-03-19T03:47:02.545080+00:00",
-            "size": 12664884,
-            "storage_address": "https://objects.openforge.tools/models/4a59e2/4a59e295db9bb1e160a8cc15b92ef7c6.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/4a59e2/4a59e295db9bb1e160a8cc15b92ef7c6.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|corner_wall",
-            "component|corner_wall|right",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:48.717388+00:00",
-            "file": "necro#corner,floor+s2w.1x1.openforge.stl",
-            "file_modified_at": "2024-03-14T20:49:01.591935+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.1x1.openforge.stl",
-            "md5": "99de0d15d4ea38836252f1942f08b98b",
-            "modified": "2024-03-14T20:49:01.591935+00:00",
-            "size": 615684,
-            "storage_address": "https://objects.openforge.tools/models/99de0d/99de0d15d4ea38836252f1942f08b98b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/99de0d/99de0d15d4ea38836252f1942f08b98b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "connection|openforge",
-            "shape|corner",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|1",
-            "size|width|1",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:49.772872+00:00",
-            "file": "necro#corner,floor+s2w.2x2.openforge.stl",
-            "file_modified_at": "2024-03-14T20:53:33.113921+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.2x2.openforge.stl",
-            "md5": "c77ba8878b575426c6b542084025cdfc",
-            "modified": "2024-03-14T20:53:33.113921+00:00",
-            "size": 5287184,
-            "storage_address": "https://objects.openforge.tools/models/c77ba8/c77ba8878b575426c6b542084025cdfc.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c77ba8/c77ba8878b575426c6b542084025cdfc.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "connection|openforge",
-            "shape|corner",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|2",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:52.026052+00:00",
-            "file": "necro#corner,floor+s2w.3x3.openforge.stl",
-            "file_modified_at": "2024-03-14T21:03:55.349599+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.3x3.openforge.stl",
-            "md5": "7d490381589be2906cd95b6139908141",
-            "modified": "2024-03-14T21:03:55.349599+00:00",
-            "size": 13573384,
-            "storage_address": "https://objects.openforge.tools/models/7d4903/7d490381589be2906cd95b6139908141.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7d4903/7d490381589be2906cd95b6139908141.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "connection|openforge",
-            "shape|corner",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|3",
-            "size|width|3",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:55.921237+00:00",
-            "file": "necro#corner,floor+s2w.4x4.openforge.stl",
-            "file_modified_at": "2024-03-14T21:15:24.063949+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#corner+s2w/necro#corner,floor+s2w.4x4.openforge.stl",
-            "md5": "91feee4f6d2113e0e86b8032b6632bd2",
-            "modified": "2024-03-14T21:15:24.063949+00:00",
-            "size": 25630384,
-            "storage_address": "https://objects.openforge.tools/models/91feee/91feee4f6d2113e0e86b8032b6632bd2.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/91feee/91feee4f6d2113e0e86b8032b6632bd2.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "connection|openforge",
-            "shape|corner",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|4",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:57.533309+00:00",
-            "file": "necro#wall,floor+s2w.1x1.openforge.stl",
-            "file_modified_at": "2024-03-14T16:15:41.593406+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.1x1.openforge.stl",
-            "md5": "a89b7f861654cc68f03f66e2dd48f030",
-            "modified": "2024-03-14T16:15:41.593406+00:00",
-            "size": 1151584,
-            "storage_address": "https://objects.openforge.tools/models/a89b7f/a89b7f861654cc68f03f66e2dd48f030.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a89b7f/a89b7f861654cc68f03f66e2dd48f030.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|1",
-            "size|width|1",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:32:58.687406+00:00",
-            "file": "necro#wall,floor+s2w.2x1.openforge.stl",
-            "file_modified_at": "2024-03-14T16:15:09.559695+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.2x1.openforge.stl",
-            "md5": "410f83dd6e30066dc349e7b884be2305",
-            "modified": "2024-03-14T16:15:09.559695+00:00",
-            "size": 2697384,
-            "storage_address": "https://objects.openforge.tools/models/410f83/410f83dd6e30066dc349e7b884be2305.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/410f83/410f83dd6e30066dc349e7b884be2305.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|1",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:01.137572+00:00",
-            "file": "necro#wall,floor+s2w.2x2.openforge.stl",
-            "file_modified_at": "2024-03-14T16:14:33.873255+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.2x2.openforge.stl",
-            "md5": "762654b6ca18b00c00a94ca77fe1c723",
-            "modified": "2024-03-14T16:14:33.873255+00:00",
-            "size": 6705384,
-            "storage_address": "https://objects.openforge.tools/models/762654/762654b6ca18b00c00a94ca77fe1c723.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/762654/762654b6ca18b00c00a94ca77fe1c723.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|2",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:02.974041+00:00",
-            "file": "necro#wall,floor+s2w.3x1.openforge.stl",
-            "file_modified_at": "2024-03-14T16:13:39.431554+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.3x1.openforge.stl",
-            "md5": "adddfea72a7ec68452c906f9478b2466",
-            "modified": "2024-03-14T16:13:39.431554+00:00",
-            "size": 3914484,
-            "storage_address": "https://objects.openforge.tools/models/adddfe/adddfea72a7ec68452c906f9478b2466.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/adddfe/adddfea72a7ec68452c906f9478b2466.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|1",
-            "size|width|3",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:05.298156+00:00",
-            "file": "necro#wall,floor+s2w.3x3.openforge.stl",
-            "file_modified_at": "2024-03-14T16:13:00.076230+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.3x3.openforge.stl",
-            "md5": "32c2c68b53f29ed280de6ab9207405ed",
-            "modified": "2024-03-14T16:13:00.076230+00:00",
-            "size": 16668384,
-            "storage_address": "https://objects.openforge.tools/models/32c2c6/32c2c68b53f29ed280de6ab9207405ed.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/32c2c6/32c2c68b53f29ed280de6ab9207405ed.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|3",
-            "size|width|3",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:07.305843+00:00",
-            "file": "necro#wall,floor+s2w.4x1.openforge.stl",
-            "file_modified_at": "2024-03-14T16:10:26.249010+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x1.openforge.stl",
-            "md5": "eff1372d04f23c6d3390109a34d2223e",
-            "modified": "2024-03-14T16:10:26.249010+00:00",
-            "size": 5051884,
-            "storage_address": "https://objects.openforge.tools/models/eff137/eff1372d04f23c6d3390109a34d2223e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/eff137/eff1372d04f23c6d3390109a34d2223e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|1",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:10.739714+00:00",
-            "file": "necro#wall,floor+s2w.4x2.openforge.stl",
-            "file_modified_at": "2024-03-14T16:09:27.523972+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x2.openforge.stl",
-            "md5": "b83d1a0ab3cf21def4532814cceac5d5",
-            "modified": "2024-03-14T16:09:27.523972+00:00",
-            "size": 13663984,
-            "storage_address": "https://objects.openforge.tools/models/b83d1a/b83d1a0ab3cf21def4532814cceac5d5.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b83d1a/b83d1a0ab3cf21def4532814cceac5d5.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|2",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:14.697257+00:00",
-            "file": "necro#wall,floor+s2w.4x4.openforge.stl",
-            "file_modified_at": "2024-03-14T16:18:36.089667+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/s2w/floor#wall+s2w/necro#wall,floor+s2w.4x4.openforge.stl",
-            "md5": "c2079cbff8b9c8c3553e69888b419eac",
-            "modified": "2024-03-14T16:18:36.089667+00:00",
-            "size": 30353684,
-            "storage_address": "https://objects.openforge.tools/models/c2079c/c2079cbff8b9c8c3553e69888b419eac.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c2079c/c2079cbff8b9c8c3553e69888b419eac.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|wall",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "size|depth|4",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:19.966196+00:00",
-            "file": "necro_exsanguination_alter.stl",
-            "file_modified_at": "2024-04-21T23:11:00.402775+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/scatter/necro_exsanguination_alter.stl",
-            "md5": "393766e4a6abd9188fadfe05a5e5e4cf",
-            "modified": "2024-04-21T23:11:00.402775+00:00",
-            "size": 37340784,
-            "storage_address": "https://objects.openforge.tools/models/393766/393766e4a6abd9188fadfe05a5e5e4cf.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/393766/393766e4a6abd9188fadfe05a5e5e4cf.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "scatter|alter",
-            "scatter|necromancer|exsanguination_alter"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:22.519217+00:00",
-            "file": "necro#column.col+I.dragonlock.stl",
-            "file_modified_at": "2024-03-10T20:48:19.501322+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+I.dragonlock.stl",
-            "md5": "d25db181d333a74b99384b506368e819",
-            "modified": "2024-03-10T20:48:19.501322+00:00",
-            "size": 3749484,
-            "storage_address": "https://objects.openforge.tools/models/d25db1/d25db181d333a74b99384b506368e819.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d25db1/d25db181d333a74b99384b506368e819.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|dragonlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:25.195647+00:00",
-            "file": "necro#column.col+L.dragonlock.stl",
-            "file_modified_at": "2024-03-10T20:48:57.467301+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+L.dragonlock.stl",
-            "md5": "6b18a43a4f7c36cef94938499816d481",
-            "modified": "2024-03-10T20:48:57.467301+00:00",
-            "size": 3667384,
-            "storage_address": "https://objects.openforge.tools/models/6b18a4/6b18a43a4f7c36cef94938499816d481.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6b18a4/6b18a43a4f7c36cef94938499816d481.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|dragonlock",
-            "shape|column",
-            "size|column_shape|L",
-            "size|openlock|L",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:27.180298+00:00",
-            "file": "necro#column.col+O.dragonlock.stl",
-            "file_modified_at": "2024-03-10T20:49:15.563221+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+O.dragonlock.stl",
-            "md5": "8d5a91bfbb9abd89aaa63ba46b9eb180",
-            "modified": "2024-03-10T20:49:15.563221+00:00",
-            "size": 3564684,
-            "storage_address": "https://objects.openforge.tools/models/8d5a91/8d5a91bfbb9abd89aaa63ba46b9eb180.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/8d5a91/8d5a91bfbb9abd89aaa63ba46b9eb180.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|dragonlock",
-            "shape|column",
-            "size|column_shape|O",
-            "size|openlock|O",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:29.625004+00:00",
-            "file": "necro#column.col+T.dragonlock.stl",
-            "file_modified_at": "2024-03-10T20:49:47.634226+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+T.dragonlock.stl",
-            "md5": "d566a64f030d7bacb2adffa08b909837",
-            "modified": "2024-03-10T20:49:47.634226+00:00",
-            "size": 3722784,
-            "storage_address": "https://objects.openforge.tools/models/d566a6/d566a64f030d7bacb2adffa08b909837.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d566a6/d566a64f030d7bacb2adffa08b909837.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|dragonlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:30.857561+00:00",
-            "file": "necro#column.col+X.dragonlock.stl",
-            "file_modified_at": "2024-03-10T20:50:00.733804+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/dragonlock/necro#column.col+X.dragonlock.stl",
-            "md5": "05625932c965c88a99886269f217a918",
-            "modified": "2024-03-10T20:50:00.733804+00:00",
-            "size": 3709184,
-            "storage_address": "https://objects.openforge.tools/models/056259/05625932c965c88a99886269f217a918.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/056259/05625932c965c88a99886269f217a918.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|dragonlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:32.192186+00:00",
-            "file": "necro#column.col+I.openlock.stl",
-            "file_modified_at": "2024-03-10T20:48:06.430385+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+I.openlock.stl",
-            "md5": "90a8dd028b5d3b0e09afc897065d624a",
-            "modified": "2024-03-10T20:48:06.430385+00:00",
-            "size": 3415284,
-            "storage_address": "https://objects.openforge.tools/models/90a8dd/90a8dd028b5d3b0e09afc897065d624a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/90a8dd/90a8dd028b5d3b0e09afc897065d624a.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:34.402359+00:00",
-            "file": "necro#column.col+L.openlock.stl",
-            "file_modified_at": "2024-03-10T20:48:46.078928+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+L.openlock.stl",
-            "md5": "02c8c3098e0765a49febde54050d0ecc",
-            "modified": "2024-03-10T20:48:46.078928+00:00",
-            "size": 3309484,
-            "storage_address": "https://objects.openforge.tools/models/02c8c3/02c8c3098e0765a49febde54050d0ecc.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/02c8c3/02c8c3098e0765a49febde54050d0ecc.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|L",
-            "size|openlock|L",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:35.454232+00:00",
-            "file": "necro#column.col+O.openlock.stl",
-            "file_modified_at": "2024-03-10T20:49:25.825177+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+O.openlock.stl",
-            "md5": "3ab1d5b4a1747e02fbbe0400e4072964",
-            "modified": "2024-03-10T20:49:25.825177+00:00",
-            "size": 3207684,
-            "storage_address": "https://objects.openforge.tools/models/3ab1d5/3ab1d5b4a1747e02fbbe0400e4072964.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3ab1d5/3ab1d5b4a1747e02fbbe0400e4072964.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|O",
-            "size|openlock|O",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:36.807685+00:00",
-            "file": "necro#column.col+T.openlock.stl",
-            "file_modified_at": "2024-03-10T20:49:36.500918+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+T.openlock.stl",
-            "md5": "c567b7dda658bdb3f0c7c99ccd9819eb",
-            "modified": "2024-03-10T20:49:36.500918+00:00",
-            "size": 3259584,
-            "storage_address": "https://objects.openforge.tools/models/c567b7/c567b7dda658bdb3f0c7c99ccd9819eb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c567b7/c567b7dda658bdb3f0c7c99ccd9819eb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:33:37.970541+00:00",
-            "file": "necro#column.col+X.openlock.stl",
-            "file_modified_at": "2024-03-10T20:50:11.351292+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/columns/openlock/necro#column.col+X.openlock.stl",
-            "md5": "792af7b1f8f7b7f21b38b8b4acf4958e",
-            "modified": "2024-03-10T20:50:11.351292+00:00",
-            "size": 3135384,
-            "storage_address": "https://objects.openforge.tools/models/792af7/792af7b1f8f7b7f21b38b8b4acf4958e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/792af7/792af7b1f8f7b7f21b38b8b4acf4958e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T23:34:23.055858+00:00",
             "file": "necro#wall.A.openlock.stl",
             "file_modified_at": "2024-03-19T03:43:43.070358+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/necro#wall.A.openlock.stl",
             "md5": "385db3a568898561fff312c741341ba8",
-            "modified": "2024-03-19T03:43:43.070358+00:00",
             "size": 10495384,
             "storage_address": "https://objects.openforge.tools/models/385db3/385db3a568898561fff312c741341ba8.stl"
         },
@@ -2323,12 +2217,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:26.821759+00:00",
             "file": "necro#wall.BA.openlock.stl",
             "file_modified_at": "2024-03-19T03:46:17.276022+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/necro#wall.BA.openlock.stl",
             "md5": "47c057980f0b3d036ca0d9c56ec5ace6",
-            "modified": "2024-03-19T03:46:17.276022+00:00",
             "size": 8264084,
             "storage_address": "https://objects.openforge.tools/models/47c057/47c057980f0b3d036ca0d9c56ec5ace6.stl"
         },
@@ -2352,12 +2244,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:29.560276+00:00",
             "file": "necro#wall.D.openlock.stl",
             "file_modified_at": "2024-03-19T03:51:53.985490+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/necro#wall.D.openlock.stl",
             "md5": "fb671fbf8358521a47a5c98f479cac5c",
-            "modified": "2024-03-19T03:51:53.985490+00:00",
             "size": 15281984,
             "storage_address": "https://objects.openforge.tools/models/fb671f/fb671fbf8358521a47a5c98f479cac5c.stl"
         },
@@ -2381,12 +2271,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:31.763985+00:00",
             "file": "necro#wall.IA.openlock.stl",
             "file_modified_at": "2024-03-19T03:56:27.941922+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/necro#wall.IA.openlock.stl",
             "md5": "f4540e9e86f1b4845d1e47c2480cb6bc",
-            "modified": "2024-03-19T03:56:27.941922+00:00",
             "size": 5976784,
             "storage_address": "https://objects.openforge.tools/models/f4540e/f4540e9e86f1b4845d1e47c2480cb6bc.stl"
         },
@@ -2410,12 +2298,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:34.779268+00:00",
             "file": "necro#wall.Q.openlock.stl",
             "file_modified_at": "2024-03-19T03:54:43.802015+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/necro#wall.Q.openlock.stl",
             "md5": "e56375df212411989708be594a660eaa",
-            "modified": "2024-03-19T03:54:43.802015+00:00",
             "size": 19747384,
             "storage_address": "https://objects.openforge.tools/models/e56375/e56375df212411989708be594a660eaa.stl"
         },
@@ -2439,12 +2325,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:37.548609+00:00",
             "file": "necro#wall.A.openlock,side.stl",
             "file_modified_at": "2024-03-19T03:43:58.127393+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/side/necro#wall.A.openlock,side.stl",
             "md5": "15eb3a63362444cb1a76643c55c16018",
-            "modified": "2024-03-19T03:43:58.127393+00:00",
             "size": 10531384,
             "storage_address": "https://objects.openforge.tools/models/15eb3a/15eb3a63362444cb1a76643c55c16018.stl"
         },
@@ -2470,12 +2354,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:39.746189+00:00",
             "file": "necro#wall.BA.openlock,side.stl",
             "file_modified_at": "2024-03-19T03:46:27.329100+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/side/necro#wall.BA.openlock,side.stl",
             "md5": "5eb40de0772a9982c531f1c8765f8387",
-            "modified": "2024-03-19T03:46:27.329100+00:00",
             "size": 8281684,
             "storage_address": "https://objects.openforge.tools/models/5eb40d/5eb40de0772a9982c531f1c8765f8387.stl"
         },
@@ -2501,12 +2383,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:42.261660+00:00",
             "file": "necro#wall.D.openlock,side.stl",
             "file_modified_at": "2024-03-19T03:52:04.284960+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/side/necro#wall.D.openlock,side.stl",
             "md5": "9a0e47d01f229e52479282dfff145770",
-            "modified": "2024-03-19T03:52:04.284960+00:00",
             "size": 15319684,
             "storage_address": "https://objects.openforge.tools/models/9a0e47/9a0e47d01f229e52479282dfff145770.stl"
         },
@@ -2532,12 +2412,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:44.066429+00:00",
             "file": "necro#wall.IA.openlock,side.stl",
             "file_modified_at": "2024-03-19T03:56:37.410712+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/side/necro#wall.IA.openlock,side.stl",
             "md5": "98fee93ad02f4b54a03736f147328075",
-            "modified": "2024-03-19T03:56:37.410712+00:00",
             "size": 6009084,
             "storage_address": "https://objects.openforge.tools/models/98fee9/98fee93ad02f4b54a03736f147328075.stl"
         },
@@ -2563,12 +2441,10 @@
     },
     {
         "file_metadata": {
-            "changed": "2025-07-12T23:34:47.223657+00:00",
             "file": "necro#wall.Q.openlock,side.stl",
             "file_modified_at": "2024-03-19T03:54:53.267392+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openlock/side/necro#wall.Q.openlock,side.stl",
             "md5": "65134e3511246c3794d0cbb99c681e73",
-            "modified": "2024-03-19T03:54:53.267392+00:00",
             "size": 19811184,
             "storage_address": "https://objects.openforge.tools/models/65134e/65134e3511246c3794d0cbb99c681e73.stl"
         },

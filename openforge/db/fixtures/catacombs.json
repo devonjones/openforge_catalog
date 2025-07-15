@@ -1,5 +1,99 @@
 [
     {
+        "file_metadata": {
+            "file": "burial_slab.1.stl",
+            "file_modified_at": "2023-10-26T20:11:58.168975+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.1.stl",
+            "md5": "c0ab491866a9c24d2f8d886614f576aa",
+            "size": 3776084,
+            "storage_address": "https://objects.openforge.tools/models/c0ab49/c0ab491866a9c24d2f8d886614f576aa.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c0ab49/c0ab491866a9c24d2f8d886614f576aa.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|loculus|slab",
+            "part|burial_slab",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "burial_slab.2.stl",
+            "file_modified_at": "2023-10-26T20:12:09.508496+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.2.stl",
+            "md5": "3796ffc5ab6f27565d9166630e1dbb2a",
+            "size": 3776084,
+            "storage_address": "https://objects.openforge.tools/models/3796ff/3796ffc5ab6f27565d9166630e1dbb2a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3796ff/3796ffc5ab6f27565d9166630e1dbb2a.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|loculus|slab",
+            "part|burial_slab",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "burial_slab.bundle.stl",
+            "file_modified_at": "2023-10-26T21:42:31.085148+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.bundle.stl",
+            "md5": "b61d23b9f92dabeb48efc273b72eca20",
+            "size": 8312284,
+            "storage_address": "https://objects.openforge.tools/models/b61d23/b61d23b9f92dabeb48efc273b72eca20.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b61d23/b61d23b9f92dabeb48efc273b72eca20.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "decoration|bundle",
+            "interface|loculus|slab",
+            "part|burial_slab",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "burial_slab.skeleton.stl",
+            "file_modified_at": "2023-10-29T03:25:43.256992+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.skeleton.stl",
+            "md5": "39487d27bc3c5726e60cdffeb6c96e3d",
+            "size": 17847584,
+            "storage_address": "https://objects.openforge.tools/models/39487d/39487d27bc3c5726e60cdffeb6c96e3d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/39487d/39487d27bc3c5726e60cdffeb6c96e3d.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "decoration|skeleton",
+            "interface|loculus|slab",
+            "part|burial_slab",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
@@ -62,12 +156,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T19:44:02.308672+00:00",
             "file": "catacombs#wall,loculus.S.openforge+split,bottom.stl",
             "file_modified_at": "2023-10-30T15:22:46.624898+00:00",
             "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge+split,bottom.stl",
             "md5": "44b6d32ae6d6747c1352553e74f0d87b",
-            "modified": "2023-10-30T15:22:46.624898+00:00",
             "size": 10491584,
             "storage_address": "https://objects.openforge.tools/models/44b6d3/44b6d32ae6d6747c1352553e74f0d87b.stl"
         },
@@ -90,6 +182,52 @@
             "size|openlock|S",
             "size|width|2",
             "texture|catacombs"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "catacombs#wall,loculus.S.openforge+split,top,arch.stl",
+            "file_modified_at": "2023-10-30T15:22:30.569823+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge+split,top,arch.stl",
+            "md5": "1a235473c42b4b09e4d26e225d519b4a",
+            "size": 2894884,
+            "storage_address": "https://objects.openforge.tools/models/1a2354/1a235473c42b4b09e4d26e225d519b4a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1a2354/1a235473c42b4b09e4d26e225d519b4a.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|loculus|arch",
+            "part|loculus_arch",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "catacombs#wall,loculus.S.openforge+split,top,flat.stl",
+            "file_modified_at": "2023-10-30T15:22:50.936845+00:00",
+            "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge+split,top,flat.stl",
+            "md5": "00ef672ad535be41eedd11a7694fa69a",
+            "size": 6716984,
+            "storage_address": "https://objects.openforge.tools/models/00ef67/00ef672ad535be41eedd11a7694fa69a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/00ef67/00ef672ad535be41eedd11a7694fa69a.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|loculus|arch",
+            "part|loculus_arch",
+            "texture|stone"
         ],
         "type": "model"
     },
@@ -146,12 +284,10 @@
             ]
         },
         "file_metadata": {
-            "changed": "2025-07-12T19:44:15.631301+00:00",
             "file": "catacombs#wall,loculus.S.openforge.stl",
             "file_modified_at": "2023-10-26T20:22:08.989656+00:00",
             "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge.stl",
             "md5": "0d46aa738e678af623eec74612472b18",
-            "modified": "2023-10-26T20:22:08.989656+00:00",
             "size": 12908884,
             "storage_address": "https://objects.openforge.tools/models/0d46aa/0d46aa738e678af623eec74612472b18.stl"
         },
@@ -172,158 +308,6 @@
             "size|openlock|S",
             "size|width|2",
             "texture|catacombs"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:43:20.311549+00:00",
-            "file": "burial_slab.1.stl",
-            "file_modified_at": "2023-10-26T20:11:58.168975+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.1.stl",
-            "md5": "c0ab491866a9c24d2f8d886614f576aa",
-            "modified": "2023-10-26T20:11:58.168975+00:00",
-            "size": 3776084,
-            "storage_address": "https://objects.openforge.tools/models/c0ab49/c0ab491866a9c24d2f8d886614f576aa.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c0ab49/c0ab491866a9c24d2f8d886614f576aa.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|loculus|slab",
-            "part|burial_slab",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:43:29.536358+00:00",
-            "file": "burial_slab.2.stl",
-            "file_modified_at": "2023-10-26T20:12:09.508496+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.2.stl",
-            "md5": "3796ffc5ab6f27565d9166630e1dbb2a",
-            "modified": "2023-10-26T20:12:09.508496+00:00",
-            "size": 3776084,
-            "storage_address": "https://objects.openforge.tools/models/3796ff/3796ffc5ab6f27565d9166630e1dbb2a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3796ff/3796ffc5ab6f27565d9166630e1dbb2a.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|loculus|slab",
-            "part|burial_slab",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:43:40.313406+00:00",
-            "file": "burial_slab.bundle.stl",
-            "file_modified_at": "2023-10-26T21:42:31.085148+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.bundle.stl",
-            "md5": "b61d23b9f92dabeb48efc273b72eca20",
-            "modified": "2023-10-26T21:42:31.085148+00:00",
-            "size": 8312284,
-            "storage_address": "https://objects.openforge.tools/models/b61d23/b61d23b9f92dabeb48efc273b72eca20.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b61d23/b61d23b9f92dabeb48efc273b72eca20.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "decoration|bundle",
-            "interface|loculus|slab",
-            "part|burial_slab",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:43:53.717071+00:00",
-            "file": "burial_slab.skeleton.stl",
-            "file_modified_at": "2023-10-29T03:25:43.256992+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/burial_slab.skeleton.stl",
-            "md5": "39487d27bc3c5726e60cdffeb6c96e3d",
-            "modified": "2023-10-29T03:25:43.256992+00:00",
-            "size": 17847584,
-            "storage_address": "https://objects.openforge.tools/models/39487d/39487d27bc3c5726e60cdffeb6c96e3d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/39487d/39487d27bc3c5726e60cdffeb6c96e3d.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "decoration|skeleton",
-            "interface|loculus|slab",
-            "part|burial_slab",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:44:06.574249+00:00",
-            "file": "catacombs#wall,loculus.S.openforge+split,top,arch.stl",
-            "file_modified_at": "2023-10-30T15:22:30.569823+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge+split,top,arch.stl",
-            "md5": "1a235473c42b4b09e4d26e225d519b4a",
-            "modified": "2023-10-30T15:22:30.569823+00:00",
-            "size": 2894884,
-            "storage_address": "https://objects.openforge.tools/models/1a2354/1a235473c42b4b09e4d26e225d519b4a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/1a2354/1a235473c42b4b09e4d26e225d519b4a.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|loculus|arch",
-            "part|loculus_arch",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "changed": "2025-07-12T19:44:10.264106+00:00",
-            "file": "catacombs#wall,loculus.S.openforge+split,top,flat.stl",
-            "file_modified_at": "2023-10-30T15:22:50.936845+00:00",
-            "full_name": "tiles/catacombs/thick_wall/loculus/catacombs#wall,loculus.S.openforge+split,top,flat.stl",
-            "md5": "00ef672ad535be41eedd11a7694fa69a",
-            "modified": "2023-10-30T15:22:50.936845+00:00",
-            "size": 6716984,
-            "storage_address": "https://objects.openforge.tools/models/00ef67/00ef672ad535be41eedd11a7694fa69a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/00ef67/00ef672ad535be41eedd11a7694fa69a.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|loculus|arch",
-            "part|loculus_arch",
-            "texture|stone"
         ],
         "type": "model"
     }

@@ -34,9 +34,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "old_md5_1",
                     "size": 1000,
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}
@@ -48,9 +46,7 @@ class TestIncrementalScanner:
                     "file": "file2.stl",
                     "md5": "old_md5_2",
                     "size": 2000,
-                    "file_modified_at": "2023-01-02T10:00:00+00:00",
-                    "changed": "2023-01-02T10:00:00+00:00",
-                    "modified": "2023-01-02T10:00:00+00:00"
+                    "file_modified_at": "2023-01-02T10:00:00+00:00"
                 },
                 "tags": ["shape|wall", "texture|stone"],
                 "config": {}
@@ -141,8 +137,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -164,8 +159,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             },
             {
@@ -175,8 +169,7 @@ class TestIncrementalScanner:
                     "file": "file2.stl", 
                     "md5": "test",
                     "size": 1000,
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 }
             }
         ]
@@ -225,7 +218,6 @@ class TestIncrementalScanner:
         # Set modification time to match fixture (2023-01-01T10:00:00 UTC)
         # 2023-01-01T10:00:00 UTC = 1672567200
         os.utime(sample_files["file1"], (1672567200, 1672567200))
-
         results, file_changed = scanner.process_file(
             sample_files["file1"],
             "tiles/dungeon_stone/floor/file1.stl",
@@ -233,7 +225,6 @@ class TestIncrementalScanner:
             {}
         )
 
-        # Since the file content doesn't match the expected MD5, we get 2 entries (deprecated + new)
         # But since size and modification time match, it's detected as unchanged
         assert len(results) == 1
         # Get the new entry
@@ -378,9 +369,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}
@@ -436,9 +425,7 @@ class TestIncrementalScanner:
                     "file": "file1.stl",
                     "md5": actual_md5,  # Use actual MD5
                     "size": len(content),
-                    "file_modified_at": "2023-01-01T10:00:00+00:00",  # UTC time for timestamp 1672567200
-                    "changed": "2023-01-01T10:00:00+00:00",
-                    "modified": "2023-01-01T10:00:00+00:00"  # UTC time for timestamp 1672567200
+                    "file_modified_at": "2023-01-01T10:00:00+00:00"
                 },
                 "tags": ["shape|floor", "texture|stone"],
                 "config": {}

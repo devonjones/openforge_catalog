@@ -101,7 +101,6 @@ file_size INT
 file_md5 TEXT
 file_name TEXT
 full_name TEXT
-file_changed_at TIMESTAMP
 file_modified_at TIMESTAMP
 storage_address TEXT
 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

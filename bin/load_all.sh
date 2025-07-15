@@ -18,6 +18,6 @@
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/sewers.json --upload > ../openforge/db/fixtures/sewers.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/towne.json --upload > ../openforge/db/fixtures/towne.json.next
 
-#pushd ../openforge/db/fixtures/
-#rename -f 's/\.json\.next/.json/' *.json.next
-#popd
+pushd ../openforge/db/fixtures/
+  rename -f 's/\.json\.next/.json/' *.json.next
+popd

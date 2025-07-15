@@ -38,7 +38,6 @@ export interface Blueprint {
   blueprint_type: string;
   blueprint_config?: BlueprintConfig;
   created_at: string;
-  file_changed_at: string;
   file_md5: string;
   file_modified_at: string;
   file_name: string;
