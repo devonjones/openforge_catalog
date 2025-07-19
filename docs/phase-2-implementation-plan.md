@@ -739,7 +739,7 @@ const ImagePicker = ({
       });
       const { image } = await response.json();
       setImages(prev => [image, ...prev]);
-      onSelect(image);
+      // Don't auto-select - let user click to select the uploaded image
     } catch (error) {
       console.error('Upload failed:', error);
     } finally {
