@@ -17,6 +17,8 @@ tags:
     description: Secured Admin-only calls
   - name: developers
     description: Operations available to regular developers
+  - name: documentation
+    description: Documentation system operations
 paths:
   /api/blueprints:
     get:
@@ -741,6 +743,375 @@ paths:
           description: 'Not Authorized'
         '404':
           description: 'Tag description not found'
+  /api/blueprints/{blueprint_id}/documentation:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get all documentation for a blueprint
+      operationId: getBlueprintDocumentation
+      description: Returns all documentation entries for a specific blueprint
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Blueprint documentation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentationList'
+        '404':
+          description: 'Blueprint not found'
+    post:
+      tags:
+        - blueprint
+        - documentation
+      summary: Create documentation for a blueprint
+      operationId: createBlueprintDocumentation
+      description: Creates new documentation for a blueprint (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '201':
+          description: Documentation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlueprintDocumentationCreate'
+        description: Documentation to create
+  /api/blueprints/{blueprint_id}/documentation/{doc_id}:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get specific documentation entry
+      operationId: getBlueprintDocumentationById
+      description: Returns a specific documentation entry for a blueprint
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '404':
+          description: 'Documentation not found'
+    put:
+      tags:
+        - blueprint
+        - documentation
+      summary: Update specific documentation entry
+      operationId: updateBlueprintDocumentation
+      description: Updates a specific documentation entry (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlueprintDocumentationUpdate'
+        description: Updated documentation
+    delete:
+      tags:
+        - blueprint
+        - documentation
+      summary: Delete specific documentation entry
+      operationId: deleteBlueprintDocumentation
+      description: Deletes a specific documentation entry (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Documentation deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+  /api/blueprints/{blueprint_id}/changelog-history:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get changelog history for blueprint
+      operationId: getBlueprintChangelogHistory
+      description: Returns recursive changelog history through successor chain
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: query
+          name: limit
+          description: Maximum number of changelogs to return
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - in: query
+          name: offset
+          description: Number of changelogs to skip
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: Changelog history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangelogHistory'
+        '404':
+          description: 'Blueprint not found'
+  /api/tags/{tag_array}/documentation:
+    get:
+      tags:
+        - tags
+        - documentation
+      summary: Get documentation for a specific tag
+      operationId: getTagDocumentation
+      description: Returns documentation for a specific tag (URL format: texture/dungeon_stone)
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tag documentation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentationList'
+        '404':
+          description: 'Tag not found'
+    post:
+      tags:
+        - tags
+        - documentation
+      summary: Create documentation for a tag
+      operationId: createTagDocumentation
+      description: Creates new documentation for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Documentation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDocumentationCreate'
+        description: Documentation to create
+  /api/tags/{tag_array}/documentation/{doc_id}:
+    get:
+      tags:
+        - tags
+        - documentation
+      summary: Get specific tag documentation entry
+      operationId: getTagDocumentationById
+      description: Returns a specific documentation entry for a tag
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '404':
+          description: 'Documentation not found'
+    put:
+      tags:
+        - tags
+        - documentation
+      summary: Update specific tag documentation entry
+      operationId: updateTagDocumentation
+      description: Updates a specific documentation entry for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDocumentationUpdate'
+        description: Updated documentation
+    delete:
+      tags:
+        - tags
+        - documentation
+      summary: Delete specific tag documentation entry
+      operationId: deleteTagDocumentation
+      description: Deletes a specific documentation entry for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Documentation deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -886,3 +1257,21 @@ components:
       additionalProperties:
         type: string
       description: A mapping of tag strings to their descriptions
+    BlueprintDocumentation:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentation'
+    BlueprintDocumentationList:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationList'
+    BlueprintDocumentationCreate:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationCreate'
+    BlueprintDocumentationUpdate:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationUpdate'
+    ChangelogHistory:
+      $ref: 'blueprint_documentation.yaml#/ChangelogHistory'
+    TagDocumentation:
+      $ref: 'tag_documentation.yaml#/TagDocumentation'
+    TagDocumentationList:
+      $ref: 'tag_documentation.yaml#/TagDocumentationList'
+    TagDocumentationCreate:
+      $ref: 'tag_documentation.yaml#/TagDocumentationCreate'
+    TagDocumentationUpdate:
+      $ref: 'tag_documentation.yaml#/TagDocumentationUpdate'

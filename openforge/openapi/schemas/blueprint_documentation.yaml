@@ -1,0 +1,110 @@
+BlueprintDocumentation:
+  type: object
+  properties:
+    id:
+      type: string
+      pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    blueprint_id:
+      type: string
+      pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    document:
+      type: string
+      description: Documentation content (markdown supported)
+    document_type:
+      type: string
+      enum: [changelog, instructions]
+      description: Type of documentation
+    created_at:
+      type: string
+      format: date-time
+    updated_at:
+      type: string
+      format: date-time
+  required:
+    - blueprint_id
+    - document
+    - document_type
+  additionalProperties: false
+
+BlueprintDocumentationList:
+  type: object
+  properties:
+    documentation:
+      type: array
+      items:
+        $ref: '#/components/schemas/BlueprintDocumentation'
+  required:
+    - documentation
+  additionalProperties: false
+
+BlueprintDocumentationCreate:
+  type: object
+  properties:
+    document:
+      type: string
+      description: Documentation content (markdown supported)
+    document_type:
+      type: string
+      enum: [changelog, instructions]
+      description: Type of documentation
+  required:
+    - document
+    - document_type
+  additionalProperties: false
+
+BlueprintDocumentationUpdate:
+  type: object
+  properties:
+    document:
+      type: string
+      description: Documentation content (markdown supported)
+    document_type:
+      type: string
+      enum: [changelog, instructions]
+      description: Type of documentation
+  additionalProperties: false
+
+ChangelogHistory:
+  type: object
+  properties:
+    changelogs:
+      type: array
+      items:
+        type: object
+        properties:
+          blueprint_id:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          blueprint_name:
+            type: string
+          changelog:
+            type: string
+            nullable: true
+            description: Changelog content or null if no changelog exists
+          created_at:
+            type: string
+            format: date-time
+            nullable: true
+            description: When changelog was created or null if no changelog exists
+          version_info:
+            type: object
+            properties:
+              deprecated:
+                type: boolean
+              successor_id:
+                type: string
+                pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+                nullable: true
+            required:
+              - deprecated
+    has_more:
+      type: boolean
+      description: Whether there are more changelogs available
+    total_count:
+      type: integer
+      description: Total number of changelogs in the history
+  required:
+    - changelogs
+    - has_more
+    - total_count
+  additionalProperties: false 

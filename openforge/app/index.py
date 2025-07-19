@@ -6,11 +6,17 @@ import openforge.app.routes.blueprints as blueprint_routes
 import openforge.app.routes.tags as tag_routes
 import openforge.app.routes.images as image_routes
 import openforge.app.routes.tag_descriptions as tag_description_routes
+import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
+import openforge.app.routes.tags_documentation as tags_doc_routes
 from openforge.app.routes import authenticate
+from openforge.app.routes.tag_converter import TagConverter
 
 
 app = Flask(__name__)
 init_app(app)
+
+# Register custom converters
+app.url_map.converters['tag'] = TagConverter
 
 ####################
 ### Blueprint routes
@@ -138,6 +144,71 @@ def tag_description_by_tag(tag):
         return tag_description_routes.update_tag_description_by_tag(tag)
     elif request.method == "DELETE":
         return tag_description_routes.delete_tag_description_by_tag(tag)
+
+
+####################
+### Blueprint Documentation routes
+####################
+
+
+@app.route("/api/blueprints/<blueprint_id>/documentation", methods=["GET", "POST"])
+@authenticate(methods=["POST"])
+def blueprint_documentation(blueprint_id):
+    if request.method == "GET":
+        return blueprint_doc_routes.get_blueprint_documentation(blueprint_id)
+    elif request.method == "POST":
+        return blueprint_doc_routes.create_blueprint_documentation(blueprint_id)
+
+
+@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
+@authenticate(methods=["PUT", "DELETE"])
+def blueprint_documentation_entry(blueprint_id, doc_id):
+    if request.method == "GET":
+        return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
+    elif request.method == "PUT":
+        return blueprint_doc_routes.update_blueprint_documentation(blueprint_id, doc_id)
+    elif request.method == "DELETE":
+        return blueprint_doc_routes.delete_blueprint_documentation(blueprint_id, doc_id)
+
+
+@app.route("/api/blueprints/<blueprint_id>/changelog-history", methods=["GET"])
+def blueprint_changelog_history(blueprint_id):
+    return blueprint_doc_routes.get_blueprint_changelog_history(blueprint_id)
+
+
+####################
+### Tag Documentation routes
+####################
+
+
+@app.route("/api/tags/<tag:tag_array>/documentation", methods=["GET", "POST"])
+@authenticate(methods=["POST"])
+def tag_documentation(tag_array):
+    if request.method == "GET":
+        return tags_doc_routes.get_tag_documentation(tag_array)
+    elif request.method == "POST":
+        return tags_doc_routes.create_tag_documentation(tag_array)
+
+
+@app.route("/api/tags/<tag:tag_array>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
+@authenticate(methods=["PUT", "DELETE"])
+def tag_documentation_entry(tag_array, doc_id):
+    if request.method == "GET":
+        return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
+    elif request.method == "PUT":
+        return tags_doc_routes.update_tag_documentation(tag_array, doc_id)
+    elif request.method == "DELETE":
+        return tags_doc_routes.delete_tag_documentation(tag_array, doc_id)
+
+
+@app.route("/api/tag-documentation", methods=["GET"])
+def all_tag_documentation():
+    return tags_doc_routes.get_all_tag_documentation()
+
+
+@app.route("/api/tag-documentation/<tag>", methods=["GET"])
+def tag_documentation_by_prefix(tag):
+    return tags_doc_routes.get_tag_documentation_by_tag_prefix(tag)
 
 
 def lambda_handler(event, context):
