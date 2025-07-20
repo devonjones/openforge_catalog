@@ -64,4 +64,6 @@ TagDocumentationUpdate:
       type: string
       enum: [instructions]
       description: Type of documentation (currently only instructions supported)
+  required:
+    - document
   additionalProperties: false 

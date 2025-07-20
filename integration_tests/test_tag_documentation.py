@@ -43,7 +43,7 @@ class TestTagDocumentation:
         
         response = api_client.post("/api/tags/test/tag/documentation", data=test_doc)
         
-        assert response.status_code in [200, 201]
+        assert response.status_code == 201
         data = response.json()
         assert "documentation" in data
         assert data["documentation"]["document"] == test_doc["document"]
@@ -52,7 +52,7 @@ class TestTagDocumentation:
         assert "id" in data["documentation"]
     
     def test_update_tag_documentation(self, api_client, cleanup_test_data):
-        """Test PUT /api/tags/{tag_array}/documentation/{doc_id}."""
+        """Test PATCH /api/tags/{tag_array}/documentation/{doc_id}."""
         # First create a document
         test_doc = {
             "document": "Test tag documentation for update",
@@ -60,7 +60,7 @@ class TestTagDocumentation:
         }
         
         create_response = api_client.post("/api/tags/test/tag/documentation", data=test_doc)
-        assert create_response.status_code in [200, 201]
+        assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
         # Now update it
@@ -69,7 +69,7 @@ class TestTagDocumentation:
             "document_type": "instructions"
         }
         
-        response = api_client.put(f"/api/tags/test/tag/documentation/{doc_id}", data=update_doc)
+        response = api_client.patch(f"/api/tags/test/tag/documentation/{doc_id}", data=update_doc)
         
         assert response.status_code == 200
         data = response.json()
@@ -87,7 +87,7 @@ class TestTagDocumentation:
         }
         
         create_response = api_client.post("/api/tags/test/tag/documentation", data=test_doc)
-        assert create_response.status_code in [200, 201]
+        assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
         # Now delete it
@@ -113,7 +113,7 @@ class TestTagDocumentation:
             "document_type": "instructions"
         }
         
-        response = api_client_no_auth.put("/api/tags/test/tag/documentation/test-id", data=update_doc)
+        response = api_client_no_auth.patch("/api/tags/test/tag/documentation/test-id", data=update_doc)
         
         assert response.status_code == 401
     
@@ -139,7 +139,7 @@ class TestTagDocumentation:
             "document_type": "instructions"
         }
         
-        response = api_client.put("/api/tags/test/tag/documentation/00000000-0000-0000-0000-000000000001", data=update_doc)
+        response = api_client.patch("/api/tags/test/tag/documentation/00000000-0000-0000-0000-000000000001", data=update_doc)
         assert response.status_code == 404
         
         # Test delete

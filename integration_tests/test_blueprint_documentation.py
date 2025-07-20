@@ -27,7 +27,7 @@ class TestBlueprintDocumentation:
         
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
         
-        assert response.status_code in [200, 201]
+        assert response.status_code == 201
         data = response.json()
         assert "documentation" in data
         assert data["documentation"]["document"] == test_doc["document"]
@@ -35,7 +35,7 @@ class TestBlueprintDocumentation:
         assert "id" in data["documentation"]
     
     def test_update_blueprint_documentation(self, api_client, test_blueprint_id, cleanup_test_data):
-        """Test PUT /api/blueprints/{blueprint_id}/documentation/{doc_id}."""
+        """Test PATCH /api/blueprints/{blueprint_id}/documentation/{doc_id}."""
         # First create a document
         test_doc = {
             "document": "Test changelog entry for update",
@@ -43,7 +43,7 @@ class TestBlueprintDocumentation:
         }
         
         create_response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
-        assert create_response.status_code in [200, 201]
+        assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
         # Now update it
@@ -52,7 +52,7 @@ class TestBlueprintDocumentation:
             "document_type": "changelog"
         }
         
-        response = api_client.put(f"/api/blueprints/{test_blueprint_id}/documentation/{doc_id}", data=update_doc)
+        response = api_client.patch(f"/api/blueprints/{test_blueprint_id}/documentation/{doc_id}", data=update_doc)
         
         assert response.status_code == 200
         data = response.json()
@@ -69,7 +69,7 @@ class TestBlueprintDocumentation:
         }
         
         create_response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
-        assert create_response.status_code in [200, 201]
+        assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
         # Now delete it
@@ -125,7 +125,7 @@ class TestBlueprintDocumentation:
             "document_type": "changelog"
         }
         
-        response = api_client_no_auth.put(f"/api/blueprints/{test_blueprint_id}/documentation/test-id", data=update_doc)
+        response = api_client_no_auth.patch(f"/api/blueprints/{test_blueprint_id}/documentation/test-id", data=update_doc)
         
         assert response.status_code == 401
     
@@ -159,7 +159,7 @@ class TestBlueprintDocumentation:
             "document_type": "changelog"
         }
         
-        response = api_client.put(f"/api/blueprints/{test_blueprint_id}/documentation/00000000-0000-0000-0000-000000000001", data=update_doc)
+        response = api_client.patch(f"/api/blueprints/{test_blueprint_id}/documentation/00000000-0000-0000-0000-000000000001", data=update_doc)
         assert response.status_code == 404
         
         # Test delete

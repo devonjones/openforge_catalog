@@ -15,11 +15,11 @@ from openforge.openapi import validate_schema
 
 
 def _validate_uuid(uuid_string: str) -> None:
-    """Validate that a string is a valid UUID, abort with 404 if not."""
+    """Validate that a string is a valid UUID, abort with 400 if not."""
     try:
         uuid.UUID(uuid_string)
     except ValueError:
-        abort(404)
+        abort(400, description="Invalid UUID format.")
 
 
 def get_blueprints():

@@ -191,6 +191,9 @@ class APIClient:
     def put(self, endpoint: str, data: Optional[Dict] = None, **kwargs) -> requests.Response:
         return self.request("PUT", endpoint, data=data, **kwargs)
     
+    def patch(self, endpoint: str, data: Optional[Dict] = None, **kwargs) -> requests.Response:
+        return self.request("PATCH", endpoint, data=data, **kwargs)
+    
     def delete(self, endpoint: str, **kwargs) -> requests.Response:
         return self.request("DELETE", endpoint, **kwargs)
 

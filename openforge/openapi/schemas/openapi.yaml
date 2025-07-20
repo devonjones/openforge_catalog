@@ -836,7 +836,7 @@ paths:
                 $ref: '#/components/schemas/BlueprintDocumentation'
         '404':
           description: 'Documentation not found'
-    put:
+    patch:
       tags:
         - blueprint
         - documentation
@@ -1080,7 +1080,7 @@ paths:
                 $ref: '#/components/schemas/TagDocumentation'
         '404':
           description: 'Documentation not found'
-    put:
+    patch:
       tags:
         - tags
         - documentation

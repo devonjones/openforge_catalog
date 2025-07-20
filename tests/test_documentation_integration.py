@@ -105,35 +105,4 @@ class TestDocumentationImports:
             pytest.fail(f"Failed to import documentation route modules: {e}")
 
 
-if __name__ == "__main__":
-    # Run basic tests
-    print("Testing tag utilities...")
-    test_utils = TestTagUtilities()
-    test_utils.test_tag_to_array_string()
-    test_utils.test_tag_to_array_list()
-    test_utils.test_array_to_tag()
-    print("✓ Tag utilities working correctly")
-    
-    print("Testing tag converter...")
-    test_converter = TestTagConverter()
-    test_converter.setup_method()
-    test_converter.test_to_python_url_path()
-    test_converter.test_to_url_array()
-    test_converter.test_to_url_pipe_string()
-    print("✓ Tag converter working correctly")
-    
-    print("Testing documentation schemas...")
-    test_schemas = TestDocumentationSchemas()
-    test_schemas.test_blueprint_documentation_schema_exists()
-    test_schemas.test_tag_documentation_schema_exists()
-    test_schemas.test_openapi_includes_documentation_schemas()
-    print("✓ Documentation schemas properly defined")
-    
-    print("Testing documentation imports...")
-    test_imports = TestDocumentationImports()
-    test_imports.test_blueprint_documentation_import()
-    test_imports.test_tags_documentation_import()
-    test_imports.test_documentation_routes_import()
-    print("✓ Documentation modules import successfully")
-    
-    print("\n🎉 All documentation system integration tests passed!") 
+ 

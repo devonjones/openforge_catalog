@@ -4,6 +4,10 @@ from werkzeug.exceptions import NotFound
 import uuid
 
 import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
+import openforge.db.sql.blueprints as blueprint_sql
+import openforge.db.sql.tags as tag_sql
+import openforge.db.sql.tags_documentation as tags_doc_sql
+from openforge.db.sql.tag_utils import tag_to_array
 
 
 def _verify_documentation_ownership(cursor, doc_uuid, blueprint_id):
@@ -37,6 +41,8 @@ def get_blueprint_documentation(blueprint_id):
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid)
+            if not data:
+                return jsonify({"documentation": []}), 404
             return jsonify({"documentation": data})
 
 
@@ -202,7 +208,6 @@ def get_blueprint_all_documentation(blueprint_id):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # 1. Get blueprint information
-                import openforge.db.sql.blueprints as blueprint_sql
                 blueprint_data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
                 
                 # 2. Get blueprint documentation
@@ -214,17 +219,14 @@ def get_blueprint_all_documentation(blueprint_id):
                 )
                 
                 # 4. Get blueprint tags
-                import openforge.db.sql.tags as tag_sql
                 blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
                 
                 # 5. Get documentation for each tag
-                import openforge.db.sql.tags_documentation as tags_doc_sql
                 tag_documentation = {}
                 
                 for tag_record in blueprint_tags:
                     tag_string = tag_record["tag"]  # This is a pipe-delimited string
                     # Convert pipe-delimited string to array for tag documentation lookup
-                    from openforge.db.sql.tag_utils import tag_to_array
                     tag_array = tag_to_array(tag_string)
                     try:
                         tag_docs = tags_doc_sql.get_tag_documentation(cursor, tag_array)

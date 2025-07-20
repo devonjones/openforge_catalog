@@ -151,18 +151,18 @@ class APITester:
             self.test_data["created_doc"] = response["response"]["documentation"]
             doc_id = response["response"]["documentation"]["id"]
             
-            # Test PUT /api/blueprints/{blueprint_id}/documentation/{doc_id}
-            print("  🔄 Testing PUT blueprint documentation...")
+            # Test PATCH /api/blueprints/{blueprint_id}/documentation/{doc_id}
+            print("  🔄 Testing PATCH blueprint documentation...")
             update_doc = {
                 "document": "Updated changelog entry",
                 "document_type": "changelog"
             }
             
-            response = self.curl_request("PUT", f"/api/blueprints/{blueprint_id}/documentation/{doc_id}", 
+            response = self.curl_request("PATCH", f"/api/blueprints/{blueprint_id}/documentation/{doc_id}", 
                                        data=update_doc, headers=headers)
             
             if response["success"] and response["status_code"] == 200:
-                print("    ✅ PUT blueprint documentation successful")
+                print("    ✅ PATCH blueprint documentation successful")
                 
                 # Test DELETE /api/blueprints/{blueprint_id}/documentation/{doc_id}
                 print("  🗑️  Testing DELETE blueprint documentation...")
@@ -174,7 +174,7 @@ class APITester:
                 else:
                     print(f"    ❌ DELETE blueprint documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
             else:
-                print(f"    ❌ PUT blueprint documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
+                print(f"    ❌ PATCH blueprint documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
         else:
             print(f"    ❌ POST blueprint documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
         
@@ -246,18 +246,18 @@ class APITester:
             self.test_data["created_tag_doc"] = response["response"]["documentation"]
             doc_id = response["response"]["documentation"]["id"]
             
-            # Test PUT /api/tags/{tag_array}/documentation/{doc_id}
-            print(f"  🔄 Testing PUT tag documentation for '{tag_array}'...")
+            # Test PATCH /api/tags/{tag_array}/documentation/{doc_id}
+            print(f"  🔄 Testing PATCH tag documentation for '{tag_array}'...")
             update_doc = {
                 "document": "Updated tag instructions",
                 "document_type": "instructions"
             }
             
-            response = self.curl_request("PUT", f"/api/tags/{tag_array}/documentation/{doc_id}", 
+            response = self.curl_request("PATCH", f"/api/tags/{tag_array}/documentation/{doc_id}", 
                                        data=update_doc, headers=headers)
             
             if response["success"] and response["status_code"] == 200:
-                print("    ✅ PUT tag documentation successful")
+                print("    ✅ PATCH tag documentation successful")
                 
                 # Test DELETE /api/tags/{tag_array}/documentation/{doc_id}
                 print(f"  🗑️  Testing DELETE tag documentation for '{tag_array}'...")
@@ -269,7 +269,7 @@ class APITester:
                 else:
                     print(f"    ❌ DELETE tag documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
             else:
-                print(f"    ❌ PUT tag documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
+                print(f"    ❌ PATCH tag documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
         else:
             print(f"    ❌ POST tag documentation failed: {response.get('error', f'Status {response.get('status_code')}')}")
         

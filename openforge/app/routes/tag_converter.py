@@ -17,5 +17,10 @@ class TagConverter(BaseConverter):
     
     def to_url(self, value):
         """Convert tag array to URL path."""
-        tag_array = tag_to_array(value)
-        return '/'.join(tag_array) 
+        # Handle both arrays and pipe-delimited strings
+        if isinstance(value, list):
+            return '/'.join(value)
+        else:
+            # If it's a string, convert it to array first
+            tag_array = tag_to_array(value)
+            return '/'.join(tag_array) 

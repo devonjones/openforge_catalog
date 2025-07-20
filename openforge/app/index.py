@@ -32,12 +32,12 @@ def blueprint_documentation(blueprint_id):
         return blueprint_doc_routes.create_blueprint_documentation(blueprint_id)
 
 
-@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
-@authenticate(methods=["PUT", "DELETE"])
+@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
+@authenticate(methods=["PATCH", "DELETE"])
 def blueprint_documentation_entry(blueprint_id, doc_id):
     if request.method == "GET":
         return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
-    elif request.method == "PUT":
+    elif request.method == "PATCH":
         return blueprint_doc_routes.update_blueprint_documentation(blueprint_id, doc_id)
     elif request.method == "DELETE":
         return blueprint_doc_routes.delete_blueprint_documentation(blueprint_id, doc_id)
@@ -197,14 +197,14 @@ def tag_documentation(tag_path):
         return tags_doc_routes.create_tag_documentation(tag_array)
 
 
-@app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
-@authenticate(methods=["PUT", "DELETE"])
+@app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
+@authenticate(methods=["PATCH", "DELETE"])
 def tag_documentation_entry(tag_path, doc_id):
     # Convert path to tag array manually
     tag_array = tag_path.split('/')
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
-    elif request.method == "PUT":
+    elif request.method == "PATCH":
         return tags_doc_routes.update_tag_documentation(tag_array, doc_id)
     elif request.method == "DELETE":
         return tags_doc_routes.delete_tag_documentation(tag_array, doc_id)

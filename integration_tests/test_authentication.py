@@ -21,7 +21,7 @@ class TestAuthentication:
         assert response.status_code == 401
         
         # Test PUT without auth
-        response = api_client_no_auth.put(f"/api/blueprints/{test_blueprint_id}/documentation/test-id", data=test_doc)
+        response = api_client_no_auth.patch(f"/api/blueprints/{test_blueprint_id}/documentation/test-id", data=test_doc)
         assert response.status_code == 401
         
         # Test DELETE without auth
@@ -40,7 +40,7 @@ class TestAuthentication:
         assert response.status_code == 401
         
         # Test PUT without auth
-        response = api_client_no_auth.put("/api/tags/test/tag/documentation/test-id", data=test_doc)
+        response = api_client_no_auth.patch("/api/tags/test/tag/documentation/test-id", data=test_doc)
         assert response.status_code == 401
         
         # Test DELETE without auth
@@ -82,24 +82,23 @@ class TestErrorHandling:
             response = api_client.get(f"/api/blueprints/{invalid_id}/documentation")
             assert response.status_code == 400, f"Expected 400 for invalid ID: {invalid_id}"
         
-        # Test empty string separately (results in 404 due to route redirection)
+        # Test empty string separately (results in 400 due to invalid UUID format)
         response = api_client.get("/api/blueprints//documentation")
-        assert response.status_code == 404, "Expected 404 for empty blueprint ID"
+        assert response.status_code == 400, "Expected 400 for empty blueprint ID"
     
     def test_invalid_tag_format(self, api_client):
         """Test handling of invalid tag format."""
-        # Test with various invalid tag formats
-        invalid_tags = [
-            "invalid-tag-format",
-            "tag/with/multiple/slashes",
-            "",
-            "single_tag_without_slash"
+        # Test with various invalid tag formats and their expected responses
+        test_cases = [
+            ("invalid-tag-format", 400),  # Invalid format should return 400
+            ("tag/with/multiple/slashes", 404),  # Multiple slashes should return 404 (route not found)
+            ("", 404),  # Empty tag should return 404 (route not found)
+            ("single_tag_without_slash", 400),  # Missing slash should return 400
         ]
         
-        for invalid_tag in invalid_tags:
+        for invalid_tag, expected_status in test_cases:
             response = api_client.get(f"/api/tags/{invalid_tag}/documentation")
-            # Should handle gracefully - might return 404 (no data) or 400 (invalid format)
-            assert response.status_code in [200, 400, 404], f"Unexpected status for tag: {invalid_tag}"
+            assert response.status_code == expected_status, f"Expected {expected_status} for tag: {invalid_tag}, got {response.status_code}"
     
     def test_invalid_json_in_post(self, api_client, test_blueprint_id):
         """Test handling of invalid JSON in POST requests."""
@@ -123,13 +122,13 @@ class TestErrorHandling:
         incomplete_data = {"document": "Test document"}
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=incomplete_data)
         # This might succeed if document_type has a default value
-        assert response.status_code in [200, 201, 400]
+        assert response.status_code in [201, 400]
     
     def test_nonexistent_resources(self, api_client):
         """Test handling of requests to non-existent resources."""
         # Test non-existent blueprint documentation
         response = api_client.get("/api/blueprints/00000000-0000-0000-0000-000000000000/documentation")
-        assert response.status_code == 200  # Should return empty list
+        assert response.status_code == 404  # Should return 404 when no documentation exists
         
         # Test non-existent tag documentation
         response = api_client.get("/api/tags/nonexistent/tag/documentation")
@@ -140,7 +139,7 @@ class TestErrorHandling:
             "document": "Updated document",
             "document_type": "changelog"
         }
-        response = api_client.put("/api/blueprints/00000000-0000-0000-0000-000000000000/documentation/00000000-0000-0000-0000-000000000001", 
+        response = api_client.patch("/api/blueprints/00000000-0000-0000-0000-000000000000/documentation/00000000-0000-0000-0000-000000000001", 
                                 data=update_doc)
         assert response.status_code == 404
         
