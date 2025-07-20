@@ -106,13 +106,20 @@ def test_delete_blueprint(auth_client, test_db):
     assert response.status_code == 204
 
 def test_download_blueprint(client, test_db):
+    import warnings
+    
     # Mock CloudFlare credentials
     client.application.config["CLOUDFLARE_ENDPOINT"] = "https://test.endpoint"
     client.application.config["CLOUDFLARE_ACCESS_KEY_ID"] = "test_key"
     client.application.config["CLOUDFLARE_SECRET_ACCESS_KEY"] = "test_secret"
     
     blueprint = setup_test_data(test_db)
-    resp = client.get(f'/api/blueprints/{blueprint["id"]}/download', headers={"Authorization": "Bearer test_token"})
+    
+    # Suppress the specific botocore deprecation warning
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=DeprecationWarning, module="botocore")
+        resp = client.get(f'/api/blueprints/{blueprint["id"]}/download', headers={"Authorization": "Bearer test_token"})
+    
     assert resp.status_code == 302
 
 def test_create_blueprint_with_tags_and_images(auth_client):

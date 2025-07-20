@@ -6,6 +6,27 @@ import uuid
 import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
 
 
+def _verify_documentation_ownership(cursor, doc_uuid, blueprint_id):
+    """Verify that documentation belongs to the specified blueprint.
+    
+    Args:
+        cursor: Database cursor
+        doc_uuid: Documentation UUID
+        blueprint_id: Blueprint ID string
+        
+    Returns:
+        dict: Documentation data if ownership is verified
+        
+    Raises:
+        NotFound: If documentation doesn't exist
+        ValueError: If documentation doesn't belong to blueprint
+    """
+    existing_doc = blueprint_doc_sql.get_blueprint_documentation_by_id(cursor, doc_uuid)
+    if str(existing_doc["blueprint_id"]) != blueprint_id:
+        raise ValueError("Documentation not found for this blueprint")
+    return existing_doc
+
+
 def get_blueprint_documentation(blueprint_id):
     """Get all documentation for a blueprint."""
     try:
@@ -30,13 +51,12 @@ def get_blueprint_documentation_entry(blueprint_id, doc_id):
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
-                data = blueprint_doc_sql.get_blueprint_documentation_by_id(cursor, doc_uuid)
-                # Verify the documentation belongs to the specified blueprint
-                if str(data["blueprint_id"]) != blueprint_id:
-                    return jsonify({"error": "Documentation not found for this blueprint"}), 404
+                data = _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
                 return jsonify({"documentation": data})
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
+            except ValueError as e:
+                return jsonify({"error": str(e)}), 404
 
 
 def create_blueprint_documentation(blueprint_id):
@@ -66,7 +86,8 @@ def create_blueprint_documentation(blueprint_id):
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error creating blueprint documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def update_blueprint_documentation(blueprint_id, doc_id):
@@ -93,9 +114,7 @@ def update_blueprint_documentation(blueprint_id, doc_id):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified blueprint
-                existing_doc = blueprint_doc_sql.get_blueprint_documentation_by_id(cursor, doc_uuid)
-                if str(existing_doc["blueprint_id"]) != blueprint_id:
-                    return jsonify({"error": "Documentation not found for this blueprint"}), 404
+                _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
                 
                 data = blueprint_doc_sql.update_blueprint_documentation(
                     cursor, doc_uuid, document, document_type
@@ -103,8 +122,11 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                 return jsonify({"documentation": data})
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
+            except ValueError as e:
+                return jsonify({"error": str(e)}), 404
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error updating blueprint documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def delete_blueprint_documentation(blueprint_id, doc_id):
@@ -119,16 +141,17 @@ def delete_blueprint_documentation(blueprint_id, doc_id):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified blueprint
-                existing_doc = blueprint_doc_sql.get_blueprint_documentation_by_id(cursor, doc_uuid)
-                if str(existing_doc["blueprint_id"]) != blueprint_id:
-                    return jsonify({"error": "Documentation not found for this blueprint"}), 404
+                _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
                 
                 blueprint_doc_sql.delete_blueprint_documentation(cursor, doc_uuid)
-                return jsonify({"success": True})
+                return "", 204
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
+            except ValueError as e:
+                return jsonify({"error": str(e)}), 404
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error deleting blueprint documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def get_blueprint_changelog_history(blueprint_id):
@@ -155,4 +178,73 @@ def get_blueprint_changelog_history(blueprint_id):
                 )
                 return jsonify(data)
             except Exception as e:
-                return jsonify({"error": str(e)}), 500 
+                current_app.logger.error(f"Error getting changelog history: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
+
+
+def get_blueprint_all_documentation(blueprint_id):
+    """Get all documentation for a blueprint including blueprint docs, changelog history, and tag docs."""
+    try:
+        blueprint_uuid = uuid.UUID(blueprint_id)
+    except ValueError:
+        return jsonify({"error": "Invalid blueprint ID"}), 400
+    
+    changelog_limit = request.args.get("changelog_limit", 10, type=int)
+    changelog_offset = request.args.get("changelog_offset", 0, type=int)
+    
+    if changelog_limit < 1 or changelog_limit > 100:
+        return jsonify({"error": "Changelog limit must be between 1 and 100"}), 400
+    
+    if changelog_offset < 0:
+        return jsonify({"error": "Changelog offset must be non-negative"}), 400
+    
+    with current_app.db.pool.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            try:
+                # 1. Get blueprint information
+                import openforge.db.sql.blueprints as blueprint_sql
+                blueprint_data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
+                
+                # 2. Get blueprint documentation
+                blueprint_docs = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid)
+                
+                # 3. Get changelog history
+                changelog_data = blueprint_doc_sql.get_blueprint_changelog_history(
+                    cursor, blueprint_uuid, changelog_limit, changelog_offset
+                )
+                
+                # 4. Get blueprint tags
+                import openforge.db.sql.tags as tag_sql
+                blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
+                
+                # 5. Get documentation for each tag
+                import openforge.db.sql.tags_documentation as tags_doc_sql
+                tag_documentation = {}
+                
+                for tag_record in blueprint_tags:
+                    tag_string = tag_record["tag"]  # This is a pipe-delimited string
+                    # Convert pipe-delimited string to array for tag documentation lookup
+                    from openforge.db.sql.tag_utils import tag_to_array
+                    tag_array = tag_to_array(tag_string)
+                    try:
+                        tag_docs = tags_doc_sql.get_tag_documentation(cursor, tag_array)
+                        tag_documentation[tag_string] = tag_docs  # Keep original string as key
+                    except Exception as e:
+                        # If tag documentation fails, continue with other tags
+                        current_app.logger.warning(f"Failed to get documentation for tag {tag_string}: {e}")
+                        tag_documentation[tag_string] = []
+                
+                # Combine all data
+                result = {
+                    "blueprint_id": str(blueprint_uuid),
+                    "blueprint_name": blueprint_data["blueprint_name"],
+                    "blueprint_documentation": blueprint_docs,
+                    "changelog_history": changelog_data,
+                    "tag_documentation": tag_documentation
+                }
+                
+                return jsonify(result)
+                
+            except Exception as e:
+                current_app.logger.error(f"Error getting all documentation for blueprint {blueprint_id}: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500 

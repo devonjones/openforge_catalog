@@ -4,13 +4,25 @@ from werkzeug.exceptions import NotFound
 import uuid
 
 import openforge.db.sql.tags_documentation as tags_doc_sql
+from openforge.db.sql.tag_utils import array_to_tag
 
 
 def get_tag_documentation(tag_array):
     """Get documentation for a specific tag."""
+    # Validate tag format
+    if not tag_array or len(tag_array) < 2:
+        return jsonify({"error": "Invalid tag format. Expected at least 2 components separated by '/'."}), 400
+    
+    # Check for empty components
+    if any(not component or component.strip() == "" for component in tag_array):
+        return jsonify({"error": "Invalid tag format. Tag components cannot be empty."}), 400
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tags_doc_sql.get_tag_documentation(cursor, tag_array)
+            if not data:
+                # Return 404 with empty array for semantic correctness while maintaining useful response structure
+                return jsonify({"documentation": []}), 404
             return jsonify({"documentation": data})
 
 
@@ -26,7 +38,7 @@ def get_tag_documentation_entry(tag_array, doc_id):
             try:
                 data = tags_doc_sql.get_tag_documentation_by_id(cursor, doc_uuid)
                 # Verify the documentation belongs to the specified tag
-                if data["tag"] != tag_array:
+                if data["tag"] != array_to_tag(tag_array):
                     return jsonify({"error": "Documentation not found for this tag"}), 404
                 return jsonify({"documentation": data})
             except NotFound:
@@ -44,8 +56,8 @@ def create_tag_documentation(tag_array):
     if not document:
         return jsonify({"error": "Document content required"}), 400
     
-    if document_type not in ["changelog", "instructions"]:
-        return jsonify({"error": "Invalid document type"}), 400
+    if document_type != "instructions":
+        return jsonify({"error": "Invalid document type for tags, must be 'instructions'"}), 400
     
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -55,7 +67,8 @@ def create_tag_documentation(tag_array):
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error creating tag documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def update_tag_documentation(tag_array, doc_id):
@@ -74,15 +87,15 @@ def update_tag_documentation(tag_array, doc_id):
     if not document:
         return jsonify({"error": "Document content required"}), 400
     
-    if document_type and document_type not in ["changelog", "instructions"]:
-        return jsonify({"error": "Invalid document type"}), 400
+    if document_type and document_type != "instructions":
+        return jsonify({"error": "Invalid document type for tags, must be 'instructions'"}), 400
     
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified tag
                 existing_doc = tags_doc_sql.get_tag_documentation_by_id(cursor, doc_uuid)
-                if existing_doc["tag"] != tag_array:
+                if existing_doc["tag"] != array_to_tag(tag_array):
                     return jsonify({"error": "Documentation not found for this tag"}), 404
                 
                 data = tags_doc_sql.update_tag_documentation(
@@ -92,7 +105,8 @@ def update_tag_documentation(tag_array, doc_id):
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error updating tag documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def delete_tag_documentation(tag_array, doc_id):
@@ -107,15 +121,16 @@ def delete_tag_documentation(tag_array, doc_id):
             try:
                 # First verify the documentation belongs to the specified tag
                 existing_doc = tags_doc_sql.get_tag_documentation_by_id(cursor, doc_uuid)
-                if existing_doc["tag"] != tag_array:
+                if existing_doc["tag"] != array_to_tag(tag_array):
                     return jsonify({"error": "Documentation not found for this tag"}), 404
                 
                 tags_doc_sql.delete_tag_documentation(cursor, doc_uuid)
-                return jsonify({"success": True})
+                return "", 204
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
             except Exception as e:
-                return jsonify({"error": str(e)}), 500
+                current_app.logger.error(f"Error deleting tag documentation: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500
 
 
 def get_all_tag_documentation():

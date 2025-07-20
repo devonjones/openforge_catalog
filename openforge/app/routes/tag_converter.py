@@ -17,10 +17,5 @@ class TagConverter(BaseConverter):
     
     def to_url(self, value):
         """Convert tag array to URL path."""
-        # Convert ["texture", "dungeon_stone"] to "texture/dungeon_stone"
-        # This converts tag array format to URL-friendly format
-        if isinstance(value, list):
-            return '/'.join(value)
-        # Handle case where value might be a pipe-delimited string
         tag_array = tag_to_array(value)
         return '/'.join(tag_array) 

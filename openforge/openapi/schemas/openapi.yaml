@@ -950,6 +950,46 @@ paths:
                 $ref: '#/components/schemas/ChangelogHistory'
         '404':
           description: 'Blueprint not found'
+  /api/blueprints/{blueprint_id}/all-documentation:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get all documentation for a blueprint
+      operationId: getBlueprintAllDocumentation
+      description: Returns all documentation for a blueprint including blueprint documentation, changelog history, and documentation for all associated tags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: query
+          name: changelog_limit
+          description: Maximum number of changelogs to return in history
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - in: query
+          name: changelog_offset
+          description: Number of changelogs to skip in history
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: Combined documentation for blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedBlueprintDocumentation'
+        '404':
+          description: 'Blueprint not found'
   /api/tags/{tag_array}/documentation:
     get:
       tags:
@@ -1267,6 +1307,8 @@ components:
       $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationUpdate'
     ChangelogHistory:
       $ref: 'blueprint_documentation.yaml#/ChangelogHistory'
+    CombinedBlueprintDocumentation:
+      $ref: 'blueprint_documentation.yaml#/CombinedBlueprintDocumentation'
     TagDocumentation:
       $ref: 'tag_documentation.yaml#/TagDocumentation'
     TagDocumentationList:

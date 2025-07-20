@@ -1,7 +1,7 @@
 """Version 10: Phase 2 Documentation System Implementation
 
 - Add image_type support to images table
-- Create tags_documentation table following blueprint_documentation pattern
+- Create tag_documentation table following blueprint_documentation pattern
 - Create sessions table for admin authentication
 - Create SQL functions for documentation operations
 """
@@ -15,7 +15,7 @@ from openforge.db.schema import SchemaBase, SchemaVersionDecorator
 class SchemaVersion10(SchemaBase):
     def up_impl(self, curs: cursor):
         self.add_image_type_support(curs)
-        self.create_tags_documentation_table(curs)
+        self.create_tag_documentation_table(curs)
         self.create_sessions_table(curs)
         self.migrate_existing_images(curs)
         self.create_documentation_functions(curs)
@@ -23,7 +23,7 @@ class SchemaVersion10(SchemaBase):
     def down_impl(self, curs: cursor):
         self.drop_documentation_functions(curs)
         self.drop_sessions_table(curs)
-        self.drop_tags_documentation_table(curs)
+        self.drop_tag_documentation_table(curs)
         self.remove_image_type_support(curs)
 
     def add_image_type_support(self, curs: cursor):
@@ -54,10 +54,10 @@ CREATE INDEX idx_images_type ON images(image_type)
         curs.execute(query)
         print("  created idx_images_type index")
 
-    def create_tags_documentation_table(self, curs: cursor):
+    def create_tag_documentation_table(self, curs: cursor):
         query = sql.SQL(
             """
-CREATE TABLE tags_documentation (
+CREATE TABLE tag_documentation (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     tag text[] NOT NULL,
     document text NOT NULL,
@@ -68,35 +68,35 @@ CREATE TABLE tags_documentation (
 """
         )
         curs.execute(query)
-        print("  created tags_documentation table")
+        print("  created tag_documentation table")
 
         # Indexes for performance
         query = sql.SQL(
             """
-CREATE INDEX idx_tags_documentation_tag ON tags_documentation USING GIN(tag)
+CREATE INDEX idx_tag_documentation_tag ON tag_documentation USING GIN(tag)
 """
         )
         curs.execute(query)
-        print("  created idx_tags_documentation_tag index")
+        print("  created idx_tag_documentation_tag index")
 
         query = sql.SQL(
             """
-CREATE INDEX idx_tags_documentation_type ON tags_documentation(document_type)
+CREATE INDEX idx_tag_documentation_type ON tag_documentation(document_type)
 """
         )
         curs.execute(query)
-        print("  created idx_tags_documentation_type index")
+        print("  created idx_tag_documentation_type index")
 
         # Trigger for automatic updated_at timestamp updates
         query = sql.SQL(
             """
-CREATE TRIGGER update_tags_documentation_updated_at 
-  BEFORE UPDATE ON tags_documentation
+CREATE TRIGGER update_tag_documentation_updated_at 
+  BEFORE UPDATE ON tag_documentation
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
 """
         )
         curs.execute(query)
-        print("  created tags_documentation updated_at trigger")
+        print("  created tag_documentation updated_at trigger")
 
     def create_sessions_table(self, curs: cursor):
         query = sql.SQL(
@@ -171,7 +171,7 @@ CREATE OR REPLACE FUNCTION get_blueprint_changelog_history(
     blueprint_id uuid,
     blueprint_name text,
     changelog text,
-    created_at timestamp,
+    created_at timestamptz,
     depth integer,
     successor_id uuid,
     deprecated boolean
@@ -214,7 +214,7 @@ BEGIN
         cc.id, 
         cc.blueprint_name, 
         cc.document, 
-        cc.created_at::timestamp, 
+        cc.created_at::timestamptz, 
         cc.depth,
         cc.successor_id,
         cc.deprecated
@@ -258,22 +258,22 @@ $$ LANGUAGE plpgsql
         curs.execute(query)
         print("  dropped sessions table")
 
-    def drop_tags_documentation_table(self, curs: cursor):
-        query = sql.SQL("DROP TRIGGER IF EXISTS update_tags_documentation_updated_at ON tags_documentation")
+    def drop_tag_documentation_table(self, curs: cursor):
+        query = sql.SQL("DROP TRIGGER IF EXISTS update_tag_documentation_updated_at ON tag_documentation")
         curs.execute(query)
-        print("  dropped tags_documentation updated_at trigger")
+        print("  dropped tag_documentation updated_at trigger")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_tags_documentation_type")
+        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_type")
         curs.execute(query)
-        print("  dropped idx_tags_documentation_type index")
+        print("  dropped idx_tag_documentation_type index")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_tags_documentation_tag")
+        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_tag")
         curs.execute(query)
-        print("  dropped idx_tags_documentation_tag index")
+        print("  dropped idx_tag_documentation_tag index")
 
-        query = sql.SQL("DROP TABLE IF EXISTS tags_documentation CASCADE")
+        query = sql.SQL("DROP TABLE IF EXISTS tag_documentation CASCADE")
         curs.execute(query)
-        print("  dropped tags_documentation table")
+        print("  dropped tag_documentation table")
 
     def remove_image_type_support(self, curs: cursor):
         query = sql.SQL("DROP INDEX IF EXISTS idx_images_type")

@@ -6,11 +6,20 @@ import boto3
 import re
 from botocore.config import Config
 from urllib.parse import urlparse
+import uuid
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 from openforge.openapi import validate_schema
+
+
+def _validate_uuid(uuid_string: str) -> None:
+    """Validate that a string is a valid UUID, abort with 404 if not."""
+    try:
+        uuid.UUID(uuid_string)
+    except ValueError:
+        abort(404)
 
 
 def get_blueprints():
@@ -48,6 +57,8 @@ def create_blueprint():
 
 
 def get_blueprint_by_id(blueprint_id):
+    _validate_uuid(blueprint_id)
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)
@@ -70,6 +81,8 @@ def get_blueprint_by_md5(md5):
 
 
 def update_blueprint(blueprint_id):
+    _validate_uuid(blueprint_id)
+    
     try:
         validate_schema("blueprint.yaml", request.json, required=False)
     except ValidationError as e:
@@ -99,6 +112,8 @@ def update_blueprint(blueprint_id):
 
 
 def delete_blueprint(blueprint_id):
+    _validate_uuid(blueprint_id)
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
@@ -113,6 +128,8 @@ def delete_blueprint(blueprint_id):
 
 
 def download_blueprint(blueprint_id):
+    _validate_uuid(blueprint_id)
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             bp = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)

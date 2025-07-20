@@ -3,6 +3,9 @@ from psycopg.rows import dict_row
 from werkzeug.exceptions import NotFound
 import uuid
 
+# Default recursion depth for changelog history queries
+DEFAULT_CHANGELOG_RECURSION_DEPTH = 10
+
 
 def get_blueprint_documentation(curs, blueprint_id: uuid.UUID):
     """Get all documentation for a blueprint."""
@@ -49,27 +52,26 @@ INSERT INTO blueprint_documentation (blueprint_id, document, document_type)
 
 def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
     """Update specific documentation entry."""
+    update_fields = [sql.SQL("document = %s")]
+    params = [document]
+
     if document_type is not None:
-        query = sql.SQL(
-            """
+        update_fields.append(sql.SQL("document_type = %s"))
+        params.append(document_type)
+
+    query = sql.SQL(
+        """
 UPDATE blueprint_documentation
-  SET document = %s, document_type = %s, updated_at = CURRENT_TIMESTAMP
+  SET {fields}, updated_at = CURRENT_TIMESTAMP
   WHERE id = {doc_id}
   RETURNING id, blueprint_id, document, document_type, created_at, updated_at
 """
-        ).format(doc_id=sql.Literal(doc_id))
-        curs.execute(query, (document, document_type))
-    else:
-        query = sql.SQL(
-            """
-UPDATE blueprint_documentation
-  SET document = %s, updated_at = CURRENT_TIMESTAMP
-  WHERE id = {doc_id}
-  RETURNING id, blueprint_id, document, document_type, created_at, updated_at
-"""
-        ).format(doc_id=sql.Literal(doc_id))
-        curs.execute(query, (document,))
-    
+    ).format(
+        fields=sql.SQL(', ').join(update_fields),
+        doc_id=sql.Literal(doc_id)
+    )
+    curs.execute(query, tuple(params))
+
     result = curs.fetchone()
     if not result:
         raise NotFound("Blueprint documentation not found")
@@ -97,12 +99,13 @@ def get_blueprint_changelog_history(curs, blueprint_id: uuid.UUID, limit: int = 
     query = sql.SQL(
         """
 SELECT blueprint_id, blueprint_name, changelog, created_at, depth, successor_id, deprecated
-  FROM get_blueprint_changelog_history({blueprint_id}, 10)
+  FROM get_blueprint_changelog_history({blueprint_id}, {recursion_depth})
   ORDER BY depth ASC, created_at DESC NULLS LAST
   LIMIT {limit} OFFSET {offset}
 """
     ).format(
         blueprint_id=sql.Literal(blueprint_id),
+        recursion_depth=sql.Literal(DEFAULT_CHANGELOG_RECURSION_DEPTH),
         limit=sql.Literal(limit),
         offset=sql.Literal(offset)
     )
@@ -113,9 +116,12 @@ SELECT blueprint_id, blueprint_name, changelog, created_at, depth, successor_id,
     count_query = sql.SQL(
         """
 SELECT COUNT(*) as total_count
-  FROM get_blueprint_changelog_history({blueprint_id}, 10)
+  FROM get_blueprint_changelog_history({blueprint_id}, {recursion_depth})
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id))
+    ).format(
+        blueprint_id=sql.Literal(blueprint_id),
+        recursion_depth=sql.Literal(DEFAULT_CHANGELOG_RECURSION_DEPTH)
+    )
     curs.execute(count_query)
     total_count = curs.fetchone()['total_count']
     

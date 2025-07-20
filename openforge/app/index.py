@@ -19,6 +19,41 @@ init_app(app)
 app.url_map.converters['tag'] = TagConverter
 
 ####################
+### Blueprint Documentation routes
+####################
+
+
+@app.route("/api/blueprints/<blueprint_id>/documentation", methods=["GET", "POST"])
+@authenticate(methods=["POST"])
+def blueprint_documentation(blueprint_id):
+    if request.method == "GET":
+        return blueprint_doc_routes.get_blueprint_documentation(blueprint_id)
+    elif request.method == "POST":
+        return blueprint_doc_routes.create_blueprint_documentation(blueprint_id)
+
+
+@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
+@authenticate(methods=["PUT", "DELETE"])
+def blueprint_documentation_entry(blueprint_id, doc_id):
+    if request.method == "GET":
+        return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
+    elif request.method == "PUT":
+        return blueprint_doc_routes.update_blueprint_documentation(blueprint_id, doc_id)
+    elif request.method == "DELETE":
+        return blueprint_doc_routes.delete_blueprint_documentation(blueprint_id, doc_id)
+
+
+@app.route("/api/blueprints/<blueprint_id>/changelog-history", methods=["GET"])
+def blueprint_changelog_history(blueprint_id):
+    return blueprint_doc_routes.get_blueprint_changelog_history(blueprint_id)
+
+
+@app.route("/api/blueprints/<blueprint_id>/all-documentation", methods=["GET"])
+def blueprint_all_documentation(blueprint_id):
+    return blueprint_doc_routes.get_blueprint_all_documentation(blueprint_id)
+
+
+####################
 ### Blueprint routes
 ####################
 
@@ -32,6 +67,22 @@ def blueprints():
         return blueprint_routes.create_blueprint()
 
 
+@app.route("/api/blueprints/tags", methods=["POST"])
+def tags():
+    return tag_routes.query_tags()
+
+
+@app.route("/api/blueprints/tags/<tag>", methods=["GET"])
+def blueprints_by_tag(tag):
+    return tag_routes.get_blueprint_ids_by_tag(tag)
+
+
+@app.route("/api/blueprints/md5/<md5>", methods=["GET"])
+def blueprint_by_md5(md5):
+    if request.method == "GET":
+        return blueprint_routes.get_blueprint_by_md5(md5)
+
+
 @app.route("/api/blueprints/<blueprint_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
 def blueprint(blueprint_id):
@@ -43,25 +94,9 @@ def blueprint(blueprint_id):
         return blueprint_routes.delete_blueprint(blueprint_id)
 
 
-@app.route("/api/blueprints/md5/<md5>", methods=["GET"])
-def blueprint_by_md5(md5):
-    if request.method == "GET":
-        return blueprint_routes.get_blueprint_by_md5(md5)
-
-
 @app.route("/api/blueprints/<blueprint_id>/download", methods=["GET"])
 def download_blueprint(blueprint_id):
     return blueprint_routes.download_blueprint(blueprint_id)
-
-
-@app.route("/api/blueprints/tags", methods=["POST"])
-def tags():
-    return tag_routes.query_tags()
-
-
-@app.route("/api/blueprints/tags/<tag>", methods=["GET"])
-def blueprints_by_tag(tag):
-    return tag_routes.get_blueprint_ids_by_tag(tag)
 
 
 @app.route("/api/blueprints/<blueprint_id>/tags", methods=["GET", "POST", "DELETE"])
@@ -147,52 +182,26 @@ def tag_description_by_tag(tag):
 
 
 ####################
-### Blueprint Documentation routes
-####################
-
-
-@app.route("/api/blueprints/<blueprint_id>/documentation", methods=["GET", "POST"])
-@authenticate(methods=["POST"])
-def blueprint_documentation(blueprint_id):
-    if request.method == "GET":
-        return blueprint_doc_routes.get_blueprint_documentation(blueprint_id)
-    elif request.method == "POST":
-        return blueprint_doc_routes.create_blueprint_documentation(blueprint_id)
-
-
-@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
-@authenticate(methods=["PUT", "DELETE"])
-def blueprint_documentation_entry(blueprint_id, doc_id):
-    if request.method == "GET":
-        return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
-    elif request.method == "PUT":
-        return blueprint_doc_routes.update_blueprint_documentation(blueprint_id, doc_id)
-    elif request.method == "DELETE":
-        return blueprint_doc_routes.delete_blueprint_documentation(blueprint_id, doc_id)
-
-
-@app.route("/api/blueprints/<blueprint_id>/changelog-history", methods=["GET"])
-def blueprint_changelog_history(blueprint_id):
-    return blueprint_doc_routes.get_blueprint_changelog_history(blueprint_id)
-
-
-####################
 ### Tag Documentation routes
 ####################
 
 
-@app.route("/api/tags/<tag:tag_array>/documentation", methods=["GET", "POST"])
+@app.route("/api/tags/<path:tag_path>/documentation", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
-def tag_documentation(tag_array):
+def tag_documentation(tag_path):
+    # Convert path to tag array manually
+    tag_array = tag_path.split('/')
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation(tag_array)
     elif request.method == "POST":
         return tags_doc_routes.create_tag_documentation(tag_array)
 
 
-@app.route("/api/tags/<tag:tag_array>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
+@app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PUT", "DELETE"])
 @authenticate(methods=["PUT", "DELETE"])
-def tag_documentation_entry(tag_array, doc_id):
+def tag_documentation_entry(tag_path, doc_id):
+    # Convert path to tag array manually
+    tag_array = tag_path.split('/')
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
     elif request.method == "PUT":

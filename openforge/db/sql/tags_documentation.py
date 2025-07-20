@@ -10,7 +10,7 @@ def get_tag_documentation(curs, tag_array: list[str]):
     query = sql.SQL(
         """
 SELECT id, tag, document, document_type, created_at, updated_at
-  FROM tags_documentation
+  FROM tag_documentation
   WHERE tag = {tag_array}
   ORDER BY created_at DESC
 """
@@ -24,7 +24,7 @@ def get_tag_documentation_by_id(curs, doc_id: uuid.UUID):
     query = sql.SQL(
         """
 SELECT id, tag, document, document_type, created_at, updated_at
-  FROM tags_documentation
+  FROM tag_documentation
   WHERE id = {doc_id}
 """
     ).format(doc_id=sql.Literal(doc_id))
@@ -39,7 +39,7 @@ def create_tag_documentation(curs, tag_array: list[str], document: str, document
     """Create new documentation for a tag."""
     query = sql.SQL(
         """
-INSERT INTO tags_documentation (tag, document, document_type)
+INSERT INTO tag_documentation (tag, document, document_type)
   VALUES ({tag_array}, %s, %s)
   RETURNING id, tag, document, document_type, created_at, updated_at
 """
@@ -50,27 +50,26 @@ INSERT INTO tags_documentation (tag, document, document_type)
 
 def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
     """Update specific tag documentation entry."""
+    update_fields = [sql.SQL("document = %s")]
+    params = [document]
+
     if document_type is not None:
-        query = sql.SQL(
-            """
-UPDATE tags_documentation
-  SET document = %s, document_type = %s, updated_at = CURRENT_TIMESTAMP
+        update_fields.append(sql.SQL("document_type = %s"))
+        params.append(document_type)
+
+    query = sql.SQL(
+        """
+UPDATE tag_documentation
+  SET {fields}, updated_at = CURRENT_TIMESTAMP
   WHERE id = {doc_id}
   RETURNING id, tag, document, document_type, created_at, updated_at
 """
-        ).format(doc_id=sql.Literal(doc_id))
-        curs.execute(query, (document, document_type))
-    else:
-        query = sql.SQL(
-            """
-UPDATE tags_documentation
-  SET document = %s, updated_at = CURRENT_TIMESTAMP
-  WHERE id = {doc_id}
-  RETURNING id, tag, document, document_type, created_at, updated_at
-"""
-        ).format(doc_id=sql.Literal(doc_id))
-        curs.execute(query, (document,))
-    
+    ).format(
+        fields=sql.SQL(', ').join(update_fields),
+        doc_id=sql.Literal(doc_id)
+    )
+    curs.execute(query, tuple(params))
+
     result = curs.fetchone()
     if not result:
         raise NotFound("Tag documentation not found")
@@ -81,7 +80,7 @@ def delete_tag_documentation(curs, doc_id: uuid.UUID):
     """Delete specific tag documentation entry."""
     query = sql.SQL(
         """
-DELETE FROM tags_documentation
+DELETE FROM tag_documentation
   WHERE id = {doc_id}
   RETURNING id
 """
@@ -98,7 +97,7 @@ def get_all_tag_documentation(curs):
     query = sql.SQL(
         """
 SELECT id, tag, document, document_type, created_at, updated_at
-  FROM tags_documentation
+  FROM tag_documentation
   ORDER BY tag, created_at DESC
 """
     )
@@ -113,7 +112,7 @@ def get_tag_documentation_by_tag_prefix(curs, tag):
     query = sql.SQL(
         """
 SELECT id, tag, document, document_type, created_at, updated_at
-  FROM tags_documentation
+  FROM tag_documentation
   WHERE tag[1:{n}] = {prefix}
   ORDER BY array_length(tag, 1), tag, created_at DESC
 """

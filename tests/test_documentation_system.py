@@ -24,13 +24,13 @@ def test_image_type_enum_creation(test_db):
 
 
 def test_tags_documentation_table_creation(test_db):
-    """Test that tags_documentation table has been created."""
+    """Test that tag_documentation table has been created."""
     with test_db.pool.connection() as conn:
         with conn.cursor() as curs:
             curs.execute("""
                 SELECT table_name 
                 FROM information_schema.tables 
-                WHERE table_name = 'tags_documentation'
+                WHERE table_name = 'tag_documentation'
             """)
             result = curs.fetchone()
             assert result is not None
