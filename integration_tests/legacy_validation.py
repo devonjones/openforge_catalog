@@ -19,6 +19,8 @@ from typing import Dict, Any, Optional
 BASE_URL = "http://localhost:5328"  # Adjust if your server runs on different port
 API_KEY = "1234567890"  # Use your actual API key for authenticated endpoints
 
+from .test_constants import TEST_DOCUMENT_TEMPLATES
+
 class APITester:
     def __init__(self, base_url: str, api_key: str):
         self.base_url = base_url
@@ -138,7 +140,7 @@ class APITester:
         # Test POST /api/blueprints/{blueprint_id}/documentation (requires auth)
         print("  ✏️  Testing POST blueprint documentation...")
         test_doc = {
-            "document": "Test changelog entry",
+            "document": TEST_DOCUMENT_TEMPLATES["changelog"],
             "document_type": "changelog"
         }
         
@@ -154,7 +156,7 @@ class APITester:
             # Test PATCH /api/blueprints/{blueprint_id}/documentation/{doc_id}
             print("  🔄 Testing PATCH blueprint documentation...")
             update_doc = {
-                "document": "Updated changelog entry",
+                "document": TEST_DOCUMENT_TEMPLATES["update"],
                 "document_type": "changelog"
             }
             
@@ -233,7 +235,7 @@ class APITester:
         # Test POST /api/tags/{tag_array}/documentation (requires auth)
         print(f"  ✏️  Testing POST tag documentation for '{tag_array}'...")
         test_doc = {
-            "document": "Test tag instructions",
+            "document": TEST_DOCUMENT_TEMPLATES["instructions"],
             "document_type": "instructions"
         }
         

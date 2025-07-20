@@ -4,6 +4,7 @@ Pytest tests for Authentication and Error Handling.
 
 import pytest
 import requests
+from .test_constants import TEST_DOCUMENT_TEMPLATES
 
 
 class TestAuthentication:
@@ -12,7 +13,7 @@ class TestAuthentication:
     def test_blueprint_documentation_requires_auth(self, api_client_no_auth, test_blueprint_id):
         """Test that blueprint documentation operations require authentication."""
         test_doc = {
-            "document": "Test document without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["auth"],
             "document_type": "changelog"
         }
         
@@ -31,7 +32,7 @@ class TestAuthentication:
     def test_tag_documentation_requires_auth(self, api_client_no_auth):
         """Test that tag documentation operations require authentication."""
         test_doc = {
-            "document": "Test tag document without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["auth"],
             "document_type": "instructions"
         }
         
@@ -119,7 +120,7 @@ class TestErrorHandling:
         assert response.status_code == 400
         
         # Test missing document_type field
-        incomplete_data = {"document": "Test document"}
+        incomplete_data = {"document": TEST_DOCUMENT_TEMPLATES["changelog"]}
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=incomplete_data)
         # This might succeed if document_type has a default value
         assert response.status_code in [201, 400]
@@ -150,7 +151,7 @@ class TestErrorHandling:
     def test_invalid_document_type(self, api_client, test_blueprint_id):
         """Test handling of invalid document types."""
         test_doc = {
-            "document": "Test document with invalid type",
+            "document": TEST_DOCUMENT_TEMPLATES["invalid_type"],
             "document_type": "invalid_type"
         }
         
@@ -160,17 +161,38 @@ class TestErrorHandling:
     def test_empty_document_content(self, api_client, test_blueprint_id):
         """Test handling of empty document content."""
         test_doc = {
-            "document": "",
+            "document": TEST_DOCUMENT_TEMPLATES["empty"],
             "document_type": "changelog"
         }
         
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
-        # This might be allowed or rejected depending on validation rules
-        assert response.status_code in [200, 201, 400]
+        # API should reject empty document content with 400 Bad Request
+        assert response.status_code == 400
+        
+        # Verify the error message
+        error_data = response.json()
+        assert "error" in error_data
+        assert "Document content required" in error_data["error"]
+    
+    def test_whitespace_only_document_content(self, api_client, test_blueprint_id):
+        """Test handling of whitespace-only document content."""
+        test_doc = {
+            "document": "   \n\t  ",  # Whitespace-only content
+            "document_type": "changelog"
+        }
+        
+        response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
+        # API should reject whitespace-only content with 400 Bad Request
+        assert response.status_code == 400
+        
+        # Verify the error message
+        error_data = response.json()
+        assert "error" in error_data
+        assert "Document content required" in error_data["error"]
     
     def test_very_large_document_content(self, api_client, test_blueprint_id):
         """Test handling of very large document content."""
-        large_document = "x" * 10000  # 10KB document
+        large_document = TEST_DOCUMENT_TEMPLATES["large"] + "x" * 10000  # 10KB document
         
         test_doc = {
             "document": large_document,
@@ -203,10 +225,88 @@ class TestErrorHandling:
         }
         
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
-        # Should accept the content (XSS prevention is client-side)
-        assert response.status_code in [200, 201]
+        # Should reject or sanitize dangerous content
+        assert response.status_code in [400, 201]
         
-        # Verify the content is stored as-is
-        if response.status_code in [200, 201]:
+        # If accepted, verify the content is sanitized (script tags removed)
+        if response.status_code == 201:
             data = response.json()
-            assert data["documentation"]["document"] == xss_document 
+            sanitized_content = data["documentation"]["document"]
+            assert "<script>" not in sanitized_content
+            assert "alert('xss')" not in sanitized_content
+        else:
+            # If rejected, verify it's due to dangerous content
+            error_data = response.json()
+            assert "dangerous" in error_data.get("error", "").lower() or "script" in error_data.get("error", "").lower()
+    
+    def test_various_xss_attempts(self, api_client, test_blueprint_id):
+        """Test various XSS attack vectors."""
+        xss_attempts = [
+            "<script>alert('xss')</script>",
+            "javascript:alert('xss')",
+            "<img src=x onerror=alert('xss')>",
+            "<svg onload=alert('xss')>",
+            "<iframe src=javascript:alert('xss')>",
+            "<body onload=alert('xss')>",
+            "<div onclick=alert('xss')>click me</div>",
+            "<a href=javascript:alert('xss')>click me</a>",
+            "<form onsubmit=alert('xss')><input type=submit></form>",
+            "<input onfocus=alert('xss')>",
+            "<textarea onblur=alert('xss')></textarea>",
+            "<select onchange=alert('xss')><option>test</option></select>"
+        ]
+        
+        for xss_content in xss_attempts:
+            test_doc = {
+                "document": xss_content,
+                "document_type": "changelog"
+            }
+            
+            response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
+            
+            # Should either reject or sanitize all XSS attempts
+            assert response.status_code in [400, 201], f"XSS attempt '{xss_content}' was not properly handled"
+            
+            if response.status_code == 201:
+                # If accepted, verify it's sanitized
+                data = response.json()
+                sanitized_content = data["documentation"]["document"]
+                # Check that dangerous patterns are removed
+                assert "javascript:" not in sanitized_content.lower()
+                assert "onload=" not in sanitized_content.lower()
+                assert "onclick=" not in sanitized_content.lower()
+                assert "onerror=" not in sanitized_content.lower()
+                assert "onfocus=" not in sanitized_content.lower()
+                assert "onblur=" not in sanitized_content.lower()
+                assert "onchange=" not in sanitized_content.lower()
+                assert "onsubmit=" not in sanitized_content.lower()
+            else:
+                # If rejected, verify it's due to dangerous content
+                error_data = response.json()
+                error_msg = error_data.get("error", "").lower()
+                assert any(keyword in error_msg for keyword in ["dangerous", "script", "javascript", "onload", "onclick"])
+    
+    def test_legitimate_markdown_content(self, api_client, test_blueprint_id):
+        """Test that legitimate markdown content is accepted and preserved."""
+        test_doc = {
+            "document": TEST_DOCUMENT_TEMPLATES["legitimate_markdown"],
+            "document_type": "changelog"
+        }
+        
+        response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
+        assert response.status_code == 201
+        
+        data = response.json()
+        stored_content = data["documentation"]["document"]
+        
+        # Verify that legitimate markdown elements are preserved
+        assert "__test__ Documentation" in stored_content
+        assert "**bold text**" in stored_content
+        assert "*italic text*" in stored_content
+        assert "- Feature 1" in stored_content
+        assert "```python" in stored_content
+        assert "[Link to documentation]" in stored_content
+        assert "![Image description]" in stored_content
+        # Note: bleach HTML-encodes > to &gt; for safety
+        assert "&gt; This is a blockquote" in stored_content or "> This is a blockquote" in stored_content
+        assert "| Column 1 | Column 2 |" in stored_content 

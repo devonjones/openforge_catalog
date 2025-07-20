@@ -5,6 +5,7 @@ import uuid
 
 import openforge.db.sql.tags_documentation as tags_doc_sql
 from openforge.db.sql.tag_utils import array_to_tag
+from openforge.app.utils.sanitization import sanitize_documentation_content, validate_documentation_content
 
 
 def _verify_tag_documentation_ownership(cursor, doc_uuid, tag_array):
@@ -74,17 +75,24 @@ def create_tag_documentation(tag_array):
     document = request.json.get("document")
     document_type = request.json.get("document_type", "instructions")
     
-    if not document:
+    if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type != "instructions":
         return jsonify({"error": "Invalid document type for tags, must be 'instructions'"}), 400
     
+    # Validate and sanitize the document content
+    try:
+        validate_documentation_content(document)
+        sanitized_document = sanitize_documentation_content(document, allow_markdown=True)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = tags_doc_sql.create_tag_documentation(
-                    cursor, tag_array, document, document_type
+                    cursor, tag_array, sanitized_document, document_type
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -105,11 +113,18 @@ def update_tag_documentation(tag_array, doc_id):
     document = request.json.get("document")
     document_type = request.json.get("document_type")
     
-    if not document:
+    if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type and document_type != "instructions":
         return jsonify({"error": "Invalid document type for tags, must be 'instructions'"}), 400
+    
+    # Validate and sanitize the document content
+    try:
+        validate_documentation_content(document)
+        sanitized_document = sanitize_documentation_content(document, allow_markdown=True)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
     
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -118,7 +133,7 @@ def update_tag_documentation(tag_array, doc_id):
                 existing_doc = _verify_tag_documentation_ownership(cursor, doc_uuid, tag_array)
                 
                 data = tags_doc_sql.update_tag_documentation(
-                    cursor, doc_uuid, document, document_type
+                    cursor, doc_uuid, sanitized_document, document_type
                 )
                 return jsonify({"documentation": data})
             except NotFound:

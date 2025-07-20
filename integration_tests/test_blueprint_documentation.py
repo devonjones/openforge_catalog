@@ -4,6 +4,7 @@ Pytest tests for Blueprint Documentation API endpoints.
 
 import pytest
 import requests
+from .test_constants import TEST_DOCUMENT_TEMPLATES
 
 
 class TestBlueprintDocumentation:
@@ -21,7 +22,7 @@ class TestBlueprintDocumentation:
     def test_create_blueprint_documentation(self, api_client, test_blueprint_id, cleanup_test_data):
         """Test POST /api/blueprints/{blueprint_id}/documentation."""
         test_doc = {
-            "document": "Test changelog entry",
+            "document": TEST_DOCUMENT_TEMPLATES["changelog"],
             "document_type": "changelog"
         }
         
@@ -54,7 +55,7 @@ class TestBlueprintDocumentation:
         
         # Now update it
         update_doc = {
-            "document": "Updated changelog entry",
+            "document": TEST_DOCUMENT_TEMPLATES["update"],
             "document_type": "changelog"
         }
         
@@ -70,7 +71,7 @@ class TestBlueprintDocumentation:
         """Test DELETE /api/blueprints/{blueprint_id}/documentation/{doc_id}."""
         # First create a document
         test_doc = {
-            "document": "Test changelog entry for deletion",
+            "document": TEST_DOCUMENT_TEMPLATES["delete"],
             "document_type": "changelog"
         }
         
@@ -122,7 +123,7 @@ class TestBlueprintDocumentation:
     def test_create_blueprint_documentation_requires_auth(self, api_client_no_auth, test_blueprint_id):
         """Test that creating blueprint documentation requires authentication."""
         test_doc = {
-            "document": "Test changelog entry without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["auth"],
             "document_type": "changelog"
         }
         
@@ -133,7 +134,7 @@ class TestBlueprintDocumentation:
     def test_update_blueprint_documentation_requires_auth(self, api_client_no_auth, test_blueprint_id):
         """Test that updating blueprint documentation requires authentication."""
         update_doc = {
-            "document": "Updated changelog entry without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["update"],
             "document_type": "changelog"
         }
         

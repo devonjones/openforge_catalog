@@ -10,6 +10,8 @@ import requests
 # Add the project root to the path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
+from .test_constants import TEST_DOCUMENT_TEMPLATES
+
 def debug_api_routes():
     """Debug API routes and test data."""
     base_url = "http://localhost:5328"
@@ -50,7 +52,7 @@ def debug_api_routes():
     # Test POST tag documentation (should fail without auth)
     try:
         test_doc = {
-            "document": "Test debug documentation",
+            "document": TEST_DOCUMENT_TEMPLATES["debug"],
             "document_type": "instructions"
         }
         response = requests.post(f"{base_url}/api/tags/test/debug/documentation", 
@@ -90,7 +92,7 @@ def debug_api_routes():
         # Test POST blueprint documentation (should fail without auth)
         try:
             test_doc = {
-                "document": "Test blueprint changelog",
+                "document": TEST_DOCUMENT_TEMPLATES["changelog"],
                 "document_type": "changelog"
             }
             response = requests.post(f"{base_url}/api/blueprints/{blueprint_id}/documentation", 

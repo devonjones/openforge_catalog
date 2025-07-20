@@ -4,6 +4,7 @@ Pytest tests for Tag Documentation API endpoints.
 
 import pytest
 import requests
+from .test_constants import TEST_DOCUMENT_TEMPLATES
 
 
 class TestTagDocumentation:
@@ -37,7 +38,7 @@ class TestTagDocumentation:
     def test_create_tag_documentation(self, api_client, cleanup_test_data):
         """Test POST /api/tags/{tag_array}/documentation."""
         test_doc = {
-            "document": "Test tag documentation entry",
+            "document": TEST_DOCUMENT_TEMPLATES["instructions"],
             "document_type": "instructions"
         }
         
@@ -58,7 +59,7 @@ class TestTagDocumentation:
         """Test PATCH /api/tags/{tag_array}/documentation/{doc_id}."""
         # First create a document
         test_doc = {
-            "document": "Test tag documentation for update",
+            "document": TEST_DOCUMENT_TEMPLATES["instructions"],
             "document_type": "instructions"
         }
         
@@ -88,7 +89,7 @@ class TestTagDocumentation:
         """Test DELETE /api/tags/{tag_array}/documentation/{doc_id}."""
         # First create a document
         test_doc = {
-            "document": "Test tag documentation for deletion",
+            "document": TEST_DOCUMENT_TEMPLATES["delete"],
             "document_type": "instructions"
         }
         
@@ -110,7 +111,7 @@ class TestTagDocumentation:
     def test_create_tag_documentation_requires_auth(self, api_client_no_auth):
         """Test that creating tag documentation requires authentication."""
         test_doc = {
-            "document": "Test tag documentation without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["auth"],
             "document_type": "instructions"
         }
         
@@ -121,7 +122,7 @@ class TestTagDocumentation:
     def test_update_tag_documentation_requires_auth(self, api_client_no_auth):
         """Test that updating tag documentation requires authentication."""
         update_doc = {
-            "document": "Updated tag documentation without auth",
+            "document": TEST_DOCUMENT_TEMPLATES["update"],
             "document_type": "instructions"
         }
         
@@ -147,7 +148,7 @@ class TestTagDocumentation:
         """Test updating/deleting non-existent tag documentation."""
         # Test update
         update_doc = {
-            "document": "Updated tag documentation",
+            "document": TEST_DOCUMENT_TEMPLATES["update"],
             "document_type": "instructions"
         }
         
@@ -162,7 +163,7 @@ class TestTagDocumentation:
         """Test that multiple documentation entries can exist for the same tag."""
         # Create first document
         test_doc1 = {
-            "document": "First test tag documentation",
+            "document": TEST_DOCUMENT_TEMPLATES["multiple_1"],
             "document_type": "instructions"
         }
         
@@ -171,7 +172,7 @@ class TestTagDocumentation:
         
         # Create second document
         test_doc2 = {
-            "document": "Second test tag documentation",
+            "document": TEST_DOCUMENT_TEMPLATES["multiple_2"],
             "document_type": "instructions"
         }
         

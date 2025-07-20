@@ -1,9 +1,11 @@
 from flask import jsonify, request, current_app, make_response, abort
 from psycopg.rows import dict_row
+from psycopg.errors import OperationalError, ProgrammingError, InvalidTextRepresentation
 from werkzeug.exceptions import NotFound
 import uuid
 
 import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
+from openforge.app.utils.sanitization import sanitize_documentation_content, validate_documentation_content
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.tags_documentation as tags_doc_sql
@@ -78,17 +80,24 @@ def create_blueprint_documentation(blueprint_id):
     document = request.json.get("document")
     document_type = request.json.get("document_type", "changelog")
     
-    if not document:
+    if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
     
+    # Validate and sanitize the document content
+    try:
+        validate_documentation_content(document)
+        sanitized_document = sanitize_documentation_content(document, allow_markdown=True)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+    
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = blueprint_doc_sql.create_blueprint_documentation(
-                    cursor, blueprint_uuid, document, document_type
+                    cursor, blueprint_uuid, sanitized_document, document_type
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -110,11 +119,18 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     document = request.json.get("document")
     document_type = request.json.get("document_type")
     
-    if not document:
+    if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type and document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
+    
+    # Validate and sanitize the document content
+    try:
+        validate_documentation_content(document)
+        sanitized_document = sanitize_documentation_content(document, allow_markdown=True)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
     
     with current_app.db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -123,7 +139,7 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                 _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
                 
                 data = blueprint_doc_sql.update_blueprint_documentation(
-                    cursor, doc_uuid, document, document_type
+                    cursor, doc_uuid, sanitized_document, document_type
                 )
                 return jsonify({"documentation": data})
             except NotFound:
@@ -228,9 +244,9 @@ def get_blueprint_all_documentation(blueprint_id):
                     tag_arrays = [tag_to_array(tag_record["tag"]) for tag_record in blueprint_tags]
                     try:
                         tag_documentation = tags_doc_sql.get_tag_documentation_for_multiple_tags(cursor, tag_arrays)
-                    except Exception as e:
-                        # If tag documentation fails, continue with empty results
-                        current_app.logger.warning(f"Failed to get documentation for blueprint tags: {e}")
+                    except (OperationalError, ProgrammingError, InvalidTextRepresentation) as e:
+                        # If tag documentation fails due to database issues, continue with empty results
+                        current_app.logger.warning(f"Database error getting documentation for blueprint tags: {e}")
                         # Initialize empty arrays for all tags
                         for tag_record in blueprint_tags:
                             tag_documentation[tag_record["tag"]] = []

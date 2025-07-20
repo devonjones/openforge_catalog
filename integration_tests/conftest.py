@@ -12,6 +12,7 @@ from typing import Dict, Any, Optional
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from openforge.db import PgDB
+from .test_constants import TEST_DATA_PREFIX
 
 
 @pytest.fixture(scope="session")
@@ -62,18 +63,16 @@ def cleanup_test_data(db):
     # Clean up before test
     with db.pool.connection() as conn:
         with conn.cursor() as curs:
-            # Clean up any existing test data from previous runs
+            # Clean up any existing test data from previous runs using unique test prefix
             curs.execute("""
                 DELETE FROM tag_documentation 
-                WHERE document LIKE 'Test%' 
-                   OR document LIKE 'Updated changelog entry%'
-            """)
+                WHERE document LIKE %s
+            """, (f"{TEST_DATA_PREFIX}%",))
             
             curs.execute("""
                 DELETE FROM blueprint_documentation 
-                WHERE document LIKE 'Test%' 
-                   OR document LIKE 'Updated changelog entry%'
-            """)
+                WHERE document LIKE %s
+            """, (f"{TEST_DATA_PREFIX}%",))
             conn.commit()
     
     yield {

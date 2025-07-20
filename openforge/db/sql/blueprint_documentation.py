@@ -95,13 +95,24 @@ DELETE FROM blueprint_documentation
 
 
 def get_blueprint_changelog_history(curs, blueprint_id: uuid.UUID, limit: int = 10, offset: int = 0):
-    """Get changelog history for blueprint using the SQL function."""
+    """Get changelog history for blueprint using the SQL function.
+    
+    Uses a CTE to call the expensive recursive function only once, then extracts
+    both the paginated results and total count from the same result set.
+    """
     query = sql.SQL(
         """
-SELECT blueprint_id, blueprint_name, changelog, created_at, depth, successor_id, deprecated
-  FROM get_blueprint_changelog_history({blueprint_id}, {recursion_depth})
-  ORDER BY depth ASC, created_at DESC NULLS LAST
-  LIMIT {limit} OFFSET {offset}
+WITH history_cte AS (
+    SELECT blueprint_id, blueprint_name, changelog, created_at, depth, successor_id, deprecated
+    FROM get_blueprint_changelog_history({blueprint_id}, {recursion_depth})
+)
+SELECT 
+    (SELECT COUNT(*) FROM history_cte) AS total_count,
+    (SELECT json_agg(t) FROM (
+        SELECT * FROM history_cte
+        ORDER BY depth ASC, created_at DESC NULLS LAST
+        LIMIT {limit} OFFSET {offset}
+    ) t) AS changelogs
 """
     ).format(
         blueprint_id=sql.Literal(blueprint_id),
@@ -110,20 +121,10 @@ SELECT blueprint_id, blueprint_name, changelog, created_at, depth, successor_id,
         offset=sql.Literal(offset)
     )
     curs.execute(query)
-    changelogs = [dict(row) for row in curs.fetchall()]
+    result = curs.fetchone()
     
-    # Get total count for pagination
-    count_query = sql.SQL(
-        """
-SELECT COUNT(*) as total_count
-  FROM get_blueprint_changelog_history({blueprint_id}, {recursion_depth})
-"""
-    ).format(
-        blueprint_id=sql.Literal(blueprint_id),
-        recursion_depth=sql.Literal(DEFAULT_CHANGELOG_RECURSION_DEPTH)
-    )
-    curs.execute(count_query)
-    total_count = curs.fetchone()['total_count']
+    total_count = result['total_count']
+    changelogs = result['changelogs'] or []  # Handle case where no results
     
     return {
         "changelogs": changelogs,

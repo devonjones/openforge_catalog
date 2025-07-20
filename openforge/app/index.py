@@ -9,14 +9,10 @@ import openforge.app.routes.tag_descriptions as tag_description_routes
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.tags_documentation as tags_doc_routes
 from openforge.app.routes import authenticate
-from openforge.app.routes.tag_converter import TagConverter
 
 
 app = Flask(__name__)
 init_app(app)
-
-# Register custom converters
-app.url_map.converters['tag'] = TagConverter
 
 ####################
 ### Blueprint Documentation routes
@@ -189,10 +185,8 @@ def tag_description_by_tag(tag):
 @app.route("/api/tags/<path:tag_path>/documentation", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
 def tag_documentation(tag_path):
-    # Convert path to tag array using TagConverter logic
-    from openforge.app.routes.tag_converter import TagConverter
-    converter = TagConverter(None, None)
-    tag_array = converter.to_python(tag_path)
+    # Convert path to tag array
+    tag_array = tag_path.split('/')
     
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation(tag_array)
@@ -203,10 +197,8 @@ def tag_documentation(tag_path):
 @app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
 def tag_documentation_entry(tag_path, doc_id):
-    # Convert path to tag array using TagConverter logic
-    from openforge.app.routes.tag_converter import TagConverter
-    converter = TagConverter(None, None)
-    tag_array = converter.to_python(tag_path)
+    # Convert path to tag array
+    tag_array = tag_path.split('/')
     
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
