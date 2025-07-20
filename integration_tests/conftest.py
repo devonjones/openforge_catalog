@@ -55,17 +55,20 @@ def test_blueprint_id(base_url):
 @pytest.fixture(scope="function")
 def cleanup_test_data(db):
     """Clean up test data before and after each test."""
+    # Track created test data IDs
+    created_tag_doc_ids = []
+    created_blueprint_doc_ids = []
+    
     # Clean up before test
     with db.pool.connection() as conn:
         with conn.cursor() as curs:
-            # Clean up test tag documentation (but preserve session test data)
+            # Clean up any existing test data from previous runs
             curs.execute("""
                 DELETE FROM tag_documentation 
                 WHERE document LIKE 'Test%' 
                    OR document LIKE 'Updated changelog entry%'
             """)
             
-            # Clean up test blueprint documentation
             curs.execute("""
                 DELETE FROM blueprint_documentation 
                 WHERE document LIKE 'Test%' 
@@ -73,25 +76,60 @@ def cleanup_test_data(db):
             """)
             conn.commit()
     
-    yield
+    yield {
+        'tag_doc_ids': created_tag_doc_ids,
+        'blueprint_doc_ids': created_blueprint_doc_ids
+    }
     
-    # Clean up after test
+    # Clean up after test by ID
     with db.pool.connection() as conn:
         with conn.cursor() as curs:
-            # Clean up test tag documentation (but preserve session test data)
-            curs.execute("""
-                DELETE FROM tag_documentation 
-                WHERE document LIKE 'Test%' 
-                   OR document LIKE 'Updated changelog entry%'
-            """)
+            if created_tag_doc_ids:
+                placeholders = ','.join(['%s'] * len(created_tag_doc_ids))
+                curs.execute(f"""
+                    DELETE FROM tag_documentation 
+                    WHERE id IN ({placeholders})
+                """, created_tag_doc_ids)
             
-            # Clean up test blueprint documentation
-            curs.execute("""
-                DELETE FROM blueprint_documentation 
-                WHERE document LIKE 'Test%' 
-                   OR document LIKE 'Updated changelog entry%'
-            """)
+            if created_blueprint_doc_ids:
+                placeholders = ','.join(['%s'] * len(created_blueprint_doc_ids))
+                curs.execute(f"""
+                    DELETE FROM blueprint_documentation 
+                    WHERE id IN ({placeholders})
+                """, created_blueprint_doc_ids)
+            
             conn.commit()
+
+
+@pytest.fixture(scope="function")
+def test_blueprint_documentation(db, cleanup_test_data):
+    """Create test blueprint documentation and track IDs for cleanup."""
+    def create_test_doc(blueprint_id, document, document_type="changelog"):
+        """Helper to create test documentation and track ID."""
+        with db.pool.connection() as conn:
+            with conn.cursor() as curs:
+                curs.execute("""
+                    INSERT INTO blueprint_documentation (blueprint_id, document, document_type)
+                    VALUES (%s, %s, %s)
+                    RETURNING id, blueprint_id, document, document_type, created_at, updated_at
+                """, (blueprint_id, document, document_type))
+                result = curs.fetchone()
+                conn.commit()
+                
+                if result:
+                    # Track the ID for cleanup
+                    cleanup_test_data['blueprint_doc_ids'].append(result[0])
+                    return {
+                        "id": result[0],
+                        "blueprint_id": result[1],
+                        "document": result[2],
+                        "document_type": result[3],
+                        "created_at": result[4],
+                        "updated_at": result[5]
+                    }
+                return None
+    
+    return create_test_doc
 
 
 @pytest.fixture(scope="session")
@@ -116,6 +154,7 @@ def test_tag_documentation(db):
     ]
     
     created_docs = []
+    created_ids = []
     
     with db.pool.connection() as conn:
         with conn.cursor() as curs:
@@ -137,6 +176,7 @@ def test_tag_documentation(db):
                             "document": result[2],
                             "document_type": result[3]
                         })
+                        created_ids.append(result[0])
                         
                 except Exception as e:
                     print(f"Warning: Failed to create test tag documentation for {'/'.join(tag_data['tag_array'])}: {e}")
@@ -145,16 +185,16 @@ def test_tag_documentation(db):
     
     yield created_docs
     
-    # Clean up test tag documentation
-    with db.pool.connection() as conn:
-        with conn.cursor() as curs:
-            curs.execute("""
-                DELETE FROM tag_documentation 
-                WHERE document LIKE 'Dungeon stone texture provides%'
-                   OR document LIKE 'OpenForge connection system allows%'
-                   OR document LIKE 'Topless build style creates%'
-            """)
-            conn.commit()
+    # Clean up test tag documentation by ID
+    if created_ids:
+        with db.pool.connection() as conn:
+            with conn.cursor() as curs:
+                placeholders = ','.join(['%s'] * len(created_ids))
+                curs.execute(f"""
+                    DELETE FROM tag_documentation 
+                    WHERE id IN ({placeholders})
+                """, created_ids)
+                conn.commit()
 
 
 class APIClient:

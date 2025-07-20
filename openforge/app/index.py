@@ -189,8 +189,11 @@ def tag_description_by_tag(tag):
 @app.route("/api/tags/<path:tag_path>/documentation", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
 def tag_documentation(tag_path):
-    # Convert path to tag array manually
-    tag_array = tag_path.split('/')
+    # Convert path to tag array using TagConverter logic
+    from openforge.app.routes.tag_converter import TagConverter
+    converter = TagConverter(None, None)
+    tag_array = converter.to_python(tag_path)
+    
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation(tag_array)
     elif request.method == "POST":
@@ -200,8 +203,11 @@ def tag_documentation(tag_path):
 @app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
 def tag_documentation_entry(tag_path, doc_id):
-    # Convert path to tag array manually
-    tag_array = tag_path.split('/')
+    # Convert path to tag array using TagConverter logic
+    from openforge.app.routes.tag_converter import TagConverter
+    converter = TagConverter(None, None)
+    tag_array = converter.to_python(tag_path)
+    
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
     elif request.method == "PATCH":

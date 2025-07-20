@@ -221,20 +221,19 @@ def get_blueprint_all_documentation(blueprint_id):
                 # 4. Get blueprint tags
                 blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
                 
-                # 5. Get documentation for each tag
+                # 5. Get documentation for all tags in a single query
                 tag_documentation = {}
-                
-                for tag_record in blueprint_tags:
-                    tag_string = tag_record["tag"]  # This is a pipe-delimited string
-                    # Convert pipe-delimited string to array for tag documentation lookup
-                    tag_array = tag_to_array(tag_string)
+                if blueprint_tags:
+                    # Convert pipe-delimited strings to arrays for the optimized query
+                    tag_arrays = [tag_to_array(tag_record["tag"]) for tag_record in blueprint_tags]
                     try:
-                        tag_docs = tags_doc_sql.get_tag_documentation(cursor, tag_array)
-                        tag_documentation[tag_string] = tag_docs  # Keep original string as key
+                        tag_documentation = tags_doc_sql.get_tag_documentation_for_multiple_tags(cursor, tag_arrays)
                     except Exception as e:
-                        # If tag documentation fails, continue with other tags
-                        current_app.logger.warning(f"Failed to get documentation for tag {tag_string}: {e}")
-                        tag_documentation[tag_string] = []
+                        # If tag documentation fails, continue with empty results
+                        current_app.logger.warning(f"Failed to get documentation for blueprint tags: {e}")
+                        # Initialize empty arrays for all tags
+                        for tag_record in blueprint_tags:
+                            tag_documentation[tag_record["tag"]] = []
                 
                 # Combine all data
                 result = {

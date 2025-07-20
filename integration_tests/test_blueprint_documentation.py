@@ -33,6 +33,9 @@ class TestBlueprintDocumentation:
         assert data["documentation"]["document"] == test_doc["document"]
         assert data["documentation"]["document_type"] == test_doc["document_type"]
         assert "id" in data["documentation"]
+        
+        # Track the created ID for cleanup
+        cleanup_test_data['blueprint_doc_ids'].append(data["documentation"]["id"])
     
     def test_update_blueprint_documentation(self, api_client, test_blueprint_id, cleanup_test_data):
         """Test PATCH /api/blueprints/{blueprint_id}/documentation/{doc_id}."""
@@ -45,6 +48,9 @@ class TestBlueprintDocumentation:
         create_response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
         assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
+        
+        # Track the created ID for cleanup
+        cleanup_test_data['blueprint_doc_ids'].append(doc_id)
         
         # Now update it
         update_doc = {
@@ -72,10 +78,16 @@ class TestBlueprintDocumentation:
         assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
+        # Track the created ID for cleanup (in case deletion fails)
+        cleanup_test_data['blueprint_doc_ids'].append(doc_id)
+        
         # Now delete it
         response = api_client.delete(f"/api/blueprints/{test_blueprint_id}/documentation/{doc_id}")
         
         assert response.status_code == 204
+        
+        # Remove from cleanup list since it was successfully deleted
+        cleanup_test_data['blueprint_doc_ids'].remove(doc_id)
     
     def test_get_changelog_history(self, api_client, test_blueprint_id):
         """Test GET /api/blueprints/{blueprint_id}/changelog-history."""

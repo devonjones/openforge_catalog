@@ -129,6 +129,57 @@ def test_tags_documentation_sql_operations(test_db):
             assert len(docs) == 0
 
 
+def test_get_tag_documentation_for_multiple_tags(test_db):
+    """Test get_tag_documentation_for_multiple_tags function."""
+    from openforge.db.sql import tags_documentation as tags_doc_sql
+    
+    with test_db.pool.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as curs:
+            # Create test documentation for multiple tags
+            tag_arrays = [
+                ["texture", "dungeon_stone"],
+                ["connection", "openforge"],
+                ["build", "topless"]
+            ]
+            
+            created_docs = []
+            for tag_array in tag_arrays:
+                doc = tags_doc_sql.create_tag_documentation(
+                    curs, tag_array, f"Test instructions for {'/'.join(tag_array)}", "instructions"
+                )
+                created_docs.append(doc)
+            
+            # Test getting documentation for multiple tags
+            result = tags_doc_sql.get_tag_documentation_for_multiple_tags(curs, tag_arrays)
+            
+            # Verify the result structure
+            assert len(result) == 3
+            assert "texture|dungeon_stone" in result
+            assert "connection|openforge" in result
+            assert "build|topless" in result
+            
+            # Verify each tag has documentation
+            for tag_string, docs in result.items():
+                assert len(docs) == 1
+                assert docs[0]['document'].startswith("Test instructions for")
+                assert docs[0]['document_type'] == "instructions"
+            
+            # Test with empty list
+            empty_result = tags_doc_sql.get_tag_documentation_for_multiple_tags(curs, [])
+            assert empty_result == {}
+            
+            # Test with non-existent tags
+            non_existent_result = tags_doc_sql.get_tag_documentation_for_multiple_tags(
+                curs, [["nonexistent", "tag"]]
+            )
+            assert "nonexistent|tag" in non_existent_result
+            assert non_existent_result["nonexistent|tag"] == []
+            
+            # Clean up
+            for doc in created_docs:
+                tags_doc_sql.delete_tag_documentation(curs, doc['id'])
+
+
 def test_changelog_history_function(test_db):
     """Test the changelog history SQL function."""
     with test_db.pool.connection() as conn:

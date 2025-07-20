@@ -50,6 +50,9 @@ class TestTagDocumentation:
         assert data["documentation"]["document_type"] == test_doc["document_type"]
         assert data["documentation"]["tag"] == "test|tag"
         assert "id" in data["documentation"]
+        
+        # Track the created ID for cleanup
+        cleanup_test_data['tag_doc_ids'].append(data["documentation"]["id"])
     
     def test_update_tag_documentation(self, api_client, cleanup_test_data):
         """Test PATCH /api/tags/{tag_array}/documentation/{doc_id}."""
@@ -62,6 +65,9 @@ class TestTagDocumentation:
         create_response = api_client.post("/api/tags/test/tag/documentation", data=test_doc)
         assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
+        
+        # Track the created ID for cleanup
+        cleanup_test_data['tag_doc_ids'].append(doc_id)
         
         # Now update it
         update_doc = {
@@ -90,10 +96,16 @@ class TestTagDocumentation:
         assert create_response.status_code == 201
         doc_id = create_response.json()["documentation"]["id"]
         
+        # Track the created ID for cleanup (in case deletion fails)
+        cleanup_test_data['tag_doc_ids'].append(doc_id)
+        
         # Now delete it
         response = api_client.delete(f"/api/tags/test/tag/documentation/{doc_id}")
         
         assert response.status_code == 204
+        
+        # Remove from cleanup list since it was successfully deleted
+        cleanup_test_data['tag_doc_ids'].remove(doc_id)
     
     def test_create_tag_documentation_requires_auth(self, api_client_no_auth):
         """Test that creating tag documentation requires authentication."""
@@ -146,7 +158,7 @@ class TestTagDocumentation:
         response = api_client.delete("/api/tags/test/tag/documentation/00000000-0000-0000-0000-000000000001")
         assert response.status_code == 404
     
-    def test_multiple_tag_documentation(self, api_client, test_tag_documentation):
+    def test_multiple_tag_documentation(self, api_client, test_tag_documentation, cleanup_test_data):
         """Test that multiple documentation entries can exist for the same tag."""
         # Create first document
         test_doc1 = {
@@ -155,7 +167,7 @@ class TestTagDocumentation:
         }
         
         response1 = api_client.post("/api/tags/multiple/test/documentation", data=test_doc1)
-        assert response1.status_code in [200, 201]
+        assert response1.status_code == 201
         
         # Create second document
         test_doc2 = {
@@ -164,7 +176,7 @@ class TestTagDocumentation:
         }
         
         response2 = api_client.post("/api/tags/multiple/test/documentation", data=test_doc2)
-        assert response2.status_code in [200, 201]
+        assert response2.status_code == 201
         
         # Verify both documents exist
         get_response = api_client.get("/api/tags/multiple/test/documentation")
@@ -172,12 +184,10 @@ class TestTagDocumentation:
         data = get_response.json()
         assert len(data["documentation"]) >= 2
         
-        # Clean up
+        # Track created IDs for cleanup
         doc1_id = response1.json()["documentation"]["id"]
         doc2_id = response2.json()["documentation"]["id"]
-        
-        api_client.delete(f"/api/tags/multiple/test/documentation/{doc1_id}")
-        api_client.delete(f"/api/tags/multiple/test/documentation/{doc2_id}")
+        cleanup_test_data['tag_doc_ids'].extend([doc1_id, doc2_id])
     
     def test_tag_documentation_types(self, api_client, cleanup_test_data):
         """Test different document types for tag documentation."""
@@ -189,14 +199,14 @@ class TestTagDocumentation:
             }
         ]
         
-        created_ids = []
-        
         for test_doc in test_docs:
             response = api_client.post("/api/tags/test/types/documentation", data=test_doc)
-            assert response.status_code in [200, 201]
+            assert response.status_code == 201
             data = response.json()
             assert data["documentation"]["document_type"] == test_doc["document_type"]
-            created_ids.append(data["documentation"]["id"])
+            
+            # Track the created ID for cleanup
+            cleanup_test_data['tag_doc_ids'].append(data["documentation"]["id"])
         
         # Test that changelog type is rejected for tags
         invalid_doc = {
@@ -205,10 +215,6 @@ class TestTagDocumentation:
         }
         response = api_client.post("/api/tags/test/types/documentation", data=invalid_doc)
         assert response.status_code == 400
-        
-        # Clean up
-        for doc_id in created_ids:
-            api_client.delete(f"/api/tags/test/types/documentation/{doc_id}")
     
     def test_tag_documentation_ordering(self, api_client, test_tag_documentation):
         """Test that tag documentation is returned in correct order (newest first)."""

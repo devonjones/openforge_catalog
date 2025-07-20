@@ -2,6 +2,7 @@ import pytest
 from flask import Flask
 import uuid
 import os
+import warnings
 from psycopg import sql
 import openforge.db.sql.blueprints as blueprint_sql
 from psycopg.rows import dict_row
@@ -106,7 +107,6 @@ def test_delete_blueprint(auth_client, test_db):
     assert response.status_code == 204
 
 def test_download_blueprint(client, test_db):
-    import warnings
     
     # Mock CloudFlare credentials
     client.application.config["CLOUDFLARE_ENDPOINT"] = "https://test.endpoint"
