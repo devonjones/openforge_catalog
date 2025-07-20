@@ -141,8 +141,8 @@ class TestTagDocumentation:
         # Test with invalid tag format
         response = api_client.get("/api/tags/invalid-tag-format/documentation")
         
-        # Should handle gracefully, might return 200 with empty results or 400
-        assert response.status_code in [200, 400]
+        # Invalid tag format should return 400 - tag must have at least 2 components
+        assert response.status_code == 400
     
     def test_nonexistent_tag_documentation_id(self, api_client):
         """Test updating/deleting non-existent tag documentation."""

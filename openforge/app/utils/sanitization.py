@@ -129,6 +129,7 @@ def validate_documentation_content(content: str) -> None:
         'onmouseout=',
         'onmouseover=',
         'onmouseup=',
+        'onclick=',
         'onoffline=',
         'ononline=',
         'onpagehide=',

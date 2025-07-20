@@ -40,35 +40,37 @@ def create_tag_documentation(curs, tag_array: list[str], document: str, document
     query = sql.SQL(
         """
 INSERT INTO tag_documentation (tag, document, document_type)
-  VALUES ({tag_array}, %s, %s)
+  VALUES ({tag_array}, {document}, {document_type})
   RETURNING id, tag, document, document_type, created_at, updated_at
 """
-    ).format(tag_array=sql.Literal(tag_array))
-    curs.execute(query, (document, document_type))
+    ).format(
+        tag_array=sql.Literal(tag_array),
+        document=sql.Literal(document),
+        document_type=sql.Literal(document_type)
+    )
+    curs.execute(query)
     return convert_tag_dict(dict(curs.fetchone()))
 
 
 def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
     """Update specific tag documentation entry."""
-    update_fields = [sql.SQL("document = %s")]
-    params = [document]
+    update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
-        update_fields.append(sql.SQL("document_type = %s"))
-        params.append(document_type)
+        update_parts.append(sql.SQL("document_type = {}").format(sql.Literal(document_type)))
 
     query = sql.SQL(
         """
 UPDATE tag_documentation
-  SET {fields}, updated_at = CURRENT_TIMESTAMP
-  WHERE id = {doc_id}
+  SET {}, updated_at = CURRENT_TIMESTAMP
+  WHERE id = {}
   RETURNING id, tag, document, document_type, created_at, updated_at
 """
     ).format(
-        fields=sql.SQL(', ').join(update_fields),
-        doc_id=sql.Literal(doc_id)
+        sql.SQL(', ').join(update_parts),
+        sql.Literal(doc_id)
     )
-    curs.execute(query, tuple(params))
+    curs.execute(query)
 
     result = curs.fetchone()
     if not result:

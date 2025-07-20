@@ -42,35 +42,37 @@ def create_blueprint_documentation(curs, blueprint_id: uuid.UUID, document: str,
     query = sql.SQL(
         """
 INSERT INTO blueprint_documentation (blueprint_id, document, document_type)
-  VALUES ({blueprint_id}, %s, %s)
+  VALUES ({blueprint_id}, {document}, {document_type})
   RETURNING id, blueprint_id, document, document_type, created_at, updated_at
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id))
-    curs.execute(query, (document, document_type))
+    ).format(
+        blueprint_id=sql.Literal(blueprint_id),
+        document=sql.Literal(document),
+        document_type=sql.Literal(document_type)
+    )
+    curs.execute(query)
     return dict(curs.fetchone())
 
 
 def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
     """Update specific documentation entry."""
-    update_fields = [sql.SQL("document = %s")]
-    params = [document]
+    update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
-        update_fields.append(sql.SQL("document_type = %s"))
-        params.append(document_type)
+        update_parts.append(sql.SQL("document_type = {}").format(sql.Literal(document_type)))
 
     query = sql.SQL(
         """
 UPDATE blueprint_documentation
-  SET {fields}, updated_at = CURRENT_TIMESTAMP
-  WHERE id = {doc_id}
+  SET {}, updated_at = CURRENT_TIMESTAMP
+  WHERE id = {}
   RETURNING id, blueprint_id, document, document_type, created_at, updated_at
 """
     ).format(
-        fields=sql.SQL(', ').join(update_fields),
-        doc_id=sql.Literal(doc_id)
+        sql.SQL(', ').join(update_parts),
+        sql.Literal(doc_id)
     )
-    curs.execute(query, tuple(params))
+    curs.execute(query)
 
     result = curs.fetchone()
     if not result:

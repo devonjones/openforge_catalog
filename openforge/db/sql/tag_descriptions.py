@@ -55,11 +55,14 @@ def insert_tag_description(curs, tag: list[str], description: str):
     query = sql.SQL(
         """
 INSERT INTO tag_descriptions (tag, description)
-  VALUES (%s, %s)
+  VALUES ({tag}, {description})
   RETURNING id, tag, description, created_at, updated_at
 """
+    ).format(
+        tag=sql.Literal(tag),
+        description=sql.Literal(description)
     )
-    curs.execute(query, (tag, description))
+    curs.execute(query)
     return convert_tag_dict(dict(curs.fetchone()))
 
 
@@ -67,13 +70,16 @@ def update_tag_description(curs, tag_description_id: uuid.UUID, description: str
     query = sql.SQL(
         """
 UPDATE tag_descriptions
-  SET description = %s,
+  SET description = {description},
       updated_at = CURRENT_TIMESTAMP
-  WHERE id = %s
+  WHERE id = {tag_description_id}
   RETURNING id, tag, description, created_at, updated_at
 """
+    ).format(
+        description=sql.Literal(description),
+        tag_description_id=sql.Literal(tag_description_id)
     )
-    curs.execute(query, (description, tag_description_id))
+    curs.execute(query)
     result = curs.fetchone()
     if not result:
         raise NotFound("Tag description not found")
@@ -89,13 +95,16 @@ def update_tag_description_by_tag(curs, tag, description: str):
     query = sql.SQL(
         """
 UPDATE tag_descriptions
-  SET description = %s,
+  SET description = {description},
       updated_at = CURRENT_TIMESTAMP
   WHERE {where_clause}
   RETURNING id, tag, description, created_at, updated_at
 """
-    ).format(where_clause=where_clause)
-    curs.execute(query, (description,))
+    ).format(
+        where_clause=where_clause,
+        description=sql.Literal(description)
+    )
+    curs.execute(query)
     result = curs.fetchone()
     if not result:
         raise NotFound("Tag description not found")
@@ -106,11 +115,11 @@ def delete_tag_description(curs, tag_description_id: uuid.UUID):
     query = sql.SQL(
         """
 DELETE FROM tag_descriptions
-  WHERE id = %s
+  WHERE id = {tag_description_id}
   RETURNING id
 """
-    )
-    curs.execute(query, (tag_description_id,))
+    ).format(tag_description_id=sql.Literal(tag_description_id))
+    curs.execute(query)
     result = curs.fetchone()
     if not result:
         raise NotFound("Tag description not found")

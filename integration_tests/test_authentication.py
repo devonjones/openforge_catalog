@@ -122,8 +122,8 @@ class TestErrorHandling:
         # Test missing document_type field
         incomplete_data = {"document": TEST_DOCUMENT_TEMPLATES["changelog"]}
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=incomplete_data)
-        # This might succeed if document_type has a default value
-        assert response.status_code in [201, 400]
+        # document_type defaults to "changelog" which is valid
+        assert response.status_code == 201
     
     def test_nonexistent_resources(self, api_client):
         """Test handling of requests to non-existent resources."""
@@ -213,7 +213,7 @@ class TestErrorHandling:
         # Test with SQL injection in tag
         sql_injection_tag = "'; DROP TABLE tag_documentation; --"
         response = api_client.get(f"/api/tags/{sql_injection_tag}/documentation")
-        assert response.status_code in [200, 400]  # Should be handled safely
+        assert response.status_code == 400  # Should be handled safely - invalid tag format
     
     def test_xss_attempts(self, api_client, test_blueprint_id):
         """Test handling of potential XSS attempts."""
@@ -225,19 +225,12 @@ class TestErrorHandling:
         }
         
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
-        # Should reject or sanitize dangerous content
-        assert response.status_code in [400, 201]
+        # Should reject dangerous content
+        assert response.status_code == 400
         
-        # If accepted, verify the content is sanitized (script tags removed)
-        if response.status_code == 201:
-            data = response.json()
-            sanitized_content = data["documentation"]["document"]
-            assert "<script>" not in sanitized_content
-            assert "alert('xss')" not in sanitized_content
-        else:
-            # If rejected, verify it's due to dangerous content
-            error_data = response.json()
-            assert "dangerous" in error_data.get("error", "").lower() or "script" in error_data.get("error", "").lower()
+        # Verify it's rejected due to dangerous content
+        error_data = response.json()
+        assert "dangerous" in error_data.get("error", "").lower() or "script" in error_data.get("error", "").lower()
     
     def test_various_xss_attempts(self, api_client, test_blueprint_id):
         """Test various XSS attack vectors."""
@@ -264,27 +257,13 @@ class TestErrorHandling:
             
             response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=test_doc)
             
-            # Should either reject or sanitize all XSS attempts
-            assert response.status_code in [400, 201], f"XSS attempt '{xss_content}' was not properly handled"
+            # Should reject all XSS attempts
+            assert response.status_code == 400, f"XSS attempt '{xss_content}' was not properly handled"
             
-            if response.status_code == 201:
-                # If accepted, verify it's sanitized
-                data = response.json()
-                sanitized_content = data["documentation"]["document"]
-                # Check that dangerous patterns are removed
-                assert "javascript:" not in sanitized_content.lower()
-                assert "onload=" not in sanitized_content.lower()
-                assert "onclick=" not in sanitized_content.lower()
-                assert "onerror=" not in sanitized_content.lower()
-                assert "onfocus=" not in sanitized_content.lower()
-                assert "onblur=" not in sanitized_content.lower()
-                assert "onchange=" not in sanitized_content.lower()
-                assert "onsubmit=" not in sanitized_content.lower()
-            else:
-                # If rejected, verify it's due to dangerous content
-                error_data = response.json()
-                error_msg = error_data.get("error", "").lower()
-                assert any(keyword in error_msg for keyword in ["dangerous", "script", "javascript", "onload", "onclick"])
+            # Verify it's rejected due to dangerous content
+            error_data = response.json()
+            error_msg = error_data.get("error", "").lower()
+            assert any(keyword in error_msg for keyword in ["dangerous", "script", "javascript", "onload", "onclick", "onerror", "onfocus", "onblur", "onchange", "onsubmit"]), f"XSS attempt '{xss_content}' was not rejected for dangerous content"
     
     def test_legitimate_markdown_content(self, api_client, test_blueprint_id):
         """Test that legitimate markdown content is accepted and preserved."""
