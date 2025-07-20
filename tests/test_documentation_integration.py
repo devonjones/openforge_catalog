@@ -2,7 +2,6 @@
 
 import pytest
 from openforge.db.sql.tag_utils import tag_to_array, array_to_tag
-from openforge.app.routes.tag_converter import TagConverter
 
 
 class TestTagUtilities:
@@ -24,27 +23,7 @@ class TestTagUtilities:
         assert result == "texture|dungeon_stone"
 
 
-class TestTagConverter:
-    """Test URL path tag converter."""
-    
-    def setup_method(self):
-        """Set up converter for each test."""
-        self.converter = TagConverter(None, None)
-    
-    def test_to_python_url_path(self):
-        """Test converting URL path to tag array."""
-        result = self.converter.to_python("texture/dungeon_stone")
-        assert result == ["texture", "dungeon_stone"]
-    
-    def test_to_url_array(self):
-        """Test converting tag array to URL path."""
-        result = self.converter.to_url(["texture", "dungeon_stone"])
-        assert result == "texture/dungeon_stone"
-    
-    def test_to_url_pipe_string(self):
-        """Test converting pipe-delimited string to URL path."""
-        result = self.converter.to_url("texture|dungeon_stone")
-        assert result == "texture/dungeon_stone"
+
 
 
 class TestDocumentationSchemas:

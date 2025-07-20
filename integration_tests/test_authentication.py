@@ -92,7 +92,7 @@ class TestErrorHandling:
         # Test with various invalid tag formats and their expected responses
         test_cases = [
             ("invalid-tag-format", 400),  # Invalid format should return 400
-            ("tag/with/multiple/slashes", 404),  # Multiple slashes should return 404 (route not found)
+            ("tag/with/multiple/slashes", 404),  # Multiple slashes are part of the path; 404 is likely from no data found
             ("", 404),  # Empty tag should return 404 (route not found)
             ("single_tag_without_slash", 400),  # Missing slash should return 400
         ]

@@ -22,6 +22,7 @@ def debug_api_routes():
     
     # Test basic connectivity
     print("1. Testing basic connectivity...")
+    blueprints = None  # Initialize to prevent NameError
     try:
         response = requests.get(f"{base_url}/api/blueprints", timeout=5)
         print(f"   Blueprints endpoint: {response.status_code}")

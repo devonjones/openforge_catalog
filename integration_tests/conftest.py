@@ -199,7 +199,7 @@ def test_tag_documentation(db):
 class APIClient:
     """Simple API client for making requests."""
     
-    def __init__(self, base_url: str, api_key: str):
+    def __init__(self, base_url: str, api_key: Optional[str]):
         self.base_url = base_url
         self.api_key = api_key
         self.session = requests.Session()

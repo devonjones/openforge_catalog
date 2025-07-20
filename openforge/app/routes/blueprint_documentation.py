@@ -238,18 +238,12 @@ def get_blueprint_all_documentation(blueprint_id):
                 blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
                 
                 # 5. Get documentation for all tags in a single query
-                tag_documentation = {}
-                if blueprint_tags:
-                    # Convert pipe-delimited strings to arrays for the optimized query
-                    tag_arrays = [tag_to_array(tag_record["tag"]) for tag_record in blueprint_tags]
-                    try:
-                        tag_documentation = tags_doc_sql.get_tag_documentation_for_multiple_tags(cursor, tag_arrays)
-                    except (OperationalError, ProgrammingError, InvalidTextRepresentation) as e:
-                        # If tag documentation fails due to database issues, continue with empty results
-                        current_app.logger.warning(f"Database error getting documentation for blueprint tags: {e}")
-                        # Initialize empty arrays for all tags
-                        for tag_record in blueprint_tags:
-                            tag_documentation[tag_record["tag"]] = []
+                try:
+                    tag_documentation = tags_doc_sql.get_tag_documentation_for_blueprint(cursor, blueprint_uuid)
+                except (OperationalError, ProgrammingError, InvalidTextRepresentation) as e:
+                    # If tag documentation fails due to database issues, continue with empty results
+                    current_app.logger.warning(f"Database error getting documentation for blueprint tags: {e}")
+                    tag_documentation = {}
                 
                 # Combine all data
                 result = {
@@ -262,6 +256,8 @@ def get_blueprint_all_documentation(blueprint_id):
                 
                 return jsonify(result)
                 
+            except NotFound:
+                return jsonify({"error": "Blueprint not found"}), 404
             except Exception as e:
                 current_app.logger.error(f"Error getting all documentation for blueprint {blueprint_id}: {e}")
                 return jsonify({"error": "An internal error occurred"}), 500 

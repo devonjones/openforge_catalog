@@ -129,19 +129,37 @@ def test_tags_documentation_sql_operations(test_db):
             assert len(docs) == 0
 
 
-def test_get_tag_documentation_for_multiple_tags(test_db):
-    """Test get_tag_documentation_for_multiple_tags function."""
+def test_get_tag_documentation_for_blueprint(test_db):
+    """Test get_tag_documentation_for_blueprint function."""
     from openforge.db.sql import tags_documentation as tags_doc_sql
+    from openforge.db.sql import tags as tag_sql
+    import uuid
     
     with test_db.pool.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
-            # Create test documentation for multiple tags
+            # Create a test blueprint
+            curs.execute("""
+                INSERT INTO blueprints (blueprint_name, blueprint_type, config)
+                VALUES ('test_blueprint', 'model', '{}')
+                RETURNING id
+            """)
+            blueprint_id = curs.fetchone()['id']
+            
+            # Create test tags for the blueprint
             tag_arrays = [
                 ["texture", "dungeon_stone"],
                 ["connection", "openforge"],
                 ["build", "topless"]
             ]
             
+            # Add tags to the blueprint
+            for tag_array in tag_arrays:
+                curs.execute("""
+                    INSERT INTO tags (blueprint_id, tag)
+                    VALUES (%s, %s)
+                """, (blueprint_id, tag_array))
+            
+            # Create test documentation for the tags
             created_docs = []
             for tag_array in tag_arrays:
                 doc = tags_doc_sql.create_tag_documentation(
@@ -149,8 +167,8 @@ def test_get_tag_documentation_for_multiple_tags(test_db):
                 )
                 created_docs.append(doc)
             
-            # Test getting documentation for multiple tags
-            result = tags_doc_sql.get_tag_documentation_for_multiple_tags(curs, tag_arrays)
+            # Test getting documentation for blueprint tags
+            result = tags_doc_sql.get_tag_documentation_for_blueprint(curs, blueprint_id)
             
             # Verify the result structure
             assert len(result) == 3
@@ -164,20 +182,25 @@ def test_get_tag_documentation_for_multiple_tags(test_db):
                 assert docs[0]['document'].startswith("Test instructions for")
                 assert docs[0]['document_type'] == "instructions"
             
-            # Test with empty list
-            empty_result = tags_doc_sql.get_tag_documentation_for_multiple_tags(curs, [])
-            assert empty_result == {}
+            # Test with blueprint that has no tags
+            curs.execute("""
+                INSERT INTO blueprints (blueprint_name, blueprint_type, config)
+                VALUES ('empty_blueprint', 'model', '{}')
+                RETURNING id
+            """)
+            empty_blueprint_id = curs.fetchone()['id']
             
-            # Test with non-existent tags
-            non_existent_result = tags_doc_sql.get_tag_documentation_for_multiple_tags(
-                curs, [["nonexistent", "tag"]]
-            )
-            assert "nonexistent|tag" in non_existent_result
-            assert non_existent_result["nonexistent|tag"] == []
+            empty_result = tags_doc_sql.get_tag_documentation_for_blueprint(curs, empty_blueprint_id)
+            assert empty_result == {}
             
             # Clean up
             for doc in created_docs:
                 tags_doc_sql.delete_tag_documentation(curs, doc['id'])
+            
+            # Clean up test data
+            curs.execute("DELETE FROM tags WHERE blueprint_id = %s", (blueprint_id,))
+            curs.execute("DELETE FROM blueprints WHERE id = %s", (blueprint_id,))
+            curs.execute("DELETE FROM blueprints WHERE id = %s", (empty_blueprint_id,))
 
 
 def test_changelog_history_function(test_db):

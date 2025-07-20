@@ -124,45 +124,35 @@ SELECT id, tag, document, document_type, created_at, updated_at
     return [convert_tag_dict(dict(row)) for row in curs.fetchall()]
 
 
-def get_tag_documentation_for_multiple_tags(curs, tag_arrays: list[list[str]]):
-    """Get documentation for multiple tags in a single query.
+def get_tag_documentation_for_blueprint(curs, blueprint_id: uuid.UUID):
+    """Get documentation for all tags associated with a blueprint.
     
     Args:
         curs: Database cursor
-        tag_arrays: List of tag arrays to get documentation for
+        blueprint_id: UUID of the blueprint to get tag documentation for
         
     Returns:
         dict: Mapping of tag string (pipe-delimited) to list of documentation
     """
-    if not tag_arrays:
-        return {}
-    
-    # Build the query with multiple tag conditions
-    conditions = []
-    for tag_array in tag_arrays:
-        conditions.append(sql.SQL("tag = {}").format(sql.Literal(tag_array)))
-    
     query = sql.SQL(
         """
-SELECT id, tag, document, document_type, created_at, updated_at
-  FROM tag_documentation
-  WHERE {conditions}
-  ORDER BY tag, created_at DESC
+SELECT td.id, td.tag, td.document, td.document_type, td.created_at, td.updated_at
+  FROM tag_documentation td
+  INNER JOIN tags t ON td.tag = t.tag
+  WHERE t.blueprint_id = {}
+  ORDER BY td.tag, td.created_at DESC
 """
-    ).format(conditions=sql.SQL(" OR ").join(conditions))
-    
+    ).format(sql.Literal(blueprint_id))
+
     curs.execute(query)
     results = [convert_tag_dict(dict(row)) for row in curs.fetchall()]
-    
+
     # Group results by tag
     tag_documentation = {}
-    for tag_array in tag_arrays:
-        tag_string = array_to_tag(tag_array)
-        tag_documentation[tag_string] = []
-    
     for result in results:
         tag_string = result["tag"]  # This is already converted to pipe-delimited string
-        if tag_string in tag_documentation:
-            tag_documentation[tag_string].append(result)
-    
+        if tag_string not in tag_documentation:
+            tag_documentation[tag_string] = []
+        tag_documentation[tag_string].append(result)
+
     return tag_documentation 

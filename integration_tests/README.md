@@ -5,19 +5,27 @@ This directory contains pytest-based integration tests for the OpenForge Catalog
 ## Overview
 
 The integration tests validate the complete documentation system including:
-- Blueprint documentation endpoints
-- Tag documentation endpoints  
-- Authentication and error handling
-- Test data setup and cleanup
+- Blueprint documentation endpoints (CRUD operations, changelog history)
+- Tag documentation endpoints (CRUD operations, validation)
+- Authentication and error handling (XSS prevention, SQL injection protection)
+- Test data setup and cleanup (isolated test data management)
+- API contract validation (status codes, response formats)
 
 ## Prerequisites
 
 1. **Flask Server Running**: Make sure the Flask server is running on localhost:5328
    ```bash
+   # Start the Flask server (the exact command depends on your setup)
    python -m flask run --host=0.0.0.0 --port=5328
+   # or
+   python openforge/app/index.py
    ```
 
 2. **Database Access**: Ensure the database is accessible and the documentation tables exist
+   ```bash
+   # Verify database connection
+   python -c "import os; from openforge.db import PgDB; PgDB(os.environ)"
+   ```
 
 3. **Python Dependencies**: Install pytest and requests
    ```bash
@@ -84,9 +92,9 @@ TEST_BASE_URL="http://localhost:5328" TEST_API_KEY="your-api-key" pytest integra
 - **db**: Database connection for test data management
 - **test_blueprint_id**: Gets a real blueprint ID from the API for testing
 - **test_tag_documentation**: Creates test tag documentation for the session
-- **cleanup_test_data**: Cleans up test data before/after each test
-- **api_client**: Authenticated API client for making requests
-- **api_client_no_auth**: API client without authentication
+- **cleanup_test_data**: Cleans up test data before/after each test using unique test prefixes
+- **api_client**: Authenticated API client for making HTTP requests
+- **api_client_no_auth**: API client without authentication for testing auth requirements
 
 ### Test Categories
 
@@ -106,10 +114,12 @@ TEST_BASE_URL="http://localhost:5328" TEST_API_KEY="your-api-key" pytest integra
 
 #### Authentication & Error Handling Tests (test_authentication.py)
 - Authentication requirement validation
-- Invalid input handling
+- Invalid input handling (UUID validation, tag format validation)
 - SQL injection prevention
-- XSS attempt handling
+- XSS attempt handling and sanitization
 - Large payload handling
+- Empty content validation
+- Whitespace-only content validation
 
 ## Test Data Management
 
@@ -146,13 +156,14 @@ integration_tests/test_tag_documentation.py ........                    [100%]
 
 1. **Connection Refused**: Make sure Flask server is running
    ```bash
-   python -m flask run --host=0.0.0.0 --port=5328
+   # Check if server is responding
+   curl http://localhost:5328/api/blueprints
    ```
 
 2. **Database Connection Failed**: Check environment variables and database status
    ```bash
    # Check if database is accessible
-   python -c "from openforge.db import PgDB; PgDB(os.environ)"
+   python -c "import os; from openforge.db import PgDB; PgDB(os.environ)"
    ```
 
 3. **Authentication Errors**: Verify API key is correct
@@ -164,6 +175,12 @@ integration_tests/test_tag_documentation.py ........                    [100%]
    ```bash
    cd /path/to/openforge_catalog
    pytest integration_tests/
+   ```
+
+5. **Test Data Issues**: Check if test data cleanup is working
+   ```bash
+   # Run with verbose output to see cleanup messages
+   pytest integration_tests/ -v -s
    ```
 
 ### Debug Mode
@@ -202,10 +219,11 @@ integration_tests/
 ├── __init__.py                           # Python package marker
 ├── README.md                             # This file
 ├── conftest.py                           # Pytest configuration and fixtures
+├── test_constants.py                     # Test data constants and templates
 ├── test_blueprint_documentation.py       # Blueprint documentation tests
 ├── test_tag_documentation.py             # Tag documentation tests
 ├── test_authentication.py                # Authentication and error handling tests
-├── run_tests.py                          # Legacy test runner (deprecated)
+├── debug_routes.py                       # Debug script for route testing
 └── legacy_validation.py                  # Old validation script (for reference)
 ```
 
