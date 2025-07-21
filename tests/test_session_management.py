@@ -9,17 +9,12 @@ from openforge.app.services.session_service import SessionService
 def client(test_db):
     flask_app.config['TESTING'] = True
     flask_app.db = test_db
-    flask_app.config['API_TOKEN'] = "test_token"
-    # Set environment variable for session service
-    os.environ['API_TOKEN'] = "test_token"
     with flask_app.test_client() as client:
         yield client
 
 
 @pytest.fixture
 def session_service(test_db):
-    # Set environment variable for session service
-    os.environ['API_TOKEN'] = "test_token"
     return SessionService(test_db, "test_token", "test_secret_key_for_csrf_tokens")
 
 

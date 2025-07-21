@@ -16,7 +16,7 @@ def _set_session_cookie(response: Response, session_token: str) -> None:
 def create_session():
     """Create a new admin session."""
     try:
-        data = request.get_json(silent=True)
+        data = request.get_json()
         if not data or 'api_key' not in data:
             return jsonify({"error": "API key required"}), 400
     except Exception as e:

@@ -11,12 +11,9 @@ from .test_constants import TEST_DATA_PREFIX
 class TestSessionManagement:
     """Test session management functionality."""
     
-    def test_create_session_with_valid_api_key(self, api_client_no_auth):
+    def test_create_session_with_valid_api_key(self, api_client_no_auth, api_key):
         """Test creating a session with a valid API key."""
-        # Get API token from environment
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        
-        response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         assert response.status_code == 201
         data = response.json()
@@ -53,11 +50,10 @@ class TestSessionManagement:
         assert "error" in data
         assert "API key required" in data["error"]
     
-    def test_validate_session_with_valid_cookie(self, api_client_no_auth):
+    def test_validate_session_with_valid_cookie(self, api_client_no_auth, api_key):
         """Test validating a session with a valid session cookie."""
         # First create a session
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         # Extract session token from cookie
         session_token = create_response.cookies["session_token"]
@@ -100,11 +96,10 @@ class TestSessionManagement:
         assert "error" in data
         assert "Invalid or expired session" in data["error"]
     
-    def test_delete_session_with_valid_csrf(self, api_client_no_auth):
+    def test_delete_session_with_valid_csrf(self, api_client_no_auth, api_key):
         """Test deleting a session with a valid CSRF token."""
         # First create a session
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         # Extract session token and CSRF token
         session_token = create_response.cookies["session_token"]
@@ -129,11 +124,10 @@ class TestSessionManagement:
         # The cookie should be deleted, which means it won't be in response.cookies
         # Instead, we check that the response indicates successful deletion
     
-    def test_delete_session_without_csrf(self, api_client_no_auth):
+    def test_delete_session_without_csrf(self, api_client_no_auth, api_key):
         """Test deleting a session without a CSRF token."""
         # First create a session
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         # Extract session token
         session_token = create_response.cookies["session_token"]
@@ -150,11 +144,10 @@ class TestSessionManagement:
         assert "error" in data
         assert "Invalid CSRF token" in data["error"]
     
-    def test_delete_session_with_invalid_csrf(self, api_client_no_auth):
+    def test_delete_session_with_invalid_csrf(self, api_client_no_auth, api_key):
         """Test deleting a session with an invalid CSRF token."""
         # First create a session
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         # Extract session token
         session_token = create_response.cookies["session_token"]
@@ -187,11 +180,10 @@ class TestSessionManagement:
 class TestSessionAuthenticationIntegration:
     """Test session authentication integration with existing endpoints."""
     
-    def test_authenticated_endpoint_with_session(self, api_client_no_auth, test_blueprint_id):
+    def test_authenticated_endpoint_with_session(self, api_client_no_auth, test_blueprint_id, api_key):
         """Test that authenticated endpoints work with session cookies."""
         # First create a session
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         
         # Extract session token
         session_token = create_response.cookies["session_token"]
@@ -266,10 +258,9 @@ class TestSessionAuthenticationIntegration:
 class TestSessionSecurity:
     """Test session security features."""
     
-    def test_session_cookie_security_attributes(self, api_client_no_auth):
+    def test_session_cookie_security_attributes(self, api_client_no_auth, api_key):
         """Test that session cookies have proper security attributes."""
-        api_token = os.environ.get('API_TOKEN', '1234567890')
-        response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        response = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
 
         # Verify the response indicates successful session creation
         assert response.status_code == 201
@@ -293,12 +284,11 @@ class TestSessionSecurity:
         assert 'secure' in set_cookie_lower, "Session cookie should have Secure flag"
         assert 'samesite=strict' in set_cookie_lower, "Session cookie should have SameSite=Strict"
     
-    def test_csrf_token_consistency(self, api_client_no_auth):
+    def test_csrf_token_consistency(self, api_client_no_auth, api_key):
         """Test that CSRF tokens are consistent for the same session."""
-        api_token = os.environ.get('API_TOKEN', '1234567890')
         
         # Create first session
-        create_response1 = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_token})
+        create_response1 = api_client_no_auth.post("/api/admin/sessions", json={"api_key": api_key})
         session_token1 = create_response1.cookies["session_token"]
         csrf_token1 = create_response1.headers["X-CSRF-Token"]
         
