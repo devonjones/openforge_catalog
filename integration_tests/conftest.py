@@ -208,8 +208,13 @@ class APIClient:
         if "Authorization" not in headers and self.api_key:
             headers["Authorization"] = f"Bearer {self.api_key}"
         
+        # Handle both data and json parameters
+        request_kwargs = kwargs.copy()
+        if data is not None and 'json' not in request_kwargs:
+            request_kwargs['json'] = data
+        
         # Make the request with headers
-        return self.session.request(method, url, json=data, headers=headers, **kwargs)
+        return self.session.request(method, url, headers=headers, **request_kwargs)
     
     def get(self, endpoint: str, **kwargs) -> requests.Response:
         return self.request("GET", endpoint, **kwargs)

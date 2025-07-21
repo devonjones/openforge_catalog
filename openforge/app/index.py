@@ -10,6 +10,7 @@ import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.tags_documentation as tags_doc_routes
 import openforge.app.routes.sessions as session_routes
 from openforge.app.routes import authenticate
+from openforge.app.middleware.csrf import csrf_protect
 
 
 app = Flask(__name__)
@@ -33,6 +34,8 @@ def validate_session():
 
 
 @app.route("/api/admin/sessions", methods=["DELETE"])
+@authenticate(disable_api_keys=["DELETE"])
+@csrf_protect
 def delete_session():
     """Delete current session (logout)."""
     return session_routes.delete_session()
@@ -45,6 +48,7 @@ def delete_session():
 
 @app.route("/api/blueprints/<blueprint_id>/documentation", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
+@csrf_protect
 def blueprint_documentation(blueprint_id):
     if request.method == "GET":
         return blueprint_doc_routes.get_blueprint_documentation(blueprint_id)
@@ -54,6 +58,7 @@ def blueprint_documentation(blueprint_id):
 
 @app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def blueprint_documentation_entry(blueprint_id, doc_id):
     if request.method == "GET":
         return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
@@ -80,6 +85,7 @@ def blueprint_all_documentation(blueprint_id):
 
 @app.route("/api/blueprints", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
+@csrf_protect
 def blueprints():
     if request.method == "GET":
         return blueprint_routes.get_blueprints()
@@ -105,6 +111,7 @@ def blueprint_by_md5(md5):
 
 @app.route("/api/blueprints/<blueprint_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def blueprint(blueprint_id):
     if request.method == "GET":
         return blueprint_routes.get_blueprint_by_id(blueprint_id)
@@ -121,6 +128,7 @@ def download_blueprint(blueprint_id):
 
 @app.route("/api/blueprints/<blueprint_id>/tags", methods=["GET", "POST", "DELETE"])
 @authenticate(methods=["POST", "DELETE"])
+@csrf_protect
 def blueprint_tags(blueprint_id):
     if request.method == "GET":
         return tag_routes.get_blueprint_tags(blueprint_id)
@@ -133,6 +141,7 @@ def blueprint_tags(blueprint_id):
 
 @app.route("/api/blueprints/<blueprint_id>/tags/<tag>", methods=["POST", "DELETE"])
 @authenticate(methods=["POST", "DELETE"])
+@csrf_protect
 def blueprint_tag(blueprint_id, tag):
     if request.method == "POST":
         return tag_routes.create_blueprint_tags(blueprint_id, [tag])
@@ -147,6 +156,7 @@ def blueprint_tag(blueprint_id, tag):
 
 @app.route("/api/images", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
+@csrf_protect
 def images():
     if request.method == "GET":
         return image_routes.get_images()
@@ -156,6 +166,7 @@ def images():
 
 @app.route("/api/images/<image_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def image(image_id):
     if request.method == "GET":
         return image_routes.get_image_by_id(image_id)
@@ -172,6 +183,7 @@ def image(image_id):
 
 @app.route("/api/tag-descriptions", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
+@csrf_protect
 def tag_descriptions():
     if request.method == "GET":
         return tag_description_routes.get_tag_descriptions()
@@ -181,6 +193,7 @@ def tag_descriptions():
 
 @app.route("/api/tag-descriptions/<tag_description_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def tag_description(tag_description_id):
     if request.method == "GET":
         return tag_description_routes.get_tag_description_by_id(tag_description_id)
@@ -192,6 +205,7 @@ def tag_description(tag_description_id):
 
 @app.route("/api/tag/<tag>/description", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def tag_description_by_tag(tag):
     if request.method == "GET":
         return tag_description_routes.get_tag_description_by_tag(tag)
@@ -208,6 +222,7 @@ def tag_description_by_tag(tag):
 
 @app.route("/api/tags/<path:tag_path>/documentation", methods=["GET", "POST"])
 @authenticate(methods=["POST"])
+@csrf_protect
 def tag_documentation(tag_path):
     # Convert path to tag array
     tag_array = tag_path.split('/')
@@ -220,6 +235,7 @@ def tag_documentation(tag_path):
 
 @app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
 @authenticate(methods=["PATCH", "DELETE"])
+@csrf_protect
 def tag_documentation_entry(tag_path, doc_id):
     # Convert path to tag array
     tag_array = tag_path.split('/')

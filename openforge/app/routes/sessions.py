@@ -10,7 +10,7 @@ def create_session():
     if not data or 'api_key' not in data:
         return jsonify({"error": "API key required"}), 400
     
-    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'))
+    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'), current_app.config.get('SECRET_KEY'))
     try:
         session_data = session_service.create_session(data['api_key'])
     except ValueError as e:
@@ -48,7 +48,7 @@ def validate_session():
     if not session_token:
         return jsonify({"valid": False, "error": "No session token"}), 401
     
-    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'))
+    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'), current_app.config.get('SECRET_KEY'))
     session_data = session_service.validate_session(session_token)
     
     if not session_data:
@@ -76,36 +76,11 @@ def validate_session():
 
 
 
-def session_csrf_protect(f):
-    """Decorator that validates session and sets CSRF token before applying CSRF protection."""
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        session_token = request.cookies.get('session_token')
-        if not session_token:
-            return jsonify({"error": "Unauthorized"}), 401
-        
-        # Validate the session exists and is valid
-        session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'))
-        session_data = session_service.validate_session(session_token)
-        
-        if not session_data:
-            return jsonify({"error": "Unauthorized"}), 401
-        
-        # Set CSRF token in g for CSRF protection
-        g.csrf_token = session_service.get_csrf_token_for_session(session_data['id'])
-        
-        # Now apply CSRF protection
-        return csrf_protect(f)(*args, **kwargs)
-    
-    return decorated_function
-
-
-@session_csrf_protect
 def delete_session():
     """Delete current session (logout)."""
-    # Delete the session
+    # Get session token from cookie (already validated by @authenticate)
     session_token = request.cookies.get('session_token')
-    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'))
+    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'), current_app.config.get('SECRET_KEY'))
     success = session_service.delete_session(session_token)
     
     if not success:

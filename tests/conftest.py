@@ -56,8 +56,9 @@ def clean_tables(test_db):
             conn.commit()
     yield
 
-# Mock the API token for testing
+# Mock the API token and secret key for testing
 os.environ["API_TOKEN"] = "test_token"
+os.environ["SECRET_KEY"] = "test_secret_key_for_csrf_tokens"
 
 @pytest.fixture
 def auth_client(client):

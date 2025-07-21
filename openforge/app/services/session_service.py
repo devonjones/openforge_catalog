@@ -11,9 +11,10 @@ logger = logging.getLogger(__name__)
 
 
 class SessionService:
-    def __init__(self, db, api_token: str = None):
+    def __init__(self, db, api_token: str = None, secret_key: str = None):
         self.db = db
         self.api_token = api_token
+        self.secret_key = secret_key
 
     def create_session(self, api_key: str) -> Dict:
         """Create new session (30 days duration, currently admin-only)."""
@@ -87,16 +88,18 @@ class SessionService:
 
     def get_csrf_token_for_session(self, session_id: str) -> str:
         """Generate a consistent CSRF token for a session based on session ID."""
-        # Use session ID + a secret to generate consistent CSRF tokens
+        # Use session ID + a dedicated secret to generate consistent CSRF tokens
         # This ensures the same session always gets the same CSRF token
-        secret = self.api_token
+        secret = self.secret_key
         if not secret:
             try:
-                secret = current_app.config.get('API_TOKEN')
+                secret = current_app.config['SECRET_KEY']
             except RuntimeError:
-                secret = None
+                raise ValueError("SECRET_KEY not provided to SessionService and no Flask app context available")
+        
         if not secret:
-            raise ValueError("API_TOKEN secret not configured, cannot generate CSRF token.")
+            raise ValueError("SECRET_KEY not configured, cannot generate CSRF token.")
+        
         csrf_seed = f"{session_id}:{secret}"
         return hashlib.sha256(csrf_seed.encode()).hexdigest()
 

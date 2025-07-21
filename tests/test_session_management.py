@@ -20,7 +20,7 @@ def client(test_db):
 def session_service(test_db):
     # Set environment variable for session service
     os.environ['API_TOKEN'] = "test_api_token"
-    return SessionService(test_db, "test_api_token")
+    return SessionService(test_db, "test_api_token", "test_secret_key_for_csrf_tokens")
 
 
 class TestSessionService:
