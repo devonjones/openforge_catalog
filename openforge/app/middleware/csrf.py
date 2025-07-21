@@ -1,0 +1,76 @@
+import secrets
+from functools import wraps
+from flask import request, jsonify, current_app, g
+from typing import Optional
+
+
+def generate_csrf_token() -> str:
+    """Generate a new CSRF token."""
+    return secrets.token_urlsafe(32)
+
+
+def get_csrf_token() -> Optional[str]:
+    """Get CSRF token from request headers or form data."""
+    # Check for CSRF token in headers first (for AJAX requests)
+    csrf_token = request.headers.get('X-CSRF-Token')
+    if csrf_token:
+        return csrf_token
+    
+    # Check for CSRF token in form data (for regular form submissions)
+    csrf_token = request.form.get('csrf_token')
+    if csrf_token:
+        return csrf_token
+    
+    # Check for CSRF token in JSON body (for API requests)
+    if request.is_json:
+        data = request.get_json()
+        if data and 'csrf_token' in data:
+            return data['csrf_token']
+    
+    return None
+
+
+def validate_csrf_token(expected_token: str, provided_token: Optional[str]) -> bool:
+    """Validate CSRF token using constant-time comparison."""
+    if not provided_token:
+        return False
+    
+    # Use constant-time comparison to prevent timing attacks
+    return secrets.compare_digest(expected_token, provided_token)
+
+
+def csrf_protect(f):
+    """Decorator to protect routes from CSRF attacks."""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Only protect state-changing methods
+        if request.method in ['GET', 'HEAD', 'OPTIONS']:
+            return f(*args, **kwargs)
+        
+        # Get expected CSRF token from session
+        expected_token = getattr(g, 'csrf_token', None)
+        if not expected_token:
+            return jsonify({"error": "CSRF token not found in session"}), 403
+        
+        # Get provided CSRF token
+        provided_token = get_csrf_token()
+        
+        # Validate CSRF token
+        if not validate_csrf_token(expected_token, provided_token):
+            return jsonify({"error": "Invalid CSRF token"}), 403
+        
+        return f(*args, **kwargs)
+    
+    return decorated_function
+
+
+def set_csrf_token():
+    """Set CSRF token in response for forms."""
+    if not hasattr(g, 'csrf_token'):
+        g.csrf_token = generate_csrf_token()
+    
+    # Set CSRF token in response headers for AJAX requests
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return {'X-CSRF-Token': g.csrf_token}
+    
+    return None 

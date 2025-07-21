@@ -8,11 +8,36 @@ import openforge.app.routes.images as image_routes
 import openforge.app.routes.tag_descriptions as tag_description_routes
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.tags_documentation as tags_doc_routes
+import openforge.app.routes.sessions as session_routes
 from openforge.app.routes import authenticate
 
 
 app = Flask(__name__)
 init_app(app)
+
+####################
+### Session Management routes
+####################
+
+
+@app.route("/api/admin/sessions", methods=["POST"])
+def create_session():
+    """Create a new admin session."""
+    return session_routes.create_session()
+
+
+@app.route("/api/admin/sessions/validate", methods=["GET"])
+def validate_session():
+    """Validate current session."""
+    return session_routes.validate_session()
+
+
+@app.route("/api/admin/sessions", methods=["DELETE"])
+@authenticate(methods=["DELETE"])
+def delete_session():
+    """Delete current session (logout)."""
+    return session_routes.delete_session()
+
 
 ####################
 ### Blueprint Documentation routes
