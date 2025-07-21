@@ -14,7 +14,19 @@ from openforge.app.middleware.csrf import csrf_protect
 
 
 app = Flask(__name__)
-init_app(app)
+# Don't initialize the app at module level to avoid pool creation during testing
+# init_app will be called when the app is actually used
+
+def ensure_app_initialized():
+    """Ensure the app is initialized before handling requests."""
+    if not hasattr(app, '_initialized'):
+        from openforge.app import init_app
+        init_app(app)
+        app._initialized = True
+
+@app.before_request
+def before_request():
+    ensure_app_initialized()
 
 ####################
 ### Session Management routes

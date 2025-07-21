@@ -83,7 +83,7 @@ class TestSessionService:
         session_data = session_service.create_session("test_token")
         
         # Manually expire the session in the database
-        with session_service.db.pool.connection() as conn:
+        with session_service.db.connection() as conn:
             with conn.cursor() as curs:
                 session_hash = session_service._hash_token(session_data["session_token"])
                 curs.execute(
@@ -135,15 +135,10 @@ class TestSessionRoutes:
     
     def test_validate_session_route(self, client):
         """Test the validate session route."""
-        # First create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
-        session_cookie = create_response.headers.getlist("Set-Cookie")[0]
+        # First create a session. The cookie is automatically added to the client's cookie jar.
+        client.post("/api/admin/sessions", json={"api_key": "test_token"})
         
-        # Extract session token from cookie
-        session_token = session_cookie.split("session_token=")[1].split(";")[0]
-        
-        # Validate the session
-        client.set_cookie("session_token", session_token)
+        # Validate the session. The client will automatically send the session cookie.
         response = client.get("/api/admin/sessions/validate")
         
         assert response.status_code == 200
@@ -164,18 +159,13 @@ class TestSessionRoutes:
     
     def test_delete_session_route(self, client):
         """Test the delete session route."""
-        # First create a session
+        # First create a session. The cookie is automatically added to the client's cookie jar.
         create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
-        session_cookie = create_response.headers.getlist("Set-Cookie")[0]
-        
-        # Extract session token from cookie
-        session_token = session_cookie.split("session_token=")[1].split(";")[0]
         
         # Get CSRF token
         csrf_token = create_response.headers.get("X-CSRF-Token")
         
-        # Delete the session
-        client.set_cookie("session_token", session_token)
+        # Delete the session. The client will automatically send the session cookie.
         response = client.delete("/api/admin/sessions", headers={"X-CSRF-Token": csrf_token})
         
         assert response.status_code == 200
@@ -187,15 +177,10 @@ class TestSessionRoutes:
     
     def test_delete_session_no_csrf(self, client):
         """Test deleting session without CSRF token."""
-        # First create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
-        session_cookie = create_response.headers.getlist("Set-Cookie")[0]
+        # First create a session. The cookie is automatically added to the client's cookie jar.
+        client.post("/api/admin/sessions", json={"api_key": "test_token"})
         
-        # Extract session token from cookie
-        session_token = session_cookie.split("session_token=")[1].split(";")[0]
-        
-        # Try to delete without CSRF token
-        client.set_cookie("session_token", session_token)
+        # Try to delete without CSRF token. The client will automatically send the session cookie.
         response = client.delete("/api/admin/sessions")
         
         assert response.status_code == 403
@@ -208,15 +193,10 @@ class TestAuthenticationIntegration:
     
     def test_authenticated_route_with_session(self, client):
         """Test that authenticated routes work with session cookies."""
-        # Create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
-        session_cookie = create_response.headers.getlist("Set-Cookie")[0]
+        # Create a session. The cookie is automatically added to the client's cookie jar.
+        client.post("/api/admin/sessions", json={"api_key": "test_token"})
         
-        # Extract session token from cookie
-        session_token = session_cookie.split("session_token=")[1].split(";")[0]
-        
-        # Try to access an authenticated route
-        client.set_cookie("session_token", session_token)
+        # Try to access an authenticated route. The client will automatically send the session cookie.
         response = client.post("/api/blueprints", json={"blueprint_name": "test"})
         
         # Should not get 401 (though might get 400 for invalid data)

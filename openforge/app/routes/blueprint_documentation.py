@@ -40,7 +40,7 @@ def get_blueprint_documentation(blueprint_id):
     except ValueError:
         return jsonify({"error": "Invalid blueprint ID"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid)
             if not data:
@@ -56,7 +56,7 @@ def get_blueprint_documentation_entry(blueprint_id, doc_id):
     except ValueError:
         return jsonify({"error": "Invalid ID"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
@@ -93,7 +93,7 @@ def create_blueprint_documentation(blueprint_id):
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = blueprint_doc_sql.create_blueprint_documentation(
@@ -132,7 +132,7 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified blueprint
@@ -159,7 +159,7 @@ def delete_blueprint_documentation(blueprint_id, doc_id):
     except ValueError:
         return jsonify({"error": "Invalid ID"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified blueprint
@@ -192,7 +192,7 @@ def get_blueprint_changelog_history(blueprint_id):
     if offset < 0:
         return jsonify({"error": "Offset must be non-negative"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = blueprint_doc_sql.get_blueprint_changelog_history(
@@ -220,7 +220,7 @@ def get_blueprint_all_documentation(blueprint_id):
     if changelog_offset < 0:
         return jsonify({"error": "Changelog offset must be non-negative"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # 1. Get blueprint information

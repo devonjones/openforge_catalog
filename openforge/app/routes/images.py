@@ -8,7 +8,7 @@ from openforge.openapi import validate_schema
 
 
 def get_images():
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = image_sql.get_all_images(cursor)
             blueprint_images = image_sql.get_all_blueprint_images(cursor)
@@ -27,7 +27,7 @@ def create_image():
         validate_schema("image.yaml", request.json)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             req_data = request.json
             data = image_sql.insert_image(cursor, **req_data)
@@ -40,7 +40,7 @@ def create_image():
 
 
 def get_image_by_id(image_id):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = image_sql.get_image_by_id(cursor, image_id)
             if not data:
@@ -56,7 +56,7 @@ def update_image(image_id):
         validate_schema("image.yaml", request.json, required=False)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             image = image_sql.update_image(cursor, image_id, request.json)
             if request.json.get("blueprint_ids"):
@@ -70,7 +70,7 @@ def update_image(image_id):
 
 
 def delete_image(image_id):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             rows = image_sql.delete_image(cursor, image_id)
             if rows != 0:

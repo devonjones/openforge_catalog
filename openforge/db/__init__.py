@@ -5,19 +5,48 @@ from psycopg_pool import ConnectionPool
 LOGGER = logging.getLogger(__name__)
 
 
+import psycopg
+
 class PgDB:
-    def __init__(self, vars, ext_logger=None):
+    def __init__(self, vars, ext_logger=None, use_pool=True):
         self.database_url = db_url(vars, ext_logger)
-        self.pool = ConnectionPool(self.database_url, open=True)
+        self.use_pool = use_pool
+        if use_pool:
+            self.pool = ConnectionPool(self.database_url, open=True)
+        else:
+            self.pool = None
+
+    def connection(self):
+        """Get a database connection, either from pool or direct."""
+        if self.use_pool and self.pool:
+            return self.pool.connection()
+        else:
+            return psycopg.connect(self.database_url)
 
     def __enter__(self):
         return self
 
+    def close(self):
+        """Gracefully close the database connection/pool."""
+        if self.pool:
+            try:
+                self.pool.close()
+            except Exception:
+                # Ignore errors during shutdown
+                pass
+            self.pool = None
+
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.pool.close()
+        self.close()
 
     def __del__(self):
-        self.pool.close()
+        # Only try to close if we have a pool and it's not already closed
+        if hasattr(self, 'pool') and self.pool is not None:
+            try:
+                self.pool.close()
+            except Exception:
+                # Ignore errors during garbage collection
+                pass
 
 
 def db_url(vars, ext_logger=None):

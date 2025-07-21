@@ -23,7 +23,7 @@ def _validate_uuid(uuid_string: str) -> None:
 
 
 def get_blueprints():
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_all_blueprints(cursor)
             return jsonify(data)
@@ -41,7 +41,7 @@ def create_blueprint():
         validate_schema("blueprint.yaml", request.json)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             req_data = request.json
             data = blueprint_sql.insert_blueprint(cursor, req_data, words=_create_blueprint_words(req_data))
@@ -59,7 +59,7 @@ def create_blueprint():
 def get_blueprint_by_id(blueprint_id):
     _validate_uuid(blueprint_id)
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)
             data["tags"] = [
@@ -70,7 +70,7 @@ def get_blueprint_by_id(blueprint_id):
 
 
 def get_blueprint_by_md5(md5):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_blueprint_by_md5(cursor, md5)
             data["tags"] = [
@@ -87,7 +87,7 @@ def update_blueprint(blueprint_id):
         validate_schema("blueprint.yaml", request.json, required=False)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             req_data = request.json
             data = blueprint_sql.update_blueprint(cursor, blueprint_id, req_data)
@@ -114,7 +114,7 @@ def update_blueprint(blueprint_id):
 def delete_blueprint(blueprint_id):
     _validate_uuid(blueprint_id)
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
@@ -130,7 +130,7 @@ def delete_blueprint(blueprint_id):
 def download_blueprint(blueprint_id):
     _validate_uuid(blueprint_id)
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             bp = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)
             url = _get_signed_urls(bp)

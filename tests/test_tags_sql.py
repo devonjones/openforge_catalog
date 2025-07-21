@@ -7,7 +7,7 @@ from .test_helpers import create_test_blueprint, assert_tag_matches
 import openforge.db.sql.blueprints as blueprint_sql
 
 def test_insert_and_get_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -16,7 +16,7 @@ def test_insert_and_get_tag(test_db):
             assert tag["blueprint_id"] == inserted_bp["id"]
 
 def test_get_tags_for_blueprint(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -26,7 +26,7 @@ def test_get_tags_for_blueprint(test_db):
             assert tags[0]["tag"] == "foo|bar"
 
 def test_insert_duplicate_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -35,7 +35,7 @@ def test_insert_duplicate_tag(test_db):
             assert tag1["id"] == tag2["id"]
 
 def test_delete_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -46,7 +46,7 @@ def test_delete_tag(test_db):
             assert len(tags) == 0
 
 def test_delete_all_blueprint_tags(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -58,7 +58,7 @@ def test_delete_all_blueprint_tags(test_db):
             assert len(tags) == 0
 
 def test_delete_all_tags(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp1 = create_test_blueprint()
             bp2 = create_test_blueprint()
@@ -72,7 +72,7 @@ def test_delete_all_tags(test_db):
             assert len(tags) == 0
 
 def test_get_blueprint_ids_by_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp1 = create_test_blueprint()
             bp2 = create_test_blueprint()
@@ -86,7 +86,7 @@ def test_get_blueprint_ids_by_tag(test_db):
             assert inserted_bp2["id"] in ids
 
 def test_tag_search_blueprints(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint(blueprint_type='model')
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -96,7 +96,7 @@ def test_tag_search_blueprints(test_db):
             assert results[0]["id"] == inserted_bp["id"]
 
 def test_tag_search_tags(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint(blueprint_type='model')
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -106,7 +106,7 @@ def test_tag_search_tags(test_db):
             assert results[0]["tag"] == ['foo', 'bar']
 
 def test_tag_search_blueprint_images(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint()
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -115,7 +115,7 @@ def test_tag_search_blueprint_images(test_db):
             assert len(results) == 0
 
 def test_tag_search_blueprint_count(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint(blueprint_type='model')
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)
@@ -124,7 +124,7 @@ def test_tag_search_blueprint_count(test_db):
             assert count == 1
 
 def test_tag_search_tag_count(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             bp = create_test_blueprint(blueprint_type='model')
             inserted_bp = blueprint_sql.insert_blueprint(curs, bp)

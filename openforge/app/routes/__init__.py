@@ -1,10 +1,10 @@
 import os
+import secrets
 from functools import wraps
 from typing import Union
 
 from flask import request, jsonify, current_app, g
 from openforge.app.services.session_service import SessionService
-from openforge.app.middleware.csrf import generate_csrf_token
 
 
 def authenticate(methods: list[str] = None, disable_sessions: list[str] = None, disable_api_keys: list[str] = None, disable_csrf: list[str] = None):
@@ -86,11 +86,11 @@ def _get_api_token_from_header(token: str) -> str:
 
 
 def validate_api_token(token: Union[str, None]) -> bool:
-    """Validate API token against configured token."""
+    """Validate API token against configured token using constant-time comparison."""
     if not token:
         return False
     try:
         extracted_token = _get_api_token_from_header(token)
-        return extracted_token == current_app.config["API_TOKEN"]
+        return secrets.compare_digest(extracted_token, current_app.config["API_TOKEN"])
     except ValueError:
         return False

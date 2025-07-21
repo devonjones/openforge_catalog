@@ -10,7 +10,9 @@ from openforge.app.services.session_service import SessionService
 
 def init_app(app: Flask):
     load_dotenv()
-    db = PgDB(os.environ, app.logger)
+    # Use pool-less mode for testing to avoid logging errors during cleanup
+    use_pool = not app.config.get('TESTING', False)
+    db = PgDB(os.environ, app.logger, use_pool=use_pool)
     app.config["API_TOKEN"] = os.environ.get("API_TOKEN", "1234567890")
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
     if not app.config["SECRET_KEY"]:

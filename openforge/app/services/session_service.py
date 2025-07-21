@@ -109,7 +109,7 @@ class SessionService:
 
     def _insert_session(self, session_token_hash: str, expires_at: datetime) -> str:
         """Insert new session into database."""
-        with self.db.pool.connection() as conn:
+        with self.db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 query = sql.SQL(
                     """
@@ -130,7 +130,7 @@ class SessionService:
 
     def _get_session_by_hash(self, session_token_hash: str) -> Optional[Dict]:
         """Get session by token hash."""
-        with self.db.pool.connection() as conn:
+        with self.db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 query = sql.SQL(
                     """
@@ -144,7 +144,7 @@ class SessionService:
 
     def _update_session_last_used(self, session_token_hash: str) -> bool:
         """Update last_used_at for session (triggers throttled update)."""
-        with self.db.pool.connection() as conn:
+        with self.db.connection() as conn:
             with conn.cursor() as curs:
                 query = sql.SQL(
                     """
@@ -158,7 +158,7 @@ class SessionService:
 
     def _delete_session_by_hash(self, session_token_hash: str) -> bool:
         """Delete session by token hash."""
-        with self.db.pool.connection() as conn:
+        with self.db.connection() as conn:
             with conn.cursor() as curs:
                 query = sql.SQL(
                     """
@@ -171,7 +171,7 @@ class SessionService:
 
     def _delete_expired_sessions(self) -> int:
         """Delete expired sessions and return count of deleted sessions."""
-        with self.db.pool.connection() as conn:
+        with self.db.connection() as conn:
             with conn.cursor() as curs:
                 query = sql.SQL(
                     """

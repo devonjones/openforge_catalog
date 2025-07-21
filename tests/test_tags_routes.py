@@ -27,7 +27,7 @@ def create_blueprint_with_tags(test_db, tags=None, blueprint_type="model"):
         blueprint_sql.insert_blueprint
     )
     if tags:
-        with test_db.pool.connection() as conn:
+        with test_db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 for tag in tags:
                     tag_sql.insert_tag(curs, blueprint["id"], tag)
@@ -105,7 +105,7 @@ def test_query_tags_paging_and_limit(auth_client, test_db):
         bp = create_test_blueprint(blueprint_type="model")
         bp["blueprint_name"] = f"test_blueprint_{i}"  # Ensure unique names
         bps.append(setup_test_data(test_db, bp, blueprint_sql.insert_blueprint))
-        with test_db.pool.connection() as conn:
+        with test_db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 tag_sql.insert_tag(curs, bps[-1]["id"], tag)
                 conn.commit()
@@ -137,7 +137,7 @@ def test_query_tags_paging_and_limit(auth_client, test_db):
 def test_query_tags_search(auth_client, test_db):
     tag = "foo|bar"
     bp = create_blueprint_with_tags(test_db, [tag], blueprint_type="model")
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             curs.execute("UPDATE blueprints SET search_text = %s WHERE id = %s", ("uniquesearchterm", bp["id"]))
             conn.commit()

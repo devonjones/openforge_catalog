@@ -39,7 +39,7 @@ def get_tag_documentation(tag_array):
     if any(not component or component.strip() == "" for component in tag_array):
         return jsonify({"error": "Invalid tag format. Tag components cannot be empty."}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tags_doc_sql.get_tag_documentation(cursor, tag_array)
             if not data:
@@ -55,7 +55,7 @@ def get_tag_documentation_entry(tag_array, doc_id):
     except ValueError:
         return jsonify({"error": "Invalid documentation ID"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = tags_doc_sql.get_tag_documentation_by_id(cursor, doc_uuid)
@@ -88,7 +88,7 @@ def create_tag_documentation(tag_array):
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = tags_doc_sql.create_tag_documentation(
@@ -126,7 +126,7 @@ def update_tag_documentation(tag_array, doc_id):
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified tag
@@ -152,7 +152,7 @@ def delete_tag_documentation(tag_array, doc_id):
     except ValueError:
         return jsonify({"error": "Invalid documentation ID"}), 400
     
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 # First verify the documentation belongs to the specified tag
@@ -171,7 +171,7 @@ def delete_tag_documentation(tag_array, doc_id):
 
 def get_all_tag_documentation():
     """Get all tag documentation."""
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tags_doc_sql.get_all_tag_documentation(cursor)
             return jsonify({"documentation": data})
@@ -179,7 +179,7 @@ def get_all_tag_documentation():
 
 def get_tag_documentation_by_tag_prefix(tag):
     """Get tag documentation by tag, including child tags (prefix match)."""
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tags_doc_sql.get_tag_documentation_by_tag_prefix(cursor, tag)
             return jsonify({"documentation": data}) 

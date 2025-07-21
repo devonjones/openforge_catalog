@@ -30,7 +30,7 @@ test_blueprint_data = {
 
 # Setup test data
 def setup_test_data(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = blueprint_sql.insert_blueprint(curs, test_blueprint_data)
             conn.commit()
