@@ -1,7 +1,19 @@
-from flask import jsonify, request, current_app, g
+from flask import jsonify, request, current_app, g, Response
 from openforge.app.services.session_service import SessionService
 from openforge.app.middleware.csrf import generate_csrf_token, csrf_protect
 from functools import wraps
+
+
+def _set_session_cookie(response: Response, session_token: str) -> None:
+    """Set secure session cookie with consistent settings."""
+    response.set_cookie(
+        'session_token',
+        session_token,
+        max_age=30 * 24 * 60 * 60,  # 30 days in seconds
+        httponly=True,
+        secure=True,  # Requires HTTPS
+        samesite='Strict'
+    )
 
 
 def create_session():
@@ -27,14 +39,7 @@ def create_session():
     })
     
     # Set secure session cookie
-    response.set_cookie(
-        'session_token',
-        session_data["session_token"],
-        max_age=30 * 24 * 60 * 60,  # 30 days in seconds
-        httponly=True,
-        secure=True,  # Requires HTTPS
-        samesite='Strict'
-    )
+    _set_session_cookie(response, session_data["session_token"])
     
     # Set CSRF token in response headers
     response.headers['X-CSRF-Token'] = csrf_token

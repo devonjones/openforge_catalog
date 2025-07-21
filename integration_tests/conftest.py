@@ -210,8 +210,7 @@ class APIClient:
         
         # Handle both data and json parameters
         request_kwargs = kwargs.copy()
-        if data is not None and 'json' not in request_kwargs:
-            request_kwargs['json'] = data
+        request_kwargs.update({'json': data} if data is not None else {})
         
         # Make the request with headers
         return self.session.request(method, url, headers=headers, **request_kwargs)

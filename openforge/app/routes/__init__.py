@@ -75,16 +75,23 @@ def authenticate(methods: list[str] = None, disable_sessions: list[str] = None, 
     return decorator
 
 
-def validate_api_token(token: Union[str, None]):
-    def _get_api_token():
-        parts = token.split(" ")
-        if len(parts) == 1:
-            return parts[0]
-        elif len(parts) == 2:
-            if parts[0] == "Bearer":
-                return parts[1]
-        raise ValueError("Invalid API token format")
+def _get_api_token_from_header(token: str) -> str:
+    """Extract API token from Authorization header."""
+    parts = token.split(" ")
+    if len(parts) == 1:
+        return parts[0]
+    elif len(parts) == 2:
+        if parts[0] == "Bearer":
+            return parts[1]
+    raise ValueError("Invalid API token format")
 
+
+def validate_api_token(token: Union[str, None]) -> bool:
+    """Validate API token against configured token."""
     if not token:
         return False
-    return _get_api_token() == current_app.config["API_TOKEN"]
+    try:
+        extracted_token = _get_api_token_from_header(token)
+        return extracted_token == current_app.config["API_TOKEN"]
+    except ValueError:
+        return False
