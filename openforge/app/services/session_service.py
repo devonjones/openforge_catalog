@@ -119,11 +119,14 @@ class SessionService:
                 query = sql.SQL(
                     """
                     INSERT INTO sessions (session_token_hash, expires_at)
-                    VALUES (%s, %s)
+                    VALUES ({session_token_hash}, {expires_at})
                     RETURNING id
                     """
+                ).format(
+                    session_token_hash=sql.literal(session_token_hash),
+                    expires_at=sql.literal(expires_at)
                 )
-                curs.execute(query, (session_token_hash, expires_at))
+                curs.execute(query)
                 result = curs.fetchone()
                 return str(result['id'])
 
@@ -135,10 +138,10 @@ class SessionService:
                     """
                     SELECT id, session_token_hash, created_at, expires_at, last_used_at
                     FROM sessions
-                    WHERE session_token_hash = %s
+                    WHERE session_token_hash = {session_token_hash}
                     """
-                )
-                curs.execute(query, (session_token_hash,))
+                ).format(session_token_hash=sql.literal(session_token_hash))
+                curs.execute(query)
                 return curs.fetchone()
 
     def _update_session_last_used(self, session_token_hash: str) -> bool:
@@ -149,10 +152,10 @@ class SessionService:
                     """
                     UPDATE sessions 
                     SET last_used_at = now() 
-                    WHERE session_token_hash = %s
+                    WHERE session_token_hash = {session_token_hash}
                     """
-                )
-                curs.execute(query, (session_token_hash,))
+                ).format(session_token_hash=sql.literal(session_token_hash))
+                curs.execute(query)
                 return curs.rowcount > 0
 
     def _delete_session_by_hash(self, session_token_hash: str) -> bool:
@@ -162,10 +165,10 @@ class SessionService:
                 query = sql.SQL(
                     """
                     DELETE FROM sessions 
-                    WHERE session_token_hash = %s
+                    WHERE session_token_hash = {session_token_hash}
                     """
-                )
-                curs.execute(query, (session_token_hash,))
+                ).format(session_token_hash=sql.literal(session_token_hash))
+                curs.execute(query)
                 return curs.rowcount > 0
 
     def _delete_expired_sessions(self) -> int:
