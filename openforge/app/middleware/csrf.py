@@ -64,13 +64,4 @@ def csrf_protect(f):
     return decorated_function
 
 
-def set_csrf_token():
-    """Set CSRF token in response for forms."""
-    if not hasattr(g, 'csrf_token'):
-        g.csrf_token = generate_csrf_token()
-    
-    # Set CSRF token in response headers for AJAX requests
-    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-        return {'X-CSRF-Token': g.csrf_token}
-    
-    return None 
+ 

@@ -41,59 +41,45 @@ class SessionService:
         # Store hash in database
         session_id = self._insert_session(session_token_hash, expires_at)
         
+        # Generate CSRF token for the session
+        csrf_token = self._get_csrf_token_for_session(session_id)
+        
         return {
             "session_token": session_token,
-            "expires_at": expires_at.isoformat()
+            "expires_at": expires_at.isoformat(),
+            "csrf_token": csrf_token
         }
     
     def validate_session(self, session_token: str) -> Optional[Dict]:
         """Validate session token and update last_used_at (throttled by trigger). Returns safe session data if valid."""
-        try:
-            session_token_hash = self._hash_token(session_token)
+        session_token_hash = self._hash_token(session_token)
 
-            # First validate the session exists and is not expired
-            session = self._get_session_by_hash(session_token_hash)
-            if not session or session['expires_at'] < datetime.now(timezone.utc):
-                return None
-
-            # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
-            # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
-            try:
-                self._update_session_last_used(session_token_hash)
-            except Exception as update_error:
-                # Log the error but don't fail validation - the session is still valid
-                # The last_used_at update is a performance optimization, not critical
-                logger.warning(f"Failed to update session last_used_at: {update_error}")
-
-            # Return safe session data (exclude sensitive fields like session_token_hash)
-            return {
-                'id': session['id'],
-                'created_at': session['created_at'],
-                'expires_at': session['expires_at'],
-                'last_used_at': session['last_used_at']
-            }
-
-        except Exception as e:
-            # Log the error and fail validation gracefully
-            logger.error(f"Session validation failed: {e}")
+        # First validate the session exists and is not expired
+        session = self._get_session_by_hash(session_token_hash)
+        if not session or session['expires_at'] < datetime.now(timezone.utc):
             return None
+
+        # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
+        # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
+        # Note: We don't catch exceptions here to preserve stack traces for debugging
+        self._update_session_last_used(session_token_hash)
+
+        # Return safe session data (exclude sensitive fields like session_token_hash)
+        return {
+            'id': session['id'],
+            'created_at': session['created_at'],
+            'expires_at': session['expires_at'],
+            'last_used_at': session['last_used_at']
+        }
     
     def delete_session(self, session_token: str) -> bool:
         """Delete session (logout). To invalidate compromised sessions, simply delete the record."""
-        try:
-            session_token_hash = self._hash_token(session_token)
-            return self._delete_session_by_hash(session_token_hash)
-        except Exception as e:
-            logger.error(f"Session deletion failed: {e}")
-            return False
+        session_token_hash = self._hash_token(session_token)
+        return self._delete_session_by_hash(session_token_hash)
     
     def cleanup_expired_sessions(self) -> int:
         """Clean up expired sessions (run during validation)."""
-        try:
-            return self._delete_expired_sessions()
-        except Exception as e:
-            logger.error(f"Session cleanup failed: {e}")
-            return 0
+        return self._delete_expired_sessions()
 
     def _get_csrf_token_for_session(self, session_id: str) -> str:
         """Generate a consistent CSRF token for a session based on session ID."""
@@ -102,11 +88,13 @@ class SessionService:
         secret = self.api_token
         if not secret:
             try:
-                secret = current_app.config.get('API_TOKEN', 'default_secret')
+                secret = current_app.config.get('API_TOKEN')
             except RuntimeError:
-                secret = 'default_secret'
+                secret = None
+        if not secret:
+            raise ValueError("API_TOKEN secret not configured, cannot generate CSRF token.")
         csrf_seed = f"{session_id}:{secret}"
-        return hashlib.sha256(csrf_seed.encode()).hexdigest()[:32]
+        return hashlib.sha256(csrf_seed.encode()).hexdigest()
 
     def _hash_token(self, session_token: str) -> str:
         """Hash a session token for storage."""
@@ -123,10 +111,13 @@ class SessionService:
                     RETURNING id
                     """
                 ).format(
-                    session_token_hash=sql.literal(session_token_hash),
-                    expires_at=sql.literal(expires_at)
+                    session_token_hash=sql.Placeholder('session_token_hash'),
+                    expires_at=sql.Placeholder('expires_at')
                 )
-                curs.execute(query)
+                curs.execute(query, {
+                    'session_token_hash': session_token_hash,
+                    'expires_at': expires_at
+                })
                 result = curs.fetchone()
                 return str(result['id'])
 
@@ -140,8 +131,8 @@ class SessionService:
                     FROM sessions
                     WHERE session_token_hash = {session_token_hash}
                     """
-                ).format(session_token_hash=sql.literal(session_token_hash))
-                curs.execute(query)
+                ).format(session_token_hash=sql.Placeholder('session_token_hash'))
+                curs.execute(query, {'session_token_hash': session_token_hash})
                 return curs.fetchone()
 
     def _update_session_last_used(self, session_token_hash: str) -> bool:
@@ -154,8 +145,8 @@ class SessionService:
                     SET last_used_at = now() 
                     WHERE session_token_hash = {session_token_hash}
                     """
-                ).format(session_token_hash=sql.literal(session_token_hash))
-                curs.execute(query)
+                ).format(session_token_hash=sql.Placeholder('session_token_hash'))
+                curs.execute(query, {'session_token_hash': session_token_hash})
                 return curs.rowcount > 0
 
     def _delete_session_by_hash(self, session_token_hash: str) -> bool:
@@ -167,8 +158,8 @@ class SessionService:
                     DELETE FROM sessions 
                     WHERE session_token_hash = {session_token_hash}
                     """
-                ).format(session_token_hash=sql.literal(session_token_hash))
-                curs.execute(query)
+                ).format(session_token_hash=sql.Placeholder('session_token_hash'))
+                curs.execute(query, {'session_token_hash': session_token_hash})
                 return curs.rowcount > 0
 
     def _delete_expired_sessions(self) -> int:
