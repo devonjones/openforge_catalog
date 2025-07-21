@@ -15,9 +15,14 @@ def _set_session_cookie(response: Response, session_token: str) -> None:
 
 def create_session():
     """Create a new admin session."""
-    data = request.get_json()
-    if not data or 'api_key' not in data:
-        return jsonify({"error": "API key required"}), 400
+    try:
+        data = request.get_json(silent=True)
+        if not data or 'api_key' not in data:
+            return jsonify({"error": "API key required"}), 400
+    except Exception as e:
+        # Log malformed JSON attempts for security monitoring
+        current_app.logger.warning(f"Malformed JSON in session creation: {e}")
+        return jsonify({"error": "Invalid JSON format"}), 400
     
     try:
         session_data = current_app.session_service.create_session(data['api_key'])
