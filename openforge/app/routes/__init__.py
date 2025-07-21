@@ -22,7 +22,7 @@ def authenticate(methods: list[str]):
                 if session_data:
                     # Set CSRF token in g for CSRF protection
                     # Use a consistent token based on session ID for this session
-                    g.csrf_token = session_service._get_csrf_token_for_session(session_data['id'])
+                    g.csrf_token = session_service.get_csrf_token_for_session(session_data['id'])
                     return f(*args, **kwargs)
             
             # Fall back to API key authentication (for programmatic access)

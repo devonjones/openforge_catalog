@@ -42,7 +42,7 @@ class SessionService:
         session_id = self._insert_session(session_token_hash, expires_at)
         
         # Generate CSRF token for the session
-        csrf_token = self._get_csrf_token_for_session(session_id)
+        csrf_token = self.get_csrf_token_for_session(session_id)
         
         return {
             "session_token": session_token,
@@ -61,8 +61,12 @@ class SessionService:
 
         # If valid, trigger an UPDATE to refresh last_used_at (throttled by trigger)
         # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
-        # Note: We don't catch exceptions here to preserve stack traces for debugging
-        self._update_session_last_used(session_token_hash)
+        try:
+            self._update_session_last_used(session_token_hash)
+        except Exception as e:
+            # Log the error with full stack trace but don't fail validation - the session is still valid
+            # The last_used_at update is a performance optimization, not critical
+            logger.exception("Failed to update session last_used_at")
 
         # Return safe session data (exclude sensitive fields like session_token_hash)
         return {
@@ -81,7 +85,7 @@ class SessionService:
         """Clean up expired sessions (run during validation)."""
         return self._delete_expired_sessions()
 
-    def _get_csrf_token_for_session(self, session_id: str) -> str:
+    def get_csrf_token_for_session(self, session_id: str) -> str:
         """Generate a consistent CSRF token for a session based on session ID."""
         # Use session ID + a secret to generate consistent CSRF tokens
         # This ensures the same session always gets the same CSRF token

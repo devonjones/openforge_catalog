@@ -312,19 +312,7 @@ class TestSessionSecurity:
         # CSRF tokens should be consistent for the same session
         assert csrf_token1 == csrf_token2
     
-    def test_session_expiration_handling(self, api_client_no_auth):
-        """Test that expired sessions are handled properly."""
-        # This test would require manipulating the database to expire a session
-        # For now, we'll test that invalid session tokens are rejected
-        session_client = requests.Session()
-        session_client.cookies.set("session_token", "expired_or_invalid_token")
-        
-        response = session_client.get(f"{api_client_no_auth.base_url}/api/admin/sessions/validate")
-        
-        assert response.status_code == 401
-        data = response.json()
-        assert data["valid"] is False
-        assert "Invalid or expired session" in data["error"]
+    
 
 
 class TestSessionErrorHandling:

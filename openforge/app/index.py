@@ -33,7 +33,6 @@ def validate_session():
 
 
 @app.route("/api/admin/sessions", methods=["DELETE"])
-@authenticate(methods=["DELETE"])
 def delete_session():
     """Delete current session (logout)."""
     return session_routes.delete_session()
