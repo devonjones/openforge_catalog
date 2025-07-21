@@ -9,9 +9,9 @@ from openforge.app.services.session_service import SessionService
 def client(test_db):
     flask_app.config['TESTING'] = True
     flask_app.db = test_db
-    flask_app.config['API_TOKEN'] = "test_api_token"
+    flask_app.config['API_TOKEN'] = "test_token"
     # Set environment variable for session service
-    os.environ['API_TOKEN'] = "test_api_token"
+    os.environ['API_TOKEN'] = "test_token"
     with flask_app.test_client() as client:
         yield client
 
@@ -19,8 +19,8 @@ def client(test_db):
 @pytest.fixture
 def session_service(test_db):
     # Set environment variable for session service
-    os.environ['API_TOKEN'] = "test_api_token"
-    return SessionService(test_db, "test_api_token", "test_secret_key_for_csrf_tokens")
+    os.environ['API_TOKEN'] = "test_token"
+    return SessionService(test_db, "test_token", "test_secret_key_for_csrf_tokens")
 
 
 class TestSessionService:
@@ -28,7 +28,7 @@ class TestSessionService:
     
     def test_create_session_valid_key(self, session_service):
         """Test creating a session with a valid API key."""
-        session_data = session_service.create_session("test_api_token")
+        session_data = session_service.create_session("test_token")
         
         assert "session_token" in session_data
         assert "expires_at" in session_data
@@ -47,7 +47,7 @@ class TestSessionService:
     def test_validate_session_valid(self, session_service):
         """Test validating a valid session."""
         # Create a session first
-        session_data = session_service.create_session("test_api_token")
+        session_data = session_service.create_session("test_token")
         
         # Validate the session
         session = session_service.validate_session(session_data["session_token"])
@@ -63,7 +63,7 @@ class TestSessionService:
     def test_delete_session(self, session_service):
         """Test deleting a session."""
         # Create a session first
-        session_data = session_service.create_session("test_api_token")
+        session_data = session_service.create_session("test_token")
         
         # Verify session exists
         session = session_service.validate_session(session_data["session_token"])
@@ -80,7 +80,7 @@ class TestSessionService:
     def test_cleanup_expired_sessions(self, session_service):
         """Test cleaning up expired sessions."""
         # Create a session
-        session_data = session_service.create_session("test_api_token")
+        session_data = session_service.create_session("test_token")
         
         # Manually expire the session in the database
         with session_service.db.pool.connection() as conn:
@@ -105,7 +105,7 @@ class TestSessionRoutes:
     
     def test_create_session_route(self, client):
         """Test the create session route."""
-        response = client.post("/api/admin/sessions", json={"api_key": "test_api_token"})
+        response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
         
         assert response.status_code == 201
         data = response.get_json()
@@ -136,7 +136,7 @@ class TestSessionRoutes:
     def test_validate_session_route(self, client):
         """Test the validate session route."""
         # First create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_api_token"})
+        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
         session_cookie = create_response.headers.getlist("Set-Cookie")[0]
         
         # Extract session token from cookie
@@ -165,7 +165,7 @@ class TestSessionRoutes:
     def test_delete_session_route(self, client):
         """Test the delete session route."""
         # First create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_api_token"})
+        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
         session_cookie = create_response.headers.getlist("Set-Cookie")[0]
         
         # Extract session token from cookie
@@ -188,7 +188,7 @@ class TestSessionRoutes:
     def test_delete_session_no_csrf(self, client):
         """Test deleting session without CSRF token."""
         # First create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_api_token"})
+        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
         session_cookie = create_response.headers.getlist("Set-Cookie")[0]
         
         # Extract session token from cookie
@@ -209,7 +209,7 @@ class TestAuthenticationIntegration:
     def test_authenticated_route_with_session(self, client):
         """Test that authenticated routes work with session cookies."""
         # Create a session
-        create_response = client.post("/api/admin/sessions", json={"api_key": "test_api_token"})
+        create_response = client.post("/api/admin/sessions", json={"api_key": "test_token"})
         session_cookie = create_response.headers.getlist("Set-Cookie")[0]
         
         # Extract session token from cookie
@@ -228,7 +228,7 @@ class TestAuthenticationIntegration:
         response = client.post(
             "/api/blueprints", 
             json={"blueprint_name": "test"},
-            headers={"Authorization": "Bearer test_api_token"}
+            headers={"Authorization": "Bearer test_token"}
         )
         
         # Should not get 401 (though might get 400 for invalid data)

@@ -40,13 +40,12 @@ def authenticate(methods: list[str] = None, disable_sessions: list[str] = None, 
             if not disable_sessions_for_method:
                 session_token = request.cookies.get('session_token')
                 if session_token:
-                    session_service = SessionService(current_app.db, current_app.config.get('API_TOKEN'), current_app.config.get('SECRET_KEY'))
-                    session_data = session_service.validate_session(session_token)
+                    session_data = current_app.session_service.validate_session(session_token)
                     if session_data:
                         authenticated = True
                         # Set CSRF token in g for CSRF protection (if not disabled for this method)
                         if not disable_csrf_for_method:
-                            g.csrf_token = session_service.get_csrf_token_for_session(session_data['id'])
+                            g.csrf_token = current_app.session_service.get_csrf_token_for_session(session_data['id'])
             
             # Fall back to API key authentication (if not disabled for this method and not already authenticated)
             if not authenticated and not disable_api_keys_for_method:

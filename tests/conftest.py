@@ -8,6 +8,10 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Set environment variables for testing (must be done before app import)
+os.environ["API_TOKEN"] = "test_token"
+os.environ["SECRET_KEY"] = "test_secret_key_for_csrf_tokens"
+
 # Set PostgreSQL environment variables for testing
 os.environ["PGDATABASE"] = "openforge_test"
 os.environ["PGUSER"] = "openforge"
@@ -56,9 +60,7 @@ def clean_tables(test_db):
             conn.commit()
     yield
 
-# Mock the API token and secret key for testing
-os.environ["API_TOKEN"] = "test_token"
-os.environ["SECRET_KEY"] = "test_secret_key_for_csrf_tokens"
+
 
 @pytest.fixture
 def auth_client(client):

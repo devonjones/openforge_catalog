@@ -47,17 +47,12 @@ def csrf_protect(f):
         if request.method in ['GET', 'HEAD', 'OPTIONS']:
             return f(*args, **kwargs)
         
-        # Check if request is authenticated via session cookies
-        session_token = request.cookies.get('session_token')
-        if not session_token:
-            # No session cookie, so this is likely API key authentication
-            # CSRF protection is not needed for API key requests
-            return f(*args, **kwargs)
-        
-        # Get expected CSRF token from session
+        # Check if request is authenticated via session (CSRF token will be set by @authenticate)
         expected_token = getattr(g, 'csrf_token', None)
         if not expected_token:
-            return jsonify({"error": "CSRF token not found in session"}), 403
+            # No CSRF token in g, so this is likely API key authentication
+            # CSRF protection is not needed for API key requests
+            return f(*args, **kwargs)
         
         # Get provided CSRF token
         provided_token = get_csrf_token()
