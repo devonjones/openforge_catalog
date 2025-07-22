@@ -127,3 +127,11 @@
 .visibleLink:hover {
   color: #003d7a;
 }
+
+button.visibleLink {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}

@@ -55,7 +55,8 @@ export function AdminProvider({ children }: AdminProviderProps) {
           csrfToken: null,
         }));
       }
-    } catch {
+    } catch (error) {
+      console.error('Session check failed:', error);
       // Set loading to false on error
       setState(prev => ({
         ...prev,
@@ -94,7 +95,8 @@ export function AdminProvider({ children }: AdminProviderProps) {
       });
 
       return true;
-    } catch {
+    } catch (error) {
+      console.error('Login failed:', error);
       setState(prev => ({
         ...prev,
         isAuthenticated: false,
@@ -132,8 +134,9 @@ export function AdminProvider({ children }: AdminProviderProps) {
           csrfToken: null,
         });
       }
-    } catch {
-      // Don't update state on error - session might still be valid
+    } catch (error) {
+      // Don't update state on error - session might still be valid, but we should log it.
+      console.error('Logout request failed:', error);
     }
   };
 

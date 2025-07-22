@@ -21,7 +21,8 @@ const TabbedInterface = () => {
     
     fetch('/app-config.json')
       .then(res => res.json())
-      .then(cfg => { if (cfg.BASE_GENERATOR_URL) setBaseGeneratorUrl(cfg.BASE_GENERATOR_URL); });
+      .then(cfg => { if (cfg.BASE_GENERATOR_URL) setBaseGeneratorUrl(cfg.BASE_GENERATOR_URL); })
+      .catch(err => console.error("Failed to load or parse app-config.json", err));
   }, []);
 
   const handleBaseGeneratorUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {

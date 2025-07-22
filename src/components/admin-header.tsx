@@ -21,7 +21,6 @@ export default function AdminHeader() {
       <button
         onClick={handleLogout}
         className="visibleLink"
-        style={{ border: 'none', background: 'none', cursor: 'pointer', padding: 0, margin: 0 }}
       >
         Logout
       </button>
