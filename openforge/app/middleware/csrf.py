@@ -24,7 +24,7 @@ def get_csrf_token() -> Optional[str]:
     # Check for CSRF token in JSON body (for API requests)
     if request.is_json:
         try:
-            data = request.get_json(silent=True)
+            data = request.get_json()
             if data and 'csrf_token' in data:
                 return data['csrf_token']
         except Exception as e:
