@@ -12,7 +12,6 @@ const mockBlueprint: Blueprint = {
   file_size: 1024,
   file_name: 'test.stl',
   full_name: 'test/test.stl',
-  file_changed_at: '2023-01-01T00:00:00Z',
   file_modified_at: '2023-01-01T00:00:00Z',
   storage_address: 'test/address',
   signed_url: 'https://example.com/test.stl',

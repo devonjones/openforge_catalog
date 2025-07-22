@@ -10,13 +10,10 @@ export default function AdminLogin() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [hasCheckedSession, setHasCheckedSession] = useState(false);
   
   const router = useRouter();
 
   useEffect(() => {
-    if (hasCheckedSession) return;
-    
     // Check if already authenticated
     const checkSession = async () => {
       try {
@@ -29,17 +26,15 @@ export default function AdminLogin() {
           router.push('/');
           return;
         }
-      } catch {
-        // Session check failed
+      } catch (error) {
+        console.error('Session check failed:', error);
       } finally {
         setIsLoading(false);
-        setHasCheckedSession(true);
       }
     };
 
     checkSession();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasCheckedSession]);
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +57,8 @@ export default function AdminLogin() {
       // Backend automatically sets HttpOnly session cookie
       setIsSubmitting(false);
       router.push('/');
-    } catch {
+    } catch (error) {
+      console.error('Login failed:', error);
       setError('Login failed');
       setIsSubmitting(false);
     }

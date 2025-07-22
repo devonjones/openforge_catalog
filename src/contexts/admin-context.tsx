@@ -82,12 +82,15 @@ export function AdminProvider({ children }: AdminProviderProps) {
         throw new Error('Login failed');
       }
 
+      // Extract CSRF token from response headers
+      const csrfToken = response.headers.get('X-CSRF-Token');
+      
       // Backend automatically sets HttpOnly session cookie
       setState({
         isAuthenticated: true,
         isLoading: false,
         error: null,
-        csrfToken: null, // Will be set by next session check
+        csrfToken: csrfToken,
       });
 
       return true;
