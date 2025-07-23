@@ -1,5 +1,7 @@
+import os
 from flask import Flask, request
 import aws_lambda_wsgi
+from flask_cors import CORS
 
 from openforge.app import init_app
 import openforge.app.routes.blueprints as blueprint_routes
@@ -16,9 +18,7 @@ from openforge.app.middleware.csrf import csrf_protect
 app = Flask(__name__)
 
 # Initialize CORS only in development/testing environments
-import os
 if os.environ.get('FLASK_DEBUG') == '1':
-    from flask_cors import CORS
     CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000'])
 
 # Don't initialize the rest of the app at module level to avoid pool creation during testing

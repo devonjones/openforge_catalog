@@ -1,5 +1,6 @@
 import uuid
 import os
+import json
 from flask import jsonify, request, current_app, make_response, abort
 from psycopg.rows import dict_row
 from jsonschema.exceptions import ValidationError
@@ -58,7 +59,6 @@ def _create_image_with_upload():
         if not metadata_json:
             return jsonify({"error": "metadata field is required"}), 400
         
-        import json
         metadata = json.loads(metadata_json)
         # Don't validate schema yet - we'll add image_url after S3 upload
     except (json.JSONDecodeError) as e:
@@ -175,7 +175,6 @@ def _update_image_with_upload(image_id):
         # Get JSON metadata from form data (optional for PATCH)
         metadata = {}
         if 'metadata' in request.form:
-            import json
             metadata = json.loads(request.form['metadata'])
             validate_schema("image.yaml", metadata, required=False)
     except (ValidationError, json.JSONDecodeError) as e:

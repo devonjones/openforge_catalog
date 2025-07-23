@@ -122,9 +122,6 @@ const DocumentationTab: React.FC<DocumentationTabProps> = ({
       {Object.entries(tagDocumentation).map(([tagKey, docs], index) => {
         if (docs.length === 0) return null;
         
-        // Debug: log the tag structure
-        console.log('Tag documentation:', { tagKey, tag: docs[0].tag, type: typeof docs[0].tag });
-        
         return (
           <div key={tagKey} className="mb-8">
             {index > 0 && <hr className="my-6 border-gray-200" />}

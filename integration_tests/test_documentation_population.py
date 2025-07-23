@@ -7,6 +7,7 @@ import os
 import pytest
 import requests
 import json
+import base64
 from pathlib import Path
 
 from .conftest import APIClient
@@ -110,7 +111,6 @@ class TestDocumentationPopulation:
         test_image_path.parent.mkdir(exist_ok=True)
         
         # Create a simple test image (1x1 pixel PNG)
-        import base64
         png_data = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
         test_image_path.write_bytes(png_data)
         

@@ -81,9 +81,6 @@ def cleanup_test_data(db):
         'blueprint_doc_ids': created_blueprint_doc_ids
     }
     
-        # Check if we should keep test data
-    keep_test_data = os.environ.get("KEEP_TEST_DATA") == "true"
-    
     # Clean up after test by ID (only if KEEP_TEST_DATA is not set)
     if not keep_test_data:
         with db.connection() as conn:

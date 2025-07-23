@@ -44,7 +44,6 @@ def get_blueprint_documentation(blueprint_id):
         with conn.cursor(row_factory=dict_row) as cursor:
             # First verify the blueprint exists
             try:
-                import openforge.db.sql.blueprints as blueprint_sql
                 blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
             except NotFound:
                 return jsonify({"error": "Blueprint not found"}), 404
@@ -241,7 +240,6 @@ def get_blueprint_all_documentation(blueprint_id):
                 changelog_data = blueprint_doc_sql.get_blueprint_changelog_history(
                     cursor, blueprint_uuid, changelog_limit, changelog_offset
                 )
-                print(f"DEBUG: Changelog data for {blueprint_uuid}: {changelog_data}")
                 
                 # 4. Get blueprint tags
                 blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
