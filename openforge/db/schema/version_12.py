@@ -46,31 +46,32 @@ ADD COLUMN is_live boolean NOT NULL DEFAULT true
         print("  added is_live column to tag_documentation table")
 
     def create_documentation_indexes(self, curs: cursor):
-        # Create indexes for performance on is_live queries
+        # Create composite indexes for better performance on common queries
+        # These indexes support filtering by blueprint_id/tag + document_type + is_live
         query = sql.SQL(
             """
-CREATE INDEX idx_blueprint_documentation_live ON blueprint_documentation(is_live)
+CREATE INDEX idx_blueprint_documentation_composite ON blueprint_documentation(blueprint_id, document_type, is_live)
 """
         )
         curs.execute(query)
-        print("  created idx_blueprint_documentation_live index")
+        print("  created idx_blueprint_documentation_composite index")
 
         query = sql.SQL(
             """
-CREATE INDEX idx_tag_documentation_live ON tag_documentation(is_live)
+CREATE INDEX idx_tag_documentation_composite ON tag_documentation(tag, document_type, is_live)
 """
         )
         curs.execute(query)
-        print("  created idx_tag_documentation_live index")
+        print("  created idx_tag_documentation_composite index")
 
     def drop_documentation_indexes(self, curs: cursor):
-        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_live")
+        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_composite")
         curs.execute(query)
-        print("  dropped idx_tag_documentation_live index")
+        print("  dropped idx_tag_documentation_composite index")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_blueprint_documentation_live")
+        query = sql.SQL("DROP INDEX IF EXISTS idx_blueprint_documentation_composite")
         curs.execute(query)
-        print("  dropped idx_blueprint_documentation_live index")
+        print("  dropped idx_blueprint_documentation_composite index")
 
     def remove_is_live_from_tag_documentation(self, curs: cursor):
         query = sql.SQL("ALTER TABLE tag_documentation DROP COLUMN IF EXISTS is_live")

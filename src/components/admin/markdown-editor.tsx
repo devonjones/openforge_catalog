@@ -136,7 +136,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       const saveData = {
         document: content,
         document_type: documentType,
-        is_live: documentType === 'changelog' ? true : (makeLive ? true : false),
+        is_live: documentType === 'changelog' || makeLive,
       };
 
       // Determine base URL and method based on target type and whether document exists

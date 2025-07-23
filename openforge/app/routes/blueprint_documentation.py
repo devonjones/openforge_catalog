@@ -12,6 +12,24 @@ import openforge.db.sql.tags_documentation as tags_doc_sql
 from openforge.db.sql.tag_utils import tag_to_array
 
 
+def _apply_document_type_rules(document_type: str, is_live: bool) -> bool:
+    """Apply business rules based on document type.
+    
+    Args:
+        document_type: The type of document ('changelog' or 'instructions')
+        is_live: The requested live status
+        
+    Returns:
+        The final is_live status after applying rules
+    """
+    # Changelogs should always be live
+    if document_type == "changelog":
+        return True
+    
+    # For other document types, use the requested value
+    return is_live
+
+
 def _verify_documentation_ownership(cursor, doc_uuid, blueprint_id):
     """Verify that documentation belongs to the specified blueprint.
     
@@ -92,9 +110,8 @@ def create_blueprint_documentation(blueprint_id):
     if document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
     
-    # Changelogs should always be live
-    if document_type == "changelog":
-        is_live = True
+    # Apply document type rules
+    is_live = _apply_document_type_rules(document_type, is_live)
     
     # Validate and sanitize the document content
     try:
@@ -136,9 +153,9 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     if document_type and document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
     
-    # Changelogs should always be live
-    if document_type == "changelog":
-        is_live = True
+    # Apply document type rules if document_type is provided
+    if document_type:
+        is_live = _apply_document_type_rules(document_type, is_live)
     
     # Validate and sanitize the document content
     try:
@@ -165,11 +182,14 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                     current_doc_type = data["document_type"]
                     
                     # Mark other documents of the same type as non-live
+                    # Performance note: This query uses the composite index (blueprint_id, document_type, is_live)
+                    # Adding is_live = true makes it more selective and uses the full index
                     cursor.execute("""
                         UPDATE blueprint_documentation 
                         SET is_live = false, updated_at = CURRENT_TIMESTAMP
                         WHERE blueprint_id = %s 
                         AND document_type = %s 
+                        AND is_live = true
                         AND id != %s
                     """, (blueprint_uuid, current_doc_type, doc_uuid))
                 
