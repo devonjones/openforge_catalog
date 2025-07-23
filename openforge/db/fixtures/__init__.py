@@ -28,25 +28,30 @@ def find_fixtures(dir: str):
         return find_fixtures_package()
 
 
+def _collect_fixtures_from_subdir(base_path, subdir_name, file_list):
+    """Helper function to collect fixture files from a subdirectory.
+    
+    Args:
+        base_path: Base path containing the subdirectory
+        subdir_name: Name of the subdirectory to search
+        file_list: List to append found files to
+    """
+    subdir = base_path / subdir_name
+    if subdir.exists():
+        for f in subdir.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                file_list.append(f)
+
+
 def find_fixtures_package():
     import openforge.db.fixtures as fixtures
 
     ffiles = []
     fixtures_path = impresources.files(fixtures)
     
-    # Load blueprint fixtures
-    blueprints_path = fixtures_path / "blueprints"
-    if blueprints_path.exists():
-        for f in blueprints_path.iterdir():
-            if str(f).endswith(".json") or str(f).endswith(".yaml"):
-                ffiles.append(f)
-    
-    # Load tag description fixtures
-    tag_descriptions_path = fixtures_path / "tag_descriptions"
-    if tag_descriptions_path.exists():
-        for f in tag_descriptions_path.iterdir():
-            if str(f).endswith(".json") or str(f).endswith(".yaml"):
-                ffiles.append(f)
+    # Load fixtures from subdirectories
+    _collect_fixtures_from_subdir(fixtures_path, "blueprints", ffiles)
+    _collect_fixtures_from_subdir(fixtures_path, "tag_descriptions", ffiles)
     
     return ffiles
 
@@ -55,19 +60,9 @@ def find_fixtures_directory(dir: str):
     ffiles = []
     dir_path = Path(dir)
     
-    # Load blueprint fixtures
-    blueprints_path = dir_path / "blueprints"
-    if blueprints_path.exists():
-        for f in blueprints_path.iterdir():
-            if str(f).endswith(".json") or str(f).endswith(".yaml"):
-                ffiles.append(f)
-    
-    # Load tag description fixtures
-    tag_descriptions_path = dir_path / "tag_descriptions"
-    if tag_descriptions_path.exists():
-        for f in tag_descriptions_path.iterdir():
-            if str(f).endswith(".json") or str(f).endswith(".yaml"):
-                ffiles.append(f)
+    # Load fixtures from subdirectories
+    _collect_fixtures_from_subdir(dir_path, "blueprints", ffiles)
+    _collect_fixtures_from_subdir(dir_path, "tag_descriptions", ffiles)
     
     return ffiles
 
