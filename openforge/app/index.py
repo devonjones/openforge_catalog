@@ -14,7 +14,14 @@ from openforge.app.middleware.csrf import csrf_protect
 
 
 app = Flask(__name__)
-# Don't initialize the app at module level to avoid pool creation during testing
+
+# Initialize CORS only in development/testing environments
+import os
+if os.environ.get('FLASK_DEBUG') == '1':
+    from flask_cors import CORS
+    CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000'])
+
+# Don't initialize the rest of the app at module level to avoid pool creation during testing
 # init_app will be called when the app is actually used
 
 def ensure_app_initialized():

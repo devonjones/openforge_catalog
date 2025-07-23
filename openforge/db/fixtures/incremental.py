@@ -266,59 +266,35 @@ class IncrementalFixturesLoader:
         existing_bp = existing_blueprints.get(full_name)
         
         if existing_bp is None:
-            # Check if there's a deprecated version of this file
-            deprecated_bp = self._find_deprecated_blueprint(full_name)
-            if deprecated_bp and deprecated_bp["file_md5"] != md5 and not deprecated_bp.get("successor_id"):
-                # Version change: deprecated version exists with different MD5 and no successor
-                result.deprecated.append(deprecated_bp)
+            # Check if this file is already in consolidated_paths of any existing blueprint
+            already_consolidated = False
+            for bp in existing_blueprints.values():
+                consolidated_paths = bp.get("consolidated_paths", [])
+                if full_name in consolidated_paths:
+                    already_consolidated = True
+                    if self.verbose:
+                        sys.stderr.write(f"DEBUG: Skipping {full_name} - already in consolidated_paths of {bp['full_name']}\n")
+                    break
+            
+            if not already_consolidated:
+                # New file
                 result.added.append(fixture_item)
-                # Track the version change relationship
-                result.version_changes[deprecated_bp["id"]] = fixture_item
-                # Always show version changes
-                sys.stderr.write(f"VERSION CHANGE: {full_name} ({deprecated_bp['file_md5']} -> {md5})\n")
-            elif deprecated_bp and deprecated_bp.get("successor_id"):
-                # Deprecated blueprint already has successor - skip entirely
-                if self.verbose:
-                    sys.stderr.write(f"DEBUG: Skipping {full_name} - deprecated blueprint already has successor_id\n")
-            else:
-                # Check if this file is already in consolidated_paths of any existing blueprint
-                already_consolidated = False
-                for bp in existing_blueprints.values():
-                    consolidated_paths = bp.get("consolidated_paths", [])
-                    if full_name in consolidated_paths:
-                        already_consolidated = True
-                        if self.verbose:
-                            sys.stderr.write(f"DEBUG: Skipping {full_name} - already in consolidated_paths of {bp['full_name']}\n")
-                        break
-                
-                if not already_consolidated:
-                    # New file
-                    result.added.append(fixture_item)
-                    # Always show what was added
-                    sys.stderr.write(f"ADDED: {full_name}\n")
+                # Always show what was added
+                sys.stderr.write(f"ADDED: {full_name}\n")
         else:
             # Existing file - check for changes
-            if self._has_significant_changes(fixture_item, existing_bp):
-                if md5 != existing_bp["file_md5"] and not existing_bp.get("successor_id"):
-                    # MD5 changed - this is a version change (only if no successor)
-                    result.deprecated.append(existing_bp)
-                    result.added.append(fixture_item)
-                    if self.verbose:
-                        sys.stderr.write(f"VERSION CHANGE: {full_name} ({existing_bp['file_md5']}")
-                    result.version_changes[existing_bp["id"]] = fixture_item
-                    # Always show version changes
-                    sys.stderr.write(f"VERSION CHANGE: {full_name} ({existing_bp['file_md5']} -> {md5})\n")
-                elif md5 != existing_bp["file_md5"] and existing_bp.get("successor_id"):
-                    # MD5 changed but already has successor - skip version change
-                    if self.verbose:
-                        sys.stderr.write(f"DEBUG: Skipping version change detection for {full_name} - existing blueprint already has successor_id\n")
-                    result.added.append(fixture_item)
-                    sys.stderr.write(f"ADDED: {full_name}\n")
-                else:
-                    # Other changes (tags, config, etc.)
-                    result.modified.append(fixture_item)
-                    if self.verbose:
-                        sys.stderr.write(f"MODIFIED: {full_name}\n")
+            # First check if MD5 is different - if so, this is a new version, not a modification
+            if md5 != existing_bp["file_md5"]:
+                # Different MD5 means this is a new version, not a modification
+                # Add it as a new blueprint and let post-processing handle the linking
+                result.added.append(fixture_item)
+                if self.verbose:
+                    sys.stderr.write(f"ADDED (new version): {full_name} (MD5: {existing_bp['file_md5']} -> {md5})\n")
+            elif self._has_significant_changes(fixture_item, existing_bp):
+                # Same MD5 but other changes (tags, config, etc.)
+                result.modified.append(fixture_item)
+                if self.verbose:
+                    sys.stderr.write(f"MODIFIED: {full_name}\n")
                         
     def _has_config_changes(self, fixture_item: Dict, existing_bp: Dict) -> bool:
         """Check if configuration blueprint has changes compared to existing blueprint.
@@ -358,11 +334,8 @@ class IncrementalFixturesLoader:
         """Check if fixture item has significant changes compared to existing blueprint."""
         full_name = fixture_item["file_metadata"]["full_name"]
         
-        # Check MD5
-        if fixture_item["file_metadata"]["md5"] != existing_bp["file_md5"]:
-            if self.verbose:
-                sys.stderr.write(f"DEBUG: MD5 changed for {full_name}: {existing_bp['file_md5']} -> {fixture_item['file_metadata']['md5']}\n")
-            return True
+        # Note: MD5 changes are not checked here anymore since they're handled
+        # by the post-processing linking approach in _link_deprecated_to_successors
             
         # Check modification time using robust datetime comparison
         existing_modified = existing_bp["file_modified_at"]
@@ -474,27 +447,9 @@ class IncrementalFixturesLoader:
                     if blueprint_name:
                         new_blueprint_ids[blueprint_name] = new_bp["id"]
         
-        # Process deprecations with successor linking for version changes
+        # Process deprecations (no version change linking here - that's done in post-processing)
         for deprecated_bp in changes.deprecated:
-            # Check if this is a version change
-            successor_fixture = changes.version_changes.get(deprecated_bp["id"])
-            if successor_fixture and not deprecated_bp.get("successor_id"):
-                # This is a version change - link to the new blueprint by MD5
-                successor_md5 = successor_fixture["file_metadata"]["md5"]
-                successor_id = new_blueprint_ids_by_md5.get(successor_md5)
-                if self.verbose:
-                    sys.stderr.write(f"DEBUG: Version change for {deprecated_bp['full_name']}\n")
-                    sys.stderr.write(f"  Deprecated ID: {deprecated_bp['id']}\n")
-                    sys.stderr.write(f"  Deprecated MD5: {deprecated_bp['file_md5']}\n")
-                    sys.stderr.write(f"  Successor MD5: {successor_md5}\n")
-                    sys.stderr.write(f"  Successor ID: {successor_id}\n")
-                    sys.stderr.write(f"  Available new_blueprint_ids_by_md5: {list(new_blueprint_ids_by_md5.keys())}\n")
-                self._handle_deprecation(curs, deprecated_bp, successor_id)
-            else:
-                # This is just a deprecation (not a version change) or already has successor
-                if self.verbose and successor_fixture and deprecated_bp.get("successor_id"):
-                    sys.stderr.write(f"DEBUG: Skipping version change for {deprecated_bp['full_name']} - already has successor_id\n")
-                self._handle_deprecation(curs, deprecated_bp)
+            self._handle_deprecation(curs, deprecated_bp)
             
         # Process modifications
         for modified_item in changes.modified:
@@ -503,6 +458,9 @@ class IncrementalFixturesLoader:
         # Process consolidations
         for consolidated_item in changes.consolidated:
             self._handle_consolidation(curs, consolidated_item)
+            
+        # Post-process: Link deprecated blueprints to successors by file path
+        self._link_deprecated_to_successors(curs)
             
     def _handle_deprecation(self, curs: cursor, deprecated_bp: Dict, successor_id: Optional[str] = None):
         """Handle deprecation of an existing blueprint.
@@ -519,14 +477,18 @@ class IncrementalFixturesLoader:
         image_sql.delete_images_for_blueprint(curs, blueprint_id)
         
         # Mark as deprecated, only setting successor_id if not already set
-        if successor_id and not deprecated_bp.get("successor_id"):
+        # IMPORTANT: Once a successor_id is set, it should never be changed
+        # as this represents the changelog history that builds up over time
+        if successor_id and deprecated_bp.get("successor_id") is None:
             blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id, successor_id)
         else:
             blueprint_sql.mark_blueprint_deprecated(curs, blueprint_id)
         
         if self.verbose:
-            if successor_id:
+            if successor_id and deprecated_bp.get("successor_id") is None:
                 sys.stderr.write(f"Deprecated blueprint {blueprint_id} and linked to successor {successor_id}\n")
+            elif deprecated_bp.get("successor_id") is not None:
+                sys.stderr.write(f"Deprecated blueprint {blueprint_id} (preserved existing successor_id: {deprecated_bp.get('successor_id')})\n")
             else:
                 sys.stderr.write(f"Deprecated blueprint {blueprint_id} and removed tags/images\n")
             
@@ -641,6 +603,54 @@ class IncrementalFixturesLoader:
         # Path consolidation logic would go here
         if self.verbose:
             sys.stderr.write(f"Consolidation not yet implemented\n")
+            
+    def _link_deprecated_to_successors(self, curs: cursor):
+        """Link deprecated blueprints to successors by file path.
+        
+        For every deprecated blueprint that doesn't have a successor_id,
+        find a non-deprecated blueprint with the same file path and link them.
+        """
+        # Get all deprecated blueprints without successor_id
+        query = """
+            SELECT id, full_name, file_md5, successor_id
+            FROM blueprints
+            WHERE deprecated = true 
+            AND successor_id IS NULL
+        """
+        curs.execute(query)
+        deprecated_blueprints = curs.fetchall()
+        
+        if not deprecated_blueprints:
+            return
+            
+        if self.verbose:
+            sys.stderr.write(f"DEBUG: Found {len(deprecated_blueprints)} deprecated blueprints without successor_id\n")
+        
+        for deprecated_bp in deprecated_blueprints:
+            full_name = deprecated_bp["full_name"]
+            if not full_name:
+                continue  # Skip blueprints without full_name
+                
+            # Find non-deprecated blueprint with same file path
+            query = """
+                SELECT id, file_md5
+                FROM blueprints
+                WHERE deprecated = false 
+                AND full_name = %s
+                ORDER BY created_at DESC
+                LIMIT 1
+            """
+            curs.execute(query, (full_name,))
+            successor_bp = curs.fetchone()
+            
+            if successor_bp:
+                # Link the deprecated blueprint to the successor
+                blueprint_sql.mark_blueprint_deprecated(curs, deprecated_bp["id"], successor_bp["id"])
+                if self.verbose:
+                    sys.stderr.write(f"LINKED: {full_name} (deprecated: {deprecated_bp['file_md5']} -> successor: {successor_bp['file_md5']})\n")
+            else:
+                if self.verbose:
+                    sys.stderr.write(f"DEBUG: No successor found for deprecated blueprint {full_name}\n")
             
     def _munge_blueprint(self, data: dict) -> dict:
         """Convert fixture format to database format."""

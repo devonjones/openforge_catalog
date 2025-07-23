@@ -79,17 +79,9 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
         
         loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
-            # Check if this is a tag description fixture by filename
-            # Tag description fixtures store a different type of data (tag descriptions)
-            # and don't have file_metadata, so they are intentionally skipped in incremental mode
-            # This is permanent behavior - tag descriptions are not file-based data
-            if "tag_description" in str(f):
-                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
-                continue
-            
             data = _load_data(f, verbose=verbose)
             
-            # Try blueprint fixture validation
+            # Try blueprint fixture validation first
             try:
                 _is_blueprint_fixture(data)
                 # If we get here, it's a valid blueprint fixture
@@ -102,8 +94,22 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                         else:
                             loader.apply_incremental_changes(changes, curs=curs)
             except Exception as blueprint_error:
-                # Blueprint validation failed, raise the error
-                raise blueprint_error
+                # Try tag description fixture validation
+                try:
+                    _is_tag_description_fixture(data)
+                    # If we get here, it's a valid tag description fixture
+                    # Handle tag descriptions in incremental mode
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            if dry_run:
+                                sys.stderr.write(f"DRY RUN: Would load tag description fixture: {f}\n")
+                            else:
+                                load_tag_description_fixture(curs, data)
+                                if verbose:
+                                    sys.stderr.write(f"Loaded tag description fixture: {f}\n")
+                except Exception as tag_error:
+                    # Neither validation passed, raise the original blueprint error
+                    raise blueprint_error
     else:
         # Existing full replacement logic
         with conn.cursor(row_factory=dict_row) as curs:
@@ -174,10 +180,7 @@ def load_blueprint_fixture(curs: cursor, data: dict):
 def load_tag_description_fixture(curs: cursor, data: dict):
     for tag, description in data.items():
         tag_arr = tag_to_array(tag)
-        try:
-            tag_description_sql.insert_tag_description(curs, tag_arr, description)
-        except UniqueViolation:
-            raise ValueError(f"Tag description already exists for {tag}")
+        tag_description_sql.upsert_tag_description(curs, tag_arr, description)
 
 
 def _munge_image(image: dict):

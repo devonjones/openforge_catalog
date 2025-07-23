@@ -424,10 +424,10 @@ paths:
     get:
       tags:
         - image
-      summary: returns all blueprints
+      summary: returns all images
       operationId: allImages
       description: |
-        Returns all iamges
+        Returns all images
       responses:
         '200':
           description: search results matching criteria
@@ -442,12 +442,12 @@ paths:
         - image
       summary: Creates an image
       operationId: addImage
-      description: Creates an image
+      description: Creates an image with optional file upload. Supports both JSON metadata-only and multipart form data with file upload.
       security:
         - ApiKeyAuth: []
       responses:
         '201':
-          description: Blueprint created
+          description: Image created
           content:
             application/json:
               schema:
@@ -461,7 +461,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Image'
-        description: Image to create
+            description: Image metadata only (no file upload)
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: JSON string containing image metadata
+                  example: '{"image_name": "example", "blueprint_ids": []}'
+                file:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+              required:
+                - metadata
+                - file
+            description: Multipart form data with image file and metadata
+        description: Image to create (JSON metadata only or multipart with file)
   /api/images/{image_id}:
     get:
       tags:
@@ -491,7 +508,7 @@ paths:
         - image
       summary: Updates an image
       operationId: patchImage
-      description: Updates an image and returns it
+      description: Updates an image and returns it. Supports both JSON metadata-only and multipart form data with file upload.
       security:
         - ApiKeyAuth: []
       parameters:
@@ -514,12 +531,27 @@ paths:
         '401':
           description: 'Not Authorized'
         '404':
-          description: 'Blueprint not found'
+          description: 'Image not found'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Blueprint'
+              $ref: '#/components/schemas/Image'
+            description: Image metadata only (no file upload)
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: JSON string containing image metadata (optional for PATCH)
+                  example: '{"image_name": "example", "blueprint_ids": []}'
+                file:
+                  type: string
+                  format: binary
+                  description: Image file to upload (optional for PATCH)
+            description: Multipart form data with optional image file and metadata
+        description: Image to update (JSON metadata only or multipart with optional file)
     delete:
       tags:
         - image

@@ -156,13 +156,14 @@ class TestBlueprintDocumentation:
     
     def test_nonexistent_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test getting documentation for a blueprint that has none."""
-        # This should return an empty list, not an error
+        # According to API standard, this should return 404 with empty documentation list
         response = api_client.get(f"/api/blueprints/{test_blueprint_id}/documentation")
         
-        assert response.status_code == 200
+        assert response.status_code == 404
         data = response.json()
         assert "documentation" in data
         assert isinstance(data["documentation"], list)
+        assert len(data["documentation"]) == 0  # Should be empty list
     
     def test_nonexistent_documentation_id(self, api_client, test_blueprint_id):
         """Test updating/deleting non-existent documentation."""
