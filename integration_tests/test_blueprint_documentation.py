@@ -156,10 +156,9 @@ class TestBlueprintDocumentation:
     
     def test_nonexistent_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test getting documentation for a blueprint that has none."""
-        # Since there are existing documents from other tests, this should return 200 with existing docs
+        # According to API standard, this should return 200 with empty documentation list
         response = api_client.get(f"/api/blueprints/{test_blueprint_id}/documentation")
         
-        # Should return 200 with existing documentation (from other tests)
         assert response.status_code == 200
         data = response.json()
         assert "documentation" in data

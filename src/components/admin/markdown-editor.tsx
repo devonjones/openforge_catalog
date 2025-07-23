@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import ImagePicker from './image-picker';
 import { Blueprint } from '@/types';
@@ -60,14 +60,48 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
           const response = await fetch(`/api/blueprints/${target.blueprint.id}/documentation`);
           if (response.ok) {
             const docs = await response.json();
-            docToSet = docs.documentation?.find((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || null;
+            const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
+            
+            if (instructionsDocs.length > 1) {
+              console.warn(`Multiple instructions documents found for blueprint ${target.blueprint.id}. This should not happen.`);
+              // Prioritize live document, then most recently updated
+              const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
+              if (liveDoc) {
+                docToSet = liveDoc;
+              } else {
+                // Sort by updated_at descending and take the most recent
+                const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
+                  new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+                );
+                docToSet = sortedDocs[0];
+              }
+            } else if (instructionsDocs.length === 1) {
+              docToSet = instructionsDocs[0];
+            }
           }
         } else {
           const tagPath = target.tag.join('/');
           const response = await fetch(`/api/tags/${tagPath}/documentation`);
           if (response.ok) {
             const docs = await response.json();
-            docToSet = docs.documentation?.find((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || null;
+            const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
+            
+            if (instructionsDocs.length > 1) {
+              console.warn(`Multiple instructions documents found for tag ${tagPath}. This should not happen.`);
+              // Prioritize live document, then most recently updated
+              const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
+              if (liveDoc) {
+                docToSet = liveDoc;
+              } else {
+                // Sort by updated_at descending and take the most recent
+                const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
+                  new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+                );
+                docToSet = sortedDocs[0];
+              }
+            } else if (instructionsDocs.length === 1) {
+              docToSet = instructionsDocs[0];
+            }
           }
         }
 
@@ -91,29 +125,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     };
   }, [target]);
 
-                // Auto-save functionality
-              useEffect(() => {
-                if (autoSaveTimeoutRef.current) {
-                  clearTimeout(autoSaveTimeoutRef.current);
-                }
-
-                if (content.trim()) {
-                  autoSaveTimeoutRef.current = setTimeout(() => {
-                    // Changelogs should always be live, instructions can be draft
-                    const shouldMakeLive = documentType === 'changelog';
-                    saveDocument(shouldMakeLive);
-                  }, 2000);
-                }
-
-                return () => {
-                  if (autoSaveTimeoutRef.current) {
-                    clearTimeout(autoSaveTimeoutRef.current);
-                  }
-                };
-              // eslint-disable-next-line react-hooks/exhaustive-deps
-              }, [content, documentType]);
-
-  const saveDocument = async (makeLive: boolean = false) => {
+  const saveDocument = useCallback(async (makeLive: boolean = false) => {
     if (!content.trim()) return;
 
     setSaving(true);
@@ -121,11 +133,11 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     setError(null);
 
     try {
-                      const saveData = {
-                  document: content,
-                  document_type: documentType,
-                  is_live: documentType === 'changelog' ? true : (makeLive ? true : false),
-                };
+      const saveData = {
+        document: content,
+        document_type: documentType,
+        is_live: documentType === 'changelog' ? true : (makeLive ? true : false),
+      };
 
       // Determine base URL and method based on target type and whether document exists
       let baseUrl;
@@ -166,7 +178,28 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     } finally {
       setSaving(false);
     }
-  };
+  }, [content, documentType, target, existingDoc]);
+
+  // Auto-save functionality
+  useEffect(() => {
+    if (autoSaveTimeoutRef.current) {
+      clearTimeout(autoSaveTimeoutRef.current);
+    }
+
+    if (content.trim()) {
+      autoSaveTimeoutRef.current = setTimeout(() => {
+        // Changelogs should always be live, instructions can be draft
+        const shouldMakeLive = documentType === 'changelog';
+        saveDocument(shouldMakeLive);
+      }, 2000);
+    }
+
+    return () => {
+      if (autoSaveTimeoutRef.current) {
+        clearTimeout(autoSaveTimeoutRef.current);
+      }
+    };
+  }, [content, documentType, saveDocument]);
 
   const handleImageUpload = async (file: File): Promise<string> => {
     const formData = new FormData();

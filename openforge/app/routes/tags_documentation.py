@@ -138,11 +138,9 @@ def update_tag_documentation(tag_array, doc_id):
                     cursor, doc_uuid, sanitized_document, document_type, is_live
                 )
                 
-                # If making this document live, mark other documents of the same type as non-live
-                if is_live and document_type:
-                    # Get the current document type from the updated document
-                    current_doc_type = data["document_type"]
-                    
+                # If making this document live, mark other documents as non-live
+                # Note: Tags only support instructions, so we can simplify this logic
+                if is_live:
                     # Mark other documents of the same type as non-live
                     cursor.execute("""
                         UPDATE tag_documentation 
@@ -150,7 +148,7 @@ def update_tag_documentation(tag_array, doc_id):
                         WHERE tag = %s 
                         AND document_type = %s 
                         AND id != %s
-                    """, (tag_array, current_doc_type, doc_uuid))
+                    """, (tag_array, data["document_type"], doc_uuid))
                 
                 return jsonify({"documentation": data})
             except NotFound:

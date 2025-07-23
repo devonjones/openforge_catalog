@@ -34,7 +34,7 @@ const BlueprintPicker: React.FC<BlueprintPickerProps> = ({ onSelect, onClose }) 
             search: searchTerm,
             limit: 20,
             models: true,
-            blueprints: false,
+            blueprints: true,
           }),
         });
 

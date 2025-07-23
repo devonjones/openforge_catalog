@@ -50,9 +50,7 @@ def get_blueprint_documentation(blueprint_id):
             
             # Then get the documentation (all docs for individual endpoint)
             data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid, is_live=None)
-            if not data:
-                return jsonify({"documentation": []}), 404
-            return jsonify({"documentation": data})
+            return jsonify({"documentation": data or []})
 
 
 def get_blueprint_documentation_entry(blueprint_id, doc_id):
@@ -160,7 +158,9 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                 )
                 
                 # If making this document live, mark other documents of the same type as non-live
-                if is_live and document_type:
+                # Note: This only applies to instructions. Each blueprint should only have one changelog.
+                # History is established via the successor_id chain, not multiple live changelogs.
+                if is_live and data.get("document_type") == "instructions":
                     # Get the current document type from the updated document
                     current_doc_type = data["document_type"]
                     
