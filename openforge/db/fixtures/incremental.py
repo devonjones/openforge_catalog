@@ -397,7 +397,7 @@ class IncrementalFixturesLoader:
             
         return False
         
-    def apply_incremental_changes(self, changes: ComparisonResult, dry_run: bool = False, curs: cursor = None):
+    def apply_incremental_changes(self, changes: ComparisonResult, dry_run: bool = False, curs: cursor = None, filename: str = None):
         """Apply incremental changes to database.
         
         Args:
@@ -420,7 +420,10 @@ class IncrementalFixturesLoader:
                 self._apply_changes_with_cursor(curs, changes)
                 
         # Always show the summary of what was applied
-        sys.stderr.write(f"Applied {changes.summary()}\n")
+        if filename:
+            sys.stderr.write(f"{filename}: Applied {changes.summary()}\n")
+        else:
+            sys.stderr.write(f"Applied {changes.summary()}\n")
         
     def _apply_changes_with_cursor(self, curs: cursor, changes: ComparisonResult):
         """Apply changes using the provided cursor."""

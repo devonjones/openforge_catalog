@@ -32,21 +32,43 @@ def find_fixtures_package():
     import openforge.db.fixtures as fixtures
 
     ffiles = []
-    for f in impresources.files(fixtures).iterdir():
-        if str(f).endswith(".json"):
-            ffiles.append(f)
-        elif str(f).endswith(".yaml"):
-            ffiles.append(f)
+    fixtures_path = impresources.files(fixtures)
+    
+    # Load blueprint fixtures
+    blueprints_path = fixtures_path / "blueprints"
+    if blueprints_path.exists():
+        for f in blueprints_path.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                ffiles.append(f)
+    
+    # Load tag description fixtures
+    tag_descriptions_path = fixtures_path / "tag_descriptions"
+    if tag_descriptions_path.exists():
+        for f in tag_descriptions_path.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                ffiles.append(f)
+    
     return ffiles
 
 
 def find_fixtures_directory(dir: str):
     ffiles = []
-    for f in Path(dir).iterdir():
-        if str(f).endswith(".json"):
-            ffiles.append(f)
-        elif str(f).endswith(".yaml"):
-            ffiles.append(f)
+    dir_path = Path(dir)
+    
+    # Load blueprint fixtures
+    blueprints_path = dir_path / "blueprints"
+    if blueprints_path.exists():
+        for f in blueprints_path.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                ffiles.append(f)
+    
+    # Load tag description fixtures
+    tag_descriptions_path = dir_path / "tag_descriptions"
+    if tag_descriptions_path.exists():
+        for f in tag_descriptions_path.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                ffiles.append(f)
+    
     return ffiles
 
 
@@ -70,6 +92,25 @@ def _is_tag_description_fixture(data):
     validate_schema("tag_description.fixture.json", data)
 
 
+def _get_fixture_type(file_path):
+    """Determine fixture type based on file path.
+    
+    Args:
+        file_path: Path to the fixture file
+        
+    Returns:
+        str: 'blueprint' or 'tag_description'
+    """
+    file_path_str = str(file_path)
+    if 'tag_descriptions' in file_path_str:
+        return 'tag_description'
+    elif 'blueprints' in file_path_str:
+        return 'blueprint'
+    else:
+        # Fallback: assume blueprint for backward compatibility
+        return 'blueprint'
+
+
 def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
     
@@ -80,36 +121,40 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
         loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
             data = _load_data(f, verbose=verbose)
+            fixture_type = _get_fixture_type(f)
             
-            # Try blueprint fixture validation first
-            try:
-                _is_blueprint_fixture(data)
-                # If we get here, it's a valid blueprint fixture
-                # Use transaction to ensure all-or-nothing behavior
-                with conn.transaction():
-                    with conn.cursor(row_factory=dict_row) as curs:
-                        changes = loader.compare_fixture_data(data, curs=curs)
-                        if dry_run:
-                            print_comparison_results(changes)
-                        else:
-                            loader.apply_incremental_changes(changes, curs=curs)
-            except Exception as blueprint_error:
-                # Try tag description fixture validation
+            if fixture_type == 'blueprint':
+                # Validate blueprint fixture
+                try:
+                    _is_blueprint_fixture(data)
+                    # Use transaction to ensure all-or-nothing behavior
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            changes = loader.compare_fixture_data(data, curs=curs)
+                            if dry_run:
+                                print_comparison_results(changes)
+                            else:
+                                loader.apply_incremental_changes(changes, curs=curs, filename=f.name)
+                except Exception as e:
+                    raise e
+            elif fixture_type == 'tag_description':
+                # Validate tag description fixture
                 try:
                     _is_tag_description_fixture(data)
-                    # If we get here, it's a valid tag description fixture
                     # Handle tag descriptions in incremental mode
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
                                 sys.stderr.write(f"DRY RUN: Would load tag description fixture: {f}\n")
                             else:
-                                load_tag_description_fixture(curs, data)
+                                count = load_tag_description_fixture(curs, data)
+                                sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
                                 if verbose:
                                     sys.stderr.write(f"Loaded tag description fixture: {f}\n")
-                except Exception as tag_error:
-                    # Neither validation passed, raise the original blueprint error
-                    raise blueprint_error
+                except Exception as e:
+                    raise e
+            else:
+                raise ValueError(f"Unknown fixture type for file: {f}")
     else:
         # Existing full replacement logic
         with conn.cursor(row_factory=dict_row) as curs:
@@ -118,22 +163,26 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                 clear_db(curs)
                 for f in ffiles:
                     data = _load_data(f, verbose=verbose)
+                    fixture_type = _get_fixture_type(f)
                     
-                    # Try blueprint fixture validation first
-                    try:
-                        _is_blueprint_fixture(data)
-                        # If we get here, it's a valid blueprint fixture
-                        for rec in data:
-                            load_blueprint_fixture(curs, rec)
-                    except Exception as blueprint_error:
-                        # Try tag description fixture validation
+                    if fixture_type == 'blueprint':
+                        # Validate blueprint fixture
+                        try:
+                            _is_blueprint_fixture(data)
+                            for rec in data:
+                                load_blueprint_fixture(curs, rec)
+                        except Exception as e:
+                            raise e
+                    elif fixture_type == 'tag_description':
+                        # Validate tag description fixture
                         try:
                             _is_tag_description_fixture(data)
-                            # If we get here, it's a valid tag description fixture
-                            load_tag_description_fixture(curs, data)
-                        except Exception as tag_error:
-                            # Neither validation passed, raise the original blueprint error
-                            raise blueprint_error
+                            count = load_tag_description_fixture(curs, data)
+                            sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                        except Exception as e:
+                            raise e
+                    else:
+                        raise ValueError(f"Unknown fixture type for file: {f}")
 
 
 def _load_data(f, verbose=False):
@@ -178,9 +227,12 @@ def load_blueprint_fixture(curs: cursor, data: dict):
 
 
 def load_tag_description_fixture(curs: cursor, data: dict):
+    count = 0
     for tag, description in data.items():
         tag_arr = tag_to_array(tag)
         tag_description_sql.upsert_tag_description(curs, tag_arr, description)
+        count += 1
+    return count
 
 
 def _munge_image(image: dict):

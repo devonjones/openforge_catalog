@@ -12,6 +12,50 @@ import openforge.db.sql.images as image_sql
 from openforge.openapi import validate_schema
 
 
+def _upload_file_to_s3(file, s3_path):
+    """Helper function to upload a file to S3/Cloudflare R2.
+    
+    Args:
+        file: FileStorage object from Flask request
+        s3_path: Path where the file should be stored in S3
+        
+    Returns:
+        str: The generated image URL
+        
+    Raises:
+        Exception: If upload fails
+    """
+    # Use Cloudflare R2 configuration
+    endpoint_url = current_app.config.get('CLOUDFLARE_ENDPOINT')
+    access_key_id = current_app.config.get('CLOUDFLARE_ACCESS_KEY_ID')
+    secret_access_key = current_app.config.get('CLOUDFLARE_SECRET_ACCESS_KEY')
+    bucket_name = current_app.config.get('S3_BUCKET_NAME')
+    
+    if not all([endpoint_url, access_key_id, secret_access_key, bucket_name]):
+        raise Exception("Cloudflare R2 configuration incomplete")
+    
+    s3_client = boto3.client(
+        's3',
+        endpoint_url=endpoint_url,
+        aws_access_key_id=access_key_id,
+        aws_secret_access_key=secret_access_key,
+        config=Config(signature_version="s3v4"),
+        region_name="auto"
+    )
+    
+    # Upload file to S3
+    s3_client.upload_fileobj(
+        file,
+        bucket_name,
+        s3_path,
+        ExtraArgs={'ContentType': file.content_type or 'application/octet-stream'}
+    )
+    
+    # Generate URL using FILE_DOMAIN
+    file_domain = current_app.config.get('FILE_DOMAIN', f"https://{bucket_name}.s3.amazonaws.com")
+    return f"{file_domain}/{s3_path}"
+
+
 def get_images():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -76,38 +120,11 @@ def _create_image_with_upload():
     
     # Upload to S3
     filename = secure_filename(file.filename)
-    s3_path = f"documentation/images/{filename}"
+    s3_path = f"documentation/images/{uuid.uuid4()}-{filename}"
     
     try:
-        # Use Cloudflare R2 configuration
-        endpoint_url = current_app.config.get('CLOUDFLARE_ENDPOINT')
-        access_key_id = current_app.config.get('CLOUDFLARE_ACCESS_KEY_ID')
-        secret_access_key = current_app.config.get('CLOUDFLARE_SECRET_ACCESS_KEY')
-        bucket_name = current_app.config.get('S3_BUCKET_NAME')
-        
-        if not all([endpoint_url, access_key_id, secret_access_key, bucket_name]):
-            return jsonify({"error": "Cloudflare R2 configuration incomplete"}), 500
-        
-        s3_client = boto3.client(
-            's3',
-            endpoint_url=endpoint_url,
-            aws_access_key_id=access_key_id,
-            aws_secret_access_key=secret_access_key,
-            config=Config(signature_version="s3v4"),
-            region_name="auto"
-        )
-        
-        # Upload file to S3
-        s3_client.upload_fileobj(
-            file,
-            bucket_name,
-            s3_path,
-            ExtraArgs={'ContentType': file.content_type or 'application/octet-stream'}
-        )
-        
-        # Generate URL using FILE_DOMAIN
-        file_domain = current_app.config.get('FILE_DOMAIN', f"https://{bucket_name}.s3.amazonaws.com")
-        image_url = f"{file_domain}/{s3_path}"
+        # Upload file and get image URL
+        image_url = _upload_file_to_s3(file, s3_path)
         
         # Update metadata with the S3 URL
         metadata['image_url'] = image_url
@@ -186,38 +203,11 @@ def _update_image_with_upload(image_id):
         if file.filename != '':
             # Upload to S3
             filename = secure_filename(file.filename)
-            s3_path = f"documentation/images/{filename}"
+            s3_path = f"documentation/images/{uuid.uuid4()}-{filename}"
             
             try:
-                # Use Cloudflare R2 configuration
-                endpoint_url = current_app.config.get('CLOUDFLARE_ENDPOINT')
-                access_key_id = current_app.config.get('CLOUDFLARE_ACCESS_KEY_ID')
-                secret_access_key = current_app.config.get('CLOUDFLARE_SECRET_ACCESS_KEY')
-                bucket_name = current_app.config.get('S3_BUCKET_NAME')
-                
-                if not all([endpoint_url, access_key_id, secret_access_key, bucket_name]):
-                    return jsonify({"error": "Cloudflare R2 configuration incomplete"}), 500
-                
-                s3_client = boto3.client(
-                    's3',
-                    endpoint_url=endpoint_url,
-                    aws_access_key_id=access_key_id,
-                    aws_secret_access_key=secret_access_key,
-                    config=Config(signature_version="s3v4"),
-                    region_name="auto"
-                )
-                
-                # Upload file to S3
-                s3_client.upload_fileobj(
-                    file,
-                    bucket_name,
-                    s3_path,
-                    ExtraArgs={'ContentType': file.content_type}
-                )
-                
-                # Generate URL using FILE_DOMAIN and add to metadata
-                file_domain = current_app.config.get('FILE_DOMAIN', f"https://{bucket_name}.s3.amazonaws.com")
-                image_url = f"{file_domain}/{s3_path}"
+                # Upload file and get image URL
+                image_url = _upload_file_to_s3(file, s3_path)
                 metadata['image_url'] = image_url
                 
             except Exception as e:
