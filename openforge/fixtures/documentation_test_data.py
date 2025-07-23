@@ -7,7 +7,6 @@ This module provides test data for:
 """
 
 import uuid
-from datetime import datetime, timezone
 from typing import Dict, List, Any
 
 # Test blueprint documentation
@@ -36,8 +35,8 @@ This is a basic dungeon stone wall tile for OpenForge.
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
@@ -57,8 +56,8 @@ None - this version is fully compatible with previous versions.
 """,
         "document_type": "changelog",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
@@ -81,8 +80,8 @@ This tile is self-contained and requires no assembly.
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
 ]
 
@@ -114,8 +113,8 @@ This texture is used for:
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
@@ -143,8 +142,8 @@ This texture is used for:
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
@@ -171,8 +170,8 @@ The OpenForge connection system provides secure, magnetic connections.
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
@@ -199,8 +198,8 @@ Walls typically require:
 """,
         "document_type": "instructions",
         "is_live": True,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
 ]
 
@@ -211,40 +210,40 @@ TEST_DOCUMENTATION_IMAGES = [
         "image_name": "wall_assembly",
         "image_url": "https://example.com/images/wall_assembly.jpg",
         "image_type": "documentation",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
         "image_name": "cave_floor_detail",
         "image_url": "https://example.com/images/cave_floor_detail.jpg",
         "image_type": "documentation",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
         "image_name": "dungeon_stone_sample",
         "image_url": "https://example.com/images/dungeon_stone_sample.jpg",
         "image_type": "documentation",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
         "image_name": "cave_texture_sample",
         "image_url": "https://example.com/images/cave_texture_sample.jpg",
         "image_type": "documentation",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": str(uuid.uuid4()),
         "image_name": "openforge_connection",
         "image_url": "https://example.com/images/openforge_connection.jpg",
         "image_type": "documentation",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
 ]
 
@@ -256,8 +255,8 @@ TEST_DEPRECATED_BLUEPRINTS = [
         "deprecated": True,
         "successor_id": "test-blueprint-1",
         "successor_name": "Dungeon Stone Wall v2.1",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
     {
         "id": "deprecated-blueprint-2",
@@ -265,8 +264,8 @@ TEST_DEPRECATED_BLUEPRINTS = [
         "deprecated": True,
         "successor_id": "test-blueprint-2",
         "successor_name": "Cave Floor Tile v1.5",
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00",
     },
 ]
 

@@ -4,7 +4,7 @@ import DocumentationEditor from '../documentation-editor';
 
 // Mock the child components
 jest.mock('../blueprint-picker', () => {
-  return function MockBlueprintPicker({ onSelect, onClose }: { onSelect: (blueprint: any) => void; onClose: () => void }) {
+  return function MockBlueprintPicker({ onSelect, onClose }: { onSelect: (blueprint: { id: string; blueprint_name: string }) => void; onClose: () => void }) {
     return (
       <div data-testid="blueprint-picker">
         <button onClick={() => onSelect({ id: 'test-blueprint', blueprint_name: 'Test Blueprint' })}>
@@ -30,10 +30,10 @@ jest.mock('../tag-picker', () => {
 });
 
 jest.mock('../markdown-editor', () => {
-  return function MockMarkdownEditor({ target }: { target: { type: string; blueprint?: any; tag?: string[] } }) {
+  return function MockMarkdownEditor({ target }: { target: { type: string; blueprint?: { id: string; blueprint_name: string }; tag?: string[] } }) {
     return (
       <div data-testid="markdown-editor">
-        <span>Editing: {target.type === 'blueprint' ? target.blueprint.blueprint_name : target.tag?.join(': ')}</span>
+        <span>Editing: {target.type === 'blueprint' ? target.blueprint?.blueprint_name : target.tag?.join(': ')}</span>
       </div>
     );
   };

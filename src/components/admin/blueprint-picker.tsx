@@ -95,10 +95,11 @@ const BlueprintPicker: React.FC<BlueprintPickerProps> = ({ onSelect, onClose }) 
 
           <div className="blueprint-list">
             {blueprints.map((blueprint) => (
-              <div
+              <button
                 key={blueprint.id}
                 className="blueprint-item"
                 onClick={() => handleSelect(blueprint)}
+                type="button"
               >
                 <div className="blueprint-name">
                   {blueprint.blueprint_name}
@@ -110,7 +111,7 @@ const BlueprintPicker: React.FC<BlueprintPickerProps> = ({ onSelect, onClose }) 
                     {blueprint.tags.length > 3 && '...'}
                   </span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 

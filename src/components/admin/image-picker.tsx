@@ -124,14 +124,16 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
 
           <div className="image-grid">
             {filteredImages.map(image => (
-              <div 
+              <button 
                 key={image.id} 
                 className="image-item"
                 onClick={() => onSelect(image)}
+                type="button"
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={image.image_url} alt={image.image_name} />
                 <span className="image-name">{image.image_name}</span>
-              </div>
+              </button>
             ))}
           </div>
 

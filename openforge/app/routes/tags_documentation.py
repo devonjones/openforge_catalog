@@ -74,6 +74,7 @@ def create_tag_documentation(tag_array):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type", "instructions")
+    is_live = request.json.get("is_live", True)
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
@@ -92,7 +93,7 @@ def create_tag_documentation(tag_array):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = tags_doc_sql.create_tag_documentation(
-                    cursor, tag_array, sanitized_document, document_type
+                    cursor, tag_array, sanitized_document, document_type, is_live
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -112,6 +113,7 @@ def update_tag_documentation(tag_array, doc_id):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type")
+    is_live = request.json.get("is_live")
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
@@ -133,8 +135,23 @@ def update_tag_documentation(tag_array, doc_id):
                 existing_doc = _verify_tag_documentation_ownership(cursor, doc_uuid, tag_array)
                 
                 data = tags_doc_sql.update_tag_documentation(
-                    cursor, doc_uuid, sanitized_document, document_type
+                    cursor, doc_uuid, sanitized_document, document_type, is_live
                 )
+                
+                # If making this document live, mark other documents of the same type as non-live
+                if is_live and document_type:
+                    # Get the current document type from the updated document
+                    current_doc_type = data["document_type"]
+                    
+                    # Mark other documents of the same type as non-live
+                    cursor.execute("""
+                        UPDATE tag_documentation 
+                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
+                        WHERE tag = %s 
+                        AND document_type = %s 
+                        AND id != %s
+                    """, (tag_array, current_doc_type, doc_uuid))
+                
                 return jsonify({"documentation": data})
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404

@@ -18,7 +18,8 @@ describe('DocumentationTab', () => {
       document: '# Test Documentation\n\nThis is test content.',
       document_type: 'instructions',
       created_at: '2023-01-01T00:00:00Z',
-      updated_at: '2023-01-01T00:00:00Z'
+      updated_at: '2023-01-01T00:00:00Z',
+      is_live: true
     }
   ];
 
@@ -30,7 +31,8 @@ describe('DocumentationTab', () => {
         document: 'This is dungeon stone texture documentation.',
         document_type: 'instructions',
         created_at: '2023-01-01T00:00:00Z',
-        updated_at: '2023-01-01T00:00:00Z'
+        updated_at: '2023-01-01T00:00:00Z',
+        is_live: true
       }
     ]
   };
@@ -90,7 +92,8 @@ describe('DocumentationTab', () => {
         document: 'This is instructions.',
         document_type: 'instructions',
         created_at: '2023-01-01T00:00:00Z',
-        updated_at: '2023-01-01T00:00:00Z'
+        updated_at: '2023-01-01T00:00:00Z',
+        is_live: true
       },
       {
         id: '2',
@@ -98,7 +101,8 @@ describe('DocumentationTab', () => {
         document: 'This is changelog.',
         document_type: 'changelog',
         created_at: '2023-01-01T00:00:00Z',
-        updated_at: '2023-01-01T00:00:00Z'
+        updated_at: '2023-01-01T00:00:00Z',
+        is_live: true
       }
     ];
 

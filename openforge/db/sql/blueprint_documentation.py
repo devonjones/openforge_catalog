@@ -7,16 +7,27 @@ import uuid
 DEFAULT_CHANGELOG_RECURSION_DEPTH = 10
 
 
-def get_blueprint_documentation(curs, blueprint_id: uuid.UUID):
-    """Get all documentation for a blueprint."""
+def get_blueprint_documentation(curs, blueprint_id: uuid.UUID, is_live: bool = None):
+    """Get all documentation for a blueprint.
+    
+    Args:
+        curs: Database cursor
+        blueprint_id: UUID of the blueprint
+        is_live: If True, only return live documentation. If False, only return non-live. If None, return all.
+    """
+    conditions = [sql.SQL("blueprint_id = {}").format(sql.Literal(blueprint_id))]
+    
+    if is_live is not None:
+        conditions.append(sql.SQL("is_live = {}").format(sql.Literal(is_live)))
+    
     query = sql.SQL(
         """
-SELECT id, blueprint_id, document, document_type, created_at, updated_at
+SELECT id, blueprint_id, document, document_type, is_live, created_at, updated_at
   FROM blueprint_documentation
-  WHERE blueprint_id = {blueprint_id}
+  WHERE {}
   ORDER BY created_at DESC
 """
-    ).format(blueprint_id=sql.Literal(blueprint_id))
+    ).format(sql.SQL(" AND ").join(conditions))
     curs.execute(query)
     return [dict(row) for row in curs.fetchall()]
 
@@ -25,7 +36,7 @@ def get_blueprint_documentation_by_id(curs, doc_id: uuid.UUID):
     """Get specific documentation entry by ID."""
     query = sql.SQL(
         """
-SELECT id, blueprint_id, document, document_type, created_at, updated_at
+SELECT id, blueprint_id, document, document_type, is_live, created_at, updated_at
   FROM blueprint_documentation
   WHERE id = {doc_id}
 """
@@ -37,36 +48,40 @@ SELECT id, blueprint_id, document, document_type, created_at, updated_at
     return dict(result)
 
 
-def create_blueprint_documentation(curs, blueprint_id: uuid.UUID, document: str, document_type: str = 'changelog'):
+def create_blueprint_documentation(curs, blueprint_id: uuid.UUID, document: str, document_type: str = 'changelog', is_live: bool = True):
     """Create new documentation for a blueprint."""
     query = sql.SQL(
         """
-INSERT INTO blueprint_documentation (blueprint_id, document, document_type)
-  VALUES ({blueprint_id}, {document}, {document_type})
-  RETURNING id, blueprint_id, document, document_type, created_at, updated_at
+INSERT INTO blueprint_documentation (blueprint_id, document, document_type, is_live)
+  VALUES ({blueprint_id}, {document}, {document_type}, {is_live})
+  RETURNING id, blueprint_id, document, document_type, is_live, created_at, updated_at
 """
     ).format(
         blueprint_id=sql.Literal(blueprint_id),
         document=sql.Literal(document),
-        document_type=sql.Literal(document_type)
+        document_type=sql.Literal(document_type),
+        is_live=sql.Literal(is_live)
     )
     curs.execute(query)
     return dict(curs.fetchone())
 
 
-def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
+def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None, is_live: bool = None):
     """Update specific documentation entry."""
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
         update_parts.append(sql.SQL("document_type = {}").format(sql.Literal(document_type)))
+    
+    if is_live is not None:
+        update_parts.append(sql.SQL("is_live = {}").format(sql.Literal(is_live)))
 
     query = sql.SQL(
         """
 UPDATE blueprint_documentation
   SET {}, updated_at = CURRENT_TIMESTAMP
   WHERE id = {}
-  RETURNING id, blueprint_id, document, document_type, created_at, updated_at
+  RETURNING id, blueprint_id, document, document_type, is_live, created_at, updated_at
 """
     ).format(
         sql.SQL(', ').join(update_parts),

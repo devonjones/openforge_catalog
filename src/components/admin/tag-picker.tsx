@@ -26,22 +26,37 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
       setError(null);
 
       try {
-        // Search for tags that contain the search term
-        const response = await fetch(`/api/tag-descriptions`);
+        // Use the same endpoint as tag-container with search parameter
+        const urlParams = new URLSearchParams();
+        urlParams.set('search', searchTerm);
+        urlParams.set('limit', '50'); // Limit results for better performance
+
+        const requestBody = {
+          require: [],
+          deny: [],
+        };
+
+        const response = await fetch(`/api/blueprints/tags?${urlParams.toString()}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        });
+
         if (!response.ok) {
           throw new Error('Failed to fetch tags');
         }
 
-        const data = await response.json();
-        const allTags = Object.keys(data);
+        const result = await response.json();
+        const tagCounts = result.tag_counts || {};
         
-        // Filter tags that match the search term
-        const matchingTags = allTags
-          .filter(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        // Convert tag counts to array of tag arrays
+        const allTags = Object.keys(tagCounts)
           .map(tag => tag.split('|'))
-          .slice(0, 20); // Limit results
+          .slice(0, 20); // Limit results for UI
 
-        setTags(matchingTags);
+        setTags(allTags);
       } catch (err) {
         setError('Failed to search tags');
         console.error('Tag search error:', err);
@@ -97,10 +112,11 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
 
           <div className="tag-list">
             {tags.map((tag, index) => (
-              <div
+              <button
                 key={index}
                 className="tag-item"
                 onClick={() => handleSelect(tag)}
+                type="button"
               >
                 <div className="tag-name">
                   {formatTagDisplay(tag)}
@@ -112,7 +128,7 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
                     </span>
                   ))}
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 

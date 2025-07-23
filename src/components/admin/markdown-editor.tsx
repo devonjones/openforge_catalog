@@ -26,6 +26,15 @@ interface DocumentationData {
   is_live: boolean;
 }
 
+interface ApiDocumentationItem {
+  id: string;
+  document: string;
+  document_type: 'changelog' | 'instructions';
+  is_live: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [content, setContent] = useState('');
   const [documentType, setDocumentType] = useState<'changelog' | 'instructions'>('instructions');
@@ -36,65 +45,73 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [error, setError] = useState<string | null>(null);
   const [existingDoc, setExistingDoc] = useState<DocumentationData | null>(null);
   
-  const autoSaveTimeoutRef = useRef<NodeJS.Timeout>();
-  const editorRef = useRef<any>(null);
+  const autoSaveTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const editorRef = useRef<{ api?: { replaceSelection: (text: string) => void } }>(null);
 
   // Load existing documentation
   useEffect(() => {
+    let isCancelled = false;
+
     const loadExistingDocumentation = async () => {
       try {
+        let docToSet: DocumentationData | null = null;
+        
         if (target.type === 'blueprint') {
           const response = await fetch(`/api/blueprints/${target.blueprint.id}/documentation`);
           if (response.ok) {
             const docs = await response.json();
-            const instructions = docs.documentation?.find((doc: any) => doc.document_type === 'instructions');
-            if (instructions) {
-              setExistingDoc(instructions);
-              setContent(instructions.document);
-              setDocumentType(instructions.document_type);
-              setIsLive(instructions.is_live);
-            }
+            docToSet = docs.documentation?.find((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || null;
           }
         } else {
           const tagPath = target.tag.join('/');
           const response = await fetch(`/api/tags/${tagPath}/documentation`);
           if (response.ok) {
             const docs = await response.json();
-            const instructions = docs.documentation?.find((doc: any) => doc.document_type === 'instructions');
-            if (instructions) {
-              setExistingDoc(instructions);
-              setContent(instructions.document);
-              setDocumentType(instructions.document_type);
-              setIsLive(instructions.is_live);
-            }
+            docToSet = docs.documentation?.find((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || null;
           }
         }
+
+        if (!isCancelled && docToSet) {
+          setExistingDoc(docToSet);
+          setContent(docToSet.document);
+          setDocumentType(docToSet.document_type);
+          setIsLive(docToSet.is_live);
+        }
       } catch (err) {
-        console.error('Failed to load existing documentation:', err);
+        if (!isCancelled) {
+          console.error('Failed to load existing documentation:', err);
+        }
       }
     };
 
     loadExistingDocumentation();
-  }, [target]);
-
-  // Auto-save functionality
-  useEffect(() => {
-    if (autoSaveTimeoutRef.current) {
-      clearTimeout(autoSaveTimeoutRef.current);
-    }
-
-    if (content.trim()) {
-      autoSaveTimeoutRef.current = setTimeout(() => {
-        saveDocument(false); // false = don't make live
-      }, 2000);
-    }
 
     return () => {
-      if (autoSaveTimeoutRef.current) {
-        clearTimeout(autoSaveTimeoutRef.current);
-      }
+      isCancelled = true;
     };
-  }, [content, documentType]);
+  }, [target]);
+
+                // Auto-save functionality
+              useEffect(() => {
+                if (autoSaveTimeoutRef.current) {
+                  clearTimeout(autoSaveTimeoutRef.current);
+                }
+
+                if (content.trim()) {
+                  autoSaveTimeoutRef.current = setTimeout(() => {
+                    // Changelogs should always be live, instructions can be draft
+                    const shouldMakeLive = documentType === 'changelog';
+                    saveDocument(shouldMakeLive);
+                  }, 2000);
+                }
+
+                return () => {
+                  if (autoSaveTimeoutRef.current) {
+                    clearTimeout(autoSaveTimeoutRef.current);
+                  }
+                };
+              // eslint-disable-next-line react-hooks/exhaustive-deps
+              }, [content, documentType]);
 
   const saveDocument = async (makeLive: boolean = false) => {
     if (!content.trim()) return;
@@ -104,47 +121,29 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     setError(null);
 
     try {
-      const saveData = {
-        document: content,
-        document_type: documentType,
-        is_live: makeLive ? true : false,
-      };
+                      const saveData = {
+                  document: content,
+                  document_type: documentType,
+                  is_live: documentType === 'changelog' ? true : (makeLive ? true : false),
+                };
 
-      let response;
+      // Determine base URL and method based on target type and whether document exists
+      let baseUrl;
       if (target.type === 'blueprint') {
-        if (existingDoc?.id) {
-          // Update existing
-          response = await fetch(`/api/blueprints/${target.blueprint.id}/documentation/${existingDoc.id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(saveData),
-          });
-        } else {
-          // Create new
-          response = await fetch(`/api/blueprints/${target.blueprint.id}/documentation`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(saveData),
-          });
-        }
+        baseUrl = `/api/blueprints/${target.blueprint.id}/documentation`;
       } else {
         const tagPath = target.tag.join('/');
-        if (existingDoc?.id) {
-          // Update existing
-          response = await fetch(`/api/tags/${tagPath}/documentation/${existingDoc.id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(saveData),
-          });
-        } else {
-          // Create new
-          response = await fetch(`/api/tags/${tagPath}/documentation`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(saveData),
-          });
-        }
+        baseUrl = `/api/tags/${tagPath}/documentation`;
       }
+
+      const url = existingDoc?.id ? `${baseUrl}/${existingDoc.id}` : baseUrl;
+      const method = existingDoc?.id ? 'PATCH' : 'POST';
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(saveData),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to save documentation');
@@ -223,14 +222,16 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
             <option value="changelog">Changelog</option>
           </select>
 
-          <label className="live-toggle">
-            <input
-              type="checkbox"
-              checked={isLive}
-              onChange={(e) => setIsLive(e.target.checked)}
-            />
-            Live
-          </label>
+                                {documentType !== 'changelog' && (
+                        <label className="live-toggle">
+                          <input
+                            type="checkbox"
+                            checked={isLive}
+                            onChange={(e) => setIsLive(e.target.checked)}
+                          />
+                          Live
+                        </label>
+                      )}
 
           <button
             onClick={() => saveDocument(true)}
@@ -255,6 +256,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       )}
 
       <div className="editor-container">
+        {/* @ts-expect-error - MDEditor has complex type definitions that conflict with our usage */}
         <MDEditor
           ref={editorRef}
           value={content}

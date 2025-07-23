@@ -5,16 +5,27 @@ import uuid
 from .tag_utils import tag_to_array, array_to_tag, convert_tag_dict
 
 
-def get_tag_documentation(curs, tag_array: list[str]):
-    """Get documentation for a specific tag."""
+def get_tag_documentation(curs, tag_array: list[str], is_live: bool = None):
+    """Get documentation for a specific tag.
+    
+    Args:
+        curs: Database cursor
+        tag_array: Tag array to get documentation for
+        is_live: If True, only return live documentation. If False, only return non-live. If None, return all.
+    """
+    conditions = [sql.SQL("tag = {}").format(sql.Literal(tag_array))]
+    
+    if is_live is not None:
+        conditions.append(sql.SQL("is_live = {}").format(sql.Literal(is_live)))
+    
     query = sql.SQL(
         """
-SELECT id, tag, document, document_type, created_at, updated_at
+SELECT id, tag, document, document_type, is_live, created_at, updated_at
   FROM tag_documentation
-  WHERE tag = {tag_array}
+  WHERE {}
   ORDER BY created_at DESC
 """
-    ).format(tag_array=sql.Literal(tag_array))
+    ).format(sql.SQL(" AND ").join(conditions))
     curs.execute(query)
     return [convert_tag_dict(dict(row)) for row in curs.fetchall()]
 
@@ -23,7 +34,7 @@ def get_tag_documentation_by_id(curs, doc_id: uuid.UUID):
     """Get specific tag documentation entry by ID."""
     query = sql.SQL(
         """
-SELECT id, tag, document, document_type, created_at, updated_at
+SELECT id, tag, document, document_type, is_live, created_at, updated_at
   FROM tag_documentation
   WHERE id = {doc_id}
 """
@@ -35,36 +46,40 @@ SELECT id, tag, document, document_type, created_at, updated_at
     return convert_tag_dict(dict(result))
 
 
-def create_tag_documentation(curs, tag_array: list[str], document: str, document_type: str = 'instructions'):
+def create_tag_documentation(curs, tag_array: list[str], document: str, document_type: str = 'instructions', is_live: bool = True):
     """Create new documentation for a tag."""
     query = sql.SQL(
         """
-INSERT INTO tag_documentation (tag, document, document_type)
-  VALUES ({tag_array}, {document}, {document_type})
-  RETURNING id, tag, document, document_type, created_at, updated_at
+INSERT INTO tag_documentation (tag, document, document_type, is_live)
+  VALUES ({tag_array}, {document}, {document_type}, {is_live})
+  RETURNING id, tag, document, document_type, is_live, created_at, updated_at
 """
     ).format(
         tag_array=sql.Literal(tag_array),
         document=sql.Literal(document),
-        document_type=sql.Literal(document_type)
+        document_type=sql.Literal(document_type),
+        is_live=sql.Literal(is_live)
     )
     curs.execute(query)
     return convert_tag_dict(dict(curs.fetchone()))
 
 
-def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None):
+def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None, is_live: bool = None):
     """Update specific tag documentation entry."""
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
         update_parts.append(sql.SQL("document_type = {}").format(sql.Literal(document_type)))
+    
+    if is_live is not None:
+        update_parts.append(sql.SQL("is_live = {}").format(sql.Literal(is_live)))
 
     query = sql.SQL(
         """
 UPDATE tag_documentation
   SET {}, updated_at = CURRENT_TIMESTAMP
   WHERE id = {}
-  RETURNING id, tag, document, document_type, created_at, updated_at
+  RETURNING id, tag, document, document_type, is_live, created_at, updated_at
 """
     ).format(
         sql.SQL(', ').join(update_parts),
@@ -126,25 +141,31 @@ SELECT id, tag, document, document_type, created_at, updated_at
     return [convert_tag_dict(dict(row)) for row in curs.fetchall()]
 
 
-def get_tag_documentation_for_blueprint(curs, blueprint_id: uuid.UUID):
+def get_tag_documentation_for_blueprint(curs, blueprint_id: uuid.UUID, is_live: bool = None):
     """Get documentation for all tags associated with a blueprint.
     
     Args:
         curs: Database cursor
         blueprint_id: UUID of the blueprint to get tag documentation for
+        is_live: If True, only return live documentation. If False, only return non-live. If None, return all.
         
     Returns:
         dict: Mapping of tag string (pipe-delimited) to list of documentation
     """
+    conditions = [sql.SQL("t.blueprint_id = {}").format(sql.Literal(blueprint_id))]
+    
+    if is_live is not None:
+        conditions.append(sql.SQL("td.is_live = {}").format(sql.Literal(is_live)))
+    
     query = sql.SQL(
         """
-SELECT td.id, td.tag, td.document, td.document_type, td.created_at, td.updated_at
+SELECT td.id, td.tag, td.document, td.document_type, td.is_live, td.created_at, td.updated_at
   FROM tag_documentation td
   INNER JOIN tags t ON td.tag = t.tag
-  WHERE t.blueprint_id = {}
+  WHERE {}
   ORDER BY td.tag, td.created_at DESC
 """
-    ).format(sql.Literal(blueprint_id))
+    ).format(sql.SQL(" AND ").join(conditions))
 
     curs.execute(query)
     results = [convert_tag_dict(dict(row)) for row in curs.fetchall()]

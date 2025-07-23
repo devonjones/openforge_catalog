@@ -48,8 +48,8 @@ def get_blueprint_documentation(blueprint_id):
             except NotFound:
                 return jsonify({"error": "Blueprint not found"}), 404
             
-            # Then get the documentation
-            data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid)
+            # Then get the documentation (all docs for individual endpoint)
+            data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid, is_live=None)
             if not data:
                 return jsonify({"documentation": []}), 404
             return jsonify({"documentation": data})
@@ -86,12 +86,17 @@ def create_blueprint_documentation(blueprint_id):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type", "changelog")
+    is_live = request.json.get("is_live", True)
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
+    
+    # Changelogs should always be live
+    if document_type == "changelog":
+        is_live = True
     
     # Validate and sanitize the document content
     try:
@@ -104,7 +109,7 @@ def create_blueprint_documentation(blueprint_id):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = blueprint_doc_sql.create_blueprint_documentation(
-                    cursor, blueprint_uuid, sanitized_document, document_type
+                    cursor, blueprint_uuid, sanitized_document, document_type, is_live
                 )
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -125,12 +130,17 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type")
+    is_live = request.json.get("is_live")
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
     
     if document_type and document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
+    
+    # Changelogs should always be live
+    if document_type == "changelog":
+        is_live = True
     
     # Validate and sanitize the document content
     try:
@@ -146,8 +156,23 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                 _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
                 
                 data = blueprint_doc_sql.update_blueprint_documentation(
-                    cursor, doc_uuid, sanitized_document, document_type
+                    cursor, doc_uuid, sanitized_document, document_type, is_live
                 )
+                
+                # If making this document live, mark other documents of the same type as non-live
+                if is_live and document_type:
+                    # Get the current document type from the updated document
+                    current_doc_type = data["document_type"]
+                    
+                    # Mark other documents of the same type as non-live
+                    cursor.execute("""
+                        UPDATE blueprint_documentation 
+                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
+                        WHERE blueprint_id = %s 
+                        AND document_type = %s 
+                        AND id != %s
+                    """, (blueprint_uuid, current_doc_type, doc_uuid))
+                
                 return jsonify({"documentation": data})
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404
@@ -233,8 +258,8 @@ def get_blueprint_all_documentation(blueprint_id):
                 # 1. Get blueprint information
                 blueprint_data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
                 
-                # 2. Get blueprint documentation
-                blueprint_docs = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid)
+                # 2. Get blueprint documentation (live only for public endpoint)
+                blueprint_docs = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid, is_live=True)
                 
                 # 3. Get changelog history
                 changelog_data = blueprint_doc_sql.get_blueprint_changelog_history(
@@ -244,9 +269,9 @@ def get_blueprint_all_documentation(blueprint_id):
                 # 4. Get blueprint tags
                 blueprint_tags = tag_sql.get_tags(cursor, blueprint_uuid)
                 
-                # 5. Get documentation for all tags in a single query
+                # 5. Get documentation for all tags in a single query (live only for public endpoint)
                 try:
-                    tag_documentation = tags_doc_sql.get_tag_documentation_for_blueprint(cursor, blueprint_uuid)
+                    tag_documentation = tags_doc_sql.get_tag_documentation_for_blueprint(cursor, blueprint_uuid, is_live=True)
                 except (OperationalError, ProgrammingError, InvalidTextRepresentation) as e:
                     # If tag documentation fails due to database issues, continue with empty results
                     current_app.logger.warning(f"Database error getting documentation for blueprint tags: {e}")

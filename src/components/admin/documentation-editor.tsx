@@ -41,6 +41,12 @@ const DocumentationEditor: React.FC = () => {
     return tag.join(': ');
   };
 
+  const handleTargetTypeChange = (newType: DocumentationTarget) => {
+    setTargetType(newType);
+    setSelectedBlueprint(null);
+    setSelectedTag(null);
+  };
+
   return (
     <div className="documentation-editor">
       <div className="editor-header">
@@ -54,11 +60,7 @@ const DocumentationEditor: React.FC = () => {
               name="targetType"
               value="blueprint"
               checked={targetType === 'blueprint'}
-              onChange={(e) => {
-                setTargetType(e.target.value as DocumentationTarget);
-                setSelectedBlueprint(null);
-                setSelectedTag(null);
-              }}
+              onChange={() => handleTargetTypeChange('blueprint')}
             />
             Blueprint
           </label>
@@ -68,11 +70,7 @@ const DocumentationEditor: React.FC = () => {
               name="targetType"
               value="tag"
               checked={targetType === 'tag'}
-              onChange={(e) => {
-                setTargetType(e.target.value as DocumentationTarget);
-                setSelectedBlueprint(null);
-                setSelectedTag(null);
-              }}
+              onChange={() => handleTargetTypeChange('tag')}
             />
             Tag
           </label>
