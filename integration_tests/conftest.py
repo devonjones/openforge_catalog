@@ -51,6 +51,17 @@ def test_blueprint_id(base_url):
 
 
 @pytest.fixture(scope="function")
+def db_transaction(db):
+    """Provide database transaction isolation for tests."""
+    with db.connection() as conn:
+        # Start a transaction
+        conn.autocommit = False
+        yield conn
+        # Rollback the transaction to undo all changes
+        conn.rollback()
+
+
+@pytest.fixture(scope="function")
 def cleanup_test_data(db):
     """Clean up test data before and after each test."""
     # Track created test data IDs

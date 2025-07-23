@@ -126,6 +126,26 @@ def create_blueprint_documentation(blueprint_id):
                 data = blueprint_doc_sql.create_blueprint_documentation(
                     cursor, blueprint_uuid, sanitized_document, document_type, is_live
                 )
+                
+                # If making this document live, mark other documents of the same type as non-live
+                # Note: This only applies to instructions. Each blueprint should only have one changelog.
+                # History is established via the successor_id chain, not multiple live changelogs.
+                if is_live and data.get("document_type") == "instructions":
+                    # Get the current document type from the created document
+                    current_doc_type = data["document_type"]
+                    
+                    # Mark other documents of the same type as non-live
+                    # Performance note: This query uses the composite index (blueprint_id, document_type, is_live)
+                    # Adding is_live = true makes it more selective and uses the full index
+                    cursor.execute("""
+                        UPDATE blueprint_documentation 
+                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
+                        WHERE blueprint_id = %s 
+                        AND document_type = %s 
+                        AND is_live = true
+                        AND id != %s
+                    """, (blueprint_uuid, current_doc_type, data["id"]))
+                
                 return jsonify({"documentation": data}), 201
             except Exception as e:
                 current_app.logger.error(f"Error creating blueprint documentation: {e}")

@@ -48,6 +48,36 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const autoSaveTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const editorRef = useRef<{ api?: { replaceSelection: (text: string) => void } }>(null);
 
+  // Helper function to load and select the correct instructions document
+  const loadInstructionsDocument = async (endpoint: string, targetName: string): Promise<ApiDocumentationItem | null> => {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      return null;
+    }
+    
+    const docs = await response.json();
+    const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
+    
+    if (instructionsDocs.length > 1) {
+      console.warn(`Multiple instructions documents found for ${targetName}. This should not happen.`);
+      // Prioritize live document, then most recently updated
+      const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
+      if (liveDoc) {
+        return liveDoc;
+      } else {
+        // Sort by updated_at descending and take the most recent
+        const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
+        return sortedDocs[0];
+      }
+    } else if (instructionsDocs.length === 1) {
+      return instructionsDocs[0];
+    }
+    
+    return null;
+  };
+
   // Load existing documentation
   useEffect(() => {
     let isCancelled = false;
@@ -57,52 +87,16 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         let docToSet: DocumentationData | null = null;
         
         if (target.type === 'blueprint') {
-          const response = await fetch(`/api/blueprints/${target.blueprint.id}/documentation`);
-          if (response.ok) {
-            const docs = await response.json();
-            const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
-            
-            if (instructionsDocs.length > 1) {
-              console.warn(`Multiple instructions documents found for blueprint ${target.blueprint.id}. This should not happen.`);
-              // Prioritize live document, then most recently updated
-              const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
-              if (liveDoc) {
-                docToSet = liveDoc;
-              } else {
-                // Sort by updated_at descending and take the most recent
-                const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
-                  new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-                );
-                docToSet = sortedDocs[0];
-              }
-            } else if (instructionsDocs.length === 1) {
-              docToSet = instructionsDocs[0];
-            }
-          }
+          docToSet = await loadInstructionsDocument(
+            `/api/blueprints/${target.blueprint.id}/documentation`,
+            `blueprint ${target.blueprint.id}`
+          );
         } else {
           const tagPath = target.tag.join('/');
-          const response = await fetch(`/api/tags/${tagPath}/documentation`);
-          if (response.ok) {
-            const docs = await response.json();
-            const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
-            
-            if (instructionsDocs.length > 1) {
-              console.warn(`Multiple instructions documents found for tag ${tagPath}. This should not happen.`);
-              // Prioritize live document, then most recently updated
-              const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
-              if (liveDoc) {
-                docToSet = liveDoc;
-              } else {
-                // Sort by updated_at descending and take the most recent
-                const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
-                  new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-                );
-                docToSet = sortedDocs[0];
-              }
-            } else if (instructionsDocs.length === 1) {
-              docToSet = instructionsDocs[0];
-            }
-          }
+          docToSet = await loadInstructionsDocument(
+            `/api/tags/${tagPath}/documentation`,
+            `tag ${tagPath}`
+          );
         }
 
         if (!isCancelled && docToSet) {

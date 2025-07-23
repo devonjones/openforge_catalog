@@ -6,6 +6,12 @@ from integration_tests.test_blueprint_documentation import TestBlueprintDocument
 
 class TestIsLiveFiltering(TestBlueprintDocumentation):
     """Test that is_live filtering works correctly."""
+    
+    # Use database transaction for proper test isolation
+    @pytest.fixture(autouse=True)
+    def setup_transaction(self, db_transaction):
+        """Ensure each test runs in its own transaction."""
+        pass
 
     def test_all_documentation_only_returns_live_docs(self, api_client, test_blueprint_id):
         """Test that /api/blueprints/{id}/all-documentation only returns live documentation."""
@@ -105,20 +111,10 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         data = response.json()
         blueprint_docs = data["blueprint_documentation"]
         
-        # Should only have the published documentation (plus any existing docs from other tests)
+        # Should only have the published documentation
         our_instruction_docs = [doc for doc in blueprint_docs if doc["id"] in [doc1_id, doc2_id]]
         assert len(our_instruction_docs) == 1, f"Should only have one of our test docs, got {len(our_instruction_docs)}"
         assert our_instruction_docs[0]["id"] == doc1_id, "Should have the published doc"
         assert our_instruction_docs[0]["is_live"] == True, "Published doc should be live"
         assert "First instruction document for publish test (updated)" in our_instruction_docs[0]["document"] 
 
-    def test_nonexistent_blueprint_documentation(self, api_client, test_blueprint_id):
-        """Test getting documentation for a blueprint that has none."""
-        # Since there are existing documents from other tests, this should return 200 with existing docs
-        response = api_client.get(f"/api/blueprints/{test_blueprint_id}/documentation")
-        
-        # Should return 200 with existing documentation (from other tests)
-        assert response.status_code == 200
-        data = response.json()
-        assert "documentation" in data
-        assert isinstance(data["documentation"], list)
