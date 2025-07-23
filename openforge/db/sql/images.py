@@ -85,6 +85,28 @@ SELECT id, image_name, image_url, created_at, updated_at
     return curs.fetchone()
 
 
+def get_images_by_name(curs: cursor, image_name: str) -> list[dict]:
+    """Get images by name (exact match).
+    
+    Args:
+        curs: Database cursor
+        image_name: Name of the image to search for
+        
+    Returns:
+        List of image dictionaries matching the name
+    """
+    query = sql.SQL(
+        """
+SELECT id, image_name, image_url, created_at, updated_at
+  FROM images
+  WHERE image_name = {image_name}
+  ORDER BY created_at DESC
+"""
+    ).format(image_name=sql.Literal(image_name))
+    curs.execute(query)
+    return curs.fetchall()
+
+
 def insert_image(curs: cursor, image_name: str, image_url: str, **kwargs) -> dict:
     query = sql.SQL(
         """

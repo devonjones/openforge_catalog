@@ -32,7 +32,7 @@ def _upload_file_to_s3(file, s3_path):
     bucket_name = current_app.config.get('S3_BUCKET_NAME')
     
     if not all([endpoint_url, access_key_id, secret_access_key, bucket_name]):
-        raise Exception("Cloudflare R2 configuration incomplete")
+        raise ValueError("Cloudflare R2 configuration incomplete")
     
     s3_client = boto3.client(
         's3',
@@ -59,15 +59,28 @@ def _upload_file_to_s3(file, s3_path):
 def get_images():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            data = image_sql.get_all_images(cursor)
-            blueprint_images = image_sql.get_all_blueprint_images(cursor)
-            blueprint_images_map = {}
-            for bi in blueprint_images:
-                blueprint_images_map.setdefault(bi["image_id"], []).append(
-                    bi["blueprint_id"]
-                )
-            for image in data:
-                image["blueprint_ids"] = blueprint_images_map.get(image["id"], [])
+            # Check if filtering by image_name is requested
+            image_name = request.args.get('image_name')
+            
+            if image_name:
+                # Filter by image name
+                data = image_sql.get_images_by_name(cursor, image_name)
+                # For filtered results, we don't need to load all blueprint associations
+                # since we're only looking for specific images
+                for image in data:
+                    image["blueprint_ids"] = []
+            else:
+                # Get all images (existing behavior)
+                data = image_sql.get_all_images(cursor)
+                blueprint_images = image_sql.get_all_blueprint_images(cursor)
+                blueprint_images_map = {}
+                for bi in blueprint_images:
+                    blueprint_images_map.setdefault(bi["image_id"], []).append(
+                        bi["blueprint_id"]
+                    )
+                for image in data:
+                    image["blueprint_ids"] = blueprint_images_map.get(image["id"], [])
+            
             return jsonify(data)
 
 
@@ -146,7 +159,8 @@ def _create_image_with_upload():
                 return jsonify(data), 201
                 
     except Exception as e:
-        return jsonify({"error": f"Failed to upload file: {str(e)}"}), 500
+        current_app.logger.error(f"Failed to upload file: {e}")
+        return jsonify({"error": "Failed to upload file due to an internal error."}), 500
 
 
 def get_image_by_id(image_id):
@@ -211,7 +225,8 @@ def _update_image_with_upload(image_id):
                 metadata['image_url'] = image_url
                 
             except Exception as e:
-                return jsonify({"error": f"Failed to upload file: {str(e)}"}), 500
+                current_app.logger.error(f"Failed to upload file: {e}")
+                return jsonify({"error": "Failed to upload file due to an internal error."}), 500
     
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:

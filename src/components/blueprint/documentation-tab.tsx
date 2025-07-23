@@ -28,6 +28,8 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
         if (response.ok) {
           const images = await response.json();
           if (images.length > 0) {
+            // If multiple images have the same name, use the most recently created one
+            // (they're already ordered by created_at DESC from the backend)
             setImageUrl(images[0].image_url);
           } else {
             setError(true);
@@ -35,7 +37,8 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
         } else {
           setError(true);
         }
-             } catch {
+             } catch (err) {
+         console.error('Error fetching image:', src, err);
          setError(true);
        } finally {
         setLoading(false);

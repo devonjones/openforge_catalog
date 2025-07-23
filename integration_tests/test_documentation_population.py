@@ -176,6 +176,10 @@ class TestDocumentationPopulation:
         
         if response.status_code == 404:
             # No documentation exists yet, create new changelog
+            # Even on 404, the response should have the consistent structure
+            response_data = response.json()
+            existing_docs = response_data["documentation"]
+            
             changelog_data = {
                 "document": "Manifold repair",
                 "document_type": "changelog"
@@ -191,12 +195,7 @@ class TestDocumentationPopulation:
             
         assert response.status_code == 200, f"Failed to get documentation: {response.text}"
         response_data = response.json()
-        
-        # Handle different response structures
-        if isinstance(response_data, dict) and "documentation" in response_data:
-            existing_docs = response_data["documentation"]
-        else:
-            existing_docs = response_data
+        existing_docs = response_data["documentation"]
         
         changelog_doc = None
         for doc in existing_docs:
