@@ -192,3 +192,26 @@ def _munge_image(image: dict) -> dict:
         "created_at": image["created_at"],
         "updated_at": image["updated_at"],
     }
+
+
+def search_tags():
+    """Search all unique tags with pagination and optional search filter."""
+    search = request.args.get("search", "").strip()
+    limit = request.args.get("limit", 100, type=int)
+    offset = request.args.get("offset", 0, type=int)
+    
+    # Validate parameters
+    if limit < 1 or limit > 1000:
+        return jsonify({"error": "Limit must be between 1 and 1000"}), 400
+    
+    if offset < 0:
+        return jsonify({"error": "Offset must be non-negative"}), 400
+    
+    with current_app.db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            try:
+                result = tag_sql.get_all_unique_tags(cursor, search, limit, offset)
+                return jsonify(result)
+            except Exception as e:
+                current_app.logger.error(f"Error searching tags: {e}")
+                return jsonify({"error": "An internal error occurred"}), 500

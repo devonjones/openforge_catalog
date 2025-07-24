@@ -48,10 +48,10 @@ SELECT id, tag, document, document_type, is_live, created_at, updated_at
 
 def create_tag_documentation(curs, tag_array: list[str], document: str, document_type: str = 'instructions', is_live: bool = True):
     """Create new documentation for a tag."""
-    # If making this document live, first mark existing live documents as non-live
+    # If making this document live, first mark existing live documents of the same type as non-live
     # This prevents unique constraint violations
-    if is_live and document_type == 'instructions':
-        mark_other_instructions_non_live(curs, tag_array, document_type, None)
+    if is_live:
+        mark_other_documents_non_live(curs, tag_array, document_type, None)
     
     query = sql.SQL(
         """
@@ -76,10 +76,10 @@ def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_ty
     final_document_type = document_type or current_doc["document_type"]
     tag_array = current_doc["tag"]  # This is already a list from convert_tag_dict
     
-    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # If making this document live, first mark existing live documents of the same type as non-live
     # This prevents unique constraint violations
-    if is_live and final_document_type == 'instructions':
-        mark_other_instructions_non_live(curs, tag_array, final_document_type, doc_id)
+    if is_live:
+        mark_other_documents_non_live(curs, tag_array, final_document_type, doc_id)
     
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
@@ -196,7 +196,7 @@ SELECT td.id, td.tag, td.document, td.document_type, td.is_live, td.created_at, 
     return tag_documentation
 
 
-def mark_other_instructions_non_live(curs, tag_array: list[str], document_type: str, exclude_doc_id: uuid.UUID = None):
+def mark_other_documents_non_live(curs, tag_array: list[str], document_type: str, exclude_doc_id: uuid.UUID = None):
     """Mark other documents of the same type as non-live.
     
     This function is used when making a document live to ensure only one live document

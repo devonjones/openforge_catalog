@@ -176,19 +176,24 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
 
   // Auto-save functionality
   useEffect(() => {
+    let isCancelled = false;
+
     if (autoSaveTimeoutRef.current) {
       clearTimeout(autoSaveTimeoutRef.current);
     }
 
     if (content.trim()) {
       autoSaveTimeoutRef.current = setTimeout(() => {
-        // Changelogs should always be live, instructions can be draft
-        const shouldMakeLive = documentType === 'changelog';
-        saveDocument(shouldMakeLive);
+        if (!isCancelled) {
+          // Changelogs should always be live, instructions can be draft
+          const shouldMakeLive = documentType === 'changelog';
+          saveDocument(shouldMakeLive);
+        }
       }, 2000);
     }
 
     return () => {
+      isCancelled = true;
       if (autoSaveTimeoutRef.current) {
         clearTimeout(autoSaveTimeoutRef.current);
       }

@@ -7,11 +7,16 @@ interface TagPickerProps {
   onClose: () => void;
 }
 
+interface TagSearchResult {
+  tag: string;
+  blueprint_count: number;
+}
+
 
 
 const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [tags, setTags] = useState<string[][]>([]);
+  const [tags, setTags] = useState<TagSearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,37 +31,20 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
       setError(null);
 
       try {
-        // Use the same endpoint as tag-container with search parameter
+        // Use the new search endpoint with pagination
         const urlParams = new URLSearchParams();
         urlParams.set('search', searchTerm);
         urlParams.set('limit', '50'); // Limit results for better performance
+        urlParams.set('offset', '0');
 
-        const requestBody = {
-          require: [],
-          deny: [],
-        };
-
-        const response = await fetch(`/api/blueprints/tags?${urlParams.toString()}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestBody),
-        });
+        const response = await fetch(`/api/tags/search?${urlParams.toString()}`);
 
         if (!response.ok) {
           throw new Error('Failed to fetch tags');
         }
 
         const result = await response.json();
-        const tagCounts = result.tag_counts || {};
-        
-        // Convert tag counts to array of tag arrays
-        const allTags = Object.keys(tagCounts)
-          .map(tag => tag.split('|'))
-          .slice(0, 20); // Limit results for UI
-
-        setTags(allTags);
+        setTags(result.tags || []);
       } catch (err) {
         setError('Failed to search tags');
         console.error('Tag search error:', err);
@@ -69,12 +57,14 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
     return () => clearTimeout(debounceTimer);
   }, [searchTerm]);
 
-  const handleSelect = (tag: string[]) => {
-    onSelect(tag);
+  const handleSelect = (tagResult: TagSearchResult) => {
+    // Convert pipe-delimited string back to array
+    const tagArray = tagResult.tag.split('|');
+    onSelect(tagArray);
   };
 
-  const formatTagDisplay = (tag: string[]) => {
-    return tag.join(': ');
+  const formatTagDisplay = (tag: string) => {
+    return tag.split('|').join(': ');
   };
 
   return (
@@ -111,18 +101,19 @@ const TagPicker: React.FC<TagPickerProps> = ({ onSelect, onClose }) => {
           )}
 
           <div className="tag-list">
-            {tags.map((tag, index) => (
+            {tags.map((tagResult, index) => (
               <button
                 key={index}
                 className="tag-item"
-                onClick={() => handleSelect(tag)}
+                onClick={() => handleSelect(tagResult)}
                 type="button"
               >
                 <div className="tag-name">
-                  {formatTagDisplay(tag)}
+                  {formatTagDisplay(tagResult.tag)}
+                  <span className="tag-count">({tagResult.blueprint_count})</span>
                 </div>
                 <div className="tag-hierarchy">
-                  {tag.map((part, i) => (
+                  {tagResult.tag.split('|').map((part, i) => (
                     <span key={i} className="tag-part">
                       {part}
                     </span>

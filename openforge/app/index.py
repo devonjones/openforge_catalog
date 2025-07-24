@@ -122,6 +122,11 @@ def blueprints_by_tag(tag):
     return tag_routes.get_blueprint_ids_by_tag(tag)
 
 
+@app.route("/api/tags/search", methods=["GET"])
+def search_tags():
+    return tag_routes.search_tags()
+
+
 @app.route("/api/blueprints/md5/<md5>", methods=["GET"])
 def blueprint_by_md5(md5):
     if request.method == "GET":

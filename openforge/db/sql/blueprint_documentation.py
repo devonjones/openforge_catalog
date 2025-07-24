@@ -50,10 +50,10 @@ SELECT id, blueprint_id, document, document_type, is_live, created_at, updated_a
 
 def create_blueprint_documentation(curs, blueprint_id: uuid.UUID, document: str, document_type: str = 'changelog', is_live: bool = True):
     """Create new documentation for a blueprint."""
-    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # If making this document live, first mark existing live documents of the same type as non-live
     # This prevents unique constraint violations
-    if is_live and document_type == 'instructions':
-        mark_other_instructions_non_live(curs, blueprint_id, document_type, None)
+    if is_live:
+        mark_other_documents_non_live(curs, blueprint_id, document_type, None)
     
     query = sql.SQL(
         """
@@ -78,10 +78,10 @@ def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, docum
     final_document_type = document_type or current_doc["document_type"]
     blueprint_id = current_doc["blueprint_id"]
     
-    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # If making this document live, first mark existing live documents of the same type as non-live
     # This prevents unique constraint violations
-    if is_live and final_document_type == 'instructions':
-        mark_other_instructions_non_live(curs, blueprint_id, final_document_type, doc_id)
+    if is_live:
+        mark_other_documents_non_live(curs, blueprint_id, final_document_type, doc_id)
     
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
@@ -165,7 +165,7 @@ SELECT
     }
 
 
-def mark_other_instructions_non_live(curs, blueprint_id: uuid.UUID, document_type: str, exclude_doc_id: uuid.UUID = None):
+def mark_other_documents_non_live(curs, blueprint_id: uuid.UUID, document_type: str, exclude_doc_id: uuid.UUID = None):
     """Mark other documents of the same type as non-live.
     
     This function is used when making a document live to ensure only one live document
