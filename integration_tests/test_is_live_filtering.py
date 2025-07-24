@@ -71,6 +71,34 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         assert created_doc["is_live"] == True
         assert created_doc["document_type"] == "changelog"
 
+    def test_changelog_update_always_live(self, api_client, test_blueprint_id):
+        """Test that updating a changelog with is_live=false still makes it live."""
+        # First create a changelog
+        changelog_doc = {
+            "document": "This is a changelog entry for update test",
+            "document_type": "changelog",
+            "is_live": True
+        }
+        
+        response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=changelog_doc)
+        assert response.status_code == 201
+        doc_id = response.json()["documentation"]["id"]
+        
+        # Now try to update it with is_live=false but without document_type
+        update_data = {
+            "document": "This is an updated changelog entry",
+            "is_live": False  # This should be ignored for changelogs
+        }
+        
+        response = api_client.patch(f"/api/blueprints/{test_blueprint_id}/documentation/{doc_id}", data=update_data)
+        assert response.status_code == 200
+        
+        # Verify it was still saved as live
+        updated_doc = response.json()["documentation"]
+        assert updated_doc["is_live"] == True, "Changelog should always be live even when is_live=false is sent"
+        assert updated_doc["document_type"] == "changelog"
+        assert "This is an updated changelog entry" in updated_doc["document"]
+
     def test_publish_workflow(self, api_client, test_blueprint_id):
         """Test that publishing a document marks others as non-live."""
         # Create two instruction documents

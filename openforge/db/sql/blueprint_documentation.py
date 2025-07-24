@@ -147,4 +147,33 @@ SELECT
         "changelogs": changelogs,
         "has_more": (offset + limit) < total_count,
         "total_count": total_count
-    } 
+    }
+
+
+def mark_other_instructions_non_live(curs, blueprint_id: uuid.UUID, document_type: str, exclude_doc_id: uuid.UUID):
+    """Mark other documents of the same type as non-live.
+    
+    This function is used when making a document live to ensure only one live document
+    of each type exists per blueprint.
+    
+    Args:
+        curs: Database cursor
+        blueprint_id: UUID of the blueprint
+        document_type: Type of document (e.g., 'instructions')
+        exclude_doc_id: ID of the document to exclude from being marked non-live
+    """
+    query = sql.SQL(
+        """
+UPDATE blueprint_documentation 
+SET is_live = false, updated_at = CURRENT_TIMESTAMP
+WHERE blueprint_id = {} 
+AND document_type = {} 
+AND is_live = true
+AND id != {}
+"""
+    ).format(
+        sql.Literal(blueprint_id),
+        sql.Literal(document_type),
+        sql.Literal(exclude_doc_id)
+    )
+    curs.execute(query) 

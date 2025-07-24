@@ -131,20 +131,10 @@ def create_blueprint_documentation(blueprint_id):
                 # Note: This only applies to instructions. Each blueprint should only have one changelog.
                 # History is established via the successor_id chain, not multiple live changelogs.
                 if is_live and data.get("document_type") == "instructions":
-                    # Get the current document type from the created document
-                    current_doc_type = data["document_type"]
-                    
                     # Mark other documents of the same type as non-live
-                    # Performance note: This query uses the composite index (blueprint_id, document_type, is_live)
-                    # Adding is_live = true makes it more selective and uses the full index
-                    cursor.execute("""
-                        UPDATE blueprint_documentation 
-                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
-                        WHERE blueprint_id = %s 
-                        AND document_type = %s 
-                        AND is_live = true
-                        AND id != %s
-                    """, (blueprint_uuid, current_doc_type, data["id"]))
+                    blueprint_doc_sql.mark_other_instructions_non_live(
+                        cursor, blueprint_uuid, data["document_type"], data["id"]
+                    )
                 
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -173,10 +163,6 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     if document_type and document_type not in ["changelog", "instructions"]:
         return jsonify({"error": "Invalid document type"}), 400
     
-    # Apply document type rules if document_type is provided
-    if document_type:
-        is_live = _apply_document_type_rules(document_type, is_live)
-    
     # Validate and sanitize the document content
     try:
         validate_documentation_content(document)
@@ -187,31 +173,27 @@ def update_blueprint_documentation(blueprint_id, doc_id):
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
-                # First verify the documentation belongs to the specified blueprint
-                _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
+                # First verify the documentation belongs to the specified blueprint and get existing doc
+                existing_doc = _verify_documentation_ownership(cursor, doc_uuid, blueprint_id)
+                
+                # Determine the final document_type (from request or existing doc)
+                final_document_type = document_type or existing_doc["document_type"]
+                
+                # Apply document type rules using the final document_type
+                is_live = _apply_document_type_rules(final_document_type, is_live)
                 
                 data = blueprint_doc_sql.update_blueprint_documentation(
-                    cursor, doc_uuid, sanitized_document, document_type, is_live
+                    cursor, doc_uuid, sanitized_document, final_document_type, is_live
                 )
                 
                 # If making this document live, mark other documents of the same type as non-live
                 # Note: This only applies to instructions. Each blueprint should only have one changelog.
                 # History is established via the successor_id chain, not multiple live changelogs.
                 if is_live and data.get("document_type") == "instructions":
-                    # Get the current document type from the updated document
-                    current_doc_type = data["document_type"]
-                    
                     # Mark other documents of the same type as non-live
-                    # Performance note: This query uses the composite index (blueprint_id, document_type, is_live)
-                    # Adding is_live = true makes it more selective and uses the full index
-                    cursor.execute("""
-                        UPDATE blueprint_documentation 
-                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
-                        WHERE blueprint_id = %s 
-                        AND document_type = %s 
-                        AND is_live = true
-                        AND id != %s
-                    """, (blueprint_uuid, current_doc_type, doc_uuid))
+                    blueprint_doc_sql.mark_other_instructions_non_live(
+                        cursor, blueprint_uuid, data["document_type"], doc_uuid
+                    )
                 
                 return jsonify({"documentation": data})
             except NotFound:

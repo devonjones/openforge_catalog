@@ -100,16 +100,9 @@ def create_tag_documentation(tag_array):
                 # Note: Tags only support instructions, so we can simplify this logic
                 if is_live:
                     # Mark other documents of the same type as non-live
-                    # Performance note: This query uses the composite index (tag, document_type, is_live)
-                    # Adding is_live = true makes it more selective and uses the full index
-                    cursor.execute("""
-                        UPDATE tag_documentation 
-                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
-                        WHERE tag = %s 
-                        AND document_type = %s 
-                        AND is_live = true
-                        AND id != %s
-                    """, (tag_array, data["document_type"], data["id"]))
+                    tags_doc_sql.mark_other_instructions_non_live(
+                        cursor, tag_array, data["document_type"], data["id"]
+                    )
                 
                 return jsonify({"documentation": data}), 201
             except Exception as e:
@@ -158,16 +151,9 @@ def update_tag_documentation(tag_array, doc_id):
                 # Note: Tags only support instructions, so we can simplify this logic
                 if is_live:
                     # Mark other documents of the same type as non-live
-                    # Performance note: This query uses the composite index (tag, document_type, is_live)
-                    # Adding is_live = true makes it more selective and uses the full index
-                    cursor.execute("""
-                        UPDATE tag_documentation 
-                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
-                        WHERE tag = %s 
-                        AND document_type = %s 
-                        AND is_live = true
-                        AND id != %s
-                    """, (tag_array, data["document_type"], doc_uuid))
+                    tags_doc_sql.mark_other_instructions_non_live(
+                        cursor, tag_array, data["document_type"], doc_uuid
+                    )
                 
                 return jsonify({"documentation": data})
             except NotFound:

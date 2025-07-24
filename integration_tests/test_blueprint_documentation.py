@@ -156,13 +156,42 @@ class TestBlueprintDocumentation:
     
     def test_nonexistent_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test getting documentation for a blueprint that has none."""
-        # According to API standard, this should return 200 with empty documentation list
+        # According to API standard, this should return 200 with documentation list
         response = api_client.get(f"/api/blueprints/{test_blueprint_id}/documentation")
         
         assert response.status_code == 200
         data = response.json()
         assert "documentation" in data
         assert isinstance(data["documentation"], list)
+    
+    def test_blueprint_documentation_empty_list(self, api_client, test_blueprint_id):
+        """Test that the API returns an empty list when a blueprint has no documentation."""
+        # Get all blueprints to find one that might have no documentation
+        response = api_client.get("/api/blueprints")
+        assert response.status_code == 200
+        blueprints = response.json()
+        
+        # Find a blueprint that has no documentation by checking each one
+        blueprint_without_docs = None
+        for blueprint in blueprints:
+            doc_response = api_client.get(f"/api/blueprints/{blueprint['id']}/documentation")
+            if doc_response.status_code == 200:
+                doc_data = doc_response.json()
+                if len(doc_data["documentation"]) == 0:
+                    blueprint_without_docs = blueprint
+                    break
+        
+        if blueprint_without_docs:
+            # Test the specific case of empty documentation list
+            response = api_client.get(f"/api/blueprints/{blueprint_without_docs['id']}/documentation")
+            assert response.status_code == 200
+            data = response.json()
+            assert "documentation" in data
+            assert isinstance(data["documentation"], list)
+            assert len(data["documentation"]) == 0
+        else:
+            # If no blueprint without docs is found, skip this test
+            pytest.skip("No blueprint without documentation found for testing empty list scenario")
     
     def test_nonexistent_documentation_id(self, api_client, test_blueprint_id):
         """Test updating/deleting non-existent documentation."""

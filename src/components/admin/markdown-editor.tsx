@@ -283,7 +283,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       )}
 
       <div className="editor-container">
-        {/* @ts-expect-error - MDEditor has complex type definitions that conflict with our usage */}
+        {/* @ts-expect-error - MDEditor type definitions have several issues: onChange expects (value?: string, event?, state?) but we pass (value: string) => void; onDrop expects DragEventHandler but we pass (file: File) => Promise<string>; custom commands array with execute functions not properly typed; ref API for replaceSelection not in library's type definitions. These are known limitations of the @uiw/react-md-editor library's type system. */}
         <MDEditor
           ref={editorRef}
           value={content}

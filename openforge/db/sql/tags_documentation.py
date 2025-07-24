@@ -178,4 +178,33 @@ SELECT td.id, td.tag, td.document, td.document_type, td.is_live, td.created_at, 
             tag_documentation[tag_string] = []
         tag_documentation[tag_string].append(result)
 
-    return tag_documentation 
+    return tag_documentation
+
+
+def mark_other_instructions_non_live(curs, tag_array: list[str], document_type: str, exclude_doc_id: uuid.UUID):
+    """Mark other documents of the same type as non-live.
+    
+    This function is used when making a document live to ensure only one live document
+    of each type exists per tag.
+    
+    Args:
+        curs: Database cursor
+        tag_array: Tag array
+        document_type: Type of document (e.g., 'instructions')
+        exclude_doc_id: ID of the document to exclude from being marked non-live
+    """
+    query = sql.SQL(
+        """
+UPDATE tag_documentation 
+SET is_live = false, updated_at = CURRENT_TIMESTAMP
+WHERE tag = {} 
+AND document_type = {} 
+AND is_live = true
+AND id != {}
+"""
+    ).format(
+        sql.Literal(tag_array),
+        sql.Literal(document_type),
+        sql.Literal(exclude_doc_id)
+    )
+    curs.execute(query) 
