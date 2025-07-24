@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import BlueprintPicker from './blueprint-picker';
-import TagPicker from './tag-picker';
+import AdminBlueprintPicker from './admin-blueprint-picker';
+import AdminTagPicker from './admin-tag-picker';
 import MarkdownEditor from './markdown-editor';
 import { Blueprint } from '@/types';
 
@@ -124,19 +124,17 @@ const DocumentationEditor: React.FC = () => {
       )}
 
       {/* Pickers */}
-      {showBlueprintPicker && (
-        <BlueprintPicker
-          onSelect={handleBlueprintSelect}
-          onClose={() => setShowBlueprintPicker(false)}
-        />
-      )}
+      <AdminBlueprintPicker
+        isOpen={showBlueprintPicker}
+        onSelect={handleBlueprintSelect}
+        onClose={() => setShowBlueprintPicker(false)}
+      />
       
-      {showTagPicker && (
-        <TagPicker
-          onSelect={handleTagSelect}
-          onClose={() => setShowTagPicker(false)}
-        />
-      )}
+      <AdminTagPicker
+        isOpen={showTagPicker}
+        onSelect={handleTagSelect}
+        onClose={() => setShowTagPicker(false)}
+      />
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import DocumentationEditor from '../documentation-editor';
 
 // Mock the child components
-jest.mock('../blueprint-picker', () => {
-  return function MockBlueprintPicker({ onSelect, onClose }: { onSelect: (blueprint: { id: string; blueprint_name: string }) => void; onClose: () => void }) {
+jest.mock('../admin-blueprint-picker', () => {
+  return function MockAdminBlueprintPicker({ isOpen, onSelect, onClose }: { isOpen: boolean; onSelect: (blueprint: { id: string; blueprint_name: string }) => void; onClose: () => void }) {
+    if (!isOpen) return null;
     return (
       <div data-testid="blueprint-picker">
         <button onClick={() => onSelect({ id: 'test-blueprint', blueprint_name: 'Test Blueprint' })}>
@@ -16,8 +17,9 @@ jest.mock('../blueprint-picker', () => {
   };
 });
 
-jest.mock('../tag-picker', () => {
-  return function MockTagPicker({ onSelect, onClose }: { onSelect: (tag: string[]) => void; onClose: () => void }) {
+jest.mock('../admin-tag-picker', () => {
+  return function MockAdminTagPicker({ isOpen, onSelect, onClose }: { isOpen: boolean; onSelect: (tag: string[]) => void; onClose: () => void }) {
+    if (!isOpen) return null;
     return (
       <div data-testid="tag-picker">
         <button onClick={() => onSelect(['texture', 'dungeon_stone'])}>
