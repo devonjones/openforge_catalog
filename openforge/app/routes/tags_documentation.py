@@ -96,14 +96,6 @@ def create_tag_documentation(tag_array):
                     cursor, tag_array, sanitized_document, document_type, is_live
                 )
                 
-                # If making this document live, mark other documents as non-live
-                # Note: Tags only support instructions, so we can simplify this logic
-                if is_live:
-                    # Mark other documents of the same type as non-live
-                    tags_doc_sql.mark_other_instructions_non_live(
-                        cursor, tag_array, data["document_type"], data["id"]
-                    )
-                
                 return jsonify({"documentation": data}), 201
             except Exception as e:
                 current_app.logger.error(f"Error creating tag documentation: {e}")
@@ -146,14 +138,6 @@ def update_tag_documentation(tag_array, doc_id):
                 data = tags_doc_sql.update_tag_documentation(
                     cursor, doc_uuid, sanitized_document, document_type, is_live
                 )
-                
-                # If making this document live, mark other documents as non-live
-                # Note: Tags only support instructions, so we can simplify this logic
-                if is_live:
-                    # Mark other documents of the same type as non-live
-                    tags_doc_sql.mark_other_instructions_non_live(
-                        cursor, tag_array, data["document_type"], doc_uuid
-                    )
                 
                 return jsonify({"documentation": data})
             except NotFound:

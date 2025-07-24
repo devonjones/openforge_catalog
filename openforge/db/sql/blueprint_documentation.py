@@ -50,6 +50,11 @@ SELECT id, blueprint_id, document, document_type, is_live, created_at, updated_a
 
 def create_blueprint_documentation(curs, blueprint_id: uuid.UUID, document: str, document_type: str = 'changelog', is_live: bool = True):
     """Create new documentation for a blueprint."""
+    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # This prevents unique constraint violations
+    if is_live and document_type == 'instructions':
+        mark_other_instructions_non_live(curs, blueprint_id, document_type, None)
+    
     query = sql.SQL(
         """
 INSERT INTO blueprint_documentation (blueprint_id, document, document_type, is_live)
@@ -68,6 +73,16 @@ INSERT INTO blueprint_documentation (blueprint_id, document, document_type, is_l
 
 def update_blueprint_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None, is_live: bool = None):
     """Update specific documentation entry."""
+    # First get the current document to determine the final document_type and blueprint_id
+    current_doc = get_blueprint_documentation_by_id(curs, doc_id)
+    final_document_type = document_type or current_doc["document_type"]
+    blueprint_id = current_doc["blueprint_id"]
+    
+    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # This prevents unique constraint violations
+    if is_live and final_document_type == 'instructions':
+        mark_other_instructions_non_live(curs, blueprint_id, final_document_type, doc_id)
+    
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
@@ -150,7 +165,7 @@ SELECT
     }
 
 
-def mark_other_instructions_non_live(curs, blueprint_id: uuid.UUID, document_type: str, exclude_doc_id: uuid.UUID):
+def mark_other_instructions_non_live(curs, blueprint_id: uuid.UUID, document_type: str, exclude_doc_id: uuid.UUID = None):
     """Mark other documents of the same type as non-live.
     
     This function is used when making a document live to ensure only one live document
@@ -160,10 +175,26 @@ def mark_other_instructions_non_live(curs, blueprint_id: uuid.UUID, document_typ
         curs: Database cursor
         blueprint_id: UUID of the blueprint
         document_type: Type of document (e.g., 'instructions')
-        exclude_doc_id: ID of the document to exclude from being marked non-live
+        exclude_doc_id: ID of the document to exclude from being marked non-live (None for new documents)
     """
-    query = sql.SQL(
-        """
+    if exclude_doc_id is None:
+        # For new documents, mark all existing live documents as non-live
+        query = sql.SQL(
+            """
+UPDATE blueprint_documentation 
+SET is_live = false, updated_at = CURRENT_TIMESTAMP
+WHERE blueprint_id = {} 
+AND document_type = {} 
+AND is_live = true
+"""
+        ).format(
+            sql.Literal(blueprint_id),
+            sql.Literal(document_type)
+        )
+    else:
+        # For existing documents, exclude the current document
+        query = sql.SQL(
+            """
 UPDATE blueprint_documentation 
 SET is_live = false, updated_at = CURRENT_TIMESTAMP
 WHERE blueprint_id = {} 
@@ -171,9 +202,9 @@ AND document_type = {}
 AND is_live = true
 AND id != {}
 """
-    ).format(
-        sql.Literal(blueprint_id),
-        sql.Literal(document_type),
-        sql.Literal(exclude_doc_id)
-    )
+        ).format(
+            sql.Literal(blueprint_id),
+            sql.Literal(document_type),
+            sql.Literal(exclude_doc_id)
+        )
     curs.execute(query) 

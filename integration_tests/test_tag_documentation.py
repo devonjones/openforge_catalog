@@ -160,30 +160,36 @@ class TestTagDocumentation:
         assert response.status_code == 404
     
     def test_multiple_tag_documentation(self, api_client, test_tag_documentation, cleanup_test_data):
-        """Test that multiple documentation entries can exist for the same tag."""
-        # Create first document
+        """Test that only one live instructions document can exist per tag, but multiple non-live documents are allowed."""
+        # Create first live document
         test_doc1 = {
             "document": TEST_DOCUMENT_TEMPLATES["multiple_1"],
-            "document_type": "instructions"
+            "document_type": "instructions",
+            "is_live": True
         }
         
         response1 = api_client.post("/api/tags/multiple/test/documentation", data=test_doc1)
         assert response1.status_code == 201
         
-        # Create second document
+        # Create second live document - this should make the first one non-live
         test_doc2 = {
             "document": TEST_DOCUMENT_TEMPLATES["multiple_2"],
-            "document_type": "instructions"
+            "document_type": "instructions",
+            "is_live": True
         }
         
         response2 = api_client.post("/api/tags/multiple/test/documentation", data=test_doc2)
         assert response2.status_code == 201
         
-        # Verify both documents exist
+        # Verify both documents exist, but only one is live
         get_response = api_client.get("/api/tags/multiple/test/documentation")
         assert get_response.status_code == 200
         data = get_response.json()
         assert len(data["documentation"]) >= 2
+        
+        # Count live documents - should be exactly 1
+        live_docs = [doc for doc in data["documentation"] if doc["is_live"]]
+        assert len(live_docs) == 1
         
         # Track created IDs for cleanup
         doc1_id = response1.json()["documentation"]["id"]

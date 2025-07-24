@@ -64,6 +64,28 @@ CREATE INDEX idx_tag_documentation_composite ON tag_documentation(tag, document_
         curs.execute(query)
         print("  created idx_tag_documentation_composite index")
 
+        # Create unique indexes to enforce business rule: only one live instructions document per blueprint/tag
+        # This prevents data integrity issues that the frontend currently handles defensively
+        query = sql.SQL(
+            """
+CREATE UNIQUE INDEX idx_blueprint_documentation_unique_live_instructions 
+ON blueprint_documentation (blueprint_id, document_type) 
+WHERE is_live = true AND document_type = 'instructions'
+"""
+        )
+        curs.execute(query)
+        print("  created idx_blueprint_documentation_unique_live_instructions index")
+
+        query = sql.SQL(
+            """
+CREATE UNIQUE INDEX idx_tag_documentation_unique_live_instructions 
+ON tag_documentation (tag, document_type) 
+WHERE is_live = true AND document_type = 'instructions'
+"""
+        )
+        curs.execute(query)
+        print("  created idx_tag_documentation_unique_live_instructions index")
+
     def drop_documentation_indexes(self, curs: cursor):
         query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_composite")
         curs.execute(query)
@@ -72,6 +94,14 @@ CREATE INDEX idx_tag_documentation_composite ON tag_documentation(tag, document_
         query = sql.SQL("DROP INDEX IF EXISTS idx_blueprint_documentation_composite")
         curs.execute(query)
         print("  dropped idx_blueprint_documentation_composite index")
+
+        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_unique_live_instructions")
+        curs.execute(query)
+        print("  dropped idx_tag_documentation_unique_live_instructions index")
+
+        query = sql.SQL("DROP INDEX IF EXISTS idx_blueprint_documentation_unique_live_instructions")
+        curs.execute(query)
+        print("  dropped idx_blueprint_documentation_unique_live_instructions index")
 
     def remove_is_live_from_tag_documentation(self, curs: cursor):
         query = sql.SQL("ALTER TABLE tag_documentation DROP COLUMN IF EXISTS is_live")

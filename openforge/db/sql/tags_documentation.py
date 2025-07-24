@@ -48,6 +48,11 @@ SELECT id, tag, document, document_type, is_live, created_at, updated_at
 
 def create_tag_documentation(curs, tag_array: list[str], document: str, document_type: str = 'instructions', is_live: bool = True):
     """Create new documentation for a tag."""
+    # If making this document live, first mark existing live documents as non-live
+    # This prevents unique constraint violations
+    if is_live and document_type == 'instructions':
+        mark_other_instructions_non_live(curs, tag_array, document_type, None)
+    
     query = sql.SQL(
         """
 INSERT INTO tag_documentation (tag, document, document_type, is_live)
@@ -66,6 +71,16 @@ INSERT INTO tag_documentation (tag, document, document_type, is_live)
 
 def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_type: str = None, is_live: bool = None):
     """Update specific tag documentation entry."""
+    # First get the current document to determine the final document_type and tag_array
+    current_doc = get_tag_documentation_by_id(curs, doc_id)
+    final_document_type = document_type or current_doc["document_type"]
+    tag_array = current_doc["tag"]  # This is already a list from convert_tag_dict
+    
+    # If making this document live and it's instructions, first mark existing live documents as non-live
+    # This prevents unique constraint violations
+    if is_live and final_document_type == 'instructions':
+        mark_other_instructions_non_live(curs, tag_array, final_document_type, doc_id)
+    
     update_parts = [sql.SQL("document = {}").format(sql.Literal(document))]
 
     if document_type is not None:
@@ -181,7 +196,7 @@ SELECT td.id, td.tag, td.document, td.document_type, td.is_live, td.created_at, 
     return tag_documentation
 
 
-def mark_other_instructions_non_live(curs, tag_array: list[str], document_type: str, exclude_doc_id: uuid.UUID):
+def mark_other_instructions_non_live(curs, tag_array: list[str], document_type: str, exclude_doc_id: uuid.UUID = None):
     """Mark other documents of the same type as non-live.
     
     This function is used when making a document live to ensure only one live document
@@ -191,10 +206,26 @@ def mark_other_instructions_non_live(curs, tag_array: list[str], document_type: 
         curs: Database cursor
         tag_array: Tag array
         document_type: Type of document (e.g., 'instructions')
-        exclude_doc_id: ID of the document to exclude from being marked non-live
+        exclude_doc_id: ID of the document to exclude from being marked non-live (None for new documents)
     """
-    query = sql.SQL(
-        """
+    if exclude_doc_id is None:
+        # For new documents, mark all existing live documents as non-live
+        query = sql.SQL(
+            """
+UPDATE tag_documentation 
+SET is_live = false, updated_at = CURRENT_TIMESTAMP
+WHERE tag = {} 
+AND document_type = {} 
+AND is_live = true
+"""
+        ).format(
+            sql.Literal(tag_array),
+            sql.Literal(document_type)
+        )
+    else:
+        # For existing documents, exclude the current document
+        query = sql.SQL(
+            """
 UPDATE tag_documentation 
 SET is_live = false, updated_at = CURRENT_TIMESTAMP
 WHERE tag = {} 
@@ -202,9 +233,9 @@ AND document_type = {}
 AND is_live = true
 AND id != {}
 """
-    ).format(
-        sql.Literal(tag_array),
-        sql.Literal(document_type),
-        sql.Literal(exclude_doc_id)
-    )
+        ).format(
+            sql.Literal(tag_array),
+            sql.Literal(document_type),
+            sql.Literal(exclude_doc_id)
+        )
     curs.execute(query) 

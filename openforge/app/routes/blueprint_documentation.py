@@ -12,21 +12,21 @@ import openforge.db.sql.tags_documentation as tags_doc_sql
 from openforge.db.sql.tag_utils import tag_to_array
 
 
-def _apply_document_type_rules(document_type: str, is_live: bool) -> bool:
+def _apply_document_type_rules(document_type: str, is_live: bool | None) -> bool | None:
     """Apply business rules based on document type.
     
     Args:
         document_type: The type of document ('changelog' or 'instructions')
-        is_live: The requested live status
+        is_live: The requested live status (can be None for updates)
         
     Returns:
-        The final is_live status after applying rules
+        The final is_live status after applying rules (None if input was None)
     """
     # Changelogs should always be live
     if document_type == "changelog":
         return True
     
-    # For other document types, use the requested value
+    # For other document types, use the requested value (including None)
     return is_live
 
 
@@ -127,15 +127,6 @@ def create_blueprint_documentation(blueprint_id):
                     cursor, blueprint_uuid, sanitized_document, document_type, is_live
                 )
                 
-                # If making this document live, mark other documents of the same type as non-live
-                # Note: This only applies to instructions. Each blueprint should only have one changelog.
-                # History is established via the successor_id chain, not multiple live changelogs.
-                if is_live and data.get("document_type") == "instructions":
-                    # Mark other documents of the same type as non-live
-                    blueprint_doc_sql.mark_other_instructions_non_live(
-                        cursor, blueprint_uuid, data["document_type"], data["id"]
-                    )
-                
                 return jsonify({"documentation": data}), 201
             except Exception as e:
                 current_app.logger.error(f"Error creating blueprint documentation: {e}")
@@ -185,15 +176,6 @@ def update_blueprint_documentation(blueprint_id, doc_id):
                 data = blueprint_doc_sql.update_blueprint_documentation(
                     cursor, doc_uuid, sanitized_document, final_document_type, is_live
                 )
-                
-                # If making this document live, mark other documents of the same type as non-live
-                # Note: This only applies to instructions. Each blueprint should only have one changelog.
-                # History is established via the successor_id chain, not multiple live changelogs.
-                if is_live and data.get("document_type") == "instructions":
-                    # Mark other documents of the same type as non-live
-                    blueprint_doc_sql.mark_other_instructions_non_live(
-                        cursor, blueprint_uuid, data["document_type"], doc_uuid
-                    )
                 
                 return jsonify({"documentation": data})
             except NotFound:
