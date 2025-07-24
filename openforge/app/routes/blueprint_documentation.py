@@ -88,7 +88,9 @@ def get_blueprint_documentation(blueprint_id):
             
             # Then get the documentation (all docs for individual endpoint)
             data = blueprint_doc_sql.get_blueprint_documentation(cursor, blueprint_uuid, is_live=None)
-            return jsonify({"documentation": data or []})
+            if not data:
+                return jsonify({"documentation": []}), 404
+            return jsonify({"documentation": data})
 
 
 def get_blueprint_documentation_entry(blueprint_id, doc_id):
