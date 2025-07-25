@@ -2,9 +2,12 @@ from flask import jsonify, current_app
 from psycopg.rows import dict_row
 from werkzeug.exceptions import NotFound
 import uuid
+import logging
 
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
+
+logger = logging.getLogger(__name__)
 
 
 def disconnect_successor(blueprint_id: str):
@@ -41,9 +44,9 @@ def disconnect_successor(blueprint_id: str):
                 for doc in docs:
                     if doc['document_type'] == 'changelog':
                         blueprint_doc_sql.delete_blueprint_documentation(cursor, doc['id'])
-                        print(f"Deleted changelog {doc['id']} from successor {successor_id}")
+                        logger.info(f"Deleted changelog {doc['id']} from successor {successor_id}")
             except Exception as e:
-                print(f"Error deleting changelog: {e}")
+                logger.error(f"Error deleting changelog: {e}")
                 # Continue even if changelog deletion fails
             
             # Remove the successor relationship

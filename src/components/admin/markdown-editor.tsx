@@ -246,7 +246,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       headers['X-CSRF-Token'] = adminState.csrfToken;
     }
 
-    const response = await fetch('/api/admin/images', {
+    const response = await fetch('/api/images', {
       method: 'POST',
       headers,
       credentials: 'include', // Include cookies for authentication

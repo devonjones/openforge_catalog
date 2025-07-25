@@ -29,7 +29,7 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
 
   const loadImages = async () => {
     try {
-      const response = await fetch('/api/admin/images?type=documentation');
+      const response = await fetch('/api/images?type=documentation');
       if (!response.ok) {
         throw new Error('Failed to load images');
       }
@@ -53,7 +53,7 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
     }));
 
     try {
-      const response = await fetch('/api/admin/images', {
+      const response = await fetch('/api/images', {
         method: 'POST',
         body: formData,
       });

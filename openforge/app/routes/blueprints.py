@@ -34,6 +34,8 @@ def get_deprecated_blueprints():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_deprecated_blueprints(cursor)
+            if not data:
+                return jsonify([]), 404
             return jsonify(data)
 
 
