@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import ImagePicker from './image-picker';
 import { Blueprint } from '@/types';
+import { useAdminContext } from '@/contexts/admin-context';
 
 // Dynamic import to avoid SSR issues with markdown editor
 const MDEditor = dynamic(
@@ -37,25 +38,37 @@ interface ApiDocumentationItem {
 
 const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [content, setContent] = useState('');
-  const [documentType, setDocumentType] = useState<'changelog' | 'instructions'>('instructions');
+  // Always use 'instructions' for regular documentation editor
+  const documentType = 'instructions' as const;
   const [isLive, setIsLive] = useState(true);
   const [showImagePicker, setShowImagePicker] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [existingDoc, setExistingDoc] = useState<DocumentationData | null>(null);
   
-  const autoSaveTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const editorRef = useRef<{ api?: { replaceSelection: (text: string) => void } }>(null);
+  
+  // Get CSRF token from admin context
+  const { state: adminState } = useAdminContext();
 
   // Helper function to load and select the correct instructions document
   const loadInstructionsDocument = async (endpoint: string, targetName: string): Promise<ApiDocumentationItem | null> => {
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, {
+      credentials: 'include', // Include cookies for authentication
+    });
     if (!response.ok) {
+      console.error('Failed to load documentation:', {
+        status: response.status,
+        statusText: response.statusText,
+        endpoint
+      });
       return null;
     }
     
     const docs = await response.json();
+    console.log('Loaded documentation:', { endpoint, docs });
     const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
     
     if (instructionsDocs.length > 1) {
@@ -102,7 +115,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         if (!isCancelled && docToSet) {
           setExistingDoc(docToSet);
           setContent(docToSet.document);
-          setDocumentType(docToSet.document_type);
+          // Document type is always 'instructions' for regular documentation
           setIsLive(docToSet.is_live);
         }
       } catch (err) {
@@ -145,60 +158,78 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       const url = existingDoc?.id ? `${baseUrl}/${existingDoc.id}` : baseUrl;
       const method = existingDoc?.id ? 'PATCH' : 'POST';
 
+      console.log('Saving documentation:', {
+        url,
+        method,
+        saveData,
+        existingDoc,
+        target
+      });
+
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      
+      // Add CSRF token if available
+      if (adminState.csrfToken) {
+        headers['X-CSRF-Token'] = adminState.csrfToken;
+      }
+
       const response = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers,
+        credentials: 'include', // Include cookies for authentication
         body: JSON.stringify(saveData),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save documentation');
+        const errorText = await response.text();
+        console.error('Save failed:', {
+          status: response.status,
+          statusText: response.statusText,
+          url,
+          method,
+          body: errorText
+        });
+        throw new Error(`Failed to save documentation: ${response.status} ${response.statusText} - ${errorText}`);
       }
 
-      const savedDoc = await response.json();
+      const responseData = await response.json();
+      console.log('Save response:', responseData);
+      
+      // The API might return { documentation: {...} } or just the document
+      const savedDoc = responseData.documentation || responseData;
       setExistingDoc(savedDoc);
       setSaveStatus('saved');
       
+      // Update the displayed message based on what was saved
       if (makeLive) {
         setIsLive(true);
+        setSuccessMessage('Published successfully!');
+      } else {
+        setSuccessMessage('Draft saved successfully!');
       }
 
       // Clear saved status after 3 seconds
-      setTimeout(() => setSaveStatus('idle'), 3000);
+      setTimeout(() => {
+        setSaveStatus('idle');
+        setSuccessMessage(null);
+      }, 3000);
     } catch (err) {
       console.error('Save error:', err);
-      setError('Failed to save documentation');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to save documentation';
+      setError(errorMessage);
       setSaveStatus('error');
+      
+      // Clear error status after 5 seconds
+      setTimeout(() => {
+        setSaveStatus('idle');
+      }, 5000);
     } finally {
       setSaving(false);
     }
-  }, [content, documentType, target, existingDoc]);
+  }, [content, documentType, target, existingDoc, adminState.csrfToken]);
 
-  // Auto-save functionality
-  useEffect(() => {
-    let isCancelled = false;
-
-    if (autoSaveTimeoutRef.current) {
-      clearTimeout(autoSaveTimeoutRef.current);
-    }
-
-    if (content.trim()) {
-      autoSaveTimeoutRef.current = setTimeout(() => {
-        if (!isCancelled) {
-          // Changelogs should always be live, instructions can be draft
-          const shouldMakeLive = documentType === 'changelog';
-          saveDocument(shouldMakeLive);
-        }
-      }, 2000);
-    }
-
-    return () => {
-      isCancelled = true;
-      if (autoSaveTimeoutRef.current) {
-        clearTimeout(autoSaveTimeoutRef.current);
-      }
-    };
-  }, [content, documentType, saveDocument]);
 
   const handleImageUpload = async (file: File): Promise<string> => {
     const formData = new FormData();
@@ -208,8 +239,17 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       image_type: 'documentation'
     }));
 
+    const headers: Record<string, string> = {};
+    
+    // Add CSRF token if available
+    if (adminState.csrfToken) {
+      headers['X-CSRF-Token'] = adminState.csrfToken;
+    }
+
     const response = await fetch('/api/admin/images', {
       method: 'POST',
+      headers,
+      credentials: 'include', // Include cookies for authentication
       body: formData,
     });
 
@@ -245,39 +285,76 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         </div>
         
         <div className="editor-controls">
-          <select
-            value={documentType}
-            onChange={(e) => setDocumentType(e.target.value as 'changelog' | 'instructions')}
-            className="document-type-select"
+          <label className="live-toggle">
+            <input
+              type="checkbox"
+              checked={isLive}
+              onChange={(e) => setIsLive(e.target.checked)}
+            />
+            Live
+          </label>
+
+          <button
+            onClick={() => saveDocument(false)}
+            disabled={saving || !content.trim()}
+            className="save-draft-button"
+            style={{ 
+              marginRight: '0.5rem',
+              padding: '0.5rem 1rem',
+              backgroundColor: '#6b7280',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: saving || !content.trim() ? 'not-allowed' : 'pointer',
+              opacity: saving || !content.trim() ? 0.6 : 1,
+              fontSize: '14px',
+              fontWeight: '500',
+              transition: 'background-color 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              if (!saving && content.trim()) {
+                e.currentTarget.style.backgroundColor = '#4b5563';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#6b7280';
+            }}
           >
-            <option value="instructions">Instructions</option>
-            <option value="changelog">Changelog</option>
-          </select>
-
-                                {documentType !== 'changelog' && (
-                        <label className="live-toggle">
-                          <input
-                            type="checkbox"
-                            checked={isLive}
-                            onChange={(e) => setIsLive(e.target.checked)}
-                          />
-                          Live
-                        </label>
-                      )}
-
+            {saving ? 'Saving...' : 'Save Draft'}
+          </button>
           <button
             onClick={() => saveDocument(true)}
             disabled={saving || !content.trim()}
-            className="save-button"
+            className="publish-button"
+            style={{ 
+              padding: '0.5rem 1rem',
+              backgroundColor: '#10b981',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: saving || !content.trim() ? 'not-allowed' : 'pointer',
+              opacity: saving || !content.trim() ? 0.6 : 1,
+              fontSize: '14px',
+              fontWeight: '500',
+              transition: 'background-color 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              if (!saving && content.trim()) {
+                e.currentTarget.style.backgroundColor = '#059669';
+              }
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#10b981';
+            }}
           >
-            {saving ? 'Saving...' : 'Save & Publish'}
+            {saving ? 'Publishing...' : 'Publish'}
           </button>
         </div>
 
         <div className="save-status">
           {saveStatus === 'saving' && <span className="saving">Saving...</span>}
-          {saveStatus === 'saved' && <span className="saved">Saved</span>}
-          {saveStatus === 'error' && <span className="error">Save failed</span>}
+          {saveStatus === 'saved' && successMessage && <span className="saved">{successMessage}</span>}
+          {saveStatus === 'error' && <span className="error">{error || 'Unknown error'}</span>}
         </div>
       </div>
 
@@ -292,7 +369,14 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         <MDEditor
           ref={editorRef}
           value={content}
-          onChange={setContent}
+          onChange={(value) => {
+            setContent(value || '');
+            if (error || successMessage) {
+              setError(null);
+              setSuccessMessage(null);
+              setSaveStatus('idle');
+            }
+          }}
           preview="edit"
           height={500}
           onDrop={handleImageUpload}

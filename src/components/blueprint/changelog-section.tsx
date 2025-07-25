@@ -22,10 +22,10 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
     });
   };
 
-  const getVersionLabel = (depth: number, deprecated: boolean): string => {
-    if (depth === 0) return 'Current Version';
-    if (deprecated) return `Version ${depth} (Deprecated)`;
-    return `Version ${depth}`;
+  const getVersionLabel = (versionNumber: number, deprecated: boolean, isLatest: boolean): string => {
+    if (isLatest && !deprecated) return `Version ${versionNumber} (Current Version)`;
+    if (deprecated) return `Version ${versionNumber} (Deprecated)`;
+    return `Version ${versionNumber}`;
   };
 
   return (
@@ -33,7 +33,12 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
       <h3 className="text-lg font-semibold mb-4 text-gray-800">Version History</h3>
       
       <div className="space-y-4">
-        {changelogHistory.changelogs.slice().reverse().map((entry) => (
+        {changelogHistory.changelogs.slice().reverse().map((entry, index, reversedArray) => {
+          // Calculate version number: depth 0 is version 1, depth 1 is version 2, etc.
+          const versionNumber = entry.depth + 1;
+          const isInitialVersion = entry.depth === 0; // Depth 0 is always the initial version
+          
+          return (
           <div key={`${entry.blueprint_id}-${entry.depth}`} className="changelog-entry">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0">
@@ -42,14 +47,14 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h4 className="font-medium text-gray-700">
-                      {getVersionLabel(entry.depth, entry.deprecated)}
+                      {getVersionLabel(versionNumber, entry.deprecated, index === 0)}
                     </h4>
                     <span className="text-sm text-gray-500">
                       {formatDate(entry.created_at)}
                     </span>
                     {entry.deprecated && (
                       <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
-                        Deprecated
+                        {entry.successor_id ? 'Deprecated' : 'End of Life'}
                       </span>
                     )}
                   </div>
@@ -60,13 +65,17 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
                     </div>
                   ) : (
                     <p className="text-sm text-gray-500 italic">
-                      No changelog available for this version.
+                      {/* Check if this is the first version (depth 0) */}
+                      {isInitialVersion
+                        ? 'Initial version' 
+                        : 'No changelog available for this version.'}
                     </p>
                   )}
                 </div>
               </div>
             </div>
-        ))}
+          );
+        })}
       </div>
       
       {changelogHistory.has_more && (

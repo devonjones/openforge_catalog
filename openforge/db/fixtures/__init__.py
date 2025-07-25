@@ -17,6 +17,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.tag_descriptions as tag_description_sql
+import openforge.db.sql.tags_documentation as tag_documentation_sql
 from openforge.db.sql.tag_utils import array_to_tag, tag_to_array, process_tag
 from openforge.openapi import validate_schema
 
@@ -52,6 +53,7 @@ def find_fixtures_package():
     # Load fixtures from subdirectories
     _collect_fixtures_from_subdir(fixtures_path, "blueprints", ffiles)
     _collect_fixtures_from_subdir(fixtures_path, "tag_descriptions", ffiles)
+    _collect_fixtures_from_subdir(fixtures_path, "tag_documentation", ffiles)
     
     return ffiles
 
@@ -63,6 +65,7 @@ def find_fixtures_directory(dir: str):
     # Load fixtures from subdirectories
     _collect_fixtures_from_subdir(dir_path, "blueprints", ffiles)
     _collect_fixtures_from_subdir(dir_path, "tag_descriptions", ffiles)
+    _collect_fixtures_from_subdir(dir_path, "tag_documentation", ffiles)
     
     return ffiles
 
@@ -87,6 +90,13 @@ def _is_tag_description_fixture(data):
     validate_schema("tag_description.fixture.json", data)
 
 
+def _is_tag_documentation_fixture(data):
+    """Validate data against the tag documentation fixture schema."""
+    # Tag documentation uses the same structure as tag descriptions
+    # but with additional fields for document content
+    return isinstance(data, dict)
+
+
 def _get_fixture_type(file_path):
     """Determine fixture type based on file path.
     
@@ -94,10 +104,12 @@ def _get_fixture_type(file_path):
         file_path: Path to the fixture file
         
     Returns:
-        str: 'blueprint' or 'tag_description'
+        str: 'blueprint', 'tag_description', or 'tag_documentation'
     """
     file_path_str = str(file_path)
-    if 'tag_descriptions' in file_path_str:
+    if 'tag_documentation' in file_path_str:
+        return 'tag_documentation'
+    elif 'tag_descriptions' in file_path_str:
         return 'tag_description'
     elif 'blueprints' in file_path_str:
         return 'blueprint'
@@ -148,6 +160,22 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                                     sys.stderr.write(f"Loaded tag description fixture: {f}\n")
                 except Exception as e:
                     raise e
+            elif fixture_type == 'tag_documentation':
+                # Validate tag documentation fixture
+                try:
+                    _is_tag_documentation_fixture(data)
+                    # Handle tag documentation in incremental mode
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            if dry_run:
+                                sys.stderr.write(f"DRY RUN: Would load tag documentation fixture: {f}\n")
+                            else:
+                                count = load_tag_documentation_fixture(curs, data)
+                                sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
+                                if verbose:
+                                    sys.stderr.write(f"Loaded tag documentation fixture: {f}\n")
+                except Exception as e:
+                    raise e
             else:
                 raise ValueError(f"Unknown fixture type for file: {f}")
     else:
@@ -174,6 +202,14 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                             _is_tag_description_fixture(data)
                             count = load_tag_description_fixture(curs, data)
                             sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                        except Exception as e:
+                            raise e
+                    elif fixture_type == 'tag_documentation':
+                        # Validate tag documentation fixture
+                        try:
+                            _is_tag_documentation_fixture(data)
+                            count = load_tag_documentation_fixture(curs, data)
+                            sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
                         except Exception as e:
                             raise e
                     else:
@@ -227,6 +263,35 @@ def load_tag_description_fixture(curs: cursor, data: dict):
         tag_arr = tag_to_array(tag)
         tag_description_sql.upsert_tag_description(curs, tag_arr, description)
         count += 1
+    return count
+
+
+def load_tag_documentation_fixture(curs: cursor, data: dict):
+    """Load tag documentation from fixture data.
+    
+    Args:
+        curs: Database cursor
+        data: Dict mapping tag strings to lists of documentation entries
+        
+    Returns:
+        int: Number of documentation entries loaded
+    """
+    count = 0
+    for tag, documents in data.items():
+        tag_arr = tag_to_array(tag)
+        
+        # Each tag can have multiple documentation entries
+        for doc in documents:
+            # Create documentation entry
+            tag_documentation_sql.create_tag_documentation(
+                curs,
+                tag_arr,
+                doc['document'],
+                doc.get('document_type', 'instructions'),
+                doc.get('is_live', True)
+            )
+            count += 1
+    
     return count
 
 

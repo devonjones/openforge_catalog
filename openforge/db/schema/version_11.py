@@ -89,7 +89,10 @@ BEGIN
     SELECT 
         fc.id, 
         fc.blueprint_name, 
-        COALESCE(bd.document, 'Initial version') as changelog, 
+        CASE 
+            WHEN fc.depth = 0 AND bd.document IS NULL THEN 'Initial version'
+            ELSE bd.document
+        END as changelog, 
         fc.created_at::timestamptz, 
         fc.depth,
         fc.successor_id,

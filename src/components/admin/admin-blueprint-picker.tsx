@@ -51,26 +51,7 @@ const BlueprintPickerContent = ({ onSelect, onClose }: { onSelect: (blueprint: B
           </div>
           <div className="part-selection-modal__main">
             {selectedBlueprint ? (
-              <>
-                <BlueprintContainer />
-                <div style={{ padding: '1rem', borderTop: '1px solid #e0e0e0', marginTop: '1rem' }}>
-                  <button 
-                    onClick={handleSelectBlueprint}
-                    className="admin-select-button"
-                    style={{
-                      backgroundColor: '#4CAF50',
-                      color: 'white',
-                      padding: '0.5rem 1rem',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '1rem'
-                    }}
-                  >
-                    Select This Blueprint
-                  </button>
-                </div>
-              </>
+              <BlueprintContainer />
             ) : (
               <div style={{ padding: '2rem', textAlign: 'center', color: '#666' }}>
                 Select a blueprint from the results
@@ -79,6 +60,26 @@ const BlueprintPickerContent = ({ onSelect, onClose }: { onSelect: (blueprint: B
           </div>
         </div>
       </div>
+      {selectedBlueprint && (
+        <div className="part-selection-modal__footer">
+          <button 
+            onClick={handleSelectBlueprint}
+            className="admin-select-button"
+            style={{
+              backgroundColor: '#4CAF50',
+              color: 'white',
+              padding: '0.75rem 2rem',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: '500'
+            }}
+          >
+            Select This Blueprint
+          </button>
+        </div>
+      )}
     </div>
   );
 };

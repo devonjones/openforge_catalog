@@ -11,6 +11,7 @@ import openforge.app.routes.tag_descriptions as tag_description_routes
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.tags_documentation as tags_doc_routes
 import openforge.app.routes.sessions as session_routes
+import openforge.app.routes.blueprint_successor as successor_routes
 from openforge.app.routes import authenticate
 from openforge.app.middleware.csrf import csrf_protect
 
@@ -112,6 +113,11 @@ def blueprints():
         return blueprint_routes.create_blueprint()
 
 
+@app.route("/api/blueprints/deprecated", methods=["GET"])
+def deprecated_blueprints():
+    return blueprint_routes.get_deprecated_blueprints()
+
+
 @app.route("/api/blueprints/tags", methods=["POST"])
 def tags():
     return tag_routes.query_tags()
@@ -171,6 +177,13 @@ def blueprint_tag(blueprint_id, tag):
         return tag_routes.create_blueprint_tags(blueprint_id, [tag])
     elif request.method == "DELETE":
         return tag_routes.delete_blueprint_tag(blueprint_id, tag)
+
+
+@app.route("/api/blueprints/<blueprint_id>/disconnect-successor", methods=["POST"])
+@authenticate(methods=["POST"])
+@csrf_protect
+def disconnect_successor(blueprint_id):
+    return successor_routes.disconnect_successor(blueprint_id)
 
 
 ####################

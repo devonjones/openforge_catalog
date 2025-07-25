@@ -400,11 +400,17 @@ SELECT DISTINCT bp.id
             deny_parts.append(_query_tags_deny([d]))
             deny_parts.append(sql.SQL("    )"))
     
-    if models:
+    # Handle blueprint type filtering
+    if models and blueprints:
+        # When both are requested, use OR logic
+        query_parts.append(
+            sql.SQL("    AND (bp2.blueprint_type = 'model' OR bp2.blueprint_type = 'blueprint')")
+        )
+    elif models:
         query_parts.append(
             sql.SQL("    AND bp2.blueprint_type = 'model'")
         )
-    if blueprints:
+    elif blueprints:
         query_parts.append(
             sql.SQL("    AND bp2.blueprint_type = 'blueprint'")
         )

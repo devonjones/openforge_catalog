@@ -29,6 +29,14 @@ def get_blueprints():
             return jsonify(data)
 
 
+def get_deprecated_blueprints():
+    """Get all deprecated blueprints with their successor information."""
+    with current_app.db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            data = blueprint_sql.get_deprecated_blueprints(cursor)
+            return jsonify(data)
+
+
 def _create_blueprint_words(data: dict):
     words = set()
     for t in data.get("tags", []):
@@ -72,7 +80,8 @@ def get_blueprint_by_id(blueprint_id):
 def get_blueprint_by_md5(md5):
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            data = blueprint_sql.get_blueprint_by_md5(cursor, md5)
+            # Follow successor chain to get current version
+            data = blueprint_sql.get_current_version_by_md5(cursor, md5)
             data["tags"] = [
                 tag["tag"] for tag in tag_sql.get_tags(cursor, data["id"])
             ]

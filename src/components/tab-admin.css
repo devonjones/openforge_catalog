@@ -405,6 +405,8 @@
 /* Deprecated objects manager */
 .deprecated-objects-manager {
   width: 100%;
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
 }
 
 .manager-header {
@@ -458,7 +460,9 @@
 }
 
 .view-successor-btn,
-.create-changelog-btn {
+.create-changelog-btn,
+.disconnect-btn,
+.attach-successor-btn {
   padding: 6px 12px;
   border: 1px solid #ced4da;
   background: white;
@@ -473,6 +477,17 @@
 .create-changelog-btn:hover {
   background: #e9ecef;
   border-color: #adb5bd;
+}
+
+.disconnect-btn {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.disconnect-btn:hover {
+  background: #c82333;
+  border-color: #bd2130;
 }
 
 /* Status messages */
@@ -540,4 +555,37 @@
     width: 100%;
     justify-content: flex-end;
   }
+}
+
+/* Additional deprecated objects styles */
+.deprecated-info h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.deprecated-full-name {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.25rem 0;
+}
+
+.changelog-display {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border-left: 3px solid #2196F3;
+}
+
+.changelog-display strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.changelog-display p {
+  margin: 0;
+  color: #555;
+  white-space: pre-wrap;
 } 
