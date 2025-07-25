@@ -5,7 +5,6 @@ import uuid
 import logging
 
 import openforge.db.sql.blueprints as blueprint_sql
-import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
 
 logger = logging.getLogger(__name__)
 
@@ -36,22 +35,20 @@ def disconnect_successor(blueprint_id: str):
                 
                 successor_id = blueprint['successor_id']
                 
-                # Delete any changelog documentation on the successor
+                # Set any changelog documentation on the successor to is_live=false
                 try:
-                    # Get all documentation for the successor
-                    docs = blueprint_doc_sql.get_blueprint_documentation(cursor, successor_id)
+                    # Update all changelog entries for the successor to not be live
+                    cursor.execute("""
+                        UPDATE blueprint_documentation 
+                        SET is_live = false, updated_at = CURRENT_TIMESTAMP
+                        WHERE blueprint_id = %s AND document_type = 'changelog'
+                    """, (successor_id,))
                     
-                    # Delete any changelog entries
-                    for doc in docs:
-                        if doc['document_type'] == 'changelog':
-                            blueprint_doc_sql.delete_blueprint_documentation(cursor, doc['id'])
-                            logger.info(f"Deleted changelog {doc['id']} from successor {successor_id}")
-                except NotFound:
-                    logger.warning(f"No changelog documentation found for successor {successor_id}")
-                    # Continue if no changelog exists
+                    if cursor.rowcount > 0:
+                        logger.info(f"Set {cursor.rowcount} changelog(s) to is_live=false for successor {successor_id}")
                 except Exception as e:
-                    logger.error(f"Unexpected error deleting changelog: {e}", exc_info=True)
-                    # Continue even if changelog deletion fails
+                    logger.error(f"Unexpected error updating changelog: {e}", exc_info=True)
+                    # Continue even if changelog update fails
                 
                 # Remove the successor relationship
                 updated_blueprint = blueprint_sql.update_blueprint(cursor, blueprint_uuid, {

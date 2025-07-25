@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useAdminContext } from '../../contexts/admin-context';
+import { useToast } from '../../hooks/use-toast';
+import Toast from '../ui/toast';
 
 const ChangelogEditor = dynamic(() => import('./changelog-editor'), {
   ssr: false,
@@ -29,6 +31,7 @@ interface DeprecatedBlueprint {
 
 const DeprecatedObjectsManager: React.FC = () => {
   const { state: adminState } = useAdminContext();
+  const { toasts, showToast, removeToast } = useToast();
   const [deprecatedBlueprints, setDeprecatedBlueprints] = useState<DeprecatedBlueprint[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -37,6 +40,7 @@ const DeprecatedObjectsManager: React.FC = () => {
   const [editingBlueprint, setEditingBlueprint] = useState<DeprecatedBlueprint | null>(null);
   const [showSuccessorPicker, setShowSuccessorPicker] = useState(false);
   const [attachingToBlueprint, setAttachingToBlueprint] = useState<DeprecatedBlueprint | null>(null);
+  const [showDisconnectConfirm, setShowDisconnectConfirm] = useState<DeprecatedBlueprint | null>(null);
 
   useEffect(() => {
     loadDeprecatedBlueprints();
@@ -107,18 +111,15 @@ const DeprecatedObjectsManager: React.FC = () => {
       // Close picker and reload
       setShowSuccessorPicker(false);
       setAttachingToBlueprint(null);
+      showToast('Successor attached successfully', 'success');
       loadDeprecatedBlueprints();
     } catch (err) {
       console.error('Error attaching successor:', err);
-      alert('Failed to attach successor');
+      showToast('Failed to attach successor', 'error');
     }
   };
 
   const handleDisconnectSuccessor = async (blueprint: DeprecatedBlueprint) => {
-    if (!confirm('Are you sure you want to disconnect the successor?')) {
-      return;
-    }
-
     try {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
@@ -138,11 +139,12 @@ const DeprecatedObjectsManager: React.FC = () => {
         throw new Error('Failed to disconnect successor');
       }
 
+      showToast('Successor disconnected successfully', 'success');
       // Reload the list
       loadDeprecatedBlueprints();
     } catch (err) {
       console.error('Error disconnecting successor:', err);
-      alert('Failed to disconnect successor');
+      showToast('Failed to disconnect successor', 'error');
     }
   };
 
@@ -206,7 +208,7 @@ const DeprecatedObjectsManager: React.FC = () => {
                         </button>
                         <button 
                           className="disconnect-btn"
-                          onClick={() => handleDisconnectSuccessor(blueprint)}
+                          onClick={() => setShowDisconnectConfirm(blueprint)}
                           title="Disconnect successor"
                         >
                           Disconnect
@@ -263,6 +265,65 @@ const DeprecatedObjectsManager: React.FC = () => {
           }}
         />
       )}
+
+      {showDisconnectConfirm && (
+        <div className="modal-overlay" onClick={() => setShowDisconnectConfirm(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '400px' }}>
+            <div className="modal-header">
+              <h3>Confirm Disconnect</h3>
+              <button className="modal-close" onClick={() => setShowDisconnectConfirm(null)}>
+                ×
+              </button>
+            </div>
+            <div className="modal-body" style={{ padding: '20px' }}>
+              <p>Are you sure you want to disconnect the successor relationship?</p>
+              <p style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+                This will remove the link between {showDisconnectConfirm.blueprint_name} and its successor.
+              </p>
+              <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+                <button
+                  onClick={() => setShowDisconnectConfirm(null)}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#6c757d',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    handleDisconnectSuccessor(showDisconnectConfirm);
+                    setShowDisconnectConfirm(null);
+                  }}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#dc3545',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Disconnect
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {toasts.map(toast => (
+        <Toast
+          key={toast.id}
+          message={toast.message}
+          type={toast.type}
+          onClose={() => removeToast(toast.id)}
+        />
+      ))}
     </div>
   );
 };
