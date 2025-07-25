@@ -228,7 +228,7 @@ def get_blueprint_changelog_history(blueprint_id):
     offset = request.args.get("offset", 0, type=int)
     
     result = validate_pagination_params(limit, offset)
-    if len(result) == 2 and isinstance(result[1], int) and result[1] >= 400:
+    if not isinstance(result[0], int):
         return result
     limit, offset = result
     
@@ -255,7 +255,7 @@ def get_blueprint_all_documentation(blueprint_id):
     changelog_offset = request.args.get("changelog_offset", 0, type=int)
     
     result = validate_pagination_params(changelog_limit, changelog_offset)
-    if len(result) == 2 and isinstance(result[1], int) and result[1] >= 400:
+    if not isinstance(result[0], int):
         return result
     changelog_limit, changelog_offset = result
     

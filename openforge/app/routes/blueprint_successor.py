@@ -10,11 +10,11 @@ logger = logging.getLogger(__name__)
 
 
 def disconnect_successor(blueprint_id: str):
-    """Disconnect a successor relationship and delete any associated changelog.
+    """Disconnect a successor relationship and mark associated changelogs as non-live.
     
     This endpoint:
     1. Sets the successor_id to null on the deprecated blueprint
-    2. Deletes any changelog documentation on the successor
+    2. Updates any changelog documentation on the successor to is_live=false
     """
     try:
         blueprint_uuid = uuid.UUID(blueprint_id)

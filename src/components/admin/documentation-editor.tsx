@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import AdminBlueprintPicker from './admin-blueprint-picker';
 import AdminTagPicker from './admin-tag-picker';
 import MarkdownEditor from './markdown-editor';
@@ -27,7 +27,7 @@ const DocumentationEditor: React.FC = () => {
     setShowTagPicker(false);
   };
 
-  const getCurrentTarget = () => {
+  const currentTarget = useMemo(() => {
     if (targetType === 'blueprint' && selectedBlueprint) {
       return { type: 'blueprint' as const, blueprint: selectedBlueprint };
     }
@@ -35,7 +35,7 @@ const DocumentationEditor: React.FC = () => {
       return { type: 'tag' as const, tag: selectedTag };
     }
     return null;
-  };
+  }, [targetType, selectedBlueprint, selectedTag]);
 
   const formatTagDisplay = (tag: string[]) => {
     return tag.join(': ');
@@ -117,9 +117,9 @@ const DocumentationEditor: React.FC = () => {
       </div>
 
       {/* Editor content */}
-      {getCurrentTarget() && (
+      {currentTarget && (
         <div className="editor-content">
-          <MarkdownEditor target={getCurrentTarget()!} />
+          <MarkdownEditor target={currentTarget} />
         </div>
       )}
 
