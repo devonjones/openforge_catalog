@@ -23,41 +23,42 @@ def disconnect_successor(blueprint_id: str):
         return jsonify({"error": "Invalid blueprint ID format"}), 400
     
     with current_app.db.connection() as conn:
-        with conn.cursor(row_factory=dict_row) as cursor:
-            # First, get the blueprint to find its successor
-            try:
-                blueprint = blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
-            except NotFound:
-                return jsonify({"error": "Blueprint not found"}), 404
-            
-            if not blueprint.get('successor_id'):
-                return jsonify({"error": "Blueprint has no successor"}), 400
-            
-            successor_id = blueprint['successor_id']
-            
-            # Delete any changelog documentation on the successor
-            try:
-                # Get all documentation for the successor
-                docs = blueprint_doc_sql.get_blueprint_documentation(cursor, successor_id)
+        with conn.transaction():
+            with conn.cursor(row_factory=dict_row) as cursor:
+                # First, get the blueprint to find its successor
+                try:
+                    blueprint = blueprint_sql.get_blueprint_by_id(cursor, blueprint_uuid)
+                except NotFound:
+                    return jsonify({"error": "Blueprint not found"}), 404
                 
-                # Delete any changelog entries
-                for doc in docs:
-                    if doc['document_type'] == 'changelog':
-                        blueprint_doc_sql.delete_blueprint_documentation(cursor, doc['id'])
-                        logger.info(f"Deleted changelog {doc['id']} from successor {successor_id}")
-            except NotFound:
-                logger.warning(f"No changelog documentation found for successor {successor_id}")
-                # Continue if no changelog exists
-            except Exception as e:
-                logger.error(f"Unexpected error deleting changelog: {e}", exc_info=True)
-                # Continue even if changelog deletion fails
-            
-            # Remove the successor relationship
-            updated_blueprint = blueprint_sql.update_blueprint(cursor, blueprint_uuid, {
-                'successor_id': None
-            })
-            
-            return jsonify({
-                "success": True,
-                "blueprint": updated_blueprint
-            })
+                if not blueprint.get('successor_id'):
+                    return jsonify({"error": "Blueprint has no successor"}), 400
+                
+                successor_id = blueprint['successor_id']
+                
+                # Delete any changelog documentation on the successor
+                try:
+                    # Get all documentation for the successor
+                    docs = blueprint_doc_sql.get_blueprint_documentation(cursor, successor_id)
+                    
+                    # Delete any changelog entries
+                    for doc in docs:
+                        if doc['document_type'] == 'changelog':
+                            blueprint_doc_sql.delete_blueprint_documentation(cursor, doc['id'])
+                            logger.info(f"Deleted changelog {doc['id']} from successor {successor_id}")
+                except NotFound:
+                    logger.warning(f"No changelog documentation found for successor {successor_id}")
+                    # Continue if no changelog exists
+                except Exception as e:
+                    logger.error(f"Unexpected error deleting changelog: {e}", exc_info=True)
+                    # Continue even if changelog deletion fails
+                
+                # Remove the successor relationship
+                updated_blueprint = blueprint_sql.update_blueprint(cursor, blueprint_uuid, {
+                    'successor_id': None
+                })
+                
+                return jsonify({
+                    "success": True,
+                    "blueprint": updated_blueprint
+                })

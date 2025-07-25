@@ -285,7 +285,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchData();
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=false', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -306,7 +306,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchData();
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?blueprints=true', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=true', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -328,7 +328,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchData();
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=false', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -355,7 +355,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchBlueprints();
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=false', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -379,7 +379,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchBlueprints();
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?search=test-search', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=false&search=test-search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -401,7 +401,7 @@ describe('TagStore', () => {
 
       await store.getState().fetchBlueprints({ next: 'next-token' });
 
-      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?next=next-token', {
+      expect(fetch).toHaveBeenCalledWith('/api/blueprints/tags?models=false&blueprints=false&next=next-token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

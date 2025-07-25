@@ -240,7 +240,7 @@ $$ LANGUAGE plpgsql
         print("  updated get_blueprint_changelog_history function to handle missing changelogs properly")
 
     def revert_changelog_history_function(self, curs: cursor):
-        """Revert the changelog history function to previous version."""
+        """Revert the changelog history function to version 11 state."""
         query = sql.SQL(
             """
 CREATE OR REPLACE FUNCTION get_blueprint_changelog_history(
@@ -288,7 +288,7 @@ BEGIN
             b.blueprint_name,
             b.successor_id,
             b.created_at,
-            0 as depth,  -- Root always starts at depth 0
+            pc.depth as depth,
             b.deprecated
         FROM predecessor_chain pc
         INNER JOIN blueprints b ON pc.id = b.id
@@ -313,7 +313,10 @@ BEGIN
     SELECT 
         fc.id, 
         fc.blueprint_name, 
-        COALESCE(bd.document, 'Initial version') as changelog, 
+        CASE 
+            WHEN fc.depth = 0 AND bd.document IS NULL THEN 'Initial version'
+            ELSE bd.document
+        END as changelog, 
         fc.created_at::timestamptz, 
         fc.depth,
         fc.successor_id,
@@ -327,7 +330,7 @@ $$ LANGUAGE plpgsql
 """
         )
         curs.execute(query)
-        print("  reverted get_blueprint_changelog_history function to previous version")
+        print("  reverted get_blueprint_changelog_history function to version 11 state")
 
     def create_find_current_version_function(self, curs: cursor):
         """Create function to find the current version of a blueprint by following successor chain."""

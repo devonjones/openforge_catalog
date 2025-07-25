@@ -85,8 +85,8 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       const params = new URLSearchParams();
       
       // Add parameters for model/blueprint search
-      if (search_models) params.set('models', 'true');
-      if (search_blueprints) params.set('blueprints', 'true');
+      params.set('models', String(search_models));
+      params.set('blueprints', String(search_blueprints));
 
       const requestBody = {
         require: selectedTags.map(tag => ({ tag })),
@@ -241,8 +241,8 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       const urlParams = new URLSearchParams();
       
       // Add search type parameters
-      if (search_models) urlParams.set('models', 'true');
-      if (search_blueprints) urlParams.set('blueprints', 'true');
+      urlParams.set('models', String(search_models));
+      urlParams.set('blueprints', String(search_blueprints));
 
       // Add search parameter if present
       if (searchTerm) {
