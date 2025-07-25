@@ -150,25 +150,31 @@ class TestDocumentationPopulation:
     def test_populate_changelog(self, api_client):
         """Test creating/updating changelog for deprecated blueprint."""
         
-        # Get the deprecated blueprint
-        response = api_client.get("/api/blueprints/md5/be93fd95db6e7e373b851f47b39ce279")
-        print(f"Deprecated blueprint lookup response: {response.status_code} - {response.text}")
+        # First, create a successor relationship between two blueprints
+        # Get any two blueprints
+        response = api_client.get("/api/blueprints")
+        assert response.status_code == 200
+        blueprints = response.json()
+        assert len(blueprints) >= 2, "Need at least 2 blueprints for this test"
         
-        if response.status_code == 404:
-            print("Deprecated blueprint not found, skipping changelog test")
-            return
-            
-        assert response.status_code == 200, f"Failed to get deprecated blueprint: {response.text}"
-        deprecated_blueprint = response.json()
+        # Use the first as deprecated and second as successor
+        deprecated_blueprint = blueprints[0]
+        successor_blueprint = blueprints[1]
         
-        # Get the successor blueprint
-        successor_id = deprecated_blueprint.get("successor_id")
-        assert successor_id is not None, "Deprecated blueprint should have a successor"
+        # Update the first blueprint to be deprecated and point to successor
+        update_data = {
+            "deprecated": True,
+            "successor_id": successor_blueprint["id"]
+        }
+        response = api_client.patch(f"/api/blueprints/{deprecated_blueprint['id']}", data=update_data)
+        assert response.status_code == 200, f"Failed to update blueprint: {response.text}"
+        
+        # Now we have a deprecated blueprint with a successor
+        successor_id = successor_blueprint["id"]
         
         response = api_client.get(f"/api/blueprints/{successor_id}")
         print(f"Successor blueprint lookup response: {response.status_code} - {response.text}")
         assert response.status_code == 200, f"Failed to get successor blueprint: {response.text}"
-        successor_blueprint = response.json()
         
         # Check if changelog already exists
         response = api_client.get(f"/api/blueprints/{successor_id}/documentation")

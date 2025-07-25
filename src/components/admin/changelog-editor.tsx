@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useAdminContext } from '@/contexts/admin-context';
 
@@ -23,7 +23,7 @@ interface ChangelogData {
   is_live: boolean;
 }
 
-const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, blueprintName, onClose }) => {
+const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose }) => {
   const { state: adminState } = useAdminContext();
   const [content, setContent] = useState('');
   const [isLive, setIsLive] = useState(true);
@@ -34,6 +34,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, blueprin
 
   useEffect(() => {
     loadExistingChangelog();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blueprintId]);
 
   const loadExistingChangelog = async () => {
@@ -50,7 +51,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, blueprin
       const data = await response.json();
       const docs = data.documentation || [];
       // Find the live changelog
-      const changelog = docs.find((doc: any) => 
+      const changelog = docs.find((doc: ChangelogData) => 
         doc.document_type === 'changelog' && doc.is_live
       );
       

@@ -143,7 +143,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       const saveData = {
         document: content,
         document_type: documentType,
-        is_live: documentType === 'changelog' || makeLive,
+        is_live: makeLive,
       };
 
       // Determine base URL and method based on target type and whether document exists
@@ -231,35 +231,10 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   }, [content, documentType, target, existingDoc, adminState.csrfToken]);
 
 
-  const handleImageUpload = async (file: File): Promise<string> => {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('metadata', JSON.stringify({
-      image_name: file.name,
-      image_type: 'documentation'
-    }));
-
-    const headers: Record<string, string> = {};
-    
-    // Add CSRF token if available
-    if (adminState.csrfToken) {
-      headers['X-CSRF-Token'] = adminState.csrfToken;
-    }
-
-    const response = await fetch('/api/images', {
-      method: 'POST',
-      headers,
-      credentials: 'include', // Include cookies for authentication
-      body: formData,
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to upload image');
-    }
-
-    const { image } = await response.json();
-    return image.image_url;
-  };
+  // TODO: Implement drag and drop image upload
+  // The MDEditor expects onDrop to be a DragEventHandler<HTMLDivElement>
+  // but our handleImageUpload function signature doesn't match
+  // For now, users can use the image picker button instead
 
   const insertImage = (imageUrl: string, imageName: string) => {
     const imageMarkdown = `![${imageName}](${imageUrl})`;
@@ -365,7 +340,6 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       )}
 
       <div className="editor-container">
-        {/* @ts-expect-error - MDEditor type definitions have several issues: onChange expects (value?: string, event?, state?) but we pass (value: string) => void; onDrop expects DragEventHandler but we pass (file: File) => Promise<string>; custom commands array with execute functions not properly typed; ref API for replaceSelection not in library's type definitions. These are known limitations of the @uiw/react-md-editor library's type system. */}
         <MDEditor
           ref={editorRef}
           value={content}
@@ -379,7 +353,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
           }}
           preview="edit"
           height={500}
-          onDrop={handleImageUpload}
+          // onDrop={handleImageUpload} // TODO: Fix type mismatch - MDEditor expects DragEventHandler
           textareaProps={{
             placeholder: "Enter documentation content...",
           }}

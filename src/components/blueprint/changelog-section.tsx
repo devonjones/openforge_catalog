@@ -33,7 +33,7 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
       <h3 className="text-lg font-semibold mb-4 text-gray-800">Version History</h3>
       
       <div className="space-y-4">
-        {changelogHistory.changelogs.slice().reverse().map((entry, index, reversedArray) => {
+        {changelogHistory.changelogs.slice().reverse().map((entry, index) => {
           // Calculate version number: depth 0 is version 1, depth 1 is version 2, etc.
           const versionNumber = entry.depth + 1;
           const isInitialVersion = entry.depth === 0; // Depth 0 is always the initial version

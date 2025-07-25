@@ -6,30 +6,13 @@ import uuid
 
 import openforge.db.sql.blueprint_documentation as blueprint_doc_sql
 from openforge.app.utils.sanitization import sanitize_documentation_content, validate_documentation_content
+from openforge.app.utils.pagination import validate_pagination_params
 import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.tags_documentation as tags_doc_sql
 from openforge.db.sql.tag_utils import tag_to_array
 
 
-def _validate_pagination_params(limit: int, offset: int, limit_name: str = "Limit") -> tuple[int, int, str | None]:
-    """Validate pagination parameters.
-    
-    Args:
-        limit: Maximum number of results to return
-        offset: Number of results to skip
-        limit_name: Name for the limit parameter in error messages
-        
-    Returns:
-        Tuple of (limit, offset, error_message) where error_message is None if valid
-    """
-    if limit < 1 or limit > 100:
-        return limit, offset, f"{limit_name} must be between 1 and 100"
-    
-    if offset < 0:
-        return limit, offset, f"{limit_name.split()[0]} offset must be non-negative"
-    
-    return limit, offset, None
 
 
 def _apply_document_type_rules(document_type: str, is_live: bool | None) -> bool | None:
@@ -244,9 +227,10 @@ def get_blueprint_changelog_history(blueprint_id):
     limit = request.args.get("limit", 10, type=int)
     offset = request.args.get("offset", 0, type=int)
     
-    limit, offset, error = _validate_pagination_params(limit, offset)
-    if error:
-        return jsonify({"error": error}), 400
+    result = validate_pagination_params(limit, offset)
+    if len(result) == 2 and isinstance(result[1], int) and result[1] >= 400:
+        return result
+    limit, offset = result
     
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -270,9 +254,10 @@ def get_blueprint_all_documentation(blueprint_id):
     changelog_limit = request.args.get("changelog_limit", 10, type=int)
     changelog_offset = request.args.get("changelog_offset", 0, type=int)
     
-    changelog_limit, changelog_offset, error = _validate_pagination_params(changelog_limit, changelog_offset, "Changelog limit")
-    if error:
-        return jsonify({"error": error}), 400
+    result = validate_pagination_params(changelog_limit, changelog_offset)
+    if len(result) == 2 and isinstance(result[1], int) and result[1] >= 400:
+        return result
+    changelog_limit, changelog_offset = result
     
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:

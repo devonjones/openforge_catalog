@@ -8,6 +8,13 @@ See language-specific CLAUDE.md files:
 - Python/Backend tests: `openforge/CLAUDE.md`
 - JavaScript/Frontend tests: `src/CLAUDE.md`
 
+## Important Guidelines
+
+1. **Always run tests** after making code changes (see language-specific CLAUDE.md files)
+- **Before committing, always run `pytest tests` and `npm test`**
+2. **Check linting** before committing
+3. **Follow language-specific guidelines** in `openforge/CLAUDE.md` and `src/CLAUDE.md`
+
 ## Project Overview
 
 OpenForge Catalog is a content management system for the OpenForge project - a comprehensive system of 3D printable modular dungeon terrain created by Devon Jones. The catalog manages:
@@ -38,12 +45,6 @@ The system uses:
 - ✅ Frontend documentation viewing and editing
 - ✅ Session-based authentication
 - ⚠️ Deprecated objects manager needs API endpoint
-
-## Important Guidelines
-
-1. **Always run tests** after making code changes (see language-specific CLAUDE.md files)
-2. **Check linting** before committing
-3. **Follow language-specific guidelines** in `openforge/CLAUDE.md` and `src/CLAUDE.md`
 
 ## Common Tasks
 

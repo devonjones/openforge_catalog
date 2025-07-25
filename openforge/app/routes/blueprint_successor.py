@@ -45,8 +45,11 @@ def disconnect_successor(blueprint_id: str):
                     if doc['document_type'] == 'changelog':
                         blueprint_doc_sql.delete_blueprint_documentation(cursor, doc['id'])
                         logger.info(f"Deleted changelog {doc['id']} from successor {successor_id}")
+            except NotFound:
+                logger.warning(f"No changelog documentation found for successor {successor_id}")
+                # Continue if no changelog exists
             except Exception as e:
-                logger.error(f"Error deleting changelog: {e}")
+                logger.error(f"Unexpected error deleting changelog: {e}", exc_info=True)
                 # Continue even if changelog deletion fails
             
             # Remove the successor relationship
