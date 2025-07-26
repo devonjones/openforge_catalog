@@ -14,9 +14,13 @@ from .conftest import APIClient
 from .test_constants import TEST_DATA_PREFIX
 
 
-@pytest.mark.usefixtures("db_transaction")
 class TestDocumentationPopulation:
-    """Test class for populating documentation data."""
+    """Test class for populating documentation data.
+    
+    Note: This test class does not use db_transaction fixture because it has
+    conditional cleanup logic based on KEEP_TEST_DATA environment variable.
+    When KEEP_TEST_DATA=true, the test data is preserved for manual testing.
+    """
     
     def test_populate_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test creating blueprint documentation."""

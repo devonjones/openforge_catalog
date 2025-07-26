@@ -207,4 +207,28 @@ AND id != {}
             sql.Literal(document_type),
             sql.Literal(exclude_doc_id)
         )
-    curs.execute(query) 
+    curs.execute(query)
+
+
+def set_changelogs_non_live(curs, blueprint_id: uuid.UUID):
+    """Set all changelog documentation for a blueprint to non-live.
+    
+    This is used when disconnecting a successor relationship to mark any
+    changelog entries on the successor as non-live.
+    
+    Args:
+        curs: Database cursor
+        blueprint_id: UUID of the blueprint whose changelogs should be marked non-live
+        
+    Returns:
+        int: Number of changelog entries updated
+    """
+    query = sql.SQL(
+        """
+UPDATE blueprint_documentation 
+SET is_live = false, updated_at = CURRENT_TIMESTAMP
+WHERE blueprint_id = {} AND document_type = 'changelog'
+"""
+    ).format(sql.Literal(blueprint_id))
+    curs.execute(query)
+    return curs.rowcount 
