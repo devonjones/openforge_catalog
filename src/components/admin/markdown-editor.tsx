@@ -48,10 +48,25 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [existingDoc, setExistingDoc] = useState<DocumentationData | null>(null);
   
-  const editorRef = useRef<{ api?: { replaceSelection: (text: string) => void } }>(null);
+  const editorRef = useRef<any>(null);
   
   // Get CSRF token from admin context
   const { state: adminState } = useAdminContext();
+
+  // Convert Obsidian image syntax to standard markdown/HTML
+  const processObsidianImages = (markdown: string): string => {
+    // Pattern to match Obsidian image syntax: ![alt|width](url) or ![alt|widthxheight](url)
+    const obsidianImageRegex = /!\[([^\]|]*)\|(\d+)(?:x(\d+))?\]\(([^)]+)\)/g;
+    
+    return markdown.replace(obsidianImageRegex, (match, alt, width, height, url) => {
+      // For MDEditor preview, we'll use HTML img tags
+      if (height) {
+        return `<img src="${url}" alt="${alt}" width="${width}" height="${height}" />`;
+      } else {
+        return `<img src="${url}" alt="${alt}" width="${width}" />`;
+      }
+    });
+  };
 
   // Helper function to load and select the correct instructions document
   const loadInstructionsDocument = async (endpoint: string, targetName: string): Promise<ApiDocumentationItem | null> => {
@@ -237,11 +252,15 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   // For now, users can use the image picker button instead
 
   const insertImage = (imageUrl: string, imageName: string) => {
-    const imageMarkdown = `![${imageName}](${imageUrl})`;
+    // Use Obsidian's image resize syntax with a default width of 400px
+    const imageMarkdown = `![${imageName}|400](${imageUrl})`;
     
-    if (editorRef.current && editorRef.current.api) {
-      editorRef.current.api.replaceSelection(imageMarkdown);
-    }
+    // Since MDEditor doesn't expose a ref API, we'll insert at cursor position
+    // by updating the content state
+    setContent(prevContent => {
+      // Simple approach: append to the end if we can't determine cursor position
+      return prevContent + '\n\n' + imageMarkdown;
+    });
   };
 
   const getTargetDisplay = () => {
@@ -351,7 +370,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
               setSaveStatus('idle');
             }
           }}
-          preview="edit"
+          preview="live"
           height={500}
           // onDrop={handleImageUpload} // TODO: Fix type mismatch - MDEditor expects DragEventHandler
           textareaProps={{
@@ -366,6 +385,52 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
               execute: () => setShowImagePicker(true),
             }
           ]}
+          previewOptions={{
+            // Process the markdown to handle Obsidian image syntax
+            components: {
+              code({ inline, className, children, ...props }: any) {
+                // Default code rendering
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <pre className={className}>
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  </pre>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+              img: ({ src, alt, className, ...props }: any) => {
+                // Check if this is Obsidian syntax that wasn't processed
+                const altMatch = alt?.match(/^(.+)\|(\d+)$/);
+                if (altMatch) {
+                  const [, realAlt, width] = altMatch;
+                  // Remove max-w-full class and use inline style
+                  const filteredClassName = className?.replace(/\bmax-w-full\b/g, '').trim();
+                  return (
+                    <img 
+                      src={src} 
+                      alt={realAlt} 
+                      className={filteredClassName}
+                      style={{ width: `${width}px`, height: 'auto' }}
+                      {...props} 
+                    />
+                  );
+                }
+                return <img src={src} alt={alt} className={className} {...props} />;
+              }
+            },
+            // Use urlTransform instead of deprecated transformImageUri/transformLinkUri
+            urlTransform: (url: string) => url,
+          }}
+          renderPreview={(source) => {
+            // Process Obsidian syntax before rendering
+            const processed = processObsidianImages(source);
+            return <MDEditor.Markdown source={processed} />;
+          }}
         />
       </div>
 

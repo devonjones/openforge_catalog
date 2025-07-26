@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { TagProvider, useTagContext } from '@/contexts/tag-context';
 import type { TagNode } from '@/types';
@@ -11,20 +11,42 @@ interface AdminTagPickerProps {
   onSelect: (tag: string[]) => void;
 }
 
-// Inner component that uses the tag context
-const TagPickerContent = ({ onClose, onSelect }: { onClose: () => void; onSelect: (tag: string[]) => void }) => {
+// Custom hook for debouncing
+const useDebounce = <T,>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+  return debouncedValue;
+};
+
+// Modified version of TagContainer that supports selection
+const SelectableTagContainer = ({ onTagClick }: { onTagClick: (tag: string[]) => void }) => {
   const data = useTagContext((state) => state.data);
   const expandedNodes = useTagContext((state) => state.expandedNodes);
   const toggleNode = useTagContext((state) => state.toggleNode);
-  const [searchTerm, setSearchTerm] = useState('');
+  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
+  const searchTerm = useTagContext((state) => state.searchTerm);
+  const fetchTagDescriptions = useTagContext((state) => state.fetchTagDescriptions);
+  const [searchInput, setSearchInput] = useState(searchTerm || "");
+  const debouncedSearchInput = useDebounce(searchInput, 300);
+
+  // Fetch tag descriptions on mount
+  useEffect(() => {
+    fetchTagDescriptions();
+  }, [fetchTagDescriptions]);
+
+  // Apply debounced search
+  useEffect(() => {
+    setSearchTerm(debouncedSearchInput.trim() || null);
+  }, [debouncedSearchInput, setSearchTerm]);
 
   const handleSelectTag = useCallback((tagString: string) => {
     const tagArray = tagString.split('|');
-    onSelect(tagArray);
-    onClose();
-  }, [onSelect, onClose]);
+    onTagClick(tagArray);
+  }, [onTagClick]);
 
-  // Render tags with selection capability
   const renderSelectableTags = (
     tagData: Record<string, TagNode>,
     level = 0
@@ -37,19 +59,6 @@ const TagPickerContent = ({ onClose, onSelect }: { onClose: () => void; onSelect
       const hasChildren = value.children && Object.keys(value.children).length > 0;
       const fullTagName = value.__name as string;
       
-      // Simple search filter
-      if (searchTerm && !fullTagName.toLowerCase().includes(searchTerm.toLowerCase())) {
-        // Still render if children match
-        if (hasChildren && value.children) {
-          const hasMatchingChild = Object.values(value.children).some(child => 
-            (child.__name as string).toLowerCase().includes(searchTerm.toLowerCase())
-          );
-          if (!hasMatchingChild) return null;
-        } else {
-          return null;
-        }
-      }
-
       return (
         <div key={key} className="tagNode" style={{ marginLeft: level * 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -89,29 +98,20 @@ const TagPickerContent = ({ onClose, onSelect }: { onClose: () => void; onSelect
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px', maxHeight: '80vh' }}>
-        <div className="modal-header">
-          <h3>Select Tag</h3>
-          <button className="modal-close" onClick={onClose}>×</button>
-        </div>
-        
-        <div className="modal-body" style={{ overflow: 'auto' }}>
-          <div className="search-container" style={{ marginBottom: '1rem' }}>
-            <input
-              type="text"
-              placeholder="Search tags..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-              style={{ width: '100%' }}
-            />
-          </div>
-          
-          <div className="tag-tree-container">
-            {renderSelectableTags(data, 0)}
-          </div>
-        </div>
+    <div className="tag-container-wrapper">
+      <div className="search-container" style={{ marginBottom: '1rem' }}>
+        <input
+          type="text"
+          placeholder="Search tags..."
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          className="search-input"
+          style={{ width: '100%' }}
+        />
+      </div>
+      
+      <div className="tag-tree-container">
+        {renderSelectableTags(data, 0)}
       </div>
     </div>
   );
@@ -120,10 +120,27 @@ const TagPickerContent = ({ onClose, onSelect }: { onClose: () => void; onSelect
 const AdminTagPicker = ({ isOpen, onClose, onSelect }: AdminTagPickerProps): React.ReactPortal | null => {
   if (!isOpen) return null;
 
+  // Handler for tag selection
+  const handleTagClick = (tag: string[]) => {
+    onSelect(tag);
+    onClose();
+  };
+
   return createPortal(
-    <TagProvider autoload={true} search_models={false} search_blueprints={true}>
-      <TagPickerContent onClose={onClose} onSelect={onSelect} />
-    </TagProvider>,
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px', maxHeight: '80vh' }}>
+        <div className="modal-header">
+          <h3>Select Tag</h3>
+          <button className="modal-close" onClick={onClose}>×</button>
+        </div>
+        
+        <div className="modal-body" style={{ overflow: 'auto' }}>
+          <TagProvider autoload={true} search_models={true} search_blueprints={true}>
+            <SelectableTagContainer onTagClick={handleTagClick} />
+          </TagProvider>
+        </div>
+      </div>
+    </div>,
     document.body
   );
 };

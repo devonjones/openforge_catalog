@@ -74,7 +74,8 @@ def update_tag_documentation(curs, doc_id: uuid.UUID, document: str, document_ty
     # First get the current document to determine the final document_type and tag_array
     current_doc = get_tag_documentation_by_id(curs, doc_id)
     final_document_type = document_type or current_doc["document_type"]
-    tag_array = current_doc["tag"]  # This is already a list from convert_tag_dict
+    # Convert tag back to array if it's a string (convert_tag_dict converts to pipe-delimited)
+    tag_array = tag_to_array(current_doc["tag"]) if isinstance(current_doc["tag"], str) else current_doc["tag"]
     
     # If making this document live, first mark existing live documents of the same type as non-live
     # This prevents unique constraint violations
