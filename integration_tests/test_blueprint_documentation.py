@@ -2,6 +2,7 @@
 Pytest tests for Blueprint Documentation API endpoints.
 """
 
+import uuid
 import pytest
 import requests
 from .test_constants import TEST_DOCUMENT_TEMPLATES
@@ -157,7 +158,6 @@ class TestBlueprintDocumentation:
     def test_nonexistent_blueprint_documentation(self, api_client):
         """Test getting documentation for a blueprint that has none."""
         # Create a new blueprint specifically for this test
-        import uuid
         test_blueprint = {
             "blueprint_name": f"test_no_docs_{uuid.uuid4().hex[:8]}",
             "blueprint_type": "model",

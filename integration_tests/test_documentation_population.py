@@ -14,24 +14,16 @@ from .conftest import APIClient
 from .test_constants import TEST_DATA_PREFIX
 
 
+@pytest.mark.usefixtures("db_transaction")
 class TestDocumentationPopulation:
     """Test class for populating documentation data."""
     
     def test_populate_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test creating blueprint documentation."""
         
-        # Get blueprint by MD5
-        response = api_client.get(f"/api/blueprints/md5/5459c1efd23d42fb19536fc559d0b09e")
-        print(f"Blueprint MD5 lookup response: {response.status_code} - {response.text}")
-        
-        if response.status_code == 404:
-            # Use the test blueprint ID if the specific MD5 doesn't exist
-            print(f"Blueprint with MD5 5459c1efd23d42fb19536fc559d0b09e not found, using test blueprint: {test_blueprint_id}")
-            blueprint_id = test_blueprint_id
-        else:
-            assert response.status_code == 200, f"Failed to get blueprint: {response.text}"
-            blueprint = response.json()
-            blueprint_id = blueprint["id"]
+        # Use the test blueprint ID directly instead of hardcoded MD5
+        blueprint_id = test_blueprint_id
+        print(f"Using test blueprint: {blueprint_id}")
         
         # Create blueprint documentation
         doc_data = {
