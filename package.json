@@ -62,6 +62,7 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.3.4",
     "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.0",

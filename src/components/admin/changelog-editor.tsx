@@ -33,37 +33,37 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
   const [existingDoc, setExistingDoc] = useState<ChangelogData | null>(null);
 
   useEffect(() => {
+    const loadExistingChangelog = async () => {
+      try {
+        const response = await fetch(`/api/blueprints/${blueprintId}/documentation`);
+        if (!response.ok) {
+          if (response.status === 404) {
+            // No existing documentation, that's fine
+            return;
+          }
+          throw new Error('Failed to load documentation');
+        }
+
+        const data = await response.json();
+        const docs = data.documentation || [];
+        // Find the live changelog
+        const changelog = docs.find((doc: ChangelogData) =>
+          doc.document_type === 'changelog' && doc.is_live
+        );
+
+        if (changelog) {
+          setExistingDoc(changelog);
+          setContent(changelog.document);
+          setIsLive(changelog.is_live);
+        }
+      } catch (err) {
+        console.error('Error loading changelog:', err);
+        setError('Failed to load existing changelog');
+      }
+    };
+
     loadExistingChangelog();
   }, [blueprintId]);
-
-  const loadExistingChangelog = async () => {
-    try {
-      const response = await fetch(`/api/blueprints/${blueprintId}/documentation`);
-      if (!response.ok) {
-        if (response.status === 404) {
-          // No existing documentation, that's fine
-          return;
-        }
-        throw new Error('Failed to load documentation');
-      }
-
-      const data = await response.json();
-      const docs = data.documentation || [];
-      // Find the live changelog
-      const changelog = docs.find((doc: ChangelogData) =>
-        doc.document_type === 'changelog' && doc.is_live
-      );
-
-      if (changelog) {
-        setExistingDoc(changelog);
-        setContent(changelog.document);
-        setIsLive(changelog.is_live);
-      }
-    } catch (err) {
-      console.error('Error loading changelog:', err);
-      setError('Failed to load existing changelog');
-    }
-  };
 
   const handleSave = async () => {
     setSaving(true);

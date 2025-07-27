@@ -1,6 +1,7 @@
 const js = require('@eslint/js');
 const typescript = require('typescript-eslint');
 const react = require('eslint-plugin-react');
+const reactHooks = require('eslint-plugin-react-hooks');
 const globals = require('globals');
 
 // Since Next.js ESLint config doesn't support flat config yet,
@@ -29,8 +30,12 @@ module.exports = [
     plugins: {
       react,
       '@typescript-eslint': typescript.plugin,
+      'react-hooks': reactHooks,
     },
     rules: {
+      // React Hooks rules
+      ...reactHooks.configs.recommended.rules,
+
       // React rules
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',

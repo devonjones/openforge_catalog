@@ -69,47 +69,47 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     });
   };
 
-  // Helper function to load and select the correct instructions document
-  const loadInstructionsDocument = async (endpoint: string, targetName: string): Promise<ApiDocumentationItem | null> => {
-    const response = await fetch(endpoint, {
-      credentials: 'include', // Include cookies for authentication
-    });
-    if (!response.ok) {
-      console.error('Failed to load documentation:', {
-        status: response.status,
-        statusText: response.statusText,
-        endpoint
-      });
-      return null;
-    }
-
-    const docs = await response.json();
-    console.log('Loaded documentation:', { endpoint, docs });
-    const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
-
-    if (instructionsDocs.length > 1) {
-      console.warn(`Multiple instructions documents found for ${targetName}. This should not happen.`);
-      // Prioritize live document, then most recently updated
-      const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
-      if (liveDoc) {
-        return liveDoc;
-      } else {
-        // Sort by updated_at descending and take the most recent
-        const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) =>
-          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-        );
-        return sortedDocs[0];
-      }
-    } else if (instructionsDocs.length === 1) {
-      return instructionsDocs[0];
-    }
-
-    return null;
-  };
-
   // Load existing documentation
   useEffect(() => {
     let isCancelled = false;
+
+    // Helper function to load and select the correct instructions document
+    const loadInstructionsDocument = async (endpoint: string, targetName: string): Promise<ApiDocumentationItem | null> => {
+      const response = await fetch(endpoint, {
+        credentials: 'include', // Include cookies for authentication
+      });
+      if (!response.ok) {
+        console.error('Failed to load documentation:', {
+          status: response.status,
+          statusText: response.statusText,
+          endpoint
+        });
+        return null;
+      }
+
+      const docs = await response.json();
+      console.log('Loaded documentation:', { endpoint, docs });
+      const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
+
+      if (instructionsDocs.length > 1) {
+        console.warn(`Multiple instructions documents found for ${targetName}. This should not happen.`);
+        // Prioritize live document, then most recently updated
+        const liveDoc = instructionsDocs.find((doc: ApiDocumentationItem) => doc.is_live);
+        if (liveDoc) {
+          return liveDoc;
+        } else {
+          // Sort by updated_at descending and take the most recent
+          const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) =>
+            new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+          );
+          return sortedDocs[0];
+        }
+      } else if (instructionsDocs.length === 1) {
+        return instructionsDocs[0];
+      }
+
+      return null;
+    };
 
     const loadExistingDocumentation = async () => {
       try {
