@@ -400,11 +400,17 @@ SELECT DISTINCT bp.id
             deny_parts.append(_query_tags_deny([d]))
             deny_parts.append(sql.SQL("    )"))
     
-    if models:
+    # Handle blueprint type filtering
+    if models and blueprints:
+        # When both are requested, use OR logic
+        query_parts.append(
+            sql.SQL("    AND (bp2.blueprint_type = 'model' OR bp2.blueprint_type = 'blueprint')")
+        )
+    elif models:
         query_parts.append(
             sql.SQL("    AND bp2.blueprint_type = 'model'")
         )
-    if blueprints:
+    elif blueprints:
         query_parts.append(
             sql.SQL("    AND bp2.blueprint_type = 'blueprint'")
         )
@@ -497,6 +503,70 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
         if "tag" in acc:
             counter = _query_tag_accept(counter, acc["tag"])
     return sql.Composed(joins + wheres).join("\n")
+
+
+def get_all_unique_tags(curs: cursor, search: str = None, limit: int = 100, offset: int = 0) -> dict:
+    """Get all unique tags in the system with optional search filtering.
+    
+    Args:
+        curs: Database cursor
+        search: Optional search string to filter tags
+        limit: Maximum number of results to return
+        offset: Number of results to skip
+        
+    Returns:
+        Dictionary with tags array and pagination info
+    """
+    # Build WHERE clause for search
+    where_clause = sql.SQL("")
+    if search:
+        # Search anywhere in the tag hierarchy
+        where_clause = sql.SQL("WHERE array_to_string(tag, '|') ILIKE {search}").format(
+            search=sql.Literal(f"%{search}%")
+        )
+    
+    # Get total count
+    count_query = sql.SQL(
+        """
+SELECT COUNT(DISTINCT tag) as total
+FROM tags
+{where_clause}
+"""
+    ).format(where_clause=where_clause)
+    
+    curs.execute(count_query)
+    total_count = curs.fetchone()["total"]
+    
+    # Get paginated results
+    query = sql.SQL(
+        """
+SELECT DISTINCT tag, COUNT(*) as blueprint_count
+FROM tags
+{where_clause}
+GROUP BY tag
+ORDER BY tag
+LIMIT {limit} OFFSET {offset}
+"""
+    ).format(
+        where_clause=where_clause,
+        limit=sql.Literal(limit),
+        offset=sql.Literal(offset)
+    )
+    
+    curs.execute(query)
+    tags = [
+        {
+            "tag": array_to_tag(row["tag"]),
+            "blueprint_count": row["blueprint_count"]
+        }
+        for row in curs.fetchall()
+    ]
+    
+    return {
+        "tags": tags,
+        "total_count": total_count,
+        "has_more": (offset + len(tags)) < total_count
+    }
 
 
 def _query_tags_deny(deny: list[str]) -> sql.Composed:

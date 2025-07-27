@@ -8,9 +8,27 @@ from werkzeug.exceptions import NotFound
 def get_all_images(curs: cursor) -> list[dict]:
     query = sql.SQL(
         """
-SELECT id, image_name, image_url, created_at, updated_at
+SELECT id, image_name, image_url, image_type, created_at, updated_at
   FROM images
   ORDER BY id
+"""
+    )
+    curs.execute(query)
+    return curs.fetchall()
+
+
+def get_documentation_images(curs: cursor) -> list[dict]:
+    """Get all documentation type images.
+    
+    Returns:
+        List of image dictionaries with image_type = 'documentation'
+    """
+    query = sql.SQL(
+        """
+SELECT id, image_name, image_url, image_type, created_at, updated_at
+  FROM images
+  WHERE image_type = 'documentation'
+  ORDER BY created_at DESC
 """
     )
     curs.execute(query)
@@ -76,7 +94,7 @@ SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
 def get_image_by_id(curs: cursor, image_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
-SELECT id, image_name, image_url, created_at, updated_at
+SELECT id, image_name, image_url, image_type, created_at, updated_at
   FROM images
   WHERE id = {image_id}
 """
@@ -85,14 +103,36 @@ SELECT id, image_name, image_url, created_at, updated_at
     return curs.fetchone()
 
 
-def insert_image(curs: cursor, image_name: str, image_url: str, **kwargs) -> dict:
+def get_images_by_name(curs: cursor, image_name: str) -> list[dict]:
+    """Get images by name (exact match).
+    
+    Args:
+        curs: Database cursor
+        image_name: Name of the image to search for
+        
+    Returns:
+        List of image dictionaries matching the name
+    """
+    query = sql.SQL(
+        """
+SELECT id, image_name, image_url, image_type, created_at, updated_at
+  FROM images
+  WHERE image_name = {image_name}
+  ORDER BY created_at DESC
+"""
+    ).format(image_name=sql.Literal(image_name))
+    curs.execute(query)
+    return curs.fetchall()
+
+
+def insert_image(curs: cursor, image_name: str, image_url: str, image_type: str = 'thumbnail', **kwargs) -> dict:
     query = sql.SQL(
         """
 WITH new_images AS (
   INSERT INTO images (
-    image_name, image_url
+    image_name, image_url, image_type
   ) VALUES (
-    {image_name}, {image_url}
+    {image_name}, {image_url}, {image_type}
   ) ON CONFLICT DO NOTHING
   RETURNING id
 )
@@ -101,7 +141,11 @@ SELECT COALESCE(
   (SELECT id FROM images WHERE image_url = {image_url})
 ) AS id
 """
-    ).format(image_name=sql.Literal(image_name), image_url=sql.Literal(image_url))
+    ).format(
+        image_name=sql.Literal(image_name), 
+        image_url=sql.Literal(image_url),
+        image_type=sql.Literal(image_type)
+    )
     curs.execute(query)
     return get_image_by_id(curs, curs.fetchone()["id"])
 

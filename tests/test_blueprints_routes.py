@@ -2,6 +2,7 @@ import pytest
 from flask import Flask
 import uuid
 import os
+import warnings
 from psycopg import sql
 import openforge.db.sql.blueprints as blueprint_sql
 from psycopg.rows import dict_row
@@ -29,7 +30,7 @@ test_blueprint_data = {
 
 # Setup test data
 def setup_test_data(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = blueprint_sql.insert_blueprint(curs, test_blueprint_data)
             conn.commit()
@@ -106,13 +107,19 @@ def test_delete_blueprint(auth_client, test_db):
     assert response.status_code == 204
 
 def test_download_blueprint(client, test_db):
+    
     # Mock CloudFlare credentials
     client.application.config["CLOUDFLARE_ENDPOINT"] = "https://test.endpoint"
     client.application.config["CLOUDFLARE_ACCESS_KEY_ID"] = "test_key"
     client.application.config["CLOUDFLARE_SECRET_ACCESS_KEY"] = "test_secret"
     
     blueprint = setup_test_data(test_db)
-    resp = client.get(f'/api/blueprints/{blueprint["id"]}/download', headers={"Authorization": "Bearer test_token"})
+    
+    # Suppress the specific botocore deprecation warning
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=DeprecationWarning, module="botocore")
+        resp = client.get(f'/api/blueprints/{blueprint["id"]}/download', headers={"Authorization": "Bearer test_token"})
+    
     assert resp.status_code == 302
 
 def test_create_blueprint_with_tags_and_images(auth_client):
