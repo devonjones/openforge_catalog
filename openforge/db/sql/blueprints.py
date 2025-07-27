@@ -325,5 +325,3 @@ SELECT find_current_version_by_md5({md5}) as id
     else:
         raise NotFound("Blueprint not found")
 
-
-
