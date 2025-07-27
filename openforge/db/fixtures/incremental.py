@@ -290,7 +290,7 @@ class IncrementalFixturesLoader:
             # of any existing blueprint
             already_consolidated = False
             for bp in existing_blueprints.values():
-                consolidated_paths = bp.get("consolidated_paths", [])
+                consolidated_paths = bp.get("consolidated_paths") or []
                 if full_name in consolidated_paths:
                     already_consolidated = True
                     if self.verbose:
@@ -602,7 +602,7 @@ class IncrementalFixturesLoader:
                         )
 
                     # Add the new path to consolidated_paths
-                    existing_paths = bp.get("consolidated_paths", [])
+                    existing_paths = bp.get("consolidated_paths") or []
                     new_path = new_item["file_metadata"]["full_name"]
                     if new_path not in existing_paths:
                         existing_paths.append(new_path)
