@@ -59,7 +59,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     // Pattern to match Obsidian image syntax: ![alt|width](url) or ![alt|widthxheight](url)
     const obsidianImageRegex = /!\[([^\]|]*)\|(\d+)(?:x(\d+))?\]\(([^)]+)\)/g;
     
-    return markdown.replace(obsidianImageRegex, (match, alt, width, height, url) => {
+    return markdown.replace(obsidianImageRegex, (_match, alt, width, height, url) => {
       // For MDEditor preview, we'll use HTML img tags
       if (height) {
         return `<img src="${url}" alt="${alt}" width="${width}" height="${height}" />`;
@@ -433,9 +433,11 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
             // Use urlTransform instead of deprecated transformImageUri/transformLinkUri
             urlTransform: (url: string) => url,
           }}
-          renderPreview={(source) => {
+          // @ts-expect-error - renderPreview might not be in the type definitions
+          renderPreview={(source: string) => {
             // Process Obsidian syntax before rendering
             const processed = processObsidianImages(source);
+            // @ts-expect-error - MDEditor.Markdown might not be in the type definitions
             return <MDEditor.Markdown source={processed} />;
           }}
         />
