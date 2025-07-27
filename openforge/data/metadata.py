@@ -1,9 +1,8 @@
 import os
-import sys
 
 from yaml import safe_load
-from openforge.db.sql.tag_utils import tag_to_array
 
+from openforge.db.sql.tag_utils import tag_to_array
 from openforge.openapi import validate_schema
 
 
@@ -14,18 +13,28 @@ def get_metadata_file(path):
             metadata = safe_load(f)
             # Validate that the metadata file is a dictionary
             if metadata is not None and not isinstance(metadata, dict):
-                raise ValueError(f"Metadata file '{metadata_file}' must contain a dictionary, but found type {type(metadata).__name__}")
-            
+                raise ValueError(
+                    f"Metadata file '{metadata_file}' must contain a dictionary, "
+                    f"but found type {type(metadata).__name__}"
+                )
+
             # Validate schema for each individual metadata entry
             if metadata is not None:
                 for filename, entry in metadata.items():
                     if not isinstance(filename, str):
-                        raise ValueError(f"In metadata file '{metadata_file}', found non-string key: {filename}")
+                        raise ValueError(
+                            f"In metadata file '{metadata_file}', found non-string "
+                            f"key: {filename}"
+                        )
                     if not isinstance(entry, dict):
-                        raise ValueError(f"In metadata file '{metadata_file}', entry for key '{filename}' must be a dictionary, but found type {type(entry).__name__}")
+                        raise ValueError(
+                            f"In metadata file '{metadata_file}', entry for key "
+                            f"'{filename}' must be a dictionary, but found type "
+                            f"{type(entry).__name__}"
+                        )
                     # Validate individual metadata entry
                     validate_schema("metadata.yaml", entry)
-                
+
             return metadata
     return None
 
@@ -107,7 +116,11 @@ def is_openforge_wall(o):
     neg_tags = [("build", "s2w"), ("shape", "floor"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
-    tags = [("shape", "wall", "low"), ("connection", "openforge"), ("build", "separate wall")]
+    tags = [
+        ("shape", "wall", "low"),
+        ("connection", "openforge"),
+        ("build", "separate wall"),
+    ]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
     return False
@@ -145,8 +158,7 @@ def apply_openforge_wall(o):
                     {"tag": "shape", "siblings": []},
                     {"tag": "size|width", "siblings": []},
                     {"tag": "texture", "siblings": []},
-                ]
-                
+                ],
             },
             "optional": True,
         }
@@ -176,14 +188,14 @@ def apply_openforge_floor(o):
                     {"tag": "size|depth"},
                     {"filter": "shape|floor"},
                     {"filter": "shape|wall"},
-                ]
-                
+                ],
             },
             "optional": True,
         }
     )
     config["parts"] = parts
     o["config"] = config
+
 
 def apply_thick_wall(o):
     if not is_thick_wall(o):
@@ -212,12 +224,13 @@ def apply_thick_wall(o):
     config["parts"] = parts
     o["config"] = config
 
+
 def convert_tags_for_metadata(tags):
     """Convert tags from list of strings to set of tuples for metadata processing.
-    
+
     Args:
         tags: List of tag strings or arrays
-        
+
     Returns:
         Set of tag tuples
     """
@@ -229,13 +242,18 @@ def convert_tags_for_metadata(tags):
         elif isinstance(tag_item, list):
             tag_set.add(tuple(tag_item))
         else:
-            raise TypeError(f"Unsupported tag type: {type(tag_item)}. Expected list or str, got {type(tag_item)} with value: {tag_item}")
+            raise TypeError(
+                f"Unsupported tag type: {type(tag_item)}. Expected list or str, "
+                f"got {type(tag_item)} with value: {tag_item}"
+            )
     return tag_set
+
 
 def add_tag(o: dict, tag: str):
     if "tags" not in o:
         o["tags"] = set()
     o["tags"].add(tuple(tag_to_array(tag)))
+
 
 def remove_tag(o: dict, tag: str):
     if "tags" in o:

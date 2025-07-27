@@ -1,5 +1,4 @@
 import uuid
-from pprint import pprint
 
 from psycopg import cursor, sql
 from werkzeug.exceptions import NotFound
@@ -19,7 +18,7 @@ SELECT id, image_name, image_url, image_type, created_at, updated_at
 
 def get_documentation_images(curs: cursor) -> list[dict]:
     """Get all documentation type images.
-    
+
     Returns:
         List of image dictionaries with image_type = 'documentation'
     """
@@ -61,19 +60,21 @@ SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
     return curs.fetchall()
 
 
-def get_images_for_blueprints(curs: cursor, blueprint_ids: list[uuid.UUID]) -> list[dict]:
+def get_images_for_blueprints(
+    curs: cursor, blueprint_ids: list[uuid.UUID]
+) -> list[dict]:
     """Get all images for multiple blueprints in a single query.
-    
+
     Args:
         curs: Database cursor
         blueprint_ids: List of blueprint IDs to get images for
-        
+
     Returns:
         List of image dictionaries with blueprint_id included
     """
     if not blueprint_ids:
         return []
-        
+
     query = sql.SQL(
         """
 SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
@@ -105,11 +106,11 @@ SELECT id, image_name, image_url, image_type, created_at, updated_at
 
 def get_images_by_name(curs: cursor, image_name: str) -> list[dict]:
     """Get images by name (exact match).
-    
+
     Args:
         curs: Database cursor
         image_name: Name of the image to search for
-        
+
     Returns:
         List of image dictionaries matching the name
     """
@@ -125,7 +126,13 @@ SELECT id, image_name, image_url, image_type, created_at, updated_at
     return curs.fetchall()
 
 
-def insert_image(curs: cursor, image_name: str, image_url: str, image_type: str = 'thumbnail', **kwargs) -> dict:
+def insert_image(
+    curs: cursor,
+    image_name: str,
+    image_url: str,
+    image_type: str = "thumbnail",
+    **kwargs,
+) -> dict:
     query = sql.SQL(
         """
 WITH new_images AS (
@@ -142,9 +149,9 @@ SELECT COALESCE(
 ) AS id
 """
     ).format(
-        image_name=sql.Literal(image_name), 
+        image_name=sql.Literal(image_name),
         image_url=sql.Literal(image_url),
-        image_type=sql.Literal(image_type)
+        image_type=sql.Literal(image_type),
     )
     curs.execute(query)
     return get_image_by_id(curs, curs.fetchone()["id"])
@@ -177,7 +184,8 @@ WITH new_blueprint_images AS (
 )
 SELECT COALESCE(
   (SELECT id FROM new_blueprint_images),
-  (SELECT id FROM blueprint_images WHERE blueprint_id = {blueprint_id} AND image_id = {image_id})
+  (SELECT id FROM blueprint_images
+   WHERE blueprint_id = {blueprint_id} AND image_id = {image_id})
 ) AS id
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), image_id=sql.Literal(image_id))

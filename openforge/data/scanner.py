@@ -5,27 +5,33 @@ This module provides functionality for scanning and parsing OpenForge STL files,
 extracting metadata, tags, and generating database records.
 """
 
-import re
-import os
-import sys
-import hashlib
 import datetime
+import hashlib
 import json
+import os
+import re
+import sys
+
+import sh
+from yaml import safe_load
 
 from openforge.openapi import validate_schema
-from . import sizes
-from .metadata import get_metadata_file, apply_metadata, apply_default_metadata
-from .metadata import metadata_ignore, metadata_auto
-from .io import get_s3_client, create_image, upload_file, create_thumbnail, get_s3_key_cache
 
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper, safe_load
-except ImportError:
-    from yaml import Loader, Dumper, safe_load
-import sh
-import boto3
-from botocore.client import Config
-from botocore.exceptions import ClientError
+from . import sizes
+from .io import (
+    create_image,
+    create_thumbnail,
+    get_s3_client,
+    get_s3_key_cache,
+    upload_file,
+)
+from .metadata import (
+    apply_default_metadata,
+    apply_metadata,
+    get_metadata_file,
+    metadata_auto,
+    metadata_ignore,
+)
 
 
 def parse_texture(texture, tags):
@@ -111,7 +117,7 @@ def parse_connection(connection, tags):
 def parse_filename(file, tags):
     try:
         parts = file["file"].split(".")
-        extension = parts.pop()
+        parts.pop()
         form = parts.pop(0)
         size = parts.pop(0)
         connection = None
@@ -229,7 +235,14 @@ def filter_shape(tags):
 
     def _copy_base_shapes(tags):
         copy_tags = [
-            "square", "angled", "curved", "convex", "concave", "radial", "corner", "wall"
+            "square",
+            "angled",
+            "curved",
+            "convex",
+            "concave",
+            "radial",
+            "corner",
+            "wall",
         ]
         for tag in copy_tags:
             if ("shape", "base", tag) in tags:
@@ -256,8 +269,9 @@ def filter_shape(tags):
             return True
 
         def _swap_tag(tag, old, new):
-            # Replace the prefix of tag (length of old) with new, then append the rest of tag
-            return tuple(new) + tag[len(old):]
+            # Replace the prefix of tag (length of old) with new,
+            # then append the rest of tag
+            return tuple(new) + tag[len(old) :]
 
         swap_tags = []
         for tag in tags:
@@ -272,99 +286,75 @@ def filter_shape(tags):
         return tags
 
     def _handle_decorations(tags):
-        _move_tag_chain(tags,
-            ["component", "air"],
-            ["decoration", "symbol", "air"])
-        _move_tag_chain(tags,
-            ["component", "air_symbol"],
-            ["decoration", "symbol", "air"]
+        _move_tag_chain(tags, ["component", "air"], ["decoration", "symbol", "air"])
+        _move_tag_chain(
+            tags, ["component", "air_symbol"], ["decoration", "symbol", "air"]
         )
-        _move_tag_chain(tags,
-            ["shape", "floor", "air_symbol"],
-            ["decoration", "symbol", "air"]
+        _move_tag_chain(
+            tags, ["shape", "floor", "air_symbol"], ["decoration", "symbol", "air"]
         )
-        _move_tag_chain(tags,
-            ["component", "beezlebub"],
-            ["decoration", "symbol", "beezlebub"]
+        _move_tag_chain(
+            tags, ["component", "beezlebub"], ["decoration", "symbol", "beezlebub"]
         )
-        _move_tag_chain(tags,
+        _move_tag_chain(
+            tags,
             ["component", "beezlebub_symbol"],
             ["decoration", "symbol", "beezlebub"],
         )
-        _move_tag_chain(tags,
+        _move_tag_chain(
+            tags,
             ["shape", "floor", "beezlebub_symbol"],
             ["decoration", "symbol", "beezlebub"],
         )
-        _move_tag_chain(tags,
-            ["component", "celtic_knot"],
-            ["decoration", "celtic_knot"]
+        _move_tag_chain(
+            tags, ["component", "celtic_knot"], ["decoration", "celtic_knot"]
         )
-        _move_tag_chain(tags,
-            ["component", "demon"],
-            ["decoration", "demon"]
+        _move_tag_chain(tags, ["component", "demon"], ["decoration", "demon"])
+        _move_tag_chain(
+            tags, ["component", "dragon_skulls"], ["decoration", "dragon_skulls"]
         )
-        _move_tag_chain(tags,
-            ["component", "dragon_skulls"],
-            ["decoration", "dragon_skulls"]
+        _move_tag_chain(tags, ["component", "earth"], ["decoration", "symbol", "earth"])
+        _move_tag_chain(
+            tags, ["component", "earth_symbol"], ["decoration", "symbol", "earth"]
         )
-        _move_tag_chain(tags,
-            ["component", "earth"],
-            ["decoration", "symbol", "earth"]
+        _move_tag_chain(
+            tags, ["shape", "floor", "earth_symbol"], ["decoration", "symbol", "earth"]
         )
-        _move_tag_chain(tags,
-            ["component", "earth_symbol"],
-            ["decoration", "symbol", "earth"]
+        _move_tag_chain(tags, ["component", "fire"], ["decoration", "symbol", "fire"])
+        _move_tag_chain(
+            tags, ["component", "fire_symbol"], ["decoration", "symbol", "fire"]
         )
-        _move_tag_chain(tags,
-            ["shape", "floor", "earth_symbol"],
-            ["decoration", "symbol", "earth"]
+        _move_tag_chain(
+            tags, ["shape", "floor", "fire_symbol"], ["decoration", "symbol", "fire"]
         )
-        _move_tag_chain(tags,
-            ["component", "fire"],
-            ["decoration", "symbol", "fire"])
-        _move_tag_chain(tags,
-            ["component", "fire_symbol"],
-            ["decoration", "symbol", "fire"]
+        _move_tag_chain(
+            tags, ["component", "lamashtu"], ["decoration", "symbol", "lamashtu"]
         )
-        _move_tag_chain(tags,
-            ["shape", "floor", "fire_symbol"],
-            ["decoration", "symbol", "fire"]
+        _move_tag_chain(
+            tags, ["component", "lamashtu_symbol"], ["decoration", "symbol", "lamashtu"]
         )
-        _move_tag_chain(tags,
-            ["component", "lamashtu"],
-            ["decoration", "symbol", "lamashtu"]
-        )
-        _move_tag_chain(tags,
-            ["component", "lamashtu_symbol"],
-            ["decoration", "symbol", "lamashtu"]
-        )
-        _move_tag_chain(tags,
+        _move_tag_chain(
+            tags,
             ["shape", "floor", "lamashtu_symbol"],
-            ["decoration", "symbol", "lamashtu"]
+            ["decoration", "symbol", "lamashtu"],
         )
-        _move_tag_chain(tags,
-            ["component", "spirit_symbol"],
-            ["decoration", "symbol", "spirit"]
+        _move_tag_chain(
+            tags, ["component", "spirit_symbol"], ["decoration", "symbol", "spirit"]
         )
-        _move_tag_chain(tags,
+        _move_tag_chain(
+            tags,
             ["shape", "floor", "spirit_symbol"],
-            ["decoration", "symbol", "spirit"]
+            ["decoration", "symbol", "spirit"],
         )
-        _move_tag_chain(tags,
-            ["component", "water"],
-            ["decoration", "symbol", "water"])
-        _move_tag_chain(tags,
-            ["component", "water_symbol"],
-            ["decoration", "symbol", "water"]
+        _move_tag_chain(tags, ["component", "water"], ["decoration", "symbol", "water"])
+        _move_tag_chain(
+            tags, ["component", "water_symbol"], ["decoration", "symbol", "water"]
         )
-        _move_tag_chain(tags,
-            ["shape", "floor", "water_symbol"],
-            ["decoration", "symbol", "water"]
+        _move_tag_chain(
+            tags, ["shape", "floor", "water_symbol"], ["decoration", "symbol", "water"]
         )
 
-    _move_tag_chain(tags,
-        ["component", "corner"],
-        ["shape", "corner"])
+    _move_tag_chain(tags, ["component", "corner"], ["shape", "corner"])
     if ("shape", "wall") in tags:
         if not _check_wall_alone(tags):
             tags.discard(("component", "wall"))
@@ -393,10 +383,10 @@ def filter_shape(tags):
 
 def parse_file_tags(file_info, tags, metadata):
     """Parse filename and path to extract tags from file information.
-    
+
     This function contains the core parsing logic that extracts tags from
     filename and path information, without the post-processing steps.
-    
+
     Args:
         file_info: Dictionary containing file information with 'file' and 'path' keys
         tags: Set to populate with parsed tags
@@ -421,8 +411,6 @@ def parse_files(path, files, md5, verbose, upload, config):
             if fn in data:
                 return data[fn]
         return None
-
-
 
     newfiles = []
     s3_client = get_s3_client(config)
@@ -451,14 +439,20 @@ def parse_files(path, files, md5, verbose, upload, config):
                 f["md5"] = md5hash
         stat = os.stat(full_file)
         f["size"] = stat.st_size
-        f["file_modified_at"] = datetime.datetime.fromtimestamp(stat.st_mtime).isoformat()
+        f["file_modified_at"] = datetime.datetime.fromtimestamp(
+            stat.st_mtime
+        ).isoformat()
         if upload:
             if not md5:
                 raise Exception("MD5 is required for upload")
-            model_address = upload_file(f, full_file, s3_client, "models", s3_key_cache, config, verbose)
+            model_address = upload_file(
+                f, full_file, s3_client, "models", s3_key_cache, config, verbose
+            )
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
             thumb_path = create_thumbnail(full_file)
-            thumb_address = upload_file(f, thumb_path, s3_client, "thumbnails", s3_key_cache, config, verbose)
+            thumb_address = upload_file(
+                f, thumb_path, s3_client, "thumbnails", s3_key_cache, config, verbose
+            )
             images = o.get("images", [])
             images.append(
                 create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
@@ -480,9 +474,6 @@ def parse_files(path, files, md5, verbose, upload, config):
 def validate(o):
     if "config" in o:
         validate_schema("config.yaml", o["config"])
-
-
-
 
 
 def clean_files(path, files):
@@ -543,17 +534,20 @@ def find_files(path, subset):
 
 
 def _sort_and_clean_recursively(obj, exclude_paths=None, current_path=""):
-    """Recursively sort all lists and dictionary keys in a JSON-serializable object for consistent output.
-    Also removes empty arrays and hashes in a single pass for performance.
-    
+    """Recursively sort all lists and dictionary keys in a JSON-serializable object.
+
+    For consistent output. Also removes empty arrays and hashes in a single pass
+    for performance.
+
     Args:
         obj: The object to sort and clean
-        exclude_paths: Optional list of JSON paths to exclude from sorting (e.g., ["config.parts"])
+        exclude_paths: Optional list of JSON paths to exclude from sorting
+            (e.g., ["config.parts"])
         current_path: Current JSON path for checking exclusions
     """
     if exclude_paths is None:
         exclude_paths = []
-    
+
     if isinstance(obj, dict):
         return _process_dict(obj, exclude_paths, current_path)
     elif isinstance(obj, list):
@@ -580,11 +574,17 @@ def _process_list(obj, exclude_paths, current_path):
     """Process list objects - sort unless excluded."""
     # Check if current path should be excluded from sorting
     should_exclude = current_path in exclude_paths
-    
+
     # Process items recursively
-    processed_items = [_sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj]
-    filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
-    
+    processed_items = [
+        _sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj
+    ]
+    filtered_items = [
+        item
+        for item in processed_items
+        if item is not None and item != {} and item != []
+    ]
+
     if should_exclude:
         # Don't sort this list, preserve original order
         return filtered_items
@@ -595,13 +595,20 @@ def _process_list(obj, exclude_paths, current_path):
 
 def _process_sequence(obj, exclude_paths, current_path):
     """Process set/tuple objects - convert to sorted list."""
-    processed_items = [_sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj]
-    filtered_items = [item for item in processed_items if item is not None and item != {} and item != []]
+    processed_items = [
+        _sort_and_clean_recursively(item, exclude_paths, current_path) for item in obj
+    ]
+    filtered_items = [
+        item
+        for item in processed_items
+        if item is not None and item != {} and item != []
+    ]
     return sorted(filtered_items, key=str)
 
 
 def _sort_list_items(items):
     """Sort list items using a stable sort key."""
+
     def sort_key(item):
         if isinstance(item, dict):
             # Create a stable, sortable representation of the dictionary
@@ -611,7 +618,7 @@ def _sort_list_items(items):
             return str(item[0]) if item else ""
         else:
             return str(item)
-    
+
     return sorted(items, key=sort_key)
 
 

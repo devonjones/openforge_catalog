@@ -1,40 +1,53 @@
 import os
-from flask import Flask, request
+
 import aws_lambda_wsgi
+from flask import Flask, request
 from flask_cors import CORS
 
-from openforge.app import init_app
-import openforge.app.routes.blueprints as blueprint_routes
-import openforge.app.routes.tags as tag_routes
-import openforge.app.routes.images as image_routes
-import openforge.app.routes.tag_descriptions as tag_description_routes
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
-import openforge.app.routes.tags_documentation as tags_doc_routes
-import openforge.app.routes.sessions as session_routes
 import openforge.app.routes.blueprint_successor as successor_routes
-from openforge.app.routes import authenticate
+import openforge.app.routes.blueprints as blueprint_routes
+import openforge.app.routes.images as image_routes
+import openforge.app.routes.sessions as session_routes
+import openforge.app.routes.tag_descriptions as tag_description_routes
+import openforge.app.routes.tags as tag_routes
+import openforge.app.routes.tags_documentation as tags_doc_routes
 from openforge.app.middleware.csrf import csrf_protect
-
+from openforge.app.routes import authenticate
 
 app = Flask(__name__)
 
 # Initialize CORS only in development/testing environments
-if os.environ.get('FLASK_DEBUG') == '1':
-    CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000'])
+if os.environ.get("FLASK_DEBUG") == "1":
+    CORS(app, origins=["http://localhost:3000", "http://127.0.0.1:3000"])
 
-# Don't initialize the rest of the app at module level to avoid pool creation during testing
-# init_app will be called when the app is actually used
+# Don't initialize the rest of the app at module level to avoid pool creation
+# during testing - init_app will be called when the app is actually used
+
 
 def ensure_app_initialized():
     """Ensure the app is initialized before handling requests."""
-    if not hasattr(app, '_initialized'):
+    if not hasattr(app, "_initialized"):
         from openforge.app import init_app
+
         init_app(app)
         app._initialized = True
+
 
 @app.before_request
 def before_request():
     ensure_app_initialized()
+
+
+####################
+### Health Check
+####################
+
+
+@app.route("/health", methods=["GET"])
+def health_check():
+    return {"status": "healthy"}, 200
+
 
 ####################
 ### Session Management routes
@@ -76,12 +89,17 @@ def blueprint_documentation(blueprint_id):
         return blueprint_doc_routes.create_blueprint_documentation(blueprint_id)
 
 
-@app.route("/api/blueprints/<blueprint_id>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
+@app.route(
+    "/api/blueprints/<blueprint_id>/documentation/<doc_id>",
+    methods=["GET", "PATCH", "DELETE"],
+)
 @authenticate(methods=["PATCH", "DELETE"])
 @csrf_protect
 def blueprint_documentation_entry(blueprint_id, doc_id):
     if request.method == "GET":
-        return blueprint_doc_routes.get_blueprint_documentation_entry(blueprint_id, doc_id)
+        return blueprint_doc_routes.get_blueprint_documentation_entry(
+            blueprint_id, doc_id
+        )
     elif request.method == "PATCH":
         return blueprint_doc_routes.update_blueprint_documentation(blueprint_id, doc_id)
     elif request.method == "DELETE":
@@ -126,8 +144,6 @@ def tags():
 @app.route("/api/blueprints/tags/<tag>", methods=["GET"])
 def blueprints_by_tag(tag):
     return tag_routes.get_blueprint_ids_by_tag(tag)
-
-
 
 
 @app.route("/api/blueprints/md5/<md5>", methods=["GET"])
@@ -225,7 +241,9 @@ def tag_descriptions():
         return tag_description_routes.create_tag_description()
 
 
-@app.route("/api/tag-descriptions/<tag_description_id>", methods=["GET", "PATCH", "DELETE"])
+@app.route(
+    "/api/tag-descriptions/<tag_description_id>", methods=["GET", "PATCH", "DELETE"]
+)
 @authenticate(methods=["PATCH", "DELETE"])
 @csrf_protect
 def tag_description(tag_description_id):
@@ -259,21 +277,24 @@ def tag_description_by_tag(tag):
 @csrf_protect
 def tag_documentation(tag_path):
     # Convert path to tag array
-    tag_array = tag_path.split('/')
-    
+    tag_array = tag_path.split("/")
+
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation(tag_array)
     elif request.method == "POST":
         return tags_doc_routes.create_tag_documentation(tag_array)
 
 
-@app.route("/api/tags/<path:tag_path>/documentation/<doc_id>", methods=["GET", "PATCH", "DELETE"])
+@app.route(
+    "/api/tags/<path:tag_path>/documentation/<doc_id>",
+    methods=["GET", "PATCH", "DELETE"],
+)
 @authenticate(methods=["PATCH", "DELETE"])
 @csrf_protect
 def tag_documentation_entry(tag_path, doc_id):
     # Convert path to tag array
-    tag_array = tag_path.split('/')
-    
+    tag_array = tag_path.split("/")
+
     if request.method == "GET":
         return tags_doc_routes.get_tag_documentation_entry(tag_array, doc_id)
     elif request.method == "PATCH":

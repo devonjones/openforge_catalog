@@ -315,7 +315,7 @@ sizes = {
         ("size", "openlock", "U"),
         ("shape", "wall"),
         ("shape", "angled"),
-        ("shape", "angled", "octagon"),      
+        ("shape", "angled", "octagon"),
     ],
     "ZA": [
         ("size", "depth", 2),
@@ -475,8 +475,18 @@ sizes = {
     "2x0.5": [("size", "width", 2), ("size", "depth", 0.5)],
     "2x1": [("size", "width", 2), ("size", "depth", 1)],
     "2x2": [("size", "width", 2), ("size", "depth", 2)],
-    "2x2+wall": [("size", "width", 2), ("size", "depth", 2), ("shape", "square"), ("shape", "wall")],
-    "2x2+corner": [("size", "width", 2), ("size", "depth", 2), ("shape", "square"), ("shape", "corner")],
+    "2x2+wall": [
+        ("size", "width", 2),
+        ("size", "depth", 2),
+        ("shape", "square"),
+        ("shape", "wall"),
+    ],
+    "2x2+corner": [
+        ("size", "width", 2),
+        ("size", "depth", 2),
+        ("shape", "square"),
+        ("shape", "corner"),
+    ],
     "2x3": [("size", "width", 2), ("size", "depth", 3)],
     "2x4": [("size", "width", 2), ("size", "depth", 4)],
     "3x1": [("size", "width", 3), ("size", "depth", 1)],
@@ -581,7 +591,6 @@ sizes = {
         ("size", "segment", "cx"),
         ("shape", "curved"),
     ],
-    "8x2": [("size", "width", 8), ("size", "depth", 2)],
     "2r22.5°": [
         ("size", "radius", 2),
         ("size", "angle", 22.5),
@@ -646,8 +655,12 @@ sizes = {
 }
 
 # Import transformers for schema compatibility
-from .transformers import (
-    TagArrayToPipeTransformer,
-    TimestampFieldTransformer,
-    DeprecatedEntryTransformer,
+from .transformers import (  # noqa: E402
+    DeprecatedEntryTransformer as DeprecatedEntryTransformer,
+)
+from .transformers import (  # noqa: E402
+    TagArrayToPipeTransformer as TagArrayToPipeTransformer,
+)
+from .transformers import (  # noqa: E402
+    TimestampFieldTransformer as TimestampFieldTransformer,
 )

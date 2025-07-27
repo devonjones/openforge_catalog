@@ -1,12 +1,12 @@
 import uuid
 
-from flask import jsonify, request, current_app, make_response, abort
-from psycopg.rows import dict_row
+from flask import abort, current_app, jsonify, make_response, request
 from jsonschema.exceptions import ValidationError
+from psycopg.rows import dict_row
 
 import openforge.db.sql.tags as tag_sql
-from openforge.openapi import validate_schema
 from openforge.db.sql.tag_utils import array_to_tag
+from openforge.openapi import validate_schema
 
 
 def get_blueprint_tags(blueprint_id: uuid.UUID):
@@ -121,7 +121,13 @@ def query_tags():
                 search=search,
             )
             count = tag_sql.tag_search_blueprint_count(
-                cursor, accept, require, deny, models=models, blueprints=blueprints, search=search
+                cursor,
+                accept,
+                require,
+                deny,
+                models=models,
+                blueprints=blueprints,
+                search=search,
             )
             start_count = 0
             if len(bp_data) > 0:
@@ -136,9 +142,17 @@ def query_tags():
                     search=search,
                 )
             tag_count = tag_sql.tag_search_tag_count(
-                cursor, accept, require, deny, models=models, blueprints=blueprints, search=search
+                cursor,
+                accept,
+                require,
+                deny,
+                models=models,
+                blueprints=blueprints,
+                search=search,
             )
-            tag_count = {array_to_tag(tag["tag"]): tag["tag_count"] for tag in tag_count}
+            tag_count = {
+                array_to_tag(tag["tag"]): tag["tag_count"] for tag in tag_count
+            }
             bps = _merge_blueprint_tag_data(bp_data, tag_data)
             bps = _merge_blueprint_image_data(bps, image_data)
             paging = _munge_paging(bps, count, start_count)
@@ -167,7 +181,9 @@ def _munge_paging(bps: list[dict], total_count: int, start_count: int) -> dict:
 def _merge_blueprint_tag_data(bp_data: list[dict], tag_data: list[dict]) -> list[dict]:
     for bp in bp_data:
         bp["tags"] = [
-            array_to_tag(tag["tag"]) for tag in tag_data if tag["blueprint_id"] == bp["id"]
+            array_to_tag(tag["tag"])
+            for tag in tag_data
+            if tag["blueprint_id"] == bp["id"]
         ]
     return bp_data
 
@@ -192,5 +208,3 @@ def _munge_image(image: dict) -> dict:
         "created_at": image["created_at"],
         "updated_at": image["updated_at"],
     }
-
-

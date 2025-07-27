@@ -1,11 +1,11 @@
 import logging
+
+import psycopg
 from flask import current_app
 from psycopg_pool import ConnectionPool
 
 LOGGER = logging.getLogger(__name__)
 
-
-import psycopg
 
 class PgDB:
     def __init__(self, vars, ext_logger=None, use_pool=True):
@@ -41,7 +41,7 @@ class PgDB:
 
     def __del__(self):
         # Only try to close if we have a pool and it's not already closed
-        if hasattr(self, 'pool') and self.pool is not None:
+        if hasattr(self, "pool") and self.pool is not None:
             try:
                 self.pool.close()
             except Exception:
@@ -71,7 +71,7 @@ def db_url(vars, ext_logger=None):
     if "LOG_LEVEL" in vars:
         LOGGER.setLevel(vars["LOG_LEVEL"])
 
-    return f'postgresql://{args["user"]}:{args["password"]}@{args["host"]}:{args["port"]}/{args["database"]}'
+    return f"postgresql://{args['user']}:{args['password']}@{args['host']}:{args['port']}/{args['database']}"
 
 
 def get_logger():
