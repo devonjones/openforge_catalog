@@ -1,9 +1,8 @@
 """Pagination utilities for API endpoints."""
-from flask import jsonify
-from typing import Tuple, Union
+from typing import Tuple
 
 
-def validate_pagination_params(limit: int = 10, offset: int = 0) -> Union[Tuple[int, int], Tuple[dict, int]]:
+def validate_pagination_params(limit: int = 10, offset: int = 0) -> Tuple[int, int]:
     """Validate pagination parameters.
     
     Args:
@@ -11,12 +10,15 @@ def validate_pagination_params(limit: int = 10, offset: int = 0) -> Union[Tuple[
         offset: Number of items to skip (default: 0)
         
     Returns:
-        Tuple of (limit, offset) if valid, or (error_response, status_code) if invalid
+        Tuple of (limit, offset) if valid
+        
+    Raises:
+        ValueError: If parameters are invalid
     """
     if limit < 1 or limit > 1000:
-        return jsonify({"error": "Limit must be between 1 and 1000"}), 400
+        raise ValueError("Limit must be between 1 and 1000")
     
     if offset < 0:
-        return jsonify({"error": "Offset must be non-negative"}), 400
+        raise ValueError("Offset must be non-negative")
     
     return limit, offset

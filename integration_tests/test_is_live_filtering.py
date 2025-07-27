@@ -7,14 +7,29 @@ from integration_tests.test_blueprint_documentation import TestBlueprintDocument
 class TestIsLiveFiltering(TestBlueprintDocumentation):
     """Test that is_live filtering works correctly."""
     
-    # Use database transaction for proper test isolation
     @pytest.fixture(autouse=True)
-    def setup_transaction(self, db_transaction):
-        """Ensure each test runs in its own transaction."""
-        pass
+    def cleanup_documentation(self, api_client):
+        """Clean up created documentation after each test."""
+        # Track created documentation IDs
+        self.created_doc_ids = []
+        
+        # Run the test
+        yield
+        
+        # Clean up after test
+        for doc_id in self.created_doc_ids:
+            for blueprint_id in [getattr(self, '_test_blueprint_id', None)]:
+                if blueprint_id:
+                    try:
+                        api_client.delete(f"/api/blueprints/{blueprint_id}/documentation/{doc_id}")
+                    except Exception:
+                        pass  # Ignore cleanup errors
 
     def test_all_documentation_only_returns_live_docs(self, api_client, test_blueprint_id):
         """Test that /api/blueprints/{id}/all-documentation only returns live documentation."""
+        # Store blueprint ID for cleanup
+        self._test_blueprint_id = test_blueprint_id
+        
         # Create a live documentation
         live_doc = {
             "document": "This is live documentation for testing",
@@ -25,6 +40,7 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=live_doc)
         assert response.status_code == 201
         live_doc_id = response.json()["documentation"]["id"]
+        self.created_doc_ids.append(live_doc_id)
         
         # Create a non-live documentation
         draft_doc = {
@@ -36,6 +52,7 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=draft_doc)
         assert response.status_code == 201
         draft_doc_id = response.json()["documentation"]["id"]
+        self.created_doc_ids.append(draft_doc_id)
         
         # Get all documentation (should only return live docs)
         response = api_client.get(f"/api/blueprints/{test_blueprint_id}/all-documentation")
@@ -56,6 +73,9 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
 
     def test_changelogs_always_live(self, api_client, test_blueprint_id):
         """Test that changelogs are always saved as live regardless of is_live parameter."""
+        # Store blueprint ID for cleanup
+        self._test_blueprint_id = test_blueprint_id
+        
         # Try to create a changelog with is_live=False
         changelog_doc = {
             "document": "This is a changelog entry",
@@ -68,11 +88,15 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         
         # Verify it was saved as live
         created_doc = response.json()["documentation"]
+        self.created_doc_ids.append(created_doc["id"])
         assert created_doc["is_live"] == True
         assert created_doc["document_type"] == "changelog"
 
     def test_changelog_update_always_live(self, api_client, test_blueprint_id):
         """Test that updating a changelog with is_live=false still makes it live."""
+        # Store blueprint ID for cleanup
+        self._test_blueprint_id = test_blueprint_id
+        
         # First create a changelog
         changelog_doc = {
             "document": "This is a changelog entry for update test",
@@ -83,6 +107,7 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         response = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=changelog_doc)
         assert response.status_code == 201
         doc_id = response.json()["documentation"]["id"]
+        self.created_doc_ids.append(doc_id)
         
         # Now try to update it with is_live=false but without document_type
         update_data = {
@@ -101,6 +126,9 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
 
     def test_publish_workflow(self, api_client, test_blueprint_id):
         """Test that publishing a document marks others as non-live."""
+        # Store blueprint ID for cleanup
+        self._test_blueprint_id = test_blueprint_id
+        
         # Create two instruction documents
         doc1 = {
             "document": "First instruction document for publish test",
@@ -117,10 +145,12 @@ class TestIsLiveFiltering(TestBlueprintDocumentation):
         response1 = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=doc1)
         assert response1.status_code == 201
         doc1_id = response1.json()["documentation"]["id"]
+        self.created_doc_ids.append(doc1_id)
         
         response2 = api_client.post(f"/api/blueprints/{test_blueprint_id}/documentation", data=doc2)
         assert response2.status_code == 201
         doc2_id = response2.json()["documentation"]["id"]
+        self.created_doc_ids.append(doc2_id)
         
         # Publish the first document
         publish_data = {

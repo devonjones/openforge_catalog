@@ -227,10 +227,10 @@ def get_blueprint_changelog_history(blueprint_id):
     limit = request.args.get("limit", 10, type=int)
     offset = request.args.get("offset", 0, type=int)
     
-    result = validate_pagination_params(limit, offset)
-    if not isinstance(result[0], int):
-        return result
-    limit, offset = result
+    try:
+        limit, offset = validate_pagination_params(limit, offset)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
     
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -254,10 +254,10 @@ def get_blueprint_all_documentation(blueprint_id):
     changelog_limit = request.args.get("changelog_limit", 10, type=int)
     changelog_offset = request.args.get("changelog_offset", 0, type=int)
     
-    result = validate_pagination_params(changelog_limit, changelog_offset)
-    if not isinstance(result[0], int):
-        return result
-    changelog_limit, changelog_offset = result
+    try:
+        changelog_limit, changelog_offset = validate_pagination_params(changelog_limit, changelog_offset)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
     
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
