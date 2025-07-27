@@ -13,6 +13,6 @@ boto3==1.39.4
 urllib3==2.5.0
 pytest==8.4.1
 pytest-cov==6.2.1
-requests==2.32.3
+requests==2.32.4
 bleach==6.2.0
 beautifulsoup4==4.13.4
