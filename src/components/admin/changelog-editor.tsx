@@ -33,9 +33,13 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
   const [existingDoc, setExistingDoc] = useState<ChangelogData | null>(null);
 
   useEffect(() => {
+    let isCancelled = false;
+
     const loadExistingChangelog = async () => {
       try {
         const response = await fetch(`/api/blueprints/${blueprintId}/documentation`);
+        if (isCancelled) return;
+
         if (!response.ok) {
           if (response.status === 404) {
             // No existing documentation, that's fine
@@ -45,6 +49,8 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
         }
 
         const data = await response.json();
+        if (isCancelled) return;
+
         const docs = data.documentation || [];
         // Find the live changelog
         const changelog = docs.find((doc: ChangelogData) =>
@@ -57,12 +63,18 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
           setIsLive(changelog.is_live);
         }
       } catch (err) {
-        console.error('Error loading changelog:', err);
-        setError('Failed to load existing changelog');
+        if (!isCancelled) {
+          console.error('Error loading changelog:', err);
+          setError('Failed to load existing changelog');
+        }
       }
     };
 
     loadExistingChangelog();
+
+    return () => {
+      isCancelled = true;
+    };
   }, [blueprintId]);
 
   const handleSave = async () => {
