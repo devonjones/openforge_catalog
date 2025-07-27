@@ -33,38 +33,49 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
   const [existingDoc, setExistingDoc] = useState<ChangelogData | null>(null);
 
   useEffect(() => {
-    loadExistingChangelog();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blueprintId]);
+    let isCancelled = false;
 
-  const loadExistingChangelog = async () => {
-    try {
-      const response = await fetch(`/api/blueprints/${blueprintId}/documentation`);
-      if (!response.ok) {
-        if (response.status === 404) {
-          // No existing documentation, that's fine
-          return;
+    const loadExistingChangelog = async () => {
+      try {
+        const response = await fetch(`/api/blueprints/${blueprintId}/documentation`);
+        if (isCancelled) return;
+
+        if (!response.ok) {
+          if (response.status === 404) {
+            // No existing documentation, that's fine
+            return;
+          }
+          throw new Error('Failed to load documentation');
         }
-        throw new Error('Failed to load documentation');
+
+        const data = await response.json();
+        if (isCancelled) return;
+
+        const docs = data.documentation || [];
+        // Find the live changelog
+        const changelog = docs.find((doc: ChangelogData) =>
+          doc.document_type === 'changelog' && doc.is_live
+        );
+
+        if (changelog) {
+          setExistingDoc(changelog);
+          setContent(changelog.document);
+          setIsLive(changelog.is_live);
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          console.error('Error loading changelog:', err);
+          setError('Failed to load existing changelog');
+        }
       }
-      
-      const data = await response.json();
-      const docs = data.documentation || [];
-      // Find the live changelog
-      const changelog = docs.find((doc: ChangelogData) => 
-        doc.document_type === 'changelog' && doc.is_live
-      );
-      
-      if (changelog) {
-        setExistingDoc(changelog);
-        setContent(changelog.document);
-        setIsLive(changelog.is_live);
-      }
-    } catch (err) {
-      console.error('Error loading changelog:', err);
-      setError('Failed to load existing changelog');
-    }
-  };
+    };
+
+    loadExistingChangelog();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [blueprintId]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -75,7 +86,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      
+
       if (adminState.csrfToken) {
         headers['X-CSRF-Token'] = adminState.csrfToken;
       }
@@ -83,9 +94,9 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
       const url = existingDoc
         ? `/api/blueprints/${blueprintId}/documentation/${existingDoc.id}`
         : `/api/blueprints/${blueprintId}/documentation`;
-      
+
       const method = existingDoc ? 'PATCH' : 'POST';
-      
+
       const response = await fetch(url, {
         method,
         headers,
@@ -105,7 +116,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
       const savedData = await response.json();
       setExistingDoc(savedData);
       setSaveStatus('saved');
-      
+
       // Clear success status after 2 seconds
       setTimeout(() => {
         setSaveStatus('idle');
@@ -129,7 +140,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
   return (
     <div className="changelog-editor">
       <div className="editor-controls" style={{ marginBottom: '10px', display: 'flex', gap: '10px', alignItems: 'center' }}>
-        <button 
+        <button
           onClick={handleSave}
           disabled={saving}
           className="save-button"
@@ -144,8 +155,8 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
         >
           {saving ? 'Saving...' : 'Save Draft'}
         </button>
-        
-        <button 
+
+        <button
           onClick={handlePublish}
           disabled={saving}
           className="publish-button"
@@ -173,7 +184,7 @@ const ChangelogEditor: React.FC<ChangelogEditorProps> = ({ blueprintId, onClose 
         {saveStatus === 'saved' && (
           <span style={{ color: '#28a745', fontSize: '14px' }}>✓ Saved</span>
         )}
-        
+
         {error && (
           <span style={{ color: '#dc3545', fontSize: '14px' }}>{error}</span>
         )}

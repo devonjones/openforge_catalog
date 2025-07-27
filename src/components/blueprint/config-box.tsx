@@ -36,7 +36,7 @@ const ConfigBox = ({ title, value, optional, onHover, parentBlueprint, boxRef }:
   const { parentTags, siblingSelections } = parentBlueprint ? getOtherBlueprintTags(configSelections, title, parentBlueprint) : { parentTags: [], siblingSelections: [] };
 
   return (
-    <div 
+    <div
       className="border rounded p-4 mb-4 flex-1 min-w-[200px] mr-4 relative group"
       onMouseEnter={() => onHover?.(true)}
       onMouseLeave={() => onHover?.(false)}
@@ -59,9 +59,8 @@ const ConfigBox = ({ title, value, optional, onHover, parentBlueprint, boxRef }:
         <div className="mt-2">
           <div className="font-medium">{selectedBlueprint.blueprint_name}</div>
           {selectedBlueprint.images[0] && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img 
-              src={selectedBlueprint.images[0].image_url} 
+            <img
+              src={selectedBlueprint.images[0].image_url}
               alt={selectedBlueprint.blueprint_name}
               className="mt-2 max-w-[200px] max-h-[200px] object-contain"
             />
@@ -93,4 +92,4 @@ const ConfigBox = ({ title, value, optional, onHover, parentBlueprint, boxRef }:
   );
 };
 
-export default ConfigBox; 
+export default ConfigBox;

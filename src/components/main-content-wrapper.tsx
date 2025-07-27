@@ -14,8 +14,8 @@ export default function MainContentWrapper() {
             OpenForge Catalog
             <div className='pageHeaderRight'>
               Version 0.6.0 |&nbsp;
-              <a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
-              <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
+              <a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank" rel="noreferrer">Wiki</a> |&nbsp;
+              <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank" rel="noreferrer">Support us on Patreon</a>
               <AdminHeader />
             </div>
           </div>
@@ -24,4 +24,4 @@ export default function MainContentWrapper() {
       </main>
     </AdminProvider>
   );
-} 
+}

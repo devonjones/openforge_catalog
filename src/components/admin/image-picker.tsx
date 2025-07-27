@@ -74,7 +74,7 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
 
     try {
       const headers: Record<string, string> = {};
-      
+
       // Add CSRF token if available
       if (adminState.csrfToken) {
         headers['X-CSRF-Token'] = adminState.csrfToken;
@@ -107,7 +107,7 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
     }
   };
 
-  const filteredImages = images.filter(img => 
+  const filteredImages = images.filter(img =>
     img.image_name.toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -132,8 +132,8 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
             />
           </div>
 
-          <div className="upload-section" style={{ 
-            padding: '1rem', 
+          <div className="upload-section" style={{
+            padding: '1rem',
             borderBottom: '1px solid #e0e0e0',
             backgroundColor: '#f5f5f5'
           }}>
@@ -155,8 +155,8 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
                     value={imageName}
                     onChange={(e) => setImageName(e.target.value)}
                     disabled={uploading}
-                    style={{ 
-                      width: '100%', 
+                    style={{
+                      width: '100%',
                       padding: '0.5rem',
                       border: '1px solid #ddd',
                       borderRadius: '4px'
@@ -197,13 +197,12 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
 
           <div className="image-grid">
             {filteredImages.map(image => (
-              <button 
-                key={image.id} 
+              <button
+                key={image.id}
                 className="image-item"
                 onClick={() => onSelect(image)}
                 type="button"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={image.image_url} alt={image.image_name} />
                 <span className="image-name">{image.image_name}</span>
               </button>
@@ -221,4 +220,4 @@ const ImagePicker: React.FC<ImagePickerProps> = ({ onSelect, onClose }) => {
   );
 };
 
-export default ImagePicker; 
+export default ImagePicker;
