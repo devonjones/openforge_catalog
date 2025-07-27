@@ -12,7 +12,7 @@ const MDEditor = dynamic(
   { ssr: false }
 );
 
-type DocumentationTarget = 
+type DocumentationTarget =
   | { type: 'blueprint'; blueprint: Blueprint }
   | { type: 'tag'; tag: string[] };
 
@@ -47,10 +47,10 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [existingDoc, setExistingDoc] = useState<DocumentationData | null>(null);
-  
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const editorRef = useRef<any>(null);
-  
+
   // Get CSRF token from admin context
   const { state: adminState } = useAdminContext();
 
@@ -58,7 +58,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const processObsidianImages = (markdown: string): string => {
     // Pattern to match Obsidian image syntax: ![alt|width](url) or ![alt|widthxheight](url)
     const obsidianImageRegex = /!\[([^\]|]*)\|(\d+)(?:x(\d+))?\]\(([^)]+)\)/g;
-    
+
     return markdown.replace(obsidianImageRegex, (_match, alt, width, height, url) => {
       // For MDEditor preview, we'll use HTML img tags
       if (height) {
@@ -82,11 +82,11 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       });
       return null;
     }
-    
+
     const docs = await response.json();
     console.log('Loaded documentation:', { endpoint, docs });
     const instructionsDocs = docs.documentation?.filter((doc: ApiDocumentationItem) => doc.document_type === 'instructions') || [];
-    
+
     if (instructionsDocs.length > 1) {
       console.warn(`Multiple instructions documents found for ${targetName}. This should not happen.`);
       // Prioritize live document, then most recently updated
@@ -95,7 +95,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         return liveDoc;
       } else {
         // Sort by updated_at descending and take the most recent
-        const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) => 
+        const sortedDocs = instructionsDocs.sort((a: ApiDocumentationItem, b: ApiDocumentationItem) =>
           new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
         );
         return sortedDocs[0];
@@ -103,7 +103,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     } else if (instructionsDocs.length === 1) {
       return instructionsDocs[0];
     }
-    
+
     return null;
   };
 
@@ -114,7 +114,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
     const loadExistingDocumentation = async () => {
       try {
         let docToSet: DocumentationData | null = null;
-        
+
         if (target.type === 'blueprint') {
           docToSet = await loadInstructionsDocument(
             `/api/blueprints/${target.blueprint.id}/documentation`,
@@ -185,7 +185,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      
+
       // Add CSRF token if available
       if (adminState.csrfToken) {
         headers['X-CSRF-Token'] = adminState.csrfToken;
@@ -212,12 +212,12 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
 
       const responseData = await response.json();
       console.log('Save response:', responseData);
-      
+
       // The API might return { documentation: {...} } or just the document
       const savedDoc = responseData.documentation || responseData;
       setExistingDoc(savedDoc);
       setSaveStatus('saved');
-      
+
       // Update the displayed message based on what was saved
       if (makeLive) {
         setIsLive(true);
@@ -236,7 +236,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
       const errorMessage = err instanceof Error ? err.message : 'Failed to save documentation';
       setError(errorMessage);
       setSaveStatus('error');
-      
+
       // Clear error status after 5 seconds
       setTimeout(() => {
         setSaveStatus('idle');
@@ -255,7 +255,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const insertImage = (imageUrl: string, imageName: string) => {
     // Use Obsidian's image resize syntax with a default width of 400px
     const imageMarkdown = `![${imageName}|400](${imageUrl})`;
-    
+
     // Since MDEditor doesn't expose a ref API, we'll insert at cursor position
     // by updating the content state
     setContent(prevContent => {
@@ -278,7 +278,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
         <div className="target-info">
           <h4>Editing: {getTargetDisplay()}</h4>
         </div>
-        
+
         <div className="editor-controls">
           <label className="live-toggle">
             <input
@@ -293,7 +293,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
             onClick={() => saveDocument(false)}
             disabled={saving || !content.trim()}
             className="save-draft-button"
-            style={{ 
+            style={{
               marginRight: '0.5rem',
               padding: '0.5rem 1rem',
               backgroundColor: '#6b7280',
@@ -321,7 +321,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
             onClick={() => saveDocument(true)}
             disabled={saving || !content.trim()}
             className="publish-button"
-            style={{ 
+            style={{
               padding: '0.5rem 1rem',
               backgroundColor: '#10b981',
               color: 'white',
@@ -415,18 +415,16 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
                   const filteredClassName = className?.replace(/\bmax-w-full\b/g, '').trim();
                   return (
                     <>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img 
-                        src={src} 
-                        alt={realAlt} 
+                      <img
+                        src={src}
+                        alt={realAlt}
                         className={filteredClassName}
                         style={{ width: `${width}px`, height: 'auto' }}
-                        {...props} 
+                        {...props}
                       />
                     </>
                   );
                 }
-                // eslint-disable-next-line @next/next/no-img-element
                 return <img src={src} alt={alt} className={className} {...props} />;
               }
             },
@@ -456,4 +454,4 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   );
 };
 
-export default MarkdownEditor; 
+export default MarkdownEditor;

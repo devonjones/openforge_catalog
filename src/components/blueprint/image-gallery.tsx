@@ -16,7 +16,6 @@ const BlueprintImageGallery: React.FC<BlueprintImageGalleryProps> = ({ blueprint
     <div data-testid="image-gallery-container">
       {blueprint.images.map((image) => (
         <div key={image.id}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={image.image_url} alt={image.image_name} />
         </div>
       ))}
@@ -24,4 +23,4 @@ const BlueprintImageGallery: React.FC<BlueprintImageGalleryProps> = ({ blueprint
   );
 };
 
-export default BlueprintImageGallery; 
+export default BlueprintImageGallery;

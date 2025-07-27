@@ -1,0 +1,71 @@
+const js = require('@eslint/js');
+const typescript = require('typescript-eslint');
+const react = require('eslint-plugin-react');
+const globals = require('globals');
+
+// Since Next.js ESLint config doesn't support flat config yet,
+// we'll define the essential rules manually
+module.exports = [
+  js.configs.recommended,
+  ...typescript.configs.recommended,
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+        ...globals.node,
+        React: 'readonly',
+      },
+      parser: typescript.parser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      react,
+      '@typescript-eslint': typescript.plugin,
+    },
+    rules: {
+      // React rules
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+
+      // TypeScript rules
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      }],
+
+      // Disable rules that conflict with Next.js
+      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'public/**',
+      '*.config.js',
+      '*.config.ts',
+      'coverage/**',
+      'db-data/**',
+      'api/**',
+      'openforge/**',
+      'build/**',
+      'dist/**',
+    ],
+  },
+];

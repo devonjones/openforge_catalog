@@ -23,7 +23,7 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
         // For relative paths, we need to fetch the image object
         // This assumes the image name is the filename without extension
         const imageName = src.replace(/\.[^/.]+$/, ''); // Remove file extension
-        
+
         const response = await fetch(`/api/images?image_name=${encodeURIComponent(imageName)}`);
         if (response.ok) {
           const images = await response.json();
@@ -60,12 +60,10 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
   const altMatch = alt?.match(/^(.+)\|(\d+)$/);
   if (altMatch) {
     const [, realAlt, width] = altMatch;
-    // eslint-disable-next-line @next/next/no-img-element
-    return <img src={imageUrl} alt={realAlt} style={{ width: `${width}px`, height: 'auto' }} />;
+        return <img src={imageUrl} alt={realAlt} style={{ width: `${width}px`, height: 'auto' }} />;
   }
 
-  // eslint-disable-next-line @next/next/no-img-element
-  return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
+    return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
 };
 
 interface DocumentationTabProps {
@@ -87,7 +85,7 @@ const DocumentationTab: React.FC<DocumentationTabProps> = ({
     if (Array.isArray(tag)) {
       return tag.join(': ');
     }
-    // If tag is a string, split by | and then join with : 
+    // If tag is a string, split by | and then join with :
     return tag.split('|').join(': ');
   };
 
@@ -107,7 +105,7 @@ const DocumentationTab: React.FC<DocumentationTabProps> = ({
       {/* Blueprint Documentation Section */}
       {instructionDocs.length > 0 && (
         <div className="mb-8">
-          <h2 
+          <h2
             className="text-xl font-semibold mb-4 text-gray-800"
             title={`Last updated: ${formatDate(instructionDocs[0].updated_at)}`}
           >
@@ -132,11 +130,11 @@ const DocumentationTab: React.FC<DocumentationTabProps> = ({
       {/* Tag Documentation Sections */}
       {Object.entries(tagDocumentation).map(([tagKey, docs], index) => {
         if (docs.length === 0) return null;
-        
+
         return (
           <div key={tagKey} className="mb-8">
             {index > 0 && <hr className="my-6 border-gray-200" />}
-            <h3 
+            <h3
               className="text-lg font-semibold mb-4 text-gray-700"
               title={`Last updated: ${formatDate(docs[0].updated_at)}`}
             >
@@ -169,4 +167,4 @@ const DocumentationTab: React.FC<DocumentationTabProps> = ({
   );
 };
 
-export default DocumentationTab; 
+export default DocumentationTab;

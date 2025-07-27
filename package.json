@@ -8,7 +8,7 @@
     "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc --noEmit",
     "lint:all": "npm run lint && npm run type-check",
     "db-update": "bin/db_update up",
