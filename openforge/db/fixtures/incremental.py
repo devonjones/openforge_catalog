@@ -251,6 +251,14 @@ class IncrementalFixturesLoader:
         existing_blueprints: Dict[str, Dict],
     ):
         """Compare a single fixture item with existing data."""
+        # Skip deprecated entries from fixtures - they should not be added
+        # as active blueprints
+        if fixture_item.get("deprecated", False):
+            if self.verbose:
+                name = fixture_item.get("file_metadata", {}).get("full_name", "unknown")
+                sys.stderr.write(f"SKIPPED (deprecated in fixture): {name}\n")
+            return
+
         # Handle non-file-based blueprints (type "blueprint")
         # that don't have file_metadata
         if "file_metadata" not in fixture_item:

@@ -8,7 +8,7 @@ import { useAdminContext } from '@/contexts/admin-context';
 
 const TabbedInterface = () => {
   const [activeTab, setActiveTab] = useState<'partSearch' | 'blueprints' | 'baseGenerator' | 'admin'>('partSearch');
-  const [baseGeneratorUrl, setBaseGeneratorUrl] = useState('http://localhost:8000');
+  const [baseGeneratorUrl, setBaseGeneratorUrl] = useState(process.env.NEXT_PUBLIC_BASE_GENERATOR_URL || 'http://localhost:8000');
 
   const { state } = useAdminContext();
 
@@ -18,7 +18,7 @@ const TabbedInterface = () => {
     if (savedUrl) {
       setBaseGeneratorUrl(savedUrl);
     }
-    
+
     fetch('/app-config.json')
       .then(res => res.json())
       .then(cfg => { if (cfg.BASE_GENERATOR_URL) setBaseGeneratorUrl(cfg.BASE_GENERATOR_URL); })
@@ -95,4 +95,4 @@ const TabbedInterface = () => {
   );
 };
 
-export default TabbedInterface; 
+export default TabbedInterface;

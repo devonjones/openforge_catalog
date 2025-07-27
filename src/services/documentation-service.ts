@@ -1,7 +1,5 @@
 import { CombinedBlueprintDocumentation } from '@/types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5328';
-
 export class DocumentationService {
   static async getBlueprintAllDocumentation(
     blueprintId: string,
@@ -10,9 +8,9 @@ export class DocumentationService {
   ): Promise<CombinedBlueprintDocumentation | null> {
     try {
       const response = await fetch(
-        `${API_BASE}/api/blueprints/${blueprintId}/all-documentation?changelog_limit=${changelogLimit}&changelog_offset=${changelogOffset}`
+        `/api/blueprints/${blueprintId}/all-documentation?changelog_limit=${changelogLimit}&changelog_offset=${changelogOffset}`
       );
-      
+
       if (!response.ok) {
         if (response.status === 404) {
           // Documentation not found - this is normal, not an error
@@ -20,7 +18,7 @@ export class DocumentationService {
         }
         throw new Error(`Failed to fetch documentation: ${response.statusText}`);
       }
-      
+
       return await response.json();
     } catch (error) {
       console.error('Error fetching blueprint documentation:', error);
@@ -35,17 +33,17 @@ export class DocumentationService {
   ) {
     try {
       const response = await fetch(
-        `${API_BASE}/api/blueprints/${blueprintId}/changelog-history?limit=${limit}&offset=${offset}`
+        `/api/blueprints/${blueprintId}/changelog-history?limit=${limit}&offset=${offset}`
       );
-      
+
       if (!response.ok) {
         throw new Error(`Failed to fetch changelog history: ${response.statusText}`);
       }
-      
+
       return await response.json();
     } catch (error) {
       console.error('Error fetching changelog history:', error);
       return null;
     }
   }
-} 
+}

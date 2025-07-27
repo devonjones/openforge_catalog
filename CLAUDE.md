@@ -15,6 +15,10 @@ See language-specific CLAUDE.md files:
 2. **Check linting** before committing
 3. **Follow language-specific guidelines** in `openforge/CLAUDE.md` and `src/CLAUDE.md`
 
+## API Guidelines
+
+- Always assume that when you want to hit the api, make a relative call to /api. Never encode the base of the url.
+
 ## Linting and Testing Requirements
 
 ### When modifying files during a task:
