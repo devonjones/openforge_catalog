@@ -1,5 +1,7 @@
+import os
 from flask import Flask, request
 import aws_lambda_wsgi
+from flask_cors import CORS
 
 from openforge.app import init_app
 import openforge.app.routes.blueprints as blueprint_routes
@@ -9,12 +11,18 @@ import openforge.app.routes.tag_descriptions as tag_description_routes
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.tags_documentation as tags_doc_routes
 import openforge.app.routes.sessions as session_routes
+import openforge.app.routes.blueprint_successor as successor_routes
 from openforge.app.routes import authenticate
 from openforge.app.middleware.csrf import csrf_protect
 
 
 app = Flask(__name__)
-# Don't initialize the app at module level to avoid pool creation during testing
+
+# Initialize CORS only in development/testing environments
+if os.environ.get('FLASK_DEBUG') == '1':
+    CORS(app, origins=['http://localhost:3000', 'http://127.0.0.1:3000'])
+
+# Don't initialize the rest of the app at module level to avoid pool creation during testing
 # init_app will be called when the app is actually used
 
 def ensure_app_initialized():
@@ -105,6 +113,11 @@ def blueprints():
         return blueprint_routes.create_blueprint()
 
 
+@app.route("/api/blueprints/deprecated", methods=["GET"])
+def deprecated_blueprints():
+    return blueprint_routes.get_deprecated_blueprints()
+
+
 @app.route("/api/blueprints/tags", methods=["POST"])
 def tags():
     return tag_routes.query_tags()
@@ -113,6 +126,8 @@ def tags():
 @app.route("/api/blueprints/tags/<tag>", methods=["GET"])
 def blueprints_by_tag(tag):
     return tag_routes.get_blueprint_ids_by_tag(tag)
+
+
 
 
 @app.route("/api/blueprints/md5/<md5>", methods=["GET"])
@@ -159,6 +174,13 @@ def blueprint_tag(blueprint_id, tag):
         return tag_routes.create_blueprint_tags(blueprint_id, [tag])
     elif request.method == "DELETE":
         return tag_routes.delete_blueprint_tag(blueprint_id, tag)
+
+
+@app.route("/api/blueprints/<blueprint_id>/disconnect-successor", methods=["POST"])
+@authenticate(methods=["POST"])
+@csrf_protect
+def disconnect_successor(blueprint_id):
+    return successor_routes.disconnect_successor(blueprint_id)
 
 
 ####################

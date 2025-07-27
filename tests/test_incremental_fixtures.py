@@ -107,12 +107,17 @@ class TestIncrementalFixturesLoader:
         assert not result, f"Expected no changes, got {result}"
     
     def test_has_significant_changes_md5_change(self, mock_loader):
-        """Test _has_significant_changes with MD5 change."""
+        """Test _has_significant_changes with MD5 change.
+        
+        Note: MD5 changes are now handled in _compare_single_item before calling
+        _has_significant_changes, so this test now verifies that MD5 changes
+        are NOT detected in _has_significant_changes.
+        """
         existing = create_mock_blueprint("test.stl", "abc123")
         fixture = create_mock_fixture_item("test.stl", "def456")
         
         result = mock_loader._has_significant_changes(fixture, existing)
-        assert result, f"Expected changes for MD5 change, got {result}"
+        assert not result, f"Expected no changes for MD5 change in _has_significant_changes, got {result}"
     
     def test_has_significant_changes_tags_change(self, mock_loader):
         """Test _has_significant_changes with tags change."""
@@ -216,12 +221,11 @@ class TestIncrementalFixturesLoader:
         
         result = mock_loader.compare_fixture_data(fixture_data, skip_load_existing=True)
         
-        # Version changes create both a new addition and a deprecation
+        # Version changes now only create a new addition (deprecation is handled in post-processing)
         assert len(result.added) == 1
         assert result.added[0]["file_metadata"]["full_name"] == "version_change.stl"
         assert len(result.modified) == 0
-        assert len(result.deprecated) == 1
-        assert result.deprecated[0]["full_name"] == "version_change.stl"
+        assert len(result.deprecated) == 0  # Deprecation is handled in post-processing
     
     def test_compare_fixture_data_config_blueprint_new(self, mock_loader):
         """Test compare_fixture_data with new configuration blueprint."""
@@ -371,8 +375,7 @@ class TestIncrementalFixturesLoader:
         assert len(result.modified) == 1
         assert result.modified[0]["file_metadata"]["full_name"] == "modified.stl"
         
-        assert len(result.deprecated) == 1
-        assert result.deprecated[0]["full_name"] == "version_change.stl"
+        assert len(result.deprecated) == 0  # Deprecation is handled in post-processing
     
     def test_munge_blueprint(self, mock_loader):
         """Test _munge_blueprint method."""
