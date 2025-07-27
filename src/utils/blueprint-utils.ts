@@ -141,10 +141,5 @@ export function collectDownloadUrls(
  * @returns The latest date as a Date object
  */
 export function getLatestModificationDate(blueprint: Blueprint): Date {
-  return new Date(
-    Math.max(
-      new Date(blueprint.file_changed_at).getTime(),
-      new Date(blueprint.file_modified_at).getTime()
-    )
-  );
+  return new Date(blueprint.file_modified_at);
 } 

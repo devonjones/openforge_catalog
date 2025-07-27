@@ -1,73 +1,76 @@
 [
     {
-        "type": "model",
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+corner.2x2.openforge.stl",
             "file": "legacy_sewers#floor,sluice+corner.2x2.openforge.stl",
+            "file_modified_at": "2021-07-17T22:40:10.361672+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+corner.2x2.openforge.stl",
             "md5": "0a7e0dcc31b20156a1f9cecb2496dd5f",
             "size": 17145784,
-            "changed": "2025-05-28T15:47:20.995867",
-            "modified": "2021-07-17T16:40:10.361672",
             "storage_address": "https://objects.openforge.tools/models/0a7e0d/0a7e0dcc31b20156a1f9cecb2496dd5f.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "sluice",
-                "corner"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0a7e0d/0a7e0dcc31b20156a1f9cecb2496dd5f.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|corner",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -84,82 +87,55 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+cross.2x2.openforge.stl",
             "file": "legacy_sewers#floor,sluice+cross.2x2.openforge.stl",
+            "file_modified_at": "2021-07-17T22:39:26.892335+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+cross.2x2.openforge.stl",
             "md5": "cae280ad215521c77808f98478b7f5f7",
             "size": 15764584,
-            "changed": "2025-05-28T15:47:21.000946",
-            "modified": "2021-07-17T16:39:26.892335",
             "storage_address": "https://objects.openforge.tools/models/cae280/cae280ad215521c77808f98478b7f5f7.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "component",
-                "sluice",
-                "cross"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/cae280/cae280ad215521c77808f98478b7f5f7.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|cross",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -176,82 +152,55 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+end.2x2.openforge.stl",
             "file": "legacy_sewers#floor,sluice+end.2x2.openforge.stl",
+            "file_modified_at": "2021-07-17T22:41:33.738818+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+end.2x2.openforge.stl",
             "md5": "081ce018ab99383b8321d074055ae134",
             "size": 16940684,
-            "changed": "2025-05-28T15:47:21.004459",
-            "modified": "2021-07-17T16:41:33.738818",
             "storage_address": "https://objects.openforge.tools/models/081ce0/081ce018ab99383b8321d074055ae134.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "end"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/081ce0/081ce018ab99383b8321d074055ae134.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|end",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -268,87 +217,56 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight+half.1x1.openforge.stl",
             "file": "legacy_sewers#floor,sluice+straight+half.1x1.openforge.stl",
+            "file_modified_at": "2021-07-17T22:43:10.819948+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight+half.1x1.openforge.stl",
             "md5": "4b759aae5912a127f69f0852736b6a4b",
             "size": 4023434,
-            "changed": "2025-05-28T19:43:05.085702",
-            "modified": "2021-07-17T16:43:10.819948",
             "storage_address": "https://objects.openforge.tools/models/4b759a/4b759aae5912a127f69f0852736b6a4b.stl"
         },
-        "tags": [
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "straight"
-            ],
-            [
-                "component",
-                "sluice",
-                "half"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/4b759a/4b759aae5912a127f69f0852736b6a4b.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|half",
+            "component|sluice|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -365,87 +283,56 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight+half.2x1.openforge.stl",
             "file": "legacy_sewers#floor,sluice+straight+half.2x1.openforge.stl",
+            "file_modified_at": "2021-07-17T22:43:37.896784+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight+half.2x1.openforge.stl",
             "md5": "48b9d562594c6db4387567ef2482be43",
             "size": 7863784,
-            "changed": "2025-05-28T19:45:02.047059",
-            "modified": "2021-07-17T16:43:37.896784",
             "storage_address": "https://objects.openforge.tools/models/48b9d5/48b9d562594c6db4387567ef2482be43.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "straight"
-            ],
-            [
-                "component",
-                "sluice",
-                "half"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/48b9d5/48b9d562594c6db4387567ef2482be43.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|half",
+            "component|sluice|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -462,82 +349,55 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight.2x1.openforge.stl",
             "file": "legacy_sewers#floor,sluice+straight.2x1.openforge.stl",
+            "file_modified_at": "2021-07-17T22:44:15.000701+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight.2x1.openforge.stl",
             "md5": "06baba61ef722b282dc6d1bddb177db1",
             "size": 7976884,
-            "changed": "2025-05-28T15:47:21.016717",
-            "modified": "2021-07-17T16:44:15.000701",
             "storage_address": "https://objects.openforge.tools/models/06baba/06baba61ef722b282dc6d1bddb177db1.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "straight"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/06baba/06baba61ef722b282dc6d1bddb177db1.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -554,82 +414,55 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight.2x2.openforge.stl",
             "file": "legacy_sewers#floor,sluice+straight.2x2.openforge.stl",
+            "file_modified_at": "2021-07-17T22:42:09.433354+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+straight.2x2.openforge.stl",
             "md5": "bd55009199dbdb8a6fe6d288d0d426f7",
             "size": 15614484,
-            "changed": "2025-05-28T15:47:21.021355",
-            "modified": "2021-07-17T16:42:09.433354",
             "storage_address": "https://objects.openforge.tools/models/bd5500/bd55009199dbdb8a6fe6d288d0d426f7.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "straight"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/bd5500/bd55009199dbdb8a6fe6d288d0d426f7.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -646,82 +479,55 @@
                             {
                                 "filter": "shape|wall"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+tee.2x2.openforge.stl",
             "file": "legacy_sewers#floor,sluice+tee.2x2.openforge.stl",
+            "file_modified_at": "2021-07-17T22:42:38.116131+00:00",
+            "full_name": "tiles/legacy_sewers/floors/sluice/legacy_sewers#floor,sluice+tee.2x2.openforge.stl",
             "md5": "0c038c1b458669d2ec518b1e218dc30c",
             "size": 15575084,
-            "changed": "2025-05-28T15:47:21.025419",
-            "modified": "2021-07-17T16:42:38.116131",
             "storage_address": "https://objects.openforge.tools/models/0c038c/0c038c1b458669d2ec518b1e218dc30c.stl"
         },
-        "tags": [
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "component",
-                "sluice",
-                "tee"
-            ],
-            [
-                "shape",
-                "floor"
-            ],
-            [
-                "component",
-                "sluice"
-            ],
-            [
-                "size",
-                "depth",
-                2
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0c038c/0c038c1b458669d2ec518b1e218dc30c.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "component|sluice",
+            "component|sluice|tee",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -731,112 +537,61 @@
                             },
                             {
                                 "tag": "size|depth"
-                            },
+                            }
+                        ],
+                        "deny": [
                             {
-                                "filter": "shape|floor"
-                            },
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
                             {
-                                "filter": "shape|wall"
+                                "tag": "shape|base"
                             }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/thick_wall/wall/corner/legacy_sewers#wall,corner.IL+corner,270.openforge.stl",
             "file": "legacy_sewers#wall,corner.IL+corner,270.openforge.stl",
+            "file_modified_at": "2021-07-18T02:47:28.887979+00:00",
+            "full_name": "tiles/legacy_sewers/thick_wall/wall/corner/legacy_sewers#wall,corner.IL+corner,270.openforge.stl",
             "md5": "9640560dfe11e4be8be8e1af03bdb901",
             "size": 11604034,
-            "changed": "2025-05-28T15:52:16.329917",
-            "modified": "2021-07-17T20:47:28.887979",
             "storage_address": "https://objects.openforge.tools/models/964056/9640560dfe11e4be8be8e1af03bdb901.stl"
         },
-        "tags": [
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "size",
-                "angle",
-                270
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "shape",
-                "corner",
-                "convex"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/964056/9640560dfe11e4be8be8e1af03bdb901.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|convex",
+            "shape|square",
+            "shape|wall",
+            "size|angle|270",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -847,105 +602,60 @@
                             {
                                 "tag": "size|depth"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/thick_wall/wall/corner/legacy_sewers#wall,corner.IL+corner,90.openforge.stl",
             "file": "legacy_sewers#wall,corner.IL+corner,90.openforge.stl",
+            "file_modified_at": "2021-07-18T03:50:16.792367+00:00",
+            "full_name": "tiles/legacy_sewers/thick_wall/wall/corner/legacy_sewers#wall,corner.IL+corner,90.openforge.stl",
             "md5": "882ff0a093efee044ca36e3c1a4876ea",
             "size": 17591784,
-            "changed": "2025-05-28T15:52:16.336457",
-            "modified": "2021-07-17T21:50:16.792367",
             "storage_address": "https://objects.openforge.tools/models/882ff0/882ff0a093efee044ca36e3c1a4876ea.stl"
         },
-        "tags": [
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "shape",
-                "corner"
-            ],
-            [
-                "size",
-                "openlock",
-                "IL"
-            ],
-            [
-                "shape",
-                "corner",
-                "concave"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "size",
-                "corner_shape",
-                "IL"
-            ],
-            [
-                "size",
-                "angle",
-                90
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/882ff0/882ff0a093efee044ca36e3c1a4876ea.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|concave",
+            "shape|square",
+            "shape|wall",
+            "size|angle|90",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -956,86 +666,56 @@
                             {
                                 "tag": "size|depth"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/thick_wall/wall/wall/legacy_sewers#wall.I.openforge.stl",
             "file": "legacy_sewers#wall.I.openforge.stl",
+            "file_modified_at": "2021-07-18T02:26:15+00:00",
+            "full_name": "tiles/legacy_sewers/thick_wall/wall/wall/legacy_sewers#wall.I.openforge.stl",
             "md5": "8ecf5909957c04566d22b51ca4f82718",
             "size": 14923784,
-            "changed": "2021-11-24T11:54:30.727946",
-            "modified": "2021-07-17T20:26:15",
             "storage_address": "https://objects.openforge.tools/models/8ecf59/8ecf5909957c04566d22b51ca4f82718.stl"
         },
-        "tags": [
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "width",
-                1
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ],
-            [
-                "size",
-                "openlock",
-                "I"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/8ecf59/8ecf5909957c04566d22b51ca4f82718.png"
             }
         ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|I",
+            "size|width|1",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
                     "name": "base",
+                    "optional": true,
                     "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
                         "constrain": [
                             {
                                 "tag": "shape"
@@ -1046,101 +726,47 @@
                             {
                                 "tag": "size|depth"
                             }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
                         ]
-                    },
-                    "optional": true
+                    }
                 }
             ]
-        }
-    },
-    {
-        "type": "model",
+        },
         "file_metadata": {
-            "full_name": "tiles/legacy_sewers/thick_wall/wall/wall/legacy_sewers#wall.S.openforge.stl",
             "file": "legacy_sewers#wall.S.openforge.stl",
+            "file_modified_at": "2021-07-18T04:24:01.411768+00:00",
+            "full_name": "tiles/legacy_sewers/thick_wall/wall/wall/legacy_sewers#wall.S.openforge.stl",
             "md5": "8d92dd5754b53f75e9405edd5d0d8269",
             "size": 23845784,
-            "changed": "2021-11-24T11:54:36.804612",
-            "modified": "2021-07-17T22:24:01.411768",
             "storage_address": "https://objects.openforge.tools/models/8d92dd/8d92dd5754b53f75e9405edd5d0d8269.stl"
         },
-        "tags": [
-            [
-                "component",
-                "wall"
-            ],
-            [
-                "size",
-                "depth",
-                1
-            ],
-            [
-                "size",
-                "width",
-                2
-            ],
-            [
-                "connection",
-                "openforge"
-            ],
-            [
-                "shape",
-                "square"
-            ],
-            [
-                "size",
-                "openlock",
-                "S"
-            ],
-            [
-                "shape",
-                "wall"
-            ],
-            [
-                "build",
-                "thick wall"
-            ],
-            [
-                "texture",
-                "legacy_sewers"
-            ]
-        ],
         "images": [
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/8d92dd/8d92dd5754b53f75e9405edd5d0d8269.png"
             }
         ],
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "size|depth"
-                            }
-                        ]
-                    },
-                    "optional": true
-                }
-            ]
-        }
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|legacy_sewers"
+        ],
+        "type": "model"
     }
 ]

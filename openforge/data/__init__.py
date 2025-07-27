@@ -644,3 +644,10 @@ sizes = {
         ("shape", "curved"),
     ],
 }
+
+# Import transformers for schema compatibility
+from .transformers import (
+    TagArrayToPipeTransformer,
+    TimestampFieldTransformer,
+    DeprecatedEntryTransformer,
+)

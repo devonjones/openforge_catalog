@@ -212,7 +212,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -235,7 +234,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -258,7 +256,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -287,7 +284,6 @@ describe('blueprint-utils', () => {
           file_size: 500,
           full_name: 'Wall Part',
           created_at: '2023-01-01T00:00:00Z',
-          file_changed_at: '2023-01-01T00:00:00Z',
           file_modified_at: '2023-01-01T00:00:00Z',
           signed_url: 'wall-url',
           storage_address: 'wall-address',
@@ -311,7 +307,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -344,7 +339,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -380,7 +374,6 @@ describe('blueprint-utils', () => {
           file_size: 500,
           full_name: 'Wall Part',
           created_at: '2023-01-01T00:00:00Z',
-          file_changed_at: '2023-01-01T00:00:00Z',
           file_modified_at: '2023-01-01T00:00:00Z',
           signed_url: 'wall-url',
           storage_address: 'wall-address',
@@ -405,7 +398,6 @@ describe('blueprint-utils', () => {
         file_size: 1000,
         full_name: 'Test Blueprint',
         created_at: '2023-01-01T00:00:00Z',
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-01T00:00:00Z',
         signed_url: 'test-url',
         storage_address: 'test-address',
@@ -441,7 +433,6 @@ describe('blueprint-utils', () => {
           file_size: 500,
           full_name: 'Wall Part',
           created_at: '2023-01-01T00:00:00Z',
-          file_changed_at: '2023-01-01T00:00:00Z',
           file_modified_at: '2023-01-01T00:00:00Z',
           signed_url: 'wall-url',
           storage_address: 'wall-address',
@@ -458,7 +449,6 @@ describe('blueprint-utils', () => {
           file_size: 200,
           full_name: 'Decoration Part',
           created_at: '2023-01-01T00:00:00Z',
-          file_changed_at: '2023-01-01T00:00:00Z',
           file_modified_at: '2023-01-01T00:00:00Z',
           signed_url: 'decoration-url',
           storage_address: 'decoration-address',
@@ -500,24 +490,13 @@ describe('blueprint-utils', () => {
   });
 
   describe('getLatestModificationDate', () => {
-    it('returns the later of file_changed_at and file_modified_at', () => {
+    it('returns the file_modified_at date', () => {
       const blueprint = createMockBlueprint({
-        file_changed_at: '2023-01-01T00:00:00Z',
         file_modified_at: '2023-01-02T00:00:00Z'
       });
       
       const result = getLatestModificationDate(blueprint);
       expect(result).toEqual(new Date('2023-01-02T00:00:00Z'));
-    });
-
-    it('handles when file_changed_at is later', () => {
-      const blueprint = createMockBlueprint({
-        file_changed_at: '2023-01-03T00:00:00Z',
-        file_modified_at: '2023-01-01T00:00:00Z'
-      });
-      
-      const result = getLatestModificationDate(blueprint);
-      expect(result).toEqual(new Date('2023-01-03T00:00:00Z'));
     });
   });
 }); 

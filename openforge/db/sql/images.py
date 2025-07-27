@@ -43,6 +43,36 @@ SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
     return curs.fetchall()
 
 
+def get_images_for_blueprints(curs: cursor, blueprint_ids: list[uuid.UUID]) -> list[dict]:
+    """Get all images for multiple blueprints in a single query.
+    
+    Args:
+        curs: Database cursor
+        blueprint_ids: List of blueprint IDs to get images for
+        
+    Returns:
+        List of image dictionaries with blueprint_id included
+    """
+    if not blueprint_ids:
+        return []
+        
+    query = sql.SQL(
+        """
+SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
+    i.created_at AS created_at, i.updated_at AS updated_at,
+    bi.blueprint_id AS blueprint_id
+  FROM images i
+    JOIN blueprint_images bi ON bi.image_id = i.id
+  WHERE bi.blueprint_id IN ({blueprint_ids})
+  ORDER BY bi.blueprint_id, i.image_name
+"""
+    ).format(
+        blueprint_ids=sql.SQL(",").join(sql.Literal(bp_id) for bp_id in blueprint_ids)
+    )
+    curs.execute(query)
+    return curs.fetchall()
+
+
 def get_image_by_id(curs: cursor, image_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """

@@ -12,7 +12,7 @@ properties:
       - model
       - blueprint
   blueprint_config:
-    type: object
+    "$ref": "config.yaml"
   file_md5:
     type: string
   file_size:
@@ -21,9 +21,6 @@ properties:
     type: string
   full_name:
     type: string
-  file_changed_at:
-    type: string
-    format: date-time
   file_modified_at:
     type: string
     format: date-time

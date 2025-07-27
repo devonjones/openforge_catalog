@@ -4,14 +4,29 @@ import sys
 from yaml import safe_load
 from openforge.db.sql.tag_utils import tag_to_array
 
+from openforge.openapi import validate_schema
+
+
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
     if os.path.exists(metadata_file):
-        try:
-            with open(metadata_file, "r") as f:
-                return safe_load(f)
-        except Exception as e:
-            sys.stderr.write(f"Error reading metadata file: {e}\n")
+        with open(metadata_file, "r") as f:
+            metadata = safe_load(f)
+            # Validate that the metadata file is a dictionary
+            if metadata is not None and not isinstance(metadata, dict):
+                raise ValueError(f"Metadata file '{metadata_file}' must contain a dictionary, but found type {type(metadata).__name__}")
+            
+            # Validate schema for each individual metadata entry
+            if metadata is not None:
+                for filename, entry in metadata.items():
+                    if not isinstance(filename, str):
+                        raise ValueError(f"In metadata file '{metadata_file}', found non-string key: {filename}")
+                    if not isinstance(entry, dict):
+                        raise ValueError(f"In metadata file '{metadata_file}', entry for key '{filename}' must be a dictionary, but found type {type(entry).__name__}")
+                    # Validate individual metadata entry
+                    validate_schema("metadata.yaml", entry)
+                
+            return metadata
     return None
 
 
@@ -103,6 +118,7 @@ def is_openforge_floor(o):
     neg_tags = [("build", "s2w"), ("shape", "wall"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
+    return False
 
 
 def is_thick_wall(o):
@@ -110,6 +126,7 @@ def is_thick_wall(o):
     neg_tags = [("build", "s2w"), ("shape", "base")]
     if has_tags(o, tags) and has_no_tags(o, neg_tags):
         return True
+    return False
 
 
 def apply_openforge_wall(o):
@@ -195,6 +212,26 @@ def apply_thick_wall(o):
     config["parts"] = parts
     o["config"] = config
 
+def convert_tags_for_metadata(tags):
+    """Convert tags from list of strings to set of tuples for metadata processing.
+    
+    Args:
+        tags: List of tag strings or arrays
+        
+    Returns:
+        Set of tag tuples
+    """
+    tag_set = set()
+    for tag_item in tags:
+        if isinstance(tag_item, str):
+            tag_parts = tag_item.split("|")
+            tag_set.add(tuple(tag_parts))
+        elif isinstance(tag_item, list):
+            tag_set.add(tuple(tag_item))
+        else:
+            raise TypeError(f"Unsupported tag type: {type(tag_item)}. Expected list or str, got {type(tag_item)} with value: {tag_item}")
+    return tag_set
+
 def add_tag(o: dict, tag: str):
     if "tags" not in o:
         o["tags"] = set()
@@ -202,4 +239,6 @@ def add_tag(o: dict, tag: str):
 
 def remove_tag(o: dict, tag: str):
     if "tags" in o:
-        o["tags"].remove(tuple(tag_to_array(tag)))
+        tag_tuple = tuple(tag_to_array(tag))
+        if tag_tuple in o["tags"]:
+            o["tags"].remove(tag_tuple)

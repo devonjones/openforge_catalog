@@ -17,7 +17,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.tag_descriptions as tag_description_sql
-from openforge.db.sql.tag_utils import array_to_tag, tag_to_array
+from openforge.db.sql.tag_utils import array_to_tag, tag_to_array, process_tag
 from openforge.openapi import validate_schema
 
 
@@ -57,72 +57,82 @@ def clear_db(curs: cursor):
     tag_description_sql.delete_all_tag_descriptions(curs)
 
 
-class ValidationResult:
-    def __init__(self):
-        self.errors = []
-        self.is_valid = True
 
-    def add_error(self, error):
-        self.errors.append(error)
-        self.is_valid = False
-
-    def merge(self, other):
-        self.errors.extend(other.errors)
-        self.is_valid = self.is_valid and other.is_valid
 
 
 def _is_blueprint_fixture(data):
-    result = ValidationResult()
-    try:
-        validate_schema("blueprint.fixture.json", data)
-    except jsonschema.exceptions.ValidationError as e:
-        result.add_error(f"Schema validation failed: {e.message}")
-        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
-        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
-    except Exception as e:
-        result.add_error(f"Unexpected error during validation: {str(e)}")
-    return result
+    """Validate data against the blueprint fixture schema."""
+    validate_schema("blueprint.fixture.json", data)
 
 
 def _is_tag_description_fixture(data):
-    result = ValidationResult()
-    try:
-        validate_schema("tag_description.fixture.json", data)
-    except jsonschema.exceptions.ValidationError as e:
-        result.add_error(f"Schema validation failed: {e.message}")
-        result.add_error(f"Path: {'/'.join(str(p) for p in e.path)}")
-        result.add_error(f"Schema path: {'/'.join(str(p) for p in e.schema_path)}")
-    except Exception as e:
-        result.add_error(f"Unexpected error during validation: {str(e)}")
-    return result
+    """Validate data against the tag description fixture schema."""
+    validate_schema("tag_description.fixture.json", data)
 
 
-def load_fixtures(conn: connection, alt: str, files: list = None):
+def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
-    with conn.cursor(row_factory=dict_row) as curs:
-        clear_db(curs)
-        conn.commit()
+    
+    if incremental:
+        # Import here to avoid circular imports
+        from .incremental import IncrementalFixturesLoader
+        
+        loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
-            data = _load_data(f)
-            blueprint_result = _is_blueprint_fixture(data)
-            tag_result = _is_tag_description_fixture(data)
+            # Check if this is a tag description fixture by filename
+            # Tag description fixtures store a different type of data (tag descriptions)
+            # and don't have file_metadata, so they are intentionally skipped in incremental mode
+            # This is permanent behavior - tag descriptions are not file-based data
+            if "tag_description" in str(f):
+                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
+                continue
             
-            if blueprint_result.is_valid:
-                for rec in data:
-                    load_blueprint_fixture(curs, rec)
-            elif tag_result.is_valid:
-                load_tag_description_fixture(curs, data)
-            else:
-                # Only show errors if all validations failed
-                print(f"\nValidation failed for {f}:")
-                for error in blueprint_result.errors + tag_result.errors:
-                    print(error)
-                raise ValueError(f"File {f} does not match any known fixture format")
-            conn.commit()
+            data = _load_data(f, verbose=verbose)
+            
+            # Try blueprint fixture validation
+            try:
+                _is_blueprint_fixture(data)
+                # If we get here, it's a valid blueprint fixture
+                # Use transaction to ensure all-or-nothing behavior
+                with conn.transaction():
+                    with conn.cursor(row_factory=dict_row) as curs:
+                        changes = loader.compare_fixture_data(data, curs=curs)
+                        if dry_run:
+                            print_comparison_results(changes)
+                        else:
+                            loader.apply_incremental_changes(changes, curs=curs)
+            except Exception as blueprint_error:
+                # Blueprint validation failed, raise the error
+                raise blueprint_error
+    else:
+        # Existing full replacement logic
+        with conn.cursor(row_factory=dict_row) as curs:
+            # Use transaction to ensure all-or-nothing behavior
+            with conn.transaction():
+                clear_db(curs)
+                for f in ffiles:
+                    data = _load_data(f, verbose=verbose)
+                    
+                    # Try blueprint fixture validation first
+                    try:
+                        _is_blueprint_fixture(data)
+                        # If we get here, it's a valid blueprint fixture
+                        for rec in data:
+                            load_blueprint_fixture(curs, rec)
+                    except Exception as blueprint_error:
+                        # Try tag description fixture validation
+                        try:
+                            _is_tag_description_fixture(data)
+                            # If we get here, it's a valid tag description fixture
+                            load_tag_description_fixture(curs, data)
+                        except Exception as tag_error:
+                            # Neither validation passed, raise the original blueprint error
+                            raise blueprint_error
 
 
-def _load_data(f):
-    sys.stderr.write(f"Loading {f}\n")
+def _load_data(f, verbose=False):
+    if verbose:
+        sys.stderr.write(f"Loading {f}\n")
     with open(f, "r") as fh:
         if str(f).endswith(".json"):
             return json.load(fh)
@@ -131,29 +141,14 @@ def _load_data(f):
         raise ValueError(f"Unsupported file type: {f}")
 
 
+from .utils import munge_blueprint, get_words
+
 def _munge_blueprint(data: dict):
-    bp = {}
-    bp["blueprint_type"] = data["type"]
-    bp["blueprint_name"] = data.get("name")
-    bp["blueprint_config"] = data.get("config", {})
-    if "file_metadata" in data:
-        if not bp["blueprint_name"]:
-            bp["blueprint_name"] = data["file_metadata"]["file"]
-        bp["file_md5"] = data["file_metadata"]["md5"]
-        bp["file_size"] = data["file_metadata"]["size"]
-        bp["file_name"] = data["file_metadata"]["file"]
-        bp["full_name"] = data["file_metadata"]["full_name"]
-        bp["file_changed_at"] = data["file_metadata"]["changed"]
-        bp["file_modified_at"] = data["file_metadata"]["modified"]
-        bp["storage_address"] = data["file_metadata"].get("storage_address")
-    return bp
+    return munge_blueprint(data)
 
 
 def _get_words(data: dict):
-    words = set()
-    for t in data.get("tags", []):
-        words.update([str(w) for w in t])
-    return list(words)
+    return get_words(data)
 
 
 def load_blueprint_fixture(curs: cursor, data: dict):
@@ -164,7 +159,9 @@ def load_blueprint_fixture(curs: cursor, data: dict):
         if bp is None:
             return  # Skip this record if it's a duplicate
         for tag in data["tags"]:
-            tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag))
+            def insert_tag_to_db(tag_array):
+                tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+            process_tag(tag, insert_tag_to_db)
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
     except Exception as e:
@@ -186,3 +183,42 @@ def load_tag_description_fixture(curs: cursor, data: dict):
 def _munge_image(image: dict):
     # placeholder for additional work if needed
     return image
+
+
+def print_comparison_results(changes):
+    """Print comparison results in a user-friendly format."""
+    print(f"\nComparison Results:")
+    print(f"  Added: {len(changes.added)}")
+    print(f"  Modified: {len(changes.modified)}")
+    print(f"  Deprecated: {len(changes.deprecated)}")
+    print(f"  Consolidated: {len(changes.consolidated)}")
+    print(f"  Errors: {len(changes.errors)}")
+    
+    if changes.added:
+        print(f"\nAdded blueprints:")
+        for item in changes.added:
+            if "file_metadata" in item:
+                name = item.get("file_metadata", {}).get("full_name", "unknown")
+            else:
+                name = item.get("name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.modified:
+        print(f"\nModified blueprints:")
+        for item in changes.modified:
+            if "file_metadata" in item:
+                name = item.get("file_metadata", {}).get("full_name", "unknown")
+            else:
+                name = item.get("name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.deprecated:
+        print(f"\nDeprecated blueprints:")
+        for item in changes.deprecated:
+            name = item.get("full_name", "unknown")
+            print(f"  - {name}")
+            
+    if changes.errors:
+        print(f"\nErrors:")
+        for error in changes.errors:
+            print(f"  - {error}")
