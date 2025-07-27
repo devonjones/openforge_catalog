@@ -47,6 +47,7 @@ jobs:
           mask-password: true
 
       - name: Docker Build and Push
+        id: docker-build
         if: ${{ ! inputs.use_cache }}
         uses: docker/build-push-action@v6
         with:
@@ -56,3 +57,43 @@ jobs:
           platforms: linux/amd64
           provenance: false
           tags: "908027381953.dkr.ecr.us-east-1.amazonaws.com/openforge_catalog/api:${{ github.sha }}"
+
+  frontend-deploy:
+    name: Production Frontend Deploy
+    needs: docker-build
+    if: ${{ needs.docker-build.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build frontend
+        run: pnpm run build
+
+      - name: Configure Production AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.S3_IAM_PROD }}
+          role-session-name: production-s3
+          aws-region: us-east-1
+
+      - name: Deploy to S3
+        run: |
+          cd out
+          aws s3 sync . s3://production-openforge-catalog-website/${{ github.sha }}
+          echo "Deployed to production at SHA: ${{ github.sha }}"
