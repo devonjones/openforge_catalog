@@ -10,6 +10,7 @@ from openforge.app.services.session_service import SessionService
 
 def init_app(app: Flask):
     load_dotenv()
+    
     # Use pool-less mode for testing to avoid logging errors during cleanup
     use_pool = not app.config.get('TESTING', False)
     db = PgDB(os.environ, app.logger, use_pool=use_pool)
@@ -22,6 +23,8 @@ def init_app(app: Flask):
     app.config["CLOUDFLARE_SECRET_ACCESS_KEY"] = os.environ.get(
         "CLOUDFLARE_SECRET_ACCESS_KEY"
     )
+    app.config["S3_BUCKET_NAME"] = os.environ.get("S3_BUCKET_NAME", "openforge-models")
+    app.config["FILE_DOMAIN"] = os.environ.get("FILE_DOMAIN", "https://objects.openforge.tools")
     app.db = db
     app.session_service = SessionService(db, app.config["API_TOKEN"], app.config["SECRET_KEY"])
     if "LOG_LEVEL" in os.environ:

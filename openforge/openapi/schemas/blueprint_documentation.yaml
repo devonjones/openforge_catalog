@@ -14,6 +14,10 @@ BlueprintDocumentation:
       type: string
       enum: [changelog, instructions]
       description: Type of documentation
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
+      default: true
     created_at:
       type: string
       format: date-time
@@ -24,6 +28,7 @@ BlueprintDocumentation:
     - blueprint_id
     - document
     - document_type
+    - is_live
   additionalProperties: false
 
 BlueprintDocumentationList:
@@ -47,6 +52,10 @@ BlueprintDocumentationCreate:
       type: string
       enum: [changelog, instructions]
       description: Type of documentation
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
+      default: true
   required:
     - document
     - document_type
@@ -62,6 +71,9 @@ BlueprintDocumentationUpdate:
       type: string
       enum: [changelog, instructions]
       description: Type of documentation
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
   required:
     - document
   additionalProperties: false

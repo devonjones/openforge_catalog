@@ -28,7 +28,7 @@ def api_key():
 def db():
     """Database connection fixture."""
     try:
-        db_conn = PgDB(os.environ)
+        db_conn = PgDB(os.environ, use_pool=False)
         yield db_conn
     except Exception as e:
         pytest.skip(f"Database connection failed: {e}")
@@ -51,50 +51,66 @@ def test_blueprint_id(base_url):
 
 
 @pytest.fixture(scope="function")
+def db_transaction(db):
+    """Provide database transaction isolation for tests."""
+    with db.connection() as conn:
+        # Start a transaction
+        conn.autocommit = False
+        yield conn
+        # Rollback the transaction to undo all changes
+        conn.rollback()
+
+
+@pytest.fixture(scope="function")
 def cleanup_test_data(db):
     """Clean up test data before and after each test."""
     # Track created test data IDs
     created_tag_doc_ids = []
     created_blueprint_doc_ids = []
     
-    # Clean up before test
-    with db.pool.connection() as conn:
-        with conn.cursor(row_factory=dict_row) as curs:
-            # Clean up any existing test data from previous runs using unique test prefix
-            curs.execute("""
-                DELETE FROM tag_documentation 
-                WHERE document LIKE %s
-            """, (f"{TEST_DATA_PREFIX}%",))
-            
-            curs.execute("""
-                DELETE FROM blueprint_documentation 
-                WHERE document LIKE %s
-            """, (f"{TEST_DATA_PREFIX}%",))
-            conn.commit()
+    # Check if we should keep test data
+    keep_test_data = os.environ.get("KEEP_TEST_DATA") == "true"
+    
+    # Clean up before test (only if we're not keeping test data)
+    if not keep_test_data:
+        with db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                # Clean up any existing test data from previous runs using unique test prefix
+                curs.execute("""
+                    DELETE FROM tag_documentation 
+                    WHERE document LIKE %s
+                """, (f"{TEST_DATA_PREFIX}%",))
+                
+                curs.execute("""
+                    DELETE FROM blueprint_documentation 
+                    WHERE document LIKE %s
+                """, (f"{TEST_DATA_PREFIX}%",))
+                conn.commit()
     
     yield {
         'tag_doc_ids': created_tag_doc_ids,
         'blueprint_doc_ids': created_blueprint_doc_ids
     }
     
-    # Clean up after test by ID
-    with db.pool.connection() as conn:
-        with conn.cursor(row_factory=dict_row) as curs:
-            if created_tag_doc_ids:
-                placeholders = ','.join(['%s'] * len(created_tag_doc_ids))
-                curs.execute(f"""
-                    DELETE FROM tag_documentation 
-                    WHERE id IN ({placeholders})
-                """, created_tag_doc_ids)
-            
-            if created_blueprint_doc_ids:
-                placeholders = ','.join(['%s'] * len(created_blueprint_doc_ids))
-                curs.execute(f"""
-                    DELETE FROM blueprint_documentation 
-                    WHERE id IN ({placeholders})
-                """, created_blueprint_doc_ids)
-            
-            conn.commit()
+    # Clean up after test by ID (only if KEEP_TEST_DATA is not set)
+    if not keep_test_data:
+        with db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                if created_tag_doc_ids:
+                    placeholders = ','.join(['%s'] * len(created_tag_doc_ids))
+                    curs.execute(f"""
+                        DELETE FROM tag_documentation 
+                        WHERE id IN ({placeholders})
+                    """, created_tag_doc_ids)
+                
+                if created_blueprint_doc_ids:
+                    placeholders = ','.join(['%s'] * len(created_blueprint_doc_ids))
+                    curs.execute(f"""
+                        DELETE FROM blueprint_documentation 
+                        WHERE id IN ({placeholders})
+                    """, created_blueprint_doc_ids)
+                
+                conn.commit()
 
 
 @pytest.fixture(scope="function")
@@ -102,7 +118,7 @@ def test_blueprint_documentation(db, cleanup_test_data):
     """Create test blueprint documentation and track IDs for cleanup."""
     def create_test_doc(blueprint_id, document, document_type="changelog"):
         """Helper to create test documentation and track ID."""
-        with db.pool.connection() as conn:
+        with db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 curs.execute("""
                     INSERT INTO blueprint_documentation (blueprint_id, document, document_type)
@@ -145,7 +161,7 @@ def test_tag_documentation(db):
     created_docs = []
     created_ids = []
     
-    with db.pool.connection() as conn:
+    with db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             for tag_data in test_tags:
                 try:
@@ -176,7 +192,7 @@ def test_tag_documentation(db):
     
     # Clean up test tag documentation by ID
     if created_ids:
-        with db.pool.connection() as conn:
+        with db.connection() as conn:
             with conn.cursor(row_factory=dict_row) as curs:
                 placeholders = ','.join(['%s'] * len(created_ids))
                 curs.execute(f"""
@@ -198,7 +214,7 @@ class APIClient:
         })
     
     def request(self, method: str, endpoint: str, data: Optional[Dict] = None, 
-                headers: Optional[Dict] = None, **kwargs) -> requests.Response:
+                headers: Optional[Dict] = None, files: Optional[Dict] = None, **kwargs) -> requests.Response:
         """Make an API request."""
         url = f"{self.base_url}{endpoint}"
         
@@ -208,7 +224,26 @@ class APIClient:
         if "Authorization" not in headers and self.api_key:
             headers["Authorization"] = f"Bearer {self.api_key}"
         
-        # Handle both data and json parameters
+        # Handle multipart requests (files present)
+        if files is not None:
+            # For multipart requests, we need to let requests set the Content-Type automatically
+            # Remove any Content-Type headers to prevent conflicts
+            headers.pop("Content-Type", None)
+            
+            # Create a new session for this request without the default Content-Type header
+            temp_session = requests.Session()
+            if self.api_key:
+                temp_session.headers.update({"Authorization": f"Bearer {self.api_key}"})
+            
+            request_kwargs = kwargs.copy()
+            request_kwargs.update({
+                'data': data,
+                'files': files,
+                'headers': headers
+            })
+            return temp_session.request(method, url, **request_kwargs)
+        
+        # Handle regular JSON requests
         request_kwargs = kwargs.copy()
         if data is not None and 'json' not in request_kwargs:
             request_kwargs['json'] = data
@@ -219,8 +254,8 @@ class APIClient:
     def get(self, endpoint: str, **kwargs) -> requests.Response:
         return self.request("GET", endpoint, **kwargs)
     
-    def post(self, endpoint: str, data: Optional[Dict] = None, **kwargs) -> requests.Response:
-        return self.request("POST", endpoint, data=data, **kwargs)
+    def post(self, endpoint: str, data: Optional[Dict] = None, files: Optional[Dict] = None, **kwargs) -> requests.Response:
+        return self.request("POST", endpoint, data=data, files=files, **kwargs)
     
     def put(self, endpoint: str, data: Optional[Dict] = None, **kwargs) -> requests.Response:
         return self.request("PUT", endpoint, data=data, **kwargs)

@@ -74,6 +74,7 @@ def create_tag_documentation(tag_array):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type", "instructions")
+    is_live = request.json.get("is_live", True)
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
@@ -92,8 +93,9 @@ def create_tag_documentation(tag_array):
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
                 data = tags_doc_sql.create_tag_documentation(
-                    cursor, tag_array, sanitized_document, document_type
+                    cursor, tag_array, sanitized_document, document_type, is_live
                 )
+                
                 return jsonify({"documentation": data}), 201
             except Exception as e:
                 current_app.logger.error(f"Error creating tag documentation: {e}")
@@ -112,6 +114,7 @@ def update_tag_documentation(tag_array, doc_id):
     
     document = request.json.get("document")
     document_type = request.json.get("document_type")
+    is_live = request.json.get("is_live")
     
     if not document or not document.strip():
         return jsonify({"error": "Document content required"}), 400
@@ -133,8 +136,9 @@ def update_tag_documentation(tag_array, doc_id):
                 existing_doc = _verify_tag_documentation_ownership(cursor, doc_uuid, tag_array)
                 
                 data = tags_doc_sql.update_tag_documentation(
-                    cursor, doc_uuid, sanitized_document, document_type
+                    cursor, doc_uuid, sanitized_document, document_type, is_live
                 )
+                
                 return jsonify({"documentation": data})
             except NotFound:
                 return jsonify({"error": "Documentation not found"}), 404

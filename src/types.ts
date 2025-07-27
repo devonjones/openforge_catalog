@@ -51,6 +51,51 @@ export interface Blueprint {
   updated_at: string;
 }
 
+// Documentation types
+export interface BlueprintDocumentation {
+  id: string;
+  blueprint_id: string;
+  document: string;
+  document_type: 'changelog' | 'instructions';
+  is_live: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TagDocumentation {
+  id: string;
+  tag: string[];
+  document: string;
+  document_type: 'instructions';
+  is_live: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ChangelogEntry {
+  blueprint_id: string;
+  blueprint_name: string;
+  changelog: string | null;
+  created_at: string | null;
+  depth: number;
+  successor_id: string | null;
+  deprecated: boolean;
+}
+
+export interface ChangelogHistory {
+  changelogs: ChangelogEntry[];
+  has_more: boolean;
+  total_count: number;
+}
+
+export interface CombinedBlueprintDocumentation {
+  blueprint_id: string;
+  blueprint_name: string;
+  blueprint_documentation: BlueprintDocumentation[];
+  changelog_history: ChangelogHistory;
+  tag_documentation: Record<string, TagDocumentation[]>;
+}
+
 export interface TagNode {
   __count?: number;
   __totalCount?: number;
