@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useRef, useEffect, Suspense } from 'react';
 import { StoreApi, useStore } from 'zustand';
 import { createBlueprintStore, BlueprintStore } from '@/stores/blueprint-store';
 import { useSearchParams } from 'next/navigation';
@@ -14,15 +14,14 @@ interface BlueprintProviderProps {
   autoload?: boolean;
 }
 
-export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
-  const storeRef = useRef<BlueprintContext>(null);
+interface BlueprintProviderInnerProps extends BlueprintProviderProps {
+  storeRef: React.MutableRefObject<BlueprintContext>;
+}
+
+function BlueprintProviderInner({ children, autoload = false, storeRef }: BlueprintProviderInnerProps) {
   const searchParams = useSearchParams();
   const blueprintId = autoload ? searchParams.get('blueprint_id') : null;
   const md5 = autoload ? searchParams.get('md5') : null;
-
-  if (!storeRef.current) {
-    storeRef.current = createBlueprintStore();
-  }
 
   useEffect(() => {
     if (blueprintId) {
@@ -42,7 +41,35 @@ export function BlueprintProvider({ children, autoload = false }: BlueprintProvi
           console.error('Failed to fetch initial blueprint:', error);
         });
     }
-  }, [blueprintId, md5]);
+  }, [blueprintId, md5, storeRef]);
+
+  return (
+    <BlueprintContext.Provider value={storeRef.current}>
+      {children}
+    </BlueprintContext.Provider>
+  );
+}
+
+export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
+  const storeRef = useRef<BlueprintContext>(null);
+
+  if (!storeRef.current) {
+    storeRef.current = createBlueprintStore();
+  }
+
+  if (autoload) {
+    return (
+      <Suspense fallback={
+        <BlueprintContext.Provider value={storeRef.current}>
+          {children}
+        </BlueprintContext.Provider>
+      }>
+        <BlueprintProviderInner autoload={autoload} storeRef={storeRef}>
+          {children}
+        </BlueprintProviderInner>
+      </Suspense>
+    );
+  }
 
   return (
     <BlueprintContext.Provider value={storeRef.current}>
@@ -57,4 +84,4 @@ export function useBlueprintContext<T>(selector: (state: BlueprintStore) => T) {
     throw new Error('useBlueprintContext must be used within a BlueprintProvider');
   }
   return useStore(store, selector);
-} 
+}
