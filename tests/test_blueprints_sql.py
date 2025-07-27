@@ -6,7 +6,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 from .test_helpers import create_test_blueprint, assert_blueprint_matches
 
 def test_create_blueprint(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = create_test_blueprint()
             result = blueprint_sql.insert_blueprint(curs, blueprint)
@@ -17,7 +17,7 @@ def test_create_blueprint(test_db):
             assert_blueprint_matches(blueprints[0], blueprint)
 
 def test_get_blueprint_by_id(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = create_test_blueprint()
             created = blueprint_sql.insert_blueprint(curs, blueprint)
@@ -29,7 +29,7 @@ def test_get_blueprint_by_id(test_db):
                 blueprint_sql.get_blueprint_by_id(curs, uuid.UUID("00000000-0000-0000-0000-000000000000"))
 
 def test_get_blueprint_by_md5(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = create_test_blueprint(file_md5="test_md5")
             created = blueprint_sql.insert_blueprint(curs, blueprint)
@@ -41,7 +41,7 @@ def test_get_blueprint_by_md5(test_db):
                 blueprint_sql.get_blueprint_by_md5(curs, "nonexistent_md5")
 
 def test_update_blueprint(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = create_test_blueprint()
             created = blueprint_sql.insert_blueprint(curs, blueprint)
@@ -59,7 +59,7 @@ def test_update_blueprint(test_db):
                 blueprint_sql.update_blueprint(curs, uuid.UUID("00000000-0000-0000-0000-000000000000"), update_data)
 
 def test_delete_blueprint(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint = create_test_blueprint()
             created = blueprint_sql.insert_blueprint(curs, blueprint)
@@ -71,7 +71,7 @@ def test_delete_blueprint(test_db):
                 blueprint_sql.get_blueprint_by_id(curs, created["id"])
 
 def test_delete_all_blueprints(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprints = [
                 create_test_blueprint(blueprint_name=f"test_blueprint_{i}")
@@ -88,7 +88,7 @@ def test_delete_all_blueprints(test_db):
             assert count == 0
 
 def test_md5_conflict(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             blueprint1 = create_test_blueprint(file_md5="test_md5")
             created1 = blueprint_sql.insert_blueprint(curs, blueprint1)

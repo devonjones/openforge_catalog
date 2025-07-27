@@ -44,7 +44,6 @@ describe('ConfigBox', () => {
     file_name: 'test.stl',
     file_md5: 'abc123',
     file_size: 1024,
-    file_changed_at: '2023-01-01T00:00:00Z',
     file_modified_at: '2023-01-01T00:00:00Z',
     full_name: 'Test Blueprint Full Name',
     created_at: '2023-01-01T00:00:00Z',

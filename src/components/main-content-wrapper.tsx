@@ -1,0 +1,27 @@
+'use client'
+
+import React from 'react';
+import { AdminProvider } from '@/contexts/admin-context';
+import TabbedInterface from './tabbed-interface';
+import AdminHeader from './admin-header';
+
+export default function MainContentWrapper() {
+  return (
+    <AdminProvider>
+      <main className="min-h-screen bg-gray-100">
+        <div className='pageContainer'>
+          <div className='pageHeaderWrapper'>
+            OpenForge Catalog
+            <div className='pageHeaderRight'>
+              Version 0.6.0 |&nbsp;
+              <a className='visibleLink' href='https://github.com/devonjones/openforge-tutorials/wiki' target="_blank">Wiki</a> |&nbsp;
+              <a className='visibleLink' href='https://www.patreon.com/masterworktools' target="_blank">Support us on Patreon</a>
+              <AdminHeader />
+            </div>
+          </div>
+          <TabbedInterface />
+        </div>
+      </main>
+    </AdminProvider>
+  );
+} 

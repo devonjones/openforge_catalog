@@ -17,7 +17,195 @@ tags:
     description: Secured Admin-only calls
   - name: developers
     description: Operations available to regular developers
+  - name: documentation
+    description: Documentation system operations
+  - name: authentication
+    description: Authentication and session management
 paths:
+  # Session Management Routes
+  /api/admin/sessions:
+    post:
+      tags:
+        - admin
+        - authentication
+      summary: Create admin session
+      operationId: createAdminSession
+      description: |
+        Creates a new admin session using API key authentication.
+        Returns a secure session cookie and CSRF token for subsequent requests.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - api_key
+              properties:
+                api_key:
+                  type: string
+                  description: API key for authentication
+                  example: "your-secret-api-key"
+      responses:
+        '201':
+          description: Session created successfully
+          headers:
+            Set-Cookie:
+              description: Secure session cookie (httponly, secure, samesite=strict)
+              schema:
+                type: string
+            X-CSRF-Token:
+              description: CSRF token for state-changing operations
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Session created successfully"
+                  expires_at:
+                    type: string
+                    format: date-time
+                    description: Session expiration time (30 days from creation)
+                    example: "2024-03-25T12:34:56.789Z"
+                  csrf_token:
+                    type: string
+                    description: CSRF token (same as X-CSRF-Token header)
+                    example: "abc123def456..."
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - "Invalid JSON format"
+                      - "API key required"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - "Invalid API key"
+                      - "API_TOKEN not configured"
+    delete:
+      tags:
+        - admin
+        - authentication
+      summary: Delete current session (logout)
+      operationId: deleteAdminSession
+      description: |
+        Deletes the current session, effectively logging out the admin user.
+        Requires valid session cookie and CSRF token.
+      security:
+        - cookieAuth: []
+        - csrfToken: []
+      parameters:
+        - in: header
+          name: X-CSRF-Token
+          required: true
+          schema:
+            type: string
+          description: CSRF token obtained from session creation or validation
+      responses:
+        '200':
+          description: Session deleted successfully
+          headers:
+            Set-Cookie:
+              description: Clears the session cookie
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Session deleted successfully"
+        '401':
+          description: Invalid or missing session
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid or expired session"
+        '403':
+          description: Invalid or missing CSRF token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid CSRF token"
+  
+  /api/admin/sessions/validate:
+    get:
+      tags:
+        - admin
+        - authentication
+      summary: Validate current session
+      operationId: validateAdminSession
+      description: |
+        Validates the current session cookie and returns session information.
+        Automatically cleans up expired sessions.
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Session is valid
+          headers:
+            X-CSRF-Token:
+              description: CSRF token for state-changing operations
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                    example: true
+                  expires_at:
+                    type: string
+                    format: date-time
+                    description: Session expiration time
+                    example: "2024-03-25T12:34:56.789Z"
+                  csrf_token:
+                    type: string
+                    description: CSRF token (same as X-CSRF-Token header)
+                    example: "abc123def456..."
+        '401':
+          description: Invalid or missing session
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "Invalid or expired session"
+  
   /api/blueprints:
     get:
       tags:
@@ -141,6 +329,93 @@ paths:
           description: 'Not Authorized'
         '404':
           description: 'Blueprint not found'
+  /api/blueprints/{blueprint_id}/disconnect-successor:
+    post:
+      tags:
+        - blueprint
+      summary: Disconnect a successor relationship
+      operationId: disconnectSuccessor
+      description: |
+        Disconnects a successor relationship from a deprecated blueprint and deletes any associated changelog documentation on the successor.
+        
+        This endpoint:
+        1. Sets the successor_id to null on the deprecated blueprint
+        2. Deletes any changelog documentation on the successor blueprint
+        
+        Requires authentication via session cookie or API key, and CSRF token for session-based auth.
+      security:
+        - ApiKeyAuth: []
+        - cookieAuth: []
+          csrfToken: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint to disconnect the successor from
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: header
+          name: X-CSRF-Token
+          description: CSRF token (required for session-based authentication)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successor disconnected successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  blueprint:
+                    $ref: '#/components/schemas/Blueprint'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                      - "Invalid blueprint ID format"
+                      - "Blueprint has no successor"
+        '401':
+          description: Unauthorized - Invalid or missing authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Authentication required"
+        '403':
+          description: Forbidden - Invalid or missing CSRF token (session auth only)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid CSRF token"
+        '404':
+          description: Blueprint not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Blueprint not found"
   /api/blueprints/md5/{md5}:
     get:
       tags:
@@ -422,10 +697,10 @@ paths:
     get:
       tags:
         - image
-      summary: returns all blueprints
+      summary: returns all images
       operationId: allImages
       description: |
-        Returns all iamges
+        Returns all images
       responses:
         '200':
           description: search results matching criteria
@@ -440,12 +715,12 @@ paths:
         - image
       summary: Creates an image
       operationId: addImage
-      description: Creates an image
+      description: Creates an image with optional file upload. Supports both JSON metadata-only and multipart form data with file upload.
       security:
         - ApiKeyAuth: []
       responses:
         '201':
-          description: Blueprint created
+          description: Image created
           content:
             application/json:
               schema:
@@ -459,7 +734,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Image'
-        description: Image to create
+            description: Image metadata only (no file upload)
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: JSON string containing image metadata
+                  example: '{"image_name": "example", "blueprint_ids": []}'
+                file:
+                  type: string
+                  format: binary
+                  description: Image file to upload
+              required:
+                - metadata
+                - file
+            description: Multipart form data with image file and metadata
+        description: Image to create (JSON metadata only or multipart with file)
   /api/images/{image_id}:
     get:
       tags:
@@ -489,7 +781,7 @@ paths:
         - image
       summary: Updates an image
       operationId: patchImage
-      description: Updates an image and returns it
+      description: Updates an image and returns it. Supports both JSON metadata-only and multipart form data with file upload.
       security:
         - ApiKeyAuth: []
       parameters:
@@ -512,12 +804,27 @@ paths:
         '401':
           description: 'Not Authorized'
         '404':
-          description: 'Blueprint not found'
+          description: 'Image not found'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Blueprint'
+              $ref: '#/components/schemas/Image'
+            description: Image metadata only (no file upload)
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: JSON string containing image metadata (optional for PATCH)
+                  example: '{"image_name": "example", "blueprint_ids": []}'
+                file:
+                  type: string
+                  format: binary
+                  description: Image file to upload (optional for PATCH)
+            description: Multipart form data with optional image file and metadata
+        description: Image to update (JSON metadata only or multipart with optional file)
     delete:
       tags:
         - image
@@ -741,12 +1048,431 @@ paths:
           description: 'Not Authorized'
         '404':
           description: 'Tag description not found'
+  /api/blueprints/{blueprint_id}/documentation:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get all documentation for a blueprint
+      operationId: getBlueprintDocumentation
+      description: Returns all documentation entries for a specific blueprint
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Blueprint documentation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentationList'
+        '404':
+          description: 'Blueprint not found'
+    post:
+      tags:
+        - blueprint
+        - documentation
+      summary: Create documentation for a blueprint
+      operationId: createBlueprintDocumentation
+      description: Creates new documentation for a blueprint (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '201':
+          description: Documentation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Blueprint not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlueprintDocumentationCreate'
+        description: Documentation to create
+  /api/blueprints/{blueprint_id}/documentation/{doc_id}:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get specific documentation entry
+      operationId: getBlueprintDocumentationById
+      description: Returns a specific documentation entry for a blueprint
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '404':
+          description: 'Documentation not found'
+    patch:
+      tags:
+        - blueprint
+        - documentation
+      summary: Update specific documentation entry
+      operationId: updateBlueprintDocumentation
+      description: Updates a specific documentation entry (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlueprintDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlueprintDocumentationUpdate'
+        description: Updated documentation
+    delete:
+      tags:
+        - blueprint
+        - documentation
+      summary: Delete specific documentation entry
+      operationId: deleteBlueprintDocumentation
+      description: Deletes a specific documentation entry (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Documentation deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+  /api/blueprints/{blueprint_id}/changelog-history:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get changelog history for blueprint
+      operationId: getBlueprintChangelogHistory
+      description: Returns recursive changelog history through successor chain
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: query
+          name: limit
+          description: Maximum number of changelogs to return
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - in: query
+          name: offset
+          description: Number of changelogs to skip
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: Changelog history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangelogHistory'
+        '404':
+          description: 'Blueprint not found'
+  /api/blueprints/{blueprint_id}/all-documentation:
+    get:
+      tags:
+        - blueprint
+        - documentation
+      summary: Get all documentation for a blueprint
+      operationId: getBlueprintAllDocumentation
+      description: Returns all documentation for a blueprint including blueprint documentation, changelog history, and documentation for all associated tags
+      parameters:
+        - in: path
+          name: blueprint_id
+          description: ID of the blueprint
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        - in: query
+          name: changelog_limit
+          description: Maximum number of changelogs to return in history
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+        - in: query
+          name: changelog_offset
+          description: Number of changelogs to skip in history
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+      responses:
+        '200':
+          description: Combined documentation for blueprint
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedBlueprintDocumentation'
+        '404':
+          description: 'Blueprint not found'
+  /api/tags/{tag_array}/documentation:
+    get:
+      tags:
+        - tags
+        - documentation
+      summary: Get documentation for a specific tag
+      operationId: getTagDocumentation
+      description: Returns documentation for a specific tag (URL format: texture/dungeon_stone)
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tag documentation list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentationList'
+        '404':
+          description: 'Tag not found'
+    post:
+      tags:
+        - tags
+        - documentation
+      summary: Create documentation for a tag
+      operationId: createTagDocumentation
+      description: Creates new documentation for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Documentation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Tag not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDocumentationCreate'
+        description: Documentation to create
+  /api/tags/{tag_array}/documentation/{doc_id}:
+    get:
+      tags:
+        - tags
+        - documentation
+      summary: Get specific tag documentation entry
+      operationId: getTagDocumentationById
+      description: Returns a specific documentation entry for a tag
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '404':
+          description: 'Documentation not found'
+    patch:
+      tags:
+        - tags
+        - documentation
+      summary: Update specific tag documentation entry
+      operationId: updateTagDocumentation
+      description: Updates a specific documentation entry for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '200':
+          description: Documentation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagDocumentation'
+        '400':
+          description: 'Invalid input'
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagDocumentationUpdate'
+        description: Updated documentation
+    delete:
+      tags:
+        - tags
+        - documentation
+      summary: Delete specific tag documentation entry
+      operationId: deleteTagDocumentation
+      description: Deletes a specific documentation entry for a tag (requires authentication)
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: tag_array
+          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: doc_id
+          description: ID of the documentation entry
+          required: true
+          schema:
+            type: string
+            pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+      responses:
+        '204':
+          description: Documentation deleted
+        '401':
+          description: 'Not Authorized'
+        '404':
+          description: 'Documentation not found'
 components:
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       in: header
       name: Authorization
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: session_token
+      description: Secure session cookie set by POST /api/admin/sessions
+    csrfToken:
+      type: apiKey
+      in: header
+      name: X-CSRF-Token
+      description: CSRF token required for state-changing operations
   schemas:
     Blueprint:
       type: object
@@ -797,6 +1523,11 @@ components:
                 type: string
               image_url:
                 type: string
+        successor_id:
+          type: string
+          pattern: "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+          nullable: true
+          description: ID of the successor blueprint (for deprecated blueprints)
     Tag:
       type: object
       properties:
@@ -886,3 +1617,23 @@ components:
       additionalProperties:
         type: string
       description: A mapping of tag strings to their descriptions
+    BlueprintDocumentation:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentation'
+    BlueprintDocumentationList:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationList'
+    BlueprintDocumentationCreate:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationCreate'
+    BlueprintDocumentationUpdate:
+      $ref: 'blueprint_documentation.yaml#/BlueprintDocumentationUpdate'
+    ChangelogHistory:
+      $ref: 'blueprint_documentation.yaml#/ChangelogHistory'
+    CombinedBlueprintDocumentation:
+      $ref: 'blueprint_documentation.yaml#/CombinedBlueprintDocumentation'
+    TagDocumentation:
+      $ref: 'tag_documentation.yaml#/TagDocumentation'
+    TagDocumentationList:
+      $ref: 'tag_documentation.yaml#/TagDocumentationList'
+    TagDocumentationCreate:
+      $ref: 'tag_documentation.yaml#/TagDocumentationCreate'
+    TagDocumentationUpdate:
+      $ref: 'tag_documentation.yaml#/TagDocumentationUpdate'

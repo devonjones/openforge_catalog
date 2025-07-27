@@ -18,6 +18,7 @@ import BlueprintHeader from './blueprint/blueprint-header';
 import BlueprintMeta from './blueprint/blueprint-meta';
 import BlueprintRelatedLinks from './blueprint/blueprint-related-links';
 import BlueprintActions from './blueprint/blueprint-actions';
+import BlueprintDetailsTabs from './blueprint-details-tabs';
 import './blueprint-container.css';
 
 interface BlueprintContainerProps {
@@ -80,7 +81,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const deeplink = `${currentPath}?md5=${blueprint.file_md5}`;
 
   return (
-    <div className='blueprintContainer'>
+    <BlueprintDetailsTabs blueprint={blueprint}>
       <BlueprintHeader
         name={blueprint.blueprint_name}
         fullName={blueprint.full_name}
@@ -114,7 +115,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         configValues={configValues}
       />
       <ImageGallery blueprint={blueprint} />
-    </div>
+    </BlueprintDetailsTabs>
   );
 };
 

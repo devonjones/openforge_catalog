@@ -59,6 +59,41 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
     return [_convert_config(dict(row)) for row in curs.fetchall()]
 
 
+def get_deprecated_blueprints(curs: cursor) -> list[dict]:
+    """Get all deprecated blueprints with successor information."""
+    query = sql.SQL(
+        """
+SELECT b.id, b.blueprint_name, b.blueprint_type, b.config, b.file_md5, b.file_size,
+       b.file_name, b.full_name, b.file_modified_at, b.storage_address,
+       b.consolidated_paths, b.deprecated, b.successor_id,
+       b.created_at, b.updated_at,
+       s.blueprint_name as successor_name,
+       s.full_name as successor_full_name,
+       cl.document as changelog
+  FROM blueprints b
+  LEFT JOIN blueprints s ON b.successor_id = s.id
+  LEFT JOIN blueprint_documentation cl ON s.id = cl.blueprint_id 
+    AND cl.document_type = 'changelog' 
+    AND cl.is_live = true
+  WHERE b.deprecated = true
+  ORDER BY b.created_at DESC
+"""
+    )
+    curs.execute(query)
+    results = []
+    for row in curs.fetchall():
+        blueprint = _convert_config(dict(row))
+        # Add successor info if available
+        if row.get('successor_name'):
+            blueprint['successor_info'] = {
+                'name': row['successor_name'],
+                'full_name': row['successor_full_name'],
+                'changelog': row.get('changelog')
+            }
+        results.append(blueprint)
+    return results
+
+
 def _blueprint_search_text(data: dict, words: list[str]) -> str:
     retwords = set()
     retwords.update(words)
@@ -275,4 +310,18 @@ def mark_blueprint_deprecated(curs: cursor, blueprint_id: uuid.UUID, successor_i
     return update_blueprint(curs, blueprint_id, data)
 
 
+def get_current_version_by_md5(curs: cursor, md5: str) -> dict:
+    """Get the current version of a blueprint by MD5, following the successor chain."""
+    query = sql.SQL(
+        """
+SELECT find_current_version_by_md5({md5}) as id
+"""
+    ).format(md5=sql.Literal(md5))
+    curs.execute(query)
+    
+    result = curs.fetchone()
+    if result and result["id"]:
+        return get_blueprint_by_id(curs, result["id"])
+    else:
+        raise NotFound("Blueprint not found")
 

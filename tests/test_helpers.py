@@ -87,7 +87,7 @@ def setup_test_data(test_db, data: Dict[str, Any], insert_func) -> Dict[str, Any
     Returns:
         Dict containing the created data
     """
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Handle functions that expect separate arguments
             if insert_func.__name__ == 'insert_image':

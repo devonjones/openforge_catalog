@@ -6,7 +6,7 @@ import openforge.db.sql.tag_descriptions as tag_description_sql
 
 
 def test_create_tag_description(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             tag = ["foo", "bar"]
             description = "Test description"
@@ -15,7 +15,7 @@ def test_create_tag_description(test_db):
 
 
 def test_get_tag_description_by_id(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             tag = ["foo", "bar"]
             description = "Test description"
@@ -29,7 +29,7 @@ def test_get_tag_description_by_id(test_db):
 
 
 def test_get_tag_description_by_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create parent tag
             parent_tag = ["foo"]
@@ -55,7 +55,7 @@ def test_get_tag_description_by_tag(test_db):
 
 
 def test_update_tag_description(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             tag = ["foo", "bar"]
             description = "Test description"
@@ -72,7 +72,7 @@ def test_update_tag_description(test_db):
 
 
 def test_update_tag_description_by_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create parent tag
             parent_tag = ["foo"]
@@ -95,7 +95,7 @@ def test_update_tag_description_by_tag(test_db):
 
 
 def test_delete_tag_description(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             tag = ["foo", "bar"]
             description = "Test description"
@@ -109,7 +109,7 @@ def test_delete_tag_description(test_db):
 
 
 def test_delete_tag_description_by_tag(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create parent tag
             parent_tag = ["foo"]

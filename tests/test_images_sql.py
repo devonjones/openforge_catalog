@@ -7,7 +7,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 from .test_helpers import create_test_image, assert_image_matches, create_test_blueprint
 
 def test_create_image(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test image
             image = create_test_image()
@@ -20,7 +20,7 @@ def test_create_image(test_db):
             assert_image_matches(images[0], image)
 
 def test_get_image_by_id(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test image
             image = create_test_image()
@@ -35,7 +35,7 @@ def test_get_image_by_id(test_db):
             assert result is None
 
 def test_update_image(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test image
             image = create_test_image()
@@ -56,7 +56,7 @@ def test_update_image(test_db):
                 image_sql.update_image(curs, uuid.UUID("00000000-0000-0000-0000-000000000000"), update_data)
 
 def test_delete_image(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test image
             image = create_test_image()
@@ -71,7 +71,7 @@ def test_delete_image(test_db):
             assert result is None
 
 def test_delete_all_images(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create multiple images
             images = [
@@ -91,7 +91,7 @@ def test_delete_all_images(test_db):
             assert count == 0
 
 def test_image_blueprint_associations(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test image
             image = create_test_image()
@@ -118,7 +118,7 @@ def test_image_blueprint_associations(test_db):
             assert blueprint_ids[0] == created_new_blueprint["id"]
 
 def test_image_duplicate_url(test_db):
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create first image
             image1 = create_test_image()

@@ -10,14 +10,14 @@ from openforge.db.sql.tag_utils import array_to_tag
 
 
 def get_blueprint_tags(blueprint_id: uuid.UUID):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tag_sql.get_tags(cursor, blueprint_id)
             return jsonify(data)
 
 
 def create_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = []
             for tag in tags:
@@ -30,7 +30,7 @@ def replace_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
         validate_schema("tags.yaml", tags)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
             for tag in tags:
@@ -38,7 +38,7 @@ def replace_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
 
 
 def delete_blueprint_tag(blueprint_id: uuid.UUID, tag: str):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             rows = tag_sql.delete_tag(cursor, blueprint_id, tag)
             if rows != 0:
@@ -48,14 +48,14 @@ def delete_blueprint_tag(blueprint_id: uuid.UUID, tag: str):
 
 
 def delete_blueprint_tags(blueprint_id: uuid.UUID):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
             return jsonify(data)
 
 
 def get_blueprint_ids_by_tag(tag: str):
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = tag_sql.get_blueprint_ids_by_tag(cursor, tag)
             return jsonify(data)
@@ -67,7 +67,7 @@ def query_tags():
             validate_schema("tag_query.yaml", request.json)
     except ValidationError as e:
         return jsonify({"error": str(e)}), 400
-    with current_app.db.pool.connection() as conn:
+    with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             accept = []
             require = []
@@ -192,3 +192,5 @@ def _munge_image(image: dict) -> dict:
         "created_at": image["created_at"],
         "updated_at": image["updated_at"],
     }
+
+
