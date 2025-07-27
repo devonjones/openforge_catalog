@@ -48,6 +48,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [existingDoc, setExistingDoc] = useState<DocumentationData | null>(null);
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const editorRef = useRef<any>(null);
   
   // Get CSRF token from admin context
@@ -388,6 +389,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
           previewOptions={{
             // Process the markdown to handle Obsidian image syntax
             components: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               code({ inline, className, children, ...props }: any) {
                 // Default code rendering
                 const match = /language-(\w+)/.exec(className || '');
@@ -403,6 +405,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
                   </code>
                 );
               },
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               img: ({ src, alt, className, ...props }: any) => {
                 // Check if this is Obsidian syntax that wasn't processed
                 const altMatch = alt?.match(/^(.+)\|(\d+)$/);
@@ -411,15 +414,19 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ target }) => {
                   // Remove max-w-full class and use inline style
                   const filteredClassName = className?.replace(/\bmax-w-full\b/g, '').trim();
                   return (
-                    <img 
-                      src={src} 
-                      alt={realAlt} 
-                      className={filteredClassName}
-                      style={{ width: `${width}px`, height: 'auto' }}
-                      {...props} 
-                    />
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img 
+                        src={src} 
+                        alt={realAlt} 
+                        className={filteredClassName}
+                        style={{ width: `${width}px`, height: 'auto' }}
+                        {...props} 
+                      />
+                    </>
                   );
                 }
+                // eslint-disable-next-line @next/next/no-img-element
                 return <img src={src} alt={alt} className={className} {...props} />;
               }
             },
