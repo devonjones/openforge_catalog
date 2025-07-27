@@ -90,7 +90,7 @@ CREATE INDEX idx_tag_documentation_type ON tag_documentation(document_type)
         # Trigger for automatic updated_at timestamp updates
         query = sql.SQL(
             """
-CREATE TRIGGER update_tag_documentation_updated_at 
+CREATE TRIGGER update_tag_documentation_updated_at
   BEFORE UPDATE ON tag_documentation
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
 """
@@ -130,7 +130,8 @@ CREATE INDEX idx_sessions_expires ON sessions(expires_at)
         curs.execute(query)
         print("  created idx_sessions_expires index")
 
-        # Trigger function to update last_used_at column (only if more than 1 hour has passed)
+        # Trigger function to update last_used_at column
+        # (only if more than 1 hour has passed)
         query = sql.SQL(
             """
 CREATE OR REPLACE FUNCTION update_last_used_at_column()
@@ -152,7 +153,7 @@ $$ LANGUAGE plpgsql
         # Trigger for automatic last_used_at updates on UPDATE
         query = sql.SQL(
             """
-CREATE TRIGGER update_sessions_last_used 
+CREATE TRIGGER update_sessions_last_used
   BEFORE UPDATE ON sessions
   FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column()
 """
@@ -180,7 +181,7 @@ BEGIN
     RETURN QUERY
     WITH RECURSIVE changelog_chain AS (
         -- Start with the current blueprint
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -189,14 +190,14 @@ BEGIN
             0 as depth,
             b.deprecated
         FROM blueprints b
-        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
+        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id
             AND bd.document_type = 'changelog'
         WHERE b.id = p_blueprint_id
-        
+
         UNION ALL
-        
+
         -- Follow successor chain
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -205,16 +206,16 @@ BEGIN
             cc.depth + 1,
             b.deprecated
         FROM blueprints b
-        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
+        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id
             AND bd.document_type = 'changelog'
         INNER JOIN changelog_chain cc ON b.id = cc.successor_id
         WHERE cc.depth < p_max_depth AND cc.successor_id IS NOT NULL
     )
-    SELECT 
-        cc.id, 
-        cc.blueprint_name, 
-        cc.document, 
-        cc.created_at::timestamptz, 
+    SELECT
+        cc.id,
+        cc.blueprint_name,
+        cc.document,
+        cc.created_at::timestamptz,
         cc.depth,
         cc.successor_id,
         cc.deprecated
@@ -233,7 +234,9 @@ $$ LANGUAGE plpgsql
         print("  existing images automatically migrated to 'thumbnail' type")
 
     def drop_documentation_functions(self, curs: cursor):
-        query = sql.SQL("DROP FUNCTION IF EXISTS get_blueprint_changelog_history(uuid, integer)")
+        query = sql.SQL(
+            "DROP FUNCTION IF EXISTS get_blueprint_changelog_history(uuid, integer)"
+        )
         curs.execute(query)
         print("  dropped get_blueprint_changelog_history function")
 
@@ -259,7 +262,10 @@ $$ LANGUAGE plpgsql
         print("  dropped sessions table")
 
     def drop_tag_documentation_table(self, curs: cursor):
-        query = sql.SQL("DROP TRIGGER IF EXISTS update_tag_documentation_updated_at ON tag_documentation")
+        query = sql.SQL(
+            "DROP TRIGGER IF EXISTS update_tag_documentation_updated_at "
+            "ON tag_documentation"
+        )
         curs.execute(query)
         print("  dropped tag_documentation updated_at trigger")
 
@@ -286,4 +292,4 @@ $$ LANGUAGE plpgsql
 
         query = sql.SQL("DROP TYPE IF EXISTS image_type_enum")
         curs.execute(query)
-        print("  dropped image_type_enum") 
+        print("  dropped image_type_enum")

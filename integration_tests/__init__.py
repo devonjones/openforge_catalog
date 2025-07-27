@@ -1,1 +1,1 @@
-# Integration tests for OpenForge Catalog API 
+# Integration tests for OpenForge Catalog API

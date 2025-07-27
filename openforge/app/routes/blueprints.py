@@ -1,16 +1,17 @@
-from flask import jsonify, request, current_app, make_response, abort, redirect
+import re
+import uuid
+from urllib.parse import urlparse
+
+import boto3
+from botocore.config import Config
+from flask import abort, current_app, jsonify, make_response, redirect, request
+from jsonschema.exceptions import ValidationError
 from psycopg.rows import dict_row
 from werkzeug.exceptions import NotFound
-from jsonschema.exceptions import ValidationError
-import boto3
-import re
-from botocore.config import Config
-from urllib.parse import urlparse
-import uuid
 
 import openforge.db.sql.blueprints as blueprint_sql
-import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
+import openforge.db.sql.tags as tag_sql
 from openforge.openapi import validate_schema
 
 
@@ -54,7 +55,9 @@ def create_blueprint():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             req_data = request.json
-            data = blueprint_sql.insert_blueprint(cursor, req_data, words=_create_blueprint_words(req_data))
+            data = blueprint_sql.insert_blueprint(
+                cursor, req_data, words=_create_blueprint_words(req_data)
+            )
             if "tags" in req_data:
                 for tag in req_data["tags"]:
                     tag_sql.insert_tag(cursor, data["id"], tag)
@@ -68,7 +71,7 @@ def create_blueprint():
 
 def get_blueprint_by_id(blueprint_id):
     _validate_uuid(blueprint_id)
-    
+
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             data = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)
@@ -84,16 +87,14 @@ def get_blueprint_by_md5(md5):
         with conn.cursor(row_factory=dict_row) as cursor:
             # Follow successor chain to get current version
             data = blueprint_sql.get_current_version_by_md5(cursor, md5)
-            data["tags"] = [
-                tag["tag"] for tag in tag_sql.get_tags(cursor, data["id"])
-            ]
+            data["tags"] = [tag["tag"] for tag in tag_sql.get_tags(cursor, data["id"])]
             data["images"] = image_sql.get_images_for_blueprint(cursor, data["id"])
             return jsonify(data)
 
 
 def update_blueprint(blueprint_id):
     _validate_uuid(blueprint_id)
-    
+
     try:
         validate_schema("blueprint.yaml", request.json, required=False)
     except ValidationError as e:
@@ -124,7 +125,7 @@ def update_blueprint(blueprint_id):
 
 def delete_blueprint(blueprint_id):
     _validate_uuid(blueprint_id)
-    
+
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             try:
@@ -140,7 +141,7 @@ def delete_blueprint(blueprint_id):
 
 def download_blueprint(blueprint_id):
     _validate_uuid(blueprint_id)
-    
+
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             bp = blueprint_sql.get_blueprint_by_id(cursor, blueprint_id)

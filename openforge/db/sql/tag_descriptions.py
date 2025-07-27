@@ -1,8 +1,9 @@
-from psycopg import sql
-from psycopg.rows import dict_row
-from werkzeug.exceptions import NotFound
 import uuid
-from .tag_utils import tag_to_array, array_to_tag, convert_tag_dict
+
+from psycopg import sql
+from werkzeug.exceptions import NotFound
+
+from .tag_utils import convert_tag_dict, tag_to_array
 
 
 def get_all_tag_descriptions(curs):
@@ -43,10 +44,7 @@ def get_tag_description_by_tag(curs, tag):
         WHERE tag[1:{n}] = {prefix}
         ORDER BY array_length(tag, 1), tag
         """
-    ).format(
-        n=sql.Literal(n),
-        prefix=sql.Literal(tag_arr)
-    )
+    ).format(n=sql.Literal(n), prefix=sql.Literal(tag_arr))
     curs.execute(query)
     return [convert_tag_dict(dict(row)) for row in curs.fetchall()]
 
@@ -58,10 +56,7 @@ INSERT INTO tag_descriptions (tag, description)
   VALUES ({tag}, {description})
   RETURNING id, tag, description, created_at, updated_at
 """
-    ).format(
-        tag=sql.Literal(tag),
-        description=sql.Literal(description)
-    )
+    ).format(tag=sql.Literal(tag), description=sql.Literal(description))
     curs.execute(query)
     return convert_tag_dict(dict(curs.fetchone()))
 
@@ -77,10 +72,7 @@ INSERT INTO tag_descriptions (tag, description)
     updated_at = CURRENT_TIMESTAMP
   RETURNING id, tag, description, created_at, updated_at
 """
-    ).format(
-        tag=sql.Literal(tag),
-        description=sql.Literal(description)
-    )
+    ).format(tag=sql.Literal(tag), description=sql.Literal(description))
     curs.execute(query)
     return convert_tag_dict(dict(curs.fetchone()))
 
@@ -96,7 +88,7 @@ UPDATE tag_descriptions
 """
     ).format(
         description=sql.Literal(description),
-        tag_description_id=sql.Literal(tag_description_id)
+        tag_description_id=sql.Literal(tag_description_id),
     )
     curs.execute(query)
     result = curs.fetchone()
@@ -107,9 +99,15 @@ UPDATE tag_descriptions
 
 def update_tag_description_by_tag(curs, tag, description: str):
     tag_arr = tag_to_array(tag)
-    clauses = [sql.SQL("array_length(tag, 1) = {n}").format(n=sql.Literal(len(tag_arr)))]
+    clauses = [
+        sql.SQL("array_length(tag, 1) = {n}").format(n=sql.Literal(len(tag_arr)))
+    ]
     for i, val in enumerate(tag_arr):
-        clauses.append(sql.SQL("tag[{i}] = {val}").format(i=sql.Literal(i+1), val=sql.Literal(val)))
+        clauses.append(
+            sql.SQL("tag[{i}] = {val}").format(
+                i=sql.Literal(i + 1), val=sql.Literal(val)
+            )
+        )
     where_clause = sql.SQL(" AND ").join(clauses)
     query = sql.SQL(
         """
@@ -119,10 +117,7 @@ UPDATE tag_descriptions
   WHERE {where_clause}
   RETURNING id, tag, description, created_at, updated_at
 """
-    ).format(
-        where_clause=where_clause,
-        description=sql.Literal(description)
-    )
+    ).format(where_clause=where_clause, description=sql.Literal(description))
     curs.execute(query)
     result = curs.fetchone()
     if not result:
@@ -147,9 +142,15 @@ DELETE FROM tag_descriptions
 
 def delete_tag_description_by_tag(curs, tag):
     tag_arr = tag_to_array(tag)
-    clauses = [sql.SQL("array_length(tag, 1) = {n}").format(n=sql.Literal(len(tag_arr)))]
+    clauses = [
+        sql.SQL("array_length(tag, 1) = {n}").format(n=sql.Literal(len(tag_arr)))
+    ]
     for i, val in enumerate(tag_arr):
-        clauses.append(sql.SQL("tag[{i}] = {val}").format(i=sql.Literal(i+1), val=sql.Literal(val)))
+        clauses.append(
+            sql.SQL("tag[{i}] = {val}").format(
+                i=sql.Literal(i + 1), val=sql.Literal(val)
+            )
+        )
     where_clause = sql.SQL(" AND ").join(clauses)
     query = sql.SQL(
         """

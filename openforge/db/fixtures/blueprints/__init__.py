@@ -1,1 +1,1 @@
-# Blueprint fixtures subdirectory 
+# Blueprint fixtures subdirectory

@@ -27,7 +27,8 @@ class SchemaVersion7(SchemaBase):
         self.drop_documentation_type_enum(curs)
         self.recreate_old_documentation(curs)
         self.recreate_old_blueprint_documentation(curs)
-        # Note: Don't drop update_updated_at_function as it might be used by other tables
+        # Note: Don't drop update_updated_at_function
+        # as it might be used by other tables
 
     def create_update_updated_at_function(self, curs: cursor):
         query = sql.SQL(
@@ -88,7 +89,7 @@ CREATE TABLE blueprint_documentation (
         # Index for blueprint_id
         query = sql.SQL(
             """
-CREATE INDEX idx_blueprint_documentation_blueprint_id 
+CREATE INDEX idx_blueprint_documentation_blueprint_id
   ON blueprint_documentation(blueprint_id)
 """
         )
@@ -98,7 +99,7 @@ CREATE INDEX idx_blueprint_documentation_blueprint_id
         # Index for document_type
         query = sql.SQL(
             """
-CREATE INDEX idx_blueprint_documentation_type 
+CREATE INDEX idx_blueprint_documentation_type
   ON blueprint_documentation(document_type)
 """
         )
@@ -108,7 +109,7 @@ CREATE INDEX idx_blueprint_documentation_type
         # Trigger for automatic updated_at timestamp updates
         query = sql.SQL(
             """
-CREATE TRIGGER update_blueprint_documentation_updated_at 
+CREATE TRIGGER update_blueprint_documentation_updated_at
   BEFORE UPDATE ON blueprint_documentation
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
 """
@@ -125,7 +126,10 @@ CREATE TRIGGER update_blueprint_documentation_updated_at
         curs.execute(query)
         print("  dropped idx_blueprint_documentation_type index")
 
-        query = sql.SQL("DROP TRIGGER IF EXISTS update_blueprint_documentation_updated_at ON blueprint_documentation")
+        query = sql.SQL(
+            "DROP TRIGGER IF EXISTS update_blueprint_documentation_updated_at "
+            "ON blueprint_documentation"
+        )
         curs.execute(query)
         print("  dropped blueprint_documentation updated_at trigger")
 
@@ -167,4 +171,4 @@ CREATE TABLE IF NOT EXISTS documentation (
 """
         )
         curs.execute(query)
-        print("  recreated old documentation table") 
+        print("  recreated old documentation table")

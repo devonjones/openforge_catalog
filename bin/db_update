@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 import os
 
-from openforge.db import PgDB
-from openforge.db.schema import get_schema_versions, get_current_schema_version
-from openforge.db.schema import SchemaBase
-
 import click
+
+from openforge.db import PgDB
+from openforge.db.schema import (
+    get_current_schema_version,
+    get_schema_versions,
+)
 
 
 @click.group()
@@ -54,10 +56,9 @@ def version(ctx):
         with conn.cursor() as curs:
             try:
                 version = get_current_schema_version(curs)
-                print(
-                    f"Current schema version: {version}.  Max version: {versions[-1].version}"
-                )
-            except Exception as e:
+                max_version = versions[-1].version
+                print(f"Current schema version: {version}.  Max version: {max_version}")
+            except Exception:
                 print("No schema version found")
 
 

@@ -7,7 +7,7 @@ This module provides test data for:
 """
 
 import uuid
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 # Test blueprint documentation
 TEST_BLUEPRINT_DOCUMENTATION = [
@@ -269,21 +269,26 @@ TEST_DEPRECATED_BLUEPRINTS = [
     },
 ]
 
+
 def get_test_blueprint_documentation() -> List[Dict[str, Any]]:
     """Get test blueprint documentation data."""
     return TEST_BLUEPRINT_DOCUMENTATION
+
 
 def get_test_tag_documentation() -> List[Dict[str, Any]]:
     """Get test tag documentation data."""
     return TEST_TAG_DOCUMENTATION
 
+
 def get_test_documentation_images() -> List[Dict[str, Any]]:
     """Get test documentation images data."""
     return TEST_DOCUMENTATION_IMAGES
 
+
 def get_test_deprecated_blueprints() -> List[Dict[str, Any]]:
     """Get test deprecated blueprints data."""
     return TEST_DEPRECATED_BLUEPRINTS
+
 
 def get_all_test_data() -> Dict[str, List[Dict[str, Any]]]:
     """Get all test data for the documentation system."""
@@ -292,4 +297,4 @@ def get_all_test_data() -> Dict[str, List[Dict[str, Any]]]:
         "tag_documentation": get_test_tag_documentation(),
         "documentation_images": get_test_documentation_images(),
         "deprecated_blueprints": get_test_deprecated_blueprints(),
-    } 
+    }

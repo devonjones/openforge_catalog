@@ -1,10 +1,10 @@
 import json
-import uuid
 import re
+import uuid
 
 from psycopg import cursor, sql
-from psycopg.types.json import Jsonb
 from psycopg.errors import UniqueViolation
+from psycopg.types.json import Jsonb
 from werkzeug.exceptions import NotFound
 
 
@@ -72,8 +72,8 @@ SELECT b.id, b.blueprint_name, b.blueprint_type, b.config, b.file_md5, b.file_si
        cl.document as changelog
   FROM blueprints b
   LEFT JOIN blueprints s ON b.successor_id = s.id
-  LEFT JOIN blueprint_documentation cl ON s.id = cl.blueprint_id 
-    AND cl.document_type = 'changelog' 
+  LEFT JOIN blueprint_documentation cl ON s.id = cl.blueprint_id
+    AND cl.document_type = 'changelog'
     AND cl.is_live = true
   WHERE b.deprecated = true
   ORDER BY b.created_at DESC
@@ -84,11 +84,11 @@ SELECT b.id, b.blueprint_name, b.blueprint_type, b.config, b.file_md5, b.file_si
     for row in curs.fetchall():
         blueprint = _convert_config(dict(row))
         # Add successor info if available
-        if row.get('successor_name'):
-            blueprint['successor_info'] = {
-                'name': row['successor_name'],
-                'full_name': row['successor_full_name'],
-                'changelog': row.get('changelog')
+        if row.get("successor_name"):
+            blueprint["successor_info"] = {
+                "name": row["successor_name"],
+                "full_name": row["successor_full_name"],
+                "changelog": row.get("changelog"),
             }
         results.append(blueprint)
     return results
@@ -229,7 +229,7 @@ def delete_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
 
 def delete_all_blueprints(curs: cursor) -> bool:
     query = sql.SQL("TRUNCATE blueprints CASCADE")
-    result = curs.execute(query)
+    curs.execute(query)
     return True
 
 
@@ -268,7 +268,10 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
 
 
 def get_blueprints_by_md5_including_deprecated(curs: cursor, md5: str) -> list[dict]:
-    """Get all blueprints with the given MD5 including deprecated ones (for versioning)."""
+    """Get all blueprints with the given MD5 including deprecated ones.
+
+    Used for versioning.
+    """
     query = sql.SQL(
         """
 SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
@@ -301,12 +304,14 @@ SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
     return [_convert_config(dict(row)) for row in curs.fetchall()]
 
 
-def mark_blueprint_deprecated(curs: cursor, blueprint_id: uuid.UUID, successor_id: uuid.UUID = None) -> dict:
+def mark_blueprint_deprecated(
+    curs: cursor, blueprint_id: uuid.UUID, successor_id: uuid.UUID = None
+) -> dict:
     """Mark a blueprint as deprecated with optional successor."""
     data = {"deprecated": True}
     if successor_id:
         data["successor_id"] = successor_id
-    
+
     return update_blueprint(curs, blueprint_id, data)
 
 
@@ -318,10 +323,9 @@ SELECT find_current_version_by_md5({md5}) as id
 """
     ).format(md5=sql.Literal(md5))
     curs.execute(query)
-    
+
     result = curs.fetchone()
     if result and result["id"]:
         return get_blueprint_by_id(curs, result["id"])
     else:
         raise NotFound("Blueprint not found")
-

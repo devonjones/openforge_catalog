@@ -51,4 +51,4 @@ DROP INDEX IF EXISTS idx_tag_descriptions_tag
 """
         )
         curs.execute(query)
-        print("  dropped tag_descriptions_index") 
+        print("  dropped tag_descriptions_index")

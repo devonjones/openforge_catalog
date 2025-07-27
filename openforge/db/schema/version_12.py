@@ -31,13 +31,13 @@ class SchemaVersion12(SchemaBase):
         # Add is_live column to blueprint_documentation table
         query = sql.SQL(
             """
-ALTER TABLE blueprint_documentation 
+ALTER TABLE blueprint_documentation
 ADD COLUMN is_live boolean NOT NULL DEFAULT false
 """
         )
         curs.execute(query)
         print("  added is_live column to blueprint_documentation table")
-        
+
         # Set the most recent document of each type per blueprint as live
         query = sql.SQL(
             """
@@ -58,13 +58,13 @@ WHERE id IN (SELECT id FROM latest_docs)
         # Add is_live column to tag_documentation table
         query = sql.SQL(
             """
-ALTER TABLE tag_documentation 
+ALTER TABLE tag_documentation
 ADD COLUMN is_live boolean NOT NULL DEFAULT false
 """
         )
         curs.execute(query)
         print("  added is_live column to tag_documentation table")
-        
+
         # Set the most recent document of each type per tag as live
         query = sql.SQL(
             """
@@ -86,7 +86,8 @@ WHERE id IN (SELECT id FROM latest_docs)
         # These indexes support filtering by blueprint_id/tag + document_type + is_live
         query = sql.SQL(
             """
-CREATE INDEX idx_blueprint_documentation_composite ON blueprint_documentation(blueprint_id, document_type, is_live)
+CREATE INDEX idx_blueprint_documentation_composite
+ON blueprint_documentation(blueprint_id, document_type, is_live)
 """
         )
         curs.execute(query)
@@ -94,18 +95,21 @@ CREATE INDEX idx_blueprint_documentation_composite ON blueprint_documentation(bl
 
         query = sql.SQL(
             """
-CREATE INDEX idx_tag_documentation_composite ON tag_documentation(tag, document_type, is_live)
+CREATE INDEX idx_tag_documentation_composite
+ON tag_documentation(tag, document_type, is_live)
 """
         )
         curs.execute(query)
         print("  created idx_tag_documentation_composite index")
 
-        # Create unique indexes to enforce business rule: only one live instructions document per blueprint/tag
-        # This prevents data integrity issues that the frontend currently handles defensively
+        # Create unique indexes to enforce business rule:
+        # only one live instructions document per blueprint/tag
+        # This prevents data integrity issues that the frontend currently
+        # handles defensively
         query = sql.SQL(
             """
-CREATE UNIQUE INDEX idx_blueprint_documentation_unique_live_instructions 
-ON blueprint_documentation (blueprint_id, document_type) 
+CREATE UNIQUE INDEX idx_blueprint_documentation_unique_live_instructions
+ON blueprint_documentation (blueprint_id, document_type)
 WHERE is_live = true AND document_type = 'instructions'
 """
         )
@@ -114,8 +118,8 @@ WHERE is_live = true AND document_type = 'instructions'
 
         query = sql.SQL(
             """
-CREATE UNIQUE INDEX idx_tag_documentation_unique_live_instructions 
-ON tag_documentation (tag, document_type) 
+CREATE UNIQUE INDEX idx_tag_documentation_unique_live_instructions
+ON tag_documentation (tag, document_type)
 WHERE is_live = true AND document_type = 'instructions'
 """
         )
@@ -131,11 +135,15 @@ WHERE is_live = true AND document_type = 'instructions'
         curs.execute(query)
         print("  dropped idx_blueprint_documentation_composite index")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_tag_documentation_unique_live_instructions")
+        query = sql.SQL(
+            "DROP INDEX IF EXISTS idx_tag_documentation_unique_live_instructions"
+        )
         curs.execute(query)
         print("  dropped idx_tag_documentation_unique_live_instructions index")
 
-        query = sql.SQL("DROP INDEX IF EXISTS idx_blueprint_documentation_unique_live_instructions")
+        query = sql.SQL(
+            "DROP INDEX IF EXISTS idx_blueprint_documentation_unique_live_instructions"
+        )
         curs.execute(query)
         print("  dropped idx_blueprint_documentation_unique_live_instructions index")
 
@@ -145,12 +153,17 @@ WHERE is_live = true AND document_type = 'instructions'
         print("  dropped is_live column from tag_documentation table")
 
     def remove_is_live_from_blueprint_documentation(self, curs: cursor):
-        query = sql.SQL("ALTER TABLE blueprint_documentation DROP COLUMN IF EXISTS is_live")
+        query = sql.SQL(
+            "ALTER TABLE blueprint_documentation DROP COLUMN IF EXISTS is_live"
+        )
         curs.execute(query)
         print("  dropped is_live column from blueprint_documentation table")
 
     def update_changelog_history_function(self, curs: cursor):
-        """Update the changelog history function to show proper messages for missing changelogs."""
+        """Update the changelog history function.
+
+        Show proper messages for missing changelogs.
+        """
         query = sql.SQL(
             """
 CREATE OR REPLACE FUNCTION get_blueprint_changelog_history(
@@ -171,7 +184,7 @@ BEGIN
         -- First, find the root (first version) by following predecessor chain backwards
         WITH RECURSIVE predecessor_chain AS (
             -- Start with the current blueprint
-            SELECT 
+            SELECT
                 b.id,
                 b.blueprint_name,
                 b.successor_id,
@@ -179,11 +192,11 @@ BEGIN
                 0 as depth
             FROM blueprints b
             WHERE b.id = p_blueprint_id
-            
+
             UNION ALL
-            
+
             -- Follow predecessor chain backwards
-            SELECT 
+            SELECT
                 b.id,
                 b.blueprint_name,
                 b.successor_id,
@@ -193,7 +206,7 @@ BEGIN
             INNER JOIN predecessor_chain pc ON b.successor_id = pc.id
             WHERE pc.depth < p_max_depth
         )
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -205,11 +218,11 @@ BEGIN
         WHERE pc.depth = (
             SELECT MAX(pc2.depth) FROM predecessor_chain pc2
         )
-        
+
         UNION ALL
-        
+
         -- Then follow successor chain forward from the root
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -220,16 +233,16 @@ BEGIN
         INNER JOIN full_chain fc ON b.id = fc.successor_id
         WHERE fc.depth < p_max_depth AND fc.successor_id IS NOT NULL
     )
-    SELECT 
-        fc.id, 
-        fc.blueprint_name, 
-        bd.document as changelog, 
-        fc.created_at::timestamptz, 
+    SELECT
+        fc.id,
+        fc.blueprint_name,
+        bd.document as changelog,
+        fc.created_at::timestamptz,
         fc.depth,
         fc.successor_id,
         fc.deprecated
     FROM full_chain fc
-    LEFT JOIN blueprint_documentation bd ON fc.id = bd.blueprint_id 
+    LEFT JOIN blueprint_documentation bd ON fc.id = bd.blueprint_id
         AND bd.document_type = 'changelog'
     ORDER BY fc.depth ASC, fc.created_at DESC NULLS LAST;
 END;
@@ -237,7 +250,10 @@ $$ LANGUAGE plpgsql
 """
         )
         curs.execute(query)
-        print("  updated get_blueprint_changelog_history function to handle missing changelogs properly")
+        print(
+            "  updated get_blueprint_changelog_history function to handle "
+            "missing changelogs properly"
+        )
 
     def revert_changelog_history_function(self, curs: cursor):
         """Revert the changelog history function to version 11 state."""
@@ -261,7 +277,7 @@ BEGIN
         -- First, find the root (first version) by following predecessor chain backwards
         WITH RECURSIVE predecessor_chain AS (
             -- Start with the current blueprint
-            SELECT 
+            SELECT
                 b.id,
                 b.blueprint_name,
                 b.successor_id,
@@ -269,11 +285,11 @@ BEGIN
                 0 as depth
             FROM blueprints b
             WHERE b.id = p_blueprint_id
-            
+
             UNION ALL
-            
+
             -- Follow predecessor chain backwards
-            SELECT 
+            SELECT
                 b.id,
                 b.blueprint_name,
                 b.successor_id,
@@ -283,7 +299,7 @@ BEGIN
             INNER JOIN predecessor_chain pc ON b.successor_id = pc.id
             WHERE pc.depth < p_max_depth
         )
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -295,11 +311,11 @@ BEGIN
         WHERE pc.depth = (
             SELECT MAX(pc2.depth) FROM predecessor_chain pc2
         )
-        
+
         UNION ALL
-        
+
         -- Then follow successor chain forward from the root
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -310,19 +326,19 @@ BEGIN
         INNER JOIN full_chain fc ON b.id = fc.successor_id
         WHERE fc.depth < p_max_depth AND fc.successor_id IS NOT NULL
     )
-    SELECT 
-        fc.id, 
-        fc.blueprint_name, 
-        CASE 
+    SELECT
+        fc.id,
+        fc.blueprint_name,
+        CASE
             WHEN fc.depth = 0 AND bd.document IS NULL THEN 'Initial version'
             ELSE bd.document
-        END as changelog, 
-        fc.created_at::timestamptz, 
+        END as changelog,
+        fc.created_at::timestamptz,
         fc.depth,
         fc.successor_id,
         fc.deprecated
     FROM full_chain fc
-    LEFT JOIN blueprint_documentation bd ON fc.id = bd.blueprint_id 
+    LEFT JOIN blueprint_documentation bd ON fc.id = bd.blueprint_id
         AND bd.document_type = 'changelog'
     ORDER BY fc.depth ASC, fc.created_at DESC NULLS LAST;
 END;
@@ -333,7 +349,10 @@ $$ LANGUAGE plpgsql
         print("  reverted get_blueprint_changelog_history function to version 11 state")
 
     def create_find_current_version_function(self, curs: cursor):
-        """Create function to find the current version of a blueprint by following successor chain."""
+        """Create function to find the current version of a blueprint.
+
+        Follows successor chain.
+        """
         query = sql.SQL(
             """
 CREATE OR REPLACE FUNCTION find_current_version_by_md5(
@@ -352,7 +371,7 @@ BEGIN
     AND NOT deprecated  -- Start with non-deprecated if multiple exist
     ORDER BY created_at DESC
     LIMIT 1;
-    
+
     -- If no non-deprecated found, try deprecated
     IF v_current_id IS NULL THEN
         SELECT id INTO v_current_id
@@ -361,31 +380,31 @@ BEGIN
         ORDER BY created_at DESC
         LIMIT 1;
     END IF;
-    
+
     -- If still not found, return NULL
     IF v_current_id IS NULL THEN
         RETURN NULL;
     END IF;
-    
+
     -- Follow the successor chain to find the current version
     LOOP
         v_iteration := v_iteration + 1;
-        
+
         -- Prevent infinite loops
         IF v_iteration > v_max_iterations THEN
             RAISE EXCEPTION 'Maximum iterations reached following successor chain';
         END IF;
-        
+
         -- Check if there's a successor
         SELECT successor_id INTO v_next_id
         FROM blueprints
         WHERE id = v_current_id;
-        
+
         -- If no successor, we've found the current version
         IF v_next_id IS NULL THEN
             RETURN v_current_id;
         END IF;
-        
+
         -- Move to the successor
         v_current_id := v_next_id;
     END LOOP;
@@ -402,26 +421,26 @@ DECLARE
     v_iteration integer := 0;
 BEGIN
     v_current_id := p_blueprint_id;
-    
+
     -- Follow the successor chain to find the current version
     LOOP
         v_iteration := v_iteration + 1;
-        
+
         -- Prevent infinite loops
         IF v_iteration > v_max_iterations THEN
             RAISE EXCEPTION 'Maximum iterations reached following successor chain';
         END IF;
-        
+
         -- Check if there's a successor
         SELECT successor_id INTO v_next_id
         FROM blueprints
         WHERE id = v_current_id;
-        
+
         -- If no successor, we've found the current version
         IF v_next_id IS NULL THEN
             RETURN v_current_id;
         END IF;
-        
+
         -- Move to the successor
         v_current_id := v_next_id;
     END LOOP;
@@ -430,7 +449,10 @@ $$ LANGUAGE plpgsql;
 """
         )
         curs.execute(query)
-        print("  created find_current_version_by_md5 and find_current_version_by_id functions")
+        print(
+            "  created find_current_version_by_md5 and "
+            "find_current_version_by_id functions"
+        )
 
     def drop_find_current_version_function(self, curs: cursor):
         """Drop the find current version functions."""
@@ -441,4 +463,4 @@ DROP FUNCTION IF EXISTS find_current_version_by_id(uuid);
 """
         )
         curs.execute(query)
-        print("  dropped find_current_version functions") 
+        print("  dropped find_current_version functions")

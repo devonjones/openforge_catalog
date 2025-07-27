@@ -1,58 +1,82 @@
-import os
 import secrets
 from functools import wraps
 from typing import Union
 
-from flask import request, jsonify, current_app, g
-from openforge.app.services.session_service import SessionService
+from flask import current_app, g, jsonify, request
 
 
-def authenticate(methods: list[str] = None, disable_sessions: list[str] = None, disable_api_keys: list[str] = None, disable_csrf: list[str] = None):
+def authenticate(
+    methods: list[str] = None,
+    disable_sessions: list[str] = None,
+    disable_api_keys: list[str] = None,
+    disable_csrf: list[str] = None,
+):
     """
     Configurable authentication decorator.
-    
+
     Args:
         methods: List of HTTP methods that require authentication (default: all methods)
         disable_sessions: List of HTTP methods to disable session authentication for
-        disable_api_keys: List of HTTP methods to disable API key authentication for  
+        disable_api_keys: List of HTTP methods to disable API key authentication for
         disable_csrf: List of HTTP methods to disable CSRF token setting for
     """
+
     def decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
             # Default to all methods if none specified
             if methods is None:
-                auth_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']
+                auth_methods = [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "PATCH",
+                    "DELETE",
+                    "HEAD",
+                    "OPTIONS",
+                ]
             else:
                 auth_methods = methods
-            
+
             if request.method not in auth_methods:
                 return f(*args, **kwargs)
-            
+
             # Check if features are disabled for this method
-            disable_sessions_for_method = disable_sessions and request.method in disable_sessions
-            disable_api_keys_for_method = disable_api_keys and request.method in disable_api_keys
+            disable_sessions_for_method = (
+                disable_sessions and request.method in disable_sessions
+            )
+            disable_api_keys_for_method = (
+                disable_api_keys and request.method in disable_api_keys
+            )
             disable_csrf_for_method = disable_csrf and request.method in disable_csrf
-            
+
             authenticated = False
-            
+
             # Check for session authentication (if not disabled for this method)
             if not disable_sessions_for_method:
-                session_token = request.cookies.get('session_token')
+                session_token = request.cookies.get("session_token")
                 if session_token:
-                    session_data = current_app.session_service.validate_session(session_token)
+                    session_data = current_app.session_service.validate_session(
+                        session_token
+                    )
                     if session_data:
                         authenticated = True
-                        # Set CSRF token in g for CSRF protection (if not disabled for this method)
+                        # Set CSRF token in g for CSRF protection
+                        # (if not disabled for this method)
                         if not disable_csrf_for_method:
-                            g.csrf_token = current_app.session_service.get_csrf_token_for_session(session_data['id'])
-            
-            # Fall back to API key authentication (if not disabled for this method and not already authenticated)
+                            g.csrf_token = (
+                                current_app.session_service.get_csrf_token_for_session(
+                                    session_data["id"]
+                                )
+                            )
+
+            # Fall back to API key authentication
+            # (if not disabled for this method and not already authenticated)
             if not authenticated and not disable_api_keys_for_method:
                 token = request.headers.get("Authorization")
                 if validate_api_token(token):
                     authenticated = True
-            
+
             if not authenticated:
                 error_message = "Valid "
                 if not disable_sessions_for_method and not disable_api_keys_for_method:
@@ -64,9 +88,9 @@ def authenticate(methods: list[str] = None, disable_sessions: list[str] = None, 
                 else:
                     error_message += "authentication"
                 error_message += " required"
-                
+
                 return jsonify({"error": "Unauthorized", "message": error_message}), 401
-            
+
             return f(*args, **kwargs)
 
         return wrapper

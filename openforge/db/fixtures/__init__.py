@@ -2,23 +2,17 @@ import json
 import sys
 from importlib import resources as impresources
 from pathlib import Path
-from psycopg import cursor, connection
+
+from psycopg import connection, cursor
 from psycopg.rows import dict_row
-from psycopg.errors import UniqueViolation
-import jsonschema
-
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper, safe_load
-except ImportError:
-    from yaml import Loader, Dumper, safe_load
-
+from yaml import safe_load
 
 import openforge.db.sql.blueprints as blueprint_sql
-import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.tag_descriptions as tag_description_sql
+import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.tags_documentation as tag_documentation_sql
-from openforge.db.sql.tag_utils import array_to_tag, tag_to_array, process_tag
+from openforge.db.sql.tag_utils import array_to_tag, process_tag, tag_to_array
 from openforge.openapi import validate_schema
 
 
@@ -31,7 +25,7 @@ def find_fixtures(dir: str):
 
 def _collect_fixtures_from_subdir(base_path, subdir_name, file_list):
     """Helper function to collect fixture files from a subdirectory.
-    
+
     Args:
         base_path: Base path containing the subdirectory
         subdir_name: Name of the subdirectory to search
@@ -49,24 +43,24 @@ def find_fixtures_package():
 
     ffiles = []
     fixtures_path = impresources.files(fixtures)
-    
+
     # Load fixtures from subdirectories
     _collect_fixtures_from_subdir(fixtures_path, "blueprints", ffiles)
     _collect_fixtures_from_subdir(fixtures_path, "tag_descriptions", ffiles)
     _collect_fixtures_from_subdir(fixtures_path, "tag_documentation", ffiles)
-    
+
     return ffiles
 
 
 def find_fixtures_directory(dir: str):
     ffiles = []
     dir_path = Path(dir)
-    
+
     # Load fixtures from subdirectories
     _collect_fixtures_from_subdir(dir_path, "blueprints", ffiles)
     _collect_fixtures_from_subdir(dir_path, "tag_descriptions", ffiles)
     _collect_fixtures_from_subdir(dir_path, "tag_documentation", ffiles)
-    
+
     return ffiles
 
 
@@ -75,9 +69,6 @@ def clear_db(curs: cursor):
     blueprint_sql.delete_all_blueprints(curs)
     image_sql.delete_all_images(curs)
     tag_description_sql.delete_all_tag_descriptions(curs)
-
-
-
 
 
 def _is_blueprint_fixture(data):
@@ -99,38 +90,45 @@ def _is_tag_documentation_fixture(data):
 
 def _get_fixture_type(file_path):
     """Determine fixture type based on file path.
-    
+
     Args:
         file_path: Path to the fixture file
-        
+
     Returns:
         str: 'blueprint', 'tag_description', or 'tag_documentation'
     """
     file_path_str = str(file_path)
-    if 'tag_documentation' in file_path_str:
-        return 'tag_documentation'
-    elif 'tag_descriptions' in file_path_str:
-        return 'tag_description'
-    elif 'blueprints' in file_path_str:
-        return 'blueprint'
+    if "tag_documentation" in file_path_str:
+        return "tag_documentation"
+    elif "tag_descriptions" in file_path_str:
+        return "tag_description"
+    elif "blueprints" in file_path_str:
+        return "blueprint"
     else:
         # Fallback: assume blueprint for backward compatibility
-        return 'blueprint'
+        return "blueprint"
 
 
-def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
+def load_fixtures(
+    conn: connection,
+    alt: str,
+    files: list = None,
+    incremental: bool = True,
+    dry_run: bool = False,
+    verbose: bool = False,
+):
     ffiles = files if files is not None else find_fixtures(alt)
-    
+
     if incremental:
         # Import here to avoid circular imports
         from .incremental import IncrementalFixturesLoader
-        
+
         loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
             data = _load_data(f, verbose=verbose)
             fixture_type = _get_fixture_type(f)
-            
-            if fixture_type == 'blueprint':
+
+            if fixture_type == "blueprint":
                 # Validate blueprint fixture
                 try:
                     _is_blueprint_fixture(data)
@@ -141,10 +139,12 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                             if dry_run:
                                 print_comparison_results(changes)
                             else:
-                                loader.apply_incremental_changes(changes, curs=curs, filename=f.name)
+                                loader.apply_incremental_changes(
+                                    changes, curs=curs, filename=f.name
+                                )
                 except Exception as e:
                     raise e
-            elif fixture_type == 'tag_description':
+            elif fixture_type == "tag_description":
                 # Validate tag description fixture
                 try:
                     _is_tag_description_fixture(data)
@@ -152,15 +152,22 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(f"DRY RUN: Would load tag description fixture: {f}\n")
+                                sys.stderr.write(
+                                    f"DRY RUN: Would load tag description "
+                                    f"fixture: {f}\n"
+                                )
                             else:
                                 count = load_tag_description_fixture(curs, data)
-                                sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                                sys.stderr.write(
+                                    f"{f.name}: Applied {count} tag descriptions\n"
+                                )
                                 if verbose:
-                                    sys.stderr.write(f"Loaded tag description fixture: {f}\n")
+                                    sys.stderr.write(
+                                        f"Loaded tag description fixture: {f}\n"
+                                    )
                 except Exception as e:
                     raise e
-            elif fixture_type == 'tag_documentation':
+            elif fixture_type == "tag_documentation":
                 # Validate tag documentation fixture
                 try:
                     _is_tag_documentation_fixture(data)
@@ -168,12 +175,21 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(f"DRY RUN: Would load tag documentation fixture: {f}\n")
+                                sys.stderr.write(
+                                    f"DRY RUN: Would load tag documentation "
+                                    f"fixture: {f}\n"
+                                )
                             else:
                                 count = load_tag_documentation_fixture(curs, data)
-                                sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
+                                msg = (
+                                    f"{f.name}: Applied {count} tag documentation "
+                                    f"entries\n"
+                                )
+                                sys.stderr.write(msg)
                                 if verbose:
-                                    sys.stderr.write(f"Loaded tag documentation fixture: {f}\n")
+                                    sys.stderr.write(
+                                        f"Loaded tag documentation fixture: {f}\n"
+                                    )
                 except Exception as e:
                     raise e
             else:
@@ -187,8 +203,8 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                 for f in ffiles:
                     data = _load_data(f, verbose=verbose)
                     fixture_type = _get_fixture_type(f)
-                    
-                    if fixture_type == 'blueprint':
+
+                    if fixture_type == "blueprint":
                         # Validate blueprint fixture
                         try:
                             _is_blueprint_fixture(data)
@@ -196,20 +212,24 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                                 load_blueprint_fixture(curs, rec)
                         except Exception as e:
                             raise e
-                    elif fixture_type == 'tag_description':
+                    elif fixture_type == "tag_description":
                         # Validate tag description fixture
                         try:
                             _is_tag_description_fixture(data)
                             count = load_tag_description_fixture(curs, data)
-                            sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                            sys.stderr.write(
+                                f"{f.name}: Applied {count} tag descriptions\n"
+                            )
                         except Exception as e:
                             raise e
-                    elif fixture_type == 'tag_documentation':
+                    elif fixture_type == "tag_documentation":
                         # Validate tag documentation fixture
                         try:
                             _is_tag_documentation_fixture(data)
                             count = load_tag_documentation_fixture(curs, data)
-                            sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
+                            sys.stderr.write(
+                                f"{f.name}: Applied {count} tag documentation entries\n"
+                            )
                         except Exception as e:
                             raise e
                     else:
@@ -227,7 +247,8 @@ def _load_data(f, verbose=False):
         raise ValueError(f"Unsupported file type: {f}")
 
 
-from .utils import munge_blueprint, get_words
+from .utils import get_words, munge_blueprint  # noqa: E402
+
 
 def _munge_blueprint(data: dict):
     return munge_blueprint(data)
@@ -241,17 +262,21 @@ def load_blueprint_fixture(curs: cursor, data: dict):
     try:
         bp_data = _munge_blueprint(data)
         bp = blueprint_sql.insert_blueprint(
-            curs, bp_data, rescue_md5_conflict=True, words=_get_words(data))
+            curs, bp_data, rescue_md5_conflict=True, words=_get_words(data)
+        )
         if bp is None:
             return  # Skip this record if it's a duplicate
         for tag in data["tags"]:
+
             def insert_tag_to_db(tag_array):
                 tag_sql.insert_tag(curs, bp["id"], array_to_tag(tag_array))
+
             process_tag(tag, insert_tag_to_db)
         for image in data.get("images", []):
             image_sql.insert_image_for_blueprint(curs, bp["id"], _munge_image(image))
-    except Exception as e:
+    except Exception:
         from pprint import pprint
+
         print("\nFailed record:")
         pprint(data)
         raise
@@ -268,30 +293,30 @@ def load_tag_description_fixture(curs: cursor, data: dict):
 
 def load_tag_documentation_fixture(curs: cursor, data: dict):
     """Load tag documentation from fixture data.
-    
+
     Args:
         curs: Database cursor
         data: Dict mapping tag strings to lists of documentation entries
-        
+
     Returns:
         int: Number of documentation entries loaded
     """
     count = 0
     for tag, documents in data.items():
         tag_arr = tag_to_array(tag)
-        
+
         # Each tag can have multiple documentation entries
         for doc in documents:
             # Create documentation entry
             tag_documentation_sql.create_tag_documentation(
                 curs,
                 tag_arr,
-                doc['document'],
-                doc.get('document_type', 'instructions'),
-                doc.get('is_live', True)
+                doc["document"],
+                doc.get("document_type", "instructions"),
+                doc.get("is_live", True),
             )
             count += 1
-    
+
     return count
 
 
@@ -302,38 +327,38 @@ def _munge_image(image: dict):
 
 def print_comparison_results(changes):
     """Print comparison results in a user-friendly format."""
-    print(f"\nComparison Results:")
+    print("\nComparison Results:")
     print(f"  Added: {len(changes.added)}")
     print(f"  Modified: {len(changes.modified)}")
     print(f"  Deprecated: {len(changes.deprecated)}")
     print(f"  Consolidated: {len(changes.consolidated)}")
     print(f"  Errors: {len(changes.errors)}")
-    
+
     if changes.added:
-        print(f"\nAdded blueprints:")
+        print("\nAdded blueprints:")
         for item in changes.added:
             if "file_metadata" in item:
                 name = item.get("file_metadata", {}).get("full_name", "unknown")
             else:
                 name = item.get("name", "unknown")
             print(f"  - {name}")
-            
+
     if changes.modified:
-        print(f"\nModified blueprints:")
+        print("\nModified blueprints:")
         for item in changes.modified:
             if "file_metadata" in item:
                 name = item.get("file_metadata", {}).get("full_name", "unknown")
             else:
                 name = item.get("name", "unknown")
             print(f"  - {name}")
-            
+
     if changes.deprecated:
-        print(f"\nDeprecated blueprints:")
+        print("\nDeprecated blueprints:")
         for item in changes.deprecated:
             name = item.get("full_name", "unknown")
             print(f"  - {name}")
-            
+
     if changes.errors:
-        print(f"\nErrors:")
+        print("\nErrors:")
         for error in changes.errors:
             print(f"  - {error}")

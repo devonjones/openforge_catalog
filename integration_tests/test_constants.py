@@ -8,7 +8,7 @@ This module defines constants used across all integration tests to ensure:
 """
 
 # Unique prefix for all test data to prevent accidental deletion of legitimate data
-# This prefix should be unique enough to never match legitimate production or development data
+# This prefix should be unique enough to never match production/development data
 TEST_DATA_PREFIX = "__test__"
 
 # Test document templates
@@ -49,5 +49,5 @@ def hello_world():
 |----------|----------|
 | Data 1   | Data 2   |
 | Data 3   | Data 4   |
-"""
-} 
+""",
+}

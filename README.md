@@ -32,7 +32,7 @@ Install pnpm:
 ### Python
 We use [pyenv](https://github.com/pyenv/pyenv) to manage python versions.
 
-We also use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtual environments.  First, install the version of python we use: 3.11.2.  You can install it with `pyenv install 3.11.2`.  To create a virtual environment for this project, run `pyenv virtualenv 3.11.2 openforge_catalog`. 
+We also use [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) to manage virtual environments.  First, install the version of python we use: 3.13.3.  You can install it with `pyenv install 3.13.3`.  To create a virtual environment for this project, run `pyenv virtualenv 3.13.3 openforge_catalog`.
 
 To activate the virtual environment, run `pyenv activate openforge_catalog`.
 
@@ -81,6 +81,63 @@ pytest tests/
 ```
 
 Each test gets a clean database state.
+
+## Development
+
+### Pre-commit Hooks
+
+This project uses pre-commit hooks to ensure code quality and consistency. The hooks will automatically run when you commit changes.
+
+#### Installation
+
+```bash
+pip install -r requirements-dev.txt
+pre-commit install
+```
+
+#### What the hooks do
+
+- **JavaScript/TypeScript files**: Runs ESLint with auto-fix and TypeScript type checking
+- **Python files**: Runs ruff for linting and formatting (compatible with Black)
+- **All files**: Removes trailing whitespace, fixes end-of-file issues, checks for merge conflicts
+
+#### Manual usage
+
+To run the hooks manually on all files:
+```bash
+pre-commit run --all-files
+```
+
+To run on specific files:
+```bash
+pre-commit run --files path/to/file.py
+```
+
+### Code Quality Tools
+
+#### Python (ruff)
+```bash
+# Check for linting issues
+ruff check .
+
+# Auto-fix issues
+ruff check --fix .
+
+# Format code
+ruff format .
+```
+
+#### JavaScript/TypeScript
+```bash
+# Run ESLint
+npm run lint
+
+# Run ESLint with auto-fix
+npm run lint -- --fix
+
+# Type checking
+npm run type-check
+```
 
 ## Schema
 ### Blueprint type

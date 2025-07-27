@@ -15,6 +15,50 @@ See language-specific CLAUDE.md files:
 2. **Check linting** before committing
 3. **Follow language-specific guidelines** in `openforge/CLAUDE.md` and `src/CLAUDE.md`
 
+## Linting and Testing Requirements
+
+### When modifying files during a task:
+
+#### Python files (.py):
+- Run: `ruff check --fix <file>` and `ruff format <file>`
+- This ensures code quality and consistent formatting
+
+#### JavaScript/TypeScript files (.js, .jsx, .ts, .tsx):
+- Run: `npm run lint -- --fix <file>`
+- Run: `npm run type-check`
+- Run related tests: `npx jest --findRelatedTests <file>`
+
+### Before committing changes:
+
+You MUST run the complete test suite and ensure all checks pass:
+
+1. **Python tests**:
+   - `pytest tests/`
+   - `pytest integration_tests/` (Flask must be running on port 5328)
+
+2. **JavaScript tests**:
+   - `npm test`
+
+3. **Linting checks**:
+   - `npm run lint`
+   - `npm run type-check`
+   - `ruff check .`
+
+4. **Pre-commit hooks**:
+   - The pre-commit hooks will run automatically, but you should ensure they pass
+
+## Flask Health Check
+
+Before running integration tests, verify Flask is running by checking:
+```bash
+curl http://localhost:5328/health
+```
+
+If Flask is not running, integration tests will fail. Flask can be started with:
+```bash
+npm run flask-dev
+```
+
 ## Project Overview
 
 OpenForge Catalog is a content management system for the OpenForge project - a comprehensive system of 3D printable modular dungeon terrain created by Devon Jones. The catalog manages:
@@ -85,7 +129,7 @@ For language-specific coding preferences and patterns, see:
   - Scaled from 1 billion to 8 billion emails/day
   - Managed infrastructure requiring 600GB peak transit to Google
   - Deep understanding of distributed systems at scale
-  
+
 ### Why This Matters
 - **Architecture decisions** come from real scale experience
 - **Simplicity focus** - knows what complexity costs at scale
@@ -112,7 +156,7 @@ For language-specific coding preferences and patterns, see:
    - Backend: Single AWS Lambda function running Flask
    - Database: PostgreSQL on serverless (connection pooling critical)
    - File storage: Cloudflare R2 (S3-compatible) for free egress
-   
+
 2. **Design implications**:
    - Minimize Lambda cold starts (keep package size small)
    - Be mindful of database connections (serverless Postgres has limits)

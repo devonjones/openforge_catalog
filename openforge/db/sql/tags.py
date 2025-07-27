@@ -1,9 +1,11 @@
-import uuid
 import json
-from pprint import pprint
+import uuid
+
 from psycopg import cursor, sql
+
 from openforge.db import get_logger
-from .tag_utils import tag_to_array, array_to_tag, convert_tag_dict
+
+from .tag_utils import array_to_tag, convert_tag_dict, tag_to_array
 
 
 def _convert_tag(tag: dict) -> dict:
@@ -104,17 +106,17 @@ def delete_all_tags(curs: cursor) -> dict:
 
 def get_tags_for_blueprints(curs: cursor, blueprint_ids: list[uuid.UUID]) -> list[dict]:
     """Get all tags for multiple blueprints in a single query.
-    
+
     Args:
         curs: Database cursor
         blueprint_ids: List of blueprint IDs to get tags for
-        
+
     Returns:
         List of tag dictionaries with blueprint_id included
     """
     if not blueprint_ids:
         return []
-        
+
     query = sql.SQL(
         """
 SELECT id, blueprint_id, tag, created_at, updated_at
@@ -243,7 +245,8 @@ def tag_search_blueprint_images(
 ) -> list[dict]:
     parts = [
         sql.SQL(
-            "SELECT bpi.blueprint_id,images.id, images.image_name, images.image_url, images.created_at, images.updated_at"
+            "SELECT bpi.blueprint_id,images.id, images.image_name, "
+            "images.image_url, images.created_at, images.updated_at"
         ),
         sql.SQL("  FROM images"),
         sql.SQL("    JOIN blueprint_images AS bpi ON images.id = bpi.image_id"),
@@ -323,7 +326,8 @@ def tag_search_blueprint_start_count(
         ),
         sql.SQL("  )"),
         sql.SQL(
-            "    AND blueprints.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {first})"
+            "    AND blueprints.blueprint_name < "
+            "(SELECT blueprint_name FROM blueprints WHERE id = {first})"
         ).format(first=sql.Literal(first)),
     ]
     query = sql.Composed(parts)
@@ -387,49 +391,49 @@ SELECT DISTINCT bp.id
     query_parts.append(_query_tags_include(accept, require))
     if query_parts[-1] == sql.Composed([]):
         query_parts = query_parts[:-1]
-    
+
     # Always exclude deprecated blueprints first
     query_parts.append(sql.SQL("    WHERE bp2.deprecated = false"))
-    
+
     deny_parts = []
     if len(deny) > 0:
         for d in deny:
-            deny_parts.append(
-                sql.SQL("    AND bp2.id NOT IN (")
-            )
+            deny_parts.append(sql.SQL("    AND bp2.id NOT IN ("))
             deny_parts.append(_query_tags_deny([d]))
             deny_parts.append(sql.SQL("    )"))
-    
+
     # Handle blueprint type filtering
     if models and blueprints:
         # When both are requested, use OR logic
         query_parts.append(
-            sql.SQL("    AND (bp2.blueprint_type = 'model' OR bp2.blueprint_type = 'blueprint')")
+            sql.SQL(
+                "    AND (bp2.blueprint_type = 'model' "
+                "OR bp2.blueprint_type = 'blueprint')"
+            )
         )
     elif models:
-        query_parts.append(
-            sql.SQL("    AND bp2.blueprint_type = 'model'")
-        )
+        query_parts.append(sql.SQL("    AND bp2.blueprint_type = 'model'"))
     elif blueprints:
-        query_parts.append(
-            sql.SQL("    AND bp2.blueprint_type = 'blueprint'")
-        )
+        query_parts.append(sql.SQL("    AND bp2.blueprint_type = 'blueprint'"))
     if search:
         query_parts.append(
             sql.SQL(
-                "    AND to_tsvector('english', bp2.search_text) @@ websearch_to_tsquery('english', {search})"
+                "    AND to_tsvector('english', bp2.search_text) @@ "
+                "websearch_to_tsquery('english', {search})"
             ).format(search=sql.Literal(search))
         )
     if next:
         query_parts.append(
             sql.SQL(
-                "        AND bp2.blueprint_name > (SELECT blueprint_name FROM blueprints WHERE id = {next})"
+                "        AND bp2.blueprint_name > "
+                "(SELECT blueprint_name FROM blueprints WHERE id = {next})"
             ).format(next=sql.Literal(next))
         )
     elif previous:
         query_parts.append(
             sql.SQL(
-                "        AND bp2.blueprint_name < (SELECT blueprint_name FROM blueprints WHERE id = {previous})"
+                "        AND bp2.blueprint_name < "
+                "(SELECT blueprint_name FROM blueprints WHERE id = {previous})"
             ).format(previous=sql.Literal(previous))
         )
     end_parts = [
@@ -505,15 +509,17 @@ def _query_tags_include(accept: list[str], require: list[str]) -> sql.Composed:
     return sql.Composed(joins + wheres).join("\n")
 
 
-def get_all_unique_tags(curs: cursor, search: str = None, limit: int = 100, offset: int = 0) -> dict:
+def get_all_unique_tags(
+    curs: cursor, search: str = None, limit: int = 100, offset: int = 0
+) -> dict:
     """Get all unique tags in the system with optional search filtering.
-    
+
     Args:
         curs: Database cursor
         search: Optional search string to filter tags
         limit: Maximum number of results to return
         offset: Number of results to skip
-        
+
     Returns:
         Dictionary with tags array and pagination info
     """
@@ -524,7 +530,7 @@ def get_all_unique_tags(curs: cursor, search: str = None, limit: int = 100, offs
         where_clause = sql.SQL("WHERE array_to_string(tag, '|') ILIKE {search}").format(
             search=sql.Literal(f"%{search}%")
         )
-    
+
     # Get total count
     count_query = sql.SQL(
         """
@@ -533,10 +539,10 @@ FROM tags
 {where_clause}
 """
     ).format(where_clause=where_clause)
-    
+
     curs.execute(count_query)
     total_count = curs.fetchone()["total"]
-    
+
     # Get paginated results
     query = sql.SQL(
         """
@@ -548,24 +554,19 @@ ORDER BY tag
 LIMIT {limit} OFFSET {offset}
 """
     ).format(
-        where_clause=where_clause,
-        limit=sql.Literal(limit),
-        offset=sql.Literal(offset)
+        where_clause=where_clause, limit=sql.Literal(limit), offset=sql.Literal(offset)
     )
-    
+
     curs.execute(query)
     tags = [
-        {
-            "tag": array_to_tag(row["tag"]),
-            "blueprint_count": row["blueprint_count"]
-        }
+        {"tag": array_to_tag(row["tag"]), "blueprint_count": row["blueprint_count"]}
         for row in curs.fetchall()
     ]
-    
+
     return {
         "tags": tags,
         "total_count": total_count,
-        "has_more": (offset + len(tags)) < total_count
+        "has_more": (offset + len(tags)) < total_count,
     }
 
 
@@ -602,5 +603,5 @@ def _query_tags_deny(deny: list[str]) -> sql.Composed:
                     )
                 )
                 neg_counter += 1
-    
+
     return sql.Composed(deny_parts + neg_joins + neg_wheres).join("\n      ")

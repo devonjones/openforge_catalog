@@ -22,7 +22,8 @@ class SchemaVersion8(SchemaBase):
         self.drop_openscad_source_trigger(curs)
         self.drop_openscad_source_index(curs)
         self.drop_openscad_source(curs)
-        # Note: Don't drop update_updated_at_function as it might be used by other tables
+        # Note: Don't drop update_updated_at_function
+        # as it might be used by other tables
 
     def create_update_updated_at_function(self, curs: cursor):
         query = sql.SQL(
@@ -62,7 +63,7 @@ CREATE TABLE openscad_source (
     def create_openscad_source_index(self, curs: cursor):
         query = sql.SQL(
             """
-CREATE INDEX idx_openscad_source_blueprint_id 
+CREATE INDEX idx_openscad_source_blueprint_id
   ON openscad_source(blueprint_id)
 """
         )
@@ -72,7 +73,7 @@ CREATE INDEX idx_openscad_source_blueprint_id
     def create_openscad_source_trigger(self, curs: cursor):
         query = sql.SQL(
             """
-CREATE TRIGGER update_openscad_source_updated_at 
+CREATE TRIGGER update_openscad_source_updated_at
   BEFORE UPDATE ON openscad_source
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
 """
@@ -81,7 +82,10 @@ CREATE TRIGGER update_openscad_source_updated_at
         print("  created openscad_source updated_at trigger")
 
     def drop_openscad_source_trigger(self, curs: cursor):
-        query = sql.SQL("DROP TRIGGER IF EXISTS update_openscad_source_updated_at ON openscad_source")
+        query = sql.SQL(
+            "DROP TRIGGER IF EXISTS update_openscad_source_updated_at "
+            "ON openscad_source"
+        )
         curs.execute(query)
         print("  dropped openscad_source updated_at trigger")
 
@@ -93,4 +97,4 @@ CREATE TRIGGER update_openscad_source_updated_at
     def drop_openscad_source(self, curs: cursor):
         query = sql.SQL("DROP TABLE IF EXISTS openscad_source CASCADE")
         curs.execute(query)
-        print("  dropped openscad_source table") 
+        print("  dropped openscad_source table")

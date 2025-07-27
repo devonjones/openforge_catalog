@@ -19,22 +19,20 @@ class SchemaVersion9(SchemaBase):
         # This is acceptable as it doesn't break existing functionality
         pass
 
-
-
     def extend_documentation_type_enum(self, curs: cursor):
         # Check if 'instructions' already exists in the enum
         query = sql.SQL(
             """
 SELECT EXISTS (
-    SELECT 1 FROM pg_enum 
-    WHERE enumtypid = 'documentation_type_enum'::regtype 
+    SELECT 1 FROM pg_enum
+    WHERE enumtypid = 'documentation_type_enum'::regtype
     AND enumlabel = 'instructions'
 )
 """
         )
         curs.execute(query)
         exists = curs.fetchone()[0]
-        
+
         if not exists:
             query = sql.SQL(
                 """
@@ -45,5 +43,3 @@ ALTER TYPE documentation_type_enum ADD VALUE 'instructions'
             print("  extended documentation_type_enum with 'instructions'")
         else:
             print("  'instructions' already exists in documentation_type_enum")
-
- 
