@@ -47,10 +47,6 @@ module.exports = [
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
       }],
-
-      // Disable rules that conflict with Next.js
-      '@typescript-eslint/no-var-requires': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
     },
     settings: {
       react: {

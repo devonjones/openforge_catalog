@@ -60,10 +60,10 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
   const altMatch = alt?.match(/^(.+)\|(\d+)$/);
   if (altMatch) {
     const [, realAlt, width] = altMatch;
-        return <img src={imageUrl} alt={realAlt} style={{ width: `${width}px`, height: 'auto' }} />;
+    return <img src={imageUrl} alt={realAlt} style={{ width: `${width}px`, height: 'auto' }} />;
   }
 
-    return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
+  return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
 };
 
 interface DocumentationTabProps {
