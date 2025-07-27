@@ -2,6 +2,7 @@
 Pytest tests for Blueprint Documentation API endpoints.
 """
 
+import uuid
 import pytest
 import requests
 from .test_constants import TEST_DOCUMENT_TEMPLATES
@@ -154,16 +155,34 @@ class TestBlueprintDocumentation:
         
         assert response.status_code == 400
     
-    def test_nonexistent_blueprint_documentation(self, api_client, test_blueprint_id):
+    def test_nonexistent_blueprint_documentation(self, api_client):
         """Test getting documentation for a blueprint that has none."""
-        # According to API standard, this should return 404 with empty documentation list
-        response = api_client.get(f"/api/blueprints/{test_blueprint_id}/documentation")
+        # Create a new blueprint specifically for this test
+        test_blueprint = {
+            "blueprint_name": f"test_no_docs_{uuid.uuid4().hex[:8]}",
+            "blueprint_type": "model",
+            "file_md5": "test_md5_no_docs",
+            "file_size": 1234,
+            "file_name": "test_no_docs.stl",
+            "full_name": "Test Blueprint With No Docs"
+        }
+        
+        create_response = api_client.post("/api/blueprints", data=test_blueprint)
+        assert create_response.status_code == 201
+        blueprint_id = create_response.json()["id"]
+        
+        # Now test getting documentation for this blueprint (should be empty)
+        # According to API standard, this should return 404 for empty collections
+        response = api_client.get(f"/api/blueprints/{blueprint_id}/documentation")
         
         assert response.status_code == 404
         data = response.json()
         assert "documentation" in data
         assert isinstance(data["documentation"], list)
-        assert len(data["documentation"]) == 0  # Should be empty list
+        assert len(data["documentation"]) == 0
+        
+        # Clean up
+        api_client.delete(f"/api/blueprints/{blueprint_id}")
     
     def test_nonexistent_documentation_id(self, api_client, test_blueprint_id):
         """Test updating/deleting non-existent documentation."""

@@ -16,6 +16,10 @@ TagDocumentation:
       type: string
       enum: [instructions]
       description: Type of documentation (currently only instructions supported)
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
+      default: true
     created_at:
       type: string
       format: date-time
@@ -26,6 +30,7 @@ TagDocumentation:
     - tag
     - document
     - document_type
+    - is_live
   additionalProperties: false
 
 TagDocumentationList:
@@ -49,6 +54,10 @@ TagDocumentationCreate:
       type: string
       enum: [instructions]
       description: Type of documentation (currently only instructions supported)
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
+      default: true
   required:
     - document
     - document_type
@@ -64,6 +73,9 @@ TagDocumentationUpdate:
       type: string
       enum: [instructions]
       description: Type of documentation (currently only instructions supported)
+    is_live:
+      type: boolean
+      description: Whether this documentation is live and visible to users
   required:
     - document
   additionalProperties: false 

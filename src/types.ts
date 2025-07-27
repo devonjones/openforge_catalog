@@ -57,6 +57,7 @@ export interface BlueprintDocumentation {
   blueprint_id: string;
   document: string;
   document_type: 'changelog' | 'instructions';
+  is_live: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -66,6 +67,7 @@ export interface TagDocumentation {
   tag: string[];
   document: string;
   document_type: 'instructions';
+  is_live: boolean;
   created_at: string;
   updated_at: string;
 }

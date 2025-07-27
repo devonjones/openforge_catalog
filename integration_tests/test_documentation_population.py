@@ -15,23 +15,19 @@ from .test_constants import TEST_DATA_PREFIX
 
 
 class TestDocumentationPopulation:
-    """Test class for populating documentation data."""
+    """Test class for populating documentation data.
+    
+    Note: This test class does not use db_transaction fixture because it has
+    conditional cleanup logic based on KEEP_TEST_DATA environment variable.
+    When KEEP_TEST_DATA=true, the test data is preserved for manual testing.
+    """
     
     def test_populate_blueprint_documentation(self, api_client, test_blueprint_id):
         """Test creating blueprint documentation."""
         
-        # Get blueprint by MD5
-        response = api_client.get(f"/api/blueprints/md5/5459c1efd23d42fb19536fc559d0b09e")
-        print(f"Blueprint MD5 lookup response: {response.status_code} - {response.text}")
-        
-        if response.status_code == 404:
-            # Use the test blueprint ID if the specific MD5 doesn't exist
-            print(f"Blueprint with MD5 5459c1efd23d42fb19536fc559d0b09e not found, using test blueprint: {test_blueprint_id}")
-            blueprint_id = test_blueprint_id
-        else:
-            assert response.status_code == 200, f"Failed to get blueprint: {response.text}"
-            blueprint = response.json()
-            blueprint_id = blueprint["id"]
+        # Use the test blueprint ID directly instead of hardcoded MD5
+        blueprint_id = test_blueprint_id
+        print(f"Using test blueprint: {blueprint_id}")
         
         # Create blueprint documentation
         doc_data = {
@@ -150,25 +146,31 @@ class TestDocumentationPopulation:
     def test_populate_changelog(self, api_client):
         """Test creating/updating changelog for deprecated blueprint."""
         
-        # Get the deprecated blueprint
-        response = api_client.get("/api/blueprints/md5/be93fd95db6e7e373b851f47b39ce279")
-        print(f"Deprecated blueprint lookup response: {response.status_code} - {response.text}")
+        # First, create a successor relationship between two blueprints
+        # Get any two blueprints
+        response = api_client.get("/api/blueprints")
+        assert response.status_code == 200
+        blueprints = response.json()
+        assert len(blueprints) >= 2, "Need at least 2 blueprints for this test"
         
-        if response.status_code == 404:
-            print("Deprecated blueprint not found, skipping changelog test")
-            return
-            
-        assert response.status_code == 200, f"Failed to get deprecated blueprint: {response.text}"
-        deprecated_blueprint = response.json()
+        # Use the first as deprecated and second as successor
+        deprecated_blueprint = blueprints[0]
+        successor_blueprint = blueprints[1]
         
-        # Get the successor blueprint
-        successor_id = deprecated_blueprint.get("successor_id")
-        assert successor_id is not None, "Deprecated blueprint should have a successor"
+        # Update the first blueprint to be deprecated and point to successor
+        update_data = {
+            "deprecated": True,
+            "successor_id": successor_blueprint["id"]
+        }
+        response = api_client.patch(f"/api/blueprints/{deprecated_blueprint['id']}", data=update_data)
+        assert response.status_code == 200, f"Failed to update blueprint: {response.text}"
+        
+        # Now we have a deprecated blueprint with a successor
+        successor_id = successor_blueprint["id"]
         
         response = api_client.get(f"/api/blueprints/{successor_id}")
         print(f"Successor blueprint lookup response: {response.status_code} - {response.text}")
         assert response.status_code == 200, f"Failed to get successor blueprint: {response.text}"
-        successor_blueprint = response.json()
         
         # Check if changelog already exists
         response = api_client.get(f"/api/blueprints/{successor_id}/documentation")

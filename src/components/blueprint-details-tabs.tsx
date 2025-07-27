@@ -19,6 +19,11 @@ const BlueprintDetailsTabs: React.FC<BlueprintDetailsTabsProps> = ({
   const [documentation, setDocumentation] = useState<CombinedBlueprintDocumentation | null>(null);
   const [hasDocumentation, setHasDocumentation] = useState(false);
 
+  // Reset to details tab whenever blueprint changes
+  useEffect(() => {
+    setActiveTab('details');
+  }, [blueprint?.id]);
+
   useEffect(() => {
     const loadDocumentation = async () => {
       if (!blueprint?.id) {

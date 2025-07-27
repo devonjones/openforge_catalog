@@ -56,8 +56,16 @@ const ImageRenderer = ({ src, alt }: { src: string; alt: string }) => {
     return <span className="text-red-500">Image not found: {src}</span>;
   }
 
-          // eslint-disable-next-line @next/next/no-img-element
-        return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
+  // Check if alt contains Obsidian-style width syntax
+  const altMatch = alt?.match(/^(.+)\|(\d+)$/);
+  if (altMatch) {
+    const [, realAlt, width] = altMatch;
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={imageUrl} alt={realAlt} style={{ width: `${width}px`, height: 'auto' }} />;
+  }
+
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={imageUrl} alt={alt} className="max-w-full h-auto" />;
 };
 
 interface DocumentationTabProps {

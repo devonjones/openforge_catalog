@@ -61,12 +61,19 @@ def get_images():
         with conn.cursor(row_factory=dict_row) as cursor:
             # Check if filtering by image_name is requested
             image_name = request.args.get('image_name')
+            image_type = request.args.get('image_type')
             
             if image_name:
                 # Filter by image name
                 data = image_sql.get_images_by_name(cursor, image_name)
                 # For filtered results, we don't need to load all blueprint associations
                 # since we're only looking for specific images
+                for image in data:
+                    image["blueprint_ids"] = []
+            elif image_type == 'documentation':
+                # Get only documentation images
+                data = image_sql.get_documentation_images(cursor)
+                # Documentation images typically don't have blueprint associations
                 for image in data:
                     image["blueprint_ids"] = []
             else:
