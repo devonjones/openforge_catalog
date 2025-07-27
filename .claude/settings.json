@@ -15,6 +15,10 @@
           {
             "type": "command",
             "command": "bash -c 'if [[ \"$1\" =~ \\.(js|jsx|ts|tsx)$ ]]; then echo \"Running ESLint on JS/TS file: $1\"; npm run lint -- --fix \"$1\" && npx jest --findRelatedTests \"$1\"; fi'"
+          },
+          {
+            "type": "command",
+            "command": "bash -c 'if command -v pre-commit >/dev/null 2>&1 && [ -f .pre-commit-config.yaml ]; then echo \"Fixing whitespace in: $1\"; pre-commit run trailing-whitespace --files \"$1\" 2>/dev/null || true; pre-commit run end-of-file-fixer --files \"$1\" 2>/dev/null || true; fi'"
           }
         ]
       }
