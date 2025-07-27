@@ -14,7 +14,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'if [[ \"$1\" == *.js ]] || [[ \"$1\" == *.jsx ]] || [[ \"$1\" == *.ts ]] || [[ \"$1\" == *.tsx ]]; then echo \"Running ESLint on JS/TS file: $1\"; npm run lint -- --fix \"$1\" && npx jest --findRelatedTests \"$1\"; fi'"
+            "command": "bash -c 'if [[ \"$1\" =~ \\.(js|jsx|ts|tsx)$ ]]; then echo \"Running ESLint on JS/TS file: $1\"; npm run lint -- --fix \"$1\" && npx jest --findRelatedTests \"$1\"; fi'"
           }
         ]
       }
