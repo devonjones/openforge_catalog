@@ -12,13 +12,13 @@ export function useUrlParameters() {
   const addTag = useTagContext((state) => state.addTag);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const autoload = useTagContext((state) => state.autoload);
-  const hasSetTagState = useRef(false);
+  const hasSetTagState = useRef<boolean>(false);
 
   useEffect(() => {
     // Read URL parameters and add tags
     if (typeof window !== 'undefined' && autoload) {
       const params = new URLSearchParams(window.location.search);
-      
+
       // Handle tags
       const tagParams = params.getAll('tag');
       tagParams.forEach(tag => {
@@ -57,4 +57,4 @@ export function useUrlParameters() {
   }, [autoload, selectedTags, addTag, setSearchTerm, blueprints, setSelectedBlueprint]);
 
   return { hasSetTagState };
-} 
+}
