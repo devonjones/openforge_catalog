@@ -85,10 +85,10 @@ jobs:
       - name: Build frontend
         run: pnpm run build
 
-      - name: Configure Staging AWS Credentials
+      - name: Configure Staging S3 Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.S3_IAM_STAGING }}
+          role-to-assume: ${{ vars.ECR_IAM_STAGING }}
           role-session-name: staging-s3
           aws-region: us-east-1
 

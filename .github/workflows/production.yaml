@@ -85,10 +85,10 @@ jobs:
       - name: Build frontend
         run: pnpm run build
 
-      - name: Configure Production AWS Credentials
+      - name: Configure Production S3 Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.S3_IAM_PROD }}
+          role-to-assume: ${{ vars.ECR_IAM_PROD }}
           role-session-name: production-s3
           aws-region: us-east-1
 
