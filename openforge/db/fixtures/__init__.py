@@ -17,6 +17,7 @@ import openforge.db.sql.blueprints as blueprint_sql
 import openforge.db.sql.tags as tag_sql
 import openforge.db.sql.images as image_sql
 import openforge.db.sql.tag_descriptions as tag_description_sql
+import openforge.db.sql.tags_documentation as tag_documentation_sql
 from openforge.db.sql.tag_utils import array_to_tag, tag_to_array, process_tag
 from openforge.openapi import validate_schema
 
@@ -28,25 +29,44 @@ def find_fixtures(dir: str):
         return find_fixtures_package()
 
 
+def _collect_fixtures_from_subdir(base_path, subdir_name, file_list):
+    """Helper function to collect fixture files from a subdirectory.
+    
+    Args:
+        base_path: Base path containing the subdirectory
+        subdir_name: Name of the subdirectory to search
+        file_list: List to append found files to
+    """
+    subdir = base_path / subdir_name
+    if subdir.exists():
+        for f in subdir.iterdir():
+            if str(f).endswith(".json") or str(f).endswith(".yaml"):
+                file_list.append(f)
+
+
 def find_fixtures_package():
     import openforge.db.fixtures as fixtures
 
     ffiles = []
-    for f in impresources.files(fixtures).iterdir():
-        if str(f).endswith(".json"):
-            ffiles.append(f)
-        elif str(f).endswith(".yaml"):
-            ffiles.append(f)
+    fixtures_path = impresources.files(fixtures)
+    
+    # Load fixtures from subdirectories
+    _collect_fixtures_from_subdir(fixtures_path, "blueprints", ffiles)
+    _collect_fixtures_from_subdir(fixtures_path, "tag_descriptions", ffiles)
+    _collect_fixtures_from_subdir(fixtures_path, "tag_documentation", ffiles)
+    
     return ffiles
 
 
 def find_fixtures_directory(dir: str):
     ffiles = []
-    for f in Path(dir).iterdir():
-        if str(f).endswith(".json"):
-            ffiles.append(f)
-        elif str(f).endswith(".yaml"):
-            ffiles.append(f)
+    dir_path = Path(dir)
+    
+    # Load fixtures from subdirectories
+    _collect_fixtures_from_subdir(dir_path, "blueprints", ffiles)
+    _collect_fixtures_from_subdir(dir_path, "tag_descriptions", ffiles)
+    _collect_fixtures_from_subdir(dir_path, "tag_documentation", ffiles)
+    
     return ffiles
 
 
@@ -70,6 +90,34 @@ def _is_tag_description_fixture(data):
     validate_schema("tag_description.fixture.json", data)
 
 
+def _is_tag_documentation_fixture(data):
+    """Validate data against the tag documentation fixture schema."""
+    # Tag documentation uses the same structure as tag descriptions
+    # but with additional fields for document content
+    return isinstance(data, dict)
+
+
+def _get_fixture_type(file_path):
+    """Determine fixture type based on file path.
+    
+    Args:
+        file_path: Path to the fixture file
+        
+    Returns:
+        str: 'blueprint', 'tag_description', or 'tag_documentation'
+    """
+    file_path_str = str(file_path)
+    if 'tag_documentation' in file_path_str:
+        return 'tag_documentation'
+    elif 'tag_descriptions' in file_path_str:
+        return 'tag_description'
+    elif 'blueprints' in file_path_str:
+        return 'blueprint'
+    else:
+        # Fallback: assume blueprint for backward compatibility
+        return 'blueprint'
+
+
 def load_fixtures(conn: connection, alt: str, files: list = None, incremental: bool = True, dry_run: bool = False, verbose: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
     
@@ -79,31 +127,57 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
         
         loader = IncrementalFixturesLoader(conn, verbose=verbose)
         for f in ffiles:
-            # Check if this is a tag description fixture by filename
-            # Tag description fixtures store a different type of data (tag descriptions)
-            # and don't have file_metadata, so they are intentionally skipped in incremental mode
-            # This is permanent behavior - tag descriptions are not file-based data
-            if "tag_description" in str(f):
-                sys.stderr.write(f"Skipping tag description fixture (different data format): {f}\n")
-                continue
-            
             data = _load_data(f, verbose=verbose)
+            fixture_type = _get_fixture_type(f)
             
-            # Try blueprint fixture validation
-            try:
-                _is_blueprint_fixture(data)
-                # If we get here, it's a valid blueprint fixture
-                # Use transaction to ensure all-or-nothing behavior
-                with conn.transaction():
-                    with conn.cursor(row_factory=dict_row) as curs:
-                        changes = loader.compare_fixture_data(data, curs=curs)
-                        if dry_run:
-                            print_comparison_results(changes)
-                        else:
-                            loader.apply_incremental_changes(changes, curs=curs)
-            except Exception as blueprint_error:
-                # Blueprint validation failed, raise the error
-                raise blueprint_error
+            if fixture_type == 'blueprint':
+                # Validate blueprint fixture
+                try:
+                    _is_blueprint_fixture(data)
+                    # Use transaction to ensure all-or-nothing behavior
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            changes = loader.compare_fixture_data(data, curs=curs)
+                            if dry_run:
+                                print_comparison_results(changes)
+                            else:
+                                loader.apply_incremental_changes(changes, curs=curs, filename=f.name)
+                except Exception as e:
+                    raise e
+            elif fixture_type == 'tag_description':
+                # Validate tag description fixture
+                try:
+                    _is_tag_description_fixture(data)
+                    # Handle tag descriptions in incremental mode
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            if dry_run:
+                                sys.stderr.write(f"DRY RUN: Would load tag description fixture: {f}\n")
+                            else:
+                                count = load_tag_description_fixture(curs, data)
+                                sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                                if verbose:
+                                    sys.stderr.write(f"Loaded tag description fixture: {f}\n")
+                except Exception as e:
+                    raise e
+            elif fixture_type == 'tag_documentation':
+                # Validate tag documentation fixture
+                try:
+                    _is_tag_documentation_fixture(data)
+                    # Handle tag documentation in incremental mode
+                    with conn.transaction():
+                        with conn.cursor(row_factory=dict_row) as curs:
+                            if dry_run:
+                                sys.stderr.write(f"DRY RUN: Would load tag documentation fixture: {f}\n")
+                            else:
+                                count = load_tag_documentation_fixture(curs, data)
+                                sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
+                                if verbose:
+                                    sys.stderr.write(f"Loaded tag documentation fixture: {f}\n")
+                except Exception as e:
+                    raise e
+            else:
+                raise ValueError(f"Unknown fixture type for file: {f}")
     else:
         # Existing full replacement logic
         with conn.cursor(row_factory=dict_row) as curs:
@@ -112,22 +186,34 @@ def load_fixtures(conn: connection, alt: str, files: list = None, incremental: b
                 clear_db(curs)
                 for f in ffiles:
                     data = _load_data(f, verbose=verbose)
+                    fixture_type = _get_fixture_type(f)
                     
-                    # Try blueprint fixture validation first
-                    try:
-                        _is_blueprint_fixture(data)
-                        # If we get here, it's a valid blueprint fixture
-                        for rec in data:
-                            load_blueprint_fixture(curs, rec)
-                    except Exception as blueprint_error:
-                        # Try tag description fixture validation
+                    if fixture_type == 'blueprint':
+                        # Validate blueprint fixture
+                        try:
+                            _is_blueprint_fixture(data)
+                            for rec in data:
+                                load_blueprint_fixture(curs, rec)
+                        except Exception as e:
+                            raise e
+                    elif fixture_type == 'tag_description':
+                        # Validate tag description fixture
                         try:
                             _is_tag_description_fixture(data)
-                            # If we get here, it's a valid tag description fixture
-                            load_tag_description_fixture(curs, data)
-                        except Exception as tag_error:
-                            # Neither validation passed, raise the original blueprint error
-                            raise blueprint_error
+                            count = load_tag_description_fixture(curs, data)
+                            sys.stderr.write(f"{f.name}: Applied {count} tag descriptions\n")
+                        except Exception as e:
+                            raise e
+                    elif fixture_type == 'tag_documentation':
+                        # Validate tag documentation fixture
+                        try:
+                            _is_tag_documentation_fixture(data)
+                            count = load_tag_documentation_fixture(curs, data)
+                            sys.stderr.write(f"{f.name}: Applied {count} tag documentation entries\n")
+                        except Exception as e:
+                            raise e
+                    else:
+                        raise ValueError(f"Unknown fixture type for file: {f}")
 
 
 def _load_data(f, verbose=False):
@@ -172,12 +258,41 @@ def load_blueprint_fixture(curs: cursor, data: dict):
 
 
 def load_tag_description_fixture(curs: cursor, data: dict):
+    count = 0
     for tag, description in data.items():
         tag_arr = tag_to_array(tag)
-        try:
-            tag_description_sql.insert_tag_description(curs, tag_arr, description)
-        except UniqueViolation:
-            raise ValueError(f"Tag description already exists for {tag}")
+        tag_description_sql.upsert_tag_description(curs, tag_arr, description)
+        count += 1
+    return count
+
+
+def load_tag_documentation_fixture(curs: cursor, data: dict):
+    """Load tag documentation from fixture data.
+    
+    Args:
+        curs: Database cursor
+        data: Dict mapping tag strings to lists of documentation entries
+        
+    Returns:
+        int: Number of documentation entries loaded
+    """
+    count = 0
+    for tag, documents in data.items():
+        tag_arr = tag_to_array(tag)
+        
+        # Each tag can have multiple documentation entries
+        for doc in documents:
+            # Create documentation entry
+            tag_documentation_sql.create_tag_documentation(
+                curs,
+                tag_arr,
+                doc['document'],
+                doc.get('document_type', 'instructions'),
+                doc.get('is_live', True)
+            )
+            count += 1
+    
+    return count
 
 
 def _munge_image(image: dict):

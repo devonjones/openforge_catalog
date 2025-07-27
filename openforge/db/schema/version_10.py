@@ -184,8 +184,8 @@ BEGIN
             b.id,
             b.blueprint_name,
             b.successor_id,
-            bd.document,
-            bd.created_at,
+            COALESCE(bd.document, 'Initial version') as document,
+            COALESCE(bd.created_at, b.created_at) as created_at,
             0 as depth,
             b.deprecated
         FROM blueprints b
@@ -200,8 +200,8 @@ BEGIN
             b.id,
             b.blueprint_name,
             b.successor_id,
-            bd.document,
-            bd.created_at,
+            COALESCE(bd.document, 'Initial version') as document,
+            COALESCE(bd.created_at, b.created_at) as created_at,
             cc.depth + 1,
             b.deprecated
         FROM blueprints b

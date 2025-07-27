@@ -5,7 +5,7 @@ from psycopg.rows import dict_row
 
 def test_documentation_type_enum_extension(test_db):
     """Test that the documentation_type_enum has been extended with 'instructions'."""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor() as curs:
             curs.execute("SELECT unnest(enum_range(NULL::documentation_type_enum))")
             enum_values = [row[0] for row in curs.fetchall()]
@@ -15,7 +15,7 @@ def test_documentation_type_enum_extension(test_db):
 
 def test_image_type_enum_creation(test_db):
     """Test that image_type_enum has been created."""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor() as curs:
             curs.execute("SELECT unnest(enum_range(NULL::image_type_enum))")
             enum_values = [row[0] for row in curs.fetchall()]
@@ -25,7 +25,7 @@ def test_image_type_enum_creation(test_db):
 
 def test_tags_documentation_table_creation(test_db):
     """Test that tag_documentation table has been created."""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor() as curs:
             curs.execute("""
                 SELECT table_name 
@@ -38,7 +38,7 @@ def test_tags_documentation_table_creation(test_db):
 
 def test_sessions_table_creation(test_db):
     """Test that sessions table has been created."""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor() as curs:
             curs.execute("""
                 SELECT table_name 
@@ -54,7 +54,7 @@ def test_blueprint_documentation_sql_operations(test_db):
     from openforge.db.sql import blueprint_documentation as blueprint_doc_sql
     
     # Create a test blueprint first
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Insert a test blueprint
             curs.execute("""
@@ -96,7 +96,7 @@ def test_tags_documentation_sql_operations(test_db):
     """Test tags documentation SQL operations."""
     from openforge.db.sql import tags_documentation as tags_doc_sql
     
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             tag_array = ["texture", "dungeon_stone"]
             
@@ -135,7 +135,7 @@ def test_get_tag_documentation_for_blueprint(test_db):
     from openforge.db.sql import tags as tag_sql
     import uuid
     
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create a test blueprint
             curs.execute("""
@@ -205,7 +205,7 @@ def test_get_tag_documentation_for_blueprint(test_db):
 
 def test_changelog_history_function(test_db):
     """Test the changelog history SQL function."""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             # Create test blueprints with successor chain
             curs.execute("""

@@ -28,7 +28,7 @@ def create_test_tag_description(test_db, tag=None, description=None):
         tag = ["foo", "bar"]
     if description is None:
         description = "Test description"
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
             return tag_description_sql.insert_tag_description(curs, tag, description)
 

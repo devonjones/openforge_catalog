@@ -66,6 +66,25 @@ INSERT INTO tag_descriptions (tag, description)
     return convert_tag_dict(dict(curs.fetchone()))
 
 
+def upsert_tag_description(curs, tag: list[str], description: str):
+    """Insert tag description or update if it already exists."""
+    query = sql.SQL(
+        """
+INSERT INTO tag_descriptions (tag, description)
+  VALUES ({tag}, {description})
+  ON CONFLICT (tag) DO UPDATE SET
+    description = EXCLUDED.description,
+    updated_at = CURRENT_TIMESTAMP
+  RETURNING id, tag, description, created_at, updated_at
+"""
+    ).format(
+        tag=sql.Literal(tag),
+        description=sql.Literal(description)
+    )
+    curs.execute(query)
+    return convert_tag_dict(dict(curs.fetchone()))
+
+
 def update_tag_description(curs, tag_description_id: uuid.UUID, description: str):
     query = sql.SQL(
         """

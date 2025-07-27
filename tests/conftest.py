@@ -8,6 +8,10 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Set environment variables for testing (must be done before app import)
+os.environ["API_TOKEN"] = "test_token"
+os.environ["SECRET_KEY"] = "test_secret_key_for_csrf_tokens"
+
 # Set PostgreSQL environment variables for testing
 os.environ["PGDATABASE"] = "openforge_test"
 os.environ["PGUSER"] = "openforge"
@@ -18,8 +22,8 @@ os.environ["PGPORT"] = "5432"
 @pytest.fixture(scope="session")
 def test_db():
     """Create a test database connection and run migrations in the public schema"""
-    with PgDB(os.environ) as db:
-        with db.pool.connection() as conn:
+    with PgDB(os.environ, use_pool=False) as db:
+        with db.connection() as conn:
             with conn.cursor() as curs:
                 # Run migrations in the public schema
                 from openforge.db.schema import get_schema_versions
@@ -37,7 +41,7 @@ def test_db():
                 logger.info(f"Tables in schema after migrations: {tables}")
         yield db
         # Teardown: run migrations down in reverse order, then drop and recreate public schema
-        with db.pool.connection() as conn:
+        with db.connection() as conn:
             with conn.cursor() as curs:
                 from openforge.db.schema import get_schema_versions
                 versions = get_schema_versions()
@@ -50,14 +54,13 @@ def test_db():
 @pytest.fixture(autouse=True)
 def clean_tables(test_db):
     """Clean all tables before each test"""
-    with test_db.pool.connection() as conn:
+    with test_db.connection() as conn:
         with conn.cursor() as curs:
             curs.execute(sql.SQL("TRUNCATE blueprints, tags, images, blueprint_images, blueprint_documentation, tag_descriptions, openscad_source, tag_documentation, sessions CASCADE"))
             conn.commit()
     yield
 
-# Mock the API token for testing
-os.environ["API_TOKEN"] = "test_token"
+
 
 @pytest.fixture
 def auth_client(client):
