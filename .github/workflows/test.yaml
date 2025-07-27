@@ -62,7 +62,7 @@ jobs:
       - name: Run React tests
         run: npm test
 
-  lint:
+  js-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

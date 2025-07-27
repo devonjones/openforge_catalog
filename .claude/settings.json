@@ -10,7 +10,7 @@
           },
           {
             "type": "command",
-            "command": "bash -c 'if [[ \"$1\" == bin/* ]]; then echo \"Running ruff on bin script: $1\"; ruff check --fix \"$1\" && ruff format \"$1\"; fi'"
+            "command": "bash -c 'if [[ \"$1\" == bin/* ]] && [[ \"$1\" != *.sh ]]; then echo \"Running ruff on bin script: $1\"; ruff check --fix \"$1\" && ruff format \"$1\"; fi'"
           },
           {
             "type": "command",
