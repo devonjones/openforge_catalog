@@ -356,6 +356,19 @@ class IncrementalFixturesLoader:
 
         existing_bp = existing_blueprints.get(full_name)
 
+        # If not found by full_name, check if a blueprint exists with the same MD5
+        # This handles cases where files are renamed or have reordered components
+        if existing_bp is None and md5:
+            for bp in existing_blueprints.values():
+                if bp.get("file_md5") == md5:
+                    existing_bp = bp
+                    if self.verbose:
+                        sys.stderr.write(
+                            f"DEBUG: Found existing blueprint by MD5 for {full_name}\n"
+                            f"  Existing path: {bp['full_name']}\n"
+                        )
+                    break
+
         if existing_bp is None:
             # Check if this file is already in consolidated_paths
             # of any existing blueprint
@@ -377,10 +390,19 @@ class IncrementalFixturesLoader:
                 # Always show what was added
                 sys.stderr.write(f"ADDED: {full_name}\n")
         else:
-            # Existing file - check for changes
+            # Existing file found - check if it's a rename or modification
+            # If the full_name is different, this is a rename
+            if full_name != existing_bp["full_name"]:
+                # This is a rename - add as new so it goes through the rename logic
+                result.added.append(fixture_item)
+                if self.verbose:
+                    sys.stderr.write(
+                        f"ADDED (renamed): {full_name}\n"
+                        f"  (was: {existing_bp['full_name']})\n"
+                    )
             # First check if MD5 is different - if so, this is a new version,
             # not a modification
-            if md5 != existing_bp["file_md5"]:
+            elif md5 != existing_bp["file_md5"]:
                 # Different MD5 means this is a new version, not a modification
                 # Add it as a new blueprint and let post-processing handle the linking
                 result.added.append(fixture_item)

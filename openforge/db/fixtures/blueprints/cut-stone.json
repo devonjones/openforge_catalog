@@ -8,19 +8,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -71,19 +71,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -134,19 +134,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -197,19 +197,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -260,19 +260,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -323,19 +323,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -386,19 +386,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -449,19 +449,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -512,19 +512,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -575,19 +575,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -638,19 +638,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1376,19 +1376,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1453,19 +1453,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1565,19 +1565,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1628,19 +1628,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1692,19 +1692,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1847,19 +1847,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -1924,19 +1924,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2001,19 +2001,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2275,19 +2275,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2377,19 +2377,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2442,19 +2442,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2506,19 +2506,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2570,19 +2570,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2636,19 +2636,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2702,19 +2702,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2768,19 +2768,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2834,19 +2834,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2899,19 +2899,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -2964,19 +2964,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3029,19 +3029,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3094,19 +3094,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3159,19 +3159,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3224,19 +3224,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3289,19 +3289,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3354,19 +3354,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3420,19 +3420,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3486,19 +3486,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3552,19 +3552,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3618,19 +3618,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3682,19 +3682,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3746,19 +3746,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3810,19 +3810,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3874,19 +3874,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -3938,19 +3938,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4002,19 +4002,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4066,19 +4066,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4130,19 +4130,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4194,19 +4194,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4258,19 +4258,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4322,19 +4322,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4386,19 +4386,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4452,10 +4452,10 @@
                                 "tag": "interface|floor_grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "size|depth|2"
                             },
                             {
-                                "tag": "size|depth|2"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -4466,19 +4466,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4531,10 +4531,10 @@
                                 "tag": "interface|floor_grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "size|depth|4"
                             },
                             {
-                                "tag": "size|depth|4"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -4545,19 +4545,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4610,10 +4610,10 @@
                                 "tag": "interface|floor_grate"
                             },
                             {
-                                "tag": "size|width|3"
+                                "tag": "size|depth|3"
                             },
                             {
-                                "tag": "size|depth|3"
+                                "tag": "size|width|3"
                             }
                         ]
                     }
@@ -4624,19 +4624,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4689,10 +4689,10 @@
                                 "tag": "interface|floor_grate"
                             },
                             {
-                                "tag": "size|width|4"
+                                "tag": "size|depth|4"
                             },
                             {
-                                "tag": "size|depth|4"
+                                "tag": "size|width|4"
                             }
                         ]
                     }
@@ -4703,19 +4703,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4879,19 +4879,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -4955,19 +4955,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5031,19 +5031,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5228,19 +5228,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5292,19 +5292,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5356,19 +5356,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5420,19 +5420,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5484,19 +5484,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5548,19 +5548,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5612,19 +5612,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -5676,19 +5676,19 @@
                     "tags": {
                         "constrain": [
                             {
-                                "tag": "shape"
+                                "filter": "shape|floor"
                             },
                             {
-                                "tag": "size|width"
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
                             },
                             {
                                 "tag": "size|depth"
                             },
                             {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
+                                "tag": "size|width"
                             }
                         ],
                         "deny": [
@@ -8453,10 +8453,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|1.5"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|1.5"
                             }
                         ]
                     }
@@ -8504,10 +8504,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|1.5"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|1.5"
                             }
                         ]
                     }
@@ -8591,10 +8591,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8608,10 +8608,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8664,10 +8664,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8720,10 +8720,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8776,10 +8776,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8832,10 +8832,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8888,10 +8888,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -8944,10 +8944,10 @@
                                 "tag": "interface|grate"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -9043,10 +9043,10 @@
                                 "tag": "interface|grate|door"
                             },
                             {
-                                "tag": "size|width|2"
+                                "tag": "shape|square"
                             },
                             {
-                                "tag": "shape|square"
+                                "tag": "size|width|2"
                             }
                         ]
                     }
@@ -22859,22 +22859,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|imperial"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -22949,22 +22949,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|metric"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23039,22 +23039,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|mechanical"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23128,19 +23128,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|imperial"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23193,19 +23193,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|metric"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23258,19 +23258,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|mechanical"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23406,19 +23406,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|imperial"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall|low"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23494,19 +23494,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|metric"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall|low"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23582,19 +23582,19 @@
                         ],
                         "require": [
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "build|separate wall"
                             },
                             {
                                 "tag": "interface|secret_door|mechanical"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall|low"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23669,22 +23669,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|imperial"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall|low"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23738,22 +23738,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|magnetic|metric"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall|low"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
@@ -23807,22 +23807,22 @@
                         ],
                         "require": [
                             {
-                                "tag": "component|secret_door"
+                                "tag": "build|separate wall"
                             },
                             {
-                                "tag": "interface|secret_door|top"
+                                "tag": "component|secret_door"
                             },
                             {
                                 "tag": "interface|secret_door|mechanical"
                             },
                             {
-                                "tag": "size|openlock|A"
-                            },
-                            {
-                                "tag": "build|separate wall"
+                                "tag": "interface|secret_door|top"
                             },
                             {
                                 "tag": "shape|wall"
+                            },
+                            {
+                                "tag": "size|openlock|A"
                             },
                             {
                                 "tag": "texture|cut-stone"
