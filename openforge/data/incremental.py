@@ -436,11 +436,13 @@ class IncrementalScanner:
         # Build MD5 lookup from processed entries
         current_md5s = set()
         if processed_entries:
-            for entry in processed_entries:
-                if not entry.get("deprecated") and "file_metadata" in entry:
-                    md5 = entry["file_metadata"].get("md5")
-                    if md5:
-                        current_md5s.add(md5)
+            current_md5s = {
+                entry["file_metadata"]["md5"]
+                for entry in processed_entries
+                if not entry.get("deprecated")
+                and entry.get("file_metadata")
+                and entry["file_metadata"].get("md5")
+            }
 
         for full_name in existing_full_names - current_files:
             # Find the existing entry
