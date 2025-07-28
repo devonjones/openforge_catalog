@@ -5,6 +5,7 @@ This module provides functionality for incremental loading of fixture data,
 comparing with existing database records and only updating what has changed.
 """
 
+import os
 import sys
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
@@ -102,6 +103,10 @@ class IncrementalFixturesLoader:
         self.conn = conn
         self.verbose = verbose
         self.transformer = DeprecatedEntryTransformer()
+        self.fixture_subset_path = None  # Will be set when processing fixture data
+        self.current_fixture_files = (
+            set()
+        )  # Will be populated when processing fixture data
 
     def _load_existing_blueprints(self, curs: cursor = None) -> Dict[str, Dict]:
         """Load existing blueprints from database for comparison.
@@ -210,6 +215,51 @@ class IncrementalFixturesLoader:
 
             return None
 
+    def _detect_fixture_subset_path(self, fixture_data: List[Dict]) -> str:
+        """Detect the common subset path from fixture data.
+
+        Args:
+            fixture_data: List of blueprint fixture objects
+
+        Returns:
+            Common path prefix for all files in the fixture
+        """
+        if not fixture_data:
+            return ""
+
+        # Get all full_name values from file-based blueprints
+        full_names = []
+        for item in fixture_data:
+            if "file_metadata" in item and not item.get("deprecated", False):
+                full_names.append(item["file_metadata"]["full_name"])
+
+        if not full_names:
+            return ""
+
+        # Find common prefix
+        paths = [name.split("/") for name in full_names]
+        if not paths:
+            return ""
+
+        min_len = min(len(path) for path in paths)
+
+        common_parts = []
+        for i in range(min_len):
+            if all(path[i] == paths[0][i] for path in paths):
+                common_parts.append(paths[0][i])
+            else:
+                break
+
+        # For single files, return the directory path (exclude the filename)
+        if len(full_names) == 1:
+            path_parts = full_names[0].split("/")
+            if len(path_parts) > 1:
+                return "/".join(path_parts[:-1])
+            else:
+                return ""
+
+        return "/".join(common_parts)
+
     def compare_fixture_data(
         self,
         fixture_data: List[Dict],
@@ -226,6 +276,19 @@ class IncrementalFixturesLoader:
         Returns:
             ComparisonResult with changes detected
         """
+        # Detect and store the fixture's subset path
+        self.fixture_subset_path = self._detect_fixture_subset_path(fixture_data)
+        if self.verbose:
+            sys.stderr.write(
+                f"DEBUG: Detected fixture subset path: '{self.fixture_subset_path}'\n"
+            )
+
+        # Build a set of all current filenames in the fixture
+        self.current_fixture_files = set()
+        for item in fixture_data:
+            if "file_metadata" in item and not item.get("deprecated", False):
+                self.current_fixture_files.add(item["file_metadata"]["full_name"])
+
         # Load existing blueprints within transaction context
         # (unless skipped for testing)
         if skip_load_existing:
@@ -595,6 +658,74 @@ class IncrementalFixturesLoader:
                     # The returned blueprint is different from what we're trying to add
                     # This means there's an MD5 conflict with a different file
                     # We should add the new path to consolidated_paths
+                    # Check if this is a rename within the same fixture
+                    existing_full_name = bp["full_name"]
+                    new_full_name = new_item["file_metadata"]["full_name"]
+
+                    # A file is renamed within the fixture if:
+                    # 1. The existing file is NOT in the current fixture files
+                    # 2. Both paths share the same fixture subset path
+                    is_rename = False
+                    if (
+                        self.fixture_subset_path
+                        and existing_full_name not in self.current_fixture_files
+                        and existing_full_name.startswith(
+                            self.fixture_subset_path + "/"
+                        )
+                        and new_full_name.startswith(self.fixture_subset_path + "/")
+                    ):
+                        is_rename = True
+
+                    if is_rename:
+                        # This is a rename within the fixture
+                        # Update the main entry's full_name instead of
+                        # adding to consolidated_paths
+                        if self.verbose:
+                            sys.stderr.write(
+                                "DEBUG: File rename within same fixture detected\n"
+                            )
+                            sys.stderr.write(f"  Old path: {existing_full_name}\n")
+                            sys.stderr.write(f"  New path: {new_full_name}\n")
+                            sys.stderr.write(
+                                "  Updating main entry's full_name instead of "
+                                "adding to consolidated_paths\n"
+                            )
+
+                        # Update the blueprint's full_name to the new path
+                        update_data = {
+                            "full_name": new_full_name,
+                            "file_name": os.path.basename(new_full_name),
+                        }
+                        blueprint_sql.update_blueprint(curs, bp["id"], update_data)
+
+                        # Also update tags and images from the new fixture data
+                        # First remove old tags and images
+                        tag_sql.delete_all_blueprint_tags(curs, bp["id"])
+                        image_sql.delete_images_for_blueprint(curs, bp["id"])
+
+                        # Then add new tags and images
+                        for tag in new_item.get("tags", []):
+
+                            def insert_tag_to_db(tag_array):
+                                tag_sql.insert_tag(
+                                    curs, bp["id"], array_to_tag(tag_array)
+                                )
+
+                            process_tag(tag, insert_tag_to_db)
+
+                        for image in new_item.get("images", []):
+                            image_sql.insert_image_for_blueprint(curs, bp["id"], image)
+
+                        if self.verbose:
+                            sys.stderr.write(
+                                f"Updated blueprint {bp['id']} with new path: "
+                                f"{new_full_name}\n"
+                            )
+
+                        # Return the updated blueprint
+                        return bp
+
+                    # Files are from different fixtures - add to consolidated_paths
                     if self.verbose:
                         sys.stderr.write(
                             f"DEBUG: MD5 conflict detected for "
