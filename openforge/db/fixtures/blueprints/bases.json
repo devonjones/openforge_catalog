@@ -49308,9 +49308,9 @@
     },
     {
         "file_metadata": {
-            "file": "cave%sandstone+3#base,thick_wall,outcrop+1.2x2+wall.openlock,magnetic+flex,topless.stl",
+            "file": "cave%sandstone+3#base,thick_wall,outcrop+1.2x2+wall.openlock+topless,magnetic+flex.stl",
             "file_modified_at": "2024-10-31T05:43:39.648486+00:00",
-            "full_name": "tiles/bases/thick_wall/base#thick_wall%cave/openlock+topless,magnetic+flex/cave%sandstone+3#base,thick_wall,outcrop+1.2x2+wall.openlock,magnetic+flex,topless.stl",
+            "full_name": "tiles/bases/thick_wall/base#thick_wall%cave/openlock+topless,magnetic+flex/cave%sandstone+3#base,thick_wall,outcrop+1.2x2+wall.openlock+topless,magnetic+flex.stl",
             "md5": "d3f1be0d23e5bb605f0ae55f2d8def4c",
             "size": 6625184,
             "storage_address": "https://objects.openforge.tools/models/d3f1be/d3f1be0d23e5bb605f0ae55f2d8def4c.stl"
@@ -49329,7 +49329,7 @@
             "connection|magnetic",
             "connection|magnetic|flex",
             "connection|openlock",
-            "connection|topless",
+            "connection|openlock|topless",
             "shape|base",
             "shape|square",
             "shape|wall",
@@ -49343,9 +49343,9 @@
     },
     {
         "file_metadata": {
-            "file": "cave%sandstone+3#base,thick_wall,outcrop+2.2x2+wall.openlock,magnetic+flex,topless.stl",
+            "file": "cave%sandstone+3#base,thick_wall,outcrop+2.2x2+wall.openlock+topless,magnetic+flex.stl",
             "file_modified_at": "2024-10-31T05:43:21.101691+00:00",
-            "full_name": "tiles/bases/thick_wall/base#thick_wall%cave/openlock+topless,magnetic+flex/cave%sandstone+3#base,thick_wall,outcrop+2.2x2+wall.openlock,magnetic+flex,topless.stl",
+            "full_name": "tiles/bases/thick_wall/base#thick_wall%cave/openlock+topless,magnetic+flex/cave%sandstone+3#base,thick_wall,outcrop+2.2x2+wall.openlock+topless,magnetic+flex.stl",
             "md5": "a861f1e4f66964ec31be4708341a83a4",
             "size": 6371784,
             "storage_address": "https://objects.openforge.tools/models/a861f1/a861f1e4f66964ec31be4708341a83a4.stl"
@@ -49364,7 +49364,7 @@
             "connection|magnetic",
             "connection|magnetic|flex",
             "connection|openlock",
-            "connection|topless",
+            "connection|openlock|topless",
             "shape|base",
             "shape|square",
             "shape|wall",
