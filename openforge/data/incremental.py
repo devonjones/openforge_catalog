@@ -415,11 +415,15 @@ class IncrementalScanner:
         """
         return self.subset_path
 
-    def get_missing_files(self, current_files: Set[str]) -> List[Dict]:
+    def get_missing_files(
+        self, current_files: Set[str], processed_entries: List[Dict] = None
+    ) -> List[Dict]:
         """Get deprecation entries for missing files.
 
         Args:
             current_files: Set of current full_name values
+            processed_entries: List of already processed entries to check for
+                MD5 matches
 
         Returns:
             List of deprecation entries
@@ -429,10 +433,32 @@ class IncrementalScanner:
             item["file_metadata"]["full_name"] for item in self.existing_data
         }
 
+        # Build MD5 lookup from processed entries
+        current_md5s = set()
+        if processed_entries:
+            current_md5s = {
+                entry["file_metadata"]["md5"]
+                for entry in processed_entries
+                if not entry.get("deprecated")
+                and entry.get("file_metadata")
+                and entry["file_metadata"].get("md5")
+            }
+
         for full_name in existing_full_names - current_files:
             # Find the existing entry
             existing_entry = self._find_existing_entry(full_name)
             if existing_entry:
+                # Check if this is just a rename (same MD5 exists in current scan)
+                existing_md5 = existing_entry["file_metadata"].get("md5")
+                if existing_md5 and existing_md5 in current_md5s:
+                    # This is a rename, not a deletion - skip creating deprecated entry
+                    if self.verbose:
+                        sys.stderr.write(
+                            f"DEBUG: Skipping deprecation for {full_name} - "
+                            f"found same MD5 ({existing_md5}) in current scan\n"
+                        )
+                    continue
+
                 # Create deprecation tombstone
                 deprecation_entry = existing_entry.copy()
                 deprecation_entry["deprecated"] = True
@@ -600,7 +626,7 @@ def parse_files_incremental(
             raise
 
     # Add missing files as deprecated
-    missing_files = scanner.get_missing_files(current_files)
+    missing_files = scanner.get_missing_files(current_files, newfiles)
     if missing_files and verbose:
         sys.stderr.write(
             f"Creating {len(missing_files)} deprecation entries for missing files\n"
