@@ -42788,6 +42788,918 @@
     },
     {
         "file_metadata": {
+            "file": "rough_stone#base.A.dragonlock.stl",
+            "file_modified_at": "2025-07-29T19:16:36.214918+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock/rough_stone#base.A.dragonlock.stl",
+            "md5": "9a3c5c5eb1d3df80f680d76c798dfbb2",
+            "size": 2386584,
+            "storage_address": "https://objects.openforge.tools/models/9a3c5c/9a3c5c5eb1d3df80f680d76c798dfbb2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9a3c5c/9a3c5c5eb1d3df80f680d76c798dfbb2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.dragonlock.stl",
+            "file_modified_at": "2025-07-29T19:20:08.643159+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock/rough_stone#base.BA.dragonlock.stl",
+            "md5": "3128f6ebd2b0be15a6fe97f419a1d161",
+            "size": 1846484,
+            "storage_address": "https://objects.openforge.tools/models/3128f6/3128f6ebd2b0be15a6fe97f419a1d161.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3128f6/3128f6ebd2b0be15a6fe97f419a1d161.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:50:06.336923+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock/rough_stone#base.D.dragonlock.stl",
+            "md5": "8f1e7578b917e7915f33bfdd28c4cacb",
+            "size": 3520884,
+            "storage_address": "https://objects.openforge.tools/models/8f1e75/8f1e7578b917e7915f33bfdd28c4cacb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8f1e75/8f1e7578b917e7915f33bfdd28c4cacb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.IA.dragonlock.stl",
+            "file_modified_at": "2025-07-29T17:24:36.423566+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock/rough_stone#base.IA.dragonlock.stl",
+            "md5": "f16c112841baa8b55831232af13f3486",
+            "size": 1229884,
+            "storage_address": "https://objects.openforge.tools/models/f16c11/f16c112841baa8b55831232af13f3486.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f16c11/f16c112841baa8b55831232af13f3486.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.dragonlock.stl",
+            "file_modified_at": "2025-07-29T19:02:58.996436+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock/rough_stone#base.Q.dragonlock.stl",
+            "md5": "6d59f5e9194b849322f4197ba3b9ce6d",
+            "size": 4749684,
+            "storage_address": "https://objects.openforge.tools/models/6d59f5/6d59f5e9194b849322f4197ba3b9ce6d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6d59f5/6d59f5e9194b849322f4197ba3b9ce6d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base+mirror.BA.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:20:37.638394+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock,magnetic+flex/rough_stone#base+mirror.BA.dragonlock,magnetic+flex.stl",
+            "md5": "13c44ec6c4d008696411daecadffbead",
+            "size": 1793584,
+            "storage_address": "https://objects.openforge.tools/models/13c44e/13c44ec6c4d008696411daecadffbead.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/13c44e/13c44ec6c4d008696411daecadffbead.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|base|mirror",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.A.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:16:50.493109+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock,magnetic+flex/rough_stone#base.A.dragonlock,magnetic+flex.stl",
+            "md5": "b367853fe9292ec18c8b078be6b2e3a6",
+            "size": 2282484,
+            "storage_address": "https://objects.openforge.tools/models/b36785/b367853fe9292ec18c8b078be6b2e3a6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b36785/b367853fe9292ec18c8b078be6b2e3a6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:20:23.513805+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock,magnetic+flex/rough_stone#base.BA.dragonlock,magnetic+flex.stl",
+            "md5": "500062dc2727e3f14afeb5e5bc2e8bbf",
+            "size": 1789384,
+            "storage_address": "https://objects.openforge.tools/models/500062/500062dc2727e3f14afeb5e5bc2e8bbf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/500062/500062dc2727e3f14afeb5e5bc2e8bbf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T18:50:32.097352+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock,magnetic+flex/rough_stone#base.D.dragonlock,magnetic+flex.stl",
+            "md5": "bb4df8aa51bbd4c583c452864c1910bf",
+            "size": 3449484,
+            "storage_address": "https://objects.openforge.tools/models/bb4df8/bb4df8aa51bbd4c583c452864c1910bf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bb4df8/bb4df8aa51bbd4c583c452864c1910bf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:03:20.963556+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/dragonlock,magnetic+flex/rough_stone#base.Q.dragonlock,magnetic+flex.stl",
+            "md5": "c6b9ed7c6d93b7467e6788bce696dc72",
+            "size": 4516884,
+            "storage_address": "https://objects.openforge.tools/models/c6b9ed/c6b9ed7c6d93b7467e6788bce696dc72.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c6b9ed/c6b9ed7c6d93b7467e6788bce696dc72.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.A.magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:15:00.814144+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/magnetic+flex/rough_stone#base.A.magnetic+flex.stl",
+            "md5": "3d5af2adc2b70365b48c8631ddc84824",
+            "size": 2206384,
+            "storage_address": "https://objects.openforge.tools/models/3d5af2/3d5af2adc2b70365b48c8631ddc84824.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3d5af2/3d5af2adc2b70365b48c8631ddc84824.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:17:51.430525+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/magnetic+flex/rough_stone#base.BA.magnetic+flex.stl",
+            "md5": "156d1d449ee5208c9bacbf3dec5a887f",
+            "size": 1741384,
+            "storage_address": "https://objects.openforge.tools/models/156d1d/156d1d449ee5208c9bacbf3dec5a887f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/156d1d/156d1d449ee5208c9bacbf3dec5a887f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T18:48:32.693758+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/magnetic+flex/rough_stone#base.D.magnetic+flex.stl",
+            "md5": "c4a06d9ecddb0036ed4a542b21252499",
+            "size": 3325484,
+            "storage_address": "https://objects.openforge.tools/models/c4a06d/c4a06d9ecddb0036ed4a542b21252499.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c4a06d/c4a06d9ecddb0036ed4a542b21252499.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.IA.magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T17:23:15.920726+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/magnetic+flex/rough_stone#base.IA.magnetic+flex.stl",
+            "md5": "6fcd917590135fd2fbeb55d31c465de0",
+            "size": 1182384,
+            "storage_address": "https://objects.openforge.tools/models/6fcd91/6fcd917590135fd2fbeb55d31c465de0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6fcd91/6fcd917590135fd2fbeb55d31c465de0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:01:51.793148+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/magnetic+flex/rough_stone#base.Q.magnetic+flex.stl",
+            "md5": "4c95492bcb7cd7fae9dc0e2e3ae35b17",
+            "size": 4252784,
+            "storage_address": "https://objects.openforge.tools/models/4c9549/4c95492bcb7cd7fae9dc0e2e3ae35b17.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4c9549/4c95492bcb7cd7fae9dc0e2e3ae35b17.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.A.openlock.stl",
+            "file_modified_at": "2025-07-29T19:16:19.551761+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock/rough_stone#base.A.openlock.stl",
+            "md5": "1639f4f26e9bb9cabec4940925135c3b",
+            "size": 2230284,
+            "storage_address": "https://objects.openforge.tools/models/1639f4/1639f4f26e9bb9cabec4940925135c3b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1639f4/1639f4f26e9bb9cabec4940925135c3b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.openlock.stl",
+            "file_modified_at": "2025-07-29T19:19:56.193178+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock/rough_stone#base.BA.openlock.stl",
+            "md5": "3bb62194a4d71b09857d352e49bf3883",
+            "size": 1729184,
+            "storage_address": "https://objects.openforge.tools/models/3bb621/3bb62194a4d71b09857d352e49bf3883.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3bb621/3bb62194a4d71b09857d352e49bf3883.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.openlock.stl",
+            "file_modified_at": "2025-07-29T18:49:49.928040+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock/rough_stone#base.D.openlock.stl",
+            "md5": "327f146fec036abf3eefbf3b76f66de1",
+            "size": 3425684,
+            "storage_address": "https://objects.openforge.tools/models/327f14/327f146fec036abf3eefbf3b76f66de1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/327f14/327f146fec036abf3eefbf3b76f66de1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.IA.openlock.stl",
+            "file_modified_at": "2025-07-29T17:24:04.696004+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock/rough_stone#base.IA.openlock.stl",
+            "md5": "d0f839cea60418af4cbf9a49148bff56",
+            "size": 1182484,
+            "storage_address": "https://objects.openforge.tools/models/d0f839/d0f839cea60418af4cbf9a49148bff56.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d0f839/d0f839cea60418af4cbf9a49148bff56.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.openlock.stl",
+            "file_modified_at": "2025-07-29T19:02:41.681715+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock/rough_stone#base.Q.openlock.stl",
+            "md5": "3b7d00a909ec30889d335b7b6aa8a446",
+            "size": 4344784,
+            "storage_address": "https://objects.openforge.tools/models/3b7d00/3b7d00a909ec30889d335b7b6aa8a446.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3b7d00/3b7d00a909ec30889d335b7b6aa8a446.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.IA.openlock+topless.stl",
+            "file_modified_at": "2025-07-29T17:24:25.614511+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless/rough_stone#base.IA.openlock+topless.stl",
+            "md5": "2703b09b785d4fa50d13104d5f698e7e",
+            "size": 1168584,
+            "storage_address": "https://objects.openforge.tools/models/2703b0/2703b09b785d4fa50d13104d5f698e7e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2703b0/2703b09b785d4fa50d13104d5f698e7e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base+mirror.BA.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:19:37.002860+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless,magnetic+flex/rough_stone#base+mirror.BA.openlock+topless,magnetic+flex.stl",
+            "md5": "7225c3a4eaa158082cc84815646d2b51",
+            "size": 1741984,
+            "storage_address": "https://objects.openforge.tools/models/7225c3/7225c3a4eaa158082cc84815646d2b51.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7225c3/7225c3a4eaa158082cc84815646d2b51.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|base|mirror",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.A.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:15:36.738304+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless,magnetic+flex/rough_stone#base.A.openlock+topless,magnetic+flex.stl",
+            "md5": "b1d8d04a34df81bb6d6c89819d70481e",
+            "size": 2223584,
+            "storage_address": "https://objects.openforge.tools/models/b1d8d0/b1d8d04a34df81bb6d6c89819d70481e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b1d8d0/b1d8d04a34df81bb6d6c89819d70481e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:19:18.176815+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless,magnetic+flex/rough_stone#base.BA.openlock+topless,magnetic+flex.stl",
+            "md5": "59481c015b792264b7a52aad425934a8",
+            "size": 1739284,
+            "storage_address": "https://objects.openforge.tools/models/59481c/59481c015b792264b7a52aad425934a8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/59481c/59481c015b792264b7a52aad425934a8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T18:49:33.038441+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless,magnetic+flex/rough_stone#base.D.openlock+topless,magnetic+flex.stl",
+            "md5": "3933dd6f3de79cb63521534715dd241f",
+            "size": 3386784,
+            "storage_address": "https://objects.openforge.tools/models/3933dd/3933dd6f3de79cb63521534715dd241f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3933dd/3933dd6f3de79cb63521534715dd241f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:02:26.367733+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock+topless,magnetic+flex/rough_stone#base.Q.openlock+topless,magnetic+flex.stl",
+            "md5": "fc44efd0c07357dcaab8e6914ab81753",
+            "size": 4242684,
+            "storage_address": "https://objects.openforge.tools/models/fc44ef/fc44efd0c07357dcaab8e6914ab81753.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fc44ef/fc44efd0c07357dcaab8e6914ab81753.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base+mirror.BA.openlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:18:58.443991+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock,magnetic+flex/rough_stone#base+mirror.BA.openlock,magnetic+flex.stl",
+            "md5": "77030b0c09a78aded50a717bad099d39",
+            "size": 1737784,
+            "storage_address": "https://objects.openforge.tools/models/77030b/77030b0c09a78aded50a717bad099d39.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/77030b/77030b0c09a78aded50a717bad099d39.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|base|mirror",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.A.openlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:15:16.944774+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock,magnetic+flex/rough_stone#base.A.openlock,magnetic+flex.stl",
+            "md5": "a41146e6cc8fef4a7965a2bd0743d029",
+            "size": 2225984,
+            "storage_address": "https://objects.openforge.tools/models/a41146/a41146e6cc8fef4a7965a2bd0743d029.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a41146/a41146e6cc8fef4a7965a2bd0743d029.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.BA.openlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:18:47.081238+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock,magnetic+flex/rough_stone#base.BA.openlock,magnetic+flex.stl",
+            "md5": "2467c44cb3aee771dfc376fdc05010c2",
+            "size": 1736384,
+            "storage_address": "https://objects.openforge.tools/models/2467c4/2467c44cb3aee771dfc376fdc05010c2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2467c4/2467c44cb3aee771dfc376fdc05010c2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.D.openlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T18:49:04.271649+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock,magnetic+flex/rough_stone#base.D.openlock,magnetic+flex.stl",
+            "md5": "b21af08b64d282bcb8920ec2a567871d",
+            "size": 3380884,
+            "storage_address": "https://objects.openforge.tools/models/b21af0/b21af08b64d282bcb8920ec2a567871d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b21af0/b21af08b64d282bcb8920ec2a567871d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#base.Q.openlock,magnetic+flex.stl",
+            "file_modified_at": "2025-07-29T19:02:09.558433+00:00",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%rough_stone/openlock,magnetic+flex/rough_stone#base.Q.openlock,magnetic+flex.stl",
+            "md5": "edcdd7a87c5bdbfe33a271f762e2c5ce",
+            "size": 4345984,
+            "storage_address": "https://objects.openforge.tools/models/edcdd7/edcdd7a87c5bdbfe33a271f762e2c5ce.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/edcdd7/edcdd7a87c5bdbfe33a271f762e2c5ce.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "timber#base+wall+chimney.A.dragonlock.stl",
             "file_modified_at": "2024-03-15T19:08:29.392317+00:00",
             "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%timber/dragonlock/timber#base+wall+chimney.A.dragonlock.stl",

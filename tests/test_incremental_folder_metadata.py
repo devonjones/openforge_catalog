@@ -2,9 +2,12 @@
 
 import json
 import os
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
+
+import yaml
 
 from openforge.data.incremental import IncrementalScanner, parse_files_incremental
 
@@ -22,8 +25,6 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
 
     def tearDown(self):
         """Clean up test environment."""
-        import shutil
-
         shutil.rmtree(self.test_dir)
 
     def test_folder_metadata_applied_in_incremental(self):
@@ -37,8 +38,6 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
         # Create root metadata with edit_all
         root_metadata = {".": {"edit_all": {"tags": {"add": ["category|terrain"]}}}}
         with open(os.path.join(self.test_dir, "metadata.yaml"), "w") as f:
-            import yaml
-
             yaml.dump(root_metadata, f)
 
         # Create tiles metadata
@@ -161,8 +160,6 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
             ".": {"edit_all": {"tags": {"add": ["project|openforge", "version|2.0"]}}}
         }
         with open(os.path.join(self.test_dir, "metadata.yaml"), "w") as f:
-            import yaml
-
             yaml.dump(folder_metadata, f)
 
         # Create a test STL file
@@ -173,8 +170,6 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
         # Create file metadata to disable automatic parsing
         file_metadata = {"test.stl": {"auto": False, "tags": ["shape|floor"]}}
         with open(os.path.join(floors_dir, "metadata.yaml"), "w") as f:
-            import yaml
-
             yaml.dump(file_metadata, f)
 
         # Create initial fixture data with existing entry
@@ -228,9 +223,6 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
 
         # Check that folder metadata was applied
         tags = result["tags"]
-        print(f"DEBUG: Full result: {json.dumps(result, indent=2)}")
-        print(f"DEBUG: Tags found: {tags}")
-        print(f"DEBUG: Metadata flag: {result.get('metadata')}")
 
         # The basic requirement is that folder metadata was applied
         self.assertIn("project|openforge", tags)

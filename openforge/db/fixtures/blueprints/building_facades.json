@@ -920,32 +920,6 @@
         "type": "model"
     },
     {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+T.openlock.stl",
-            "file_modified_at": "2021-06-28T11:23:43.346098",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
-            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
-            "size": 5874584,
-            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
         "file_metadata": {
             "file": "ironbound_wood#column.col+T.openlock.stl",
             "file_modified_at": "2025-07-07T04:47:17.299541+00:00",
@@ -966,32 +940,6 @@
             "shape|column",
             "size|column_shape|T",
             "size|openlock|T",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+X.openlock.stl",
-            "file_modified_at": "2021-06-28T09:10:24.643360",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
-            "md5": "c361239d1cc7c41a34848f80536bd59d",
-            "size": 3739584,
-            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
             "texture|ironbound_wood"
         ],
         "type": "model"
@@ -6533,6 +6481,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|1.5",
@@ -6561,6 +6510,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|2",
@@ -6589,6 +6539,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|2.5",
@@ -6617,6 +6568,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|3",
@@ -6645,6 +6597,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|3.5",
@@ -6673,6 +6626,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|1.5",
@@ -6701,6 +6655,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|2",
@@ -6729,6 +6684,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|2.5",
@@ -6757,6 +6713,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|3",
@@ -6785,6 +6742,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|3.5",
@@ -6812,6 +6770,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|1",
@@ -6839,6 +6798,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|1.5",
@@ -6866,6 +6826,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|concave",
             "size|depth|1",
@@ -6894,6 +6855,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|1.5",
@@ -6922,6 +6884,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|2",
@@ -6950,6 +6913,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|2.5",
@@ -6978,6 +6942,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|3",
@@ -7006,6 +6971,7 @@
             "component|a",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|3.5",
@@ -7034,6 +7000,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|1.5",
@@ -7062,6 +7029,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|2",
@@ -7090,6 +7058,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|2.5",
@@ -7118,6 +7087,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|3",
@@ -7146,6 +7116,7 @@
             "component|b",
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|3.5",
@@ -7173,6 +7144,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|1",
@@ -7200,6 +7172,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|1.5",
@@ -7227,6 +7200,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|convex",
             "size|depth|1",
@@ -7270,8 +7244,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|2x",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|shingles",
             "texture|stucco"
@@ -7313,8 +7286,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|3x",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|shingles",
             "texture|stucco"
@@ -7356,8 +7328,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|4x",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|shingles",
             "texture|stucco"
@@ -7399,6 +7370,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|5x",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stucco"
@@ -7440,6 +7412,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|6x",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stucco"
@@ -7481,6 +7454,7 @@
             "component|dormer|window",
             "connection|openlock",
             "interface|dormer|window|7x",
+            "set|roofs",
             "size|width|7",
             "texture|shingles",
             "texture|stucco"
@@ -7505,7 +7479,8 @@
         "metadata": true,
         "tags": [
             "interface|dormer|window_insert|2x",
-            "part|window_insert"
+            "part|window_insert",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -7527,7 +7502,8 @@
         "metadata": true,
         "tags": [
             "interface|dormer|window_insert|3x",
-            "part|window_insert"
+            "part|window_insert",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -7549,7 +7525,8 @@
         "metadata": true,
         "tags": [
             "interface|dormer|window_insert|4x",
-            "part|window_insert"
+            "part|window_insert",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -7571,7 +7548,8 @@
         "metadata": true,
         "tags": [
             "interface|dormer|window_insert|6x",
-            "part|window_insert"
+            "part|window_insert",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -7596,8 +7574,7 @@
             "component|eaves|a",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|IA",
+            "set|roofs",
             "size|width|1",
             "texture|timber"
         ],
@@ -7624,8 +7601,7 @@
             "component|eaves|a",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|timber"
         ],
@@ -7652,8 +7628,7 @@
             "component|eaves|a",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|timber"
         ],
@@ -7680,8 +7655,7 @@
             "component|eaves|a",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|timber"
         ],
@@ -7708,8 +7682,7 @@
             "component|eaves|b",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|timber"
         ],
@@ -7736,8 +7709,7 @@
             "component|eaves|b",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|timber"
         ],
@@ -7764,8 +7736,7 @@
             "component|eaves|b",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|timber"
         ],
@@ -7792,8 +7763,7 @@
             "component|eaves|c",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|timber"
         ],
@@ -7820,8 +7790,7 @@
             "component|eaves|c",
             "component|eaves|corbels",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|timber"
         ],
@@ -7848,8 +7817,7 @@
             "component|eaves|corbels",
             "component|eaves|d",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|timber"
         ],
@@ -7874,6 +7842,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|a",
             "shape|corner|corbels",
@@ -7902,6 +7871,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|b",
             "shape|corner|corbels",
@@ -7930,6 +7900,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "shape|corner|c",
             "shape|corner|corbels",
@@ -7958,6 +7929,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
+            "set|roofs",
             "shape|corner",
             "size|depth|1",
             "size|width|1",
@@ -7984,8 +7956,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|IA",
+            "set|roofs",
             "size|width|1",
             "texture|timber"
         ],
@@ -8010,8 +7981,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|timber"
         ],
@@ -8036,8 +8006,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|timber"
         ],
@@ -8062,8 +8031,7 @@
         "tags": [
             "component|eaves",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|timber"
         ],
@@ -8071,9 +8039,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables+chimney.5x.openlock.stl",
+            "file": "shingles,stone_brick#gable+chimney.5x.openlock.stl",
             "file_modified_at": "2020-10-28T04:55:10.301850+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables+chimney.5x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable+chimney.5x.openlock.stl",
             "md5": "b358f2e20ed49fcb8ba37dcc502514f0",
             "size": 49029084,
             "storage_address": "https://objects.openforge.tools/models/b358f2/b358f2e20ed49fcb8ba37dcc502514f0.stl"
@@ -8086,9 +8054,10 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
-            "component|gables|chimney",
+            "component|gable",
+            "component|gable|chimney",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stone_brick"
@@ -8097,9 +8066,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables+chimney.6x.openlock.stl",
+            "file": "shingles,stone_brick#gable+chimney.6x.openlock.stl",
             "file_modified_at": "2020-10-28T05:10:12.734962+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables+chimney.6x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable+chimney.6x.openlock.stl",
             "md5": "ef85625f39be2cf076cd723b779e9222",
             "size": 70007084,
             "storage_address": "https://objects.openforge.tools/models/ef8562/ef85625f39be2cf076cd723b779e9222.stl"
@@ -8112,9 +8081,10 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
-            "component|gables|chimney",
+            "component|gable",
+            "component|gable|chimney",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stone_brick"
@@ -8123,9 +8093,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.2x.openlock.stl",
+            "file": "shingles,stone_brick#gable.2x.openlock.stl",
             "file_modified_at": "2020-10-30T23:30:31.988877+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.2x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.2x.openlock.stl",
             "md5": "56253ef8a3067a764197c8d394acd94d",
             "size": 10301684,
             "storage_address": "https://objects.openforge.tools/models/56253e/56253ef8a3067a764197c8d394acd94d.stl"
@@ -8138,10 +8108,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|shingles",
             "texture|stone_brick"
@@ -8150,9 +8119,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.3x.openlock.stl",
+            "file": "shingles,stone_brick#gable.3x.openlock.stl",
             "file_modified_at": "2020-10-30T23:29:14.547417+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.3x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.3x.openlock.stl",
             "md5": "6348eca2a481b7bb4c674748c49159b1",
             "size": 17224684,
             "storage_address": "https://objects.openforge.tools/models/6348ec/6348eca2a481b7bb4c674748c49159b1.stl"
@@ -8165,10 +8134,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|shingles",
             "texture|stone_brick"
@@ -8177,9 +8145,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.4x.openlock.stl",
+            "file": "shingles,stone_brick#gable.4x.openlock.stl",
             "file_modified_at": "2020-10-30T23:27:51.166600+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.4x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.4x.openlock.stl",
             "md5": "50181398a65b5a0222803aa6ab03ab97",
             "size": 26964134,
             "storage_address": "https://objects.openforge.tools/models/501813/50181398a65b5a0222803aa6ab03ab97.stl"
@@ -8192,10 +8160,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|shingles",
             "texture|stone_brick"
@@ -8204,9 +8171,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.5x.openlock.stl",
+            "file": "shingles,stone_brick#gable.5x.openlock.stl",
             "file_modified_at": "2020-10-28T17:24:07.583743+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.5x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.5x.openlock.stl",
             "md5": "d7655b7b16bf6b25bf84e77ad88eb243",
             "size": 38529584,
             "storage_address": "https://objects.openforge.tools/models/d7655b/d7655b7b16bf6b25bf84e77ad88eb243.stl"
@@ -8219,8 +8186,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stone_brick"
@@ -8229,9 +8197,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.6x.openlock.stl",
+            "file": "shingles,stone_brick#gable.6x.openlock.stl",
             "file_modified_at": "2020-10-28T18:07:05.870544+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.6x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.6x.openlock.stl",
             "md5": "e0be5de69586a2e6aa13c2a1b2f3a747",
             "size": 56304284,
             "storage_address": "https://objects.openforge.tools/models/e0be5d/e0be5de69586a2e6aa13c2a1b2f3a747.stl"
@@ -8244,8 +8212,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stone_brick"
@@ -8254,9 +8223,9 @@
     },
     {
         "file_metadata": {
-            "file": "shingles,stone_brick#gables.7x.openlock.stl",
+            "file": "shingles,stone_brick#gable.7x.openlock.stl",
             "file_modified_at": "2020-10-30T23:23:39.406579+00:00",
-            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.7x.openlock.stl",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gable.7x.openlock.stl",
             "md5": "d04848a0bb7daf5c5f422589d62b15f8",
             "size": 77702434,
             "storage_address": "https://objects.openforge.tools/models/d04848/d04848a0bb7daf5c5f422589d62b15f8.stl"
@@ -8269,8 +8238,9 @@
         ],
         "metadata": false,
         "tags": [
-            "component|gables",
+            "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|7",
             "texture|shingles",
             "texture|stone_brick"
@@ -8297,6 +8267,7 @@
             "component|gable",
             "component|gable|chimney",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stucco"
@@ -8323,6 +8294,7 @@
             "component|gable",
             "component|gable|chimney",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stucco"
@@ -8350,8 +8322,7 @@
             "component|gable|split",
             "component|left",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|shingles",
             "texture|stucco"
@@ -8379,8 +8350,7 @@
             "component|gable|split",
             "component|left",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|shingles",
             "texture|stucco"
@@ -8408,6 +8378,7 @@
             "component|gable|split",
             "component|left",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stucco"
@@ -8435,6 +8406,7 @@
             "component|gable|split",
             "component|left",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stucco"
@@ -8462,6 +8434,7 @@
             "component|gable|split",
             "component|left",
             "connection|openlock",
+            "set|roofs",
             "size|width|7",
             "texture|shingles",
             "texture|stucco"
@@ -8489,8 +8462,7 @@
             "component|gable|split",
             "component|right",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|shingles",
             "texture|stucco"
@@ -8518,8 +8490,7 @@
             "component|gable|split",
             "component|right",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|shingles",
             "texture|stucco"
@@ -8547,6 +8518,7 @@
             "component|gable|split",
             "component|right",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stucco"
@@ -8574,6 +8546,7 @@
             "component|gable|split",
             "component|right",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stucco"
@@ -8601,6 +8574,7 @@
             "component|gable|split",
             "component|right",
             "connection|openlock",
+            "set|roofs",
             "size|width|7",
             "texture|shingles",
             "texture|stucco"
@@ -8626,8 +8600,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|A",
+            "set|roofs",
             "size|width|2",
             "texture|shingles",
             "texture|stucco"
@@ -8653,8 +8626,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|D",
+            "set|roofs",
             "size|width|3",
             "texture|shingles",
             "texture|stucco"
@@ -8680,8 +8652,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
-            "shape|wall",
-            "size|openlock|Q",
+            "set|roofs",
             "size|width|4",
             "texture|shingles",
             "texture|stucco"
@@ -8707,6 +8678,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|5",
             "texture|shingles",
             "texture|stucco"
@@ -8732,6 +8704,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|6",
             "texture|shingles",
             "texture|stucco"
@@ -8757,6 +8730,7 @@
         "tags": [
             "component|gable",
             "connection|openlock",
+            "set|roofs",
             "size|width|7",
             "texture|shingles",
             "texture|stucco"
@@ -8782,6 +8756,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1",
             "size|width|1",
             "texture|shingles"
@@ -8807,6 +8782,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1.5",
             "size|width|1",
             "texture|shingles"
@@ -8832,6 +8808,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2",
             "size|width|1",
             "texture|shingles"
@@ -8857,7 +8834,8 @@
         "tags": [
             "component|roof",
             "connection|openlock",
-            "size|depth|1.5",
+            "set|roofs",
+            "size|depth|2.5",
             "size|width|1",
             "texture|shingles"
         ],
@@ -8882,6 +8860,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3",
             "size|width|1",
             "texture|shingles"
@@ -8907,7 +8886,8 @@
         "tags": [
             "component|roof",
             "connection|openlock",
-            "size|depth|1.5",
+            "set|roofs",
+            "size|depth|3.5",
             "size|width|1",
             "texture|shingles"
         ],
@@ -8932,6 +8912,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1",
             "size|width|2",
             "texture|shingles"
@@ -8957,6 +8938,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1.5",
             "size|width|2",
             "texture|shingles"
@@ -8982,6 +8964,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2",
             "size|width|2",
             "texture|shingles"
@@ -9007,6 +8990,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2.5",
             "size|width|2",
             "texture|shingles"
@@ -9032,6 +9016,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3",
             "size|width|2",
             "texture|shingles"
@@ -9057,6 +9042,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3.5",
             "size|width|2",
             "texture|shingles"
@@ -9082,6 +9068,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1",
             "size|width|3",
             "texture|shingles"
@@ -9107,6 +9094,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1.5",
             "size|width|3",
             "texture|shingles"
@@ -9132,6 +9120,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2",
             "size|width|3",
             "texture|shingles"
@@ -9157,6 +9146,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2.5",
             "size|width|3",
             "texture|shingles"
@@ -9182,6 +9172,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3",
             "size|width|3",
             "texture|shingles"
@@ -9207,6 +9198,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3.5",
             "size|width|3",
             "texture|shingles"
@@ -9232,6 +9224,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1",
             "size|width|4",
             "texture|shingles"
@@ -9257,6 +9250,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|1.5",
             "size|width|4",
             "texture|shingles"
@@ -9282,6 +9276,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2",
             "size|width|4",
             "texture|shingles"
@@ -9307,6 +9302,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|2.5",
             "size|width|4",
             "texture|shingles"
@@ -9332,6 +9328,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3",
             "size|width|4",
             "texture|shingles"
@@ -9357,6 +9354,7 @@
         "tags": [
             "component|roof",
             "connection|openlock",
+            "set|roofs",
             "size|depth|3.5",
             "size|width|4",
             "texture|shingles"
@@ -9381,7 +9379,8 @@
         "metadata": true,
         "tags": [
             "interface|support_block|1x",
-            "part|support_block"
+            "part|support_block",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -9403,7 +9402,8 @@
         "metadata": true,
         "tags": [
             "interface|support_block|2x",
-            "part|support_block"
+            "part|support_block",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -9425,7 +9425,8 @@
         "metadata": true,
         "tags": [
             "interface|support_block|3x",
-            "part|support_block"
+            "part|support_block",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -9447,7 +9448,8 @@
         "metadata": true,
         "tags": [
             "interface|support_block|4x",
-            "part|support_block"
+            "part|support_block",
+            "set|roofs"
         ],
         "type": "model"
     },
@@ -13810,32 +13812,6 @@
     {
         "deprecated": true,
         "file_metadata": {
-            "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2021-06-28T09:51:10.741293",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
             "file": "ironbound_wood#column.col+T.openlock.stl",
             "file_modified_at": "2021-06-28T11:23:43.346098",
             "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
@@ -13881,162 +13857,6 @@
             "shape|column",
             "size|column_shape|X",
             "size|openlock|X",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2021-06-28T09:51:10.741293",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+T.openlock.stl",
-            "file_modified_at": "2021-06-28T11:23:43.346098",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
-            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
-            "size": 5874584,
-            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+X.openlock.stl",
-            "file_modified_at": "2021-06-28T09:10:24.643360",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
-            "md5": "c361239d1cc7c41a34848f80536bd59d",
-            "size": 3739584,
-            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+T.openlock.stl",
-            "file_modified_at": "2021-06-28T11:23:43.346098",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
-            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
-            "size": 5874584,
-            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+X.openlock.stl",
-            "file_modified_at": "2021-06-28T09:10:24.643360",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
-            "md5": "c361239d1cc7c41a34848f80536bd59d",
-            "size": 3739584,
-            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2021-06-28T09:51:10.741293",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
             "texture|ironbound_wood"
         ],
         "type": "model"
