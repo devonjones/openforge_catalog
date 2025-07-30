@@ -63,7 +63,7 @@ def test_replace_blueprint_tags(auth_client, test_db):
 def test_delete_all_blueprint_tags(auth_client, test_db):
     blueprint = create_blueprint_with_tags(test_db, ["foo|bar"])
     resp = auth_client.delete(f"/api/blueprints/{blueprint['id']}/tags")
-    assert resp.status_code == 200
+    assert resp.status_code == 204
     # Should be empty
     resp2 = auth_client.get(f"/api/blueprints/{blueprint['id']}/tags")
     assert resp2.status_code == 200

@@ -75,26 +75,37 @@ class TestDuplicateDeprecationPrevention:
         import openforge.db.sql.images as image_sql
         import openforge.db.sql.tags as tag_sql
 
-        tag_sql.delete_all_blueprint_tags = MagicMock()
-        image_sql.delete_images_for_blueprint = MagicMock()
-        blueprint_sql.mark_blueprint_deprecated = MagicMock()
+        # Save original functions
+        orig_delete_tags = tag_sql.delete_all_blueprint_tags
+        orig_delete_images = image_sql.delete_images_for_blueprint
+        orig_mark_deprecated = blueprint_sql.mark_blueprint_deprecated
 
-        # Call _handle_deprecation
-        loader._handle_deprecation(mock_curs, blueprint_to_deprecate)
+        try:
+            tag_sql.delete_all_blueprint_tags = MagicMock()
+            image_sql.delete_images_for_blueprint = MagicMock()
+            blueprint_sql.mark_blueprint_deprecated = MagicMock()
 
-        # Verify that we checked for existing deprecated entry
-        loader._find_deprecated_blueprint_by_md5.assert_called_once_with("abc123")
+            # Call _handle_deprecation
+            loader._handle_deprecation(mock_curs, blueprint_to_deprecate)
 
-        # Verify that we DID mark the blueprint as deprecated
-        tag_sql.delete_all_blueprint_tags.assert_called_once_with(
-            mock_curs, "active-456"
-        )
-        image_sql.delete_images_for_blueprint.assert_called_once_with(
-            mock_curs, "active-456"
-        )
-        blueprint_sql.mark_blueprint_deprecated.assert_called_once_with(
-            mock_curs, "active-456"
-        )
+            # Verify that we checked for existing deprecated entry
+            loader._find_deprecated_blueprint_by_md5.assert_called_once_with("abc123")
+
+            # Verify that we DID mark the blueprint as deprecated
+            tag_sql.delete_all_blueprint_tags.assert_called_once_with(
+                mock_curs, "active-456"
+            )
+            image_sql.delete_images_for_blueprint.assert_called_once_with(
+                mock_curs, "active-456"
+            )
+            blueprint_sql.mark_blueprint_deprecated.assert_called_once_with(
+                mock_curs, "active-456"
+            )
+        finally:
+            # Restore original functions
+            tag_sql.delete_all_blueprint_tags = orig_delete_tags
+            image_sql.delete_images_for_blueprint = orig_delete_images
+            blueprint_sql.mark_blueprint_deprecated = orig_mark_deprecated
 
     def test_compare_fixture_data_skips_duplicate_deprecated_in_legacy_mode(self):
         """Test that duplicate deprecated entries are skipped in legacy mode."""
@@ -107,9 +118,9 @@ class TestDuplicateDeprecationPrevention:
 
         # Mock existing blueprints (one that would be deprecated)
         existing_blueprints = {
-            "tiles/old_file.stl": {
+            "old_file.stl": {
                 "id": "active-123",
-                "full_name": "tiles/old_file.stl",
+                "full_name": "old_file.stl",
                 "file_md5": "abc123",
                 "blueprint_type": "model",
                 "deprecated": False,
@@ -131,8 +142,20 @@ class TestDuplicateDeprecationPrevention:
             return_value=existing_deprecated
         )
 
-        # Empty fixture data (so the existing blueprint would be deprecated)
-        fixture_data = []
+        # Fixture data with at least one file-based blueprint
+        # This is needed to trigger the deprecation logic
+        # Use a different path to avoid namespace detection
+        fixture_data = [
+            {
+                "file_metadata": {
+                    "full_name": "some_other_file.stl",
+                    "md5": "def456",
+                },
+                "name": "Some Other File",
+                "blueprint_type": "model",
+                "deprecated": False,
+            }
+        ]
 
         # Call compare_fixture_data
         result = loader.compare_fixture_data(fixture_data, curs=mock_curs)

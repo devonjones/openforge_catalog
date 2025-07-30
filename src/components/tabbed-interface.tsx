@@ -25,11 +25,6 @@ const TabbedInterface = () => {
       .catch(err => console.error("Failed to load or parse app-config.json", err));
   }, []);
 
-  const handleBaseGeneratorUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newUrl = event.target.value;
-    setBaseGeneratorUrl(newUrl);
-    localStorage.setItem('baseGeneratorUrl', newUrl);
-  };
 
   return (
     <div className="tabbedInterface">
@@ -69,20 +64,8 @@ const TabbedInterface = () => {
           <div style={{ display: activeTab === 'blueprints' ? 'block' : 'none' }}>
             <TabBlueprints />
           </div>
-          <div style={{ display: activeTab === 'baseGenerator' ? 'block' : 'none' }}>
-            <div className="baseGeneratorContainer">
-              <div className="baseGeneratorControls">
-                <label htmlFor="baseGeneratorUrl">Base Generator URL:</label>
-                <input
-                  type="text"
-                  id="baseGeneratorUrl"
-                  value={baseGeneratorUrl}
-                  onChange={handleBaseGeneratorUrlChange}
-                  className="baseGeneratorUrlInput"
-                />
-              </div>
-              <iframe src={baseGeneratorUrl} style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} title="Base Generator" />
-            </div>
+          <div style={{ display: activeTab === 'baseGenerator' ? 'block' : 'none', height: '100%' }}>
+            <iframe src={baseGeneratorUrl} style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} title="Base Generator" />
           </div>
           {state.isAuthenticated && (
             <div style={{ display: activeTab === 'admin' ? 'block' : 'none' }}>
