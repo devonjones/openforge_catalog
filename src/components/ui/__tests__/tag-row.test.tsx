@@ -36,6 +36,7 @@ describe('TagRow', () => {
         search_blueprints: false,
         searchTerm: null,
         tagDescriptions: mockTagDescriptions,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         toggleNode: jest.fn(),
@@ -50,6 +51,7 @@ describe('TagRow', () => {
         setBlueprints: jest.fn(),
         setSearchTerm: jest.fn(),
         fetchTagDescriptions: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       };
       return selector(state);
     });
@@ -61,7 +63,7 @@ describe('TagRow', () => {
 
   it('renders tags with click handlers', () => {
     const tags = ['tag1', 'tag2', 'texture|stone'];
-    
+
     render(<TagRow tags={tags} onTagClick={mockOnTagClick} />);
 
     const tagButtons = screen.getAllByRole('button');
@@ -77,7 +79,7 @@ describe('TagRow', () => {
 
   it('shows tag descriptions on hover', async () => {
     const tags = ['tag1', 'tag2'];
-    
+
     render(<TagRow tags={tags} onTagClick={mockOnTagClick} />);
 
     const tagButton = screen.getByText('tag1');
@@ -95,7 +97,7 @@ describe('TagRow', () => {
 
   it('hides tooltip when mouse leaves', async () => {
     const tags = ['tag1'];
-    
+
     render(<TagRow tags={tags} onTagClick={mockOnTagClick} />);
 
     const tagButton = screen.getByText('tag1');
@@ -109,7 +111,7 @@ describe('TagRow', () => {
     });
 
     fireEvent.mouseLeave(tagButton);
-    
+
     await waitFor(() => {
       expect(screen.queryByText('Description for tag1')).not.toBeInTheDocument();
     });
@@ -117,7 +119,7 @@ describe('TagRow', () => {
 
   it('shows tooltip above when tooltipAbove is true', async () => {
     const tags = ['tag1'];
-    
+
     render(<TagRow tags={tags} onTagClick={mockOnTagClick} tooltipAbove={true} />);
 
     const tagButton = screen.getByText('tag1');
@@ -135,7 +137,7 @@ describe('TagRow', () => {
 
   it('shows tooltip below when tooltipAbove is false', async () => {
     const tags = ['tag1'];
-    
+
     render(<TagRow tags={tags} onTagClick={mockOnTagClick} tooltipAbove={false} />);
 
     const tagButton = screen.getByText('tag1');
@@ -153,7 +155,7 @@ describe('TagRow', () => {
 
   it('handles empty tags array', () => {
     render(<TagRow tags={[]} onTagClick={mockOnTagClick} />);
-    
+
     const buttons = screen.queryAllByRole('button');
     expect(buttons).toHaveLength(0);
   });
@@ -161,15 +163,15 @@ describe('TagRow', () => {
   it('cleans up timeout on unmount', () => {
     const tags = ['tag1'];
     const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout');
-    
+
     const { unmount } = render(<TagRow tags={tags} onTagClick={mockOnTagClick} />);
 
     const tagButton = screen.getByText('tag1');
     fireEvent.mouseEnter(tagButton);
-    
+
     unmount();
-    
+
     expect(clearTimeoutSpy).toHaveBeenCalled();
     clearTimeoutSpy.mockRestore();
   });
-}); 
+});

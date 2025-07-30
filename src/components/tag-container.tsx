@@ -86,6 +86,7 @@ const TagContainer = () => {
   const searchTerm = useTagContext((state) => state.searchTerm);
   const tagDescriptions = useTagContext((state) => state.tagDescriptions);
   const fetchTagDescriptions = useTagContext((state) => state.fetchTagDescriptions);
+  const initialSetupComplete = useTagContext((state) => state.initialSetupComplete);
   const [searchInput, setSearchInput] = useState(searchTerm || "");
   const debouncedSearchInput = useDebounce(searchInput, 300);
 
@@ -104,10 +105,13 @@ const TagContainer = () => {
     setSearchInput(searchTerm || "");
   }, [searchTerm]);
 
-  // Apply debounced search
+  // Apply debounced search (only after initial setup is complete)
   useEffect(() => {
-    setSearchTerm(debouncedSearchInput.trim() || null);
-  }, [debouncedSearchInput, setSearchTerm]);
+    // Skip setting search term until initial URL parameter processing is complete
+    if (initialSetupComplete) {
+      setSearchTerm(debouncedSearchInput.trim() || null);
+    }
+  }, [debouncedSearchInput, setSearchTerm, initialSetupComplete]);
 
   // Cleanup hover timeout on unmount
   useEffect(() => {

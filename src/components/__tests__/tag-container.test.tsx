@@ -42,35 +42,40 @@ describe('TagContainer', () => {
   const mockSetSearchTerm = jest.fn();
   const mockFetchTagDescriptions = jest.fn();
 
+  const createMockState = (overrides = {}) => ({
+    data: mockData,
+    expandedNodes: { '0-foo': true },
+    toggleNode: mockToggleNode,
+    addTag: mockAddTag,
+    setSearchTerm: mockSetSearchTerm,
+    searchTerm: '',
+    tagDescriptions: mockTagDescriptions,
+    fetchTagDescriptions: mockFetchTagDescriptions,
+    selectedTags: [],
+    denyTags: [],
+    blueprints: [],
+    paging: null,
+    autoload: false,
+    search_models: false,
+    search_blueprints: false,
+    initialSetupComplete: true,
+    fetchData: jest.fn(),
+    setData: jest.fn(),
+    addAllTags: jest.fn(),
+    removeTag: jest.fn(),
+    clearTags: jest.fn(),
+    addDenyTag: jest.fn(),
+    removeDenyTag: jest.fn(),
+    setTagState: jest.fn(),
+    fetchBlueprints: jest.fn(),
+    setBlueprints: jest.fn(),
+    setInitialSetupComplete: jest.fn(),
+    ...overrides,
+  });
+
   beforeEach(() => {
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
-      selector({
-        data: mockData,
-        expandedNodes: { '0-foo': true },
-        toggleNode: mockToggleNode,
-        addTag: mockAddTag,
-        setSearchTerm: mockSetSearchTerm,
-        searchTerm: '',
-        tagDescriptions: mockTagDescriptions,
-        fetchTagDescriptions: mockFetchTagDescriptions,
-        selectedTags: [],
-        denyTags: [],
-        blueprints: [],
-        paging: null,
-        autoload: false,
-        search_models: false,
-        search_blueprints: false,
-        fetchData: jest.fn(),
-        setData: jest.fn(),
-        addAllTags: jest.fn(),
-        removeTag: jest.fn(),
-        clearTags: jest.fn(),
-        addDenyTag: jest.fn(),
-        removeDenyTag: jest.fn(),
-        setTagState: jest.fn(),
-        fetchBlueprints: jest.fn(),
-        setBlueprints: jest.fn(),
-      })
+      selector(createMockState())
     );
     jest.clearAllMocks();
     jest.useFakeTimers();
@@ -130,6 +135,7 @@ describe('TagContainer', () => {
         autoload: false,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         addAllTags: jest.fn(),
@@ -140,6 +146,7 @@ describe('TagContainer', () => {
         setTagState: jest.fn(),
         fetchBlueprints: jest.fn(),
         setBlueprints: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
 
@@ -204,6 +211,7 @@ describe('TagContainer', () => {
         autoload: false,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         addAllTags: jest.fn(),
@@ -214,6 +222,7 @@ describe('TagContainer', () => {
         setTagState: jest.fn(),
         fetchBlueprints: jest.fn(),
         setBlueprints: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
     render(<TagContainer />);
@@ -238,6 +247,7 @@ describe('TagContainer', () => {
         autoload: false,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         addAllTags: jest.fn(),
@@ -248,6 +258,7 @@ describe('TagContainer', () => {
         setTagState: jest.fn(),
         fetchBlueprints: jest.fn(),
         setBlueprints: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
     render(<TagContainer />);
@@ -274,6 +285,7 @@ describe('TagContainer', () => {
         autoload: false,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         addAllTags: jest.fn(),
@@ -284,9 +296,10 @@ describe('TagContainer', () => {
         setTagState: jest.fn(),
         fetchBlueprints: jest.fn(),
         setBlueprints: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
     render(<TagContainer />);
     expect(screen.getByText('node')).toBeInTheDocument();
   });
-}); 
+});

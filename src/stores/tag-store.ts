@@ -51,6 +51,7 @@ export interface TagStore {
   search_blueprints: boolean;
   searchTerm: string | null;
   tagDescriptions: Record<string, string>;
+  initialSetupComplete: boolean;
   fetchData: () => Promise<void>;
   setData: (tagCounts: Record<string, number>) => void;
   toggleNode: (key: string) => void;
@@ -65,6 +66,7 @@ export interface TagStore {
   setBlueprints: (blueprints: Blueprint[], paging: Paging) => void;
   setSearchTerm: (term: string | null) => void;
   fetchTagDescriptions: () => Promise<void>;
+  setInitialSetupComplete: (complete: boolean) => void;
 }
 
 export const createTagStore = (autoload = false, search_models = false, search_blueprints = false) => {
@@ -80,6 +82,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     search_blueprints,
     searchTerm: null,
     tagDescriptions: {},
+    initialSetupComplete: false,
     fetchData: async () => {
       const { search_models, search_blueprints, selectedTags, denyTags } = get();
       const params = new URLSearchParams();
@@ -284,6 +287,9 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       const response = await fetch('/api/tag-descriptions');
       const descriptions = await response.json();
       set({ tagDescriptions: descriptions });
+    },
+    setInitialSetupComplete: (complete: boolean) => {
+      set({ initialSetupComplete: complete });
     },
   }));
 };

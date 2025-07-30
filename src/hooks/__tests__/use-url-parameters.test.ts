@@ -41,6 +41,7 @@ describe('useUrlParameters', () => {
   const mockSetSearchTerm = jest.fn();
   const mockSetTagState = jest.fn();
   const mockSetSelectedBlueprint = jest.fn();
+  const mockSetInitialSetupComplete = jest.fn();
   const mockSelectedTags: string[] = [];
   const mockBlueprints = [
     { id: 'blueprint123', blueprint_name: 'Test Blueprint' }
@@ -66,6 +67,7 @@ describe('useUrlParameters', () => {
         addAllTags: mockAddAllTags,
         setSearchTerm: mockSetSearchTerm,
         setTagState: mockSetTagState,
+        setInitialSetupComplete: mockSetInitialSetupComplete,
         autoload: true,
       };
       return selector(mockState);
@@ -120,6 +122,7 @@ describe('useUrlParameters', () => {
         addAllTags: mockAddAllTags,
         setSearchTerm: mockSetSearchTerm,
         setTagState: mockSetTagState,
+        setInitialSetupComplete: mockSetInitialSetupComplete,
         autoload: true,
       };
       return selector(mockState);
@@ -142,6 +145,7 @@ describe('useUrlParameters', () => {
     renderHook(() => useUrlParameters());
 
     expect(mockReplaceState).toHaveBeenCalled();
+    expect(mockSetInitialSetupComplete).toHaveBeenCalledWith(true);
   });
 
   it('returns hasSetTagState ref', () => {
@@ -161,6 +165,7 @@ describe('useUrlParameters', () => {
         selectedTags: mockSelectedTags,
         addTag: mockAddTag,
         setSearchTerm: mockSetSearchTerm,
+        setInitialSetupComplete: mockSetInitialSetupComplete,
         autoload: false,
       };
       return selector(mockState);
@@ -171,5 +176,7 @@ describe('useUrlParameters', () => {
     expect(mockAddTag).not.toHaveBeenCalled();
     expect(mockSetSearchTerm).not.toHaveBeenCalled();
     expect(mockSetSelectedBlueprint).not.toHaveBeenCalled();
+    // But should still mark initial setup as complete
+    expect(mockSetInitialSetupComplete).toHaveBeenCalledWith(true);
   });
 });

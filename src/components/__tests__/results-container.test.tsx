@@ -32,7 +32,7 @@ describe('ResultsContainer', () => {
 
   beforeEach(() => {
     setupTestEnvironment();
-    
+
     (useBlueprintContext as jest.Mock).mockImplementation((selector: (state: BlueprintStore) => unknown) =>
       selector({
         setSelectedBlueprint: mockFunctions.setSelectedBlueprint,
@@ -71,6 +71,8 @@ describe('ResultsContainer', () => {
         fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
       })
     );
   });
@@ -81,7 +83,7 @@ describe('ResultsContainer', () => {
 
   it('renders complete results container with all sections', () => {
     render(<ResultsContainer />);
-    
+
     expect(screen.getByText('Blueprints')).toBeInTheDocument();
     expect(screen.getByText('foo')).toBeInTheDocument();
     expect(screen.getByText('bar')).toBeInTheDocument();
@@ -89,7 +91,7 @@ describe('ResultsContainer', () => {
     expect(screen.getByText('search')).toBeInTheDocument();
     expect(screen.getByText('BP1')).toBeInTheDocument();
     expect(screen.getByText('BP2')).toBeInTheDocument();
-    
+
     const totalCountDiv = screen.getByText((content, element) =>
       element?.className === 'totalCount'
     );
@@ -99,36 +101,36 @@ describe('ResultsContainer', () => {
 
   it('handles tag removal integration', () => {
     render(<ResultsContainer />);
-    
+
     const fooButton = screen.getAllByRole('button').find(btn => btn.parentElement?.textContent?.includes('foo'));
     if (fooButton) fireEvent.click(fooButton);
-    
+
     expect(mockFunctions.removeTag).toHaveBeenCalled();
   });
 
   it('handles search term removal integration', () => {
     render(<ResultsContainer />);
-    
+
     const searchButton = screen.getAllByRole('button').find(btn => btn.parentElement?.textContent?.includes('search'));
     if (searchButton) fireEvent.click(searchButton);
-    
+
     expect(mockFunctions.setSearchTerm).toHaveBeenCalledWith(null);
   });
 
   it('handles clear functionality integration', () => {
     render(<ResultsContainer />);
-    
+
     fireEvent.click(screen.getByText('clear'));
-    
+
     expect(mockFunctions.clearTags).toHaveBeenCalled();
     expect(mockFunctions.setSelectedBlueprint).toHaveBeenCalledWith(null);
   });
 
   it('handles blueprint selection integration', () => {
     render(<ResultsContainer />);
-    
+
     fireEvent.click(screen.getByText('BP1'));
-    
+
     expect(mockFunctions.setSelectedBlueprint).toHaveBeenCalledWith(blueprints[0]);
   });
 
@@ -160,14 +162,16 @@ describe('ResultsContainer', () => {
         fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
       })
     );
-    
+
     render(<ResultsContainer />);
-    
+
     fireEvent.click(screen.getByText('Next Page'));
     expect(mockFunctions.fetchBlueprints).toHaveBeenCalledWith({ next: 'next-token' });
-    
+
     fireEvent.click(screen.getByText('Previous Page'));
     expect(mockFunctions.fetchBlueprints).toHaveBeenCalledWith({ previous: 'prev-token' });
   });
@@ -203,8 +207,8 @@ describe('ResultsContainer', () => {
     // Mock fetchData to return undefined (synchronous)
     mockFunctions.fetchData.mockReturnValue(undefined);
 
-    render(<ResultsContainer 
-      configValues={configValues} 
+    render(<ResultsContainer
+      configValues={configValues}
       parentTags={[]}
       siblingSelections={[
         { partName: 'test-part', tags: ['base|level1|sub', 'base|level3|sub', 'other|tag'] }
@@ -254,14 +258,16 @@ describe('ResultsContainer', () => {
         fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
       })
     );
-    
+
     render(<ResultsContainer />);
-    
+
     const copyButton = screen.getByTitle('Copy url to clipboard');
     fireEvent.click(copyButton);
-    
+
     expect(mockWriteText).toHaveBeenCalledWith('http://localhost/?tag=foo&tag=bar&search=search');
   });
 
@@ -270,7 +276,7 @@ describe('ResultsContainer', () => {
       require: [{ tag: 'config-required' }],
       deny: [{ tag: 'config-denied' }],
     });
-    
+
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
       selector({
         blueprints,
@@ -298,17 +304,19 @@ describe('ResultsContainer', () => {
         fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
       })
     );
-    
+
     render(<ResultsContainer configValues={configValues} />);
-    
+
     // Check that config-required tags don't have remove buttons
     const configRequiredTag = screen.getByText('config-required');
     // Look for button only within the same list item, not the entire parent
     const removeButton = configRequiredTag.closest('li')?.querySelector('button');
     expect(removeButton).not.toBeInTheDocument();
-    
+
     // Check that removable tags do have remove buttons
     const removableTag = screen.getByText('removable-tag');
     const removableButton = removableTag.closest('li')?.querySelector('button');
@@ -317,7 +325,7 @@ describe('ResultsContainer', () => {
 
   it('handles selected blueprint highlighting integration', () => {
     const selectedBlueprint = createMockBlueprint({ id: '1', blueprint_name: 'BP1' });
-    
+
     (useBlueprintContext as jest.Mock).mockImplementation((selector: (state: BlueprintStore) => unknown) =>
       selector({
         setSelectedBlueprint: mockFunctions.setSelectedBlueprint,
@@ -329,9 +337,9 @@ describe('ResultsContainer', () => {
         clearConfigSelections: mockFunctions.clearConfigSelections,
       })
     );
-    
+
     render(<ResultsContainer />);
-    
+
     const selectedItem = screen.getByText('BP1').closest('li');
     expect(selectedItem).toHaveClass('selected');
   });
@@ -364,14 +372,16 @@ describe('ResultsContainer', () => {
         fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
         search_models: false,
         search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
       })
     );
-    
+
     render(<ResultsContainer />);
-    
+
     const totalCountDiv = screen.getByText((content, element) =>
       element?.className === 'totalCount'
     );
     expect(totalCountDiv.textContent).toContain('1 - 0 of 0');
   });
-}); 
+});

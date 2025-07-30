@@ -103,7 +103,7 @@ describe('BlueprintContainer', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     mockUseBlueprintContext.mockImplementation((selector) => {
       const state: BlueprintStore = {
         selectedBlueprint: mockBlueprint,
@@ -130,6 +130,7 @@ describe('BlueprintContainer', () => {
         search_blueprints: false,
         searchTerm: null,
         tagDescriptions: mockTagDescriptions,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         toggleNode: jest.fn(),
@@ -144,6 +145,7 @@ describe('BlueprintContainer', () => {
         setBlueprints: jest.fn(),
         setSearchTerm: jest.fn(),
         fetchTagDescriptions: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       };
       return selector(state);
     });
@@ -214,7 +216,7 @@ describe('BlueprintContainer', () => {
     fireEvent.click(copyButton);
 
     expect(mockClipboard.writeText).toHaveBeenCalledWith('http://localhost/?md5=abc123');
-    
+
     await waitFor(() => {
       expect(screen.getByTitle('url copied')).toBeInTheDocument();
     });
@@ -322,9 +324,9 @@ describe('BlueprintContainer', () => {
     const configValues = { partName: 'test_part' };
 
     render(
-      <BlueprintContainer 
-        configValues={configValues} 
-        onPartSelected={mockOnPartSelected} 
+      <BlueprintContainer
+        configValues={configValues}
+        onPartSelected={mockOnPartSelected}
       />
     );
 
@@ -466,4 +468,4 @@ describe('BlueprintContainer', () => {
     // Restore original implementations
     jest.restoreAllMocks();
   });
-}); 
+});

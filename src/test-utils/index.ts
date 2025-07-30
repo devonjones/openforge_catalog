@@ -61,6 +61,7 @@ export const createMockFunctions = () => ({
   fetchBlueprintById: jest.fn(),
   fetchBlueprintByMd5: jest.fn(),
   clearConfigSelections: jest.fn(),
+  setInitialSetupComplete: jest.fn(),
 });
 
 // Setup function for common test setup
@@ -88,7 +89,7 @@ export function mockWindowLocation(props: Partial<Pick<Location, 'search' | 'pat
       pathname: window.location.pathname,
     };
   }
-  
+
   if (props.search !== undefined) window.location.search = props.search;
   if (props.pathname !== undefined) window.location.pathname = props.pathname;
 }
@@ -104,4 +105,4 @@ export function restoreWindowLocation() {
 export function mockHistoryReplaceState(fn = jest.fn()) {
   window.history.replaceState = fn;
   return fn;
-} 
+}

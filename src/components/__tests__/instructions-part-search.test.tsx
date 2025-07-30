@@ -35,6 +35,7 @@ describe('InstructionsPartSearch', () => {
         search_models: false,
         search_blueprints: false,
         searchTerm: null,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         toggleNode: jest.fn(),
@@ -47,6 +48,7 @@ describe('InstructionsPartSearch', () => {
         setBlueprints: jest.fn(),
         setSearchTerm: jest.fn(),
         fetchTagDescriptions: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
     jest.clearAllMocks();
@@ -104,6 +106,7 @@ describe('InstructionsPartSearch', () => {
         search_models: false,
         search_blueprints: false,
         searchTerm: null,
+        initialSetupComplete: true,
         fetchData: jest.fn(),
         setData: jest.fn(),
         toggleNode: jest.fn(),
@@ -116,6 +119,7 @@ describe('InstructionsPartSearch', () => {
         setBlueprints: jest.fn(),
         setSearchTerm: jest.fn(),
         fetchTagDescriptions: jest.fn(),
+        setInitialSetupComplete: jest.fn(),
       })
     );
     render(<InstructionsPartSearch />);
@@ -126,4 +130,4 @@ describe('InstructionsPartSearch', () => {
     expect(mockRemoveTag).toHaveBeenCalledWith('build|separate wall');
     expect(mockAddTag).toHaveBeenCalledWith('build|s2w');
   });
-}); 
+});

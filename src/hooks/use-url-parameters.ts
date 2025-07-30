@@ -9,12 +9,19 @@ export function useUrlParameters() {
   const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
   const blueprints = useTagContext((state) => state.blueprints);
   const setTagState = useTagContext((state) => state.setTagState);
+  const setInitialSetupComplete = useTagContext((state) => state.setInitialSetupComplete);
   const autoload = useTagContext((state) => state.autoload);
   const hasSetTagState = useRef<boolean>(false);
 
   useEffect(() => {
+    // If not autoloading, mark setup as complete immediately
+    if (!autoload) {
+      setInitialSetupComplete(true);
+      return;
+    }
+
     // Read URL parameters and add tags
-    if (typeof window !== 'undefined' && autoload && !hasSetTagState.current) {
+    if (typeof window !== 'undefined' && !hasSetTagState.current) {
       const params = new URLSearchParams(window.location.search);
 
       // Handle tags - collect all tags to add at once
@@ -53,8 +60,11 @@ export function useUrlParameters() {
       if (newUrl !== window.location.href) {
         window.history.replaceState({}, '', newUrl);
       }
+
+      // Mark initial setup as complete
+      setInitialSetupComplete(true);
     }
-  }, [autoload, setTagState, blueprints, setSelectedBlueprint]);
+  }, [autoload, setTagState, blueprints, setSelectedBlueprint, setInitialSetupComplete]);
 
   return { hasSetTagState };
 }
