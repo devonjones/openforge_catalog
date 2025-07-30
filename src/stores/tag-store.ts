@@ -1,4 +1,4 @@
-/* 
+/*
   Data returned looks like:
   {
     tag_counts: {
@@ -60,7 +60,7 @@ export interface TagStore {
   clearTags: () => void;
   addDenyTag: (tag: string) => void;
   removeDenyTag: (tag: string) => void;
-  setTagState: (tags: { require?: string[]; deny?: string[] }) => void;
+  setTagState: (tags: { require?: string[]; deny?: string[]; searchTerm?: string | null }) => void;
   fetchBlueprints: (params?: { next?: string; previous?: string }) => Promise<void>;
   setBlueprints: (blueprints: Blueprint[], paging: Paging) => void;
   setSearchTerm: (term: string | null) => void;
@@ -83,7 +83,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     fetchData: async () => {
       const { search_models, search_blueprints, selectedTags, denyTags } = get();
       const params = new URLSearchParams();
-      
+
       // Add parameters for model/blueprint search
       params.set('models', String(search_models));
       params.set('blueprints', String(search_blueprints));
@@ -222,12 +222,16 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       }
       get().fetchBlueprints();
     },
-    setTagState: (tags: { require?: string[]; deny?: string[] }) => {
+    setTagState: (tags: { require?: string[]; deny?: string[]; searchTerm?: string | null }) => {
       devLog('setTagState', tags);
-      set({
+      const updates: Partial<Pick<TagStore, 'selectedTags' | 'denyTags' | 'searchTerm'>> = {
         selectedTags: tags.require || [],
         denyTags: tags.deny || [],
-      });
+      };
+      if ('searchTerm' in tags) {
+        updates.searchTerm = tags.searchTerm;
+      }
+      set(updates);
       get().fetchBlueprints();
     },
     setSearchTerm: (term: string | null) => {
@@ -239,7 +243,7 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       const { selectedTags, denyTags, search_models, search_blueprints, searchTerm } = get();
 
       const urlParams = new URLSearchParams();
-      
+
       // Add search type parameters
       urlParams.set('models', String(search_models));
       urlParams.set('blueprints', String(search_blueprints));
