@@ -27,7 +27,9 @@ from .io import (
 )
 from .metadata import (
     apply_default_metadata,
+    apply_folder_metadata_edit_all,
     apply_metadata,
+    get_all_folder_metadata,
     get_metadata_file,
     metadata_auto,
     metadata_ignore,
@@ -82,6 +84,35 @@ def parse_size(size, tags):
         tags.add(tag)
 
 
+def _normalize_size(size):
+    """Normalize size strings by converting whole decimal numbers to integers.
+
+    Examples:
+        "2.0x2.0" -> "2x2"
+        "1.5x1.5" -> "1.5x1.5" (unchanged)
+        "2.0" -> "2"
+        "2.5" -> "2.5" (unchanged)
+    """
+    # Split by 'x' to handle compound sizes
+    parts = size.split("x")
+    normalized_parts = []
+
+    for part in parts:
+        try:
+            # Try to convert to float
+            num = float(part)
+            # Check if it's a whole number
+            if num.is_integer():
+                normalized_parts.append(str(int(num)))
+            else:
+                normalized_parts.append(part)
+        except ValueError:
+            # Not a number, keep as is
+            normalized_parts.append(part)
+
+    return "x".join(normalized_parts)
+
+
 def parse_connection(connection, tags):
     def _add_connections(connections):
         to_add = set()
@@ -117,17 +148,30 @@ def parse_connection(connection, tags):
 def parse_filename(file, tags):
     try:
         parts = file["file"].split(".")
-        parts.pop()
+        parts.pop()  # Remove .stl
         form = parts.pop(0)
         size = parts.pop(0)
         connection = None
+
+        # Get the last part as connection
         if len(parts) > 0:
             connection = parts.pop()
-        if len(parts) == 1:
-            if re.match(r"^\d", parts[0]):
-                size = f"{size}.{parts.pop(0)}"
-        assert connection
-        assert len(parts) == 0, parts
+
+        # Handle compound decimal sizes (e.g., 1.5x1.5, 2.0x2.0)
+        # Join remaining parts that start with digits to handle cases like:
+        # - "1.5x1.5" split into ["1", "5x1", "5"]
+        # - "2.5" split into ["2", "5"]
+        # - "2.0x2.0" split into ["2", "0x2", "0"]
+        while len(parts) > 0 and re.match(r"^\d", parts[0]):
+            size = f"{size}.{parts.pop(0)}"
+
+        # Normalize size: convert "2.0x2.0" to "2x2"
+        # This handles cases where whole numbers are written as decimals
+        size = _normalize_size(size)
+
+        assert connection is not None, f"No connection found in {file['file']}"
+        assert len(parts) == 0, f"Extra parts after connection: {parts}"
+
         parse_form(form, tags)
         parse_size(size, tags)
         parse_connection(connection, tags)
@@ -463,6 +507,11 @@ def parse_files(path, files, md5, verbose, upload, config):
             o["metadata"] = True
         apply_metadata(metadata, o)
         apply_default_metadata(o)
+
+        # Apply folder-level edit_all rules (after all other tag processing)
+        folder_metadata_list = get_all_folder_metadata(path, full_file)
+        apply_folder_metadata_edit_all(folder_metadata_list, o)
+
         # Convert tags from set of tuples to list of pipe-delimited strings
         o["tags"] = _convert_tags_to_pipe_delimited(t)
         validate(o)

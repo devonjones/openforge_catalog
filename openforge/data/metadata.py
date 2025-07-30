@@ -6,6 +6,17 @@ from openforge.db.sql.tag_utils import tag_to_array
 from openforge.openapi import validate_schema
 
 
+def get_folder_metadata(path):
+    """Get folder-level metadata (the '.' entry) from a metadata.yaml file."""
+    metadata_file = os.path.join(path, "metadata.yaml")
+    if os.path.exists(metadata_file):
+        with open(metadata_file, "r") as f:
+            metadata = safe_load(f)
+            if metadata and isinstance(metadata, dict) and "." in metadata:
+                return metadata["."]
+    return None
+
+
 def get_metadata_file(path):
     metadata_file = os.path.join(path, "metadata.yaml")
     if os.path.exists(metadata_file):
@@ -33,7 +44,12 @@ def get_metadata_file(path):
                             f"{type(entry).__name__}"
                         )
                     # Validate individual metadata entry
-                    validate_schema("metadata.yaml", entry)
+                    if filename == ".":
+                        # Folder-level metadata
+                        validate_schema("folder_metadata.yaml", entry)
+                    else:
+                        # File-level metadata
+                        validate_schema("metadata.yaml", entry)
 
             return metadata
     return None
@@ -73,6 +89,54 @@ def apply_metadata(metadata, o):
         apply_metadata_edit(metadata["edit"], o)
         del metadata["edit"]
     assert len(metadata) == 0, metadata
+
+
+def get_all_folder_metadata(base_path, file_path):
+    """Collect all folder metadata from base_path to file_path's directory.
+
+    Returns a list of folder metadata objects from root to leaf.
+    """
+    folder_metadata_list = []
+
+    # Get relative path from base to file
+    rel_path = os.path.relpath(file_path, base_path)
+    dir_path = os.path.dirname(rel_path)
+
+    # Build list of directories from root to file's directory
+    path_parts = []
+    if dir_path and dir_path != ".":
+        path_parts = dir_path.split(os.sep)
+
+    # Check each directory level for folder metadata
+    current_path = base_path
+
+    # Check base path first
+    folder_meta = get_folder_metadata(current_path)
+    if folder_meta:
+        folder_metadata_list.append(folder_meta)
+
+    # Check each subdirectory
+    for part in path_parts:
+        current_path = os.path.join(current_path, part)
+        folder_meta = get_folder_metadata(current_path)
+        if folder_meta:
+            folder_metadata_list.append(folder_meta)
+
+    return folder_metadata_list
+
+
+def apply_folder_metadata_edit_all(folder_metadata_list, o):
+    """Apply edit_all rules from a list of folder metadata objects."""
+    for folder_meta in folder_metadata_list:
+        if "edit_all" in folder_meta:
+            edit_all = folder_meta["edit_all"]
+            if "tags" in edit_all:
+                if "add" in edit_all["tags"]:
+                    for tag in edit_all["tags"]["add"]:
+                        add_tag(o, tag)
+                if "remove" in edit_all["tags"]:
+                    for tag in edit_all["tags"]["remove"]:
+                        remove_tag(o, tag, error_if_missing=False)
 
 
 def apply_metadata_edit(edit, o):
@@ -255,8 +319,11 @@ def add_tag(o: dict, tag: str):
     o["tags"].add(tuple(tag_to_array(tag)))
 
 
-def remove_tag(o: dict, tag: str):
+def remove_tag(o: dict, tag: str, error_if_missing: bool = True):
     if "tags" in o:
         tag_tuple = tuple(tag_to_array(tag))
-        if tag_tuple in o["tags"]:
+        try:
             o["tags"].remove(tag_tuple)
+        except KeyError:
+            if error_if_missing:
+                raise ValueError(f"Tag {tag} not found in object")

@@ -176,8 +176,7 @@ def blueprint_tags(blueprint_id):
     if request.method == "GET":
         return tag_routes.get_blueprint_tags(blueprint_id)
     elif request.method == "POST":
-        tag_routes.replace_blueprint_tags(blueprint_id, request.json)
-        return blueprint_routes.get_blueprint_by_id(blueprint_id)
+        return tag_routes.replace_blueprint_tags(blueprint_id, request.json)
     elif request.method == "DELETE":
         return tag_routes.delete_blueprint_tags(blueprint_id)
 

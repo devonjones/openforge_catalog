@@ -33,8 +33,10 @@ def replace_blueprint_tags(blueprint_id: uuid.UUID, tags: list[str]):
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
             tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
+            data = []
             for tag in tags:
-                tag_sql.insert_tag(cursor, blueprint_id, tag)
+                data.append(tag_sql.insert_tag(cursor, blueprint_id, tag))
+            return jsonify(data)
 
 
 def delete_blueprint_tag(blueprint_id: uuid.UUID, tag: str):
@@ -50,8 +52,8 @@ def delete_blueprint_tag(blueprint_id: uuid.UUID, tag: str):
 def delete_blueprint_tags(blueprint_id: uuid.UUID):
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            data = tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
-            return jsonify(data)
+            tag_sql.delete_all_blueprint_tags(cursor, blueprint_id)
+            return make_response("", 204)
 
 
 def get_blueprint_ids_by_tag(tag: str):

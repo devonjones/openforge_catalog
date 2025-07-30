@@ -6514,6 +6514,2944 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,a.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-11T23:30:38.748424+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,a.1.5x1.5.openlock.stl",
+            "md5": "ece073f6b968f6da3bda6a8848b813f5",
+            "size": 4023084,
+            "storage_address": "https://objects.openforge.tools/models/ece073/ece073f6b968f6da3bda6a8848b813f5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ece073/ece073f6b968f6da3bda6a8848b813f5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,a.2.0x2.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:15:15.036307+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,a.2.0x2.0.openlock.stl",
+            "md5": "804f2645fdc58af76f13c2e47f25341a",
+            "size": 7089584,
+            "storage_address": "https://objects.openforge.tools/models/804f26/804f2645fdc58af76f13c2e47f25341a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/804f26/804f2645fdc58af76f13c2e47f25341a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|2",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,a.2.5x2.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:16:28.627409+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,a.2.5x2.5.openlock.stl",
+            "md5": "b69a788cd66e89d6fe28e708353d4b77",
+            "size": 10321584,
+            "storage_address": "https://objects.openforge.tools/models/b69a78/b69a788cd66e89d6fe28e708353d4b77.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b69a78/b69a788cd66e89d6fe28e708353d4b77.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|2.5",
+            "size|width|2.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,a.3.0x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:17:23.166719+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,a.3.0x3.0.openlock.stl",
+            "md5": "d49032067070c0bdad7023eab025c2ef",
+            "size": 14795984,
+            "storage_address": "https://objects.openforge.tools/models/d49032/d49032067070c0bdad7023eab025c2ef.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d49032/d49032067070c0bdad7023eab025c2ef.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|3",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,a.3.5x3.5.openlock.stl",
+            "file_modified_at": "2020-09-11T23:34:39+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,a.3.5x3.5.openlock.stl",
+            "md5": "68fc2175dac3267bc82f576edc5107bd",
+            "size": 18709584,
+            "storage_address": "https://objects.openforge.tools/models/68fc21/68fc2175dac3267bc82f576edc5107bd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/68fc21/68fc2175dac3267bc82f576edc5107bd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|3.5",
+            "size|width|3.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,b.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:14:19.067251+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,b.1.5x1.5.openlock.stl",
+            "md5": "c3584535424169d1108d1153c18d9c88",
+            "size": 3981884,
+            "storage_address": "https://objects.openforge.tools/models/c35845/c3584535424169d1108d1153c18d9c88.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c35845/c3584535424169d1108d1153c18d9c88.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,b.2.0x2.0.openlock.stl",
+            "file_modified_at": "2020-09-11T23:31:42.237661+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,b.2.0x2.0.openlock.stl",
+            "md5": "fa4e8646e97f61c57763cbc178bba132",
+            "size": 6976184,
+            "storage_address": "https://objects.openforge.tools/models/fa4e86/fa4e8646e97f61c57763cbc178bba132.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fa4e86/fa4e8646e97f61c57763cbc178bba132.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|2",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,b.2.5x2.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:16:41.104044+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,b.2.5x2.5.openlock.stl",
+            "md5": "b1fdc1f97eda1439cfb74fcdedcd666f",
+            "size": 10141384,
+            "storage_address": "https://objects.openforge.tools/models/b1fdc1/b1fdc1f97eda1439cfb74fcdedcd666f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b1fdc1/b1fdc1f97eda1439cfb74fcdedcd666f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|2.5",
+            "size|width|2.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,b.3.0x3.0.openlock.stl",
+            "file_modified_at": "2020-09-11T23:33:37.018933+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,b.3.0x3.0.openlock.stl",
+            "md5": "70d548e90feaa9be25455f97d4f624bc",
+            "size": 14615084,
+            "storage_address": "https://objects.openforge.tools/models/70d548/70d548e90feaa9be25455f97d4f624bc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/70d548/70d548e90feaa9be25455f97d4f624bc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|3",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave,b.3.5x3.5.openlock.stl",
+            "file_modified_at": "2020-09-11T23:35:06.531099+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave,b.3.5x3.5.openlock.stl",
+            "md5": "7d68fc2f10159268764351410d7d8665",
+            "size": 18748084,
+            "storage_address": "https://objects.openforge.tools/models/7d68fc/7d68fc2f10159268764351410d7d8665.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7d68fc/7d68fc2f10159268764351410d7d8665.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|3.5",
+            "size|width|3.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave.1.0x1.0.openlock.stl",
+            "file_modified_at": "2020-09-11T23:37:29.384931+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave.1.0x1.0.openlock.stl",
+            "md5": "57973d86a1c38928fd705ea65ffc97a6",
+            "size": 3748184,
+            "storage_address": "https://objects.openforge.tools/models/57973d/57973d86a1c38928fd705ea65ffc97a6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/57973d/57973d86a1c38928fd705ea65ffc97a6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|1",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:15:13.147637+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave.1.5x1.5.openlock.stl",
+            "md5": "ec9ec7b5cf138ff200cfa44bb03c03ae",
+            "size": 16277884,
+            "storage_address": "https://objects.openforge.tools/models/ec9ec7/ec9ec7b5cf138ff200cfa44bb03c03ae.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ec9ec7/ec9ec7b5cf138ff200cfa44bb03c03ae.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+concave.2.0x1.0.openlock.stl",
+            "file_modified_at": "2020-09-11T23:37:03.378188+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+concave.2.0x1.0.openlock.stl",
+            "md5": "a2f6ba63c6cc4f3260b2b35812ff46f9",
+            "size": 7493284,
+            "storage_address": "https://objects.openforge.tools/models/a2f6ba/a2f6ba63c6cc4f3260b2b35812ff46f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a2f6ba/a2f6ba63c6cc4f3260b2b35812ff46f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "size|depth|1",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,a.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-12T01:03:49.539663+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,a.1.5x1.5.openlock.stl",
+            "md5": "41136b666629e4dd381a05710a7c2778",
+            "size": 3560284,
+            "storage_address": "https://objects.openforge.tools/models/41136b/41136b666629e4dd381a05710a7c2778.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/41136b/41136b666629e4dd381a05710a7c2778.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,a.2.0x2.0.openlock.stl",
+            "file_modified_at": "2020-09-12T01:06:18.438825+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,a.2.0x2.0.openlock.stl",
+            "md5": "b2c92c44ef3b8852243493cb409597f2",
+            "size": 6340684,
+            "storage_address": "https://objects.openforge.tools/models/b2c92c/b2c92c44ef3b8852243493cb409597f2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b2c92c/b2c92c44ef3b8852243493cb409597f2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|2",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,a.2.5x2.5.openlock.stl",
+            "file_modified_at": "2020-09-12T01:08:14.648820+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,a.2.5x2.5.openlock.stl",
+            "md5": "b0db09f34659d0840b17ceef5bdd78db",
+            "size": 9437184,
+            "storage_address": "https://objects.openforge.tools/models/b0db09/b0db09f34659d0840b17ceef5bdd78db.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b0db09/b0db09f34659d0840b17ceef5bdd78db.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|2.5",
+            "size|width|2.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,a.3.0x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:17:28.406838+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,a.3.0x3.0.openlock.stl",
+            "md5": "a2ab4217509468bab1667becf109e447",
+            "size": 13571784,
+            "storage_address": "https://objects.openforge.tools/models/a2ab42/a2ab4217509468bab1667becf109e447.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a2ab42/a2ab4217509468bab1667becf109e447.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|3",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,a.3.5x3.5.openlock.stl",
+            "file_modified_at": "2020-09-12T01:12:09.554646+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,a.3.5x3.5.openlock.stl",
+            "md5": "7da93931c3f5a05dc831582ee72190e8",
+            "size": 18154984,
+            "storage_address": "https://objects.openforge.tools/models/7da939/7da93931c3f5a05dc831582ee72190e8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7da939/7da93931c3f5a05dc831582ee72190e8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|a",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|3.5",
+            "size|width|3.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,b.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-12T01:03:57.936510+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,b.1.5x1.5.openlock.stl",
+            "md5": "444e61bfe0d2619b7618ab87c9d5fe7d",
+            "size": 3630184,
+            "storage_address": "https://objects.openforge.tools/models/444e61/444e61bfe0d2619b7618ab87c9d5fe7d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/444e61/444e61bfe0d2619b7618ab87c9d5fe7d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,b.2.0x2.0.openlock.stl",
+            "file_modified_at": "2020-09-12T01:06:29.669277+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,b.2.0x2.0.openlock.stl",
+            "md5": "0125a1e20e9f9477a5f1dafdc3900e4d",
+            "size": 6417684,
+            "storage_address": "https://objects.openforge.tools/models/0125a1/0125a1e20e9f9477a5f1dafdc3900e4d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0125a1/0125a1e20e9f9477a5f1dafdc3900e4d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|2",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,b.2.5x2.5.openlock.stl",
+            "file_modified_at": "2020-09-12T01:08:25.687501+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,b.2.5x2.5.openlock.stl",
+            "md5": "1e66c2b9020536291d34f60d4776406e",
+            "size": 9558184,
+            "storage_address": "https://objects.openforge.tools/models/1e66c2/1e66c2b9020536291d34f60d4776406e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1e66c2/1e66c2b9020536291d34f60d4776406e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|2.5",
+            "size|width|2.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,b.3.0x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:17:29.544396+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,b.3.0x3.0.openlock.stl",
+            "md5": "23653e3507a7bf37566a2c0ac5321653",
+            "size": 13717084,
+            "storage_address": "https://objects.openforge.tools/models/23653e/23653e3507a7bf37566a2c0ac5321653.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/23653e/23653e3507a7bf37566a2c0ac5321653.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|3",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex,b.3.5x3.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:19:41.447400+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex,b.3.5x3.5.openlock.stl",
+            "md5": "f53e5da20adfbaf9ef9eaa967e505b76",
+            "size": 36711084,
+            "storage_address": "https://objects.openforge.tools/models/f53e5d/f53e5da20adfbaf9ef9eaa967e505b76.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f53e5d/f53e5da20adfbaf9ef9eaa967e505b76.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|b",
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|3.5",
+            "size|width|3.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex.1.0x1.0.openlock.stl",
+            "file_modified_at": "2020-09-12T01:01:18.913619+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex.1.0x1.0.openlock.stl",
+            "md5": "f5f5b34d8d189fd4a631141459e3c6dc",
+            "size": 3098884,
+            "storage_address": "https://objects.openforge.tools/models/f5f5b3/f5f5b34d8d189fd4a631141459e3c6dc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f5f5b3/f5f5b34d8d189fd4a631141459e3c6dc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|1",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex.1.5x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:15:20.830001+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex.1.5x1.5.openlock.stl",
+            "md5": "cf8dcdad24786c28998598735bd5d198",
+            "size": 14999884,
+            "storage_address": "https://objects.openforge.tools/models/cf8dcd/cf8dcdad24786c28998598735bd5d198.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cf8dcd/cf8dcdad24786c28998598735bd5d198.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|1.5",
+            "size|width|1.5",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof,corner+convex.2.0x1.0.openlock.stl",
+            "file_modified_at": "2020-09-12T01:05:05.320003+00:00",
+            "full_name": "tiles/building_facades/roof/corner%shingles/shingles#roof,corner+convex.2.0x1.0.openlock.stl",
+            "md5": "ef426363c85d13203bf32e28573af5f4",
+            "size": 6193184,
+            "storage_address": "https://objects.openforge.tools/models/ef4263/ef426363c85d13203bf32e28573af5f4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ef4263/ef426363c85d13203bf32e28573af5f4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "size|depth|1",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|2x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.2x.openlock.stl",
+            "file_modified_at": "2020-09-23T16:58:34.601741+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.2x.openlock.stl",
+            "md5": "30c00510c2a87ed73e1a03ea01ae916e",
+            "size": 13900584,
+            "storage_address": "https://objects.openforge.tools/models/30c005/30c00510c2a87ed73e1a03ea01ae916e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/30c005/30c00510c2a87ed73e1a03ea01ae916e.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|2x",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|3x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.3x.openlock.stl",
+            "file_modified_at": "2020-09-26T19:54:29.317074+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.3x.openlock.stl",
+            "md5": "8520ccf19213fff25158877ddfcaa88c",
+            "size": 17406184,
+            "storage_address": "https://objects.openforge.tools/models/8520cc/8520ccf19213fff25158877ddfcaa88c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8520cc/8520ccf19213fff25158877ddfcaa88c.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|3x",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|4x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.4x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:00:23.656686+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.4x.openlock.stl",
+            "md5": "541ca0bda580a13aa40b3683519c53be",
+            "size": 33027584,
+            "storage_address": "https://objects.openforge.tools/models/541ca0/541ca0bda580a13aa40b3683519c53be.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/541ca0/541ca0bda580a13aa40b3683519c53be.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|4x",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|5x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.5x.openlock.stl",
+            "file_modified_at": "2020-09-26T19:54:11.737659+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.5x.openlock.stl",
+            "md5": "f2ffdbf6c73d766267f11fa01cb3a087",
+            "size": 43786484,
+            "storage_address": "https://objects.openforge.tools/models/f2ffdb/f2ffdbf6c73d766267f11fa01cb3a087.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f2ffdb/f2ffdbf6c73d766267f11fa01cb3a087.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|5x",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|6x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.6x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:02:30.209485+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.6x.openlock.stl",
+            "md5": "a1f37c85f4953c1956cb96bc87c34f51",
+            "size": 67020284,
+            "storage_address": "https://objects.openforge.tools/models/a1f37c/a1f37c85f4953c1956cb96bc87c34f51.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a1f37c/a1f37c85f4953c1956cb96bc87c34f51.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|6x",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "window",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "interface|dormer|window|7x"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "shingles,stucco#dormer+window.7x.openlock.stl",
+            "file_modified_at": "2020-09-26T19:53:36.458697+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/shingles,stucco#dormer+window.7x.openlock.stl",
+            "md5": "318480b90c16f38c6e7eb272c7b513cb",
+            "size": 84714884,
+            "storage_address": "https://objects.openforge.tools/models/318480/318480b90c16f38c6e7eb272c7b513cb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/318480/318480b90c16f38c6e7eb272c7b513cb.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "component|dormer",
+            "component|dormer|window",
+            "connection|openlock",
+            "interface|dormer|window|7x",
+            "size|width|7",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "wood#dormer,window_insert.2x.stl",
+            "file_modified_at": "2020-09-16T17:22:55.191074+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/wood#dormer,window_insert.2x.stl",
+            "md5": "d53a71ae57fd6add79f5088f721467cd",
+            "size": 6484,
+            "storage_address": "https://objects.openforge.tools/models/d53a71/d53a71ae57fd6add79f5088f721467cd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d53a71/d53a71ae57fd6add79f5088f721467cd.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|dormer|window_insert|2x",
+            "part|window_insert"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "wood#dormer,window_insert.3x.stl",
+            "file_modified_at": "2020-09-26T18:16:38.863620+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/wood#dormer,window_insert.3x.stl",
+            "md5": "673e0914106bdfe1300738b80812d29e",
+            "size": 14284,
+            "storage_address": "https://objects.openforge.tools/models/673e09/673e0914106bdfe1300738b80812d29e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/673e09/673e0914106bdfe1300738b80812d29e.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|dormer|window_insert|3x",
+            "part|window_insert"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "wood#dormer,window_insert.4x.stl",
+            "file_modified_at": "2020-09-14T21:34:45.601041+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/wood#dormer,window_insert.4x.stl",
+            "md5": "e8961dbb36f5b9be7d5fc608fe516a50",
+            "size": 24884,
+            "storage_address": "https://objects.openforge.tools/models/e8961d/e8961dbb36f5b9be7d5fc608fe516a50.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e8961d/e8961dbb36f5b9be7d5fc608fe516a50.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|dormer|window_insert|4x",
+            "part|window_insert"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "wood#dormer,window_insert.6x.stl",
+            "file_modified_at": "2020-09-14T21:34:45.601041+00:00",
+            "full_name": "tiles/building_facades/roof/dormer/wood#dormer,window_insert.6x.stl",
+            "md5": "e8961dbb36f5b9be7d5fc608fe516a50",
+            "size": 24884,
+            "storage_address": "https://objects.openforge.tools/models/e8961d/e8961dbb36f5b9be7d5fc608fe516a50.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e8961d/e8961dbb36f5b9be7d5fc608fe516a50.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|dormer|window_insert|6x",
+            "part|window_insert"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+a.1x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:53:04.704687+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+a.1x.openlock.stl",
+            "md5": "a4a1925503d637c7247e04a2f1bc11aa",
+            "size": 556584,
+            "storage_address": "https://objects.openforge.tools/models/a4a192/a4a1925503d637c7247e04a2f1bc11aa.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a4a192/a4a1925503d637c7247e04a2f1bc11aa.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|a",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+a.2x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:52:20.855195+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+a.2x.openlock.stl",
+            "md5": "37492da29f1c12501f15455975764e48",
+            "size": 1238584,
+            "storage_address": "https://objects.openforge.tools/models/37492d/37492da29f1c12501f15455975764e48.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/37492d/37492da29f1c12501f15455975764e48.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|a",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+a.3x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:55:48.395263+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+a.3x.openlock.stl",
+            "md5": "b44b00e5cd2b283781b06067e87ef1dc",
+            "size": 1345784,
+            "storage_address": "https://objects.openforge.tools/models/b44b00/b44b00e5cd2b283781b06067e87ef1dc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b44b00/b44b00e5cd2b283781b06067e87ef1dc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|a",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+a.4x.openlock.stl",
+            "file_modified_at": "2020-10-11T19:01:23.864347+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+a.4x.openlock.stl",
+            "md5": "12fcdc7c1295816282259278e8b38f5d",
+            "size": 1135784,
+            "storage_address": "https://objects.openforge.tools/models/12fcdc/12fcdc7c1295816282259278e8b38f5d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/12fcdc/12fcdc7c1295816282259278e8b38f5d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|a",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+b.2x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:52:00.389619+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+b.2x.openlock.stl",
+            "md5": "44e4812895b5e83e6bf612a0e2771b5d",
+            "size": 1247184,
+            "storage_address": "https://objects.openforge.tools/models/44e481/44e4812895b5e83e6bf612a0e2771b5d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/44e481/44e4812895b5e83e6bf612a0e2771b5d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|b",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+b.3x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:57:03.488093+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+b.3x.openlock.stl",
+            "md5": "feac84e3d98d4a146d897584e93fac68",
+            "size": 1574984,
+            "storage_address": "https://objects.openforge.tools/models/feac84/feac84e3d98d4a146d897584e93fac68.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/feac84/feac84e3d98d4a146d897584e93fac68.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|b",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+b.4x.openlock.stl",
+            "file_modified_at": "2020-10-11T19:03:27.705398+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+b.4x.openlock.stl",
+            "md5": "3766dfacbbca391eadf4759aefe46c01",
+            "size": 1501684,
+            "storage_address": "https://objects.openforge.tools/models/3766df/3766dfacbbca391eadf4759aefe46c01.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3766df/3766dfacbbca391eadf4759aefe46c01.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|b",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+c.3x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:59:41.887616+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+c.3x.openlock.stl",
+            "md5": "03eef45e564377ade012743baacf7b41",
+            "size": 1583284,
+            "storage_address": "https://objects.openforge.tools/models/03eef4/03eef45e564377ade012743baacf7b41.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/03eef4/03eef45e564377ade012743baacf7b41.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|c",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+c.4x.openlock.stl",
+            "file_modified_at": "2020-10-11T19:04:29.326425+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+c.4x.openlock.stl",
+            "md5": "151cbe4dcc1c345998cd04792db86490",
+            "size": 1604384,
+            "storage_address": "https://objects.openforge.tools/models/151cbe/151cbe4dcc1c345998cd04792db86490.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/151cbe/151cbe4dcc1c345998cd04792db86490.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|c",
+            "component|eaves|corbels",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves+corbels+d.4x.openlock.stl",
+            "file_modified_at": "2020-10-11T19:06:49.560013+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves+corbels+d.4x.openlock.stl",
+            "md5": "6136c244ad6c384e57a34ca3700e570e",
+            "size": 1359784,
+            "storage_address": "https://objects.openforge.tools/models/6136c2/6136c244ad6c384e57a34ca3700e570e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6136c2/6136c244ad6c384e57a34ca3700e570e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "component|eaves|corbels",
+            "component|eaves|d",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves,corner+corbels+a.1x1.openlock.stl",
+            "file_modified_at": "2020-10-11T19:17:55.094789+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves,corner+corbels+a.1x1.openlock.stl",
+            "md5": "4a15527f85d4fe7fae069a3546f071e5",
+            "size": 1626584,
+            "storage_address": "https://objects.openforge.tools/models/4a1552/4a15527f85d4fe7fae069a3546f071e5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4a1552/4a15527f85d4fe7fae069a3546f071e5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|a",
+            "shape|corner|corbels",
+            "size|depth|1",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves,corner+corbels+b.1x1.openlock.stl",
+            "file_modified_at": "2020-10-11T19:18:54.492241+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves,corner+corbels+b.1x1.openlock.stl",
+            "md5": "30e5cbacf9c47db26d426e5201d97aae",
+            "size": 1341384,
+            "storage_address": "https://objects.openforge.tools/models/30e5cb/30e5cbacf9c47db26d426e5201d97aae.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/30e5cb/30e5cbacf9c47db26d426e5201d97aae.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|b",
+            "shape|corner|corbels",
+            "size|depth|1",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves,corner+corbels+c.1x1.openlock.stl",
+            "file_modified_at": "2020-10-11T19:19:49.743803+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves,corner+corbels+c.1x1.openlock.stl",
+            "md5": "70e3c675f68f769934ba137fdb0360db",
+            "size": 1290284,
+            "storage_address": "https://objects.openforge.tools/models/70e3c6/70e3c675f68f769934ba137fdb0360db.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/70e3c6/70e3c675f68f769934ba137fdb0360db.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|corner",
+            "shape|corner|c",
+            "shape|corner|corbels",
+            "size|depth|1",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves,corner.1x1.openlock.stl",
+            "file_modified_at": "2020-10-11T19:17:01.938615+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves,corner.1x1.openlock.stl",
+            "md5": "e1a12591863791521f5e0863ef94b609",
+            "size": 1195884,
+            "storage_address": "https://objects.openforge.tools/models/e1a125/e1a12591863791521f5e0863ef94b609.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e1a125/e1a12591863791521f5e0863ef94b609.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|1",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves.1x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:53:16.507478+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves.1x.openlock.stl",
+            "md5": "1ed9432b517bbf119e6bf04983602c34",
+            "size": 445884,
+            "storage_address": "https://objects.openforge.tools/models/1ed943/1ed9432b517bbf119e6bf04983602c34.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1ed943/1ed9432b517bbf119e6bf04983602c34.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves.2x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:52:51.315383+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves.2x.openlock.stl",
+            "md5": "dae0cf6df4202c31d6e5f6ce9ab43f25",
+            "size": 1048984,
+            "storage_address": "https://objects.openforge.tools/models/dae0cf/dae0cf6df4202c31d6e5f6ce9ab43f25.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/dae0cf/dae0cf6df4202c31d6e5f6ce9ab43f25.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves.3x.openlock.stl",
+            "file_modified_at": "2020-10-11T18:54:39.381786+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves.3x.openlock.stl",
+            "md5": "ace4a3c4ede3e60d68da4a657c13c9d1",
+            "size": 1114284,
+            "storage_address": "https://objects.openforge.tools/models/ace4a3/ace4a3c4ede3e60d68da4a657c13c9d1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ace4a3/ace4a3c4ede3e60d68da4a657c13c9d1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "timber#eaves.4x.openlock.stl",
+            "file_modified_at": "2020-10-11T19:00:32.504228+00:00",
+            "full_name": "tiles/building_facades/roof/eaves/timber#eaves.4x.openlock.stl",
+            "md5": "ea7fdf7a1b690fefd89ed6ea75a15b4b",
+            "size": 1000984,
+            "storage_address": "https://objects.openforge.tools/models/ea7fdf/ea7fdf7a1b690fefd89ed6ea75a15b4b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ea7fdf/ea7fdf7a1b690fefd89ed6ea75a15b4b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|eaves",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|timber"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables+chimney.5x.openlock.stl",
+            "file_modified_at": "2020-10-28T04:55:10.301850+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables+chimney.5x.openlock.stl",
+            "md5": "b358f2e20ed49fcb8ba37dcc502514f0",
+            "size": 49029084,
+            "storage_address": "https://objects.openforge.tools/models/b358f2/b358f2e20ed49fcb8ba37dcc502514f0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b358f2/b358f2e20ed49fcb8ba37dcc502514f0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "component|gables|chimney",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables+chimney.6x.openlock.stl",
+            "file_modified_at": "2020-10-28T05:10:12.734962+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables+chimney.6x.openlock.stl",
+            "md5": "ef85625f39be2cf076cd723b779e9222",
+            "size": 70007084,
+            "storage_address": "https://objects.openforge.tools/models/ef8562/ef85625f39be2cf076cd723b779e9222.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ef8562/ef85625f39be2cf076cd723b779e9222.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "component|gables|chimney",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.2x.openlock.stl",
+            "file_modified_at": "2020-10-30T23:30:31.988877+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.2x.openlock.stl",
+            "md5": "56253ef8a3067a764197c8d394acd94d",
+            "size": 10301684,
+            "storage_address": "https://objects.openforge.tools/models/56253e/56253ef8a3067a764197c8d394acd94d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/56253e/56253ef8a3067a764197c8d394acd94d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.3x.openlock.stl",
+            "file_modified_at": "2020-10-30T23:29:14.547417+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.3x.openlock.stl",
+            "md5": "6348eca2a481b7bb4c674748c49159b1",
+            "size": 17224684,
+            "storage_address": "https://objects.openforge.tools/models/6348ec/6348eca2a481b7bb4c674748c49159b1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6348ec/6348eca2a481b7bb4c674748c49159b1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.4x.openlock.stl",
+            "file_modified_at": "2020-10-30T23:27:51.166600+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.4x.openlock.stl",
+            "md5": "50181398a65b5a0222803aa6ab03ab97",
+            "size": 26964134,
+            "storage_address": "https://objects.openforge.tools/models/501813/50181398a65b5a0222803aa6ab03ab97.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/501813/50181398a65b5a0222803aa6ab03ab97.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.5x.openlock.stl",
+            "file_modified_at": "2020-10-28T17:24:07.583743+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.5x.openlock.stl",
+            "md5": "d7655b7b16bf6b25bf84e77ad88eb243",
+            "size": 38529584,
+            "storage_address": "https://objects.openforge.tools/models/d7655b/d7655b7b16bf6b25bf84e77ad88eb243.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d7655b/d7655b7b16bf6b25bf84e77ad88eb243.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.6x.openlock.stl",
+            "file_modified_at": "2020-10-28T18:07:05.870544+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.6x.openlock.stl",
+            "md5": "e0be5de69586a2e6aa13c2a1b2f3a747",
+            "size": 56304284,
+            "storage_address": "https://objects.openforge.tools/models/e0be5d/e0be5de69586a2e6aa13c2a1b2f3a747.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e0be5d/e0be5de69586a2e6aa13c2a1b2f3a747.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stone_brick#gables.7x.openlock.stl",
+            "file_modified_at": "2020-10-30T23:23:39.406579+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stone_brick/shingles,stone_brick#gables.7x.openlock.stl",
+            "md5": "d04848a0bb7daf5c5f422589d62b15f8",
+            "size": 77702434,
+            "storage_address": "https://objects.openforge.tools/models/d04848/d04848a0bb7daf5c5f422589d62b15f8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d04848/d04848a0bb7daf5c5f422589d62b15f8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gables",
+            "connection|openlock",
+            "size|width|7",
+            "texture|shingles",
+            "texture|stone_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+chimney.5x.openlock.stl",
+            "file_modified_at": "2020-10-28T02:59:45.846924+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+chimney.5x.openlock.stl",
+            "md5": "56253c6ea333b816665ec24857402c0c",
+            "size": 37293584,
+            "storage_address": "https://objects.openforge.tools/models/56253c/56253c6ea333b816665ec24857402c0c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/56253c/56253c6ea333b816665ec24857402c0c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|chimney",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+chimney.6x.openlock.stl",
+            "file_modified_at": "2020-10-28T04:30:09.070275+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+chimney.6x.openlock.stl",
+            "md5": "bb1069fb7f721a2c4e37bd3381e9d275",
+            "size": 62761384,
+            "storage_address": "https://objects.openforge.tools/models/bb1069/bb1069fb7f721a2c4e37bd3381e9d275.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bb1069/bb1069fb7f721a2c4e37bd3381e9d275.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|chimney",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,left.3x.openlock.stl",
+            "file_modified_at": "2020-09-23T16:59:59.842656+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,left.3x.openlock.stl",
+            "md5": "c1be7602ee670e9d81424fe1987f05d1",
+            "size": 7864684,
+            "storage_address": "https://objects.openforge.tools/models/c1be76/c1be7602ee670e9d81424fe1987f05d1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c1be76/c1be7602ee670e9d81424fe1987f05d1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|left",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,left.4x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:02:21.849626+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,left.4x.openlock.stl",
+            "md5": "c5dddeee895fcc3127ccf6598e2be3e7",
+            "size": 10662884,
+            "storage_address": "https://objects.openforge.tools/models/c5ddde/c5dddeee895fcc3127ccf6598e2be3e7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c5ddde/c5dddeee895fcc3127ccf6598e2be3e7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|left",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,left.5x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:03:02.322581+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,left.5x.openlock.stl",
+            "md5": "a23ab28ec0abca318e65298b340f6c15",
+            "size": 13835084,
+            "storage_address": "https://objects.openforge.tools/models/a23ab2/a23ab28ec0abca318e65298b340f6c15.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a23ab2/a23ab28ec0abca318e65298b340f6c15.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|left",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,left.6x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:05:35.818111+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,left.6x.openlock.stl",
+            "md5": "1c2d0f2f787438c5af54dc16586ce14e",
+            "size": 18355284,
+            "storage_address": "https://objects.openforge.tools/models/1c2d0f/1c2d0f2f787438c5af54dc16586ce14e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1c2d0f/1c2d0f2f787438c5af54dc16586ce14e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|left",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,left.7x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:05:57.890442+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,left.7x.openlock.stl",
+            "md5": "0e8408cc3b4cee9e844cc6a45df2052a",
+            "size": 23592184,
+            "storage_address": "https://objects.openforge.tools/models/0e8408/0e8408cc3b4cee9e844cc6a45df2052a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0e8408/0e8408cc3b4cee9e844cc6a45df2052a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|left",
+            "connection|openlock",
+            "size|width|7",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,right.3x.openlock.stl",
+            "file_modified_at": "2020-09-23T16:59:42.689072+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,right.3x.openlock.stl",
+            "md5": "daaf5e09f5f320100ab7664b9facafe1",
+            "size": 7989084,
+            "storage_address": "https://objects.openforge.tools/models/daaf5e/daaf5e09f5f320100ab7664b9facafe1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/daaf5e/daaf5e09f5f320100ab7664b9facafe1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|right",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,right.4x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:02:17.137298+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,right.4x.openlock.stl",
+            "md5": "257767c7836541f197f0329b894d2b87",
+            "size": 10612484,
+            "storage_address": "https://objects.openforge.tools/models/257767/257767c7836541f197f0329b894d2b87.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/257767/257767c7836541f197f0329b894d2b87.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|right",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,right.5x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:02:58.381157+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,right.5x.openlock.stl",
+            "md5": "d115ca7ae65e8fc69bd8aa54f6d7f73c",
+            "size": 13936184,
+            "storage_address": "https://objects.openforge.tools/models/d115ca/d115ca7ae65e8fc69bd8aa54f6d7f73c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d115ca/d115ca7ae65e8fc69bd8aa54f6d7f73c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|right",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,right.6x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:05:34.591876+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,right.6x.openlock.stl",
+            "md5": "f769c3b0fe041d54798129ff5a534cb2",
+            "size": 18567284,
+            "storage_address": "https://objects.openforge.tools/models/f769c3/f769c3b0fe041d54798129ff5a534cb2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f769c3/f769c3b0fe041d54798129ff5a534cb2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|right",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable+split,right.7x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:05:55.575303+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable+split,right.7x.openlock.stl",
+            "md5": "34257204d7ad5c5d48d60187b4e1f8f6",
+            "size": 23365684,
+            "storage_address": "https://objects.openforge.tools/models/342572/34257204d7ad5c5d48d60187b4e1f8f6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/342572/34257204d7ad5c5d48d60187b4e1f8f6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "component|gable|split",
+            "component|right",
+            "connection|openlock",
+            "size|width|7",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.2x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:00:15.103538+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.2x.openlock.stl",
+            "md5": "cd33bc0a668afdaf10cc39daaaf4aac6",
+            "size": 10033784,
+            "storage_address": "https://objects.openforge.tools/models/cd33bc/cd33bc0a668afdaf10cc39daaaf4aac6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cd33bc/cd33bc0a668afdaf10cc39daaaf4aac6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.3x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:00:11.489132+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.3x.openlock.stl",
+            "md5": "13ae0ab2c8939fab38599a86206726f6",
+            "size": 15723984,
+            "storage_address": "https://objects.openforge.tools/models/13ae0a/13ae0ab2c8939fab38599a86206726f6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/13ae0a/13ae0ab2c8939fab38599a86206726f6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.4x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:03:54.641329+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.4x.openlock.stl",
+            "md5": "bff1fef169f4ff1e98430ef914fe139c",
+            "size": 21143384,
+            "storage_address": "https://objects.openforge.tools/models/bff1fe/bff1fef169f4ff1e98430ef914fe139c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bff1fe/bff1fef169f4ff1e98430ef914fe139c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.5x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:03:51.531404+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.5x.openlock.stl",
+            "md5": "bb2faac47cc089027661f4eedb11ebc8",
+            "size": 27523984,
+            "storage_address": "https://objects.openforge.tools/models/bb2faa/bb2faac47cc089027661f4eedb11ebc8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bb2faa/bb2faac47cc089027661f4eedb11ebc8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "size|width|5",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.6x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:15:27.599234+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.6x.openlock.stl",
+            "md5": "75b2eca13e3fccc33ea002e81e790318",
+            "size": 36684584,
+            "storage_address": "https://objects.openforge.tools/models/75b2ec/75b2eca13e3fccc33ea002e81e790318.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/75b2ec/75b2eca13e3fccc33ea002e81e790318.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "size|width|6",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles,stucco#gable.7x.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:10.059596+00:00",
+            "full_name": "tiles/building_facades/roof/gable%shingles,stucco/shingles,stucco#gable.7x.openlock.stl",
+            "md5": "77b5e20aa9fbb9e081b54671db45fc0d",
+            "size": 46784384,
+            "storage_address": "https://objects.openforge.tools/models/77b5e2/77b5e20aa9fbb9e081b54671db45fc0d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/77b5e2/77b5e20aa9fbb9e081b54671db45fc0d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|gable",
+            "connection|openlock",
+            "size|width|7",
+            "texture|shingles",
+            "texture|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x1.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:06:58.042351+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x1.0.openlock.stl",
+            "md5": "196193e098079f5d7eeab55eccb34a50",
+            "size": 3314584,
+            "storage_address": "https://objects.openforge.tools/models/196193/196193e098079f5d7eeab55eccb34a50.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/196193/196193e098079f5d7eeab55eccb34a50.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:01.824080+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x1.5.openlock.stl",
+            "md5": "56e61a9bc5ed9c987b3d135e5fc30950",
+            "size": 4935984,
+            "storage_address": "https://objects.openforge.tools/models/56e61a/56e61a9bc5ed9c987b3d135e5fc30950.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/56e61a/56e61a9bc5ed9c987b3d135e5fc30950.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x2.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:07.780964+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x2.0.openlock.stl",
+            "md5": "b9402460390e6dc75e40324bffe1305b",
+            "size": 6518384,
+            "storage_address": "https://objects.openforge.tools/models/b94024/b9402460390e6dc75e40324bffe1305b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b94024/b9402460390e6dc75e40324bffe1305b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x2.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:10.463029+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x2.5.openlock.stl",
+            "md5": "22196b566c97296a0a4d2a263f201229",
+            "size": 8135984,
+            "storage_address": "https://objects.openforge.tools/models/22196b/22196b566c97296a0a4d2a263f201229.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/22196b/22196b566c97296a0a4d2a263f201229.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:12.735834+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x3.0.openlock.stl",
+            "md5": "c286b6a7a1ce5fd689f41c080f216a10",
+            "size": 9798684,
+            "storage_address": "https://objects.openforge.tools/models/c286b6/c286b6a7a1ce5fd689f41c080f216a10.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c286b6/c286b6a7a1ce5fd689f41c080f216a10.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.1x3.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:07:24.537737+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.1x3.5.openlock.stl",
+            "md5": "52b1e34dbc601db5d28dd7bafed6a59c",
+            "size": 11233884,
+            "storage_address": "https://objects.openforge.tools/models/52b1e3/52b1e34dbc601db5d28dd7bafed6a59c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/52b1e3/52b1e34dbc601db5d28dd7bafed6a59c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|1",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x1.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:08:26.592013+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x1.0.openlock.stl",
+            "md5": "ead85c91817ed2cb9586734ed0b59921",
+            "size": 6701884,
+            "storage_address": "https://objects.openforge.tools/models/ead85c/ead85c91817ed2cb9586734ed0b59921.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ead85c/ead85c91817ed2cb9586734ed0b59921.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:09:11.470371+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x1.5.openlock.stl",
+            "md5": "960e53679c4f5c0bf57e9bcab3ffb6fc",
+            "size": 9966784,
+            "storage_address": "https://objects.openforge.tools/models/960e53/960e53679c4f5c0bf57e9bcab3ffb6fc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/960e53/960e53679c4f5c0bf57e9bcab3ffb6fc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x2.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:09:00.449529+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x2.0.openlock.stl",
+            "md5": "ef37c055932303eaf7ac4df369bb008b",
+            "size": 13239884,
+            "storage_address": "https://objects.openforge.tools/models/ef37c0/ef37c055932303eaf7ac4df369bb008b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ef37c0/ef37c055932303eaf7ac4df369bb008b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x2.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:09:16.588876+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x2.5.openlock.stl",
+            "md5": "8fa343ad536093837704702ba247b018",
+            "size": 16508284,
+            "storage_address": "https://objects.openforge.tools/models/8fa343/8fa343ad536093837704702ba247b018.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8fa343/8fa343ad536093837704702ba247b018.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2.5",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:09:19.913013+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x3.0.openlock.stl",
+            "md5": "843d36522b0e522bab60f409e78faa09",
+            "size": 19780284,
+            "storage_address": "https://objects.openforge.tools/models/843d36/843d36522b0e522bab60f409e78faa09.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/843d36/843d36522b0e522bab60f409e78faa09.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.2x3.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:09:08.612916+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.2x3.5.openlock.stl",
+            "md5": "25e15986659dd3461f98996724e715b1",
+            "size": 23214184,
+            "storage_address": "https://objects.openforge.tools/models/25e159/25e15986659dd3461f98996724e715b1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/25e159/25e15986659dd3461f98996724e715b1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3.5",
+            "size|width|2",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x1.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:18.621684+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x1.0.openlock.stl",
+            "md5": "9fdcd885763ca7514b50d8357322ba84",
+            "size": 9538684,
+            "storage_address": "https://objects.openforge.tools/models/9fdcd8/9fdcd885763ca7514b50d8357322ba84.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9fdcd8/9fdcd885763ca7514b50d8357322ba84.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x1.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:29.470222+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x1.5.openlock.stl",
+            "md5": "4af5ea382a56a3cf0f2cfa12dd12c86f",
+            "size": 14098684,
+            "storage_address": "https://objects.openforge.tools/models/4af5ea/4af5ea382a56a3cf0f2cfa12dd12c86f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4af5ea/4af5ea382a56a3cf0f2cfa12dd12c86f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x2.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:36.533036+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x2.0.openlock.stl",
+            "md5": "007b47935a70dc5474322b5b4d8326bb",
+            "size": 18825884,
+            "storage_address": "https://objects.openforge.tools/models/007b47/007b47935a70dc5474322b5b4d8326bb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/007b47/007b47935a70dc5474322b5b4d8326bb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x2.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:40.554257+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x2.5.openlock.stl",
+            "md5": "04f0b415c6d3635d9a74aa985cfddb69",
+            "size": 23462284,
+            "storage_address": "https://objects.openforge.tools/models/04f0b4/04f0b415c6d3635d9a74aa985cfddb69.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/04f0b4/04f0b415c6d3635d9a74aa985cfddb69.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2.5",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x3.0.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:41.628401+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x3.0.openlock.stl",
+            "md5": "a80b51c519fc275aba818d09edf2897d",
+            "size": 28093284,
+            "storage_address": "https://objects.openforge.tools/models/a80b51/a80b51c519fc275aba818d09edf2897d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a80b51/a80b51c519fc275aba818d09edf2897d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.3x3.5.openlock.stl",
+            "file_modified_at": "2020-09-23T17:12:33.376421+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.3x3.5.openlock.stl",
+            "md5": "683ee5b337bc6ea21cc430db2557c3d9",
+            "size": 32765984,
+            "storage_address": "https://objects.openforge.tools/models/683ee5/683ee5b337bc6ea21cc430db2557c3d9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/683ee5/683ee5b337bc6ea21cc430db2557c3d9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3.5",
+            "size|width|3",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x1.0.openlock.stl",
+            "file_modified_at": "2025-04-21T20:34:47.768821+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x1.0.openlock.stl",
+            "md5": "12300490a4a3b898cf796b7508c889cd",
+            "size": 12174284,
+            "storage_address": "https://objects.openforge.tools/models/123004/12300490a4a3b898cf796b7508c889cd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/123004/12300490a4a3b898cf796b7508c889cd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x1.5.openlock.stl",
+            "file_modified_at": "2025-04-21T20:35:02.797298+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x1.5.openlock.stl",
+            "md5": "98ec918ee4d3f23847650ca3fe0e7192",
+            "size": 18193584,
+            "storage_address": "https://objects.openforge.tools/models/98ec91/98ec918ee4d3f23847650ca3fe0e7192.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/98ec91/98ec918ee4d3f23847650ca3fe0e7192.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|1.5",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x2.0.openlock.stl",
+            "file_modified_at": "2025-04-21T20:35:15.169834+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x2.0.openlock.stl",
+            "md5": "b04254c8f44deb6178c049e4c0eb3a5d",
+            "size": 24053784,
+            "storage_address": "https://objects.openforge.tools/models/b04254/b04254c8f44deb6178c049e4c0eb3a5d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b04254/b04254c8f44deb6178c049e4c0eb3a5d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x2.5.openlock.stl",
+            "file_modified_at": "2020-09-11T19:28:03.888922+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x2.5.openlock.stl",
+            "md5": "81e6098e7dbde2770d1b293c90350010",
+            "size": 30194084,
+            "storage_address": "https://objects.openforge.tools/models/81e609/81e6098e7dbde2770d1b293c90350010.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/81e609/81e6098e7dbde2770d1b293c90350010.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|2.5",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x3.0.openlock.stl",
+            "file_modified_at": "2020-09-11T19:18:55.621958+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x3.0.openlock.stl",
+            "md5": "3ba44fd848e28b4a73af6e67ce60320c",
+            "size": 36017784,
+            "storage_address": "https://objects.openforge.tools/models/3ba44f/3ba44fd848e28b4a73af6e67ce60320c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3ba44f/3ba44fd848e28b4a73af6e67ce60320c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "shingles#roof.4x3.5.openlock.stl",
+            "file_modified_at": "2020-09-11T19:10:26.114234+00:00",
+            "full_name": "tiles/building_facades/roof/roof%shingles/shingles#roof.4x3.5.openlock.stl",
+            "md5": "94e7b88a96c649506143153bfbaa04e4",
+            "size": 42017284,
+            "storage_address": "https://objects.openforge.tools/models/94e7b8/94e7b88a96c649506143153bfbaa04e4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/94e7b8/94e7b88a96c649506143153bfbaa04e4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|roof",
+            "connection|openlock",
+            "size|depth|3.5",
+            "size|width|4",
+            "texture|shingles"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "support_block.1x.stl",
+            "file_modified_at": "2020-09-16T19:47:31.353742+00:00",
+            "full_name": "tiles/building_facades/roof/support_blocks/support_block.1x.stl",
+            "md5": "121098ad6214350dce29ce31209b1978",
+            "size": 13884,
+            "storage_address": "https://objects.openforge.tools/models/121098/121098ad6214350dce29ce31209b1978.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/121098/121098ad6214350dce29ce31209b1978.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|support_block|1x",
+            "part|support_block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "support_block.2x.stl",
+            "file_modified_at": "2020-09-16T19:46:02.889521+00:00",
+            "full_name": "tiles/building_facades/roof/support_blocks/support_block.2x.stl",
+            "md5": "62e34a7f7da9ff25712b661db12b633c",
+            "size": 33084,
+            "storage_address": "https://objects.openforge.tools/models/62e34a/62e34a7f7da9ff25712b661db12b633c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/62e34a/62e34a7f7da9ff25712b661db12b633c.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|support_block|2x",
+            "part|support_block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "support_block.3x.stl",
+            "file_modified_at": "2020-09-16T19:44:59.952100+00:00",
+            "full_name": "tiles/building_facades/roof/support_blocks/support_block.3x.stl",
+            "md5": "0e073c5e526c103fe6524d0b73e342d6",
+            "size": 52384,
+            "storage_address": "https://objects.openforge.tools/models/0e073c/0e073c5e526c103fe6524d0b73e342d6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0e073c/0e073c5e526c103fe6524d0b73e342d6.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|support_block|3x",
+            "part|support_block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "support_block.4x.stl",
+            "file_modified_at": "2020-09-16T19:43:07.007436+00:00",
+            "full_name": "tiles/building_facades/roof/support_blocks/support_block.4x.stl",
+            "md5": "347e4a081eb8e19061ac8eddfd7d46fc",
+            "size": 71584,
+            "storage_address": "https://objects.openforge.tools/models/347e4a/347e4a081eb8e19061ac8eddfd7d46fc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/347e4a/347e4a081eb8e19061ac8eddfd7d46fc.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|support_block|4x",
+            "part|support_block"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
@@ -10866,6 +13804,84 @@
             "size|depth|6",
             "size|width|6",
             "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+I.openlock.stl",
+            "file_modified_at": "2021-06-28T09:51:10.741293",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
+            "md5": "be93fd95db6e7e373b851f47b39ce279",
+            "size": 9269884,
+            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|I",
+            "size|openlock|I",
+            "texture|ironbound_wood"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+T.openlock.stl",
+            "file_modified_at": "2021-06-28T11:23:43.346098",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
+            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
+            "size": 5874584,
+            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|T",
+            "size|openlock|T",
+            "texture|ironbound_wood"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+X.openlock.stl",
+            "file_modified_at": "2021-06-28T09:10:24.643360",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
+            "md5": "c361239d1cc7c41a34848f80536bd59d",
+            "size": 3739584,
+            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|X",
+            "size|openlock|X",
+            "texture|ironbound_wood"
         ],
         "type": "model"
     },

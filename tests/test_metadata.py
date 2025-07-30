@@ -7,11 +7,14 @@ import yaml
 from openforge.data.metadata import (
     add_tag,
     apply_default_metadata,
+    apply_folder_metadata_edit_all,
     apply_metadata,
     apply_metadata_edit,
     apply_openforge_floor,
     apply_openforge_wall,
     apply_thick_wall,
+    get_all_folder_metadata,
+    get_folder_metadata,
     get_metadata_file,
     has_no_tags,
     has_tag,
@@ -310,11 +313,28 @@ class TestTagOperations:
         assert ("connection", "openforge") in obj["tags"]
 
     def test_remove_tag_not_exists(self):
-        """Test remove_tag with non-existing tag."""
+        """Test remove_tag with non-existing tag - should raise by default."""
         obj = {"tags": {("shape", "wall")}}
-        # Should not raise exception
-        remove_tag(obj, "connection|openforge")
+        # Should raise exception by default
+        with pytest.raises(ValueError) as exc_info:
+            remove_tag(obj, "connection|openforge")
+        assert "not found in object" in str(exc_info.value)
         assert ("shape", "wall") in obj["tags"]
+
+    def test_remove_tag_not_exists_no_error(self):
+        """Test remove_tag with non-existing tag and error_if_missing=False."""
+        obj = {"tags": {("shape", "wall")}}
+        # Should not raise exception when error_if_missing=False
+        remove_tag(obj, "connection|openforge", error_if_missing=False)
+        assert ("shape", "wall") in obj["tags"]
+
+    def test_remove_tag_exists_with_error_flag(self):
+        """Test remove_tag with existing tag and error_if_missing parameter."""
+        obj = {"tags": {("shape", "wall"), ("connection", "openforge")}}
+        # Should remove tag regardless of error_if_missing value
+        remove_tag(obj, "connection|openforge", error_if_missing=False)
+        assert ("shape", "wall") in obj["tags"]
+        assert ("connection", "openforge") not in obj["tags"]
 
 
 class TestDefaultMetadataApplication:
@@ -501,3 +521,135 @@ class TestMetadataSchemaValidation:
         from openforge.openapi import validate_schema
 
         validate_schema("metadata.yaml", empty_metadata)
+
+
+class TestEditAllFunctionality:
+    """Test edit_all folder-level metadata functionality."""
+
+    def test_get_folder_metadata(self):
+        """Test get_folder_metadata function."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            # No metadata file
+            assert get_folder_metadata(tmpdir) is None
+
+            # Create metadata file without "." entry
+            metadata_path = os.path.join(tmpdir, "metadata.yaml")
+            with open(metadata_path, "w") as f:
+                yaml.dump({"file.stl": {"tags": ["shape|wall"]}}, f)
+            assert get_folder_metadata(tmpdir) is None
+
+            # Create metadata file with "." entry
+            with open(metadata_path, "w") as f:
+                yaml.dump(
+                    {
+                        ".": {"edit_all": {"tags": {"add": ["category|tiles"]}}},
+                        "file.stl": {"tags": ["shape|wall"]},
+                    },
+                    f,
+                )
+            folder_meta = get_folder_metadata(tmpdir)
+            assert folder_meta is not None
+            assert "edit_all" in folder_meta
+
+    def test_get_all_folder_metadata(self):
+        """Test get_all_folder_metadata cascading collection."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            # Create directory structure
+            os.makedirs(os.path.join(tmpdir, "tiles", "dungeon_stone", "floors"))
+
+            # Root metadata
+            with open(os.path.join(tmpdir, "metadata.yaml"), "w") as f:
+                yaml.dump(
+                    {".": {"edit_all": {"tags": {"add": ["category|terrain"]}}}}, f
+                )
+
+            # Tiles metadata
+            with open(os.path.join(tmpdir, "tiles", "metadata.yaml"), "w") as f:
+                yaml.dump({".": {"edit_all": {"tags": {"add": ["category|tiles"]}}}}, f)
+
+            # Dungeon stone metadata
+            with open(
+                os.path.join(tmpdir, "tiles", "dungeon_stone", "metadata.yaml"), "w"
+            ) as f:
+                yaml.dump(
+                    {".": {"edit_all": {"tags": {"add": ["texture|dungeon_stone"]}}}}, f
+                )
+
+            # Test collection
+            test_file = os.path.join(
+                tmpdir, "tiles", "dungeon_stone", "floors", "floor.stl"
+            )
+            metadata_list = get_all_folder_metadata(tmpdir, test_file)
+
+            assert len(metadata_list) == 3
+            assert metadata_list[0]["edit_all"]["tags"]["add"] == ["category|terrain"]
+            assert metadata_list[1]["edit_all"]["tags"]["add"] == ["category|tiles"]
+            assert metadata_list[2]["edit_all"]["tags"]["add"] == [
+                "texture|dungeon_stone"
+            ]
+
+    def test_apply_folder_metadata_edit_all_add(self):
+        """Test applying edit_all rules with add operations."""
+        folder_metadata_list = [
+            {"edit_all": {"tags": {"add": ["category|terrain"]}}},
+            {"edit_all": {"tags": {"add": ["category|tiles", "type|modular"]}}},
+        ]
+
+        obj = {"tags": set()}
+        apply_folder_metadata_edit_all(folder_metadata_list, obj)
+
+        expected_tags = {
+            ("category", "terrain"),
+            ("category", "tiles"),
+            ("type", "modular"),
+        }
+        assert obj["tags"] == expected_tags
+
+    def test_apply_folder_metadata_edit_all_remove(self):
+        """Test applying edit_all rules with remove operations."""
+        folder_metadata_list = [
+            {"edit_all": {"tags": {"add": ["category|terrain", "temporary|tag"]}}},
+            {"edit_all": {"tags": {"remove": ["temporary|tag"]}}},
+        ]
+
+        obj = {"tags": set()}
+        apply_folder_metadata_edit_all(folder_metadata_list, obj)
+
+        # Should only have category|terrain, temporary|tag should be removed
+        expected_tags = {("category", "terrain")}
+        assert obj["tags"] == expected_tags
+
+    def test_apply_folder_metadata_edit_all_remove_nonexistent(self):
+        """Test that removing non-existent tags doesn't raise errors."""
+        folder_metadata_list = [{"edit_all": {"tags": {"remove": ["nonexistent|tag"]}}}]
+
+        obj = {"tags": {("existing", "tag")}}
+        # Should not raise any exception
+        apply_folder_metadata_edit_all(folder_metadata_list, obj)
+
+        # Original tag should remain
+        assert obj["tags"] == {("existing", "tag")}
+
+    def test_metadata_file_validation_with_folder_entry(self):
+        """Test that metadata files with '.' entry validate correctly."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            metadata_path = os.path.join(tmpdir, "metadata.yaml")
+
+            # Valid folder metadata
+            valid_metadata = {
+                ".": {
+                    "edit_all": {
+                        "tags": {"add": ["category|tiles"], "remove": ["old|tag"]}
+                    }
+                },
+                "file.stl": {"tags": ["shape|wall"], "auto": False},
+            }
+
+            with open(metadata_path, "w") as f:
+                yaml.dump(valid_metadata, f)
+
+            # Should load without errors
+            metadata = get_metadata_file(tmpdir)
+            assert metadata is not None
+            assert "." in metadata
+            assert "file.stl" in metadata

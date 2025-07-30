@@ -7,7 +7,7 @@
 }
 
 .pageHeaderWrapper {
-  flex: 0 0 auto; 
+  flex: 0 0 auto;
   border-bottom: 1px solid #ccc;
   padding: 8px;
 }
@@ -60,11 +60,25 @@
   font-weight: 500;
 }
 
+.tabContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.tabButtons {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  background-color: #f5f5f5;
+  padding: 0 8px;
+  flex: 0 0 auto;
+}
+
 .tabContent {
   flex: 1 1 auto;
-  max-height: calc(100vh - 120px); /* Account for header and tabs */
+  height: calc(100vh - 120px); /* Account for header and tabs */
   overflow: hidden;
-  overflow-x: hidden;
 }
 
 .columnContainer {
