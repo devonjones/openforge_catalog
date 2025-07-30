@@ -29,8 +29,10 @@ from .io import (
 )
 from .metadata import (
     apply_default_metadata,
+    apply_folder_metadata_edit_all,
     apply_metadata,
     convert_tags_for_metadata,
+    get_all_folder_metadata,
     get_metadata_file,
 )
 from .scanner import (
@@ -539,7 +541,7 @@ def parse_files_incremental(
 
             # Parse tags
             t = set()
-            f_info = {"file": fn, "path": file.split("/")}
+            f_info = {"file": fn, "path": file.split("/"), "full_name": file}
             parse_file_tags(f_info, t, metadata)
 
             # Process with incremental scanner
@@ -563,8 +565,13 @@ def parse_files_incremental(
 
                 # Apply metadata and default metadata
                 if metadata:
-                    apply_metadata(metadata, result)
+                    # Make a copy since apply_metadata modifies the dict
+                    apply_metadata(metadata.copy(), result)
                 apply_default_metadata(result)
+
+                # Apply folder-level edit_all rules (after all other tag processing)
+                folder_metadata_list = get_all_folder_metadata(path, full_file)
+                apply_folder_metadata_edit_all(folder_metadata_list, result)
 
                 # Convert tags back to pipe-delimited format for output
                 if "tags" in result:

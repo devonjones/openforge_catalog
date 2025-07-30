@@ -37,7 +37,9 @@ global.URLSearchParams = mockURLSearchParams as unknown as typeof URLSearchParam
 
 describe('useUrlParameters', () => {
   const mockAddTag = jest.fn();
+  const mockAddAllTags = jest.fn();
   const mockSetSearchTerm = jest.fn();
+  const mockSetTagState = jest.fn();
   const mockSetSelectedBlueprint = jest.fn();
   const mockSelectedTags: string[] = [];
   const mockBlueprints = [
@@ -50,10 +52,10 @@ describe('useUrlParameters', () => {
     mockGetAll.mockReturnValue([]);
     mockToString.mockReturnValue('');
     mockHas.mockReturnValue(false);
-    
+
     // Mock window.history.replaceState
     window.history.replaceState = mockReplaceState;
-    
+
     // Default context mocks
     (useBlueprintContext as jest.Mock).mockReturnValue(mockSetSelectedBlueprint);
     (useTagContext as jest.Mock).mockImplementation((selector) => {
@@ -61,7 +63,9 @@ describe('useUrlParameters', () => {
         blueprints: mockBlueprints,
         selectedTags: mockSelectedTags,
         addTag: mockAddTag,
+        addAllTags: mockAddAllTags,
         setSearchTerm: mockSetSearchTerm,
+        setTagState: mockSetTagState,
         autoload: true,
       };
       return selector(mockState);
@@ -74,8 +78,11 @@ describe('useUrlParameters', () => {
 
     renderHook(() => useUrlParameters());
 
-    expect(mockAddTag).toHaveBeenCalledWith('tag1');
-    expect(mockAddTag).toHaveBeenCalledWith('tag2');
+    expect(mockSetTagState).toHaveBeenCalledWith({
+      require: ['tag1', 'tag2'],
+      deny: [],
+      searchTerm: null
+    });
   });
 
   it('processes search parameter from URL', () => {
@@ -84,7 +91,11 @@ describe('useUrlParameters', () => {
 
     renderHook(() => useUrlParameters());
 
-    expect(mockSetSearchTerm).toHaveBeenCalledWith('test search');
+    expect(mockSetTagState).toHaveBeenCalledWith({
+      require: [],
+      deny: [],
+      searchTerm: 'test search'
+    });
   });
 
   it('processes blueprint_id parameter from URL', () => {
@@ -96,7 +107,7 @@ describe('useUrlParameters', () => {
     expect(mockSetSelectedBlueprint).toHaveBeenCalledWith(mockBlueprints[0]);
   });
 
-  it('does not add tags that already exist', () => {
+  it('processes all tags from URL regardless of existing tags', () => {
     const existingTags = ['tag1', 'tag2'];
     mockGetAll.mockReturnValue(['tag1', 'tag3']);
     mockGet.mockReturnValue(null);
@@ -106,7 +117,9 @@ describe('useUrlParameters', () => {
         blueprints: mockBlueprints,
         selectedTags: existingTags,
         addTag: mockAddTag,
+        addAllTags: mockAddAllTags,
         setSearchTerm: mockSetSearchTerm,
+        setTagState: mockSetTagState,
         autoload: true,
       };
       return selector(mockState);
@@ -114,8 +127,12 @@ describe('useUrlParameters', () => {
 
     renderHook(() => useUrlParameters());
 
-    expect(mockAddTag).toHaveBeenCalledWith('tag3');
-    expect(mockAddTag).not.toHaveBeenCalledWith('tag1');
+    // Now we set all tags from URL, not filtering existing ones
+    expect(mockSetTagState).toHaveBeenCalledWith({
+      require: ['tag1', 'tag3'],
+      deny: [],
+      searchTerm: null
+    });
   });
 
   it('cleans up URL parameters after processing', () => {
@@ -128,10 +145,13 @@ describe('useUrlParameters', () => {
   });
 
   it('returns hasSetTagState ref', () => {
+    mockGetAll.mockReturnValue([]);
+    mockGet.mockReturnValue(null);
+
     const { result } = renderHook(() => useUrlParameters());
 
     expect(result.current.hasSetTagState).toBeDefined();
-    expect(result.current.hasSetTagState.current).toBe(false);
+    expect(result.current.hasSetTagState.current).toBe(true); // It's set to true after processing
   });
 
   it('does nothing when autoload is false', () => {
@@ -152,4 +172,4 @@ describe('useUrlParameters', () => {
     expect(mockSetSearchTerm).not.toHaveBeenCalled();
     expect(mockSetSelectedBlueprint).not.toHaveBeenCalled();
   });
-}); 
+});

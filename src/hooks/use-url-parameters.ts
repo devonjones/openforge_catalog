@@ -8,30 +8,30 @@ import { useTagContext } from '@/contexts/tag-context';
 export function useUrlParameters() {
   const setSelectedBlueprint = useBlueprintContext((state) => state.setSelectedBlueprint);
   const blueprints = useTagContext((state) => state.blueprints);
-  const selectedTags = useTagContext((state) => state.selectedTags);
-  const addTag = useTagContext((state) => state.addTag);
-  const setSearchTerm = useTagContext((state) => state.setSearchTerm);
+  const setTagState = useTagContext((state) => state.setTagState);
   const autoload = useTagContext((state) => state.autoload);
   const hasSetTagState = useRef<boolean>(false);
 
   useEffect(() => {
     // Read URL parameters and add tags
-    if (typeof window !== 'undefined' && autoload) {
+    if (typeof window !== 'undefined' && autoload && !hasSetTagState.current) {
       const params = new URLSearchParams(window.location.search);
 
-      // Handle tags
+      // Handle tags - collect all tags to add at once
       const tagParams = params.getAll('tag');
-      tagParams.forEach(tag => {
-        if (!selectedTags.includes(tag)) {
-          addTag(tag);
-        }
-      });
 
       // Handle search term
       const searchParam = params.get('search');
-      if (searchParam) {
-        setSearchTerm(searchParam);
-      }
+
+      // Mark that we've processed URL parameters
+      hasSetTagState.current = true;
+
+      // Set all state at once to trigger only one fetchBlueprints call
+      setTagState({
+        require: tagParams,
+        deny: [],
+        searchTerm: searchParam
+      });
 
       // Handle blueprint selection
       const blueprintId = params.get('blueprint_id');
@@ -54,7 +54,7 @@ export function useUrlParameters() {
         window.history.replaceState({}, '', newUrl);
       }
     }
-  }, [autoload, selectedTags, addTag, setSearchTerm, blueprints, setSelectedBlueprint]);
+  }, [autoload, setTagState, blueprints, setSelectedBlueprint]);
 
   return { hasSetTagState };
 }
