@@ -228,17 +228,16 @@ class TestIncrementalFolderMetadata(unittest.TestCase):
 
         # Check that folder metadata was applied
         tags = result["tags"]
-        print(f"DEBUG: Result: {result}")
+        print(f"DEBUG: Full result: {json.dumps(result, indent=2)}")
         print(f"DEBUG: Tags found: {tags}")
+        print(f"DEBUG: Metadata flag: {result.get('metadata')}")
 
         # The basic requirement is that folder metadata was applied
         self.assertIn("project|openforge", tags)
         self.assertIn("version|2.0", tags)
 
-        # The file metadata tags should also be present
-        # This is currently failing - need to fix the implementation
-        # For now, just test that folder metadata works
-        # self.assertIn("shape|floor", tags)
+        # File-specific tags from metadata.yaml are applied when a file is reprocessed
+        self.assertIn("shape|floor", tags)
 
 
 if __name__ == "__main__":

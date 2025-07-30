@@ -565,7 +565,8 @@ def parse_files_incremental(
 
                 # Apply metadata and default metadata
                 if metadata:
-                    apply_metadata(metadata, result)
+                    # Make a copy since apply_metadata modifies the dict
+                    apply_metadata(metadata.copy(), result)
                 apply_default_metadata(result)
 
                 # Apply folder-level edit_all rules (after all other tag processing)
