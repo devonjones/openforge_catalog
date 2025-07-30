@@ -176,6 +176,45 @@ class IncrementalFixturesLoader:
 
         return blueprint_map
 
+    def _find_deprecated_blueprint_by_md5(self, md5: str) -> Optional[Dict]:
+        """Find a deprecated blueprint by MD5.
+
+        Args:
+            md5: MD5 hash of the blueprint to find
+
+        Returns:
+            Deprecated blueprint data if found, None otherwise
+        """
+        with self.conn.cursor(row_factory=dict_row) as curs:
+            query = """
+                SELECT id, blueprint_name, blueprint_type, config, file_md5, file_size,
+                       file_name, full_name, file_modified_at, storage_address,
+                       consolidated_paths, deprecated, successor_id,
+                       created_at, updated_at
+                FROM blueprints
+                WHERE file_md5 = %s AND deprecated = true
+                ORDER BY created_at DESC
+                LIMIT 1
+            """
+            curs.execute(query, (md5,))
+            result = curs.fetchone()
+
+            if result:
+                # Load tags and images for the deprecated blueprint
+                blueprint_id = result["id"]
+
+                # Get tags
+                tags = tag_sql.get_tags(curs, blueprint_id)
+                result["tags"] = [tag["tag"] for tag in tags]
+
+                # Get images
+                images = image_sql.get_images_for_blueprint(curs, blueprint_id)
+                result["images"] = list(images)
+
+                return result
+
+            return None
+
     def _find_deprecated_blueprint(self, full_name: str) -> Optional[Dict]:
         """Find a deprecated blueprint by full_name.
 
@@ -260,6 +299,74 @@ class IncrementalFixturesLoader:
 
         return "/".join(common_parts)
 
+    def _get_fixture_namespace(self, fixture_data: List[Dict]) -> Optional[str]:
+        """Determine the namespace/category of this fixture based on file paths.
+
+        Args:
+            fixture_data: List of blueprint fixture objects
+
+        Returns:
+            Namespace string (e.g., 'dungeon_stone', 'cave') or None
+        """
+        # Look for common patterns in full_name paths
+        namespaces = set()
+        for item in fixture_data:
+            if "file_metadata" in item and not item.get("deprecated", False):
+                full_name = item["file_metadata"]["full_name"]
+                # Extract namespace from path
+                # (e.g., "tiles/dungeon_stone/..." -> "dungeon_stone")
+                parts = full_name.split("/")
+                if len(parts) >= 2 and parts[0] == "tiles":
+                    namespaces.add(parts[1])
+
+        # If we have a consistent namespace, return it
+        if len(namespaces) == 1:
+            return namespaces.pop()
+        return None
+
+    def _find_missing_blueprints(
+        self,
+        fixture_namespace: str,
+        fixture_data: List[Dict],
+        existing_blueprints: Dict[str, Dict],
+    ) -> List[Dict]:
+        """Find blueprints that exist in the database but are missing from fixture.
+
+        Args:
+            fixture_namespace: The namespace/category of this fixture
+            fixture_data: List of blueprint fixture objects
+            existing_blueprints: Dict of existing blueprints from database
+
+        Returns:
+            List of existing blueprints that should be marked as deprecated
+        """
+        # Get all full_names from the fixture
+        fixture_full_names = set()
+        for item in fixture_data:
+            if "file_metadata" in item and not item.get("deprecated", False):
+                fixture_full_names.add(item["file_metadata"]["full_name"])
+
+        # Find existing blueprints that match this fixture's namespace
+        # but aren't in the fixture
+        missing = []
+        for full_name, bp in existing_blueprints.items():
+            # Check if this blueprint belongs to the same namespace
+            if fixture_namespace and full_name.startswith(
+                f"tiles/{fixture_namespace}/"
+            ):
+                if full_name not in fixture_full_names:
+                    # Check if there's already a deprecated entry with this MD5
+                    if bp.get("file_md5"):
+                        existing_deprecated = self._find_deprecated_blueprint_by_md5(
+                            bp["file_md5"]
+                        )
+                        if not existing_deprecated:
+                            missing.append(bp)
+                    else:
+                        missing.append(bp)
+
+        return missing
+
     def compare_fixture_data(
         self,
         fixture_data: List[Dict],
@@ -302,8 +409,59 @@ class IncrementalFixturesLoader:
 
         result = ComparisonResult()
 
+        # Determine the namespace of this fixture
+        fixture_namespace = self._get_fixture_namespace(fixture_data)
+
         for fixture_item in fixture_data:
             self._compare_single_item(fixture_item, result, existing_blueprints)
+
+        # Build a set of fixture blueprint keys for comparison
+        fixture_keys = set()
+        for item in fixture_data:
+            if "file_metadata" in item and not item.get("deprecated", False):
+                fixture_keys.add(item["file_metadata"]["full_name"])
+            elif not item.get("deprecated", False):
+                # Configuration blueprint
+                blueprint_name = item.get("name")
+                if blueprint_name:
+                    fixture_keys.add(blueprint_name)
+
+        # Check if this fixture contains any file-based blueprints
+        has_file_blueprints = any(
+            "file_metadata" in item and not item.get("deprecated", False)
+            for item in fixture_data
+        )
+
+        # Only perform deprecation logic if the fixture contains file-based blueprints
+        if has_file_blueprints:
+            # Find deprecated blueprints (only for specific namespace if detected)
+            if fixture_namespace:
+                # Find blueprints that exist in DB for this namespace
+                # but are missing from fixture
+                missing_blueprints = self._find_missing_blueprints(
+                    fixture_namespace, fixture_data, existing_blueprints
+                )
+                for missing_bp in missing_blueprints:
+                    if not missing_bp.get("deprecated"):
+                        result.deprecated.append(missing_bp)
+            else:
+                # Legacy behavior: deprecate any non-deprecated blueprint not in fixture
+                # But only if this fixture actually contains file-based blueprints
+                for bp_key, existing_bp in existing_blueprints.items():
+                    if bp_key not in fixture_keys and not existing_bp.get("deprecated"):
+                        # Only deprecate file-based blueprints
+                        if existing_bp.get("blueprint_type") == "model":
+                            # Check if there's already a deprecated entry with this MD5
+                            if existing_bp.get("file_md5"):
+                                existing_deprecated = (
+                                    self._find_deprecated_blueprint_by_md5(
+                                        existing_bp["file_md5"]
+                                    )
+                                )
+                                if not existing_deprecated:
+                                    result.deprecated.append(existing_bp)
+                            else:
+                                result.deprecated.append(existing_bp)
 
         return result
 
@@ -629,6 +787,21 @@ class IncrementalFixturesLoader:
             deprecated_bp: Blueprint to deprecate
             successor_id: Optional ID of the successor blueprint (for version changes)
         """
+        # Check if a deprecated blueprint with this MD5 already exists
+        if deprecated_bp.get("file_md5"):
+            existing_deprecated = self._find_deprecated_blueprint_by_md5(
+                deprecated_bp["file_md5"]
+            )
+            if existing_deprecated:
+                # Skip creating a new deprecated entry
+                if self.verbose:
+                    sys.stderr.write(
+                        f"Skipping deprecation of blueprint {deprecated_bp['id']} "
+                        f"(MD5 {deprecated_bp['file_md5']} already has "
+                        f"deprecated entry: blueprint {existing_deprecated['id']})\n"
+                    )
+                return
+
         blueprint_id = deprecated_bp["id"]
 
         # Remove tags and images for deprecated blueprint

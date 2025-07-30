@@ -15,6 +15,8 @@
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/legacy_sewers.json --upload > ../openforge/db/fixtures/blueprints/legacy_sewers.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/mines.json --upload > ../openforge/db/fixtures/blueprints/mines.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/pool.json --upload > ../openforge/db/fixtures/blueprints/pool.json.next
+./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/rough_stone.json --upload > ../openforge/db/fixtures/blueprints/rough_stone.json.next
+./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/rough_stone_ruined.json --upload > ../openforge/db/fixtures/blueprints/rough_stone_ruined.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/sewers.json --upload > ../openforge/db/fixtures/blueprints/sewers.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/towne.json --upload > ../openforge/db/fixtures/blueprints/towne.json.next
 
