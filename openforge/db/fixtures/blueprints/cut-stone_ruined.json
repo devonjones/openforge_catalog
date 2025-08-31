@@ -969,6 +969,836 @@
     },
     {
         "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T19:47:58.702215+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge.stl",
+            "md5": "f67406ce825fae4ebed3b8a59077fdb3",
+            "size": 12028984
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T19:52:21.304101+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge.stl",
+            "md5": "922870e3009fee4b629f88a7de23e0e1",
+            "size": 17291284
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T19:43:31.433151+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full.2x2.openforge.stl",
+            "md5": "faada240fbe2d0455eef4e69aaa4f488",
+            "size": 15688184
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T19:56:06.864614+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge.stl",
+            "md5": "3cb5d504f32c365b36e87da2be70b86e",
+            "size": 16186684
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T19:58:43.374745+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+low.2x2.openforge.stl",
+            "md5": "6b8a3d18a274b7fb81887179962f6498",
+            "size": 13250884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T20:02:41.004421+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openforge.stl",
+            "md5": "ca50f5407553ad1c70e4368171a17f50",
+            "size": 15269084
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal-full-minimal",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T20:05:49.502006+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openforge.stl",
+            "md5": "40558f490f6cc66a17ce53592df652b8",
+            "size": 77875784
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal-low-minimal",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T20:01:13.129741+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal.2x2.openforge.stl",
+            "md5": "d5faf2cabe24d21fbd046f041419b771",
+            "size": 10339584
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal",
+            "connection|openforge",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:48:12.175939+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
+            "md5": "6f25d1107884232c7a00a981b9a5b1e7",
+            "size": 11901284
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:52:39.585574+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
+            "md5": "a8f538cc951f07289c97f1d2f39d51aa",
+            "size": 17043784
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:43:50.460358+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
+            "md5": "a20daa018864f78a94dd97df0ccf7f1f",
+            "size": 15543384
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:56:21.490561+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
+            "md5": "3a451abfcbb969d81d1a8ef60b0b73a3",
+            "size": 15991084
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:58:56.908540+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
+            "md5": "e60e0dfee06428cf65111bb2930572a5",
+            "size": 13132484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-08-31T19:48:27.258874+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side+dragonlock.stl",
+            "md5": "3b475ad37f4294660d8acfd79341b731",
+            "size": 12406434
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-08-31T19:52:54.929496+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side+dragonlock.stl",
+            "md5": "3632e585c8321f54bffb8db50b2e3745",
+            "size": 17721884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-08-31T19:44:08.364430+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side+dragonlock.stl",
+            "md5": "da2e647eb727bb7b4d1611cf0985803d",
+            "size": 16218484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-08-31T19:56:35.279904+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side+dragonlock.stl",
+            "md5": "2c656dab4a952f33c3f3ba17cdfb5124",
+            "size": 16497184
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-08-31T19:59:12.820835+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side+dragonlock.stl",
+            "md5": "d059679afbafb2a631a7b4ab1244e965",
+            "size": 13472434
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T19:48:46.065397+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full-low.2x2.openlock.stl",
+            "md5": "a3b4bc9b0b4e3a6e645e2022a7133641",
+            "size": 13431584
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T19:53:16.941894+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock.stl",
+            "md5": "8972e8ea3ee51ce338f99df809b84bf8",
+            "size": 15305084
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T19:44:34.554838+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full.2x2.openlock.stl",
+            "md5": "7a1c569286155da5fbf7831767f7e4b4",
+            "size": 17103684
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T19:56:52.384110+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+low-full.2x2.openlock.stl",
+            "md5": "5c8996b5d4ea940f23d9d95349b52a45",
+            "size": 14267184
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T19:59:28.332617+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+low.2x2.openlock.stl",
+            "md5": "cffc9fe9b592400de79087c55fcf979e",
+            "size": 11334284
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T20:02:27.741802+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openlock.stl",
+            "md5": "d28f37efa2e90fc8d944371a48190676",
+            "size": 13317884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal-full-minimal",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T20:06:13.830213+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openlock.stl",
+            "md5": "acf0e189c58088316f8adf3e18fad47e",
+            "size": 97854184
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal-low-minimal",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+minimal.2x2.openlock.stl",
+            "file_modified_at": "2025-08-31T20:01:26.014742+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal.2x2.openlock.stl",
+            "md5": "50f041121b7ffc1d38063f7224b5a0cb",
+            "size": 8574884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|minimal",
+            "connection|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openlock,side.stl",
+            "file_modified_at": "2025-08-31T19:49:01.729109+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openlock,side.stl",
+            "md5": "0ea822d65547e936d5dffffe4871bbfd",
+            "size": 13303484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock,side.stl",
+            "file_modified_at": "2025-08-31T19:53:30.516144+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock,side.stl",
+            "md5": "582f4b9805a039616278f0fc4727485a",
+            "size": 15057784
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openlock,side.stl",
+            "file_modified_at": "2025-08-31T19:45:21.451620+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full.2x2.openlock,side.stl",
+            "md5": "478d666554c4d9b066438f8714fa1bea",
+            "size": 16958284
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openlock,side.stl",
+            "file_modified_at": "2025-08-31T19:57:09.477659+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openlock,side.stl",
+            "md5": "3038974be032a3dd17e8a48ac3de4123",
+            "size": 14071584
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openlock,side.stl",
+            "file_modified_at": "2025-08-31T19:59:42.148512+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+low.2x2.openlock,side.stl",
+            "md5": "0dcb1d48fc06c37b6343854ea646d4a4",
+            "size": 11215884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T15:52:36.543889+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor/cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
+            "md5": "bf5d79a7579c687a80fe281781fa02a4",
+            "size": 48783484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner,collapsing_blocks+a.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T15:59:57.510439+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+a.2x2.openforge.stl",
+            "md5": "4e4da86022d7251b69b18480066dd076",
+            "size": 7883884
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner,collapsing_blocks+b.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T16:04:27.760050+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+b.2x2.openforge.stl",
+            "md5": "193e3c89ffe47d5d1ea44e08bd7b6779",
+            "size": 7297484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|b",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner,collapsing_blocks+c.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T16:06:56.685022+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+c.2x2.openforge.stl",
+            "md5": "3ee5c2da6aac581cbb58dcde8bcbb6cf",
+            "size": 6824484
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|c",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner,collapsing_blocks+d.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T16:09:10.120096+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+d.2x2.openforge.stl",
+            "md5": "d8a05d88c9b81843c2ca7685f7318252",
+            "size": 6685184
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|d",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "cut-stone+ruined#floor+a+internal_corner+s2w.2x2.openforge.stl",
             "file_modified_at": "2025-05-30T16:03:57.555283+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/internal_corner/floor#internal_corner+s2w/cut-stone+ruined#floor+a+internal_corner+s2w.2x2.openforge.stl",
