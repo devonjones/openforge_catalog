@@ -247,6 +247,68 @@ class TestIncrementalScanner:
         )
         assert result["file_metadata"]["md5"] == existing_entry["file_metadata"]["md5"]
 
+    def test_process_existing_file_unchanged_preserves_images(self, tmp_path):
+        """Test that images are preserved when processing unchanged files."""
+        # Create fixture with images
+        fixture_data = [
+            {
+                "type": "model",
+                "file_metadata": {
+                    "full_name": "test/file_with_images.stl",
+                    "file": "file_with_images.stl",
+                    "md5": "abc123def456",
+                    "size": 2000,
+                    "file_modified_at": "2023-06-01T12:00:00+00:00",
+                },
+                "tags": ["shape|wall", "texture|stone"],
+                "config": {},
+                "images": [
+                    {
+                        "image_name": "thumbnail",
+                        "image_url": "https://example.com/thumb1.jpg",
+                    },
+                    {
+                        "image_name": "preview",
+                        "image_url": "https://example.com/preview1.jpg",
+                    },
+                ],
+            }
+        ]
+
+        fixture_file = tmp_path / "fixture_with_images.json"
+        with open(fixture_file, "w") as f:
+            json.dump(fixture_data, f)
+
+        scanner = IncrementalScanner(str(fixture_file))
+
+        # Create test file matching the fixture metadata
+        test_file = tmp_path / "file_with_images.stl"
+        with open(test_file, "w") as f:
+            f.write("x" * 2000)  # Match size in fixture
+
+        # Set modification time to match fixture
+        # 2023-06-01T12:00:00 UTC = 1685620800
+        os.utime(test_file, (1685620800, 1685620800))
+
+        # Process the unchanged file
+        results, file_changed = scanner.process_file(
+            str(test_file),
+            "test/file_with_images.stl",
+            {("shape", "wall"), ("texture", "stone")},
+            {},
+        )
+
+        assert len(results) == 1
+        assert file_changed is False
+
+        # Most importantly: verify images were preserved
+        result = results[0]
+        assert "images" in result
+        assert result["images"] == fixture_data[0]["images"]
+        assert len(result["images"]) == 2
+        assert result["images"][0]["image_name"] == "thumbnail"
+        assert result["images"][1]["image_name"] == "preview"
+
     def test_process_existing_file_changed(self, sample_fixture, sample_files):
         """Test processing existing file that has changed."""
         scanner = IncrementalScanner(sample_fixture)

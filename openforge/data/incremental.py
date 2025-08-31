@@ -390,6 +390,10 @@ class IncrementalScanner:
                         "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {},
                     }
+                    # Preserve images from existing entry if they exist
+                    if "images" in existing_entry:
+                        new_entry["images"] = existing_entry["images"]
+                    # Note: metadata flag will be set later in parse_files_incremental
                     result = [new_entry]
             else:
                 # Copy existing file_metadata but update other fields
@@ -404,6 +408,10 @@ class IncrementalScanner:
                 # The changed field should remain exactly as it was in the
                 # existing entry
                 # The file_metadata.copy() already preserves the original changed field
+
+                # Preserve images from existing entry if they exist
+                if "images" in existing_entry:
+                    new_entry["images"] = existing_entry["images"]
 
                 result = [new_entry]
 
@@ -617,11 +625,8 @@ def parse_files_incremental(
                             )
                         )
                         result["images"] = images
-                    else:
-                        # Use existing thumbnail from fixture
-                        existing_entry = scanner._find_existing_entry(file)
-                        if existing_entry and "images" in existing_entry:
-                            result["images"] = existing_entry["images"]
+                    # Note: If file hasn't changed and images exist, they were already
+                    # preserved in process_file when creating the result entry
 
                 newfiles.append(result)
 
