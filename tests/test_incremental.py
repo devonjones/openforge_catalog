@@ -309,6 +309,84 @@ class TestIncrementalScanner:
         assert result["images"][0]["image_name"] == "thumbnail"
         assert result["images"][1]["image_name"] == "preview"
 
+    def test_process_existing_file_metadata_changed_preserves_images(self, tmp_path):
+        """Test that images are preserved when only file metadata changes."""
+        import hashlib
+
+        # The content and its MD5 must match the fixture
+        content = "this is the test content for metadata change test"
+        actual_md5 = hashlib.md5(content.encode()).hexdigest()
+
+        fixture_data = [
+            {
+                "type": "model",
+                "file_metadata": {
+                    "full_name": "test/file_metadata_change.stl",
+                    "file": "file_metadata_change.stl",
+                    "md5": actual_md5,
+                    "size": 100,  # Deliberately wrong size to trigger _has_file_changed
+                    "file_modified_at": "2023-06-01T12:00:00+00:00",
+                },
+                "tags": ["shape|floor", "texture|rough"],
+                "config": {},
+                "images": [
+                    {
+                        "image_name": "thumbnail",
+                        "image_url": "https://example.com/thumb_metadata.jpg",
+                    },
+                    {
+                        "image_name": "gallery",
+                        "image_url": "https://example.com/gallery_metadata.jpg",
+                    },
+                ],
+            }
+        ]
+
+        fixture_file = tmp_path / "fixture_metadata_change.json"
+        with open(fixture_file, "w") as f:
+            json.dump(fixture_data, f)
+
+        scanner = IncrementalScanner(str(fixture_file))
+
+        # Create test file with the exact content to match MD5
+        test_file = tmp_path / "file_metadata_change.stl"
+        with open(test_file, "w") as f:
+            f.write(content)  # Content matches MD5, but size won't match fixture
+
+        # Set a different modification time to trigger metadata change detection
+        # 2023-07-01T12:00:00 UTC = 1688212800 (different from fixture)
+        os.utime(test_file, (1688212800, 1688212800))
+
+        # Process the file with changed metadata but same content
+        results, file_changed = scanner.process_file(
+            str(test_file),
+            "test/file_metadata_change.stl",
+            {("shape", "floor"), ("texture", "rough")},
+            {},
+        )
+
+        # File should be detected as changed due to metadata
+        assert file_changed is True
+        assert len(results) == 1  # Only one entry since MD5 didn't change
+
+        result = results[0]
+        # MD5 should match the fixture (not recalculated to a different value)
+        assert result["file_metadata"]["md5"] == actual_md5
+
+        # Most importantly: verify images were preserved despite metadata change
+        assert "images" in result
+        assert result["images"] == fixture_data[0]["images"]
+        assert len(result["images"]) == 2
+        assert result["images"][0]["image_name"] == "thumbnail"
+        assert (
+            result["images"][0]["image_url"] == "https://example.com/thumb_metadata.jpg"
+        )
+        assert result["images"][1]["image_name"] == "gallery"
+        assert (
+            result["images"][1]["image_url"]
+            == "https://example.com/gallery_metadata.jpg"
+        )
+
     def test_process_existing_file_changed(self, sample_fixture, sample_files):
         """Test processing existing file that has changed."""
         scanner = IncrementalScanner(sample_fixture)

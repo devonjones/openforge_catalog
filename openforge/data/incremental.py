@@ -210,8 +210,8 @@ class IncrementalScanner:
             existing_modified = existing_metadata.get("modified")
         return existing_modified
 
-    def _preserve_existing_fields(self, new_entry: Dict, existing_entry: Dict) -> None:
-        """Preserve certain fields from existing entry.
+    def _preserve_images(self, new_entry: Dict, existing_entry: Dict) -> None:
+        """Preserve images from an existing entry.
 
         Args:
             new_entry: The new entry being created
@@ -401,8 +401,8 @@ class IncrementalScanner:
                         "tags": _convert_tags_to_pipe_delimited(tags),
                         "config": config or {},
                     }
-                    # Preserve fields from existing entry
-                    self._preserve_existing_fields(new_entry, existing_entry)
+                    # Preserve images from existing entry
+                    self._preserve_images(new_entry, existing_entry)
                     # Note: metadata flag will be set later in parse_files_incremental
                     result = [new_entry]
             else:
@@ -419,8 +419,8 @@ class IncrementalScanner:
                 # existing entry
                 # The file_metadata.copy() already preserves the original changed field
 
-                # Preserve fields from existing entry
-                self._preserve_existing_fields(new_entry, existing_entry)
+                # Preserve images from existing entry
+                self._preserve_images(new_entry, existing_entry)
 
                 result = [new_entry]
 
