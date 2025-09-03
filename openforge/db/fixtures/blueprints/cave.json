@@ -2184,6 +2184,220 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "cave#cave_entrance+squares.6x2.dragonlock.stl",
+            "file_modified_at": "2019-08-24T14:41:20+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance+squares.6x2.dragonlock.stl",
+            "md5": "a37bb8c52f7f33a03101b4870f842099",
+            "size": 35841384,
+            "storage_address": "https://objects.openforge.tools/models/a37bb8/a37bb8c52f7f33a03101b4870f842099.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a37bb8/a37bb8c52f7f33a03101b4870f842099.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "component|cave_entrance|squares",
+            "connection|dragonlock",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance+squares.6x2.openforge.stl",
+            "file_modified_at": "2019-08-23T20:53:48+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance+squares.6x2.openforge.stl",
+            "md5": "21aebd6994d85c5c1f601132202e0b0c",
+            "size": 34789284,
+            "storage_address": "https://objects.openforge.tools/models/21aebd/21aebd6994d85c5c1f601132202e0b0c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/21aebd/21aebd6994d85c5c1f601132202e0b0c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "component|cave_entrance|squares",
+            "connection|openforge",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance+squares.6x2.openlock+side.stl",
+            "file_modified_at": "2019-08-23T22:55:48+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance+squares.6x2.openlock+side.stl",
+            "md5": "262f176ca7e55cfc988407ffb8c91cc9",
+            "size": 36300684,
+            "storage_address": "https://objects.openforge.tools/models/262f17/262f176ca7e55cfc988407ffb8c91cc9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/262f17/262f176ca7e55cfc988407ffb8c91cc9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "component|cave_entrance|squares",
+            "connection|openlock",
+            "connection|openlock|side",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance+squares.6x2.openlock.stl",
+            "file_modified_at": "2019-08-23T22:45:01+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance+squares.6x2.openlock.stl",
+            "md5": "d893adf966b6ea637d3da6aa921421b7",
+            "size": 36444684,
+            "storage_address": "https://objects.openforge.tools/models/d893ad/d893adf966b6ea637d3da6aa921421b7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d893ad/d893adf966b6ea637d3da6aa921421b7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "component|cave_entrance|squares",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance.6x2.dragonlock.stl",
+            "file_modified_at": "2019-08-24T14:44:39+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance.6x2.dragonlock.stl",
+            "md5": "171eb45f2da947f110011e30ad23f2ab",
+            "size": 27411384,
+            "storage_address": "https://objects.openforge.tools/models/171eb4/171eb45f2da947f110011e30ad23f2ab.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/171eb4/171eb45f2da947f110011e30ad23f2ab.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "connection|dragonlock",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance.6x2.openforge.stl",
+            "file_modified_at": "2019-08-23T20:54:58+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance.6x2.openforge.stl",
+            "md5": "a5aa2ae6d5358538e447907aee855cbc",
+            "size": 26359284,
+            "storage_address": "https://objects.openforge.tools/models/a5aa2a/a5aa2ae6d5358538e447907aee855cbc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a5aa2a/a5aa2ae6d5358538e447907aee855cbc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "connection|openforge",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance.6x2.openlock+side.stl",
+            "file_modified_at": "2019-08-23T22:57:27+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance.6x2.openlock+side.stl",
+            "md5": "97074011f030ba88387e5bc46f4ffcb9",
+            "size": 26330784,
+            "storage_address": "https://objects.openforge.tools/models/970740/97074011f030ba88387e5bc46f4ffcb9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/970740/97074011f030ba88387e5bc46f4ffcb9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "connection|openlock",
+            "connection|openlock|side",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave#cave_entrance.6x2.openlock.stl",
+            "file_modified_at": "2019-08-23T22:49:13+00:00",
+            "full_name": "tiles/cave/thick_wall/cave_entrance/cave#cave_entrance.6x2.openlock.stl",
+            "md5": "8182cde8a0b0115a68e64507effd9845",
+            "size": 26392484,
+            "storage_address": "https://objects.openforge.tools/models/8182cd/8182cde8a0b0115a68e64507effd9845.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8182cd/8182cde8a0b0115a68e64507effd9845.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|cave_entrance",
+            "connection|openlock",
+            "size|depth|2",
+            "size|width|6",
+            "texture|cave"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {

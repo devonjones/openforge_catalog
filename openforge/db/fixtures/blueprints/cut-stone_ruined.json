@@ -973,7 +973,8 @@
             "file_modified_at": "2025-08-31T19:47:58.702215+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge.stl",
             "md5": "f67406ce825fae4ebed3b8a59077fdb3",
-            "size": 12028984
+            "size": 12028984,
+            "storage_address": "https://objects.openforge.tools/models/f67406/f67406ce825fae4ebed3b8a59077fdb3.stl"
         },
         "metadata": false,
         "tags": [
@@ -995,7 +996,8 @@
             "file_modified_at": "2025-08-31T19:52:21.304101+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge.stl",
             "md5": "922870e3009fee4b629f88a7de23e0e1",
-            "size": 17291284
+            "size": 17291284,
+            "storage_address": "https://objects.openforge.tools/models/922870/922870e3009fee4b629f88a7de23e0e1.stl"
         },
         "metadata": false,
         "tags": [
@@ -1017,7 +1019,8 @@
             "file_modified_at": "2025-08-31T19:43:31.433151+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+full.2x2.openforge.stl",
             "md5": "faada240fbe2d0455eef4e69aaa4f488",
-            "size": 15688184
+            "size": 15688184,
+            "storage_address": "https://objects.openforge.tools/models/faada2/faada240fbe2d0455eef4e69aaa4f488.stl"
         },
         "metadata": false,
         "tags": [
@@ -1039,7 +1042,8 @@
             "file_modified_at": "2025-08-31T19:56:06.864614+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge.stl",
             "md5": "3cb5d504f32c365b36e87da2be70b86e",
-            "size": 16186684
+            "size": 16186684,
+            "storage_address": "https://objects.openforge.tools/models/3cb5d5/3cb5d504f32c365b36e87da2be70b86e.stl"
         },
         "metadata": false,
         "tags": [
@@ -1061,7 +1065,8 @@
             "file_modified_at": "2025-08-31T19:58:43.374745+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+low.2x2.openforge.stl",
             "md5": "6b8a3d18a274b7fb81887179962f6498",
-            "size": 13250884
+            "size": 13250884,
+            "storage_address": "https://objects.openforge.tools/models/6b8a3d/6b8a3d18a274b7fb81887179962f6498.stl"
         },
         "metadata": false,
         "tags": [
@@ -1083,7 +1088,8 @@
             "file_modified_at": "2025-08-31T20:02:41.004421+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openforge.stl",
             "md5": "ca50f5407553ad1c70e4368171a17f50",
-            "size": 15269084
+            "size": 15269084,
+            "storage_address": "https://objects.openforge.tools/models/ca50f5/ca50f5407553ad1c70e4368171a17f50.stl"
         },
         "metadata": false,
         "tags": [
@@ -1105,7 +1111,8 @@
             "file_modified_at": "2025-08-31T20:05:49.502006+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openforge.stl",
             "md5": "40558f490f6cc66a17ce53592df652b8",
-            "size": 77875784
+            "size": 77875784,
+            "storage_address": "https://objects.openforge.tools/models/40558f/40558f490f6cc66a17ce53592df652b8.stl"
         },
         "metadata": false,
         "tags": [
@@ -1127,7 +1134,8 @@
             "file_modified_at": "2025-08-31T20:01:13.129741+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/cut-stone+ruined#corner,collapsed+minimal.2x2.openforge.stl",
             "md5": "d5faf2cabe24d21fbd046f041419b771",
-            "size": 10339584
+            "size": 10339584,
+            "storage_address": "https://objects.openforge.tools/models/d5faf2/d5faf2cabe24d21fbd046f041419b771.stl"
         },
         "metadata": false,
         "tags": [
@@ -1149,7 +1157,8 @@
             "file_modified_at": "2025-08-31T19:48:12.175939+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
             "md5": "6f25d1107884232c7a00a981b9a5b1e7",
-            "size": 11901284
+            "size": 11901284,
+            "storage_address": "https://objects.openforge.tools/models/6f25d1/6f25d1107884232c7a00a981b9a5b1e7.stl"
         },
         "metadata": false,
         "tags": [
@@ -1173,7 +1182,8 @@
             "file_modified_at": "2025-08-31T19:52:39.585574+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
             "md5": "a8f538cc951f07289c97f1d2f39d51aa",
-            "size": 17043784
+            "size": 17043784,
+            "storage_address": "https://objects.openforge.tools/models/a8f538/a8f538cc951f07289c97f1d2f39d51aa.stl"
         },
         "metadata": false,
         "tags": [
@@ -1197,7 +1207,8 @@
             "file_modified_at": "2025-08-31T19:43:50.460358+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
             "md5": "a20daa018864f78a94dd97df0ccf7f1f",
-            "size": 15543384
+            "size": 15543384,
+            "storage_address": "https://objects.openforge.tools/models/a20daa/a20daa018864f78a94dd97df0ccf7f1f.stl"
         },
         "metadata": false,
         "tags": [
@@ -1221,7 +1232,8 @@
             "file_modified_at": "2025-08-31T19:56:21.490561+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
             "md5": "3a451abfcbb969d81d1a8ef60b0b73a3",
-            "size": 15991084
+            "size": 15991084,
+            "storage_address": "https://objects.openforge.tools/models/3a451a/3a451abfcbb969d81d1a8ef60b0b73a3.stl"
         },
         "metadata": false,
         "tags": [
@@ -1245,7 +1257,8 @@
             "file_modified_at": "2025-08-31T19:58:56.908540+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
             "md5": "e60e0dfee06428cf65111bb2930572a5",
-            "size": 13132484
+            "size": 13132484,
+            "storage_address": "https://objects.openforge.tools/models/e60e0d/e60e0dfee06428cf65111bb2930572a5.stl"
         },
         "metadata": false,
         "tags": [
@@ -1269,7 +1282,8 @@
             "file_modified_at": "2025-08-31T19:48:27.258874+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side+dragonlock.stl",
             "md5": "3b475ad37f4294660d8acfd79341b731",
-            "size": 12406434
+            "size": 12406434,
+            "storage_address": "https://objects.openforge.tools/models/3b475a/3b475ad37f4294660d8acfd79341b731.stl"
         },
         "metadata": false,
         "tags": [
@@ -1293,7 +1307,8 @@
             "file_modified_at": "2025-08-31T19:52:54.929496+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side+dragonlock.stl",
             "md5": "3632e585c8321f54bffb8db50b2e3745",
-            "size": 17721884
+            "size": 17721884,
+            "storage_address": "https://objects.openforge.tools/models/3632e5/3632e585c8321f54bffb8db50b2e3745.stl"
         },
         "metadata": false,
         "tags": [
@@ -1317,7 +1332,8 @@
             "file_modified_at": "2025-08-31T19:44:08.364430+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side+dragonlock.stl",
             "md5": "da2e647eb727bb7b4d1611cf0985803d",
-            "size": 16218484
+            "size": 16218484,
+            "storage_address": "https://objects.openforge.tools/models/da2e64/da2e647eb727bb7b4d1611cf0985803d.stl"
         },
         "metadata": false,
         "tags": [
@@ -1341,7 +1357,8 @@
             "file_modified_at": "2025-08-31T19:56:35.279904+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side+dragonlock.stl",
             "md5": "2c656dab4a952f33c3f3ba17cdfb5124",
-            "size": 16497184
+            "size": 16497184,
+            "storage_address": "https://objects.openforge.tools/models/2c656d/2c656dab4a952f33c3f3ba17cdfb5124.stl"
         },
         "metadata": false,
         "tags": [
@@ -1365,7 +1382,8 @@
             "file_modified_at": "2025-08-31T19:59:12.820835+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side+dragonlock.stl",
             "md5": "d059679afbafb2a631a7b4ab1244e965",
-            "size": 13472434
+            "size": 13472434,
+            "storage_address": "https://objects.openforge.tools/models/d05967/d059679afbafb2a631a7b4ab1244e965.stl"
         },
         "metadata": false,
         "tags": [
@@ -1389,7 +1407,8 @@
             "file_modified_at": "2025-08-31T19:48:46.065397+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full-low.2x2.openlock.stl",
             "md5": "a3b4bc9b0b4e3a6e645e2022a7133641",
-            "size": 13431584
+            "size": 13431584,
+            "storage_address": "https://objects.openforge.tools/models/a3b4bc/a3b4bc9b0b4e3a6e645e2022a7133641.stl"
         },
         "metadata": false,
         "tags": [
@@ -1411,7 +1430,8 @@
             "file_modified_at": "2025-08-31T19:53:16.941894+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock.stl",
             "md5": "8972e8ea3ee51ce338f99df809b84bf8",
-            "size": 15305084
+            "size": 15305084,
+            "storage_address": "https://objects.openforge.tools/models/8972e8/8972e8ea3ee51ce338f99df809b84bf8.stl"
         },
         "metadata": false,
         "tags": [
@@ -1433,7 +1453,8 @@
             "file_modified_at": "2025-08-31T19:44:34.554838+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+full.2x2.openlock.stl",
             "md5": "7a1c569286155da5fbf7831767f7e4b4",
-            "size": 17103684
+            "size": 17103684,
+            "storage_address": "https://objects.openforge.tools/models/7a1c56/7a1c569286155da5fbf7831767f7e4b4.stl"
         },
         "metadata": false,
         "tags": [
@@ -1455,7 +1476,8 @@
             "file_modified_at": "2025-08-31T19:56:52.384110+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+low-full.2x2.openlock.stl",
             "md5": "5c8996b5d4ea940f23d9d95349b52a45",
-            "size": 14267184
+            "size": 14267184,
+            "storage_address": "https://objects.openforge.tools/models/5c8996/5c8996b5d4ea940f23d9d95349b52a45.stl"
         },
         "metadata": false,
         "tags": [
@@ -1477,7 +1499,8 @@
             "file_modified_at": "2025-08-31T19:59:28.332617+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+low.2x2.openlock.stl",
             "md5": "cffc9fe9b592400de79087c55fcf979e",
-            "size": 11334284
+            "size": 11334284,
+            "storage_address": "https://objects.openforge.tools/models/cffc9f/cffc9fe9b592400de79087c55fcf979e.stl"
         },
         "metadata": false,
         "tags": [
@@ -1499,7 +1522,8 @@
             "file_modified_at": "2025-08-31T20:02:27.741802+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal-full-minimal.2x2.openlock.stl",
             "md5": "d28f37efa2e90fc8d944371a48190676",
-            "size": 13317884
+            "size": 13317884,
+            "storage_address": "https://objects.openforge.tools/models/d28f37/d28f37efa2e90fc8d944371a48190676.stl"
         },
         "metadata": false,
         "tags": [
@@ -1521,7 +1545,8 @@
             "file_modified_at": "2025-08-31T20:06:13.830213+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal-low-minimal.2x2.openlock.stl",
             "md5": "acf0e189c58088316f8adf3e18fad47e",
-            "size": 97854184
+            "size": 97854184,
+            "storage_address": "https://objects.openforge.tools/models/acf0e1/acf0e189c58088316f8adf3e18fad47e.stl"
         },
         "metadata": false,
         "tags": [
@@ -1543,7 +1568,8 @@
             "file_modified_at": "2025-08-31T20:01:26.014742+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/cut-stone+ruined#corner,collapsed+minimal.2x2.openlock.stl",
             "md5": "50f041121b7ffc1d38063f7224b5a0cb",
-            "size": 8574884
+            "size": 8574884,
+            "storage_address": "https://objects.openforge.tools/models/50f041/50f041121b7ffc1d38063f7224b5a0cb.stl"
         },
         "metadata": false,
         "tags": [
@@ -1565,7 +1591,8 @@
             "file_modified_at": "2025-08-31T19:49:01.729109+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openlock,side.stl",
             "md5": "0ea822d65547e936d5dffffe4871bbfd",
-            "size": 13303484
+            "size": 13303484,
+            "storage_address": "https://objects.openforge.tools/models/0ea822/0ea822d65547e936d5dffffe4871bbfd.stl"
         },
         "metadata": false,
         "tags": [
@@ -1589,7 +1616,8 @@
             "file_modified_at": "2025-08-31T19:53:30.516144+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openlock,side.stl",
             "md5": "582f4b9805a039616278f0fc4727485a",
-            "size": 15057784
+            "size": 15057784,
+            "storage_address": "https://objects.openforge.tools/models/582f4b/582f4b9805a039616278f0fc4727485a.stl"
         },
         "metadata": false,
         "tags": [
@@ -1613,7 +1641,8 @@
             "file_modified_at": "2025-08-31T19:45:21.451620+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+full.2x2.openlock,side.stl",
             "md5": "478d666554c4d9b066438f8714fa1bea",
-            "size": 16958284
+            "size": 16958284,
+            "storage_address": "https://objects.openforge.tools/models/478d66/478d666554c4d9b066438f8714fa1bea.stl"
         },
         "metadata": false,
         "tags": [
@@ -1637,7 +1666,8 @@
             "file_modified_at": "2025-08-31T19:57:09.477659+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openlock,side.stl",
             "md5": "3038974be032a3dd17e8a48ac3de4123",
-            "size": 14071584
+            "size": 14071584,
+            "storage_address": "https://objects.openforge.tools/models/303897/3038974be032a3dd17e8a48ac3de4123.stl"
         },
         "metadata": false,
         "tags": [
@@ -1661,7 +1691,8 @@
             "file_modified_at": "2025-08-31T19:59:42.148512+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openlock/side/cut-stone+ruined#corner,collapsed+low.2x2.openlock,side.stl",
             "md5": "0dcb1d48fc06c37b6343854ea646d4a4",
-            "size": 11215884
+            "size": 11215884,
+            "storage_address": "https://objects.openforge.tools/models/0dcb1d/0dcb1d48fc06c37b6343854ea646d4a4.stl"
         },
         "metadata": false,
         "tags": [
@@ -1685,7 +1716,8 @@
             "file_modified_at": "2025-08-31T15:52:36.543889+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor/cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
             "md5": "bf5d79a7579c687a80fe281781fa02a4",
-            "size": 48783484
+            "size": 48783484,
+            "storage_address": "https://objects.openforge.tools/models/bf5d79/bf5d79a7579c687a80fe281781fa02a4.stl"
         },
         "metadata": false,
         "tags": [
@@ -1707,7 +1739,8 @@
             "file_modified_at": "2025-08-31T15:59:57.510439+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+a.2x2.openforge.stl",
             "md5": "4e4da86022d7251b69b18480066dd076",
-            "size": 7883884
+            "size": 7883884,
+            "storage_address": "https://objects.openforge.tools/models/4e4da8/4e4da86022d7251b69b18480066dd076.stl"
         },
         "metadata": false,
         "tags": [
@@ -1731,7 +1764,8 @@
             "file_modified_at": "2025-08-31T16:04:27.760050+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+b.2x2.openforge.stl",
             "md5": "193e3c89ffe47d5d1ea44e08bd7b6779",
-            "size": 7297484
+            "size": 7297484,
+            "storage_address": "https://objects.openforge.tools/models/193e3c/193e3c89ffe47d5d1ea44e08bd7b6779.stl"
         },
         "metadata": false,
         "tags": [
@@ -1755,7 +1789,8 @@
             "file_modified_at": "2025-08-31T16:06:56.685022+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+c.2x2.openforge.stl",
             "md5": "3ee5c2da6aac581cbb58dcde8bcbb6cf",
-            "size": 6824484
+            "size": 6824484,
+            "storage_address": "https://objects.openforge.tools/models/3ee5c2/3ee5c2da6aac581cbb58dcde8bcbb6cf.stl"
         },
         "metadata": false,
         "tags": [
@@ -1779,7 +1814,8 @@
             "file_modified_at": "2025-08-31T16:09:10.120096+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+d.2x2.openforge.stl",
             "md5": "d8a05d88c9b81843c2ca7685f7318252",
-            "size": 6685184
+            "size": 6685184,
+            "storage_address": "https://objects.openforge.tools/models/d8a05d/d8a05d88c9b81843c2ca7685f7318252.stl"
         },
         "metadata": false,
         "tags": [

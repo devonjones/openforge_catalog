@@ -27695,5 +27695,3070 @@
             "texture|towne|stucco"
         ],
         "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#corner+internal,floor+a.2x2.openforge.stl",
+            "file_modified_at": "2019-04-09T16:47:37+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/floor/towne%wood#corner+internal,floor+a.2x2.openforge.stl",
+            "md5": "3b1e922200242c24c680b55b526cbef6",
+            "size": 8145584,
+            "storage_address": "https://objects.openforge.tools/models/3b1e92/3b1e922200242c24c680b55b526cbef6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3b1e92/3b1e922200242c24c680b55b526cbef6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|internal",
+            "shape|floor",
+            "shape|floor|a",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#corner+internal,floor+ab.2x2.openforge.stl",
+            "file_modified_at": "2019-04-09T16:47:32+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/floor/towne%wood#corner+internal,floor+ab.2x2.openforge.stl",
+            "md5": "b470db52a527581dfaa26bc33ebe5f76",
+            "size": 7840684,
+            "storage_address": "https://objects.openforge.tools/models/b470db/b470db52a527581dfaa26bc33ebe5f76.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b470db/b470db52a527581dfaa26bc33ebe5f76.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|internal",
+            "shape|floor",
+            "shape|floor|ab",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#corner+internal,floor+abc.2x2.openforge.stl",
+            "file_modified_at": "2019-04-09T16:47:30+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/floor/towne%wood#corner+internal,floor+abc.2x2.openforge.stl",
+            "md5": "070acd25a7603c85f1d5bda33f6c597e",
+            "size": 7497784,
+            "storage_address": "https://objects.openforge.tools/models/070acd/070acd25a7603c85f1d5bda33f6c597e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/070acd/070acd25a7603c85f1d5bda33f6c597e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|internal",
+            "shape|floor",
+            "shape|floor|abc",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#corner+internal,floor+abcd.2x2.openforge.stl",
+            "file_modified_at": "2019-04-09T16:47:27+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/floor/towne%wood#corner+internal,floor+abcd.2x2.openforge.stl",
+            "md5": "5df77dd7c2897ebc86f2ef1c273c34cb",
+            "size": 7152584,
+            "storage_address": "https://objects.openforge.tools/models/5df77d/5df77dd7c2897ebc86f2ef1c273c34cb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5df77d/5df77dd7c2897ebc86f2ef1c273c34cb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|internal",
+            "shape|floor",
+            "shape|floor|abcd",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#corner+internal,floor+ad.2x2.openforge.stl",
+            "file_modified_at": "2019-04-09T16:47:34+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/floor/towne%wood#corner+internal,floor+ad.2x2.openforge.stl",
+            "md5": "5d72f70a631ce96311192d618e945a29",
+            "size": 7800384,
+            "storage_address": "https://objects.openforge.tools/models/5d72f7/5d72f70a631ce96311192d618e945a29.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5d72f7/5d72f70a631ce96311192d618e945a29.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|internal",
+            "shape|floor",
+            "shape|floor|ad",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne#pillar.1x1.openforge.stl",
+            "file_modified_at": "2019-04-09T16:49:34+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/pillar/towne#pillar.1x1.openforge.stl",
+            "md5": "b6cb72f9c9505bdc4404665c4b375b02",
+            "size": 4784984,
+            "storage_address": "https://objects.openforge.tools/models/b6cb72/b6cb72f9c9505bdc4404665c4b375b02.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b6cb72/b6cb72f9c9505bdc4404665c4b375b02.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|pillar",
+            "connection|openforge",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne#pillar+low.1x1.openforge.stl",
+            "file_modified_at": "2019-04-09T16:49:18+00:00",
+            "full_name": "tiles/towne/wall_on_tile/corner+internal/pillar+low/towne#pillar+low.1x1.openforge.stl",
+            "md5": "0158c1d6f70e8835e531ea4b846c2c55",
+            "size": 2270884,
+            "storage_address": "https://objects.openforge.tools/models/0158c1/0158c1d6f70e8835e531ea4b846c2c55.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0158c1/0158c1d6f70e8835e531ea4b846c2c55.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|pillar",
+            "component|pillar|low",
+            "connection|openforge",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+a.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:18+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor+a.1x1.openforge.stl",
+            "md5": "341e31460894350d8a0eb8b16179eba1",
+            "size": 1127034,
+            "storage_address": "https://objects.openforge.tools/models/341e31/341e31460894350d8a0eb8b16179eba1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/341e31/341e31460894350d8a0eb8b16179eba1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|a",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+b.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:21+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor+b.1x1.openforge.stl",
+            "md5": "0c3eebf69a99afa05b4724ca4ddaa726",
+            "size": 1127034,
+            "storage_address": "https://objects.openforge.tools/models/0c3eeb/0c3eebf69a99afa05b4724ca4ddaa726.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0c3eeb/0c3eebf69a99afa05b4724ca4ddaa726.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|b",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:51+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor.2x2.openforge.stl",
+            "md5": "a66104a898e2a01df9a4d63f9a558594",
+            "size": 4393584,
+            "storage_address": "https://objects.openforge.tools/models/a66104/a66104a898e2a01df9a4d63f9a558594.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a66104/a66104a898e2a01df9a4d63f9a558594.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor.2x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:19:33+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor.2x4.openforge.stl",
+            "md5": "62d62e4263c3c6e635fdd20cd2d38a8a",
+            "size": 21263634,
+            "storage_address": "https://objects.openforge.tools/models/62d62e/62d62e4263c3c6e635fdd20cd2d38a8a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/62d62e/62d62e4263c3c6e635fdd20cd2d38a8a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:20:52+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor.3x3.openforge.stl",
+            "md5": "883de9c0ee0e735011dc75d325a970af",
+            "size": 21212134,
+            "storage_address": "https://objects.openforge.tools/models/883de9/883de9c0ee0e735011dc75d325a970af.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/883de9/883de9c0ee0e735011dc75d325a970af.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:22:30+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor.4x2.openforge.stl",
+            "md5": "f847fbfe54a83e221ffbd2657fd57cfc",
+            "size": 21263634,
+            "storage_address": "https://objects.openforge.tools/models/f847fb/f847fbfe54a83e221ffbd2657fd57cfc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f847fb/f847fbfe54a83e221ffbd2657fd57cfc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:26:17+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor/towne%wood#floor.4x4.openforge.stl",
+            "md5": "8dc21fe7894e89e470ae81215f0b6407",
+            "size": 41347434,
+            "storage_address": "https://objects.openforge.tools/models/8dc21f/8dc21fe7894e89e470ae81215f0b6407.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8dc21f/8dc21fe7894e89e470ae81215f0b6407.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave+a.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:27+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave+a.1x1.openforge.stl",
+            "md5": "8056578b40eaa2e62ff2a96a66b0d500",
+            "size": 1482384,
+            "storage_address": "https://objects.openforge.tools/models/805657/8056578b40eaa2e62ff2a96a66b0d500.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/805657/8056578b40eaa2e62ff2a96a66b0d500.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|a",
+            "shape|floor|concave",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave+b.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:31+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave+b.1x1.openforge.stl",
+            "md5": "1bbef949554835218f880c144f9059bf",
+            "size": 1482384,
+            "storage_address": "https://objects.openforge.tools/models/1bbef9/1bbef949554835218f880c144f9059bf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1bbef9/1bbef949554835218f880c144f9059bf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|b",
+            "shape|floor|concave",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:17:37+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave.2x2.openforge.stl",
+            "md5": "ba8832c50b7c2a9aaed2cda84cc30545",
+            "size": 1920884,
+            "storage_address": "https://objects.openforge.tools/models/ba8832/ba8832c50b7c2a9aaed2cda84cc30545.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ba8832/ba8832c50b7c2a9aaed2cda84cc30545.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|concave",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave.2x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:18:31+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave.2x4.openforge.stl",
+            "md5": "d8bcf36911f2d577ffecfb6a0bf62193",
+            "size": 13066334,
+            "storage_address": "https://objects.openforge.tools/models/d8bcf3/d8bcf36911f2d577ffecfb6a0bf62193.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d8bcf3/d8bcf36911f2d577ffecfb6a0bf62193.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|concave",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:19:49+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave.3x3.openforge.stl",
+            "md5": "23147d34dc4a9acb109d87103f7a5eb8",
+            "size": 4320084,
+            "storage_address": "https://objects.openforge.tools/models/23147d/23147d34dc4a9acb109d87103f7a5eb8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/23147d/23147d34dc4a9acb109d87103f7a5eb8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|concave",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:21:33+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave.4x2.openforge.stl",
+            "md5": "7e23582fab19c69a922c12e503473a2e",
+            "size": 13066334,
+            "storage_address": "https://objects.openforge.tools/models/7e2358/7e23582fab19c69a922c12e503473a2e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7e2358/7e23582fab19c69a922c12e503473a2e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|concave",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "towne%wood#floor+concave.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:23:28+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/floor+concave/towne%wood#floor+concave.4x4.openforge.stl",
+            "md5": "3b52d53e15062c49c48cfe4467acaaeb",
+            "size": 19961334,
+            "storage_address": "https://objects.openforge.tools/models/3b52d5/3b52d53e15062c49c48cfe4467acaaeb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3b52d5/3b52d53e15062c49c48cfe4467acaaeb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|concave",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|wood"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+a#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:31:50+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%ruined_stucco+a#wall.2x2.openforge.stl",
+            "md5": "d24a9b3038c97feae9d4c734684f7828",
+            "size": 18144384,
+            "storage_address": "https://objects.openforge.tools/models/d24a9b/d24a9b3038c97feae9d4c734684f7828.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d24a9b/d24a9b3038c97feae9d4c734684f7828.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|a"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+b#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:32:55+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%ruined_stucco+b#wall.2x2.openforge.stl",
+            "md5": "20c1d5e7a1cbafe7435715fee278a280",
+            "size": 14361884,
+            "storage_address": "https://objects.openforge.tools/models/20c1d5/20c1d5e7a1cbafe7435715fee278a280.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/20c1d5/20c1d5e7a1cbafe7435715fee278a280.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|b"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+c#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:34:32+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%ruined_stucco+c#wall.2x2.openforge.stl",
+            "md5": "c3903f8d0fafb8b9fa0c0d44afe233c1",
+            "size": 17885334,
+            "storage_address": "https://objects.openforge.tools/models/c3903f/c3903f8d0fafb8b9fa0c0d44afe233c1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c3903f/c3903f8d0fafb8b9fa0c0d44afe233c1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|c"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+d#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:35:34+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%ruined_stucco+d#wall.2x2.openforge.stl",
+            "md5": "a9cc02f81a27a82d6787624cb708b8cc",
+            "size": 14436084,
+            "storage_address": "https://objects.openforge.tools/models/a9cc02/a9cc02f81a27a82d6787624cb708b8cc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a9cc02/a9cc02f81a27a82d6787624cb708b8cc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|d"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:27:37+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.1x1.openforge.stl",
+            "md5": "78c3437f519b4949c9a9e74df3eae240",
+            "size": 10853084,
+            "storage_address": "https://objects.openforge.tools/models/78c343/78c3437f519b4949c9a9e74df3eae240.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/78c343/78c3437f519b4949c9a9e74df3eae240.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:36:54+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.2x2.openforge.stl",
+            "md5": "59470f9c8049418a70bb26649776d996",
+            "size": 15702284,
+            "storage_address": "https://objects.openforge.tools/models/59470f/59470f9c8049418a70bb26649776d996.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/59470f/59470f9c8049418a70bb26649776d996.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.2x4.openforge.stl",
+            "file_modified_at": "2020-06-22T14:03:44+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.2x4.openforge.stl",
+            "md5": "3c4c52723faf48791cee2d99b5ed6de5",
+            "size": 29584384,
+            "storage_address": "https://objects.openforge.tools/models/3c4c52/3c4c52723faf48791cee2d99b5ed6de5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3c4c52/3c4c52723faf48791cee2d99b5ed6de5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:47:53+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.3x3.openforge.stl",
+            "md5": "eb68948f7d32a224d26be879adc2c7da",
+            "size": 26938684,
+            "storage_address": "https://objects.openforge.tools/models/eb6894/eb68948f7d32a224d26be879adc2c7da.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/eb6894/eb68948f7d32a224d26be879adc2c7da.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T19:00:41+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.4x2.openforge.stl",
+            "md5": "d05bc1229f3f1558e1732ff668199ffd",
+            "size": 29584384,
+            "storage_address": "https://objects.openforge.tools/models/d05bc1/d05bc1229f3f1558e1732ff668199ffd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d05bc1/d05bc1229f3f1558e1732ff668199ffd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:12:46+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone#wall.4x4.openforge.stl",
+            "md5": "a7eee09e20bef48f9301ec8bc3eeb3a6",
+            "size": 30316084,
+            "storage_address": "https://objects.openforge.tools/models/a7eee0/a7eee09e20bef48f9301ec8bc3eeb3a6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a7eee0/a7eee09e20bef48f9301ec8bc3eeb3a6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:28:20+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.1x1.openforge.stl",
+            "md5": "24655147fdf56a4c93e82e88ba82e92b",
+            "size": 10179784,
+            "storage_address": "https://objects.openforge.tools/models/246551/24655147fdf56a4c93e82e88ba82e92b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/246551/24655147fdf56a4c93e82e88ba82e92b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:38:16+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.2x2.openforge.stl",
+            "md5": "7174182dcb3c9288ad076a6181cc2285",
+            "size": 14436784,
+            "storage_address": "https://objects.openforge.tools/models/717418/7174182dcb3c9288ad076a6181cc2285.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/717418/7174182dcb3c9288ad076a6181cc2285.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.2x4.openforge.stl",
+            "file_modified_at": "2020-06-22T14:04:12+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.2x4.openforge.stl",
+            "md5": "42be8a628311f494b4416976ce74c243",
+            "size": 27230984,
+            "storage_address": "https://objects.openforge.tools/models/42be8a/42be8a628311f494b4416976ce74c243.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/42be8a/42be8a628311f494b4416976ce74c243.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:50:56+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.3x3.openforge.stl",
+            "md5": "548da92a1540c4ec2393cd76a9a5a7e4",
+            "size": 26456784,
+            "storage_address": "https://objects.openforge.tools/models/548da9/548da92a1540c4ec2393cd76a9a5a7e4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/548da9/548da92a1540c4ec2393cd76a9a5a7e4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T19:01:28+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.4x2.openforge.stl",
+            "md5": "0d09c2b65e5a8a0a9d7ab06b6724ad7d",
+            "size": 27230984,
+            "storage_address": "https://objects.openforge.tools/models/0d09c2/0d09c2b65e5a8a0a9d7ab06b6724ad7d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0d09c2/0d09c2b65e5a8a0a9d7ab06b6724ad7d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:15:22+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stone+stucco#wall.4x4.openforge.stl",
+            "md5": "9170e77cb981ebb1c8720312cce4c7b5",
+            "size": 27783184,
+            "storage_address": "https://objects.openforge.tools/models/9170e7/9170e77cb981ebb1c8720312cce4c7b5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9170e7/9170e77cb981ebb1c8720312cce4c7b5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:29:05+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.1x1.openforge.stl",
+            "md5": "5de62b5d231e0f2159e8bbacfbb1c928",
+            "size": 10990484,
+            "storage_address": "https://objects.openforge.tools/models/5de62b/5de62b5d231e0f2159e8bbacfbb1c928.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5de62b/5de62b5d231e0f2159e8bbacfbb1c928.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:39:37+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.2x2.openforge.stl",
+            "md5": "952c332a72419cbd7cde866345e0f63f",
+            "size": 14285884,
+            "storage_address": "https://objects.openforge.tools/models/952c33/952c332a72419cbd7cde866345e0f63f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/952c33/952c332a72419cbd7cde866345e0f63f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.2x4.openforge.stl",
+            "file_modified_at": "2020-06-22T14:04:54+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.2x4.openforge.stl",
+            "md5": "71ed013feb060e803e69015ecc7006f6",
+            "size": 26891084,
+            "storage_address": "https://objects.openforge.tools/models/71ed01/71ed013feb060e803e69015ecc7006f6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/71ed01/71ed013feb060e803e69015ecc7006f6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:53:53+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.3x3.openforge.stl",
+            "md5": "cfaa7746d5875a332536e2898daf3a61",
+            "size": 25446284,
+            "storage_address": "https://objects.openforge.tools/models/cfaa77/cfaa7746d5875a332536e2898daf3a61.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cfaa77/cfaa7746d5875a332536e2898daf3a61.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T19:02:33+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.4x2.openforge.stl",
+            "md5": "656dec51e00835512ac9bd6d35889c7d",
+            "size": 26891084,
+            "storage_address": "https://objects.openforge.tools/models/656dec/656dec51e00835512ac9bd6d35889c7d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/656dec/656dec51e00835512ac9bd6d35889c7d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:17:53+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco#wall.4x4.openforge.stl",
+            "md5": "136cf693501036280b8ae97f38b433d4",
+            "size": 27426084,
+            "storage_address": "https://objects.openforge.tools/models/136cf6/136cf693501036280b8ae97f38b433d4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/136cf6/136cf693501036280b8ae97f38b433d4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:29:46+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.1x1.openforge.stl",
+            "md5": "5377e0fef8e181438437e7551379bd57",
+            "size": 11425884,
+            "storage_address": "https://objects.openforge.tools/models/5377e0/5377e0fef8e181438437e7551379bd57.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5377e0/5377e0fef8e181438437e7551379bd57.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:41:06+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.2x2.openforge.stl",
+            "md5": "8a0ccd9d042cd619f96991a0844b0c2b",
+            "size": 15388884,
+            "storage_address": "https://objects.openforge.tools/models/8a0ccd/8a0ccd9d042cd619f96991a0844b0c2b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8a0ccd/8a0ccd9d042cd619f96991a0844b0c2b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.2x4.openforge.stl",
+            "file_modified_at": "2020-06-22T14:05:48+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.2x4.openforge.stl",
+            "md5": "bf896aadc5eb99037b52d87d960105f9",
+            "size": 29244484,
+            "storage_address": "https://objects.openforge.tools/models/bf896a/bf896aadc5eb99037b52d87d960105f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bf896a/bf896aadc5eb99037b52d87d960105f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:56:20+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.3x3.openforge.stl",
+            "md5": "badf5d302d80afdfe73aecdcf127ce5e",
+            "size": 26700184,
+            "storage_address": "https://objects.openforge.tools/models/badf5d/badf5d302d80afdfe73aecdcf127ce5e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/badf5d/badf5d302d80afdfe73aecdcf127ce5e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T19:05:44+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.4x2.openforge.stl",
+            "md5": "2a6be90f35b8acc3cd34244244a8556f",
+            "size": 29244484,
+            "storage_address": "https://objects.openforge.tools/models/2a6be9/2a6be90f35b8acc3cd34244244a8556f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2a6be9/2a6be90f35b8acc3cd34244244a8556f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:20:37+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall/towne%stucco+stone#wall.4x4.openforge.stl",
+            "md5": "385de6c4877ce0673efa4f5754344ac3",
+            "size": 29958984,
+            "storage_address": "https://objects.openforge.tools/models/385de6/385de6c4877ce0673efa4f5754344ac3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/385de6/385de6c4877ce0673efa4f5754344ac3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:26:34+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.1x1.openforge.stl",
+            "md5": "049ecddd00fbcf4b72025e5f11b347d4",
+            "size": 3971384,
+            "storage_address": "https://objects.openforge.tools/models/049ecd/049ecddd00fbcf4b72025e5f11b347d4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/049ecd/049ecddd00fbcf4b72025e5f11b347d4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:30:05+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.2x2.openforge.stl",
+            "md5": "98f23bffb410f52aa6cd343e2107ed09",
+            "size": 5767084,
+            "storage_address": "https://objects.openforge.tools/models/98f23b/98f23bffb410f52aa6cd343e2107ed09.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/98f23b/98f23bffb410f52aa6cd343e2107ed09.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.2x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:42:20+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.2x4.openforge.stl",
+            "md5": "f74bedf3ed5fc6d11f2f4f3b7b0b2850",
+            "size": 11598684,
+            "storage_address": "https://objects.openforge.tools/models/f74bed/f74bedf3ed5fc6d11f2f4f3b7b0b2850.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f74bed/f74bedf3ed5fc6d11f2f4f3b7b0b2850.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:44:24+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.3x3.openforge.stl",
+            "md5": "8afd8c60746ab931125ca68622b5595b",
+            "size": 8962684,
+            "storage_address": "https://objects.openforge.tools/models/8afd8c/8afd8c60746ab931125ca68622b5595b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8afd8c/8afd8c60746ab931125ca68622b5595b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:57:17+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.4x2.openforge.stl",
+            "md5": "8d87bfe9f49fe969b3d104df1a38d7a7",
+            "size": 11598684,
+            "storage_address": "https://objects.openforge.tools/models/8d87bf/8d87bfe9f49fe969b3d104df1a38d7a7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8d87bf/8d87bfe9f49fe969b3d104df1a38d7a7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:07:41+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stone#wall+low.4x4.openforge.stl",
+            "md5": "e15c936a2064f1b7d8265d963447c595",
+            "size": 11507084,
+            "storage_address": "https://objects.openforge.tools/models/e15c93/e15c936a2064f1b7d8265d963447c595.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e15c93/e15c936a2064f1b7d8265d963447c595.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.1x1.openforge.stl",
+            "file_modified_at": "2020-06-19T18:26:53+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.1x1.openforge.stl",
+            "md5": "709ca7e87edbfcf6eec1f991e4d9caf1",
+            "size": 4803684,
+            "storage_address": "https://objects.openforge.tools/models/709ca7/709ca7e87edbfcf6eec1f991e4d9caf1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/709ca7/709ca7e87edbfcf6eec1f991e4d9caf1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|1",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.2x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:30:22+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.2x2.openforge.stl",
+            "md5": "9dc98f7d34c7181a2054ec3a09ea71a5",
+            "size": 5641684,
+            "storage_address": "https://objects.openforge.tools/models/9dc98f/9dc98f7d34c7181a2054ec3a09ea71a5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9dc98f/9dc98f7d34c7181a2054ec3a09ea71a5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|2",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.2x4.openforge.stl",
+            "file_modified_at": "2020-06-19T18:43:34+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.2x4.openforge.stl",
+            "md5": "9028c34613041e971abf5f23a2ab74e1",
+            "size": 11287584,
+            "storage_address": "https://objects.openforge.tools/models/9028c3/9028c34613041e971abf5f23a2ab74e1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9028c3/9028c34613041e971abf5f23a2ab74e1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|4",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.3x3.openforge.stl",
+            "file_modified_at": "2020-06-19T18:45:18+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.3x3.openforge.stl",
+            "md5": "1ff8a4f32365646d046df2167db6f59a",
+            "size": 8663784,
+            "storage_address": "https://objects.openforge.tools/models/1ff8a4/1ff8a4f32365646d046df2167db6f59a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1ff8a4/1ff8a4f32365646d046df2167db6f59a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|3",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.4x2.openforge.stl",
+            "file_modified_at": "2020-06-19T18:58:15+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.4x2.openforge.stl",
+            "md5": "c2ef866c7b907fbe366133927b01c7a6",
+            "size": 11287584,
+            "storage_address": "https://objects.openforge.tools/models/c2ef86/c2ef866c7b907fbe366133927b01c7a6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c2ef86/c2ef866c7b907fbe366133927b01c7a6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|2",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low.4x4.openforge.stl",
+            "file_modified_at": "2020-06-19T19:09:55+00:00",
+            "full_name": "tiles/towne/wall_on_tile/curved/wall+low/towne%stucco#wall+low.4x4.openforge.stl",
+            "md5": "ca8eec2888e22422108e4596d413cf75",
+            "size": 11149284,
+            "storage_address": "https://objects.openforge.tools/models/ca8eec/ca8eec2888e22422108e4596d413cf75.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ca8eec/ca8eec2888e22422108e4596d413cf75.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|4",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne#wall,secret_door+frame.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T21:44:51.068746+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne#wall,secret_door+frame.2x.openforge.stl",
+            "md5": "61ad39f06d8ddadeb185b0945c704b24",
+            "size": 8172184,
+            "storage_address": "https://objects.openforge.tools/models/61ad39/61ad39f06d8ddadeb185b0945c704b24.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/61ad39/61ad39f06d8ddadeb185b0945c704b24.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|secret_door|frame",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%broken_stucco+a#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:39:31.703189+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%broken_stucco+a#wall,secret_door.2x.openforge.stl",
+            "md5": "03ab8511cbc6c28f1a3c096a11359048",
+            "size": 9067484,
+            "storage_address": "https://objects.openforge.tools/models/03ab85/03ab8511cbc6c28f1a3c096a11359048.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/03ab85/03ab8511cbc6c28f1a3c096a11359048.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|broken_stucco",
+            "texture|towne|broken_stucco|a"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%broken_stucco+b#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:39:54.796325+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%broken_stucco+b#wall,secret_door.2x.openforge.stl",
+            "md5": "619a164fae325e30dd5922906d2d3ff0",
+            "size": 6475684,
+            "storage_address": "https://objects.openforge.tools/models/619a16/619a164fae325e30dd5922906d2d3ff0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/619a16/619a164fae325e30dd5922906d2d3ff0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|broken_stucco",
+            "texture|towne|broken_stucco|b"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:40:16.693214+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%stone#wall,secret_door.2x.openforge.stl",
+            "md5": "6695215a45b6efdd0b51a058e62859f0",
+            "size": 7126384,
+            "storage_address": "https://objects.openforge.tools/models/669521/6695215a45b6efdd0b51a058e62859f0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/669521/6695215a45b6efdd0b51a058e62859f0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone+stucco#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:41:37.548153+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%stone+stucco#wall,secret_door.2x.openforge.stl",
+            "md5": "73fb19a7aa5362221dbc38027cfdcdf4",
+            "size": 6050784,
+            "storage_address": "https://objects.openforge.tools/models/73fb19/73fb19a7aa5362221dbc38027cfdcdf4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/73fb19/73fb19a7aa5362221dbc38027cfdcdf4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone",
+            "texture|towne|stone|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:41:16.857163+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%stucco#wall,secret_door.2x.openforge.stl",
+            "md5": "503ee05fd66d6fec7573ec8b1b373f80",
+            "size": 5958084,
+            "storage_address": "https://objects.openforge.tools/models/503ee0/503ee05fd66d6fec7573ec8b1b373f80.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/503ee0/503ee05fd66d6fec7573ec8b1b373f80.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco+stone#wall,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:40:42.136739+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door/towne%stucco+stone#wall,secret_door.2x.openforge.stl",
+            "md5": "4fbd80b6e92384986ebaf7fb3007887b",
+            "size": 7033684,
+            "storage_address": "https://objects.openforge.tools/models/4fbd80/4fbd80b6e92384986ebaf7fb3007887b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4fbd80/4fbd80b6e92384986ebaf7fb3007887b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco",
+            "texture|towne|stucco|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne#wall+low,secret_door+frame.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T21:45:12.203895+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door+low/towne#wall+low,secret_door+frame.2x.openforge.stl",
+            "md5": "cb33eb4d5ab1927ca5fcd3e4722575a5",
+            "size": 1333784,
+            "storage_address": "https://objects.openforge.tools/models/cb33eb/cb33eb4d5ab1927ca5fcd3e4722575a5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cb33eb/cb33eb4d5ab1927ca5fcd3e4722575a5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|secret_door|frame",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%broken_stucco+a#wall+low,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:33:50.899472+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door+low/towne%broken_stucco+a#wall+low,secret_door.2x.openforge.stl",
+            "md5": "469f250234cfd6be71a3ddc8bee84353",
+            "size": 4100184,
+            "storage_address": "https://objects.openforge.tools/models/469f25/469f250234cfd6be71a3ddc8bee84353.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/469f25/469f250234cfd6be71a3ddc8bee84353.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|broken_stucco",
+            "texture|towne|broken_stucco|a"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%broken_stucco+b#wall+low,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:33:34.796760+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door+low/towne%broken_stucco+b#wall+low,secret_door.2x.openforge.stl",
+            "md5": "e5e569c096dacbba60dbac2b247651d0",
+            "size": 3011684,
+            "storage_address": "https://objects.openforge.tools/models/e5e569/e5e569c096dacbba60dbac2b247651d0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e5e569/e5e569c096dacbba60dbac2b247651d0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|broken_stucco",
+            "texture|towne|broken_stucco|b"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall+low,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:33:21.243404+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door+low/towne%stone#wall+low,secret_door.2x.openforge.stl",
+            "md5": "6667d555552ed7a9deafc7b2a889c245",
+            "size": 3050584,
+            "storage_address": "https://objects.openforge.tools/models/6667d5/6667d555552ed7a9deafc7b2a889c245.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6667d5/6667d555552ed7a9deafc7b2a889c245.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall+low,secret_door.2x.openforge.stl",
+            "file_modified_at": "2021-01-24T22:33:06.884509+00:00",
+            "full_name": "tiles/towne/wall_on_tile/secret_door+low/towne%stucco#wall+low,secret_door.2x.openforge.stl",
+            "md5": "e00509587e24fed1881c5432269e852b",
+            "size": 2957884,
+            "storage_address": "https://objects.openforge.tools/models/e00509/e00509587e24fed1881c5432269e852b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e00509/e00509587e24fed1881c5432269e852b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|secret_door",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+a#wall,window.2x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:26:23+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%ruined_stucco+a#wall,window.2x.openforge.stl",
+            "md5": "90d8884776c8a9024a7dc8457c239ad0",
+            "size": 13521684,
+            "storage_address": "https://objects.openforge.tools/models/90d888/90d8884776c8a9024a7dc8457c239ad0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/90d888/90d8884776c8a9024a7dc8457c239ad0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|a"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%ruined_stucco+b#wall,window.2x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:26:54+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%ruined_stucco+b#wall,window.2x.openforge.stl",
+            "md5": "1f0fb0423be6b64cc1296d4956d9f1f2",
+            "size": 12414684,
+            "storage_address": "https://objects.openforge.tools/models/1f0fb0/1f0fb0423be6b64cc1296d4956d9f1f2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1f0fb0/1f0fb0423be6b64cc1296d4956d9f1f2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|ruined_stucco",
+            "texture|towne|ruined_stucco|b"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall,window.1x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:25:23+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stone#wall,window.1x.openforge.stl",
+            "md5": "010ba847a507d04580cbdb084264d53c",
+            "size": 10791284,
+            "storage_address": "https://objects.openforge.tools/models/010ba8/010ba847a507d04580cbdb084264d53c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/010ba8/010ba847a507d04580cbdb084264d53c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall,window.2x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:27:27+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stone#wall,window.2x.openforge.stl",
+            "md5": "b9a826f69b36553fd7ecf9590c314dc9",
+            "size": 12509884,
+            "storage_address": "https://objects.openforge.tools/models/b9a826/b9a826f69b36553fd7ecf9590c314dc9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b9a826/b9a826f69b36553fd7ecf9590c314dc9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall,window.3x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:28:47+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stone#wall,window.3x.openforge.stl",
+            "md5": "7ebe150292f7d351a8271bfc04fbb5da",
+            "size": 18113284,
+            "storage_address": "https://objects.openforge.tools/models/7ebe15/7ebe150292f7d351a8271bfc04fbb5da.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7ebe15/7ebe150292f7d351a8271bfc04fbb5da.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stone#wall,window.4x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:30:44+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stone#wall,window.4x.openforge.stl",
+            "md5": "7c5b8bc32a8bbcd6d655b45a35df0f8e",
+            "size": 23852184,
+            "storage_address": "https://objects.openforge.tools/models/7c5b8b/7c5b8bc32a8bbcd6d655b45a35df0f8e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7c5b8b/7c5b8bc32a8bbcd6d655b45a35df0f8e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall,window.1x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:25:51+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stucco#wall,window.1x.openforge.stl",
+            "md5": "e79c7726948e04729746c1b8b799440d",
+            "size": 11649284,
+            "storage_address": "https://objects.openforge.tools/models/e79c77/e79c7726948e04729746c1b8b799440d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e79c77/e79c7726948e04729746c1b8b799440d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall,window.2x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:27:59+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stucco#wall,window.2x.openforge.stl",
+            "md5": "371aa9f19d8aacde7eb6cc928f6c52ea",
+            "size": 12392084,
+            "storage_address": "https://objects.openforge.tools/models/371aa9/371aa9f19d8aacde7eb6cc928f6c52ea.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/371aa9/371aa9f19d8aacde7eb6cc928f6c52ea.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall,window.3x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:29:36+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stucco#wall,window.3x.openforge.stl",
+            "md5": "e9e751fc2ff427cb6d3141d29c748509",
+            "size": 17692284,
+            "storage_address": "https://objects.openforge.tools/models/e9e751/e9e751fc2ff427cb6d3141d29c748509.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e9e751/e9e751fc2ff427cb6d3141d29c748509.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "towne%stucco#wall,window.4x.openforge.stl",
+            "file_modified_at": "2020-06-24T01:31:42+00:00",
+            "full_name": "tiles/towne/wall_on_tile/window/towne%stucco#wall,window.4x.openforge.stl",
+            "md5": "addfce87eb5dc716524da183c3e91944",
+            "size": 23501284,
+            "storage_address": "https://objects.openforge.tools/models/addfce/addfce87eb5dc716524da183c3e91944.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/addfce/addfce87eb5dc716524da183c3e91944.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|window",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|towne",
+            "texture|towne|stucco"
+        ],
+        "type": "model"
     }
 ]

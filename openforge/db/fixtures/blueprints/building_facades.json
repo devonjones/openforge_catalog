@@ -819,32 +819,6 @@
         "type": "model"
     },
     {
-        "deprecated": true,
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2021-06-28T09:51:10.741293",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|I",
-            "size|openlock|I",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
         "file_metadata": {
             "file": "ironbound_wood#column.col+I.openlock.stl",
             "file_modified_at": "2025-07-06T22:29:05.528133+00:00",
@@ -920,6 +894,32 @@
         "type": "model"
     },
     {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+T.openlock.stl",
+            "file_modified_at": "2021-06-28T11:23:43.346098",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
+            "md5": "b7834eef0693d05cf7559cb52bf2b66b",
+            "size": 5874584,
+            "storage_address": "https://objects.openforge.tools/models/b7834e/b7834eef0693d05cf7559cb52bf2b66b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b7834e/b7834eef0693d05cf7559cb52bf2b66b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|T",
+            "size|openlock|T",
+            "texture|ironbound_wood"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "ironbound_wood#column.col+T.openlock.stl",
             "file_modified_at": "2025-07-07T04:47:17.299541+00:00",
@@ -940,6 +940,32 @@
             "shape|column",
             "size|column_shape|T",
             "size|openlock|T",
+            "texture|ironbound_wood"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+X.openlock.stl",
+            "file_modified_at": "2021-06-28T09:10:24.643360",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
+            "md5": "c361239d1cc7c41a34848f80536bd59d",
+            "size": 3739584,
+            "storage_address": "https://objects.openforge.tools/models/c36123/c361239d1cc7c41a34848f80536bd59d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|X",
+            "size|openlock|X",
             "texture|ironbound_wood"
         ],
         "type": "model"
@@ -13806,6 +13832,32 @@
             "size|depth|6",
             "size|width|6",
             "texture|towne"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+I.openlock.stl",
+            "file_modified_at": "2021-06-28T09:51:10.741293",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
+            "md5": "be93fd95db6e7e373b851f47b39ce279",
+            "size": 9269884,
+            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|I",
+            "size|openlock|I",
+            "texture|ironbound_wood"
         ],
         "type": "model"
     },
