@@ -749,6 +749,140 @@
                             }
                         ]
                     }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor,collapsed_block+a.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:02:47.535009+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/floors/floor%block+collapsed_blocks/openforge/dungeon_stone+ruined%block#floor,collapsed_block+a.2x2.openforge.stl",
+            "md5": "da299bcdd6d42261738ce348b70caf7f",
+            "size": 11380284,
+            "storage_address": "https://objects.openforge.tools/models/da299b/da299bcdd6d42261738ce348b70caf7f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/da299b/da299bcdd6d42261738ce348b70caf7f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_block",
+            "component|collapsed_block|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -760,10 +894,150 @@
             "size": 11553784,
             "storage_address": "https://objects.openforge.tools/models/286f15/286f15672e0464cfa6d9b48b10cea8ef.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/286f15/286f15672e0464cfa6d9b48b10cea8ef.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "component|collapsed_block",
             "component|collapsed_block|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor,collapsed_block+b.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:03:03.204728+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/floors/floor%block+collapsed_blocks/openforge/dungeon_stone+ruined%block#floor,collapsed_block+b.2x2.openforge.stl",
+            "md5": "e5d9972e2ecac43980db5b4d0376c4b7",
+            "size": 10787284,
+            "storage_address": "https://objects.openforge.tools/models/e5d997/e5d9972e2ecac43980db5b4d0376c4b7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e5d997/e5d9972e2ecac43980db5b4d0376c4b7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_block",
+            "component|collapsed_block|b",
             "connection|openforge",
             "shape|floor",
             "shape|square",
@@ -821,10 +1095,150 @@
             "size": 11249084,
             "storage_address": "https://objects.openforge.tools/models/fa9071/fa9071ed1e9cbab7777c0c539338b738.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fa9071/fa9071ed1e9cbab7777c0c539338b738.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "component|collapsed_block",
             "component|collapsed_block|b",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor,collapsed_block+c.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:03:17.983932+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/floors/floor%block+collapsed_blocks/openforge/dungeon_stone+ruined%block#floor,collapsed_block+c.2x2.openforge.stl",
+            "md5": "c4c34a5e5d3b5c23bcfca0efeda3a315",
+            "size": 9632884,
+            "storage_address": "https://objects.openforge.tools/models/c4c34a/c4c34a5e5d3b5c23bcfca0efeda3a315.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c4c34a/c4c34a5e5d3b5c23bcfca0efeda3a315.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_block",
+            "component|collapsed_block|c",
             "connection|openforge",
             "shape|floor",
             "shape|square",
@@ -882,10 +1296,150 @@
             "size": 9839484,
             "storage_address": "https://objects.openforge.tools/models/c77ad5/c77ad5e327643069d74af7b8f3812342.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c77ad5/c77ad5e327643069d74af7b8f3812342.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "component|collapsed_block",
             "component|collapsed_block|c",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor,collapsed_block+d.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:03:31.708575+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/floors/floor%block+collapsed_blocks/openforge/dungeon_stone+ruined%block#floor,collapsed_block+d.2x2.openforge.stl",
+            "md5": "327e3aa1220d54ffe6d9af049d4aa9af",
+            "size": 9784084,
+            "storage_address": "https://objects.openforge.tools/models/327e3a/327e3aa1220d54ffe6d9af049d4aa9af.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/327e3a/327e3aa1220d54ffe6d9af049d4aa9af.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_block",
+            "component|collapsed_block|d",
             "connection|openforge",
             "shape|floor",
             "shape|square",
@@ -943,6 +1497,12 @@
             "size": 10499484,
             "storage_address": "https://objects.openforge.tools/models/f26b37/f26b3748673812595a529a94200870e4.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f26b37/f26b3748673812595a529a94200870e4.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "component|collapsed_block",
@@ -4638,6 +5198,40 @@
         "type": "model"
     },
     {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:45:10.250581+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/s2w/wall/floor%block+collapsing_blocks/dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
+            "md5": "a34cb8ce98260cbbde4c3b499e11c538",
+            "size": 7163084,
+            "storage_address": "https://objects.openforge.tools/models/a34cb8/a34cb8ce98260cbbde4c3b499e11c538.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a34cb8/a34cb8ce98260cbbde4c3b499e11c538.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
             "file_modified_at": "2025-08-20T16:40:30.524071+00:00",
@@ -4646,11 +5240,51 @@
             "size": 7333984,
             "storage_address": "https://objects.openforge.tools/models/6520ff/6520ff0ad19e007e0f298068a6d5a264.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6520ff/6520ff0ad19e007e0f298068a6d5a264.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "build|s2w",
             "component|collapsing_blocks",
             "component|collapsing_blocks|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:45:28.839164+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/s2w/wall/floor%block+collapsing_blocks/dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
+            "md5": "c069f4d050a5b539e769acbb4bf00679",
+            "size": 7173484,
+            "storage_address": "https://objects.openforge.tools/models/c069f4/c069f4d050a5b539e769acbb4bf00679.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c069f4/c069f4d050a5b539e769acbb4bf00679.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|b",
             "connection|openforge",
             "shape|floor",
             "shape|floor|s2w",
@@ -4673,11 +5307,51 @@
             "size": 7299784,
             "storage_address": "https://objects.openforge.tools/models/f1cdbd/f1cdbde4fd8a12e8bf25186f50e68aa9.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f1cdbd/f1cdbde4fd8a12e8bf25186f50e68aa9.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "build|s2w",
             "component|collapsing_blocks",
             "component|collapsing_blocks|b",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:46:01.667361+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/s2w/wall/floor%block+collapsing_blocks/dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
+            "md5": "a21d748a1064cc8ecb6d6ae9264acc63",
+            "size": 7424384,
+            "storage_address": "https://objects.openforge.tools/models/a21d74/a21d748a1064cc8ecb6d6ae9264acc63.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a21d74/a21d748a1064cc8ecb6d6ae9264acc63.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|c",
             "connection|openforge",
             "shape|floor",
             "shape|floor|s2w",
@@ -4700,11 +5374,51 @@
             "size": 7728484,
             "storage_address": "https://objects.openforge.tools/models/6b1377/6b13779bc2d54b34adda308237b02c3b.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b1377/6b13779bc2d54b34adda308237b02c3b.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "build|s2w",
             "component|collapsing_blocks",
             "component|collapsing_blocks|c",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block",
+            "texture|dungeon_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
+            "file_modified_at": "2025-04-30T02:46:33.927143+00:00",
+            "full_name": "tiles/dungeon_stone+ruined/s2w/wall/floor%block+collapsing_blocks/dungeon_stone+ruined%block#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
+            "md5": "fb495040e3cdeae7d851f5187927c883",
+            "size": 7095284,
+            "storage_address": "https://objects.openforge.tools/models/fb4950/fb495040e3cdeae7d851f5187927c883.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fb4950/fb495040e3cdeae7d851f5187927c883.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|d",
             "connection|openforge",
             "shape|floor",
             "shape|floor|s2w",
@@ -4727,6 +5441,12 @@
             "size": 7098184,
             "storage_address": "https://objects.openforge.tools/models/914faa/914faa83430645be8c9cf8122ea16f20.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/914faa/914faa83430645be8c9cf8122ea16f20.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "build|s2w",
@@ -10747,6 +11467,39 @@
                             }
                         ]
                     }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -10783,6 +11536,39 @@
     {
         "config": {
             "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
                 {
                     "name": "base",
                     "optional": true,
@@ -10949,6 +11735,39 @@
                             }
                         ]
                     }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -10985,6 +11804,39 @@
     {
         "config": {
             "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
                 {
                     "name": "base",
                     "optional": true,

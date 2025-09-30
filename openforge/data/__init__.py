@@ -552,6 +552,11 @@ sizes = {
     "6x2": [("size", "width", 6), ("size", "depth", 2)],
     "6x4": [("size", "width", 6), ("size", "depth", 4)],
     "6x6": [("size", "width", 6), ("size", "depth", 6)],
+    "6x6+notch": [
+        ("size", "width", 6),
+        ("size", "depth", 6),
+        ("shape", "option", "notch"),
+    ],
     "6x6+a": [
         ("size", "width", 6),
         ("size", "depth", 6),
@@ -639,6 +644,7 @@ sizes = {
         ("shape", "curved"),
     ],
     "6r45°": [("size", "radius", 6), ("size", "angle", 45), ("shape", "curved")],
+    "6r90°": [("size", "radius", 6), ("size", "angle", 90), ("shape", "curved")],
     "2r": [("size", "radius", 2), ("size", "angle", 90), ("shape", "curved")],
     "4r": [("size", "radius", 4), ("size", "angle", 90), ("shape", "curved")],
     "6r": [("size", "radius", 6), ("size", "angle", 90), ("shape", "curved")],

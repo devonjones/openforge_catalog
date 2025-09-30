@@ -4232,6 +4232,201 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved+radial.6r11.25\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:23:59.808090+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved+radial.6r11.25\u00b0.openforge.stl",
+            "md5": "e776caed992f3e9af2d606bd6c170fd9",
+            "size": 5458984,
+            "storage_address": "https://objects.openforge.tools/models/e776ca/e776caed992f3e9af2d606bd6c170fd9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e776ca/e776caed992f3e9af2d606bd6c170fd9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|radial",
+            "shape|floor",
+            "size|angle|11.25",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved+radial.6r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:24:15.845200+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved+radial.6r22.5\u00b0.openforge.stl",
+            "md5": "958392827e74d7bf6b16b4070fa157bf",
+            "size": 10815684,
+            "storage_address": "https://objects.openforge.tools/models/958392/958392827e74d7bf6b16b4070fa157bf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/958392/958392827e74d7bf6b16b4070fa157bf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|radial",
+            "shape|floor",
+            "size|angle|22.5",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved+radial.6r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:24:36.544099+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved+radial.6r45\u00b0.openforge.stl",
+            "md5": "c61a022ff79db32e75f65366a9f85370",
+            "size": 21784584,
+            "storage_address": "https://objects.openforge.tools/models/c61a02/c61a022ff79db32e75f65366a9f85370.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c61a02/c61a022ff79db32e75f65366a9f85370.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|radial",
+            "shape|floor",
+            "size|angle|45",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "dungeon_stone%block#floor,curved.2x2.openforge.stl",
             "file_modified_at": "2023-09-30T02:34:48.417734+00:00",
             "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved.2x2.openforge.stl",
@@ -4381,6 +4576,135 @@
             "shape|floor",
             "size|depth|4",
             "size|width|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved.6x6+notch.openforge.stl",
+            "file_modified_at": "2025-09-22T01:30:17.543690+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved.6x6+notch.openforge.stl",
+            "md5": "0948cdcf2a5ba6ab389476da2f6338c6",
+            "size": 37407384,
+            "storage_address": "https://objects.openforge.tools/models/0948cd/0948cdcf2a5ba6ab389476da2f6338c6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0948cd/0948cdcf2a5ba6ab389476da2f6338c6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|option|notch",
+            "size|depth|6",
+            "size|width|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved.6x6.openforge.stl",
+            "file_modified_at": "2025-09-22T01:30:45.484000+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openforge/dungeon_stone%block#floor,curved.6x6.openforge.stl",
+            "md5": "586d13635911d7d13bd38a539529aa42",
+            "size": 53460084,
+            "storage_address": "https://objects.openforge.tools/models/586d13/586d13635911d7d13bd38a539529aa42.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/586d13/586d13635911d7d13bd38a539529aa42.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "size|depth|6",
+            "size|width|6",
             "texture|dungeon_stone",
             "texture|dungeon_stone|block"
         ],
@@ -4740,6 +5064,61 @@
             "shape|floor",
             "size|depth|4",
             "size|width|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved.6x6+notch.openlock.stl",
+            "file_modified_at": "2025-09-22T01:26:09.759024+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openlock/dungeon_stone%block#floor,curved.6x6+notch.openlock.stl",
+            "md5": "c48c30b75e9a26e59a3437d047cc312d",
+            "size": 38921084,
+            "storage_address": "https://objects.openforge.tools/models/c48c30/c48c30b75e9a26e59a3437d047cc312d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c48c30/c48c30b75e9a26e59a3437d047cc312d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|curved",
+            "shape|floor",
+            "shape|option|notch",
+            "size|depth|6",
+            "size|width|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor,curved.6x6.openlock.stl",
+            "file_modified_at": "2025-09-22T01:24:52.112626+00:00",
+            "full_name": "tiles/dungeon_stone/floors/floor#curved/openlock/dungeon_stone%block#floor,curved.6x6.openlock.stl",
+            "md5": "9bf4429e933ea8ed41c4782ae113732e",
+            "size": 54990084,
+            "storage_address": "https://objects.openforge.tools/models/9bf442/9bf4429e933ea8ed41c4782ae113732e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9bf442/9bf4429e933ea8ed41c4782ae113732e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|curved",
+            "shape|floor",
+            "size|depth|6",
+            "size|width|6",
             "texture|dungeon_stone",
             "texture|dungeon_stone|block"
         ],
@@ -28839,6 +29218,228 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+inverted.4x4.openforge.stl",
+            "file_modified_at": "2025-09-22T00:04:00.336372+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+inverted.4x4.openforge.stl",
+            "md5": "c840709334c8369fa42f20914950ded0",
+            "size": 19119484,
+            "storage_address": "https://objects.openforge.tools/models/c84070/c840709334c8369fa42f20914950ded0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c84070/c840709334c8369fa42f20914950ded0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|inverted",
+            "shape|floor|s2w",
+            "size|depth|4",
+            "size|width|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2023-09-30T14:57:48.672646+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.4r22.5\u00b0.openforge.stl",
+            "md5": "f72a3a62dd6d643e43eebe1396346296",
+            "size": 1184084,
+            "storage_address": "https://objects.openforge.tools/models/f72a3a/f72a3a62dd6d643e43eebe1396346296.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f72a3a/f72a3a62dd6d643e43eebe1396346296.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2023-09-30T14:59:01.287041+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.4r45\u00b0.openforge.stl",
+            "md5": "750b99a4a0c0f497677bf3c0ddb4b9ff",
+            "size": 2438284,
+            "storage_address": "https://objects.openforge.tools/models/750b99/750b99a4a0c0f497677bf3c0ddb4b9ff.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/750b99/750b99a4a0c0f497677bf3c0ddb4b9ff.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2023-09-30T15:07:54.935450+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.4r90\u00b0.openforge.stl",
+            "md5": "3657e40e9cf81f98615e4f5c86d0f6f9",
+            "size": 47975484,
+            "storage_address": "https://objects.openforge.tools/models/3657e4/3657e40e9cf81f98615e4f5c86d0f6f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3657e4/3657e40e9cf81f98615e4f5c86d0f6f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.6r11.25\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-22T00:35:36.414569+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.6r11.25\u00b0.openforge.stl",
+            "md5": "9b88db239a32fe20c780d6845eb22503",
+            "size": 5002784,
+            "storage_address": "https://objects.openforge.tools/models/9b88db/9b88db239a32fe20c780d6845eb22503.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9b88db/9b88db239a32fe20c780d6845eb22503.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|11.25",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.6r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-22T00:35:16.724852+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.6r22.5\u00b0.openforge.stl",
+            "md5": "c0297c6d751ba29a4091ad95ffd561db",
+            "size": 9119584,
+            "storage_address": "https://objects.openforge.tools/models/c0297c/c0297c6d751ba29a4091ad95ffd561db.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c0297c/c0297c6d751ba29a4091ad95ffd561db.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|22.5",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial+concave.6r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-22T00:35:02.059005+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial+concave.6r45\u00b0.openforge.stl",
+            "md5": "0ad8622727501e4c47116330e67da3e2",
+            "size": 18430184,
+            "storage_address": "https://objects.openforge.tools/models/0ad862/0ad8622727501e4c47116330e67da3e2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0ad862/0ad8622727501e4c47116330e67da3e2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|concave",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|45",
+            "size|radius|6",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "dungeon_stone%block#floor+s2w+curved+radial.2r.openforge.stl",
             "file_modified_at": "2023-09-30T15:03:55.435744+00:00",
             "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.2r.openforge.stl",
@@ -28869,6 +29470,7 @@
         "type": "model"
     },
     {
+        "deprecated": true,
         "file_metadata": {
             "file": "dungeon_stone%block#floor+s2w+curved+radial.4r22.5\u00b0.openforge.stl",
             "file_modified_at": "2023-09-30T14:57:48.672646+00:00",
@@ -28901,6 +29503,38 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:07:00.514780+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.4r22.5\u00b0.openforge.stl",
+            "md5": "9d8527653ece925086dd86d0e90d6992",
+            "size": 10229884,
+            "storage_address": "https://objects.openforge.tools/models/9d8527/9d8527653ece925086dd86d0e90d6992.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9d8527/9d8527653ece925086dd86d0e90d6992.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone%block#floor+s2w+curved+radial.4r45\u00b0.openforge.stl",
             "file_modified_at": "2023-09-30T14:59:01.287041+00:00",
             "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.4r45\u00b0.openforge.stl",
@@ -28932,6 +29566,38 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:06:44.311139+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.4r45\u00b0.openforge.stl",
+            "md5": "cc24659547f6dff1a3c74a6844657464",
+            "size": 3300834,
+            "storage_address": "https://objects.openforge.tools/models/cc2465/cc24659547f6dff1a3c74a6844657464.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cc2465/cc24659547f6dff1a3c74a6844657464.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone%block#floor+s2w+curved+radial.4r90\u00b0.openforge.stl",
             "file_modified_at": "2023-09-30T15:07:54.935450+00:00",
             "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.4r90\u00b0.openforge.stl",
@@ -28943,6 +29609,37 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/3657e4/3657e40e9cf81f98615e4f5c86d0f6f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|curved",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|radial",
+            "shape|floor|s2w",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved+radial.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-21T18:06:31.866699+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved+radial.4r90\u00b0.openforge.stl",
+            "md5": "9abf0f2136a7565ab3c4157c5574496a",
+            "size": 7372084,
+            "storage_address": "https://objects.openforge.tools/models/9abf0f/9abf0f2136a7565ab3c4157c5574496a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9abf0f/9abf0f2136a7565ab3c4157c5574496a.png"
             }
         ],
         "metadata": false,
@@ -28985,6 +29682,65 @@
             "shape|floor|s2w",
             "size|depth|2",
             "size|width|2",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved.4x4+notch.openforge.stl",
+            "file_modified_at": "2025-09-22T00:05:17.197062+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved.4x4+notch.openforge.stl",
+            "md5": "bbe74ec5c303b778c4eb9f75b76b552c",
+            "size": 19638434,
+            "storage_address": "https://objects.openforge.tools/models/bbe74e/bbe74ec5c303b778c4eb9f75b76b552c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bbe74e/bbe74ec5c303b778c4eb9f75b76b552c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|s2w",
+            "shape|option|notch",
+            "size|depth|4",
+            "size|width|4",
+            "texture|dungeon_stone",
+            "texture|dungeon_stone|block"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone%block#floor+s2w+curved.4x4.openforge.stl",
+            "file_modified_at": "2025-09-22T00:04:25.889597+00:00",
+            "full_name": "tiles/dungeon_stone/s2w/curved/floor#curved+s2w/dungeon_stone%block#floor+s2w+curved.4x4.openforge.stl",
+            "md5": "b8acded61d6a14ad4f36eded562d2d69",
+            "size": 30490934,
+            "storage_address": "https://objects.openforge.tools/models/b8acde/b8acded61d6a14ad4f36eded562d2d69.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b8acde/b8acded61d6a14ad4f36eded562d2d69.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "shape|floor|s2w",
+            "size|depth|4",
+            "size|width|4",
             "texture|dungeon_stone",
             "texture|dungeon_stone|block"
         ],
@@ -54442,6 +55198,174 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T18:09:20.304225+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "md5": "b2e52cd5666acccbb0cc76797c2eb8bb",
+            "size": 8579284,
+            "storage_address": "https://objects.openforge.tools/models/b2e52c/b2e52cd5666acccbb0cc76797c2eb8bb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b2e52c/b2e52cd5666acccbb0cc76797c2eb8bb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T16:45:00.663882+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side+dragonlock.stl",
+            "md5": "5e0f059ba1493273198260436f946190",
+            "size": 15825584,
+            "storage_address": "https://objects.openforge.tools/models/5e0f05/5e0f059ba1493273198260436f946190.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5e0f05/5e0f059ba1493273198260436f946190.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T19:14:16.842620+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side+dragonlock.stl",
+            "md5": "b2e233e279d39a5e38b95b16fe5177a1",
+            "size": 30353284,
+            "storage_address": "https://objects.openforge.tools/models/b2e233/b2e233e279d39a5e38b95b16fe5177a1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b2e233/b2e233e279d39a5e38b95b16fe5177a1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "dungeon_stone#curved+convex,wall.2r45\u00b0.openforge,side+dragonlock.stl",
             "file_modified_at": "2023-09-24T00:35:44.859338+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+convex,wall.2r45\u00b0.openforge,side+dragonlock.stl",
@@ -54522,6 +55446,174 @@
             "shape|wall",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T23:34:31.304465+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "md5": "304ac00fc41d7713dfe43e1cd2b4b87b",
+            "size": 8602584,
+            "storage_address": "https://objects.openforge.tools/models/304ac0/304ac00fc41d7713dfe43e1cd2b4b87b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/304ac0/304ac00fc41d7713dfe43e1cd2b4b87b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T23:07:38.225298+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+convex,wall.4r45\u00b0.openforge,side+dragonlock.stl",
+            "md5": "af56ed941c45fc1b11d6b599e778b1d1",
+            "size": 15825884,
+            "storage_address": "https://objects.openforge.tools/models/af56ed/af56ed941c45fc1b11d6b599e778b1d1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/af56ed/af56ed941c45fc1b11d6b599e778b1d1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T20:19:10.155166+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dragonlock,side/dungeon_stone#curved+convex,wall.4r90\u00b0.openforge,side+dragonlock.stl",
+            "md5": "1a2d246e313a7454ef90035d5b345ce5",
+            "size": 30396984,
+            "storage_address": "https://objects.openforge.tools/models/1a2d24/1a2d246e313a7454ef90035d5b345ce5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1a2d24/1a2d246e313a7454ef90035d5b345ce5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
@@ -54716,6 +55808,83 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T18:08:49.458709+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge.stl",
+            "md5": "c99babc55ca391247f4be104a938e749",
+            "size": 8301984,
+            "storage_address": "https://objects.openforge.tools/models/c99bab/c99babc55ca391247f4be104a938e749.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c99bab/c99babc55ca391247f4be104a938e749.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openforge.stl",
             "file_modified_at": "2018-08-25T19:52:54+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+concave,wall.4r45\u00b0.openforge.stl",
@@ -54770,6 +55939,83 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T16:44:34.195893+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+concave,wall.4r45\u00b0.openforge.stl",
+            "md5": "08c7d1789417183c4bf1f7a33e5537b6",
+            "size": 15574184,
+            "storage_address": "https://objects.openforge.tools/models/08c7d1/08c7d1789417183c4bf1f7a33e5537b6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/08c7d1/08c7d1789417183c4bf1f7a33e5537b6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openforge.stl",
             "file_modified_at": "2018-08-25T20:21:32+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+concave,wall.4r90\u00b0.openforge.stl",
@@ -54781,6 +56027,60 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/55523e/55523e708cfbb71add6b5396a18d45c4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T19:13:47.300174+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+concave,wall.4r90\u00b0.openforge.stl",
+            "md5": "3b45550a3fda029c156b356d1807a4af",
+            "size": 30071684,
+            "storage_address": "https://objects.openforge.tools/models/3b4555/3b45550a3fda029c156b356d1807a4af.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3b4555/3b45550a3fda029c156b356d1807a4af.png"
             }
         ],
         "metadata": false,
@@ -54900,6 +56200,168 @@
             "shape|wall",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T23:34:09.279337+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge.stl",
+            "md5": "035ce53961b1cf7bddc6d506627b5759",
+            "size": 8310684,
+            "storage_address": "https://objects.openforge.tools/models/035ce5/035ce53961b1cf7bddc6d506627b5759.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/035ce5/035ce53961b1cf7bddc6d506627b5759.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T23:06:49.027076+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+convex,wall.4r45\u00b0.openforge.stl",
+            "md5": "6d306dc24e0ecd426c31067b81e47874",
+            "size": 15560184,
+            "storage_address": "https://objects.openforge.tools/models/6d306d/6d306dc24e0ecd426c31067b81e47874.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6d306d/6d306dc24e0ecd426c31067b81e47874.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T20:18:32.333257+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/dungeon_stone#curved+convex,wall.4r90\u00b0.openforge.stl",
+            "md5": "2ee15b374681c7d993e4daefc7551383",
+            "size": 30095184,
+            "storage_address": "https://objects.openforge.tools/models/2ee15b/2ee15b374681c7d993e4daefc7551383.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2ee15b/2ee15b374681c7d993e4daefc7551383.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
@@ -55100,6 +56562,85 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T18:09:03.567414+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openforge,side.stl",
+            "md5": "504b9d937215831ec6e66c3ae1e848f8",
+            "size": 7913584,
+            "storage_address": "https://objects.openforge.tools/models/504b9d/504b9d937215831ec6e66c3ae1e848f8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/504b9d/504b9d937215831ec6e66c3ae1e848f8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side.stl",
             "file_modified_at": "2018-08-25T20:29:51+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side.stl",
@@ -55156,6 +56697,85 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T16:44:45.436267+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+concave,wall.4r45\u00b0.openforge,side.stl",
+            "md5": "e14b89916eb70ffb1fef0bba3ec3288f",
+            "size": 15159884,
+            "storage_address": "https://objects.openforge.tools/models/e14b89/e14b89916eb70ffb1fef0bba3ec3288f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e14b89/e14b89916eb70ffb1fef0bba3ec3288f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side.stl",
             "file_modified_at": "2018-08-25T20:20:17+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side.stl",
@@ -55167,6 +56787,62 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/bfc2a0/bfc2a053251463920d999bfd1bbb5811.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T19:13:59.290521+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+concave,wall.4r90\u00b0.openforge,side.stl",
+            "md5": "3440ab77beeba74ab3afd869f33a1809",
+            "size": 29687384,
+            "storage_address": "https://objects.openforge.tools/models/3440ab/3440ab77beeba74ab3afd869f33a1809.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3440ab/3440ab77beeba74ab3afd869f33a1809.png"
             }
         ],
         "metadata": false,
@@ -55297,6 +56973,174 @@
         "type": "model"
     },
     {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T23:34:19.333051+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openforge,side.stl",
+            "md5": "2e8786ca2722e8bc2b677ed383a58ab2",
+            "size": 7920584,
+            "storage_address": "https://objects.openforge.tools/models/2e8786/2e8786ca2722e8bc2b677ed383a58ab2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2e8786/2e8786ca2722e8bc2b677ed383a58ab2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T23:07:05.549009+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+convex,wall.4r45\u00b0.openforge,side.stl",
+            "md5": "4f580d427e0e700afa20fe4d6372d034",
+            "size": 15157484,
+            "storage_address": "https://objects.openforge.tools/models/4f580d/4f580d427e0e700afa20fe4d6372d034.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4f580d/4f580d427e0e700afa20fe4d6372d034.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T20:18:52.526316+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openforge/side/dungeon_stone#curved+convex,wall.4r90\u00b0.openforge,side.stl",
+            "md5": "0efecdda708dcc942d1147b3ad976468",
+            "size": 29728584,
+            "storage_address": "https://objects.openforge.tools/models/0efecd/0efecdda708dcc942d1147b3ad976468.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0efecd/0efecdda708dcc942d1147b3ad976468.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.2r22.5\u00b0.openlock.stl",
             "file_modified_at": "2023-10-22T00:54:24.201308+00:00",
@@ -55382,6 +57226,35 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T18:09:35.875420+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock.stl",
+            "md5": "ea0250f4b2f8bb390e5d1ece42ecab7f",
+            "size": 8810984,
+            "storage_address": "https://objects.openforge.tools/models/ea0250/ea0250f4b2f8bb390e5d1ece42ecab7f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ea0250/ea0250f4b2f8bb390e5d1ece42ecab7f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock.stl",
             "file_modified_at": "2018-08-25T19:54:27+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock.stl",
@@ -55410,6 +57283,35 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T16:45:14.288184+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock.stl",
+            "md5": "ea26e0db82dd7e1a996256503b435064",
+            "size": 16430284,
+            "storage_address": "https://objects.openforge.tools/models/ea26e0/ea26e0db82dd7e1a996256503b435064.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ea26e0/ea26e0db82dd7e1a996256503b435064.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock.stl",
             "file_modified_at": "2018-08-25T20:33:50+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock.stl",
@@ -55421,6 +57323,34 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/6ab170/6ab170447dd23cb819e5afffd34cdd03.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T19:14:32.772606+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock.stl",
+            "md5": "a41fbb83db56f30c2091d60b76262a57",
+            "size": 31867284,
+            "storage_address": "https://objects.openforge.tools/models/a41fbb/a41fbb83db56f30c2091d60b76262a57.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a41fbb/a41fbb83db56f30c2091d60b76262a57.png"
             }
         ],
         "metadata": false,
@@ -55488,6 +57418,90 @@
             "shape|wall",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T23:34:46.217772+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock.stl",
+            "md5": "7f8c2d75d16ed1227d76da025cd2e83f",
+            "size": 8815584,
+            "storage_address": "https://objects.openforge.tools/models/7f8c2d/7f8c2d75d16ed1227d76da025cd2e83f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7f8c2d/7f8c2d75d16ed1227d76da025cd2e83f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T23:08:07.887377+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+convex,wall.4r45\u00b0.openlock.stl",
+            "md5": "6b77510d8d69b322674ad0a6cddc66c8",
+            "size": 16427884,
+            "storage_address": "https://objects.openforge.tools/models/6b7751/6b77510d8d69b322674ad0a6cddc66c8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b7751/6b77510d8d69b322674ad0a6cddc66c8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T20:19:25.544746+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/dungeon_stone#curved+convex,wall.4r90\u00b0.openlock.stl",
+            "md5": "7320d49537e2d17c1fb96d7c48a9baa1",
+            "size": 31879584,
+            "storage_address": "https://objects.openforge.tools/models/7320d4/7320d49537e2d17c1fb96d7c48a9baa1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7320d4/7320d49537e2d17c1fb96d7c48a9baa1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
@@ -55584,6 +57598,37 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T18:09:53.346413+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock,side.stl",
+            "md5": "c8dc8612b25ef091567917f7b40fb9ac",
+            "size": 8422584,
+            "storage_address": "https://objects.openforge.tools/models/c8dc86/c8dc8612b25ef091567917f7b40fb9ac.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c8dc86/c8dc8612b25ef091567917f7b40fb9ac.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock,side.stl",
             "file_modified_at": "2018-09-18T04:57:16+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock,side.stl",
@@ -55614,6 +57659,37 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T16:45:24.163689+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock,side.stl",
+            "md5": "ae6160f265e2963a195e051856c21e6d",
+            "size": 16015984,
+            "storage_address": "https://objects.openforge.tools/models/ae6160/ae6160f265e2963a195e051856c21e6d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ae6160/ae6160f265e2963a195e051856c21e6d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock,side.stl",
             "file_modified_at": "2018-08-25T20:30:26+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock,side.stl",
@@ -55625,6 +57701,36 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/0e7519/0e7519f37c6b4cc4b885c5529f3f1963.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T19:14:49.106748+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock,side.stl",
+            "md5": "f5986ddaa414a0317b373b8741590a31",
+            "size": 31482984,
+            "storage_address": "https://objects.openforge.tools/models/f5986d/f5986ddaa414a0317b373b8741590a31.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f5986d/f5986ddaa414a0317b373b8741590a31.png"
             }
         ],
         "metadata": false,
@@ -55698,6 +57804,456 @@
             "shape|wall",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T23:34:57.736955+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock,side.stl",
+            "md5": "c83185051e5adc08e8bdcf8258a2ec1c",
+            "size": 8425484,
+            "storage_address": "https://objects.openforge.tools/models/c83185/c83185051e5adc08e8bdcf8258a2ec1c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c83185/c83185051e5adc08e8bdcf8258a2ec1c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T23:08:39.436429+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+convex,wall.4r45\u00b0.openlock,side.stl",
+            "md5": "599f24bd12c4f71ef03b7e82c1c5bed3",
+            "size": 16025184,
+            "storage_address": "https://objects.openforge.tools/models/599f24/599f24bd12c4f71ef03b7e82c1c5bed3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/599f24/599f24bd12c4f71ef03b7e82c1c5bed3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T20:19:46.150395+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/side/dungeon_stone#curved+convex,wall.4r90\u00b0.openlock,side.stl",
+            "md5": "04dd49cf207800eb1ac040838c1d203b",
+            "size": 31512984,
+            "storage_address": "https://objects.openforge.tools/models/04dd49/04dd49cf207800eb1ac040838c1d203b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/04dd49/04dd49cf207800eb1ac040838c1d203b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T18:10:08.337214+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock+unsupported.stl",
+            "md5": "892d5f5364e516b3c22d7c0806c55bdb",
+            "size": 8802084,
+            "storage_address": "https://objects.openforge.tools/models/892d5f/892d5f5364e516b3c22d7c0806c55bdb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/892d5f/892d5f5364e516b3c22d7c0806c55bdb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T17:32:35.776964+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock+unsupported.stl",
+            "md5": "af87f2f348e9c0dca16b83efb005e6e5",
+            "size": 16421384,
+            "storage_address": "https://objects.openforge.tools/models/af87f2/af87f2f348e9c0dca16b83efb005e6e5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/af87f2/af87f2f348e9c0dca16b83efb005e6e5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T19:15:11.783692+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock+unsupported.stl",
+            "md5": "e98ff6abf0906597a33d75e4753a8bc0",
+            "size": 31833184,
+            "storage_address": "https://objects.openforge.tools/models/e98ff6/e98ff6abf0906597a33d75e4753a8bc0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e98ff6/e98ff6abf0906597a33d75e4753a8bc0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T23:35:10.284948+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock+unsupported.stl",
+            "md5": "bf0b82b8eec0e424b53809a74b7e628f",
+            "size": 8802084,
+            "storage_address": "https://objects.openforge.tools/models/bf0b82/bf0b82b8eec0e424b53809a74b7e628f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bf0b82/bf0b82b8eec0e424b53809a74b7e628f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T23:09:02.377574+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+convex,wall.4r45\u00b0.openlock+unsupported.stl",
+            "md5": "d39543183570be578b00270287544982",
+            "size": 16417084,
+            "storage_address": "https://objects.openforge.tools/models/d39543/d39543183570be578b00270287544982.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d39543/d39543183570be578b00270287544982.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T20:20:05.196331+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported/dungeon_stone#curved+convex,wall.4r90\u00b0.openlock+unsupported.stl",
+            "md5": "0062b00771b81f07e5bc87bedcb017b1",
+            "size": 31842984,
+            "storage_address": "https://objects.openforge.tools/models/0062b0/0062b00771b81f07e5bc87bedcb017b1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0062b0/0062b00771b81f07e5bc87bedcb017b1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T18:10:21.791171+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+concave,wall.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "md5": "2349453a903cc0321a34b2c7df8399cc",
+            "size": 8413684,
+            "storage_address": "https://objects.openforge.tools/models/234945/2349453a903cc0321a34b2c7df8399cc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/234945/2349453a903cc0321a34b2c7df8399cc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r45\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T17:32:45.795383+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+concave,wall.4r45\u00b0.openlock+unsupported,side.stl",
+            "md5": "12e4bc328f0b2e9d3a79f7ac7d451c14",
+            "size": 16003084,
+            "storage_address": "https://objects.openforge.tools/models/12e4bc/12e4bc328f0b2e9d3a79f7ac7d451c14.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/12e4bc/12e4bc328f0b2e9d3a79f7ac7d451c14.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall.4r90\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T19:15:29.376717+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+concave,wall.4r90\u00b0.openlock+unsupported,side.stl",
+            "md5": "4f6ca7b82aedb6290ea9be33433e221d",
+            "size": 31448884,
+            "storage_address": "https://objects.openforge.tools/models/4f6ca7/4f6ca7b82aedb6290ea9be33433e221d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4f6ca7/4f6ca7b82aedb6290ea9be33433e221d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T23:35:21.568689+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+convex,wall.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "md5": "10b09180a86720f599bea55e4a22eacf",
+            "size": 8411984,
+            "storage_address": "https://objects.openforge.tools/models/10b091/10b09180a86720f599bea55e4a22eacf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/10b091/10b09180a86720f599bea55e4a22eacf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r45\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T23:09:18.229705+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+convex,wall.4r45\u00b0.openlock+unsupported,side.stl",
+            "md5": "4f13a68360a3d42b805bd55d56a890e9",
+            "size": 16014384,
+            "storage_address": "https://objects.openforge.tools/models/4f13a6/4f13a68360a3d42b805bd55d56a890e9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4f13a6/4f13a68360a3d42b805bd55d56a890e9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall.4r90\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T20:20:25.194438+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall/openlock/unsupported,side/dungeon_stone#curved+convex,wall.4r90\u00b0.openlock+unsupported,side.stl",
+            "md5": "b2f6547a5c56eb2faec6f75456bcb3b3",
+            "size": 31476384,
+            "storage_address": "https://objects.openforge.tools/models/b2f654/b2f6547a5c56eb2faec6f75456bcb3b3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b2f654/b2f6547a5c56eb2faec6f75456bcb3b3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
@@ -58001,6 +60557,177 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T18:21:59.427932+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "md5": "2060dac13c71c558d2d69f3f751b3879",
+            "size": 4155234,
+            "storage_address": "https://objects.openforge.tools/models/2060da/2060dac13c71c558d2d69f3f751b3879.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2060da/2060dac13c71c558d2d69f3f751b3879.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T16:31:31.425683+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side+dragonlock.stl",
+            "md5": "82db0726b9405a19e77707f0679b83b3",
+            "size": 8301084,
+            "storage_address": "https://objects.openforge.tools/models/82db07/82db0726b9405a19e77707f0679b83b3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/82db07/82db0726b9405a19e77707f0679b83b3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T19:08:06.011176+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side+dragonlock.stl",
+            "md5": "78c0a4f3946192c4e62f41f943338a15",
+            "size": 16061534,
+            "storage_address": "https://objects.openforge.tools/models/78c0a4/78c0a4f3946192c4e62f41f943338a15.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/78c0a4/78c0a4f3946192c4e62f41f943338a15.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "dungeon_stone#curved+convex,wall+low.2r45\u00b0.openforge,side+dragonlock.stl",
             "file_modified_at": "2023-09-24T00:37:35.092806+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+convex,wall+low.2r45\u00b0.openforge,side+dragonlock.stl",
@@ -58083,6 +60810,177 @@
             "shape|wall|low",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T23:32:12.139356+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge,side+dragonlock.stl",
+            "md5": "f14ca715ea2f4c96c8b2a13e2c581386",
+            "size": 4191184,
+            "storage_address": "https://objects.openforge.tools/models/f14ca7/f14ca715ea2f4c96c8b2a13e2c581386.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f14ca7/f14ca715ea2f4c96c8b2a13e2c581386.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T23:03:14.037776+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge,side+dragonlock.stl",
+            "md5": "7806197817eb36c8414ebe85529a04dd",
+            "size": 8316384,
+            "storage_address": "https://objects.openforge.tools/models/780619/7806197817eb36c8414ebe85529a04dd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/780619/7806197817eb36c8414ebe85529a04dd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-09-27T22:19:58.013563+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dragonlock,side/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge,side+dragonlock.stl",
+            "md5": "d1cd7af02f094799542c61a6093f49b9",
+            "size": 16139034,
+            "storage_address": "https://objects.openforge.tools/models/d1cd7a/d1cd7af02f094799542c61a6093f49b9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d1cd7a/d1cd7af02f094799542c61a6093f49b9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
@@ -58280,6 +61178,84 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T18:21:23.558724+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge.stl",
+            "md5": "cb74c5d6033a5f6f7ad661f6267b22cb",
+            "size": 4087384,
+            "storage_address": "https://objects.openforge.tools/models/cb74c5/cb74c5d6033a5f6f7ad661f6267b22cb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cb74c5/cb74c5d6033a5f6f7ad661f6267b22cb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge.stl",
             "file_modified_at": "2018-08-25T20:55:49+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge.stl",
@@ -58335,6 +61311,84 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T16:30:58.438699+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge.stl",
+            "md5": "4b8e6944fbf8f15b0ed55cbd6fc538b8",
+            "size": 8157984,
+            "storage_address": "https://objects.openforge.tools/models/4b8e69/4b8e6944fbf8f15b0ed55cbd6fc538b8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4b8e69/4b8e6944fbf8f15b0ed55cbd6fc538b8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge.stl",
             "file_modified_at": "2018-09-18T03:40:47+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge.stl",
@@ -58346,6 +61400,61 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/9cea38/9cea380051037518c2399e82f0f5ee3d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T19:07:34.519475+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge.stl",
+            "md5": "405c71e54b9e915451e66d6bee694158",
+            "size": 15896484,
+            "storage_address": "https://objects.openforge.tools/models/405c71/405c71e54b9e915451e66d6bee694158.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/405c71/405c71e54b9e915451e66d6bee694158.png"
             }
         ],
         "metadata": false,
@@ -58500,6 +61609,171 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T23:31:46.636855+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge.stl",
+            "md5": "44f86836ddb8a85f063a82c41b8e77a2",
+            "size": 4099784,
+            "storage_address": "https://objects.openforge.tools/models/44f868/44f86836ddb8a85f063a82c41b8e77a2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/44f868/44f86836ddb8a85f063a82c41b8e77a2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T23:02:39.626196+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge.stl",
+            "md5": "2cb784385692df35f91f6ef3b027955d",
+            "size": 8159184,
+            "storage_address": "https://objects.openforge.tools/models/2cb784/2cb784385692df35f91f6ef3b027955d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2cb784/2cb784385692df35f91f6ef3b027955d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge.stl",
+            "file_modified_at": "2025-09-27T22:19:05.620810+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge.stl",
+            "md5": "0e09192e474d3594a8c41421fb3c3136",
+            "size": 15905534,
+            "storage_address": "https://objects.openforge.tools/models/0e0919/0e09192e474d3594a8c41421fb3c3136.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0e0919/0e09192e474d3594a8c41421fb3c3136.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.2r45\u00b0.openforge,side.stl",
             "file_modified_at": "2023-09-23T21:42:15.380920+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.2r45\u00b0.openforge,side.stl",
@@ -58614,6 +61888,86 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T18:21:38.403052+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openforge,side.stl",
+            "md5": "ea6735b17425ba10c0f67856839e2ddf",
+            "size": 3822384,
+            "storage_address": "https://objects.openforge.tools/models/ea6735/ea6735b17425ba10c0f67856839e2ddf.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ea6735/ea6735b17425ba10c0f67856839e2ddf.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side.stl",
             "file_modified_at": "2018-08-25T21:03:08+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side.stl",
@@ -58671,6 +62025,86 @@
             ]
         },
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T16:31:08.857577+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openforge,side.stl",
+            "md5": "e8415f82590931d513840ea5528861fe",
+            "size": 7957184,
+            "storage_address": "https://objects.openforge.tools/models/e8415f/e8415f82590931d513840ea5528861fe.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e8415f/e8415f82590931d513840ea5528861fe.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side.stl",
             "file_modified_at": "2018-09-18T03:39:40+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side.stl",
@@ -58682,6 +62116,63 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/5fe3cf/5fe3cfbb35893bbcbccfc776f00071aa.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T19:07:47.211976+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openforge,side.stl",
+            "md5": "29aedb4284914614cdc55be5d7aa394f",
+            "size": 15722084,
+            "storage_address": "https://objects.openforge.tools/models/29aedb/29aedb4284914614cdc55be5d7aa394f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/29aedb/29aedb4284914614cdc55be5d7aa394f.png"
             }
         ],
         "metadata": false,
@@ -58815,6 +62306,177 @@
         "type": "model"
     },
     {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T23:31:59.566782+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openforge,side.stl",
+            "md5": "476619166c499f3cf6614dd4b01a6070",
+            "size": 3850384,
+            "storage_address": "https://objects.openforge.tools/models/476619/476619166c499f3cf6614dd4b01a6070.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/476619/476619166c499f3cf6614dd4b01a6070.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T23:02:57.177275+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openforge,side.stl",
+            "md5": "dac30f7d8459cad222eb6dfcb179b46b",
+            "size": 7967084,
+            "storage_address": "https://objects.openforge.tools/models/dac30f/dac30f7d8459cad222eb6dfcb179b46b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/dac30f/dac30f7d8459cad222eb6dfcb179b46b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge,side.stl",
+            "file_modified_at": "2025-09-27T22:19:30.872942+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openforge/side/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openforge,side.stl",
+            "md5": "968539a6e0ad9d3c8bd383b8303239f0",
+            "size": 15787034,
+            "storage_address": "https://objects.openforge.tools/models/968539/968539a6e0ad9d3c8bd383b8303239f0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/968539/968539a6e0ad9d3c8bd383b8303239f0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.2r45\u00b0.openlock.stl",
             "file_modified_at": "2023-09-23T21:35:52.890686+00:00",
@@ -58874,6 +62536,36 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T18:22:15.116075+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock.stl",
+            "md5": "4737d229d7ad3719eaa2c0c01e9ed2aa",
+            "size": 4699984,
+            "storage_address": "https://objects.openforge.tools/models/4737d2/4737d229d7ad3719eaa2c0c01e9ed2aa.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4737d2/4737d229d7ad3719eaa2c0c01e9ed2aa.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock.stl",
             "file_modified_at": "2018-08-25T20:56:31+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock.stl",
@@ -58903,6 +62595,36 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T16:31:45.065476+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock.stl",
+            "md5": "d2d3847e3034d596d5d852093b304a1a",
+            "size": 9169484,
+            "storage_address": "https://objects.openforge.tools/models/d2d384/d2d3847e3034d596d5d852093b304a1a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d2d384/d2d3847e3034d596d5d852093b304a1a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock.stl",
             "file_modified_at": "2018-09-18T03:43:24+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock.stl",
@@ -58914,6 +62636,35 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/3218f3/3218f369e1234e6c14e4ba13abaa8622.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T19:08:19.714901+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock.stl",
+            "md5": "0db02f500d6ef5536db2d88094522020",
+            "size": 17746784,
+            "storage_address": "https://objects.openforge.tools/models/0db02f/0db02f500d6ef5536db2d88094522020.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0db02f/0db02f500d6ef5536db2d88094522020.png"
             }
         ],
         "metadata": false,
@@ -58990,6 +62741,93 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T23:32:25.142785+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock.stl",
+            "md5": "8da2702dd32a6b5c837a7a0a7141663e",
+            "size": 4704984,
+            "storage_address": "https://objects.openforge.tools/models/8da270/8da2702dd32a6b5c837a7a0a7141663e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8da270/8da2702dd32a6b5c837a7a0a7141663e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T23:03:44.300367+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock.stl",
+            "md5": "c9c485987faadba79fc2bcb2e193a965",
+            "size": 9166684,
+            "storage_address": "https://objects.openforge.tools/models/c9c485/c9c485987faadba79fc2bcb2e193a965.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c9c485/c9c485987faadba79fc2bcb2e193a965.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock.stl",
+            "file_modified_at": "2025-09-27T22:20:16.890891+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock.stl",
+            "md5": "17333c98ca4ff96978f741d5a11e8f3e",
+            "size": 17756884,
+            "storage_address": "https://objects.openforge.tools/models/17333c/17333c98ca4ff96978f741d5a11e8f3e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/17333c/17333c98ca4ff96978f741d5a11e8f3e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.2r45\u00b0.openlock,side.stl",
             "file_modified_at": "2023-09-23T21:41:58.144664+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.2r45\u00b0.openlock,side.stl",
@@ -59052,6 +62890,38 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T18:22:31.248473+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock,side.stl",
+            "md5": "3ee4fcc66292cd03b5d018af46440f07",
+            "size": 4434984,
+            "storage_address": "https://objects.openforge.tools/models/3ee4fc/3ee4fcc66292cd03b5d018af46440f07.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3ee4fc/3ee4fcc66292cd03b5d018af46440f07.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock,side.stl",
             "file_modified_at": "2018-08-25T21:04:51+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock,side.stl",
@@ -59083,6 +62953,38 @@
     },
     {
         "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T16:31:55.384049+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock,side.stl",
+            "md5": "909565ded39065013e06d69ceb501af0",
+            "size": 8968684,
+            "storage_address": "https://objects.openforge.tools/models/909565/909565ded39065013e06d69ceb501af0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/909565/909565ded39065013e06d69ceb501af0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
             "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock,side.stl",
             "file_modified_at": "2018-09-18T03:42:29+00:00",
             "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock,side.stl",
@@ -59094,6 +62996,37 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/7da01e/7da01eb6debaa44e7a66bb75c8db1915.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T19:08:31.619716+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock,side.stl",
+            "md5": "628a7ea96469ff40f79d3f0251f38473",
+            "size": 17572384,
+            "storage_address": "https://objects.openforge.tools/models/628a7e/628a7ea96469ff40f79d3f0251f38473.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/628a7e/628a7ea96469ff40f79d3f0251f38473.png"
             }
         ],
         "metadata": false,
@@ -59170,6 +63103,471 @@
             "shape|wall|low",
             "size|angle|90",
             "size|radius|2",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T23:32:37.224558+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock,side.stl",
+            "md5": "ab4be89d6d975daebf079732108f90b4",
+            "size": 4455584,
+            "storage_address": "https://objects.openforge.tools/models/ab4be8/ab4be89d6d975daebf079732108f90b4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ab4be8/ab4be89d6d975daebf079732108f90b4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T23:04:03.974666+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock,side.stl",
+            "md5": "7e7bc2e200ab517b99eb92fbbbcaca63",
+            "size": 8974584,
+            "storage_address": "https://objects.openforge.tools/models/7e7bc2/7e7bc2e200ab517b99eb92fbbbcaca63.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7e7bc2/7e7bc2e200ab517b99eb92fbbbcaca63.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock,side.stl",
+            "file_modified_at": "2025-09-27T22:20:34.663999+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/side/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock,side.stl",
+            "md5": "048871b69c4dca842a1090d7bdc8f580",
+            "size": 17638384,
+            "storage_address": "https://objects.openforge.tools/models/048871/048871b69c4dca842a1090d7bdc8f580.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/048871/048871b69c4dca842a1090d7bdc8f580.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T18:22:44.764626+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock+unsupported.stl",
+            "md5": "12c6573460a66b11171caebca2de3c0c",
+            "size": 4691084,
+            "storage_address": "https://objects.openforge.tools/models/12c657/12c6573460a66b11171caebca2de3c0c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/12c657/12c6573460a66b11171caebca2de3c0c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T17:18:03.581525+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock+unsupported.stl",
+            "md5": "90d72a765d13df1b69d303a466dd18c0",
+            "size": 9160584,
+            "storage_address": "https://objects.openforge.tools/models/90d72a/90d72a765d13df1b69d303a466dd18c0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/90d72a/90d72a765d13df1b69d303a466dd18c0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T19:08:48.773135+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock+unsupported.stl",
+            "md5": "404699c57175460d0783b467f678a4e4",
+            "size": 17715884,
+            "storage_address": "https://objects.openforge.tools/models/404699/404699c57175460d0783b467f678a4e4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/404699/404699c57175460d0783b467f678a4e4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T23:32:49.665893+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock+unsupported.stl",
+            "md5": "8ab857acee5894fefb1f2ddd812e84e8",
+            "size": 4690684,
+            "storage_address": "https://objects.openforge.tools/models/8ab857/8ab857acee5894fefb1f2ddd812e84e8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8ab857/8ab857acee5894fefb1f2ddd812e84e8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T23:04:19.746465+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock+unsupported.stl",
+            "md5": "5a054974ded26579c4d69120e0a26033",
+            "size": 9155884,
+            "storage_address": "https://objects.openforge.tools/models/5a0549/5a054974ded26579c4d69120e0a26033.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5a0549/5a054974ded26579c4d69120e0a26033.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock+unsupported.stl",
+            "file_modified_at": "2025-09-27T22:21:02.409184+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock+unsupported.stl",
+            "md5": "46028555cff8f3536c90907e28e19f07",
+            "size": 17719684,
+            "storage_address": "https://objects.openforge.tools/models/460285/46028555cff8f3536c90907e28e19f07.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/460285/46028555cff8f3536c90907e28e19f07.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T18:23:15.569379+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+concave,wall+low.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "md5": "9ef4703eebddec068fec45bfd16587b7",
+            "size": 4426084,
+            "storage_address": "https://objects.openforge.tools/models/9ef470/9ef4703eebddec068fec45bfd16587b7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9ef470/9ef4703eebddec068fec45bfd16587b7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T17:18:43.952288+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+concave,wall+low.4r45\u00b0.openlock+unsupported,side.stl",
+            "md5": "adb365e08f58059ef0955db516de01fb",
+            "size": 8959584,
+            "storage_address": "https://objects.openforge.tools/models/adb365/adb365e08f58059ef0955db516de01fb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/adb365/adb365e08f58059ef0955db516de01fb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T19:09:05.163293+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+concave,wall+low.4r90\u00b0.openlock+unsupported,side.stl",
+            "md5": "b1e2141b32b4ace30fc48eab2e8b5148",
+            "size": 17541484,
+            "storage_address": "https://objects.openforge.tools/models/b1e214/b1e2141b32b4ace30fc48eab2e8b5148.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b1e214/b1e2141b32b4ace30fc48eab2e8b5148.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|concave",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T23:33:04.103393+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+convex,wall+low.4r22.5\u00b0.openlock+unsupported,side.stl",
+            "md5": "9103a95085133bc72b13f69871cfe11f",
+            "size": 4441284,
+            "storage_address": "https://objects.openforge.tools/models/9103a9/9103a95085133bc72b13f69871cfe11f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9103a9/9103a95085133bc72b13f69871cfe11f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|22.5",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T23:04:35.223146+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+convex,wall+low.4r45\u00b0.openlock+unsupported,side.stl",
+            "md5": "56031e1560112b8f68ec1312aa78b11a",
+            "size": 8963784,
+            "storage_address": "https://objects.openforge.tools/models/56031e/56031e1560112b8f68ec1312aa78b11a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/56031e/56031e1560112b8f68ec1312aa78b11a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|45",
+            "size|radius|4",
+            "texture|dungeon_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock+unsupported,side.stl",
+            "file_modified_at": "2025-09-27T22:21:22.700662+00:00",
+            "full_name": "tiles/dungeon_stone/separate_wall/curved_walls/wall+low/openlock/unsupported,side/dungeon_stone#curved+convex,wall+low.4r90\u00b0.openlock+unsupported,side.stl",
+            "md5": "2fb6e71331272c179fb111794a6a13e0",
+            "size": 17601184,
+            "storage_address": "https://objects.openforge.tools/models/2fb6e7/2fb6e71331272c179fb111794a6a13e0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2fb6e7/2fb6e71331272c179fb111794a6a13e0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low",
+            "connection|openlock",
+            "connection|openlock|unsupported",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|curved",
+            "shape|curved|convex",
+            "shape|wall|low",
+            "size|angle|90",
+            "size|radius|4",
             "texture|dungeon_stone"
         ],
         "type": "model"
