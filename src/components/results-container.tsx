@@ -174,7 +174,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
             isTagRemovable={isTagRemovable}
             onRemoveTag={handleRemoveTag}
             onClearSearch={() => setSearchTerm(null)}
-            onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm, denyTags)}
+            onCreateDeepLink={() => createDeepLink(selectedTags, searchTerm, denyTags)}
             onCopyToClipboard={handleCopyToClipboard}
             copied={copied}
           />

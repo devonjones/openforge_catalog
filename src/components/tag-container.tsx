@@ -60,7 +60,7 @@ const renderTags = (
             {tag} {typeof value.__subTags === 'number' && value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
               <span className="tagButton">
-                <span onClick={() => handleAddTag(value.__name as string)} style={{ fontWeight: 'bold' }}>+</span> <span onClick={() => handleAddDenyTag(value.__name as string)} style={{ fontWeight: 'bold', color: 'red' }}>-</span>
+                <span onClick={() => handleAddTag(value.__name as string)} className="font-bold cursor-pointer">+</span> <span onClick={() => handleAddDenyTag(value.__name as string)} className="font-bold text-red-600 cursor-pointer">-</span>
               </span>
             )}
             {description && (

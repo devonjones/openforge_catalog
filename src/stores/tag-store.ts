@@ -172,23 +172,20 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     addTag: (tag: string) => {
       devLog('addTag', tag);
       set((state) => {
-        // If tag is in denyTags, remove it first
-        const updatedDenyTags = state.denyTags.includes(tag)
-          ? state.denyTags.filter((t) => t !== tag)
-          : state.denyTags;
+        const newDenyTags = state.denyTags.filter((t) => t !== tag);
+        const newSelectedTags = state.selectedTags.includes(tag)
+          ? state.selectedTags
+          : [...state.selectedTags, tag];
 
-        // Add to selectedTags if not already there
-        if (!state.selectedTags.includes(tag)) {
-          const updatedTags = [...state.selectedTags, tag];
-          return { selectedTags: updatedTags, denyTags: updatedDenyTags };
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (newDenyTags.length === state.denyTags.length && newSelectedTags.length === state.selectedTags.length) {
+          return state;
         }
 
-        // If already in selectedTags but was in denyTags, still update denyTags
-        if (updatedDenyTags.length !== state.denyTags.length) {
-          return { denyTags: updatedDenyTags };
-        }
-
-        return state;
+        return {
+          selectedTags: newSelectedTags,
+          denyTags: newDenyTags,
+        };
       });
       get().fetchBlueprints();
     },
@@ -212,23 +209,20 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     addDenyTag: (tag: string) => {
       devLog('addDenyTag', tag);
       set((state) => {
-        // If tag is in selectedTags, remove it first
-        const updatedSelectedTags = state.selectedTags.includes(tag)
-          ? state.selectedTags.filter((t) => t !== tag)
-          : state.selectedTags;
+        const newSelectedTags = state.selectedTags.filter((t) => t !== tag);
+        const newDenyTags = state.denyTags.includes(tag)
+          ? state.denyTags
+          : [...state.denyTags, tag];
 
-        // Add to denyTags if not already there
-        if (!state.denyTags.includes(tag)) {
-          const updatedTags = [...state.denyTags, tag];
-          return { denyTags: updatedTags, selectedTags: updatedSelectedTags };
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (newSelectedTags.length === state.selectedTags.length && newDenyTags.length === state.denyTags.length) {
+          return state;
         }
 
-        // If already in denyTags but was in selectedTags, still update selectedTags
-        if (updatedSelectedTags.length !== state.selectedTags.length) {
-          return { selectedTags: updatedSelectedTags };
-        }
-
-        return state;
+        return {
+          selectedTags: newSelectedTags,
+          denyTags: newDenyTags,
+        };
       });
       get().fetchBlueprints();
     },

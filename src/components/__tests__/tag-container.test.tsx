@@ -128,17 +128,17 @@ describe('TagContainer', () => {
     render(<TagContainer />);
     const minusButtons = screen.getAllByText('-');
     const firstMinusButton = minusButtons[0];
-    expect(firstMinusButton).toHaveStyle({ fontWeight: 'bold' });
-    // Color is converted to rgb in computed styles
-    const style = window.getComputedStyle(firstMinusButton);
-    expect(style.color).toBe('rgb(255, 0, 0)'); // red in rgb
+    expect(firstMinusButton).toHaveClass('font-bold');
+    expect(firstMinusButton).toHaveClass('text-red-600');
+    expect(firstMinusButton).toHaveClass('cursor-pointer');
   });
 
   it('renders + button with bold styling', () => {
     render(<TagContainer />);
     const plusButtons = screen.getAllByText('+');
     const firstPlusButton = plusButtons[0];
-    expect(firstPlusButton).toHaveStyle({ fontWeight: 'bold' });
+    expect(firstPlusButton).toHaveClass('font-bold');
+    expect(firstPlusButton).toHaveClass('cursor-pointer');
   });
 
   it('shows tooltip with delay when hovering over tag with description', async () => {
