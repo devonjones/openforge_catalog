@@ -39,6 +39,7 @@ const mockTagDescriptions = {
 describe('TagContainer', () => {
   const mockToggleNode = jest.fn();
   const mockAddTag = jest.fn();
+  const mockAddDenyTag = jest.fn();
   const mockSetSearchTerm = jest.fn();
   const mockFetchTagDescriptions = jest.fn();
 
@@ -47,6 +48,7 @@ describe('TagContainer', () => {
     expandedNodes: { '0-foo': true },
     toggleNode: mockToggleNode,
     addTag: mockAddTag,
+    addDenyTag: mockAddDenyTag,
     setSearchTerm: mockSetSearchTerm,
     searchTerm: '',
     tagDescriptions: mockTagDescriptions,
@@ -64,7 +66,6 @@ describe('TagContainer', () => {
     addAllTags: jest.fn(),
     removeTag: jest.fn(),
     clearTags: jest.fn(),
-    addDenyTag: jest.fn(),
     removeDenyTag: jest.fn(),
     setTagState: jest.fn(),
     fetchBlueprints: jest.fn(),
@@ -107,6 +108,39 @@ describe('TagContainer', () => {
     expect(mockAddTag).toHaveBeenCalledWith('foo');
   });
 
+  it('calls addDenyTag when - is clicked', () => {
+    render(<TagContainer />);
+    const minusButtons = screen.getAllByText('-');
+    fireEvent.click(minusButtons[0]);
+    expect(mockAddDenyTag).toHaveBeenCalledWith('foo');
+  });
+
+  it('renders both + and - buttons together', () => {
+    render(<TagContainer />);
+    const plusButtons = screen.getAllByText('+');
+    const minusButtons = screen.getAllByText('-');
+    expect(plusButtons.length).toBeGreaterThan(0);
+    expect(minusButtons.length).toBeGreaterThan(0);
+    expect(plusButtons.length).toBe(minusButtons.length);
+  });
+
+  it('renders - button with red color and bold styling', () => {
+    render(<TagContainer />);
+    const minusButtons = screen.getAllByText('-');
+    const firstMinusButton = minusButtons[0];
+    expect(firstMinusButton).toHaveStyle({ fontWeight: 'bold' });
+    // Color is converted to rgb in computed styles
+    const style = window.getComputedStyle(firstMinusButton);
+    expect(style.color).toBe('rgb(255, 0, 0)'); // red in rgb
+  });
+
+  it('renders + button with bold styling', () => {
+    render(<TagContainer />);
+    const plusButtons = screen.getAllByText('+');
+    const firstPlusButton = plusButtons[0];
+    expect(firstPlusButton).toHaveStyle({ fontWeight: 'bold' });
+  });
+
   it('shows tooltip with delay when hovering over tag with description', async () => {
     const testTagDescriptions = { 'test-tag': 'Test description' };
     const testData = {
@@ -119,35 +153,12 @@ describe('TagContainer', () => {
     };
 
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
-      selector({
+      selector(createMockState({
         data: testData,
         expandedNodes: {},
-        toggleNode: jest.fn(),
-        addTag: jest.fn(),
-        setSearchTerm: jest.fn(),
         searchTerm: null,
         tagDescriptions: testTagDescriptions,
-        fetchTagDescriptions: jest.fn(),
-        selectedTags: [],
-        denyTags: [],
-        blueprints: [],
-        paging: null,
-        autoload: false,
-        search_models: false,
-        search_blueprints: false,
-        initialSetupComplete: true,
-        fetchData: jest.fn(),
-        setData: jest.fn(),
-        addAllTags: jest.fn(),
-        removeTag: jest.fn(),
-        clearTags: jest.fn(),
-        addDenyTag: jest.fn(),
-        removeDenyTag: jest.fn(),
-        setTagState: jest.fn(),
-        fetchBlueprints: jest.fn(),
-        setBlueprints: jest.fn(),
-        setInitialSetupComplete: jest.fn(),
-      })
+      }))
     );
 
     render(<TagContainer />);
@@ -195,35 +206,10 @@ describe('TagContainer', () => {
 
   it('syncs searchInput with searchTerm from store', () => {
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
-      selector({
-        data: mockData,
+      selector(createMockState({
         expandedNodes: {},
-        toggleNode: mockToggleNode,
-        addTag: mockAddTag,
-        setSearchTerm: mockSetSearchTerm,
         searchTerm: 'preset',
-        tagDescriptions: mockTagDescriptions,
-        fetchTagDescriptions: mockFetchTagDescriptions,
-        selectedTags: [],
-        denyTags: [],
-        blueprints: [],
-        paging: null,
-        autoload: false,
-        search_models: false,
-        search_blueprints: false,
-        initialSetupComplete: true,
-        fetchData: jest.fn(),
-        setData: jest.fn(),
-        addAllTags: jest.fn(),
-        removeTag: jest.fn(),
-        clearTags: jest.fn(),
-        addDenyTag: jest.fn(),
-        removeDenyTag: jest.fn(),
-        setTagState: jest.fn(),
-        fetchBlueprints: jest.fn(),
-        setBlueprints: jest.fn(),
-        setInitialSetupComplete: jest.fn(),
-      })
+      }))
     );
     render(<TagContainer />);
     expect(screen.getByDisplayValue('preset')).toBeInTheDocument();
@@ -231,35 +217,11 @@ describe('TagContainer', () => {
 
   it('handles no tags gracefully', () => {
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
-      selector({
+      selector(createMockState({
         data: {},
         expandedNodes: {},
-        toggleNode: mockToggleNode,
-        addTag: mockAddTag,
-        setSearchTerm: mockSetSearchTerm,
-        searchTerm: '',
         tagDescriptions: {},
-        fetchTagDescriptions: mockFetchTagDescriptions,
-        selectedTags: [],
-        denyTags: [],
-        blueprints: [],
-        paging: null,
-        autoload: false,
-        search_models: false,
-        search_blueprints: false,
-        initialSetupComplete: true,
-        fetchData: jest.fn(),
-        setData: jest.fn(),
-        addAllTags: jest.fn(),
-        removeTag: jest.fn(),
-        clearTags: jest.fn(),
-        addDenyTag: jest.fn(),
-        removeDenyTag: jest.fn(),
-        setTagState: jest.fn(),
-        fetchBlueprints: jest.fn(),
-        setBlueprints: jest.fn(),
-        setInitialSetupComplete: jest.fn(),
-      })
+      }))
     );
     render(<TagContainer />);
     expect(screen.getByText('Browse Tags')).toBeInTheDocument();
@@ -267,37 +229,13 @@ describe('TagContainer', () => {
 
   it('handles tag with no description', () => {
     (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
-      selector({
+      selector(createMockState({
         data: {
           node: { __name: 'node', __subTags: 0, __count: 1, children: {} },
         },
         expandedNodes: {},
-        toggleNode: mockToggleNode,
-        addTag: mockAddTag,
-        setSearchTerm: mockSetSearchTerm,
-        searchTerm: '',
         tagDescriptions: {},
-        fetchTagDescriptions: mockFetchTagDescriptions,
-        selectedTags: [],
-        denyTags: [],
-        blueprints: [],
-        paging: null,
-        autoload: false,
-        search_models: false,
-        search_blueprints: false,
-        initialSetupComplete: true,
-        fetchData: jest.fn(),
-        setData: jest.fn(),
-        addAllTags: jest.fn(),
-        removeTag: jest.fn(),
-        clearTags: jest.fn(),
-        addDenyTag: jest.fn(),
-        removeDenyTag: jest.fn(),
-        setTagState: jest.fn(),
-        fetchBlueprints: jest.fn(),
-        setBlueprints: jest.fn(),
-        setInitialSetupComplete: jest.fn(),
-      })
+      }))
     );
     render(<TagContainer />);
     expect(screen.getByText('node')).toBeInTheDocument();

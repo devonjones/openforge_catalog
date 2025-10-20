@@ -172,10 +172,22 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     addTag: (tag: string) => {
       devLog('addTag', tag);
       set((state) => {
+        // If tag is in denyTags, remove it first
+        const updatedDenyTags = state.denyTags.includes(tag)
+          ? state.denyTags.filter((t) => t !== tag)
+          : state.denyTags;
+
+        // Add to selectedTags if not already there
         if (!state.selectedTags.includes(tag)) {
           const updatedTags = [...state.selectedTags, tag];
-          return { selectedTags: updatedTags };
+          return { selectedTags: updatedTags, denyTags: updatedDenyTags };
         }
+
+        // If already in selectedTags but was in denyTags, still update denyTags
+        if (updatedDenyTags.length !== state.denyTags.length) {
+          return { denyTags: updatedDenyTags };
+        }
+
         return state;
       });
       get().fetchBlueprints();
@@ -191,18 +203,31 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     removeTag: (tag: string) => {
       devLog('removeTag', tag);
       set((state) => {
-        const updatedTags = state.selectedTags.filter((t) => t !== tag);
-        return { selectedTags: updatedTags };
+        const updatedSelectedTags = state.selectedTags.filter((t) => t !== tag);
+        const updatedDenyTags = state.denyTags.filter((t) => t !== tag);
+        return { selectedTags: updatedSelectedTags, denyTags: updatedDenyTags };
       });
       get().fetchBlueprints();
     },
     addDenyTag: (tag: string) => {
       devLog('addDenyTag', tag);
       set((state) => {
+        // If tag is in selectedTags, remove it first
+        const updatedSelectedTags = state.selectedTags.includes(tag)
+          ? state.selectedTags.filter((t) => t !== tag)
+          : state.selectedTags;
+
+        // Add to denyTags if not already there
         if (!state.denyTags.includes(tag)) {
           const updatedTags = [...state.denyTags, tag];
-          return { denyTags: updatedTags };
+          return { denyTags: updatedTags, selectedTags: updatedSelectedTags };
         }
+
+        // If already in denyTags but was in selectedTags, still update selectedTags
+        if (updatedSelectedTags.length !== state.selectedTags.length) {
+          return { selectedTags: updatedSelectedTags };
+        }
+
         return state;
       });
       get().fetchBlueprints();

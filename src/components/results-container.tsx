@@ -33,7 +33,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   const fetchData = useTagContext((state) => state.fetchData);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const { copied, copyText } = useCopyToClipboard();
-  
+
   const { hasSetTagState } = useUrlParameters();
   const lastProcessedConfig = useRef<string>('');
 
@@ -81,20 +81,20 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
       } else {
         // Handle updates to props after initial setup
         // Preserve user-added tags while updating derived ones
-        const userAddedTags = selectedTags.filter(tag => 
-          !derivedTags.require?.includes(tag) && 
+        const userAddedTags = selectedTags.filter(tag =>
+          !derivedTags.require?.includes(tag) &&
           !derivedTags.deny?.includes(tag)
         );
-        
+
         // Ensure we always work with arrays, even if derivedTags properties are undefined/null
         const derivedRequire = Array.isArray(derivedTags.require) ? derivedTags.require : [];
         const derivedDeny = Array.isArray(derivedTags.deny) ? derivedTags.deny : [];
-        
+
         const mergedTags = {
           require: [...derivedRequire, ...userAddedTags],
           deny: derivedDeny
         };
-        
+
         // Compare arrays to prevent infinite loops
         const requireChanged = !areTagArraysUnsortedEqual(mergedTags.require || [], selectedTags);
         const denyChanged = !areTagArraysUnsortedEqual(mergedTags.deny || [], denyTags);
@@ -164,7 +164,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
   return (
     <div className='resultsContainer'>
       <h2>Blueprints</h2>
-      {(selectedTags.length > 0 || searchTerm) && (
+      {(selectedTags.length > 0 || denyTags.length > 0 || searchTerm) && (
         <>
           <SelectedTagsDisplay
             selectedTags={selectedTags}
@@ -174,7 +174,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
             isTagRemovable={isTagRemovable}
             onRemoveTag={handleRemoveTag}
             onClearSearch={() => setSearchTerm(null)}
-            onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm)}
+            onCreateDeepLink={(tags) => createDeepLink(tags, searchTerm, denyTags)}
             onCopyToClipboard={handleCopyToClipboard}
             copied={copied}
           />
@@ -187,7 +187,7 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
         selectedBlueprint={selectedBlueprint}
         onSelectBlueprint={handleSelect}
       />
-      
+
       <PaginationControls
         paging={paging}
         startCount={startCount}
