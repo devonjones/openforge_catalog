@@ -168,18 +168,13 @@ export function processConfigValues(
  * @returns URL query string
  */
 export function createDeepLink(tags: string[], searchTerm?: string | null, denyTags?: string[]): string {
-  const tagParams = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
-  const denyParams = denyTags && denyTags.length > 0
-    ? denyTags.map(tag => `deny=${encodeURIComponent(tag)}`).join('&')
-    : '';
-
-  const parts = [tagParams, denyParams].filter(p => p.length > 0);
-
+  const params = new URLSearchParams();
+  tags.forEach(tag => params.append('tag', tag));
+  denyTags?.forEach(tag => params.append('deny', tag));
   if (searchTerm) {
-    parts.push(`search=${encodeURIComponent(searchTerm)}`);
+    params.set('search', searchTerm);
   }
-
-  return parts.join('&');
+  return params.toString();
 }
 
 /**
