@@ -202,6 +202,12 @@ export const createTagStore = (autoload = false, search_models = false, search_b
       set((state) => {
         const updatedSelectedTags = state.selectedTags.filter((t) => t !== tag);
         const updatedDenyTags = state.denyTags.filter((t) => t !== tag);
+
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (updatedSelectedTags.length === state.selectedTags.length && updatedDenyTags.length === state.denyTags.length) {
+          return state;
+        }
+
         return { selectedTags: updatedSelectedTags, denyTags: updatedDenyTags };
       });
       get().fetchBlueprints();
