@@ -141,6 +141,14 @@ describe('TagContainer', () => {
     expect(firstPlusButton).toHaveClass('cursor-pointer');
   });
 
+  it('renders buttons with aria-labels for accessibility', () => {
+    render(<TagContainer />);
+    const addButton = screen.getByLabelText('Add tag foo');
+    const excludeButton = screen.getByLabelText('Exclude tag foo');
+    expect(addButton).toBeInTheDocument();
+    expect(excludeButton).toBeInTheDocument();
+  });
+
   it('shows tooltip with delay when hovering over tag with description', async () => {
     const testTagDescriptions = { 'test-tag': 'Test description' };
     const testData = {
