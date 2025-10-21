@@ -172,11 +172,20 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     addTag: (tag: string) => {
       devLog('addTag', tag);
       set((state) => {
-        if (!state.selectedTags.includes(tag)) {
-          const updatedTags = [...state.selectedTags, tag];
-          return { selectedTags: updatedTags };
+        const newDenyTags = state.denyTags.filter((t) => t !== tag);
+        const newSelectedTags = state.selectedTags.includes(tag)
+          ? state.selectedTags
+          : [...state.selectedTags, tag];
+
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (newDenyTags.length === state.denyTags.length && newSelectedTags.length === state.selectedTags.length) {
+          return state;
         }
-        return state;
+
+        return {
+          selectedTags: newSelectedTags,
+          denyTags: newDenyTags,
+        };
       });
       get().fetchBlueprints();
     },
@@ -191,19 +200,35 @@ export const createTagStore = (autoload = false, search_models = false, search_b
     removeTag: (tag: string) => {
       devLog('removeTag', tag);
       set((state) => {
-        const updatedTags = state.selectedTags.filter((t) => t !== tag);
-        return { selectedTags: updatedTags };
+        const updatedSelectedTags = state.selectedTags.filter((t) => t !== tag);
+        const updatedDenyTags = state.denyTags.filter((t) => t !== tag);
+
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (updatedSelectedTags.length === state.selectedTags.length && updatedDenyTags.length === state.denyTags.length) {
+          return state;
+        }
+
+        return { selectedTags: updatedSelectedTags, denyTags: updatedDenyTags };
       });
       get().fetchBlueprints();
     },
     addDenyTag: (tag: string) => {
       devLog('addDenyTag', tag);
       set((state) => {
-        if (!state.denyTags.includes(tag)) {
-          const updatedTags = [...state.denyTags, tag];
-          return { denyTags: updatedTags };
+        const newSelectedTags = state.selectedTags.filter((t) => t !== tag);
+        const newDenyTags = state.denyTags.includes(tag)
+          ? state.denyTags
+          : [...state.denyTags, tag];
+
+        // Only update state if there's a change to avoid unnecessary re-renders
+        if (newSelectedTags.length === state.selectedTags.length && newDenyTags.length === state.denyTags.length) {
+          return state;
         }
-        return state;
+
+        return {
+          selectedTags: newSelectedTags,
+          denyTags: newDenyTags,
+        };
       });
       get().fetchBlueprints();
     },

@@ -27,6 +27,9 @@ export function useUrlParameters() {
       // Handle tags - collect all tags to add at once
       const tagParams = params.getAll('tag');
 
+      // Handle deny tags
+      const denyParams = params.getAll('deny');
+
       // Handle search term
       const searchParam = params.get('search');
 
@@ -36,7 +39,7 @@ export function useUrlParameters() {
       // Set all state at once to trigger only one fetchBlueprints call
       setTagState({
         require: tagParams,
-        deny: [],
+        deny: denyParams,
         searchTerm: searchParam
       });
 

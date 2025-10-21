@@ -131,7 +131,7 @@ describe('TagStore', () => {
     it('should not add duplicate tags', () => {
       store.getState().addTag('test-tag');
       store.getState().addTag('test-tag');
-      
+
       const selectedTags = store.getState().selectedTags;
       expect(selectedTags.filter(tag => tag === 'test-tag')).toHaveLength(1);
     });
@@ -143,11 +143,20 @@ describe('TagStore', () => {
       });
 
       store.getState().addTag('test-tag');
-      
+
       // Wait for the async fetchBlueprints call
       await new Promise(resolve => setTimeout(resolve, 0));
-      
+
       expect(fetch).toHaveBeenCalled();
+    });
+
+    it('should remove tag from denyTags when adding to selectedTags', () => {
+      store.getState().addDenyTag('conflict-tag');
+      expect(store.getState().denyTags).toContain('conflict-tag');
+
+      store.getState().addTag('conflict-tag');
+      expect(store.getState().denyTags).not.toContain('conflict-tag');
+      expect(store.getState().selectedTags).toContain('conflict-tag');
     });
   });
 
@@ -170,7 +179,7 @@ describe('TagStore', () => {
       });
 
       store.getState().addAllTags(['tag1', 'tag2']);
-      
+
       await new Promise(resolve => setTimeout(resolve, 0));
       expect(fetch).toHaveBeenCalled();
     });
@@ -191,9 +200,20 @@ describe('TagStore', () => {
 
       store.getState().addTag('test-tag');
       store.getState().removeTag('test-tag');
-      
+
       await new Promise(resolve => setTimeout(resolve, 0));
       expect(fetch).toHaveBeenCalled();
+    });
+
+    it('should remove tag from both selectedTags and denyTags', () => {
+      store.getState().addTag('selected-tag');
+      store.getState().addDenyTag('deny-tag');
+
+      store.getState().removeTag('selected-tag');
+      expect(store.getState().selectedTags).not.toContain('selected-tag');
+
+      store.getState().removeTag('deny-tag');
+      expect(store.getState().denyTags).not.toContain('deny-tag');
     });
   });
 
@@ -206,9 +226,18 @@ describe('TagStore', () => {
     it('should not add duplicate deny tags', () => {
       store.getState().addDenyTag('deny-tag');
       store.getState().addDenyTag('deny-tag');
-      
+
       const denyTags = store.getState().denyTags;
       expect(denyTags.filter(tag => tag === 'deny-tag')).toHaveLength(1);
+    });
+
+    it('should remove tag from selectedTags when adding to denyTags', () => {
+      store.getState().addTag('conflict-tag');
+      expect(store.getState().selectedTags).toContain('conflict-tag');
+
+      store.getState().addDenyTag('conflict-tag');
+      expect(store.getState().selectedTags).not.toContain('conflict-tag');
+      expect(store.getState().denyTags).toContain('conflict-tag');
     });
   });
 
@@ -319,7 +348,7 @@ describe('TagStore', () => {
     it('should include selected and deny tags in request body', async () => {
       store.getState().addTag('selected-tag');
       store.getState().addDenyTag('deny-tag');
-      
+
       const mockTagCounts = { 'tag1': 5 };
       (fetch as jest.Mock).mockResolvedValueOnce({
         ok: true,
@@ -467,4 +496,4 @@ describe('TagStore', () => {
       expect(state.search_blueprints).toBe(true);
     });
   });
-}); 
+});

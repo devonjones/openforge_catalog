@@ -21,16 +21,16 @@ export interface SiblingSelection {
 function filterSpecificTags(tags: Set<string>, constraintTag: string): Set<string> {
   const result = new Set<string>();
   const tagsArray = Array.from(tags);
-  
+
   // Always include exact matches for the constraint tag
   const exactMatches = tagsArray.filter(tag => tag === constraintTag);
   exactMatches.forEach(tag => result.add(tag));
-  
+
   // For prefix matches (excluding exact matches), filter to most general
-  const prefixMatches = tagsArray.filter(tag => 
+  const prefixMatches = tagsArray.filter(tag =>
     tag !== constraintTag && tag.startsWith(constraintTag + '|')
   );
-  
+
   for (const tag of prefixMatches) {
     // Check if any other prefix match is a prefix of this tag
     let isMostGeneral = true;
@@ -44,7 +44,7 @@ function filterSpecificTags(tags: Set<string>, constraintTag: string): Set<strin
       result.add(tag);
     }
   }
-  
+
   return result;
 }
 
@@ -164,14 +164,17 @@ export function processConfigValues(
  * Create a deep link URL with tags and optional search term
  * @param tags - Array of tags to include in the URL
  * @param searchTerm - Optional search term to include
+ * @param denyTags - Array of deny tags to include in the URL
  * @returns URL query string
  */
-export function createDeepLink(tags: string[], searchTerm?: string | null): string {
-  const params = tags.map(tag => `tag=${encodeURIComponent(tag)}`).join('&');
+export function createDeepLink(tags: string[], searchTerm?: string | null, denyTags?: string[]): string {
+  const params = new URLSearchParams();
+  tags.forEach(tag => params.append('tag', tag));
+  denyTags?.forEach(tag => params.append('deny', tag));
   if (searchTerm) {
-    return `${params}&search=${encodeURIComponent(searchTerm)}`;
+    params.set('search', searchTerm);
   }
-  return params;
+  return params.toString();
 }
 
 /**
@@ -183,7 +186,7 @@ export function buildNestedConfigs(
   configSelections: Record<string, Blueprint>
 ): Record<string, ConfigPart[]> {
   const newNestedConfigs: Record<string, ConfigPart[]> = {};
-  
+
   Object.entries(configSelections).forEach(([partName, bp]) => {
     if (bp.blueprint_config?.parts) {
       newNestedConfigs[partName] = bp.blueprint_config.parts;
@@ -191,4 +194,4 @@ export function buildNestedConfigs(
   });
 
   return newNestedConfigs;
-} 
+}

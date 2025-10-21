@@ -26,7 +26,7 @@ The system uses a unified **"blueprint"** entity that handles both individual mo
 #### Database Schema (PostgreSQL) - **UPDATED**
 ```sql
 -- Core entity (handles both models and blueprint compositions)
-blueprints: id, blueprint_name, blueprint_type, config (jsonb), file_md5, file_size, 
+blueprints: id, blueprint_name, blueprint_type, config (jsonb), file_md5, file_size,
            file_name, storage_address, search_text, created_at, updated_at,
            -- NEW FIELDS:
            consolidated_paths (text[]),     -- All filesystem locations for this file
@@ -102,6 +102,7 @@ Blueprints define sophisticated assembly patterns using a tag-based constraint s
 
 - **Part Definitions**: Named components with tag-based requirements
 - **Constraint Types**: require, accept, deny, and constrain mechanisms for part selection
+  - *Note: This refers to blueprint configuration constraints, distinct from the user-facing search deny tags feature*
 - **Dynamic Inheritance**: Parts inherit properties from parent blueprints and sibling selections
 - **Fulfillment System**: Parts can satisfy multiple requirements to handle integrated components
 - **Real-time Resolution**: Constraints update progressively as users make selections
@@ -319,6 +320,10 @@ Excellent performance despite complex tag queries using sophisticated SQL with m
 
 #### Current Features
 - **Part Search**: Tag-based filtering with hierarchical categories
+  - **Require Tags**: Include items with specific tags (+ button)
+  - **Deny Tags**: Exclude items with specific tags (- button in red)
+  - **Combined Filtering**: Use both require and deny tags together for precise searches
+  - **Deep Link Support**: URLs preserve both require and deny tags for sharing searches
 - **Blueprint Assembly**: Step-by-step part selection with constraint-based filtering
 - **Visual Feedback**: 3D thumbnail previews throughout interface
 - **Download System**: Individual file downloads with deep linking support
@@ -377,6 +382,9 @@ RESTful API with comprehensive CRUD operations:
 - `/api/blueprints` - Blueprint management
 - `/api/blueprints/{blueprint_id}/tags` - Tag management
 - `/api/blueprints/tags` - Advanced tag querying with pagination
+  - Supports `require` tags (include items with these tags)
+  - Supports `deny` tags (exclude items with these tags)
+  - Supports `accept` tags (optional tags for flexible matching)
 - **NEW**: `/api/blueprints/component-alternatives` - Component swapping alternatives
 - `/api/images` - Image management
 - `/api/tag-descriptions` - Tag documentation

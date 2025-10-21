@@ -21,6 +21,7 @@ const renderTags = (
   expandedNodes: Record<string, boolean>,
   toggleNode: (key: string) => void,
   handleAddTag: (tag: string) => void,
+  handleAddDenyTag: (tag: string) => void,
   tagDescriptions: Record<string, string>,
   onTagHover: (tag: string | null, rect?: DOMRect) => void
 ) => {
@@ -58,8 +59,8 @@ const renderTags = (
           >
             {tag} {typeof value.__subTags === 'number' && value.__subTags > 0 && `(${value.__subTags}) `}
             {value.__count && (
-              <span className="tagButton" onClick={() => handleAddTag(value.__name as string)}>
-                +
+              <span className="tagButton">
+                <button type="button" onClick={() => handleAddTag(value.__name as string)} className="font-bold cursor-pointer p-0 m-0 border-0 bg-transparent hover:bg-gray-200 rounded" aria-label={`Add tag ${value.__name}`}>+</button> <button type="button" onClick={() => handleAddDenyTag(value.__name as string)} className="font-bold text-red-600 cursor-pointer p-0 m-0 border-0 bg-transparent hover:bg-gray-200 rounded" aria-label={`Exclude tag ${value.__name}`}>-</button>
               </span>
             )}
             {description && (
@@ -71,7 +72,7 @@ const renderTags = (
             )}
           </span>
         </div>
-        {isExpanded && hasChildren && value.children && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, tagDescriptions, onTagHover)}
+        {isExpanded && hasChildren && value.children && renderTags(value.children, level + 1, expandedNodes, toggleNode, handleAddTag, handleAddDenyTag, tagDescriptions, onTagHover)}
       </div>
     );
   });
@@ -82,6 +83,7 @@ const TagContainer = () => {
   const expandedNodes = useTagContext((state) => state.expandedNodes);
   const toggleNode = useTagContext((state) => state.toggleNode);
   const addTag = useTagContext((state) => state.addTag);
+  const addDenyTag = useTagContext((state) => state.addDenyTag);
   const setSearchTerm = useTagContext((state) => state.setSearchTerm);
   const searchTerm = useTagContext((state) => state.searchTerm);
   const tagDescriptions = useTagContext((state) => state.tagDescriptions);
@@ -124,6 +126,10 @@ const TagContainer = () => {
     addTag(tag);
   };
 
+  const handleAddDenyTag = (tag: string) => {
+    addDenyTag(tag);
+  };
+
   const handleSearchKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const term = searchInput.trim();
@@ -160,7 +166,7 @@ const TagContainer = () => {
         style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
       />
       <div><strong>Browse Tags</strong></div>
-      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, tagDescriptions, handleTagHover)}</div>
+      <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, handleAddDenyTag, tagDescriptions, handleTagHover)}</div>
       {hoveredTag && tooltipRect && tagDescriptions[hoveredTag] && createPortal(
         <div
           className="tooltip"

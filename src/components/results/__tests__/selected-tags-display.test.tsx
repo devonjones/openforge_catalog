@@ -53,7 +53,7 @@ describe('SelectedTagsDisplay', () => {
       />
     );
 
-    const selectedTagsElements = screen.getAllByText((content, element) => 
+    const selectedTagsElements = screen.getAllByText((content, element) =>
       element?.textContent?.includes('Selected Tags') || false
     );
     expect(selectedTagsElements.length).toBeGreaterThan(0);
@@ -189,6 +189,31 @@ describe('SelectedTagsDisplay', () => {
     expect(screen.getByTitle('Copy url to clipboard')).toBeInTheDocument();
   });
 
+  it('shows deeplink and copy button with only deny tags', () => {
+    mockOnCreateDeepLink.mockReturnValue('deny=denied1&deny=denied2');
+
+    render(
+      <SelectedTagsDisplay
+        selectedTags={[]}
+        denyTags={['denied1', 'denied2']}
+        searchTerm={null}
+        configValues={null}
+        isTagRemovable={() => true}
+        onRemoveTag={mockOnRemoveTag}
+        onClearSearch={mockOnClearSearch}
+        onCreateDeepLink={mockOnCreateDeepLink}
+        onCopyToClipboard={mockOnCopyToClipboard}
+        copied={false}
+      />
+    );
+
+    expect(screen.getByText('deeplink')).toBeInTheDocument();
+    expect(screen.getByTitle('Copy url to clipboard')).toBeInTheDocument();
+    expect(screen.getByText('Denied Tags')).toBeInTheDocument();
+    expect(screen.getByText('denied1')).toBeInTheDocument();
+    expect(screen.getByText('denied2')).toBeInTheDocument();
+  });
+
   it('does not show deeplink and copy button when configValues is provided', () => {
     const configValues = createMockConfigTags();
 
@@ -296,4 +321,4 @@ describe('SelectedTagsDisplay', () => {
     const deniedTag = screen.getByText('denied-tag');
     expect(deniedTag).toHaveClass('text-red-600');
   });
-}); 
+});

@@ -75,7 +75,11 @@ describe('useUrlParameters', () => {
   });
 
   it('processes tag parameters from URL', () => {
-    mockGetAll.mockReturnValue(['tag1', 'tag2']);
+    mockGetAll.mockImplementation((param: string) => {
+      if (param === 'tag') return ['tag1', 'tag2'];
+      if (param === 'deny') return [];
+      return [];
+    });
     mockGet.mockReturnValue(null);
 
     renderHook(() => useUrlParameters());
@@ -111,7 +115,11 @@ describe('useUrlParameters', () => {
 
   it('processes all tags from URL regardless of existing tags', () => {
     const existingTags = ['tag1', 'tag2'];
-    mockGetAll.mockReturnValue(['tag1', 'tag3']);
+    mockGetAll.mockImplementation((param: string) => {
+      if (param === 'tag') return ['tag1', 'tag3'];
+      if (param === 'deny') return [];
+      return [];
+    });
     mockGet.mockReturnValue(null);
 
     (useTagContext as jest.Mock).mockImplementation((selector) => {

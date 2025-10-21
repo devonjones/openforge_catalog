@@ -482,7 +482,7 @@ describe('config-processing', () => {
       const tags = ['tag1', 'tag2'];
       const searchTerm = 'test search';
       const result = createDeepLink(tags, searchTerm);
-      expect(result).toBe('tag=tag1&tag=tag2&search=test%20search');
+      expect(result).toBe('tag=tag1&tag=tag2&search=test+search');
     });
 
     it('handles empty tags array', () => {
@@ -494,14 +494,58 @@ describe('config-processing', () => {
     it('handles tags with special characters', () => {
       const tags = ['tag with spaces', 'tag|with|pipes'];
       const result = createDeepLink(tags);
-      expect(result).toBe('tag=tag%20with%20spaces&tag=tag%7Cwith%7Cpipes');
+      expect(result).toBe('tag=tag+with+spaces&tag=tag%7Cwith%7Cpipes');
     });
 
     it('handles search term with special characters', () => {
       const tags = ['tag1'];
       const searchTerm = 'search with spaces & symbols';
       const result = createDeepLink(tags, searchTerm);
-      expect(result).toBe('tag=tag1&search=search%20with%20spaces%20%26%20symbols');
+      expect(result).toBe('tag=tag1&search=search+with+spaces+%26+symbols');
+    });
+
+    it('creates deep link with deny tags only', () => {
+      const tags: string[] = [];
+      const denyTags = ['deny1', 'deny2'];
+      const result = createDeepLink(tags, null, denyTags);
+      expect(result).toBe('deny=deny1&deny=deny2');
+    });
+
+    it('creates deep link with both tags and deny tags', () => {
+      const tags = ['tag1', 'tag2'];
+      const denyTags = ['deny1', 'deny2'];
+      const result = createDeepLink(tags, null, denyTags);
+      expect(result).toBe('tag=tag1&tag=tag2&deny=deny1&deny=deny2');
+    });
+
+    it('creates deep link with deny tags and search term', () => {
+      const tags: string[] = [];
+      const denyTags = ['deny1'];
+      const searchTerm = 'test';
+      const result = createDeepLink(tags, searchTerm, denyTags);
+      expect(result).toBe('deny=deny1&search=test');
+    });
+
+    it('creates deep link with tags, deny tags, and search term', () => {
+      const tags = ['tag1'];
+      const denyTags = ['deny1'];
+      const searchTerm = 'test';
+      const result = createDeepLink(tags, searchTerm, denyTags);
+      expect(result).toBe('tag=tag1&deny=deny1&search=test');
+    });
+
+    it('handles empty deny tags array', () => {
+      const tags = ['tag1'];
+      const denyTags: string[] = [];
+      const result = createDeepLink(tags, null, denyTags);
+      expect(result).toBe('tag=tag1');
+    });
+
+    it('handles deny tags with special characters', () => {
+      const tags: string[] = [];
+      const denyTags = ['deny with spaces', 'deny|with|pipes'];
+      const result = createDeepLink(tags, null, denyTags);
+      expect(result).toBe('deny=deny+with+spaces&deny=deny%7Cwith%7Cpipes');
     });
   });
-}); 
+});
