@@ -19,6 +19,11 @@ export function TagProvider({
   search_models?: boolean;
   search_blueprints?: boolean;
 }) {
+  // IMPORTANT: Empty dependency array is intentional!
+  // Zustand stores must be created ONCE and never recreated. The props (autoload, search_models, search_blueprints)
+  // are initial configuration values used at creation time. Recreating the store would lose all state
+  // (selectedTags, blueprints, paging, etc.) and cause infinite re-render loops.
+  // See: https://github.com/pmndrs/zustand/discussions/1937
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const store = useMemo(() => createTagStore(autoload, search_models, search_blueprints), []);
 

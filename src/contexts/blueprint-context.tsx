@@ -51,6 +51,9 @@ function BlueprintProviderInner({ children, autoload = false, store }: Blueprint
 }
 
 export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
+  // IMPORTANT: Empty dependency array is intentional!
+  // Zustand stores must be created ONCE and never recreated. Recreating the store
+  // would lose all state and cause infinite re-render loops.
   const store = useMemo(() => createBlueprintStore(), []);
 
   if (autoload) {
