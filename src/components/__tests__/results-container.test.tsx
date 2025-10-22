@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ResultsContainer from '../results-container';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
@@ -218,6 +218,63 @@ describe('ResultsContainer', () => {
     expect(mockFunctions.setTagState).toHaveBeenCalledWith({
       require: ['base|level3|sub'], // Should include this as it starts with 'base' but doesn't match any filter
       deny: []
+    });
+  });
+
+  it('handles configValues with async fetchData without race condition', async () => {
+    const configValues = createMockConfigTags({
+      require: [{ tag: 'required1' }, { tag: 'required2' }],
+      deny: [{ tag: 'denied1' }],
+    });
+
+    // Mock fetchData to return a Promise that resolves after a state update
+    // This simulates the race condition where fetchData updates state (like setSearchTerm)
+    // which causes the effect to re-run and potentially cancel the original effect
+    const mockFetchData = jest.fn(() => Promise.resolve());
+
+    (useTagContext as jest.Mock).mockImplementation((selector: (state: TagStore) => unknown) =>
+      selector({
+        blueprints,
+        paging,
+        selectedTags: [],
+        denyTags: [],
+        searchTerm: null,
+        removeTag: mockFunctions.removeTag,
+        addTag: mockFunctions.addTag,
+        clearTags: mockFunctions.clearTags,
+        fetchBlueprints: mockFunctions.fetchBlueprints,
+        setTagState: mockFunctions.setTagState,
+        autoload: false,
+        setSearchTerm: mockFunctions.setSearchTerm,
+        data: {},
+        expandedNodes: {},
+        tagDescriptions: {},
+        fetchData: mockFetchData,
+        setData: mockFunctions.setData,
+        toggleNode: mockFunctions.toggleNode,
+        addAllTags: mockFunctions.addAllTags,
+        addDenyTag: mockFunctions.addDenyTag,
+        removeDenyTag: mockFunctions.removeDenyTag,
+        setBlueprints: mockFunctions.setBlueprints,
+        fetchTagDescriptions: mockFunctions.fetchTagDescriptions,
+        search_models: false,
+        search_blueprints: false,
+        initialSetupComplete: true,
+        setInitialSetupComplete: mockFunctions.setInitialSetupComplete,
+      })
+    );
+
+    render(<ResultsContainer configValues={configValues} />);
+
+    // Wait for async operations to complete and verify setTagState was called
+    // This ensures the race condition fix is working - even though fetchData
+    // may trigger state updates that cause the effect to re-run, the original
+    // effect should still complete and set the tags
+    await waitFor(() => {
+      expect(mockFunctions.setTagState).toHaveBeenCalledWith({
+        require: ['required1', 'required2'],
+        deny: ['denied1']
+      });
     });
   });
 

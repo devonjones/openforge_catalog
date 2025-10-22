@@ -4,23 +4,22 @@ import ConfigSection from '../config-section';
 import { createMockBlueprint } from '@/test-utils';
 import { ConfigPart } from '@/types';
 import { BlueprintProvider, BlueprintContext } from '@/contexts/blueprint-context';
-import type { BlueprintStore } from '@/stores/blueprint-store';
 import { createBlueprintStore } from '@/stores/blueprint-store';
-import { StoreApi } from 'zustand';
 import type { Blueprint } from '@/types';
 import type { ConfigTags } from '@/types';
 
 // TestBlueprintProvider for injecting initial configSelections
 function TestBlueprintProvider({ children, configSelections = {} }: { children: React.ReactNode; configSelections?: Record<string, Blueprint> }) {
-  const storeRef = React.useRef<StoreApi<BlueprintStore> | null>(null);
-  if (!storeRef.current) {
-    storeRef.current = createBlueprintStore();
+  const store = React.useMemo(() => {
+    const newStore = createBlueprintStore();
     Object.entries(configSelections).forEach(([key, blueprint]) => {
-      storeRef.current!.getState().setConfigSelection(key, blueprint);
+      newStore.getState().setConfigSelection(key, blueprint);
     });
-  }
+    return newStore;
+  }, [configSelections]);
+
   return (
-    <BlueprintContext.Provider value={storeRef.current}>
+    <BlueprintContext.Provider value={store}>
       {children}
     </BlueprintContext.Provider>
   );
@@ -30,7 +29,7 @@ function TestBlueprintProvider({ children, configSelections = {} }: { children: 
 jest.mock('../config-box', () => {
   return function MockConfigBox({ title, onHover, boxRef, parentBlueprint }: { title: string; value: ConfigTags; onHover?: (isHovering: boolean) => void; boxRef?: React.RefObject<HTMLDivElement | null>; parentBlueprint?: { tags?: string[] } }) {
     return (
-      <div 
+      <div
         data-testid={`config-box-${title}`}
         onMouseEnter={() => onHover?.(true)}
         onMouseLeave={() => onHover?.(false)}
@@ -82,7 +81,7 @@ describe('ConfigSection', () => {
   it('renders main blueprint config parts when present', () => {
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={{}}
           configValues={null}
@@ -98,7 +97,7 @@ describe('ConfigSection', () => {
   it('shows tooltip with tag requirements after hovering for 1000ms', async () => {
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={{}}
           configValues={null}
@@ -107,21 +106,21 @@ describe('ConfigSection', () => {
     );
 
     const configBox = screen.getByTestId('config-box-part1');
-    
+
     // Initially no tooltip should be visible
     expect(screen.queryByText('Required Tags:')).not.toBeInTheDocument();
-    
+
     // Hover over the config box
     fireEvent.mouseEnter(configBox);
-    
+
     // Tooltip should not appear immediately
     expect(screen.queryByText('Required Tags:')).not.toBeInTheDocument();
-    
+
     // Fast-forward time by 1000ms
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    
+
     // Tooltip should now be visible
     expect(screen.getByText('Required Tags:')).toBeInTheDocument();
     expect(screen.getByText('required_tag')).toBeInTheDocument();
@@ -130,7 +129,7 @@ describe('ConfigSection', () => {
   it('hides tooltip when mouse leaves before 1000ms', async () => {
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={{}}
           configValues={null}
@@ -139,26 +138,26 @@ describe('ConfigSection', () => {
     );
 
     const configBox = screen.getByTestId('config-box-part1');
-    
+
     // Hover over the config box
     fireEvent.mouseEnter(configBox);
-    
+
     // Fast-forward time by 500ms (less than 1000ms)
     act(() => {
       jest.advanceTimersByTime(500);
     });
-    
+
     // Tooltip should not be visible yet
     expect(screen.queryByText('Required Tags:')).not.toBeInTheDocument();
-    
+
     // Mouse leaves before 1000ms
     fireEvent.mouseLeave(configBox);
-    
+
     // Fast-forward to 1000ms
     act(() => {
       jest.advanceTimersByTime(500);
     });
-    
+
     // Tooltip should still not be visible
     expect(screen.queryByText('Required Tags:')).not.toBeInTheDocument();
   });
@@ -177,7 +176,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithParentPart}
           nestedConfigs={mockNestedConfigs}
           configValues={null}
@@ -186,15 +185,15 @@ describe('ConfigSection', () => {
     );
 
     const configBox = screen.getByTestId('config-box-parent_part|child_part');
-    
+
     // Hover over the nested config box
     fireEvent.mouseEnter(configBox);
-    
+
     // Fast-forward time by 1000ms
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    
+
     // Tooltip should be visible with nested part requirements
     expect(screen.getByText('Required Tags:')).toBeInTheDocument();
     expect(screen.getByText('child_tag')).toBeInTheDocument();
@@ -206,11 +205,11 @@ describe('ConfigSection', () => {
         parts: [
           {
             name: 'complex_part',
-            tags: { 
-              require: [{ tag: 'required_tag' }], 
-              deny: [{ tag: 'denied_tag' }], 
-              accept: [{ tag: 'accepted_tag' }], 
-              constrain: [{ tag: 'constrained_tag' }, { filter: 'filtered_tag' }] 
+            tags: {
+              require: [{ tag: 'required_tag' }],
+              deny: [{ tag: 'denied_tag' }],
+              accept: [{ tag: 'accepted_tag' }],
+              constrain: [{ tag: 'constrained_tag' }, { filter: 'filtered_tag' }]
             }
           } as ConfigPart,
         ]
@@ -219,7 +218,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithAllTagTypes}
           nestedConfigs={{}}
           configValues={null}
@@ -228,22 +227,22 @@ describe('ConfigSection', () => {
     );
 
     const configBox = screen.getByTestId('config-box-complex_part');
-    
+
     // Hover over the config box
     fireEvent.mouseEnter(configBox);
-    
+
     // Fast-forward time by 1000ms
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    
+
     // All tag requirement types should be visible
     expect(screen.getByText('Required Tags:')).toBeInTheDocument();
     expect(screen.getByText('Denied Tags:')).toBeInTheDocument();
     expect(screen.getByText('Accepted Tags:')).toBeInTheDocument();
     expect(screen.getByText('Constrained Tags (Inherited):')).toBeInTheDocument();
     expect(screen.getByText('Constraint Filters:')).toBeInTheDocument();
-    
+
     // Tag values should be visible
     expect(screen.getByText('required_tag')).toBeInTheDocument();
     expect(screen.getByText('denied_tag')).toBeInTheDocument();
@@ -255,7 +254,7 @@ describe('ConfigSection', () => {
   it('switches tooltip when hovering different config boxes', async () => {
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={{}}
           configValues={null}
@@ -265,28 +264,28 @@ describe('ConfigSection', () => {
 
     const configBox1 = screen.getByTestId('config-box-part1');
     const configBox2 = screen.getByTestId('config-box-part2');
-    
+
     // Hover over first config box
     fireEvent.mouseEnter(configBox1);
-    
+
     // Fast-forward time by 1000ms
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    
+
     // First tooltip should be visible
     const tooltip = screen.getByText('Required Tags:').closest('div');
     expect(within(tooltip!).getByText('required_tag')).toBeInTheDocument();
     expect(screen.queryByText('required_tag2')).not.toBeInTheDocument();
-    
+
     // Hover over second config box
     fireEvent.mouseEnter(configBox2);
-    
+
     // Fast-forward time by 1000ms for the second tooltip
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    
+
     // Second tooltip should be visible
     const tooltip2 = screen.getByText('Required Tags:').closest('div');
     expect(within(tooltip2!).getByText('required_tag2')).toBeInTheDocument();
@@ -307,7 +306,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithParentPart}
           nestedConfigs={mockNestedConfigs}
           configValues={null}
@@ -338,7 +337,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithFulfills}
           nestedConfigs={{}}
           configValues={null}
@@ -378,7 +377,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithParentPart}
           nestedConfigs={nestedConfigsWithMultipleParts}
           configValues={null}
@@ -393,7 +392,7 @@ describe('ConfigSection', () => {
   it('returns null when configValues is provided', () => {
     const { container } = render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={mockNestedConfigs}
           configValues={{ partName: 'test_part' }}
@@ -409,7 +408,7 @@ describe('ConfigSection', () => {
 
     const { container } = render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithoutConfig}
           nestedConfigs={{}}
           configValues={null}
@@ -423,7 +422,7 @@ describe('ConfigSection', () => {
   it('handles empty nested configs', () => {
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={mockBlueprint}
           nestedConfigs={{}}
           configValues={null}
@@ -459,7 +458,7 @@ describe('ConfigSection', () => {
 
     render(
       <BlueprintProvider>
-        <ConfigSection 
+        <ConfigSection
           blueprint={blueprintWithParentPart}
           nestedConfigs={nestedConfigsWithOnlyFulfilledParts}
           configValues={null}
@@ -517,4 +516,4 @@ describe('ConfigSection', () => {
     expect(screen.getByText('parent_tag_1')).toBeInTheDocument();
     expect(screen.getByText('parent_tag_2')).toBeInTheDocument();
   });
-}); 
+});
