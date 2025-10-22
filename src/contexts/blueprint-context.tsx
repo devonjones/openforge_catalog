@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useRef, useEffect, Suspense } from 'react';
+import React, { createContext, useContext, useEffect, Suspense, useMemo } from 'react';
 import { StoreApi, useStore } from 'zustand';
 import { createBlueprintStore, BlueprintStore } from '@/stores/blueprint-store';
 import { useSearchParams } from 'next/navigation';
@@ -15,56 +15,52 @@ interface BlueprintProviderProps {
 }
 
 interface BlueprintProviderInnerProps extends BlueprintProviderProps {
-  storeRef: React.MutableRefObject<BlueprintContext>;
+  store: StoreApi<BlueprintStore>;
 }
 
-function BlueprintProviderInner({ children, autoload = false, storeRef }: BlueprintProviderInnerProps) {
+function BlueprintProviderInner({ children, autoload = false, store }: BlueprintProviderInnerProps) {
   const searchParams = useSearchParams();
   const blueprintId = autoload ? searchParams.get('blueprint_id') : null;
   const md5 = autoload ? searchParams.get('md5') : null;
 
   useEffect(() => {
     if (blueprintId) {
-      storeRef.current?.getState().fetchBlueprintById(blueprintId)
+      store.getState().fetchBlueprintById(blueprintId)
         .then(blueprint => {
-          storeRef.current?.getState().setSelectedBlueprint(blueprint);
+          store.getState().setSelectedBlueprint(blueprint);
         })
         .catch(error => {
           console.error('Failed to fetch initial blueprint:', error);
         });
     } else if (md5) {
-      storeRef.current?.getState().fetchBlueprintByMd5(md5)
+      store.getState().fetchBlueprintByMd5(md5)
         .then(blueprint => {
-          storeRef.current?.getState().setSelectedBlueprint(blueprint);
+          store.getState().setSelectedBlueprint(blueprint);
         })
         .catch(error => {
           console.error('Failed to fetch initial blueprint:', error);
         });
     }
-  }, [blueprintId, md5, storeRef]);
+  }, [blueprintId, md5, store]);
 
   return (
-    <BlueprintContext.Provider value={storeRef.current}>
+    <BlueprintContext.Provider value={store}>
       {children}
     </BlueprintContext.Provider>
   );
 }
 
 export function BlueprintProvider({ children, autoload = false }: BlueprintProviderProps) {
-  const storeRef = useRef<BlueprintContext>(null);
-
-  if (!storeRef.current) {
-    storeRef.current = createBlueprintStore();
-  }
+  const store = useMemo(() => createBlueprintStore(), []);
 
   if (autoload) {
     return (
       <Suspense fallback={
-        <BlueprintContext.Provider value={storeRef.current}>
+        <BlueprintContext.Provider value={store}>
           {children}
         </BlueprintContext.Provider>
       }>
-        <BlueprintProviderInner autoload={autoload} storeRef={storeRef}>
+        <BlueprintProviderInner autoload={autoload} store={store}>
           {children}
         </BlueprintProviderInner>
       </Suspense>
@@ -72,7 +68,7 @@ export function BlueprintProvider({ children, autoload = false }: BlueprintProvi
   }
 
   return (
-    <BlueprintContext.Provider value={storeRef.current}>
+    <BlueprintContext.Provider value={store}>
       {children}
     </BlueprintContext.Provider>
   );

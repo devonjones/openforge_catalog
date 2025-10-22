@@ -16,6 +16,7 @@ const TabbedInterface = () => {
     // Load base generator URL from localStorage and app-config.json
     const savedUrl = localStorage.getItem('baseGeneratorUrl');
     if (savedUrl) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setBaseGeneratorUrl(savedUrl);
     }
 
