@@ -11,10 +11,10 @@ interface BlueprintConfigSectionProps {
   configValues?: { partName: string } | null;
 }
 
-const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
-  blueprint,
-  nestedConfigs,
-  configValues
+const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({ 
+  blueprint, 
+  nestedConfigs, 
+  configValues 
 }) => {
   // Move hover state to top level
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
@@ -68,7 +68,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
 
   const renderTagRequirements = (tags: ConfigTags, part?: ConfigPart) => {
     const requirements = [];
-
+    
     if (tags.require && tags.require.length > 0) {
       requirements.push(
         <div key="require" className="mt-2">
@@ -111,7 +111,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
     if (tags.constrain && tags.constrain.length > 0) {
       const tagConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'tag' in c) as { tag: string; siblings?: string[]; parent?: boolean }[];
       const filterConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'filter' in c) as { filter: string }[];
-
+      
       if (tagConstraints.length > 0) {
         requirements.push(
           <div key="constrain" className="mt-2">
@@ -131,7 +131,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                 } else {
                   sourceInfo.push('all siblings');
                 }
-
+                
                 return (
                   <li key={index}>
                     <span className="font-medium">{constraint.tag}</span>
@@ -284,7 +284,6 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
       {blueprint.blueprint_config?.parts && blueprint.blueprint_config.parts.length > 0 && (
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Parts Needed to Build</h3>
-          {/* eslint-disable-next-line react-hooks/refs */}
           {renderConfigBoxes(
             blueprint.blueprint_config.parts,
             [],
@@ -295,7 +294,6 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
       )}
 
       {/* Nested configs for selected parts */}
-      {/* eslint-disable-next-line react-hooks/refs */}
       {Object.entries(nestedConfigs).map(([partName, parts]) => {
         // Find fulfills for the part definition in the parent's config
         let fulfills: { part: string }[] = [];
@@ -323,4 +321,4 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
   );
 };
 
-export default BlueprintConfigSection;
+export default BlueprintConfigSection; 
