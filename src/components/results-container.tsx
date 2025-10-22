@@ -36,7 +36,6 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
 
   const { hasSetTagState } = useUrlParameters();
   const lastProcessedConfig = useRef<string>('');
-  const setupInProgress = useRef<boolean>(false);
 
   // Helper function to compare tag arrays for equality
   const areTagArraysUnsortedEqual = (a: string[], b: string[]): boolean => {
@@ -49,36 +48,26 @@ const ResultsContainer = ({ configValues, parentTags = [], siblingSelections = [
 
   useEffect(() => {
     if (configValues) {
+      let isCancelled = false;
+
       // Create a hash of the current config to prevent unnecessary updates
       const configHash = JSON.stringify({ configValues, parentTags, siblingSelections });
-      if (configHash === lastProcessedConfig.current && !setupInProgress.current) {
-        return; // Skip if config hasn't actually changed and we're not in setup
+      if (configHash === lastProcessedConfig.current) {
+        return; // Skip if config hasn't actually changed
       }
-
-      // Only update lastProcessedConfig if we're actually going to process this config
-      const isNewConfig = configHash !== lastProcessedConfig.current;
-      if (isNewConfig) {
-        lastProcessedConfig.current = configHash;
-      }
-
-      let isCancelled = false;
+      lastProcessedConfig.current = configHash;
 
       const derivedTags = processConfigValues(configValues, parentTags, siblingSelections);
 
       const setTags = () => {
         if (!isCancelled) {
           setTagState(derivedTags);
-          // eslint-disable-next-line react-hooks/immutability
           hasSetTagState.current = true;
-
-          setupInProgress.current = false;
         }
       };
 
       if (!hasSetTagState.current) {
         // Initial setup
-
-        setupInProgress.current = true;
         if (fetchData) {
           const result = fetchData();
           if (result && typeof result.then === 'function') {

@@ -21,7 +21,6 @@ const BlueprintDetailsTabs: React.FC<BlueprintDetailsTabsProps> = ({
 
   // Reset to details tab whenever blueprint changes
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveTab('details');
   }, [blueprint?.id]);
 
@@ -34,7 +33,7 @@ const BlueprintDetailsTabs: React.FC<BlueprintDetailsTabsProps> = ({
       try {
         const docs = await DocumentationService.getBlueprintAllDocumentation(blueprint.id);
         setDocumentation(docs);
-
+        
         // Check if we have any documentation to show
         const hasBlueprintDocs = docs?.blueprint_documentation.some(doc => doc.document_type === 'instructions') || false;
         const hasTagDocs = Object.keys(docs?.tag_documentation || {}).length > 0;
@@ -84,4 +83,4 @@ const BlueprintDetailsTabs: React.FC<BlueprintDetailsTabsProps> = ({
   );
 };
 
-export default BlueprintDetailsTabs;
+export default BlueprintDetailsTabs; 

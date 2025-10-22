@@ -166,7 +166,6 @@ const TagContainer = () => {
         style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
       />
       <div><strong>Browse Tags</strong></div>
-      {/* eslint-disable-next-line react-hooks/refs */}
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, handleAddDenyTag, tagDescriptions, handleTagHover)}</div>
       {hoveredTag && tooltipRect && tagDescriptions[hoveredTag] && createPortal(
         <div

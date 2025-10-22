@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useMemo } from 'react';
-import { Blueprint } from '@/types';
+import React, { useEffect, useState } from 'react';
+import { Blueprint, ConfigPart } from '@/types';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
 import { useTagContext } from '@/contexts/tag-context';
 import { formatFileSize } from '@/utils/format';
@@ -33,20 +33,24 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
   const clearTags = useTagContext((state) => state.clearTags);
   const addAllTags = useTagContext((state) => state.addAllTags);
   const { copied, copyText } = useCopyToClipboard();
+  const [nestedConfigs, setNestedConfigs] = useState<Record<string, ConfigPart[]>>({});
 
   // Use custom hook for URL cleanup
   useBlueprintUrlCleanup(blueprint);
 
-  // Derive nested configs from configSelections
-  const nestedConfigs = useMemo(() => buildNestedConfigs(configSelections), [configSelections]);
-
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!blueprint) return;
-
+    
     const urls = collectDownloadUrls(blueprint, configSelections);
     downloadFiles(urls);
   };
+
+  useEffect(() => {
+    // Update nested configs when configSelections changes
+    const newNestedConfigs = buildNestedConfigs(configSelections);
+    setNestedConfigs(newNestedConfigs);
+  }, [configSelections]);
 
   const handleCopyToClipboard = (blueprint_md5: string) => {
     const currentUrl = window.location.href;
@@ -91,8 +95,8 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         lastModified={laterDate.toLocaleString()}
         size={formatFileSize(blueprint.file_size)}
       />
-      <TagRow
-        tags={blueprint.tags}
+      <TagRow 
+        tags={blueprint.tags} 
         onTagClick={addTag}
       />
       {!configValues && (
@@ -105,7 +109,7 @@ const BlueprintContainer = ({ configValues, onPartSelected }: BlueprintContainer
         onDownload={handleDownload}
         issueUrl={issue_url}
       />
-      <ConfigSection
+      <ConfigSection 
         blueprint={blueprint}
         nestedConfigs={nestedConfigs}
         configValues={configValues}
