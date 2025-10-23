@@ -13,7 +13,7 @@ interface ConfigBoxProps {
   onHover?: (isHovering: boolean) => void;
   parentBlueprint?: Blueprint;
   peerParts?: ConfigPart[];
-  boxRef?: React.RefObject<HTMLDivElement | null>;
+  boxRef?: React.Ref<HTMLDivElement>;
 }
 
 const ConfigBox = ({ title, value, optional, onHover, parentBlueprint, boxRef }: ConfigBoxProps) => {

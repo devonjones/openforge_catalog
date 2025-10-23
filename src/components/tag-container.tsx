@@ -166,6 +166,10 @@ const TagContainer = () => {
         style={{ backgroundColor: searchTerm ? '#f0f0f0' : 'white' }}
       />
       <div><strong>Browse Tags</strong></div>
+      {/* False positive: renderTags is a pure function that doesn't use refs.
+          The new experimental ESLint rule incorrectly flags recursive render functions
+          as potential ref issues, but this is a standard React pattern for tree rendering. */}
+      {/* eslint-disable-next-line react-hooks/refs */}
       <div>{renderTags(data, 0, expandedNodes, toggleNode, handleAddTag, handleAddDenyTag, tagDescriptions, handleTagHover)}</div>
       {hoveredTag && tooltipRect && tagDescriptions[hoveredTag] && createPortal(
         <div

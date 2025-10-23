@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, useEffect, createRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Blueprint, ConfigPart, ConfigTags } from '@/types';
 import ConfigBox from './config-box';
 import { useBlueprintContext } from '@/contexts/blueprint-context';
@@ -11,26 +11,18 @@ interface BlueprintConfigSectionProps {
   configValues?: { partName: string } | null;
 }
 
-const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({ 
-  blueprint, 
-  nestedConfigs, 
-  configValues 
+const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
+  blueprint,
+  nestedConfigs,
+  configValues
 }) => {
   // Move hover state to top level
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
   const [tooltipDirection, setTooltipDirection] = useState<'up' | 'down'>('down');
   const hoverTimeout = useRef<NodeJS.Timeout | null>(null);
   const configSelections = useBlueprintContext((state) => state.configSelections);
-  // Store refs for config boxes by key
-  const configBoxRefs = useRef<{ [key: string]: React.RefObject<HTMLDivElement | null> }>({});
-
-  // Helper to get or create a ref for a config box
-  const getConfigBoxRef = (key: string) => {
-    if (!configBoxRefs.current[key]) {
-      configBoxRefs.current[key] = createRef<HTMLDivElement>();
-    }
-    return configBoxRefs.current[key];
-  };
+  // Store refs for config boxes by key - using callback refs to avoid mutation during render
+  const configBoxRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     return () => {
@@ -47,9 +39,9 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
       hoverTimeout.current = setTimeout(() => {
         setHoveredKey(key);
         // Check direction
-        const ref = getConfigBoxRef(key);
-        if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
+        const element = configBoxRefs.current[key];
+        if (element) {
+          const rect = element.getBoundingClientRect();
           const spaceBelow = window.innerHeight - rect.bottom;
           const tooltipHeight = 220; // estimate, or could measure
           if (spaceBelow < tooltipHeight && rect.top > tooltipHeight) {
@@ -68,7 +60,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
 
   const renderTagRequirements = (tags: ConfigTags, part?: ConfigPart) => {
     const requirements = [];
-    
+
     if (tags.require && tags.require.length > 0) {
       requirements.push(
         <div key="require" className="mt-2">
@@ -111,7 +103,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
     if (tags.constrain && tags.constrain.length > 0) {
       const tagConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'tag' in c) as { tag: string; siblings?: string[]; parent?: boolean }[];
       const filterConstraints = tags.constrain?.filter((c: { tag?: string; filter?: string }) => 'filter' in c) as { filter: string }[];
-      
+
       if (tagConstraints.length > 0) {
         requirements.push(
           <div key="constrain" className="mt-2">
@@ -131,7 +123,7 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                 } else {
                   sourceInfo.push('all siblings');
                 }
-                
+
                 return (
                   <li key={index}>
                     <span className="font-medium">{constraint.tag}</span>
@@ -205,7 +197,6 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
             .map((part: ConfigPart) => {
               const partPath = [...parentPath, part.name];
               const key = partPath.join('|');
-              const ref = getConfigBoxRef(key);
               return (
                 <ConfigBox
                   key={key}
@@ -215,7 +206,9 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
                   onHover={(isHovering) => handleBoxHover(isHovering, key)}
                   parentBlueprint={parentBlueprint}
                   peerParts={parts}
-                  boxRef={ref}
+                  boxRef={(el: HTMLDivElement | null) => {
+                    configBoxRefs.current[key] = el;
+                  }}
                 />
               );
             })}
@@ -321,4 +314,4 @@ const BlueprintConfigSection: React.FC<BlueprintConfigSectionProps> = ({
   );
 };
 
-export default BlueprintConfigSection; 
+export default BlueprintConfigSection;
