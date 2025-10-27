@@ -83,7 +83,13 @@ fi
 
 # Load .env file if it exists
 if [ -f .env ]; then
-    export $(grep -v '^#' .env | grep -E '^OPENFORGE_API_TOKEN=' | xargs)
+    # A more robust way to export the variable, handling spaces in the value.
+    # It extracts the value after the first '='.
+    TOKEN_LINE=$(grep -E '^OPENFORGE_API_TOKEN=' .env)
+    if [ -n "$TOKEN_LINE" ]; then
+        # shellcheck disable=SC2155
+        export OPENFORGE_API_TOKEN="${TOKEN_LINE#*=}"
+    fi
 fi
 
 # Check for API token
@@ -135,8 +141,13 @@ if [ -n "$VERBOSE" ]; then
 fi
 echo ""
 
+# Create a temporary file for the response
+RESPONSE_FILE=$(mktemp)
+# Ensure the temp file is cleaned up on exit
+trap 'rm -f "$RESPONSE_FILE"' EXIT
+
 # Make the request
-HTTP_CODE=$(curl -w "%{http_code}" -s -o /tmp/fixture_response.json \
+HTTP_CODE=$(curl -w "%{http_code}" -s -o "$RESPONSE_FILE" \
     -X POST \
     -H "Authorization: Bearer ${OPENFORGE_API_TOKEN}" \
     -H "Content-Type: ${CONTENT_TYPE}" \
@@ -151,15 +162,13 @@ if [ "$HTTP_CODE" -eq 200 ]; then
     # Pretty print the response
     if command -v jq &> /dev/null; then
         # Use jq if available for nice formatting
-        jq '.' /tmp/fixture_response.json
+        jq '.' "$RESPONSE_FILE"
     else
         # Fallback to cat
-        cat /tmp/fixture_response.json
+        cat "$RESPONSE_FILE"
         echo ""
     fi
 
-    # Clean up
-    rm -f /tmp/fixture_response.json
     exit 0
 else
     echo -e "${RED}✗ Error (HTTP $HTTP_CODE)${NC}"
@@ -167,13 +176,11 @@ else
 
     # Pretty print the error response
     if command -v jq &> /dev/null; then
-        jq '.' /tmp/fixture_response.json
+        jq '.' "$RESPONSE_FILE"
     else
-        cat /tmp/fixture_response.json
+        cat "$RESPONSE_FILE"
         echo ""
     fi
 
-    # Clean up
-    rm -f /tmp/fixture_response.json
     exit 1
 fi

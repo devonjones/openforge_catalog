@@ -1,7 +1,6 @@
 """Tests for fixture loading API endpoint."""
 
 import json
-import os
 
 import pytest
 from yaml import dump as yaml_dump
@@ -14,7 +13,8 @@ def client(test_db):
     """Create a test client with database."""
     flask_app.config["TESTING"] = True
     flask_app.db = test_db
-    flask_app.config["API_TOKEN"] = os.environ["API_TOKEN"]
+    # Use hardcoded test token for self-contained tests
+    flask_app.config["API_TOKEN"] = "test_token"
     with flask_app.test_client() as client:
         yield client
 
@@ -22,7 +22,8 @@ def client(test_db):
 @pytest.fixture
 def auth_headers():
     """Get authorization headers with API token."""
-    return {"Authorization": f"Bearer {os.environ['API_TOKEN']}"}
+    # Use hardcoded test token matching the client fixture
+    return {"Authorization": "Bearer test_token"}
 
 
 # Sample fixture data for testing
@@ -109,6 +110,8 @@ class TestFixtureLoadEndpoint:
         assert "modified" in data
         # Tag descriptions should show up as modified
         assert len(data["modified"]) > 0
+        # Modified items should be objects per API contract
+        assert all(isinstance(item, dict) for item in data["modified"])
 
     def test_load_tag_documentation_fixture(self, client, auth_headers):
         """Test loading a tag documentation fixture."""
@@ -122,6 +125,9 @@ class TestFixtureLoadEndpoint:
         data = response.get_json()
         assert data["success"] is True
         assert "modified" in data
+        assert len(data["modified"]) > 0
+        # Modified items should be objects per API contract
+        assert all(isinstance(item, dict) for item in data["modified"])
 
     def test_dry_run_parameter(self, client, auth_headers):
         """Test that dry_run=true doesn't modify the database."""
@@ -166,29 +172,29 @@ class TestFixtureLoadEndpoint:
         assert data["success"] is False
         assert "error" in data
 
-    def test_invalid_json_returns_500(self, client, auth_headers):
-        """Test that invalid JSON returns 500."""
+    def test_invalid_json_returns_400(self, client, auth_headers):
+        """Test that invalid JSON returns 400 (client error)."""
         response = client.post(
             "/api/admin/fixtures/load",
             data="{invalid json",
             headers={**auth_headers, "Content-Type": "application/json"},
         )
 
-        assert response.status_code == 500
+        assert response.status_code == 400
         data = response.get_json()
         assert data["success"] is False
         assert "error" in data
         assert "output" in data
 
-    def test_invalid_yaml_returns_500(self, client, auth_headers):
-        """Test that invalid YAML returns 500."""
+    def test_invalid_yaml_returns_400(self, client, auth_headers):
+        """Test that invalid YAML returns 400 (client error)."""
         response = client.post(
             "/api/admin/fixtures/load",
             data="invalid: yaml: content:",
             headers={**auth_headers, "Content-Type": "application/x-yaml"},
         )
 
-        assert response.status_code == 500
+        assert response.status_code == 400
         data = response.get_json()
         assert data["success"] is False
         assert "error" in data
@@ -211,14 +217,14 @@ class TestFixtureLoadEndpoint:
 
     def test_error_response_includes_output_field(self, client, auth_headers):
         """Test that error responses include output field."""
-        # Invalid JSON will trigger an error
+        # Invalid JSON will trigger a 400 error
         response = client.post(
             "/api/admin/fixtures/load",
             data="{bad json",
             headers={**auth_headers, "Content-Type": "application/json"},
         )
 
-        assert response.status_code == 500
+        assert response.status_code == 400
         data = response.get_json()
         assert data["success"] is False
         assert "error" in data

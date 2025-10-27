@@ -154,7 +154,7 @@ paths:
                   error:
                     type: string
                     example: "Invalid CSRF token"
-  
+
   /api/admin/sessions/validate:
     get:
       tags:
@@ -205,7 +205,210 @@ paths:
                   error:
                     type: string
                     example: "Invalid or expired session"
-  
+
+  /api/admin/fixtures/load:
+    post:
+      tags:
+        - admins
+      summary: Load fixture file via API upload
+      operationId: loadFixture
+      description: |
+        Loads a fixture file (blueprint, tag description, or tag documentation) into the database.
+        Requires API key authentication via Bearer token.
+        Supports incremental loading with automatic fixture type detection.
+
+        **Note:** This endpoint does NOT support session-based authentication or CSRF tokens.
+        API key authentication only.
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: dry_run
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: Preview changes without applying them to the database
+        - in: query
+          name: verbose
+          required: false
+          schema:
+            type: boolean
+            default: false
+          description: Enable verbose debug output in response
+      requestBody:
+        required: true
+        description: |
+          Raw fixture file content in JSON or YAML format.
+          The fixture type (blueprint/tag_description/tag_documentation) is auto-detected from the data structure.
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: array
+                  description: Blueprint fixture (array of blueprint objects)
+                  items:
+                    type: object
+                - type: object
+                  description: Tag description or tag documentation fixture (object with tag mappings)
+            examples:
+              blueprint:
+                summary: Blueprint fixture example
+                value:
+                  - type: model
+                    name: test_wall
+                    tags:
+                      - texture|dungeon_stone
+                      - shape|wall
+                    images: []
+                    file_metadata:
+                      file: test_wall.stl
+                      full_name: tiles/test/test_wall.stl
+                      md5: abc123
+                      size: 12345
+                      file_modified_at: "2024-01-01T00:00:00"
+                      storage_address: s3://test/test_wall.stl
+              tag_description:
+                summary: Tag description fixture example
+                value:
+                  texture|dungeon_stone: "Classic dungeon stone texture"
+                  shape|wall: "Wall tile shape"
+          application/x-yaml:
+            schema:
+              oneOf:
+                - type: array
+                  description: Blueprint fixture
+                - type: object
+                  description: Tag description or tag documentation fixture
+      responses:
+        '200':
+          description: Fixture processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - added
+                  - modified
+                  - deprecated
+                  - consolidated
+                  - errors
+                  - output
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  added:
+                    type: array
+                    description: Blueprints that were added
+                    items:
+                      type: object
+                      properties:
+                        full_name:
+                          type: string
+                        md5:
+                          type: string
+                        size:
+                          type: integer
+                  modified:
+                    type: array
+                    description: Items that were modified (blueprints, tag descriptions, or tag documentation)
+                    items:
+                      type: object
+                  deprecated:
+                    type: array
+                    description: Blueprints that were deprecated
+                    items:
+                      type: object
+                  consolidated:
+                    type: array
+                    description: Blueprints with consolidated paths
+                    items:
+                      type: object
+                  errors:
+                    type: array
+                    description: Any errors encountered during processing
+                    items:
+                      type: string
+                  output:
+                    type: array
+                    description: Captured log messages from processing
+                    items:
+                      type: string
+              example:
+                success: true
+                added:
+                  - full_name: tiles/test/test_wall.stl
+                    md5: abc123
+                    size: 12345
+                modified: []
+                deprecated: []
+                consolidated: []
+                errors: []
+                output:
+                  - "Processing fixture type: blueprint"
+                  - "Loaded 7709 existing blueprints with tags and images"
+                  - "ADDED: tiles/test/test_wall.stl"
+                  - "Applied 1 added, 0 modified, 0 deprecated, 0 consolidated"
+        '400':
+          description: Bad Request - Invalid or empty fixture data
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - error
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: "No fixture data provided"
+        '401':
+          description: Unauthorized - Invalid or missing API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Unauthorized"
+                  message:
+                    type: string
+                    example: "Valid API key required"
+        '500':
+          description: Internal Server Error - Processing failed
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                  - error
+                  - output
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    description: Error message describing what went wrong
+                    example: "Failed to parse fixture data: Invalid JSON"
+                  output:
+                    type: array
+                    description: Log messages captured before failure
+                    items:
+                      type: string
+              example:
+                success: false
+                error: "Failed to parse fixture data: Invalid JSON"
+                output:
+                  - "Processing fixture upload..."
+
   /api/blueprints:
     get:
       tags:
@@ -337,11 +540,11 @@ paths:
       operationId: disconnectSuccessor
       description: |
         Disconnects a successor relationship from a deprecated blueprint and deletes any associated changelog documentation on the successor.
-        
+
         This endpoint:
         1. Sets the successor_id to null on the deprecated blueprint
         2. Deletes any changelog documentation on the successor blueprint
-        
+
         Requires authentication via session cookie or API key, and CSRF token for session-based auth.
       security:
         - ApiKeyAuth: []
@@ -1302,11 +1505,11 @@ paths:
         - documentation
       summary: Get documentation for a specific tag
       operationId: getTagDocumentation
-      description: Returns documentation for a specific tag (URL format: texture/dungeon_stone)
+      description: "Returns documentation for a specific tag (URL format: texture/dungeon_stone)"
       parameters:
         - in: path
           name: tag_array
-          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          description: "Tag array in URL format (e.g., texture/dungeon_stone)"
           required: true
           schema:
             type: string
@@ -1331,7 +1534,7 @@ paths:
       parameters:
         - in: path
           name: tag_array
-          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          description: "Tag array in URL format (e.g., texture/dungeon_stone)"
           required: true
           schema:
             type: string
@@ -1365,7 +1568,7 @@ paths:
       parameters:
         - in: path
           name: tag_array
-          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          description: "Tag array in URL format (e.g., texture/dungeon_stone)"
           required: true
           schema:
             type: string
@@ -1397,7 +1600,7 @@ paths:
       parameters:
         - in: path
           name: tag_array
-          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          description: "Tag array in URL format (e.g., texture/dungeon_stone)"
           required: true
           schema:
             type: string
@@ -1439,7 +1642,7 @@ paths:
       parameters:
         - in: path
           name: tag_array
-          description: Tag array in URL format (e.g., texture/dungeon_stone)
+          description: "Tag array in URL format (e.g., texture/dungeon_stone)"
           required: true
           schema:
             type: string
@@ -1463,6 +1666,10 @@ components:
       type: apiKey
       in: header
       name: Authorization
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key authentication using Bearer token (e.g., "Bearer 1234567890")
     cookieAuth:
       type: apiKey
       in: cookie

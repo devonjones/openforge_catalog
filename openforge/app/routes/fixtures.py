@@ -6,7 +6,7 @@ from typing import Any, Dict, List
 
 from flask import current_app, jsonify, request
 from psycopg.rows import dict_row
-from yaml import safe_load
+from yaml import YAMLError, safe_load
 
 from openforge.db.fixtures import (
     _is_blueprint_fixture,
@@ -20,7 +20,17 @@ from openforge.db.fixtures.incremental import IncrementalFixturesLoader
 
 
 class OutputCapture:
-    """Capture stderr and stdout for API response."""
+    """Capture stderr and stdout for API response.
+
+    Note: This class modifies global sys.stdout and sys.stderr, which is not
+    thread-safe. However, this is acceptable for our use case since:
+    1. We run on AWS Lambda (single-threaded per request)
+    2. The redirection is scoped to a single endpoint execution via context manager
+    3. Output mixing would only occur with concurrent requests to this endpoint
+
+    In a traditional multi-threaded WSGI server, consider using thread-local
+    storage or passing an output collector to functions instead.
+    """
 
     def __init__(self):
         self.output: List[str] = []
@@ -74,20 +84,21 @@ def load_fixture():
         output_capture = OutputCapture()
 
         with output_capture:
-            # Determine content type and parse
-            content_type = request.content_type or ""
+            # Parse the data - try JSON first, then YAML
+            # We use the parsed data structure to determine fixture type,
+            # not the text format
             try:
-                if "json" in content_type or raw_data.strip().startswith("{"):
-                    data = json.loads(raw_data)
-                elif "yaml" in content_type or "yml" in content_type:
+                content_type = request.content_type or ""
+                if "yaml" in content_type or "yml" in content_type:
+                    # Content-Type suggests YAML, try that first
                     data = safe_load(raw_data)
                 else:
-                    # Try JSON first, then YAML
+                    # Default to JSON, with YAML fallback
                     try:
                         data = json.loads(raw_data)
                     except json.JSONDecodeError:
                         data = safe_load(raw_data)
-            except Exception as e:
+            except (json.JSONDecodeError, YAMLError) as e:
                 return (
                     jsonify(
                         {
@@ -96,7 +107,7 @@ def load_fixture():
                             "output": output_capture.output,
                         }
                     ),
-                    500,
+                    400,
                 )
 
             # Detect fixture type
@@ -149,7 +160,8 @@ def load_fixture():
 
     except Exception as e:
         current_app.logger.exception("Unexpected error in load_fixture")
-        return jsonify({"success": False, "error": str(e)}), 500
+        # Include output field for consistency with other error responses
+        return jsonify({"success": False, "error": str(e), "output": []}), 500
 
 
 def _get_fixture_type_from_data(data: Any) -> str:
@@ -160,27 +172,28 @@ def _get_fixture_type_from_data(data: Any) -> str:
 
     Returns:
         'blueprint', 'tag_description', or 'tag_documentation'
-    """
-    # Tag descriptions are dictionaries with tag->description mappings
-    if isinstance(data, dict):
-        # Check if it looks like tag documentation (has document field)
-        first_value = next(iter(data.values()), None)
-        if isinstance(first_value, list) and first_value:
-            first_item = first_value[0]
-            if isinstance(first_item, dict) and "document" in first_item:
-                return "tag_documentation"
-        # Otherwise assume tag description
-        if not isinstance(first_value, (list, dict)) or (
-            isinstance(first_value, dict) and "type" not in first_value
-        ):
-            return "tag_description"
 
-    # Blueprints are lists of blueprint objects
+    Raises:
+        ValueError: If the fixture type cannot be determined.
+    """
     if isinstance(data, list):
+        # Blueprints are lists of blueprint objects.
         return "blueprint"
 
-    # Fallback to blueprint for backward compatibility
-    return "blueprint"
+    if isinstance(data, dict):
+        # Dictionaries can be tag_description or tag_documentation.
+        # We can distinguish them by checking the type of their values.
+        first_value = next(iter(data.values()), None)
+        if isinstance(first_value, list):
+            # Tag documentation values are lists of documents.
+            return "tag_documentation"
+        else:
+            # Tag description values are strings. This also handles empty dicts.
+            return "tag_description"
+
+    raise ValueError(
+        f"Cannot determine fixture type for data of type {type(data).__name__}"
+    )
 
 
 def _process_blueprint_fixture(
@@ -246,7 +259,7 @@ def _process_tag_description_fixture(
         sys.stderr.write(f"DRY RUN: Would load {len(data)} tag descriptions\n")
         return {
             "added": [],
-            "modified": list(data.keys()),
+            "modified": [{"name": key} for key in data.keys()],
             "deprecated": [],
             "consolidated": [],
             "errors": [],
@@ -256,7 +269,7 @@ def _process_tag_description_fixture(
         sys.stderr.write(f"Applied {count} tag descriptions\n")
         return {
             "added": [],
-            "modified": list(data.keys()),
+            "modified": [{"name": key} for key in data.keys()],
             "deprecated": [],
             "consolidated": [],
             "errors": [],
@@ -287,7 +300,7 @@ def _process_tag_documentation_fixture(
         )
         return {
             "added": [],
-            "modified": list(data.keys()),
+            "modified": [{"name": key} for key in data.keys()],
             "deprecated": [],
             "consolidated": [],
             "errors": [],
@@ -297,7 +310,7 @@ def _process_tag_documentation_fixture(
         sys.stderr.write(f"Applied {count} tag documentation entries\n")
         return {
             "added": [],
-            "modified": list(data.keys()),
+            "modified": [{"name": key} for key in data.keys()],
             "deprecated": [],
             "consolidated": [],
             "errors": [],
