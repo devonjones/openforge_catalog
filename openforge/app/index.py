@@ -7,6 +7,7 @@ from flask_cors import CORS
 import openforge.app.routes.blueprint_documentation as blueprint_doc_routes
 import openforge.app.routes.blueprint_successor as successor_routes
 import openforge.app.routes.blueprints as blueprint_routes
+import openforge.app.routes.fixtures as fixture_routes
 import openforge.app.routes.images as image_routes
 import openforge.app.routes.sessions as session_routes
 import openforge.app.routes.tag_descriptions as tag_description_routes
@@ -47,6 +48,18 @@ def before_request():
 @app.route("/health", methods=["GET"])
 def health_check():
     return {"status": "healthy"}, 200
+
+
+####################
+### Admin Fixture Loading routes
+####################
+
+
+@app.route("/api/admin/fixtures/load", methods=["POST"])
+@authenticate(methods=["POST"], disable_sessions=["POST"], disable_csrf=["POST"])
+def load_fixture():
+    """Load a fixture file via API upload (admin only, API key auth)."""
+    return fixture_routes.load_fixture()
 
 
 ####################

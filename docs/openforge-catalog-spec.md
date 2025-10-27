@@ -152,6 +152,53 @@ The system handles complex real-world scenarios like doorways that need both wal
 - **Version Changelogs**: Detailed change documentation using blueprint_documentation table
 - **Extensible Design**: Ready for additional documentation types in future
 
+#### NEW: Remote Fixture Loading
+**Problem Solved**: Previously required SSH access to server to load fixture data into database
+
+**Solution**: API endpoint for remote fixture loading with companion shell script
+
+**API Endpoint**: `POST /api/admin/fixtures/load`
+- **Authentication**: API key via `Authorization: Bearer <token>` header
+- **Request Body**: Raw fixture file content (JSON or YAML)
+- **Query Parameters**:
+  - `dry_run=true` - Preview changes without applying
+  - `verbose=true` - Enable debug output
+- **Auto-detection**: Automatically identifies fixture type (blueprint/tag_description/tag_documentation)
+- **Transaction Safety**: All-or-nothing processing with automatic rollback on errors
+- **Response Format**:
+  ```json
+  {
+    "success": true,
+    "added": [...],
+    "modified": [...],
+    "deprecated": [...],
+    "consolidated": [...],
+    "errors": [],
+    "output": ["captured log messages"]
+  }
+  ```
+
+**Shell Script**: `bin/upload_fixture`
+- Reads `OPENFORGE_API_TOKEN` from `.env` file
+- Takes fixture path relative to `openforge/db/fixtures/`
+- Supports `--dry-run` and `--verbose` flags
+- Auto-detects content type from file extension
+- Defaults to localhost for development, configurable via `OPENFORGE_BASE_URL` env var
+- Pretty-prints JSON responses with color-coded output
+- Example usage:
+  ```bash
+  ./bin/upload_fixture blueprints/dungeon_stone.json
+  ./bin/upload_fixture blueprints/cave.json --dry-run --verbose
+  OPENFORGE_BASE_URL=https://staging.openforge.tools ./bin/upload_fixture blueprints/bases.json
+  ```
+
+**Benefits**:
+- No SSH access required for fixture loading
+- Can load fixtures from local machine to staging/production
+- Same incremental loading logic as CLI tool
+- Full output visibility via API response
+- Safe testing with dry-run mode
+
 ### Authentication and Authorization System - **NEW**
 
 #### OAuth-Only Authentication
@@ -392,6 +439,7 @@ RESTful API with comprehensive CRUD operations:
 - **NEW**: `/api/blueprints/{blueprint_id}/history` - File version history
 - **NEW**: `/api/blueprints/{blueprint_id}/documentation` - Blueprint documentation management
 - **NEW**: `/api/admin/duplicates` - Administrative duplicate detection
+- **NEW**: `/api/admin/fixtures/load` - Remote fixture loading via API upload
 - **NEW**: `/api/voting/*` - Complete voting system API
 - **NEW**: `/api/patron-requests/*` - Patron request management
 - **NEW**: `/api/admin/gap-analysis/*` - Gap analysis and reporting
