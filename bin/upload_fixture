@@ -81,11 +81,15 @@ if [ -z "$FIXTURE_PATH" ]; then
     usage
 fi
 
-# Load .env file if it exists
-if [ -f .env ]; then
+# Construct project root path (needed for .env and fixture file location)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# Load .env file if it exists (look in project root)
+if [ -f "$PROJECT_ROOT/.env" ]; then
     # A more robust way to export the variable, handling spaces in the value.
     # It extracts the value after the first '='.
-    TOKEN_LINE=$(grep -E '^OPENFORGE_API_TOKEN=' .env)
+    TOKEN_LINE=$(grep -E '^OPENFORGE_API_TOKEN=' "$PROJECT_ROOT/.env")
     if [ -n "$TOKEN_LINE" ]; then
         # shellcheck disable=SC2155
         export OPENFORGE_API_TOKEN="${TOKEN_LINE#*=}"
@@ -99,8 +103,6 @@ if [ -z "${OPENFORGE_API_TOKEN:-}" ]; then
 fi
 
 # Construct full path to fixture file
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 FULL_FIXTURE_PATH="$PROJECT_ROOT/openforge/db/fixtures/$FIXTURE_PATH"
 
 # Check if fixture file exists
@@ -115,17 +117,18 @@ if [[ "$FIXTURE_PATH" =~ \.ya?ml$ ]]; then
     CONTENT_TYPE="application/x-yaml"
 fi
 
-# Build query parameters
-QUERY_PARAMS=""
+# Build query parameters using array for scalability
+query_parts=()
 if [ -n "$DRY_RUN" ]; then
-    QUERY_PARAMS="?dry_run=true"
+    query_parts+=("dry_run=true")
 fi
 if [ -n "$VERBOSE" ]; then
-    if [ -n "$QUERY_PARAMS" ]; then
-        QUERY_PARAMS="${QUERY_PARAMS}&verbose=true"
-    else
-        QUERY_PARAMS="?verbose=true"
-    fi
+    query_parts+=("verbose=true")
+fi
+
+QUERY_PARAMS=""
+if [ ${#query_parts[@]} -gt 0 ]; then
+    QUERY_PARAMS="?$(IFS='&'; echo "${query_parts[*]}")"
 fi
 
 # Construct full URL

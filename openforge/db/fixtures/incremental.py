@@ -6,7 +6,6 @@ comparing with existing database records and only updating what has changed.
 """
 
 import os
-import sys
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
@@ -19,7 +18,7 @@ import openforge.db.sql.tags as tag_sql
 from openforge.data.transformers import DeprecatedEntryTransformer
 from openforge.db.sql.tag_utils import array_to_tag, process_tag
 
-from .utils import get_words, munge_blueprint
+from .utils import get_words, munge_blueprint, write_output
 
 
 def _parse_timestamp(timestamp) -> Optional[datetime]:
@@ -172,7 +171,7 @@ class IncrementalFixturesLoader:
                 f"Loaded {len(blueprint_map)} existing blueprints "
                 f"with tags and images\n"
             )
-            sys.stderr.write(msg)
+            write_output(msg)
 
         return blueprint_map
 
@@ -386,7 +385,7 @@ class IncrementalFixturesLoader:
         # Detect and store the fixture's subset path
         self.fixture_subset_path = self._detect_fixture_subset_path(fixture_data)
         if self.verbose:
-            sys.stderr.write(
+            write_output(
                 f"DEBUG: Detected fixture subset path: '{self.fixture_subset_path}'\n"
             )
 
@@ -477,7 +476,7 @@ class IncrementalFixturesLoader:
         if fixture_item.get("deprecated", False):
             if self.verbose:
                 name = fixture_item.get("file_metadata", {}).get("full_name", "unknown")
-                sys.stderr.write(f"SKIPPED (deprecated in fixture): {name}\n")
+                write_output(f"SKIPPED (deprecated in fixture): {name}\n")
             return
 
         # Handle non-file-based blueprints (type "blueprint")
@@ -487,7 +486,7 @@ class IncrementalFixturesLoader:
             blueprint_name = fixture_item.get("name")
             if not blueprint_name:
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         "DEBUG: Skipping blueprint without name or file_metadata\n"
                     )
                 return
@@ -499,13 +498,13 @@ class IncrementalFixturesLoader:
                 # New configuration blueprint
                 result.added.append(fixture_item)
                 if self.verbose:
-                    sys.stderr.write(f"ADDED CONFIG: {blueprint_name}\n")
+                    write_output(f"ADDED CONFIG: {blueprint_name}\n")
             else:
                 # Check if configuration blueprint has changes
                 if self._has_config_changes(fixture_item, existing_bp):
                     result.modified.append(fixture_item)
                     if self.verbose:
-                        sys.stderr.write(f"MODIFIED CONFIG: {blueprint_name}\n")
+                        write_output(f"MODIFIED CONFIG: {blueprint_name}\n")
             return
 
         # Handle file-based blueprints (type "model") with file_metadata
@@ -521,7 +520,7 @@ class IncrementalFixturesLoader:
                 if bp.get("file_md5") == md5:
                     existing_bp = bp
                     if self.verbose:
-                        sys.stderr.write(
+                        write_output(
                             f"DEBUG: Found existing blueprint by MD5 for {full_name}\n"
                             f"  Existing path: {bp['full_name']}\n"
                         )
@@ -536,7 +535,7 @@ class IncrementalFixturesLoader:
                 if full_name in consolidated_paths:
                     already_consolidated = True
                     if self.verbose:
-                        sys.stderr.write(
+                        write_output(
                             f"DEBUG: Skipping {full_name} - already in "
                             f"consolidated_paths of {bp['full_name']}\n"
                         )
@@ -546,7 +545,7 @@ class IncrementalFixturesLoader:
                 # New file
                 result.added.append(fixture_item)
                 # Always show what was added
-                sys.stderr.write(f"ADDED: {full_name}\n")
+                write_output(f"ADDED: {full_name}\n")
         else:
             # Existing file found - check if it's a rename or modification
             # If the full_name is different, this is a rename
@@ -554,7 +553,7 @@ class IncrementalFixturesLoader:
                 # This is a rename - add as new so it goes through the rename logic
                 result.added.append(fixture_item)
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"ADDED (renamed): {full_name}\n"
                         f"  (was: {existing_bp['full_name']})\n"
                     )
@@ -565,7 +564,7 @@ class IncrementalFixturesLoader:
                 # Add it as a new blueprint and let post-processing handle the linking
                 result.added.append(fixture_item)
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"ADDED (new version): {full_name} "
                         f"(MD5: {existing_bp['file_md5']} -> {md5})\n"
                     )
@@ -573,7 +572,7 @@ class IncrementalFixturesLoader:
                 # Same MD5 but other changes (tags, config, etc.)
                 result.modified.append(fixture_item)
                 if self.verbose:
-                    sys.stderr.write(f"MODIFIED: {full_name}\n")
+                    write_output(f"MODIFIED: {full_name}\n")
 
     def _has_config_changes(self, fixture_item: Dict, existing_bp: Dict) -> bool:
         """Check if configuration blueprint has changes compared to existing blueprint.
@@ -592,11 +591,11 @@ class IncrementalFixturesLoader:
         new_tags = set(fixture_item.get("tags", []))
         if existing_tags != new_tags:
             if self.verbose:
-                sys.stderr.write(
+                write_output(
                     f"DEBUG: Tags changed for config blueprint {blueprint_name}\n"
                 )
-                sys.stderr.write(f"  Existing: {sorted(existing_tags)}\n")
-                sys.stderr.write(f"  New: {sorted(new_tags)}\n")
+                write_output(f"  Existing: {sorted(existing_tags)}\n")
+                write_output(f"  New: {sorted(new_tags)}\n")
             return True
 
         # Check config
@@ -604,11 +603,11 @@ class IncrementalFixturesLoader:
         new_config = fixture_item.get("config", {})
         if existing_config != new_config:
             if self.verbose:
-                sys.stderr.write(
+                write_output(
                     f"DEBUG: Config changed for config blueprint {blueprint_name}\n"
                 )
-                sys.stderr.write(f"  Existing: {existing_config}\n")
-                sys.stderr.write(f"  New: {new_config}\n")
+                write_output(f"  Existing: {existing_config}\n")
+                write_output(f"  New: {new_config}\n")
             return True
 
         return False
@@ -646,7 +645,7 @@ class IncrementalFixturesLoader:
             # Compare datetime objects
             if existing_dt != new_dt:
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"DEBUG: Modified time changed for {full_name}: "
                         f"{existing_bp['file_modified_at']} -> "
                         f"{fixture_item['file_metadata']['file_modified_at']}\n"
@@ -656,7 +655,7 @@ class IncrementalFixturesLoader:
         # Check size
         if fixture_item["file_metadata"]["size"] != existing_bp["file_size"]:
             if self.verbose:
-                sys.stderr.write(
+                write_output(
                     f"DEBUG: Size changed for {full_name}: "
                     f"{existing_bp['file_size']} -> "
                     f"{fixture_item['file_metadata']['size']}\n"
@@ -669,9 +668,9 @@ class IncrementalFixturesLoader:
         new_tags = set(fixture_item.get("tags", []))
         if existing_tags != new_tags:
             if self.verbose:
-                sys.stderr.write(f"DEBUG: Tags changed for {full_name}\n")
-                sys.stderr.write(f"  Existing: {sorted(existing_tags)}\n")
-                sys.stderr.write(f"  New: {sorted(new_tags)}\n")
+                write_output(f"DEBUG: Tags changed for {full_name}\n")
+                write_output(f"  Existing: {sorted(existing_tags)}\n")
+                write_output(f"  New: {sorted(new_tags)}\n")
             return True
 
         # Check images (compare as sets to handle unordered nature)
@@ -685,9 +684,9 @@ class IncrementalFixturesLoader:
         )
         if existing_images != new_images:
             if self.verbose:
-                sys.stderr.write(f"DEBUG: Images changed for {full_name}\n")
-                sys.stderr.write(f"  Existing: {sorted(existing_images)}\n")
-                sys.stderr.write(f"  New: {sorted(new_images)}\n")
+                write_output(f"DEBUG: Images changed for {full_name}\n")
+                write_output(f"  Existing: {sorted(existing_images)}\n")
+                write_output(f"  New: {sorted(new_images)}\n")
             return True
 
         # Check config
@@ -695,9 +694,9 @@ class IncrementalFixturesLoader:
         new_config = fixture_item.get("config", {})
         if existing_config != new_config:
             if self.verbose:
-                sys.stderr.write(f"DEBUG: Config changed for {full_name}\n")
-                sys.stderr.write(f"  Existing: {existing_config}\n")
-                sys.stderr.write(f"  New: {new_config}\n")
+                write_output(f"DEBUG: Config changed for {full_name}\n")
+                write_output(f"  Existing: {existing_config}\n")
+                write_output(f"  New: {new_config}\n")
             return True
 
         return False
@@ -718,7 +717,7 @@ class IncrementalFixturesLoader:
         """
         if dry_run:
             if self.verbose:
-                sys.stderr.write(f"DRY RUN: Would apply {changes.summary()}\n")
+                write_output(f"DRY RUN: Would apply {changes.summary()}\n")
             return
 
         # Use provided cursor or create new one
@@ -732,9 +731,9 @@ class IncrementalFixturesLoader:
 
         # Always show the summary of what was applied
         if filename:
-            sys.stderr.write(f"{filename}: Applied {changes.summary()}\n")
+            write_output(f"{filename}: Applied {changes.summary()}\n")
         else:
-            sys.stderr.write(f"Applied {changes.summary()}\n")
+            write_output(f"Applied {changes.summary()}\n")
 
     def _apply_changes_with_cursor(self, curs: cursor, changes: ComparisonResult):
         """Apply changes using the provided cursor."""
@@ -795,7 +794,7 @@ class IncrementalFixturesLoader:
             if existing_deprecated:
                 # Skip creating a new deprecated entry
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"Skipping deprecation of blueprint {deprecated_bp['id']} "
                         f"(MD5 {deprecated_bp['file_md5']} already has "
                         f"deprecated entry: blueprint {existing_deprecated['id']})\n"
@@ -818,18 +817,18 @@ class IncrementalFixturesLoader:
 
         if self.verbose:
             if successor_id and deprecated_bp.get("successor_id") is None:
-                sys.stderr.write(
+                write_output(
                     f"Deprecated blueprint {blueprint_id} and linked to "
                     f"successor {successor_id}\n"
                 )
             elif deprecated_bp.get("successor_id") is not None:
-                sys.stderr.write(
+                write_output(
                     f"Deprecated blueprint {blueprint_id} "
                     f"(preserved existing successor_id: "
                     f"{deprecated_bp.get('successor_id')})\n"
                 )
             else:
-                sys.stderr.write(
+                write_output(
                     f"Deprecated blueprint {blueprint_id} and removed tags/images\n"
                 )
 
@@ -876,12 +875,12 @@ class IncrementalFixturesLoader:
                         # Update the main entry's full_name instead of
                         # adding to consolidated_paths
                         if self.verbose:
-                            sys.stderr.write(
+                            write_output(
                                 "DEBUG: File rename within same fixture detected\n"
                             )
-                            sys.stderr.write(f"  Old path: {existing_full_name}\n")
-                            sys.stderr.write(f"  New path: {new_full_name}\n")
-                            sys.stderr.write(
+                            write_output(f"  Old path: {existing_full_name}\n")
+                            write_output(f"  New path: {new_full_name}\n")
+                            write_output(
                                 "  Updating main entry's full_name instead of "
                                 "adding to consolidated_paths\n"
                             )
@@ -912,7 +911,7 @@ class IncrementalFixturesLoader:
                             image_sql.insert_image_for_blueprint(curs, bp["id"], image)
 
                         if self.verbose:
-                            sys.stderr.write(
+                            write_output(
                                 f"Updated blueprint {bp['id']} with new path: "
                                 f"{new_full_name}\n"
                             )
@@ -922,16 +921,16 @@ class IncrementalFixturesLoader:
 
                     # Files are from different fixtures - add to consolidated_paths
                     if self.verbose:
-                        sys.stderr.write(
+                        write_output(
                             f"DEBUG: MD5 conflict detected for "
                             f"{new_item['file_metadata']['full_name']}\n"
                         )
-                        sys.stderr.write(f"  Existing blueprint: {bp['full_name']}\n")
-                        sys.stderr.write(
+                        write_output(f"  Existing blueprint: {bp['full_name']}\n")
+                        write_output(
                             f"  New blueprint: "
                             f"{new_item['file_metadata']['full_name']}\n"
                         )
-                        sys.stderr.write(
+                        write_output(
                             f"  Adding to consolidated_paths for blueprint {bp['id']}\n"
                         )
 
@@ -945,7 +944,7 @@ class IncrementalFixturesLoader:
                         blueprint_sql.update_blueprint(curs, bp["id"], update_data)
 
                     if self.verbose:
-                        sys.stderr.write(
+                        write_output(
                             f"Added path to consolidated_paths for "
                             f"blueprint {bp['id']}\n"
                         )
@@ -962,7 +961,7 @@ class IncrementalFixturesLoader:
                         image_sql.insert_image_for_blueprint(curs, bp["id"], image)
 
                     if self.verbose:
-                        sys.stderr.write(f"Added blueprint {bp['id']}\n")
+                        write_output(f"Added blueprint {bp['id']}\n")
             else:
                 # Configuration blueprint - insert tags and images
                 for tag in new_item.get("tags", []):
@@ -976,10 +975,10 @@ class IncrementalFixturesLoader:
                     image_sql.insert_image_for_blueprint(curs, bp["id"], image)
 
                 if self.verbose:
-                    sys.stderr.write(f"Added configuration blueprint {bp['id']}\n")
+                    write_output(f"Added configuration blueprint {bp['id']}\n")
         else:
             if self.verbose:
-                sys.stderr.write("Added blueprint skipped\n")
+                write_output("Added blueprint skipped\n")
 
         return bp
 
@@ -1023,14 +1022,14 @@ class IncrementalFixturesLoader:
 
         if self.verbose:
             blueprint_name = existing_bp.get("blueprint_name", "unknown")
-            sys.stderr.write(f"Modified blueprint {blueprint_id} ({blueprint_name})\n")
+            write_output(f"Modified blueprint {blueprint_id} ({blueprint_name})\n")
 
     def _handle_consolidation(self, curs: cursor, consolidated_item: Dict):
         """Handle path consolidation (file moved but same MD5)."""
         # This is a placeholder for future implementation
         # Path consolidation logic would go here
         if self.verbose:
-            sys.stderr.write("Consolidation not yet implemented\n")
+            write_output("Consolidation not yet implemented\n")
 
     def _link_deprecated_to_successors(self, curs: cursor):
         """Link deprecated blueprints to successors by file path.
@@ -1052,7 +1051,7 @@ class IncrementalFixturesLoader:
             return
 
         if self.verbose:
-            sys.stderr.write(
+            write_output(
                 f"DEBUG: Found {len(deprecated_blueprints)} deprecated "
                 f"blueprints without successor_id\n"
             )
@@ -1080,14 +1079,14 @@ class IncrementalFixturesLoader:
                     curs, deprecated_bp["id"], successor_bp["id"]
                 )
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"LINKED: {full_name} "
                         f"(deprecated: {deprecated_bp['file_md5']} -> "
                         f"successor: {successor_bp['file_md5']})\n"
                     )
             else:
                 if self.verbose:
-                    sys.stderr.write(
+                    write_output(
                         f"DEBUG: No successor found for deprecated "
                         f"blueprint {full_name}\n"
                     )

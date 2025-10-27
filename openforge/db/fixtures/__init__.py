@@ -1,5 +1,4 @@
 import json
-import sys
 from importlib import resources as impresources
 from pathlib import Path
 
@@ -152,17 +151,17 @@ def load_fixtures(
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(
+                                write_output(
                                     f"DRY RUN: Would load tag description "
                                     f"fixture: {f}\n"
                                 )
                             else:
                                 count = load_tag_description_fixture(curs, data)
-                                sys.stderr.write(
+                                write_output(
                                     f"{f.name}: Applied {count} tag descriptions\n"
                                 )
                                 if verbose:
-                                    sys.stderr.write(
+                                    write_output(
                                         f"Loaded tag description fixture: {f}\n"
                                     )
                 except Exception as e:
@@ -175,7 +174,7 @@ def load_fixtures(
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(
+                                write_output(
                                     f"DRY RUN: Would load tag documentation "
                                     f"fixture: {f}\n"
                                 )
@@ -185,9 +184,9 @@ def load_fixtures(
                                     f"{f.name}: Applied {count} tag documentation "
                                     f"entries\n"
                                 )
-                                sys.stderr.write(msg)
+                                write_output(msg)
                                 if verbose:
-                                    sys.stderr.write(
+                                    write_output(
                                         f"Loaded tag documentation fixture: {f}\n"
                                     )
                 except Exception as e:
@@ -217,7 +216,7 @@ def load_fixtures(
                         try:
                             _is_tag_description_fixture(data)
                             count = load_tag_description_fixture(curs, data)
-                            sys.stderr.write(
+                            write_output(
                                 f"{f.name}: Applied {count} tag descriptions\n"
                             )
                         except Exception as e:
@@ -227,7 +226,7 @@ def load_fixtures(
                         try:
                             _is_tag_documentation_fixture(data)
                             count = load_tag_documentation_fixture(curs, data)
-                            sys.stderr.write(
+                            write_output(
                                 f"{f.name}: Applied {count} tag documentation entries\n"
                             )
                         except Exception as e:
@@ -238,7 +237,7 @@ def load_fixtures(
 
 def _load_data(f, verbose=False):
     if verbose:
-        sys.stderr.write(f"Loading {f}\n")
+        write_output(f"Loading {f}\n")
     with open(f, "r") as fh:
         if str(f).endswith(".json"):
             return json.load(fh)
@@ -247,7 +246,7 @@ def _load_data(f, verbose=False):
         raise ValueError(f"Unsupported file type: {f}")
 
 
-from .utils import get_words, munge_blueprint  # noqa: E402
+from .utils import get_words, munge_blueprint, write_output  # noqa: E402
 
 
 def _munge_blueprint(data: dict):

@@ -1,10 +1,9 @@
 """Admin routes for fixture loading via API."""
 
 import json
-import sys
 from typing import Any, Dict, List
 
-from flask import current_app, jsonify, request
+from flask import current_app, g, jsonify, request
 from psycopg.rows import dict_row
 from yaml import YAMLError, safe_load
 
@@ -17,43 +16,25 @@ from openforge.db.fixtures import (
     print_comparison_results,
 )
 from openforge.db.fixtures.incremental import IncrementalFixturesLoader
+from openforge.db.fixtures.utils import write_output
 
 
-class OutputCapture:
-    """Capture stderr and stdout for API response.
+class OutputLogger:
+    """Simple output logger for capturing fixture loading output.
 
-    Note: This class modifies global sys.stdout and sys.stderr, which is not
-    thread-safe. However, this is acceptable for our use case since:
-    1. We run on AWS Lambda (single-threaded per request)
-    2. The redirection is scoped to a single endpoint execution via context manager
-    3. Output mixing would only occur with concurrent requests to this endpoint
-
-    In a traditional multi-threaded WSGI server, consider using thread-local
-    storage or passing an output collector to functions instead.
+    This logger is set in Flask's g context and used by the write_output()
+    helper function in openforge.db.fixtures.utils. This approach allows
+    the same fixture loading code to work in both CLI mode (prints to stderr)
+    and API mode (captures output for response).
     """
 
     def __init__(self):
         self.output: List[str] = []
-        self._original_stderr = sys.stderr
-        self._original_stdout = sys.stdout
-
-    def __enter__(self):
-        sys.stderr = self
-        sys.stdout = self
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        sys.stderr = self._original_stderr
-        sys.stdout = self._original_stdout
 
     def write(self, message: str):
-        """Capture write calls from print/stderr.write."""
+        """Capture a log message."""
         if message and message != "\n":
             self.output.append(message.rstrip())
-
-    def flush(self):
-        """No-op for compatibility."""
-        pass
 
 
 def load_fixture():
@@ -80,88 +61,89 @@ def load_fixture():
         if not raw_data:
             return jsonify({"success": False, "error": "No fixture data provided"}), 400
 
-        # Capture all output
-        output_capture = OutputCapture()
+        # Set up output logger in Flask g context
+        # The write_output() helper in fixtures code will use this
+        g.output_logger = OutputLogger()
 
-        with output_capture:
-            # Parse the data - try JSON first, then YAML
-            # We use the parsed data structure to determine fixture type,
-            # not the text format
-            try:
-                content_type = request.content_type or ""
-                if "yaml" in content_type or "yml" in content_type:
-                    # Content-Type suggests YAML, try that first
+        # Parse the data - try JSON first, then YAML
+        # We use the parsed data structure to determine fixture type,
+        # not the text format
+        try:
+            content_type = request.content_type or ""
+            if "yaml" in content_type or "yml" in content_type:
+                # Content-Type suggests YAML, try that first
+                data = safe_load(raw_data)
+            else:
+                # Default to JSON, with YAML fallback
+                try:
+                    data = json.loads(raw_data)
+                except json.JSONDecodeError:
                     data = safe_load(raw_data)
-                else:
-                    # Default to JSON, with YAML fallback
-                    try:
-                        data = json.loads(raw_data)
-                    except json.JSONDecodeError:
-                        data = safe_load(raw_data)
-            except (json.JSONDecodeError, YAMLError) as e:
-                return (
-                    jsonify(
-                        {
-                            "success": False,
-                            "error": f"Failed to parse fixture data: {str(e)}",
-                            "output": output_capture.output,
-                        }
-                    ),
-                    400,
-                )
+        except (json.JSONDecodeError, YAMLError) as e:
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "error": f"Failed to parse fixture data: {str(e)}",
+                        "output": g.output_logger.output,
+                    }
+                ),
+                400,
+            )
 
-            # Detect fixture type
-            fixture_type = _get_fixture_type_from_data(data)
+        # Detect fixture type
+        fixture_type = _get_fixture_type_from_data(data)
 
-            if verbose:
-                sys.stderr.write(f"Processing fixture type: {fixture_type}\n")
+        if verbose:
+            from openforge.db.fixtures.utils import write_output
 
-            # Process the fixture
-            try:
-                # Use connection() method which handles both pool and non-pool modes
-                with current_app.db.connection() as conn:
-                    with conn.transaction():
-                        with conn.cursor(row_factory=dict_row) as curs:
-                            if fixture_type == "blueprint":
-                                result = _process_blueprint_fixture(
-                                    data, curs, dry_run, verbose
-                                )
-                            elif fixture_type == "tag_description":
-                                result = _process_tag_description_fixture(
-                                    data, curs, dry_run, verbose
-                                )
-                            elif fixture_type == "tag_documentation":
-                                result = _process_tag_documentation_fixture(
-                                    data, curs, dry_run, verbose
-                                )
-                            else:
-                                raise ValueError(
-                                    f"Unknown fixture type: {fixture_type}"
-                                )
+            write_output(f"Processing fixture type: {fixture_type}\n")
 
-                            # Add output to result
-                            result["output"] = output_capture.output
-                            result["success"] = True
+        # Process the fixture
+        try:
+            # Use connection() method which handles both pool and non-pool modes
+            with current_app.db.connection() as conn:
+                with conn.transaction():
+                    with conn.cursor(row_factory=dict_row) as curs:
+                        if fixture_type == "blueprint":
+                            result = _process_blueprint_fixture(
+                                data, curs, dry_run, verbose
+                            )
+                        elif fixture_type == "tag_description":
+                            result = _process_tag_description_fixture(
+                                data, curs, dry_run, verbose
+                            )
+                        elif fixture_type == "tag_documentation":
+                            result = _process_tag_documentation_fixture(
+                                data, curs, dry_run, verbose
+                            )
+                        else:
+                            raise ValueError(f"Unknown fixture type: {fixture_type}")
 
-                            return jsonify(result), 200
+                        # Add output to result
+                        result["output"] = g.output_logger.output
+                        result["success"] = True
 
-            except Exception as e:
-                current_app.logger.exception("Error processing fixture")
-                return (
-                    jsonify(
-                        {
-                            "success": False,
-                            "error": str(e),
-                            "output": output_capture.output,
-                        }
-                    ),
-                    500,
-                )
+                        return jsonify(result), 200
+
+        except Exception as e:
+            current_app.logger.exception("Error processing fixture")
+            return (
+                jsonify(
+                    {
+                        "success": False,
+                        "error": str(e),
+                        "output": g.output_logger.output,
+                    }
+                ),
+                500,
+            )
 
     except Exception as e:
         current_app.logger.exception("Unexpected error in load_fixture")
         # Include output field for consistency with other error responses
-        return jsonify({"success": False, "error": str(e), "output": []}), 500
+        output = g.output_logger.output if hasattr(g, "output_logger") else []
+        return jsonify({"success": False, "error": str(e), "output": output}), 500
 
 
 def _get_fixture_type_from_data(data: Any) -> str:
@@ -218,7 +200,7 @@ def _process_blueprint_fixture(
     changes = loader.compare_fixture_data(data, curs=curs)
 
     if dry_run:
-        sys.stderr.write("DRY RUN: Changes would be:\n")
+        write_output("DRY RUN: Changes would be:\n")
         print_comparison_results(changes)
         return {
             "added": [_format_item(item) for item in changes.added],
@@ -256,7 +238,7 @@ def _process_tag_description_fixture(
     _is_tag_description_fixture(data)
 
     if dry_run:
-        sys.stderr.write(f"DRY RUN: Would load {len(data)} tag descriptions\n")
+        write_output(f"DRY RUN: Would load {len(data)} tag descriptions\n")
         return {
             "added": [],
             "modified": [{"name": key} for key in data.keys()],
@@ -266,7 +248,7 @@ def _process_tag_description_fixture(
         }
     else:
         count = load_tag_description_fixture(curs, data)
-        sys.stderr.write(f"Applied {count} tag descriptions\n")
+        write_output(f"Applied {count} tag descriptions\n")
         return {
             "added": [],
             "modified": [{"name": key} for key in data.keys()],
@@ -295,9 +277,7 @@ def _process_tag_documentation_fixture(
 
     if dry_run:
         total_docs = sum(len(docs) for docs in data.values())
-        sys.stderr.write(
-            f"DRY RUN: Would load {total_docs} tag documentation entries\n"
-        )
+        write_output(f"DRY RUN: Would load {total_docs} tag documentation entries\n")
         return {
             "added": [],
             "modified": [{"name": key} for key in data.keys()],
@@ -307,7 +287,7 @@ def _process_tag_documentation_fixture(
         }
     else:
         count = load_tag_documentation_fixture(curs, data)
-        sys.stderr.write(f"Applied {count} tag documentation entries\n")
+        write_output(f"Applied {count} tag documentation entries\n")
         return {
             "added": [],
             "modified": [{"name": key} for key in data.keys()],
