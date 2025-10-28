@@ -91,8 +91,13 @@ if [ -f "$PROJECT_ROOT/.env" ]; then
     # It extracts the value after the first '='.
     TOKEN_LINE=$(grep -E '^OPENFORGE_API_TOKEN=' "$PROJECT_ROOT/.env")
     if [ -n "$TOKEN_LINE" ]; then
-        # shellcheck disable=SC2155
-        export OPENFORGE_API_TOKEN="${TOKEN_LINE#*=}"
+        # Extract value and strip surrounding quotes (single or double)
+        TOKEN_VALUE="${TOKEN_LINE#*=}"
+        TOKEN_VALUE="${TOKEN_VALUE#\"}"
+        TOKEN_VALUE="${TOKEN_VALUE%\"}"
+        TOKEN_VALUE="${TOKEN_VALUE#\'}"
+        TOKEN_VALUE="${TOKEN_VALUE%\'}"
+        export OPENFORGE_API_TOKEN="$TOKEN_VALUE"
     fi
 fi
 

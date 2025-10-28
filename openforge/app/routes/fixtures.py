@@ -95,8 +95,6 @@ def load_fixture():
         fixture_type = _get_fixture_type_from_data(data)
 
         if verbose:
-            from openforge.db.fixtures.utils import write_output
-
             write_output(f"Processing fixture type: {fixture_type}\n")
 
         # Process the fixture
@@ -202,22 +200,16 @@ def _process_blueprint_fixture(
     if dry_run:
         write_output("DRY RUN: Changes would be:\n")
         print_comparison_results(changes)
-        return {
-            "added": [_format_item(item) for item in changes.added],
-            "modified": [_format_item(item) for item in changes.modified],
-            "deprecated": [_format_item(item) for item in changes.deprecated],
-            "consolidated": [_format_item(item) for item in changes.consolidated],
-            "errors": changes.errors,
-        }
     else:
         loader.apply_incremental_changes(changes, curs=curs)
-        return {
-            "added": [_format_item(item) for item in changes.added],
-            "modified": [_format_item(item) for item in changes.modified],
-            "deprecated": [_format_item(item) for item in changes.deprecated],
-            "consolidated": [_format_item(item) for item in changes.consolidated],
-            "errors": changes.errors,
-        }
+
+    return {
+        "added": [_format_item(item) for item in changes.added],
+        "modified": [_format_item(item) for item in changes.modified],
+        "deprecated": [_format_item(item) for item in changes.deprecated],
+        "consolidated": [_format_item(item) for item in changes.consolidated],
+        "errors": changes.errors,
+    }
 
 
 def _process_tag_description_fixture(
@@ -239,23 +231,17 @@ def _process_tag_description_fixture(
 
     if dry_run:
         write_output(f"DRY RUN: Would load {len(data)} tag descriptions\n")
-        return {
-            "added": [],
-            "modified": [{"name": key} for key in data.keys()],
-            "deprecated": [],
-            "consolidated": [],
-            "errors": [],
-        }
     else:
         count = load_tag_description_fixture(curs, data)
         write_output(f"Applied {count} tag descriptions\n")
-        return {
-            "added": [],
-            "modified": [{"name": key} for key in data.keys()],
-            "deprecated": [],
-            "consolidated": [],
-            "errors": [],
-        }
+
+    return {
+        "added": [],
+        "modified": [{"name": key} for key in data.keys()],
+        "deprecated": [],
+        "consolidated": [],
+        "errors": [],
+    }
 
 
 def _process_tag_documentation_fixture(
@@ -278,23 +264,17 @@ def _process_tag_documentation_fixture(
     if dry_run:
         total_docs = sum(len(docs) for docs in data.values())
         write_output(f"DRY RUN: Would load {total_docs} tag documentation entries\n")
-        return {
-            "added": [],
-            "modified": [{"name": key} for key in data.keys()],
-            "deprecated": [],
-            "consolidated": [],
-            "errors": [],
-        }
     else:
         count = load_tag_documentation_fixture(curs, data)
         write_output(f"Applied {count} tag documentation entries\n")
-        return {
-            "added": [],
-            "modified": [{"name": key} for key in data.keys()],
-            "deprecated": [],
-            "consolidated": [],
-            "errors": [],
-        }
+
+    return {
+        "added": [],
+        "modified": [{"name": key} for key in data.keys()],
+        "deprecated": [],
+        "consolidated": [],
+        "errors": [],
+    }
 
 
 def _format_item(item: Dict) -> Dict:

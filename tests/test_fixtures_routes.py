@@ -36,7 +36,7 @@ SAMPLE_BLUEPRINT_FIXTURE = [
         "file_metadata": {
             "file": "test_wall.stl",
             "full_name": "tiles/test/test_wall.stl",
-            "md5": "abc123def456",
+            "md5": "d41d8cd98f00b204e9800998ecf8427e",
             "size": 12345,
             "file_modified_at": "2024-01-01T00:00:00",
             "storage_address": "s3://test/test_wall.stl",
