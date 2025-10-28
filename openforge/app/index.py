@@ -55,11 +55,32 @@ def health_check():
 ####################
 
 
-@app.route("/api/admin/fixtures/load", methods=["POST"])
+@app.route("/api/admin/fixtures", methods=["POST"])
 @authenticate(methods=["POST"], disable_sessions=["POST"], disable_csrf=["POST"])
 def load_fixture():
-    """Load a fixture file via API upload (admin only, API key auth)."""
+    """Load fixture via API with auto-detection (admin only, API key auth)."""
     return fixture_routes.load_fixture()
+
+
+@app.route("/api/admin/fixtures/blueprints", methods=["POST"])
+@authenticate(methods=["POST"], disable_sessions=["POST"], disable_csrf=["POST"])
+def load_blueprint_fixture():
+    """Load a blueprint fixture file via API upload (admin only, API key auth)."""
+    return fixture_routes.load_blueprint_fixture()
+
+
+@app.route("/api/admin/fixtures/tag-descriptions", methods=["POST"])
+@authenticate(methods=["POST"], disable_sessions=["POST"], disable_csrf=["POST"])
+def load_tag_description_fixture():
+    """Load a tag description fixture file via API upload (admin only, API key auth)."""
+    return fixture_routes.load_tag_description_fixture()
+
+
+@app.route("/api/admin/fixtures/tag-documentation", methods=["POST"])
+@authenticate(methods=["POST"], disable_sessions=["POST"], disable_csrf=["POST"])
+def load_tag_documentation_fixture():
+    """Load tag documentation fixture via API (admin only, API key auth)."""
+    return fixture_routes.load_tag_documentation_fixture()
 
 
 ####################

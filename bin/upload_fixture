@@ -137,7 +137,7 @@ if [ ${#query_parts[@]} -gt 0 ]; then
 fi
 
 # Construct full URL
-FULL_URL="${BASE_URL}/api/admin/fixtures/load${QUERY_PARAMS}"
+FULL_URL="${BASE_URL}/api/admin/fixtures${QUERY_PARAMS}"
 
 # Display request info
 echo -e "${YELLOW}Uploading fixture:${NC} $FIXTURE_PATH"

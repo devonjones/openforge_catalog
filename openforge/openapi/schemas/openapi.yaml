@@ -206,19 +206,23 @@ paths:
                     type: string
                     example: "Invalid or expired session"
 
-  /api/admin/fixtures/load:
+  /api/admin/fixtures:
     post:
       tags:
         - admins
-      summary: Load fixture file via API upload
+      summary: Load fixture file via API upload with auto-detection
       operationId: loadFixture
       description: |
         Loads a fixture file (blueprint, tag description, or tag documentation) into the database.
+        Automatically detects the fixture type from the data structure.
         Requires API key authentication via Bearer token.
-        Supports incremental loading with automatic fixture type detection.
+        Supports incremental loading.
 
         **Note:** This endpoint does NOT support session-based authentication or CSRF tokens.
         API key authentication only.
+
+        **Recommendation:** Use type-specific endpoints (/blueprints, /tag-descriptions, /tag-documentation)
+        for better validation and explicit type checking.
       security:
         - bearerAuth: []
       parameters:
@@ -408,6 +412,129 @@ paths:
                 error: "Failed to parse fixture data: Invalid JSON"
                 output:
                   - "Processing fixture upload..."
+
+  /api/admin/fixtures/blueprints:
+    post:
+      tags:
+        - admins
+      summary: Load blueprint fixture via API upload
+      operationId: loadBlueprintFixture
+      description: |
+        Loads a blueprint fixture file into the database.
+        This endpoint only accepts blueprint fixtures (arrays of blueprint objects).
+        Validates the fixture schema before processing.
+        Requires API key authentication via Bearer token.
+
+        **Note:** This endpoint does NOT support session-based authentication or CSRF tokens.
+        API key authentication only.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/DryRunParam'
+        - $ref: '#/components/parameters/VerboseParam'
+      requestBody:
+        required: true
+        description: Blueprint fixture file content (JSON or YAML array of blueprint objects)
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+          application/x-yaml:
+            schema:
+              type: array
+      responses:
+        '200':
+          $ref: '#/components/responses/FixtureSuccess'
+        '400':
+          $ref: '#/components/responses/FixtureBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/FixtureError'
+
+  /api/admin/fixtures/tag-descriptions:
+    post:
+      tags:
+        - admins
+      summary: Load tag description fixture via API upload
+      operationId: loadTagDescriptionFixture
+      description: |
+        Loads a tag description fixture file into the database.
+        This endpoint only accepts tag description fixtures (objects with tag->description mappings).
+        Validates the fixture schema before processing.
+        Requires API key authentication via Bearer token.
+
+        **Note:** This endpoint does NOT support session-based authentication or CSRF tokens.
+        API key authentication only.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/DryRunParam'
+        - $ref: '#/components/parameters/VerboseParam'
+      requestBody:
+        required: true
+        description: Tag description fixture file content (JSON or YAML object)
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+          application/x-yaml:
+            schema:
+              type: object
+      responses:
+        '200':
+          $ref: '#/components/responses/FixtureSuccess'
+        '400':
+          $ref: '#/components/responses/FixtureBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/FixtureError'
+
+  /api/admin/fixtures/tag-documentation:
+    post:
+      tags:
+        - admins
+      summary: Load tag documentation fixture via API upload
+      operationId: loadTagDocumentationFixture
+      description: |
+        Loads a tag documentation fixture file into the database.
+        This endpoint only accepts tag documentation fixtures (objects with tag->document array mappings).
+        Validates the fixture schema before processing.
+        Requires API key authentication via Bearer token.
+
+        **Note:** This endpoint does NOT support session-based authentication or CSRF tokens.
+        API key authentication only.
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/DryRunParam'
+        - $ref: '#/components/parameters/VerboseParam'
+      requestBody:
+        required: true
+        description: Tag documentation fixture file content (JSON or YAML object)
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: array
+          application/x-yaml:
+            schema:
+              type: object
+      responses:
+        '200':
+          $ref: '#/components/responses/FixtureSuccess'
+        '400':
+          $ref: '#/components/responses/FixtureBadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/FixtureError'
 
   /api/blueprints:
     get:
@@ -1680,6 +1807,118 @@ components:
       in: header
       name: X-CSRF-Token
       description: CSRF token required for state-changing operations
+  parameters:
+    DryRunParam:
+      in: query
+      name: dry_run
+      required: false
+      schema:
+        type: boolean
+        default: false
+      description: Preview changes without applying them to the database
+    VerboseParam:
+      in: query
+      name: verbose
+      required: false
+      schema:
+        type: boolean
+        default: false
+      description: Enable verbose debug output in response
+  responses:
+    FixtureSuccess:
+      description: Fixture processed successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - success
+              - added
+              - modified
+              - deprecated
+              - consolidated
+              - errors
+              - output
+            properties:
+              success:
+                type: boolean
+                example: true
+              added:
+                type: array
+                items:
+                  type: object
+              modified:
+                type: array
+                items:
+                  type: object
+              deprecated:
+                type: array
+                items:
+                  type: object
+              consolidated:
+                type: array
+                items:
+                  type: object
+              errors:
+                type: array
+                items:
+                  type: string
+              output:
+                type: array
+                items:
+                  type: string
+    FixtureBadRequest:
+      description: Bad Request - Invalid or empty fixture data
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - success
+              - error
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+              output:
+                type: array
+                items:
+                  type: string
+    FixtureError:
+      description: Internal Server Error - Processing failed
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - success
+              - error
+              - output
+            properties:
+              success:
+                type: boolean
+                example: false
+              error:
+                type: string
+              output:
+                type: array
+                items:
+                  type: string
+    Unauthorized:
+      description: Unauthorized - Invalid or missing API key
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Unauthorized"
+              message:
+                type: string
+                example: "Valid API key required"
   schemas:
     Blueprint:
       type: object

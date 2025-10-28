@@ -61,12 +61,12 @@ SAMPLE_TAG_DOCUMENTATION_FIXTURE = {
 
 
 class TestFixtureLoadEndpoint:
-    """Test the POST /api/admin/fixtures/load endpoint."""
+    """Test the POST /api/admin/fixtures endpoint."""
 
     def test_load_blueprint_fixture_json(self, client, auth_headers):
         """Test loading a blueprint fixture as JSON."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -86,7 +86,7 @@ class TestFixtureLoadEndpoint:
         """Test loading a blueprint fixture as YAML."""
         yaml_content = yaml_dump(SAMPLE_BLUEPRINT_FIXTURE)
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=yaml_content,
             headers={**auth_headers, "Content-Type": "application/x-yaml"},
         )
@@ -99,7 +99,7 @@ class TestFixtureLoadEndpoint:
     def test_load_tag_description_fixture(self, client, auth_headers):
         """Test loading a tag description fixture."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_TAG_DESCRIPTION_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -116,7 +116,7 @@ class TestFixtureLoadEndpoint:
     def test_load_tag_documentation_fixture(self, client, auth_headers):
         """Test loading a tag documentation fixture."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_TAG_DOCUMENTATION_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -132,7 +132,7 @@ class TestFixtureLoadEndpoint:
     def test_dry_run_parameter(self, client, auth_headers):
         """Test that dry_run=true doesn't modify the database."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -146,7 +146,7 @@ class TestFixtureLoadEndpoint:
     def test_verbose_parameter(self, client, auth_headers):
         """Test that verbose=true includes debug output."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true&verbose=true",
+            "/api/admin/fixtures?dry_run=true&verbose=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -162,7 +162,7 @@ class TestFixtureLoadEndpoint:
     def test_empty_body_returns_400(self, client, auth_headers):
         """Test that empty request body returns 400."""
         response = client.post(
-            "/api/admin/fixtures/load",
+            "/api/admin/fixtures",
             data="",
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -175,7 +175,7 @@ class TestFixtureLoadEndpoint:
     def test_invalid_json_returns_400(self, client, auth_headers):
         """Test that invalid JSON returns 400 (client error)."""
         response = client.post(
-            "/api/admin/fixtures/load",
+            "/api/admin/fixtures",
             data="{invalid json",
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -189,7 +189,7 @@ class TestFixtureLoadEndpoint:
     def test_invalid_yaml_returns_400(self, client, auth_headers):
         """Test that invalid YAML returns 400 (client error)."""
         response = client.post(
-            "/api/admin/fixtures/load",
+            "/api/admin/fixtures",
             data="invalid: yaml: content:",
             headers={**auth_headers, "Content-Type": "application/x-yaml"},
         )
@@ -202,7 +202,7 @@ class TestFixtureLoadEndpoint:
     def test_output_capture(self, client, auth_headers):
         """Test that output is captured in response."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true&verbose=true",
+            "/api/admin/fixtures?dry_run=true&verbose=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -219,7 +219,7 @@ class TestFixtureLoadEndpoint:
         """Test that error responses include output field."""
         # Invalid JSON will trigger a 400 error
         response = client.post(
-            "/api/admin/fixtures/load",
+            "/api/admin/fixtures",
             data="{bad json",
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -235,7 +235,7 @@ class TestFixtureLoadEndpoint:
         """Test that content type is auto-detected from data structure."""
         # Send JSON without explicit content type
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers=auth_headers,  # No Content-Type header
         )
@@ -251,7 +251,7 @@ class TestFixtureTypeDetection:
     def test_detect_blueprint_fixture(self, client, auth_headers):
         """Test that blueprint fixtures are detected correctly."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true&verbose=true",
+            "/api/admin/fixtures?dry_run=true&verbose=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -264,7 +264,7 @@ class TestFixtureTypeDetection:
     def test_detect_tag_description_fixture(self, client, auth_headers):
         """Test that tag description fixtures are detected correctly."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_TAG_DESCRIPTION_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -277,7 +277,7 @@ class TestFixtureTypeDetection:
     def test_detect_tag_documentation_fixture(self, client, auth_headers):
         """Test that tag documentation fixtures are detected correctly."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_TAG_DOCUMENTATION_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -288,13 +288,96 @@ class TestFixtureTypeDetection:
         assert "modified" in data
 
 
+class TestTypeSpecificEndpoints:
+    """Test type-specific fixture endpoints."""
+
+    def test_blueprints_endpoint_accepts_blueprint(self, client, auth_headers):
+        """Test /api/admin/fixtures/blueprints accepts blueprint fixtures."""
+        response = client.post(
+            "/api/admin/fixtures/blueprints?dry_run=true",
+            data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["success"] is True
+
+    def test_blueprints_endpoint_rejects_tag_description(self, client, auth_headers):
+        """Test /api/admin/fixtures/blueprints rejects non-blueprint fixtures."""
+        response = client.post(
+            "/api/admin/fixtures/blueprints?dry_run=true",
+            data=json.dumps(SAMPLE_TAG_DESCRIPTION_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 400
+        data = response.get_json()
+        assert data["success"] is False
+        assert "Invalid blueprint fixture" in data["error"]
+
+    def test_tag_descriptions_endpoint_accepts_tag_description(
+        self, client, auth_headers
+    ):
+        """Test tag-descriptions endpoint accepts tag descriptions."""
+        response = client.post(
+            "/api/admin/fixtures/tag-descriptions?dry_run=true",
+            data=json.dumps(SAMPLE_TAG_DESCRIPTION_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["success"] is True
+
+    def test_tag_descriptions_endpoint_rejects_blueprint(self, client, auth_headers):
+        """Test tag-descriptions endpoint validates fixture type."""
+        response = client.post(
+            "/api/admin/fixtures/tag-descriptions?dry_run=true",
+            data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 400
+        data = response.get_json()
+        assert data["success"] is False
+        assert "Invalid tag description fixture" in data["error"]
+
+    def test_tag_documentation_endpoint_accepts_tag_documentation(
+        self, client, auth_headers
+    ):
+        """Test tag-documentation endpoint accepts tag docs."""
+        response = client.post(
+            "/api/admin/fixtures/tag-documentation?dry_run=true",
+            data=json.dumps(SAMPLE_TAG_DOCUMENTATION_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["success"] is True
+
+    def test_tag_documentation_endpoint_rejects_blueprint(self, client, auth_headers):
+        """Test tag-documentation endpoint validates fixture type."""
+        response = client.post(
+            "/api/admin/fixtures/tag-documentation?dry_run=true",
+            data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
+            headers={**auth_headers, "Content-Type": "application/json"},
+        )
+
+        assert response.status_code == 400
+        data = response.get_json()
+        assert data["success"] is False
+        assert "Invalid tag documentation fixture" in data["error"]
+
+
 class TestResponseFormat:
     """Test response format consistency."""
 
     def test_success_response_structure(self, client, auth_headers):
         """Test that success responses have consistent structure."""
         response = client.post(
-            "/api/admin/fixtures/load?dry_run=true",
+            "/api/admin/fixtures?dry_run=true",
             data=json.dumps(SAMPLE_BLUEPRINT_FIXTURE),
             headers={**auth_headers, "Content-Type": "application/json"},
         )
@@ -323,7 +406,7 @@ class TestResponseFormat:
     def test_error_response_structure(self, client, auth_headers):
         """Test that error responses have consistent structure."""
         response = client.post(
-            "/api/admin/fixtures/load",
+            "/api/admin/fixtures",
             data="",
             headers={**auth_headers, "Content-Type": "application/json"},
         )

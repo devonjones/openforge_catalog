@@ -155,15 +155,32 @@ The system handles complex real-world scenarios like doorways that need both wal
 #### NEW: Remote Fixture Loading
 **Problem Solved**: Previously required SSH access to server to load fixture data into database
 
-**Solution**: API endpoint for remote fixture loading with companion shell script
+**Solution**: API endpoints for remote fixture loading with companion shell script
 
-**API Endpoint**: `POST /api/admin/fixtures/load`
+**API Endpoints**:
+
+1. **`POST /api/admin/fixtures`** - Generic endpoint with auto-detection
+   - Automatically identifies fixture type from data structure
+   - Convenient for shell script and CLI usage
+
+2. **`POST /api/admin/fixtures/blueprints`** - Blueprint fixtures only
+   - Validates blueprint schema before processing
+   - Returns 400 if non-blueprint data is sent
+
+3. **`POST /api/admin/fixtures/tag-descriptions`** - Tag description fixtures only
+   - Validates tag description schema before processing
+   - Returns 400 if non-tag-description data is sent
+
+4. **`POST /api/admin/fixtures/tag-documentation`** - Tag documentation fixtures only
+   - Validates tag documentation schema before processing
+   - Returns 400 if non-tag-documentation data is sent
+
+**All endpoints support**:
 - **Authentication**: API key via `Authorization: Bearer <token>` header
 - **Request Body**: Raw fixture file content (JSON or YAML)
 - **Query Parameters**:
   - `dry_run=true` - Preview changes without applying
   - `verbose=true` - Enable debug output
-- **Auto-detection**: Automatically identifies fixture type (blueprint/tag_description/tag_documentation)
 - **Transaction Safety**: All-or-nothing processing with automatic rollback on errors
 - **Response Format**:
   ```json
@@ -199,30 +216,20 @@ The system handles complex real-world scenarios like doorways that need both wal
 - Full output visibility via API response
 - Safe testing with dry-run mode
 
-**Current Limitations & Future Design**:
-- **Type Detection Issue**: The current implementation uses heuristics to differentiate between fixture types:
+**Implementation Notes**:
+- **Type-Specific Endpoints**: Each fixture type has its own endpoint with schema validation
+  - Prevents accidental uploads of wrong fixture type
+  - Clear error messages when fixture doesn't match expected schema
+  - Easier to add new fixture types in the future
+
+- **Generic Endpoint**: The `/api/admin/fixtures` endpoint uses heuristics for type detection:
   - Lists → blueprints
   - Dicts with list values → tag documentation
   - Dicts with other values → tag descriptions
+  - Convenient for shell script and automated tools
+  - May be less precise than type-specific endpoints
 
-  This is fragile and doesn't scale well as new fixture types are added.
-
-- **Planned Redesign**:
-  1. **Declarative Fixture Schema**: Add explicit `"fixture_type"` field to all fixture files
-     ```json
-     {
-       "fixture_type": "blueprint",
-       "data": [...]
-     }
-     ```
-  2. **Type-Specific Endpoints**: Create dedicated endpoints for each fixture type:
-     - `POST /api/admin/fixtures/blueprints`
-     - `POST /api/admin/fixtures/tag-descriptions`
-     - `POST /api/admin/fixtures/tag-documentation`
-  3. **Extensibility**: New fixture types can be added without modifying type detection logic
-  4. **Validation**: Each endpoint can enforce type-specific validation schemas
-
-- **Migration Path**: The generic `/api/admin/fixtures/load` endpoint will remain for backward compatibility but will be deprecated in favor of type-specific endpoints.
+- **Future Enhancement**: Add explicit `"fixture_type"` field to fixture file schemas for more robust type detection and validation.
 
 ### Authentication and Authorization System - **NEW**
 
@@ -464,7 +471,10 @@ RESTful API with comprehensive CRUD operations:
 - **NEW**: `/api/blueprints/{blueprint_id}/history` - File version history
 - **NEW**: `/api/blueprints/{blueprint_id}/documentation` - Blueprint documentation management
 - **NEW**: `/api/admin/duplicates` - Administrative duplicate detection
-- **NEW**: `/api/admin/fixtures/load` - Remote fixture loading via API upload
+- **NEW**: `/api/admin/fixtures` - Remote fixture loading with auto-detection
+- **NEW**: `/api/admin/fixtures/blueprints` - Blueprint fixture loading
+- **NEW**: `/api/admin/fixtures/tag-descriptions` - Tag description fixture loading
+- **NEW**: `/api/admin/fixtures/tag-documentation` - Tag documentation fixture loading
 - **NEW**: `/api/voting/*` - Complete voting system API
 - **NEW**: `/api/patron-requests/*` - Patron request management
 - **NEW**: `/api/admin/gap-analysis/*` - Gap analysis and reporting
@@ -756,31 +766,21 @@ This updated specification reflects a significant maturation of the OpenForge Ca
 **Rejected**: CLI-first approach for administrative functions
 **Rationale**: Faster implementation, more powerful for complex operations, can evolve to web later, better for automation
 
-#### Type-Specific Fixture Endpoints (Initial Implementation)
-**Considered**: Creating separate endpoints for each fixture type from the start:
-- `POST /api/admin/fixtures/blueprints`
-- `POST /api/admin/fixtures/tag-descriptions`
-- `POST /api/admin/fixtures/tag-documentation`
+#### Type-Specific Fixture Endpoints
+**Implemented**: Both generic and type-specific endpoints for fixture loading:
+- `POST /api/admin/fixtures` - Auto-detects fixture type
+- `POST /api/admin/fixtures/blueprints` - Blueprint fixtures only
+- `POST /api/admin/fixtures/tag-descriptions` - Tag description fixtures only
+- `POST /api/admin/fixtures/tag-documentation` - Tag documentation fixtures only
 
-**Rejected**: Single generic endpoint with auto-detection
-**Rationale**: Faster initial implementation, gets remote loading working immediately, avoids upfront fixture schema redesign
+**Rationale**:
+- Type-specific endpoints provide schema validation and clear error messages
+- Generic endpoint provides convenience for automated tools (shell script, CI/CD)
+- Both approaches coexist - use type-specific for web UI, generic for automation
 
-**Known Limitations**:
-- Current fixture files lack explicit type declaration (inferred from structure)
-- Heuristic-based type detection is fragile:
-  - Lists → blueprints
-  - Dicts with list values → tag documentation
-  - Dicts with other values → tag descriptions
-- Does not scale well as new fixture types are added
-- Type ambiguity can cause misclassification
-
-**Future Migration Plan**:
-1. **Phase 1**: Add `"fixture_type"` field to all fixture file schemas
-2. **Phase 2**: Implement type-specific endpoints with explicit type validation
-3. **Phase 3**: Deprecate generic `/api/admin/fixtures/load` endpoint
-4. **Phase 4**: Migrate all fixture files to include explicit type declaration
-
-This approach trades initial simplicity for future technical debt, with a clear migration path to a more robust solution.
+**Future Enhancement**:
+- Add explicit `"fixture_type"` field to fixture file schemas for even more robust validation
+- This would eliminate the need for heuristic-based type detection in the generic endpoint
 
 ### User Experience
 
