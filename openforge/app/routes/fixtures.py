@@ -1,7 +1,8 @@
 """Admin routes for fixture loading via API."""
 
 import json
-from typing import Any, Dict, List
+from functools import wraps
+from typing import Any, Callable, Dict, List
 
 from flask import current_app, g, jsonify, request
 from psycopg.rows import dict_row
@@ -39,6 +40,41 @@ class OutputLogger:
         """Capture a log message."""
         if message and message != "\n":
             self.output.append(message.rstrip())
+
+
+def fixture_endpoint(f: Callable) -> Callable:
+    """Decorator for fixture loading endpoints.
+
+    Handles common setup (query params, output logger, data parsing) and
+    error handling for all fixture loading endpoints.
+
+    The decorated function receives: (data, dry_run, verbose) parameters.
+    """
+
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        try:
+            # Parse query parameters
+            dry_run = request.args.get("dry_run", "false").lower() == "true"
+            verbose = request.args.get("verbose", "false").lower() == "true"
+
+            # Set up output logger
+            g.output_logger = OutputLogger()
+
+            # Parse fixture data
+            data, error = _parse_fixture_data()
+            if error:
+                return error
+
+            # Call the actual endpoint function with parsed data
+            return f(data, dry_run, verbose, *args, **kwargs)
+
+        except Exception as e:
+            current_app.logger.exception(f"Unexpected error in {f.__name__}")
+            output = g.output_logger.output if hasattr(g, "output_logger") else []
+            return jsonify({"success": False, "error": str(e), "output": output}), 500
+
+    return decorated_function
 
 
 def _parse_fixture_data():
@@ -135,128 +171,74 @@ def _process_fixture(data: Any, fixture_type: str, dry_run: bool, verbose: bool)
         )
 
 
-def load_fixture():
+@fixture_endpoint
+def load_fixture(data, dry_run, verbose):
     """Load a fixture file via API upload with auto-detection."""
-    try:
-        dry_run = request.args.get("dry_run", "false").lower() == "true"
-        verbose = request.args.get("verbose", "false").lower() == "true"
-        g.output_logger = OutputLogger()
-
-        data, error = _parse_fixture_data()
-        if error:
-            return error
-
-        fixture_type = _get_fixture_type_from_data(data)
-        return _process_fixture(data, fixture_type, dry_run, verbose)
-
-    except Exception as e:
-        current_app.logger.exception("Unexpected error in load_fixture")
-        output = g.output_logger.output if hasattr(g, "output_logger") else []
-        return jsonify({"success": False, "error": str(e), "output": output}), 500
+    fixture_type = _get_fixture_type_from_data(data)
+    return _process_fixture(data, fixture_type, dry_run, verbose)
 
 
-def load_blueprint_fixture():
+@fixture_endpoint
+def load_blueprint_fixture(data, dry_run, verbose):
     """Load a blueprint fixture file via API upload."""
+    # Validate it's a blueprint fixture
     try:
-        dry_run = request.args.get("dry_run", "false").lower() == "true"
-        verbose = request.args.get("verbose", "false").lower() == "true"
-        g.output_logger = OutputLogger()
-
-        data, error = _parse_fixture_data()
-        if error:
-            return error
-
-        # Validate it's a blueprint fixture
-        try:
-            is_blueprint_fixture(data)
-        except Exception as e:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "error": f"Invalid blueprint fixture: {str(e)}",
-                        "output": g.output_logger.output,
-                    }
-                ),
-                400,
-            )
-
-        return _process_fixture(data, "blueprint", dry_run, verbose)
-
+        is_blueprint_fixture(data)
     except Exception as e:
-        current_app.logger.exception("Unexpected error in load_blueprint_fixture")
-        output = g.output_logger.output if hasattr(g, "output_logger") else []
-        return jsonify({"success": False, "error": str(e), "output": output}), 500
-
-
-def load_tag_description_fixture():
-    """Load a tag description fixture file via API upload."""
-    try:
-        dry_run = request.args.get("dry_run", "false").lower() == "true"
-        verbose = request.args.get("verbose", "false").lower() == "true"
-        g.output_logger = OutputLogger()
-
-        data, error = _parse_fixture_data()
-        if error:
-            return error
-
-        # Validate it's a tag description fixture
-        try:
-            is_tag_description_fixture(data)
-        except Exception as e:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "error": f"Invalid tag description fixture: {str(e)}",
-                        "output": g.output_logger.output,
-                    }
-                ),
-                400,
-            )
-
-        return _process_fixture(data, "tag_description", dry_run, verbose)
-
-    except Exception as e:
-        current_app.logger.exception("Unexpected error in load_tag_description_fixture")
-        output = g.output_logger.output if hasattr(g, "output_logger") else []
-        return jsonify({"success": False, "error": str(e), "output": output}), 500
-
-
-def load_tag_documentation_fixture():
-    """Load a tag documentation fixture file via API upload."""
-    try:
-        dry_run = request.args.get("dry_run", "false").lower() == "true"
-        verbose = request.args.get("verbose", "false").lower() == "true"
-        g.output_logger = OutputLogger()
-
-        data, error = _parse_fixture_data()
-        if error:
-            return error
-
-        # Validate it's a tag documentation fixture
-        try:
-            is_tag_documentation_fixture(data)
-        except Exception as e:
-            return (
-                jsonify(
-                    {
-                        "success": False,
-                        "error": f"Invalid tag documentation fixture: {str(e)}",
-                        "output": g.output_logger.output,
-                    }
-                ),
-                400,
-            )
-
-        return _process_fixture(data, "tag_documentation", dry_run, verbose)
-
-    except Exception as e:
-        current_app.logger.exception(
-            "Unexpected error in load_tag_documentation_fixture"
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": f"Invalid blueprint fixture: {str(e)}",
+                    "output": g.output_logger.output,
+                }
+            ),
+            400,
         )
-        output = g.output_logger.output if hasattr(g, "output_logger") else []
-        return jsonify({"success": False, "error": str(e), "output": output}), 500
+
+    return _process_fixture(data, "blueprint", dry_run, verbose)
+
+
+@fixture_endpoint
+def load_tag_description_fixture(data, dry_run, verbose):
+    """Load a tag description fixture file via API upload."""
+    # Validate it's a tag description fixture
+    try:
+        is_tag_description_fixture(data)
+    except Exception as e:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": f"Invalid tag description fixture: {str(e)}",
+                    "output": g.output_logger.output,
+                }
+            ),
+            400,
+        )
+
+    return _process_fixture(data, "tag_description", dry_run, verbose)
+
+
+@fixture_endpoint
+def load_tag_documentation_fixture(data, dry_run, verbose):
+    """Load a tag documentation fixture file via API upload."""
+    # Validate it's a tag documentation fixture
+    try:
+        is_tag_documentation_fixture(data)
+    except Exception as e:
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": f"Invalid tag documentation fixture: {str(e)}",
+                    "output": g.output_logger.output,
+                }
+            ),
+            400,
+        )
+
+    return _process_fixture(data, "tag_documentation", dry_run, verbose)
 
 
 def _get_fixture_type_from_data(data: Any) -> str:

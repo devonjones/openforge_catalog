@@ -89,7 +89,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 if [ -f "$PROJECT_ROOT/.env" ]; then
     # A more robust way to export the variable, handling spaces in the value.
     # It extracts the value after the first '='.
-    TOKEN_LINE=$(grep -E '^OPENFORGE_API_TOKEN=' "$PROJECT_ROOT/.env")
+    TOKEN_LINE=$(grep -m 1 -E '^OPENFORGE_API_TOKEN=' "$PROJECT_ROOT/.env")
     if [ -n "$TOKEN_LINE" ]; then
         # Extract value and strip surrounding quotes (single or double)
         TOKEN_VALUE="${TOKEN_LINE#*=}"
