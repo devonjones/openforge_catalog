@@ -1,5 +1,4 @@
 import json
-import sys
 from importlib import resources as impresources
 from pathlib import Path
 
@@ -71,21 +70,23 @@ def clear_db(curs: cursor):
     tag_description_sql.delete_all_tag_descriptions(curs)
 
 
-def _is_blueprint_fixture(data):
+def is_blueprint_fixture(data):
     """Validate data against the blueprint fixture schema."""
     validate_schema("blueprint.fixture.json", data)
 
 
-def _is_tag_description_fixture(data):
+def is_tag_description_fixture(data):
     """Validate data against the tag description fixture schema."""
     validate_schema("tag_description.fixture.json", data)
 
 
-def _is_tag_documentation_fixture(data):
+def is_tag_documentation_fixture(data):
     """Validate data against the tag documentation fixture schema."""
     # Tag documentation uses the same structure as tag descriptions
     # but with additional fields for document content
-    return isinstance(data, dict)
+    if not isinstance(data, dict):
+        raise ValueError("Tag documentation fixture must be a dictionary")
+    return True
 
 
 def _get_fixture_type(file_path):
@@ -131,7 +132,7 @@ def load_fixtures(
             if fixture_type == "blueprint":
                 # Validate blueprint fixture
                 try:
-                    _is_blueprint_fixture(data)
+                    is_blueprint_fixture(data)
                     # Use transaction to ensure all-or-nothing behavior
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
@@ -147,22 +148,22 @@ def load_fixtures(
             elif fixture_type == "tag_description":
                 # Validate tag description fixture
                 try:
-                    _is_tag_description_fixture(data)
+                    is_tag_description_fixture(data)
                     # Handle tag descriptions in incremental mode
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(
+                                write_output(
                                     f"DRY RUN: Would load tag description "
                                     f"fixture: {f}\n"
                                 )
                             else:
                                 count = load_tag_description_fixture(curs, data)
-                                sys.stderr.write(
+                                write_output(
                                     f"{f.name}: Applied {count} tag descriptions\n"
                                 )
                                 if verbose:
-                                    sys.stderr.write(
+                                    write_output(
                                         f"Loaded tag description fixture: {f}\n"
                                     )
                 except Exception as e:
@@ -170,12 +171,12 @@ def load_fixtures(
             elif fixture_type == "tag_documentation":
                 # Validate tag documentation fixture
                 try:
-                    _is_tag_documentation_fixture(data)
+                    is_tag_documentation_fixture(data)
                     # Handle tag documentation in incremental mode
                     with conn.transaction():
                         with conn.cursor(row_factory=dict_row) as curs:
                             if dry_run:
-                                sys.stderr.write(
+                                write_output(
                                     f"DRY RUN: Would load tag documentation "
                                     f"fixture: {f}\n"
                                 )
@@ -185,9 +186,9 @@ def load_fixtures(
                                     f"{f.name}: Applied {count} tag documentation "
                                     f"entries\n"
                                 )
-                                sys.stderr.write(msg)
+                                write_output(msg)
                                 if verbose:
-                                    sys.stderr.write(
+                                    write_output(
                                         f"Loaded tag documentation fixture: {f}\n"
                                     )
                 except Exception as e:
@@ -207,7 +208,7 @@ def load_fixtures(
                     if fixture_type == "blueprint":
                         # Validate blueprint fixture
                         try:
-                            _is_blueprint_fixture(data)
+                            is_blueprint_fixture(data)
                             for rec in data:
                                 load_blueprint_fixture(curs, rec)
                         except Exception as e:
@@ -215,9 +216,9 @@ def load_fixtures(
                     elif fixture_type == "tag_description":
                         # Validate tag description fixture
                         try:
-                            _is_tag_description_fixture(data)
+                            is_tag_description_fixture(data)
                             count = load_tag_description_fixture(curs, data)
-                            sys.stderr.write(
+                            write_output(
                                 f"{f.name}: Applied {count} tag descriptions\n"
                             )
                         except Exception as e:
@@ -225,9 +226,9 @@ def load_fixtures(
                     elif fixture_type == "tag_documentation":
                         # Validate tag documentation fixture
                         try:
-                            _is_tag_documentation_fixture(data)
+                            is_tag_documentation_fixture(data)
                             count = load_tag_documentation_fixture(curs, data)
-                            sys.stderr.write(
+                            write_output(
                                 f"{f.name}: Applied {count} tag documentation entries\n"
                             )
                         except Exception as e:
@@ -238,7 +239,7 @@ def load_fixtures(
 
 def _load_data(f, verbose=False):
     if verbose:
-        sys.stderr.write(f"Loading {f}\n")
+        write_output(f"Loading {f}\n")
     with open(f, "r") as fh:
         if str(f).endswith(".json"):
             return json.load(fh)
@@ -247,7 +248,7 @@ def _load_data(f, verbose=False):
         raise ValueError(f"Unsupported file type: {f}")
 
 
-from .utils import get_words, munge_blueprint  # noqa: E402
+from .utils import get_words, munge_blueprint, write_output  # noqa: E402
 
 
 def _munge_blueprint(data: dict):

@@ -152,6 +152,85 @@ The system handles complex real-world scenarios like doorways that need both wal
 - **Version Changelogs**: Detailed change documentation using blueprint_documentation table
 - **Extensible Design**: Ready for additional documentation types in future
 
+#### NEW: Remote Fixture Loading
+**Problem Solved**: Previously required SSH access to server to load fixture data into database
+
+**Solution**: API endpoints for remote fixture loading with companion shell script
+
+**API Endpoints**:
+
+1. **`POST /api/admin/fixtures`** - Generic endpoint with auto-detection
+   - Automatically identifies fixture type from data structure
+   - Convenient for shell script and CLI usage
+
+2. **`POST /api/admin/fixtures/blueprints`** - Blueprint fixtures only
+   - Validates blueprint schema before processing
+   - Returns 400 if non-blueprint data is sent
+
+3. **`POST /api/admin/fixtures/tag-descriptions`** - Tag description fixtures only
+   - Validates tag description schema before processing
+   - Returns 400 if non-tag-description data is sent
+
+4. **`POST /api/admin/fixtures/tag-documentation`** - Tag documentation fixtures only
+   - Validates tag documentation schema before processing
+   - Returns 400 if non-tag-documentation data is sent
+
+**All endpoints support**:
+- **Authentication**: API key via `Authorization: Bearer <token>` header
+- **Request Body**: Raw fixture file content (JSON or YAML)
+- **Query Parameters**:
+  - `dry_run=true` - Preview changes without applying
+  - `verbose=true` - Enable debug output
+- **Transaction Safety**: All-or-nothing processing with automatic rollback on errors
+- **Response Format**:
+  ```json
+  {
+    "success": true,
+    "added": [...],
+    "modified": [...],
+    "deprecated": [...],
+    "consolidated": [...],
+    "errors": [],
+    "output": ["captured log messages"]
+  }
+  ```
+
+**Shell Script**: `bin/upload_fixture`
+- Reads `OPENFORGE_API_TOKEN` from `.env` file
+- Takes fixture path relative to `openforge/db/fixtures/`
+- Supports `--dry-run` and `--verbose` flags
+- Auto-detects content type from file extension
+- Defaults to localhost for development, configurable via `OPENFORGE_BASE_URL` env var
+- Pretty-prints JSON responses with color-coded output
+- Example usage:
+  ```bash
+  ./bin/upload_fixture blueprints/dungeon_stone.json
+  ./bin/upload_fixture blueprints/cave.json --dry-run --verbose
+  OPENFORGE_BASE_URL=https://staging.openforge.tools ./bin/upload_fixture blueprints/bases.json
+  ```
+
+**Benefits**:
+- No SSH access required for fixture loading
+- Can load fixtures from local machine to staging/production
+- Same incremental loading logic as CLI tool
+- Full output visibility via API response
+- Safe testing with dry-run mode
+
+**Implementation Notes**:
+- **Type-Specific Endpoints**: Each fixture type has its own endpoint with schema validation
+  - Prevents accidental uploads of wrong fixture type
+  - Clear error messages when fixture doesn't match expected schema
+  - Easier to add new fixture types in the future
+
+- **Generic Endpoint**: The `/api/admin/fixtures` endpoint uses heuristics for type detection:
+  - Lists → blueprints
+  - Dicts with list values → tag documentation
+  - Dicts with other values → tag descriptions
+  - Convenient for shell script and automated tools
+  - May be less precise than type-specific endpoints
+
+- **Future Enhancement**: Add explicit `"fixture_type"` field to fixture file schemas for more robust type detection and validation.
+
 ### Authentication and Authorization System - **NEW**
 
 #### OAuth-Only Authentication
@@ -392,6 +471,10 @@ RESTful API with comprehensive CRUD operations:
 - **NEW**: `/api/blueprints/{blueprint_id}/history` - File version history
 - **NEW**: `/api/blueprints/{blueprint_id}/documentation` - Blueprint documentation management
 - **NEW**: `/api/admin/duplicates` - Administrative duplicate detection
+- **NEW**: `/api/admin/fixtures` - Remote fixture loading with auto-detection
+- **NEW**: `/api/admin/fixtures/blueprints` - Blueprint fixture loading
+- **NEW**: `/api/admin/fixtures/tag-descriptions` - Tag description fixture loading
+- **NEW**: `/api/admin/fixtures/tag-documentation` - Tag documentation fixture loading
 - **NEW**: `/api/voting/*` - Complete voting system API
 - **NEW**: `/api/patron-requests/*` - Patron request management
 - **NEW**: `/api/admin/gap-analysis/*` - Gap analysis and reporting
@@ -682,6 +765,22 @@ This updated specification reflects a significant maturation of the OpenForge Ca
 **Considered**: Building web-based admin interface from the start
 **Rejected**: CLI-first approach for administrative functions
 **Rationale**: Faster implementation, more powerful for complex operations, can evolve to web later, better for automation
+
+#### Type-Specific Fixture Endpoints
+**Implemented**: Both generic and type-specific endpoints for fixture loading:
+- `POST /api/admin/fixtures` - Auto-detects fixture type
+- `POST /api/admin/fixtures/blueprints` - Blueprint fixtures only
+- `POST /api/admin/fixtures/tag-descriptions` - Tag description fixtures only
+- `POST /api/admin/fixtures/tag-documentation` - Tag documentation fixtures only
+
+**Rationale**:
+- Type-specific endpoints provide schema validation and clear error messages
+- Generic endpoint provides convenience for automated tools (shell script, CI/CD)
+- Both approaches coexist - use type-specific for web UI, generic for automation
+
+**Future Enhancement**:
+- Add explicit `"fixture_type"` field to fixture file schemas for even more robust validation
+- This would eliminate the need for heuristic-based type detection in the generic endpoint
 
 ### User Experience
 

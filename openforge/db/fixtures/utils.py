@@ -1,6 +1,29 @@
 """Shared utilities for fixture processing."""
 
+import sys
+
 from openforge.db.sql.tag_utils import tag_to_array
+
+
+def write_output(message: str):
+    """Write output message - uses Flask g.output_logger if available, otherwise stderr.
+
+    This allows the same code to work in both CLI mode (prints to stderr in real-time)
+    and API mode (captures output for response).
+
+    Args:
+        message: Message to write
+    """
+    try:
+        from flask import g, has_request_context
+
+        if has_request_context() and hasattr(g, "output_logger"):
+            g.output_logger.write(message)
+        else:
+            sys.stderr.write(message)
+    except (ImportError, RuntimeError):
+        # Flask not available or no application context - use stderr
+        sys.stderr.write(message)
 
 
 def munge_blueprint(data: dict) -> dict:
