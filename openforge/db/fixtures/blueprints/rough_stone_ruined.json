@@ -1040,6 +1040,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openforge",
             "shape|floor",
             "shape|wall",
@@ -1499,6 +1500,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "shape|floor",
             "shape|wall",

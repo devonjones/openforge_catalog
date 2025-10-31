@@ -720,6 +720,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openforge",
             "shape|floor",
             "shape|wall",
@@ -1044,6 +1045,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "shape|floor",
             "shape|wall",
@@ -1379,6 +1381,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "connection|openlock|unsupported",
             "shape|floor",
@@ -1882,6 +1885,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openforge",
             "shape|floor",
             "shape|wall",
@@ -1910,6 +1914,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openforge",
             "shape|floor",
             "shape|wall",
@@ -2100,6 +2105,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "shape|floor",
             "shape|wall",
@@ -2128,6 +2134,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "shape|floor",
             "shape|wall",
@@ -2324,6 +2331,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "connection|openlock|unsupported",
             "shape|floor",
@@ -2353,6 +2361,7 @@
         ],
         "metadata": false,
         "tags": [
+            "connection|dual",
             "connection|openlock",
             "connection|openlock|unsupported",
             "shape|floor",
