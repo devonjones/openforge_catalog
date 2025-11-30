@@ -1,5 +1,11 @@
 sizes = {
     "A": [("size", "width", 2), ("size", "openlock", "A"), ("shape", "wall")],
+    "A+dual": [
+        ("size", "width", 2),
+        ("size", "openlock", "A"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "A+S": [
         ("size", "width", 2),
         ("size", "depth", 1.5),
@@ -7,7 +13,12 @@ sizes = {
         ("shape", "square"),
         ("shape", "wall"),
     ],
-    "AS": [("size", "width", 2), ("size", "openlock", "AS"), ("shape", "wall")],
+    "AS": [
+        ("size", "width", 2),
+        ("size", "openlock", "AS"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "AxG": [
         ("size", "width", 2),
         ("size", "openlock", "AxG"),
@@ -17,11 +28,24 @@ sizes = {
         ("shape", "option", "curved_interface"),
     ],
     "BA": [("size", "width", 1.5), ("size", "openlock", "BA"), ("shape", "wall")],
+    "BA+dual": [
+        ("size", "width", 1.5),
+        ("size", "openlock", "BA"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "BA+mirror": [
         ("size", "width", 1.5),
         ("size", "openlock", "BA"),
         ("shape", "wall"),
         ("shape", "option", "mirror"),
+    ],
+    "BA+mirror+dual": [
+        ("size", "width", 1.5),
+        ("size", "openlock", "BA"),
+        ("shape", "wall"),
+        ("shape", "option", "mirror"),
+        ("connection", "dual"),
     ],
     "BAxG": [
         ("size", "width", 1.5),
@@ -32,6 +56,12 @@ sizes = {
         ("shape", "option", "curved_interface"),
     ],
     "D": [("size", "width", 3), ("size", "openlock", "D"), ("shape", "wall")],
+    "D+dual": [
+        ("size", "width", 3),
+        ("size", "openlock", "D"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "D+SA": [
         ("size", "width", 3),
         ("size", "depth", 1.5),
@@ -74,6 +104,12 @@ sizes = {
         ("shape", "wall"),
     ],
     "IA": [("size", "width", 1), ("size", "openlock", "IA"), ("shape", "wall")],
+    "IA+dual": [
+        ("size", "width", 1),
+        ("size", "openlock", "IA"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "F": [
         ("size", "radius", 2),
         ("size", "angle", 90),
@@ -172,6 +208,12 @@ sizes = {
         ("interface", "angled", "tip", "left", "flat"),
     ],
     "Q": [("size", "width", 4), ("size", "openlock", "Q"), ("shape", "wall")],
+    "Q+dual": [
+        ("size", "width", 4),
+        ("size", "openlock", "Q"),
+        ("shape", "wall"),
+        ("connection", "dual"),
+    ],
     "QxG": [
         ("size", "width", 4),
         ("size", "openlock", "QxG"),
