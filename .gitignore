@@ -46,3 +46,13 @@ dist
 
 # postgres
 db-data
+
+# yarn
+yarn.lock
+*.next
+
+tmp/
+.coverage
+coverage.xml
+
+.cursor
