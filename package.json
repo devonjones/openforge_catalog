@@ -30,7 +30,7 @@
     "@radix-ui/react-switch": "^1.1.2",
     "@radix-ui/react-tabs": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.1.6",
-    "@types/node": "22.16.5",
+    "@types/node": "22.19.3",
     "@uiw/react-md-editor": "^4.0.8",
     "autoprefixer": "10.4.21",
     "class-variance-authority": "^0.7.1",
