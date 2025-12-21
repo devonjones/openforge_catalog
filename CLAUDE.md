@@ -143,6 +143,39 @@ For language-specific coding preferences and patterns, see:
 
 ## Development Workflow
 
+### Git Branching Strategy
+
+**CRITICAL**: This repository uses an unconventional branching model:
+
+- **`test` branch**: The default branch for all development work
+  - This is where all feature development happens
+  - All PRs should target this branch by default
+  - Changes are tested here before promotion to production
+
+- **`main` branch**: Production deployment branch ONLY
+  - Only merge to `main` when ready to deploy to production
+  - Do NOT create PRs from `test` → `main` unless explicitly deploying
+  - Merging to `main` should be an intentional production release decision
+
+**When working on features**:
+1. Create feature branches from `test`
+2. Submit PRs targeting `test` (not `main`)
+3. Only merge `test` → `main` when ready for production deployment
+
+**Example workflow**:
+```bash
+# Create feature branch from test
+git checkout test
+git pull origin test
+git checkout -b feature/my-feature
+
+# After development, create PR targeting test
+gh pr create --base test --title "feat: my feature"
+
+# Only when ready for production
+gh pr create --base main --title "release: deploy to production"
+```
+
 ### Code Review Process
 1. **Initial development**: Written in Cursor
 2. **PR creation**: Push to GitHub
