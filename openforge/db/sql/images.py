@@ -1,4 +1,5 @@
 import uuid
+from pprint import pprint
 
 from psycopg import cursor, sql
 from werkzeug.exceptions import NotFound
@@ -7,27 +8,9 @@ from werkzeug.exceptions import NotFound
 def get_all_images(curs: cursor) -> list[dict]:
     query = sql.SQL(
         """
-SELECT id, image_name, image_url, image_type, created_at, updated_at
+SELECT id, image_name, image_url, created_at, updated_at
   FROM images
   ORDER BY id
-"""
-    )
-    curs.execute(query)
-    return curs.fetchall()
-
-
-def get_documentation_images(curs: cursor) -> list[dict]:
-    """Get all documentation type images.
-
-    Returns:
-        List of image dictionaries with image_type = 'documentation'
-    """
-    query = sql.SQL(
-        """
-SELECT id, image_name, image_url, image_type, created_at, updated_at
-  FROM images
-  WHERE image_type = 'documentation'
-  ORDER BY created_at DESC
 """
     )
     curs.execute(query)
@@ -60,42 +43,10 @@ SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
     return curs.fetchall()
 
 
-def get_images_for_blueprints(
-    curs: cursor, blueprint_ids: list[uuid.UUID]
-) -> list[dict]:
-    """Get all images for multiple blueprints in a single query.
-
-    Args:
-        curs: Database cursor
-        blueprint_ids: List of blueprint IDs to get images for
-
-    Returns:
-        List of image dictionaries with blueprint_id included
-    """
-    if not blueprint_ids:
-        return []
-
-    query = sql.SQL(
-        """
-SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
-    i.created_at AS created_at, i.updated_at AS updated_at,
-    bi.blueprint_id AS blueprint_id
-  FROM images i
-    JOIN blueprint_images bi ON bi.image_id = i.id
-  WHERE bi.blueprint_id IN ({blueprint_ids})
-  ORDER BY bi.blueprint_id, i.image_name
-"""
-    ).format(
-        blueprint_ids=sql.SQL(",").join(sql.Literal(bp_id) for bp_id in blueprint_ids)
-    )
-    curs.execute(query)
-    return curs.fetchall()
-
-
 def get_image_by_id(curs: cursor, image_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
-SELECT id, image_name, image_url, image_type, created_at, updated_at
+SELECT id, image_name, image_url, created_at, updated_at
   FROM images
   WHERE id = {image_id}
 """
@@ -104,42 +55,14 @@ SELECT id, image_name, image_url, image_type, created_at, updated_at
     return curs.fetchone()
 
 
-def get_images_by_name(curs: cursor, image_name: str) -> list[dict]:
-    """Get images by name (exact match).
-
-    Args:
-        curs: Database cursor
-        image_name: Name of the image to search for
-
-    Returns:
-        List of image dictionaries matching the name
-    """
-    query = sql.SQL(
-        """
-SELECT id, image_name, image_url, image_type, created_at, updated_at
-  FROM images
-  WHERE image_name = {image_name}
-  ORDER BY created_at DESC
-"""
-    ).format(image_name=sql.Literal(image_name))
-    curs.execute(query)
-    return curs.fetchall()
-
-
-def insert_image(
-    curs: cursor,
-    image_name: str,
-    image_url: str,
-    image_type: str = "thumbnail",
-    **kwargs,
-) -> dict:
+def insert_image(curs: cursor, image_name: str, image_url: str, **kwargs) -> dict:
     query = sql.SQL(
         """
 WITH new_images AS (
   INSERT INTO images (
-    image_name, image_url, image_type
+    image_name, image_url
   ) VALUES (
-    {image_name}, {image_url}, {image_type}
+    {image_name}, {image_url}
   ) ON CONFLICT DO NOTHING
   RETURNING id
 )
@@ -148,11 +71,7 @@ SELECT COALESCE(
   (SELECT id FROM images WHERE image_url = {image_url})
 ) AS id
 """
-    ).format(
-        image_name=sql.Literal(image_name),
-        image_url=sql.Literal(image_url),
-        image_type=sql.Literal(image_type),
-    )
+    ).format(image_name=sql.Literal(image_name), image_url=sql.Literal(image_url))
     curs.execute(query)
     return get_image_by_id(curs, curs.fetchone()["id"])
 
@@ -174,26 +93,16 @@ def insert_blueprint_image(
 ) -> dict:
     query = sql.SQL(
         """
-WITH new_blueprint_images AS (
-  INSERT INTO blueprint_images (
-    blueprint_id, image_id
-  ) VALUES (
-    {blueprint_id}, {image_id}
-  ) ON CONFLICT DO NOTHING
-  RETURNING id
-)
-SELECT COALESCE(
-  (SELECT id FROM new_blueprint_images),
-  (SELECT id FROM blueprint_images
-   WHERE blueprint_id = {blueprint_id} AND image_id = {image_id})
-) AS id
+INSERT INTO blueprint_images (
+  blueprint_id, image_id
+) VALUES (
+  {blueprint_id}, {image_id}
+) ON CONFLICT DO NOTHING
+RETURNING id
 """
     ).format(blueprint_id=sql.Literal(blueprint_id), image_id=sql.Literal(image_id))
     curs.execute(query)
-    row = curs.fetchone()
-    if row:
-        return get_blueprint_image_by_id(curs, row["id"])
-    return None
+    return get_blueprint_image_by_id(curs, curs.fetchone()["id"])
 
 
 def insert_image_for_blueprint(
@@ -214,8 +123,7 @@ def replace_images_for_blueprint(
         pass
     for image in images:
         insert_image_for_blueprint(curs, blueprint_id, image)
-    if image_ids:  # Only delete if we have IDs to delete
-        delete_images_by_ids(curs, image_ids)
+    delete_images_by_ids(curs, image_ids)
 
 
 def delete_images_for_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:

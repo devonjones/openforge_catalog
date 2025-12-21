@@ -1,55 +1,20 @@
 import logging
 
-import psycopg
-from flask import current_app
 from psycopg_pool import ConnectionPool
 
-LOGGER = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class PgDB:
-    def __init__(self, vars, ext_logger=None, use_pool=True):
-        self.database_url = db_url(vars, ext_logger)
-        self.use_pool = use_pool
-        if use_pool:
-            self.pool = ConnectionPool(self.database_url, open=True)
-        else:
-            self.pool = None
-
-    def connection(self):
-        """Get a database connection, either from pool or direct."""
-        if self.use_pool and self.pool:
-            return self.pool.connection()
-        else:
-            return psycopg.connect(self.database_url)
-
-    def __enter__(self):
-        return self
-
-    def close(self):
-        """Gracefully close the database connection/pool."""
-        if self.pool:
-            try:
-                self.pool.close()
-            except Exception:
-                # Ignore errors during shutdown
-                pass
-            self.pool = None
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.close()
+    def __init__(self, vars):
+        self.database_url = db_url(vars)
+        self.pool = ConnectionPool(self.database_url)
 
     def __del__(self):
-        # Only try to close if we have a pool and it's not already closed
-        if hasattr(self, "pool") and self.pool is not None:
-            try:
-                self.pool.close()
-            except Exception:
-                # Ignore errors during garbage collection
-                pass
+        self.pool.close()
 
 
-def db_url(vars, ext_logger=None):
+def db_url(vars):
     args = {
         "user": "openforge",
         "database": "openforge",
@@ -57,7 +22,6 @@ def db_url(vars, ext_logger=None):
         "host": "localhost",
         "port": 5432,
     }
-    LOGGER = ext_logger if ext_logger else logging.getLogger(__name__)
     if "PGUSER" in vars:
         args["user"] = vars["PGUSER"]
     if "PGPASSWORD" in vars:
@@ -68,13 +32,5 @@ def db_url(vars, ext_logger=None):
         args["port"] = vars["PGPORT"]
     if "PGDATABASE" in vars:
         args["database"] = vars["PGDATABASE"]
-    if "LOG_LEVEL" in vars:
-        LOGGER.setLevel(vars["LOG_LEVEL"])
 
-    return f"postgresql://{args['user']}:{args['password']}@{args['host']}:{args['port']}/{args['database']}"
-
-
-def get_logger():
-    if current_app:
-        return current_app.logger
-    return LOGGER
+    return f'postgresql://{args["user"]}:{args["password"]}@{args["host"]}:{args["port"]}/{args["database"]}'

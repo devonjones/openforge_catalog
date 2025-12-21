@@ -1,1 +1,0 @@
-# Tag description fixtures subdirectory

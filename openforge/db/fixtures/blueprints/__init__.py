@@ -1,1 +1,0 @@
-# Blueprint fixtures subdirectory
