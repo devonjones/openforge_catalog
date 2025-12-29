@@ -181,12 +181,6 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     containerRef.current?.focus();
   }, []);
 
-  // Reset angle to default when blueprint changes
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setCurrentAngle(thumbnailData.default_angle);
-  }, [thumbnailData.sprite_url, thumbnailData.default_angle]);
-
   return (
     <div
       ref={containerRef}
