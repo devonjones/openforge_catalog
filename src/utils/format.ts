@@ -9,4 +9,4 @@ export const formatFileSize = (bytes: number): string => {
   }
 
   return `${Math.round(size * 100) / 100} ${units[unitIndex]}`;
-}; 
+};

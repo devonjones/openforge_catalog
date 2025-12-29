@@ -27,4 +27,4 @@ describe('devLog', () => {
     devLog('should not log');
     expect(console.log).not.toHaveBeenCalled();
   });
-}); 
+});

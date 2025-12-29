@@ -7,7 +7,7 @@ Enhance the fixtures loading system to support incremental updates, versioning, 
 
 ### ✅ **Existing Capabilities**
 - **Full replacement**: `clear_db()` wipes all data before loading
-- **Schema validation**: Validates blueprint and tag description fixtures  
+- **Schema validation**: Validates blueprint and tag description fixtures
 - **MD5 conflict handling**: `rescue_md5_conflict=True` in `insert_blueprint`
 - **File support**: JSON and YAML fixtures
 - **Error handling**: Detailed validation error reporting
@@ -58,19 +58,19 @@ class IncrementalFixturesLoader:
         self.conn = conn
         self.verbose = verbose
         self.existing_blueprints = self._load_existing_blueprints()
-        
+
     def _load_existing_blueprints(self) -> Dict[str, Dict]:
         """Load existing blueprints from database for comparison."""
-        
+
     def compare_fixture_data(self, fixture_data: List[Dict]) -> ComparisonResult:
         """Compare fixture data with existing database records."""
-        
+
     def apply_incremental_changes(self, changes: ComparisonResult, dry_run: bool = False):
         """Apply incremental changes to database."""
-        
+
     def create_deprecation_entry(self, blueprint_id: str, successor_id: str = None):
         """Mark blueprint as deprecated with optional successor."""
-        
+
     def create_version_relationship(self, successor_id: str):
         """Create predecessor/successor relationship between blueprints."""
 ```
@@ -80,7 +80,7 @@ class IncrementalFixturesLoader:
 class ComparisonResult:
     def __init__(self):
         self.added = []      # New blueprints
-        self.modified = []   # Updated blueprints  
+        self.modified = []   # Updated blueprints
         self.deprecated = [] # Deprecated blueprints
         self.consolidated = [] # Path consolidation updates
         self.errors = []     # Processing errors
@@ -94,12 +94,12 @@ def _munge_blueprint(data: dict):
     bp["blueprint_type"] = data["type"]
     bp["blueprint_name"] = data.get("name")
     bp["blueprint_config"] = data.get("config", {})
-    
+
     # NEW: Phase 1 fields
     bp["deprecated"] = data.get("deprecated", False)
     bp["successor_id"] = data.get("successor_id")
     bp["consolidated_paths"] = data.get("consolidated_paths", [])
-    
+
     if "file_metadata" in data:
         if not bp["blueprint_name"]:
             bp["blueprint_name"] = data["file_metadata"]["file"]
@@ -115,10 +115,10 @@ def _munge_blueprint(data: dict):
 #### 6. Updated `load_fixtures()` Function
 **Support both full replacement and incremental modes:**
 ```python
-def load_fixtures(conn: connection, alt: str, files: list = None, 
+def load_fixtures(conn: connection, alt: str, files: list = None,
                  incremental: bool = False, dry_run: bool = False):
     ffiles = files if files is not None else find_fixtures(alt)
-    
+
     if incremental:
         loader = IncrementalFixturesLoader(conn, verbose=True)
         for f in ffiles:
@@ -268,4 +268,4 @@ with conn.transaction():
 ### Performance Optimizations
 - Parallel processing for large fixture files
 - Caching of comparison results
-- Incremental validation (only validate changed records) 
+- Incremental validation (only validate changed records)

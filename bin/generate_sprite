@@ -10,6 +10,7 @@ Usage:
     ./generate_sprite path/to/model.stl --dry-run
 """
 
+import hashlib
 import json
 import os
 import sys
@@ -100,10 +101,11 @@ def main(ctx, stl_file, tile_size, upload, db_update, dry_run, verbose, output_j
             # Extract MD5 from file path or generate it
             # For now, use a placeholder - in production this would come from
             # the file scanner which already calculates MD5
-            import hashlib
-
+            md5_hash = hashlib.md5()
             with open(stl_file, "rb") as f:
-                md5 = hashlib.md5(f.read()).hexdigest()
+                for chunk in iter(lambda: f.read(4096), b""):
+                    md5_hash.update(chunk)
+            md5 = md5_hash.hexdigest()
 
             file_metadata = {"md5": md5}
             sprite_key = upload_file(

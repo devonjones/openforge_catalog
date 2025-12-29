@@ -147,11 +147,11 @@ CombinedBlueprintDocumentation:
         type: array
         items:
           $ref: '../tag_documentation.yaml#/components/schemas/TagDocumentation'
-      description: Documentation for all tags associated with this blueprint, keyed by tag (e.g., "texture|dungeon_stone": [TagDocumentation[]])
+      description: 'Documentation for all tags associated with this blueprint, keyed by tag (e.g., "texture|dungeon_stone": [TagDocumentation[]])'
   required:
     - blueprint_id
     - blueprint_name
     - blueprint_documentation
     - changelog_history
     - tag_documentation
-  additionalProperties: false 
+  additionalProperties: false

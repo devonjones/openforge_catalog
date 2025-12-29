@@ -39,9 +39,9 @@ export function InstructionsPartSearch() {
     <div className="part-search-instructions p-6 max-w-3xl">
       <h1 className="text-3xl font-bold mb-6">Instructions (Part Search)</h1>
       <p className="mb-6">
-        The main interface for this is designed for you to select tags that help you refine your search. 
+        The main interface for this is designed for you to select tags that help you refine your search.
         You can select tags in the tree on the left. The tags are broken into some broad categories.
-        If you want to instead build full tiles, and select all the parts needed to make that tile, click on the Blueprints tab 
+        If you want to instead build full tiles, and select all the parts needed to make that tile, click on the Blueprints tab
         above.
       </p>
 
@@ -93,4 +93,4 @@ export function InstructionsPartSearch() {
   );
 }
 
-export default InstructionsPartSearch; 
+export default InstructionsPartSearch;

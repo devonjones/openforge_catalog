@@ -23,6 +23,23 @@ def _validate_uuid(uuid_string: str) -> None:
         abort(400, description="Invalid UUID format.")
 
 
+def _get_blueprint_thumbnail(cursor, blueprint_id):
+    """Fetch the thumbnail image for a given blueprint.
+
+    Args:
+        cursor: Database cursor
+        blueprint_id: UUID of the blueprint
+
+    Returns:
+        dict: Thumbnail image data, or None if not found
+    """
+    images = image_sql.get_images_for_blueprint(cursor, blueprint_id)
+    thumbnails = [img for img in images if img.get("image_type") == "thumbnail"]
+    if not thumbnails:
+        return None
+    return thumbnails[0]
+
+
 def get_blueprints():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -192,17 +209,9 @@ def get_blueprint_thumbnail_variants(blueprint_id):
 
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            # Get the thumbnail image for this blueprint
-            images = image_sql.get_images_for_blueprint(cursor, blueprint_id)
-
-            # Filter for thumbnail type
-            thumbnails = [img for img in images if img.get("image_type") == "thumbnail"]
-
-            if not thumbnails:
+            thumbnail = _get_blueprint_thumbnail(cursor, blueprint_id)
+            if not thumbnail:
                 return jsonify({"error": "No thumbnail found for blueprint"}), 404
-
-            # Get the first thumbnail (should only be one)
-            thumbnail = thumbnails[0]
 
             # Check if this is a sprite sheet or legacy single thumbnail
             sprite_metadata = thumbnail.get("sprite_metadata")
@@ -258,17 +267,9 @@ def set_blueprint_default_angle(blueprint_id):
 
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
-            # Get the thumbnail image for this blueprint
-            images = image_sql.get_images_for_blueprint(cursor, blueprint_id)
-
-            # Filter for thumbnail type
-            thumbnails = [img for img in images if img.get("image_type") == "thumbnail"]
-
-            if not thumbnails:
+            thumbnail = _get_blueprint_thumbnail(cursor, blueprint_id)
+            if not thumbnail:
                 return jsonify({"error": "No thumbnail found for blueprint"}), 404
-
-            # Get the first thumbnail (should only be one)
-            thumbnail = thumbnails[0]
 
             # Check if this has sprite_metadata
             if not thumbnail.get("sprite_metadata"):

@@ -13,7 +13,7 @@ describe('PaginationControls', () => {
 
   it('renders pagination controls with all elements', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -25,7 +25,7 @@ describe('PaginationControls', () => {
       />
     );
 
-    const countElements = screen.getAllByText((content, element) => 
+    const countElements = screen.getAllByText((content, element) =>
       element?.textContent?.includes('11 - 20 of 100 that match your tags') || false
     );
     expect(countElements.length).toBeGreaterThan(0);
@@ -35,7 +35,7 @@ describe('PaginationControls', () => {
 
   it('calls onPrevious when Previous Page button is clicked', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -53,7 +53,7 @@ describe('PaginationControls', () => {
 
   it('calls onNext when Next Page button is clicked', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -71,7 +71,7 @@ describe('PaginationControls', () => {
 
   it('hides Previous Page button when no previous token', () => {
     const paging = createMockPaging({ previous_token: undefined });
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -89,7 +89,7 @@ describe('PaginationControls', () => {
 
   it('hides Previous Page button when startCount is 1', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -107,7 +107,7 @@ describe('PaginationControls', () => {
 
   it('hides Next Page button when no next token', () => {
     const paging = createMockPaging({ next_token: undefined });
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -125,7 +125,7 @@ describe('PaginationControls', () => {
 
   it('hides Next Page button when endCount equals total_count', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -153,7 +153,7 @@ describe('PaginationControls', () => {
       />
     );
 
-    const countElements = screen.getAllByText((content, element) => 
+    const countElements = screen.getAllByText((content, element) =>
       element?.textContent?.includes('1 - 10 of 0 that match your tags') || false
     );
     expect(countElements.length).toBeGreaterThan(0);
@@ -163,7 +163,7 @@ describe('PaginationControls', () => {
 
   it('displays correct count information', () => {
     const paging = createMockPaging();
-    
+
     render(
       <PaginationControls
         paging={paging}
@@ -175,9 +175,9 @@ describe('PaginationControls', () => {
       />
     );
 
-    const countElements = screen.getAllByText((content, element) => 
+    const countElements = screen.getAllByText((content, element) =>
       element?.textContent?.includes('5 - 15 of 50 that match your tags') || false
     );
     expect(countElements.length).toBeGreaterThan(0);
   });
-}); 
+});

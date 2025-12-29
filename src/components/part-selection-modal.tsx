@@ -46,15 +46,15 @@ const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSel
                     <TagContainer />
                   </div>
                   <div className="part-selection-modal__sidebar">
-                    <ResultsContainer 
-                      configValues={configValues} 
+                    <ResultsContainer
+                      configValues={configValues}
                       parentTags={parentTags}
                       siblingSelections={siblingSelections}
                     />
                   </div>
                   <div className="part-selection-modal__main">
-                    <BlueprintContainer 
-                      configValues={{ ...configValues, partName }} 
+                    <BlueprintContainer
+                      configValues={{ ...configValues, partName }}
                       onPartSelected={onPartSelected}
                     />
                   </div>
@@ -69,4 +69,4 @@ const PartSelectionModal = ({ isOpen, onClose, partName, configValues, onPartSel
   );
 };
 
-export default PartSelectionModal; 
+export default PartSelectionModal;

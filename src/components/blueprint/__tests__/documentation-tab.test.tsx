@@ -117,4 +117,4 @@ describe('DocumentationTab', () => {
     expect(screen.getByText('This is instructions.')).toBeInTheDocument();
     expect(screen.queryByText('This is changelog.')).not.toBeInTheDocument();
   });
-}); 
+});

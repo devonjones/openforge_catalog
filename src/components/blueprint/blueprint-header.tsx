@@ -26,4 +26,4 @@ const BlueprintHeader: React.FC<BlueprintHeaderProps> = ({ name, fullName, deepl
   </h2>
 );
 
-export default BlueprintHeader; 
+export default BlueprintHeader;

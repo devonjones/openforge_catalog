@@ -26,4 +26,4 @@ const BlueprintActions: React.FC<BlueprintActionsProps> = ({ configValues, onSel
   </p>
 );
 
-export default BlueprintActions; 
+export default BlueprintActions;

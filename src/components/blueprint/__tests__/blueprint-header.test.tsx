@@ -49,4 +49,4 @@ describe('BlueprintHeader', () => {
     );
     expect(screen.getByTitle('url copied')).toBeInTheDocument();
   });
-}); 
+});

@@ -1,6 +1,6 @@
 build: |
-  These tags are based around underlying system you want to use for building a tile. 
-  Wall on Tile for example has a wall that takes up part of the floor space, but is much easier to reason about when setting up a map quickly while GMing, while Separate Wall has the wall outside the floor, giving more play room, 
+  These tags are based around underlying system you want to use for building a tile.
+  Wall on Tile for example has a wall that takes up part of the floor space, but is much easier to reason about when setting up a map quickly while GMing, while Separate Wall has the wall outside the floor, giving more play room,
   but is harder to tesselate.
 build|separate wall: Wall off of tile. Gives more gameplay space, harder to reason about tesselating. Recommended for builds that the GM does between sessions in prep.  Separate walls are also used to build walls on tile via the s2w system.
 build|wall on tile: Wall is on the tile taking up half a floor. Gives less game space, so you probably need to alter maps a little to accomodate. Much easier to reason about quickly. Recommended for GMs who build the map during game time.
@@ -78,13 +78,13 @@ component|full_pillar|tall: 'Cool fun items allows you to jazz-up your builds.  
 component|full_pillar|torch: 'Cool fun items allows you to jazz-up your builds.  Standalone full or half size pillar in round or square styles in cut stone, dungeon stone, or eroded dungeon stone with round or square bottoms and tops on either 1x1 or 2x2 bases with places to hang torches.'
 component|grate: 'Cool fun items allows you to jazz-up your builds.  Grate wall sections in various widths (1x, 2x,3x, and 4x) and includes a 2x2 corner section that allows portcullis to be places inside the walls on cut stone, dungeon stone, or eroded dungeon stone bases.'
 component|grate|widened: 'Cool fun items allows you to jazz-up your builds.  Grate wall sections in 2x2 widths on cut stone, dungeon stone, or eroded dungeon stone bases.'
-component|infinite_hallway: 'Cool fun items allows you to jazz-up your builds.  Create an endless hallway using 2x2 base with full size wall.' 
+component|infinite_hallway: 'Cool fun items allows you to jazz-up your builds.  Create an endless hallway using 2x2 base with full size wall.'
 component|infinite_hallway|glass: 'Cool fun items allows you to jazz-up your builds.  Create an endless hallway using 2x2 base with full size wall adding torches and glass inserts to make a fun house presentation.'
 component|infinite_hallway|torch: 'Cool fun items allows you to jazz-up your builds.  Create an endless hallway using 2x2 base with full size wall adding torches.'
 component|loculus: 'Cool fun items allows you to jazz-up your builds.  Create catacombs with this item to bury you dead adventuring mates!'
 component|magnetic: 'Cool fun items allows you to jazz-up your builds.  Various full straight and curved wall pieces that allow hanging banners, trophy heads and other accessories via utilization of a magnet.'
 component|magnetic|reverse: 'Cool fun items allows you to jazz-up your builds.  Various full straight and curved wall pieces that allow hanging banners, trophy heads and other accessories via utilization of a magnet.'
-component|niche: 'Cool fun items allows you to jazz-up your builds.  Various full straight and curved wall pieces that have an indention carved out.' 
+component|niche: 'Cool fun items allows you to jazz-up your builds.  Various full straight and curved wall pieces that have an indention carved out.'
 component|outcrop: 'Cool fun items allows you to jazz-up your builds.  Varity of rocks and boulders protruding from a full wall piece.  Primary used in cavernous build types.'
 component|outcrop|1: 'Cool fun items allows you to jazz-up your builds.  Varity of rocks and boulders protruding from a full wall piece that typically covers a 1.2x2 space.  Primary used in cavernous build types.'
 component|outcrop|2: 'Cool fun items allows you to jazz-up your builds.  Varity of rocks and boulders protruding from a full wall piece that typically covers a 2.2x2 space.  Primary used in cavernous build types.'
@@ -162,7 +162,7 @@ decoration: |
   These tags represent the decoration options for the tile. Air, Earth, Fire, Water, Demon, Celtic Knot are all options for how to decorate the tile.
 
 interface: |
-  Some parts are used for a multi part build. Interface is used to encode the tags that describe those relationships. So like a window can have a frame and shutters. Interface relates to how those parts connect to each other. 
+  Some parts are used for a multi part build. Interface is used to encode the tags that describe those relationships. So like a window can have a frame and shutters. Interface relates to how those parts connect to each other.
   Part defines the actual pieces.
 
 part: |
@@ -172,7 +172,7 @@ scatter: |
   Scatter holds non tile stuff. Barrels, statues, that kind of thing.
 
 shape: |
-  Shape holds tags that define the actual shape of the intended part, and some times the role the part has in a tile. 
+  Shape holds tags that define the actual shape of the intended part, and some times the role the part has in a tile.
 
 size: |
   Size has the quantitative definitions. the tile is 2 squares on the x, 4 squares on the y. A curve is 90 degrees or 45. This does have some qualitative tags as well.

@@ -22,4 +22,4 @@ module.exports = {
     '!src/**/*.test.{ts,tsx}',
     '!src/**/*.spec.{ts,tsx}',
   ],
-}; 
+};

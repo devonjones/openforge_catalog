@@ -5,6 +5,7 @@ This module provides functionality for incremental loading of fixture data,
 comparing with existing database records and only updating what has changed.
 """
 
+import json
 import os
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
@@ -676,7 +677,6 @@ class IncrementalFixturesLoader:
         # Check images (compare as sets to handle unordered nature)
         # Convert entire image dicts to JSON for deep comparison
         # (includes sprite_metadata and all other fields)
-        import json
 
         # Helper to extract comparable fields (exclude timestamps)
         def comparable_image(img):

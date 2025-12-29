@@ -154,4 +154,4 @@ describe('BlueprintList', () => {
       expect(item).not.toHaveClass('selected');
     });
   });
-}); 
+});

@@ -31,13 +31,13 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
   return (
     <div className="changelog-section mt-8 pt-6 border-t border-gray-200">
       <h3 className="text-lg font-semibold mb-4 text-gray-800">Version History</h3>
-      
+
       <div className="space-y-4">
         {changelogHistory.changelogs.slice().reverse().map((entry, index) => {
           // Calculate version number: depth 0 is version 1, depth 1 is version 2, etc.
           const versionNumber = entry.depth + 1;
           const isInitialVersion = entry.depth === 0; // Depth 0 is always the initial version
-          
+
           return (
           <div key={`${entry.blueprint_id}-${entry.depth}`} className="changelog-entry">
               <div className="flex items-start gap-3">
@@ -58,7 +58,7 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
                       </span>
                     )}
                   </div>
-                  
+
                   {entry.changelog ? (
                     <div className="prose prose-sm max-w-none text-gray-600">
                       <ReactMarkdown>{entry.changelog}</ReactMarkdown>
@@ -67,7 +67,7 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
                     <p className="text-sm text-gray-500 italic">
                       {/* Check if this is the first version (depth 0) */}
                       {isInitialVersion
-                        ? 'Initial version' 
+                        ? 'Initial version'
                         : 'No changelog available for this version.'}
                     </p>
                   )}
@@ -77,7 +77,7 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
           );
         })}
       </div>
-      
+
       {changelogHistory.has_more && (
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-500">
@@ -89,4 +89,4 @@ const ChangelogSection: React.FC<ChangelogSectionProps> = ({ changelogHistory })
   );
 };
 
-export default ChangelogSection; 
+export default ChangelogSection;

@@ -17,4 +17,4 @@ properties:
     format: date-time
 required:
   - tag
-additionalProperties: false 
+additionalProperties: false

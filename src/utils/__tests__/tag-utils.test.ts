@@ -88,9 +88,9 @@ describe('getOtherBlueprintTags', () => {
       'part1': mockBlueprint1,
       'part2': mockBlueprint2
     };
-    
+
     const result = getOtherBlueprintTags(configSelections, 'part1');
-    
+
     expect(result).toEqual({
       parentTags: [],
       siblingSelections: [
@@ -104,9 +104,9 @@ describe('getOtherBlueprintTags', () => {
       'part1': mockBlueprint1,
       'part2': mockBlueprint2
     };
-    
+
     const result = getOtherBlueprintTags(configSelections, 'part2');
-    
+
     expect(result).toEqual({
       parentTags: [],
       siblingSelections: [
@@ -119,9 +119,9 @@ describe('getOtherBlueprintTags', () => {
     const configSelections = {
       'part1': mockBlueprint1
     };
-    
+
     const result = getOtherBlueprintTags(configSelections, 'part1', mockParentBlueprint);
-    
+
     expect(result).toEqual({
       parentTags: ['parent|tag1', 'parent|tag2'],
       siblingSelections: []
@@ -133,9 +133,9 @@ describe('getOtherBlueprintTags', () => {
       'part1': mockBlueprint1,
       'part2': mockBlueprint2
     };
-    
+
     const result = getOtherBlueprintTags(configSelections, 'part1', mockParentBlueprint);
-    
+
     expect(result).toEqual({
       parentTags: ['parent|tag1', 'parent|tag2'],
       siblingSelections: [
@@ -146,12 +146,12 @@ describe('getOtherBlueprintTags', () => {
 
   it('returns empty set when no other parts or parent', () => {
     const configSelections = {};
-    
+
     const result = getOtherBlueprintTags(configSelections, 'part1');
-    
+
     expect(result).toEqual({
       parentTags: [],
       siblingSelections: []
     });
   });
-}); 
+});

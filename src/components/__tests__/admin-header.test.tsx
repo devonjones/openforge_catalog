@@ -107,4 +107,4 @@ describe('AdminHeader', () => {
       expect(screen.queryByText('Logout')).not.toBeInTheDocument();
     });
   });
-}); 
+});

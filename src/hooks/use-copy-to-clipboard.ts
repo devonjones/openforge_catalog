@@ -14,4 +14,4 @@ export function useCopyToClipboard() {
   };
 
   return { copied, copyText };
-} 
+}

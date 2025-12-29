@@ -20,7 +20,7 @@ interface AdminBlueprintPickerProps {
 // Inner component that has access to context
 const BlueprintPickerContent = ({ onSelect, onClose }: { onSelect: (blueprint: Blueprint) => void; onClose: () => void }) => {
   const selectedBlueprint = useBlueprintContext((state) => state.selectedBlueprint);
-  
+
   const handleSelectBlueprint = () => {
     if (selectedBlueprint) {
       onSelect(selectedBlueprint);
@@ -62,7 +62,7 @@ const BlueprintPickerContent = ({ onSelect, onClose }: { onSelect: (blueprint: B
       </div>
       {selectedBlueprint && (
         <div className="part-selection-modal__footer">
-          <button 
+          <button
             onClick={handleSelectBlueprint}
             className="admin-select-button"
             style={{

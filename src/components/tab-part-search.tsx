@@ -34,4 +34,4 @@ const BlueprintSelector: React.FC = () => {
   return blueprint ? <BlueprintContainer /> : <InstructionsPartSearch />;
 };
 
-export default TabPartSearch; 
+export default TabPartSearch;

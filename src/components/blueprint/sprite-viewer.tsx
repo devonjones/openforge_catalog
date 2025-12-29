@@ -3,6 +3,12 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Blueprint, SpriteThumbnailData } from '@/types';
 
+// Constants for sprite viewer rotation logic
+const HORIZONTAL_ANGLE_COUNT = 8;
+const TOP_ANGLE_INDEX = 8;
+const BOTTOM_ANGLE_INDEX = 9;
+const DRAG_THRESHOLD_PX = 30;
+
 interface SpriteViewerProps {
   blueprint: Blueprint;
   thumbnailData: SpriteThumbnailData;
@@ -17,7 +23,7 @@ interface SpriteControlsProps {
 const SpriteControls: React.FC<SpriteControlsProps> = ({ currentAngle, angles, onAngleChange }) => {
   // Map angle indices to their positions in the unwrapped cube layout
   const angleMap: Record<number, { label: string; row: number; col: number }> = {
-    8: { label: 'TOP', row: 0, col: 1 },       // Top
+    [TOP_ANGLE_INDEX]: { label: 'TOP', row: 0, col: 1 },       // Top
     7: { label: 'FL', row: 1, col: 0 },         // Front-left
     0: { label: 'F', row: 1, col: 1 },          // Front
     1: { label: 'FR', row: 1, col: 2 },         // Front-right
@@ -26,7 +32,7 @@ const SpriteControls: React.FC<SpriteControlsProps> = ({ currentAngle, angles, o
     5: { label: 'BL', row: 3, col: 0 },         // Back-left
     4: { label: 'B', row: 3, col: 1 },          // Back
     3: { label: 'BR', row: 3, col: 2 },         // Back-right
-    9: { label: 'BOT', row: 4, col: 1 },        // Bottom
+    [BOTTOM_ANGLE_INDEX]: { label: 'BOT', row: 4, col: 1 },        // Bottom
   };
 
   return (
@@ -102,12 +108,11 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     if (!isDragging) return;
 
     const deltaX = e.clientX - dragStartX.current;
-    const threshold = 30; // pixels per angle change
-    const angleChange = Math.floor(deltaX / threshold);
+    const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
 
     // Only horizontal angles (0-7), wrap around
-    let newAngle = (initialAngle.current + angleChange) % 8;
-    if (newAngle < 0) newAngle += 8;
+    let newAngle = (initialAngle.current + angleChange) % HORIZONTAL_ANGLE_COUNT;
+    if (newAngle < 0) newAngle += HORIZONTAL_ANGLE_COUNT;
 
     setCurrentAngle(newAngle);
   }, [isDragging]);
@@ -124,24 +129,24 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
       e.preventDefault();
       setCurrentAngle(prev => {
         // If we're on a vertical angle, go back to front (0)
-        if (prev >= 8) return 0;
+        if (prev >= TOP_ANGLE_INDEX) return 0;
         // Otherwise, previous horizontal angle with wrapping
-        return prev <= 0 ? 7 : prev - 1;
+        return prev <= 0 ? HORIZONTAL_ANGLE_COUNT - 1 : prev - 1;
       });
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       setCurrentAngle(prev => {
         // If we're on a vertical angle, go to front (0)
-        if (prev >= 8) return 0;
+        if (prev >= TOP_ANGLE_INDEX) return 0;
         // Otherwise, next horizontal angle with wrapping
-        return prev >= 7 ? 0 : prev + 1;
+        return prev >= HORIZONTAL_ANGLE_COUNT - 1 ? 0 : prev + 1;
       });
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setCurrentAngle(8); // Top view
+      setCurrentAngle(TOP_ANGLE_INDEX);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setCurrentAngle(9); // Bottom view
+      setCurrentAngle(BOTTOM_ANGLE_INDEX);
     }
   }, []);
 

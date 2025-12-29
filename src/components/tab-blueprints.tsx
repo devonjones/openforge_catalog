@@ -28,4 +28,4 @@ const TabBlueprints: React.FC = () => {
   );
 };
 
-export default TabBlueprints; 
+export default TabBlueprints;

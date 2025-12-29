@@ -7,16 +7,16 @@ describe('BlueprintMeta', () => {
     render(
       <BlueprintMeta type="model" lastModified="2024-06-01 12:00" size="1.2 MB" />
     );
-    
+
     // Check for labels
     expect(screen.getByText(/Type:/)).toBeInTheDocument();
     expect(screen.getByText(/Last Modified:/)).toBeInTheDocument();
     expect(screen.getByText(/Size:/)).toBeInTheDocument();
-    
+
     // Check that the component renders the expected content
     const container = screen.getByText(/Type:/).closest('p');
     expect(container).toHaveTextContent('model');
     expect(container).toHaveTextContent('2024-06-01 12:00');
     expect(container).toHaveTextContent('1.2 MB');
   });
-}); 
+});

@@ -102,8 +102,8 @@ describe('AdminContext', () => {
     it('should handle successful login', async () => {
       (global.fetch as jest.Mock)
         .mockResolvedValueOnce({ ok: false }) // Initial session check
-        .mockResolvedValueOnce({ 
-          ok: true, 
+        .mockResolvedValueOnce({
+          ok: true,
           json: () => Promise.resolve({ session_token: 'test-token' })
         }); // Login request
 
@@ -271,4 +271,4 @@ describe('AdminContext', () => {
       });
     });
   });
-}); 
+});

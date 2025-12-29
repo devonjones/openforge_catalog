@@ -604,4 +604,4 @@ describe('Config Spec Compliance Tests', () => {
       expect(result.deny).toEqual([]);
     });
   });
-}); 
+});

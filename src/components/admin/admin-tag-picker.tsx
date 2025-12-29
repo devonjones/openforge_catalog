@@ -58,7 +58,7 @@ const SelectableTagContainer = ({ onTagClick }: { onTagClick: (tag: string[]) =>
       const isExpanded = expandedNodes[key] || false;
       const hasChildren = value.children && Object.keys(value.children).length > 0;
       const fullTagName = value.__name as string;
-      
+
       return (
         <div key={key} className="tagNode" style={{ marginLeft: level * 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
@@ -75,10 +75,10 @@ const SelectableTagContainer = ({ onTagClick }: { onTagClick: (tag: string[]) =>
                 )}
               </span>
             )}
-            <span 
+            <span
               onClick={() => handleSelectTag(fullTagName)}
-              style={{ 
-                cursor: 'pointer', 
+              style={{
+                cursor: 'pointer',
                 padding: '2px 6px',
                 borderRadius: '3px',
                 transition: 'background-color 0.2s'
@@ -89,7 +89,7 @@ const SelectableTagContainer = ({ onTagClick }: { onTagClick: (tag: string[]) =>
               {tag} {typeof value.__subTags === 'number' && value.__subTags > 0 && `(${value.__subTags})`}
             </span>
           </div>
-          {isExpanded && hasChildren && value.children && 
+          {isExpanded && hasChildren && value.children &&
             renderSelectableTags(value.children, level + 1)
           }
         </div>
@@ -109,7 +109,7 @@ const SelectableTagContainer = ({ onTagClick }: { onTagClick: (tag: string[]) =>
           style={{ width: '100%' }}
         />
       </div>
-      
+
       <div className="tag-tree-container">
         {renderSelectableTags(data, 0)}
       </div>
@@ -133,7 +133,7 @@ const AdminTagPicker = ({ isOpen, onClose, onSelect }: AdminTagPickerProps): Rea
           <h3>Select Tag</h3>
           <button className="modal-close" onClick={onClose}>×</button>
         </div>
-        
+
         <div className="modal-body" style={{ overflow: 'auto' }}>
           <TagProvider autoload={true} search_models={true} search_blueprints={true}>
             <SelectableTagContainer onTagClick={handleTagClick} />

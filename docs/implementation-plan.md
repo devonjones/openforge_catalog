@@ -38,7 +38,7 @@ CREATE TABLE openscad_source (
 CREATE INDEX idx_openscad_source_blueprint_id ON openscad_source(blueprint_id);
 
 -- Trigger for automatic updated_at timestamp updates
-CREATE TRIGGER update_openscad_source_updated_at 
+CREATE TRIGGER update_openscad_source_updated_at
 BEFORE UPDATE ON openscad_source
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
@@ -110,7 +110,7 @@ CREATE INDEX idx_tag_priorities_score ON tag_priorities(priority_score DESC);
 
 ## Phase 2: Documentation System Implementation
 
-### Priority: HIGH  
+### Priority: HIGH
 ### Timeline: 2 weeks
 ### Dependencies: Phase 1 complete
 
@@ -136,7 +136,7 @@ CREATE INDEX idx_blueprint_documentation_blueprint_id ON blueprint_documentation
 CREATE INDEX idx_blueprint_documentation_type ON blueprint_documentation(document_type);
 
 -- Trigger for automatic updated_at timestamp updates
-CREATE TRIGGER update_blueprint_documentation_updated_at 
+CREATE TRIGGER update_blueprint_documentation_updated_at
 BEFORE UPDATE ON blueprint_documentation
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
@@ -163,7 +163,7 @@ Response: {
 
 // Create changelog for specific blueprint
 POST /api/blueprints/{blueprint_id}/documentation
-Body: { 
+Body: {
   document: string,
   document_type: 'changelog'
 }
@@ -202,7 +202,7 @@ DELETE /api/blueprints/{blueprint_id}/documentation/{doc_id}
 ## Phase 3: Tag Priority System and Default Population
 
 ### Priority: HIGH
-### Timeline: 1-2 weeks  
+### Timeline: 1-2 weeks
 ### Dependencies: Phase 2 complete
 
 #### 3.1 Priority System Implementation
@@ -376,13 +376,13 @@ CREATE INDEX idx_user_identities_user_id ON user_identities(user_id);
 ## Phase 6: File History and Changelog Interface
 
 ### Priority: MEDIUM
-### Timeline: 1-2 weeks  
+### Timeline: 1-2 weeks
 ### Dependencies: Phase 2 complete (documentation system)
 
 #### 6.1 Changelog Integration with Documentation System
 
 **Changelog as documentation type:**
-- Use `documentation_type: 'changelog'` 
+- Use `documentation_type: 'changelog'`
 - Link changelogs to blueprint versions via blueprint_documentation
 - Support markdown formatting with image references
 - Namespace changelog images separately from instructions
@@ -414,7 +414,7 @@ Response: {
 
 // Create changelog for specific version
 POST /api/blueprints/{blueprint_id}/documentation
-Body: { 
+Body: {
   document: string, // text content
   document_type: 'changelog'
 }
@@ -664,7 +664,7 @@ $$ LANGUAGE plpgsql;
 CREATE INDEX idx_voting_cycles_dates ON voting_cycles(start_date, end_date); -- Find active cycles by date range
 CREATE INDEX idx_voting_cycles_status ON voting_cycles(status); -- Filter by cycle status (active/closed/archived)
 
--- Voting question queries  
+-- Voting question queries
 CREATE INDEX idx_voting_questions_cycle ON voting_questions(cycle_id); -- Get all questions for a cycle
 CREATE INDEX idx_voting_questions_status ON voting_questions(status); -- Filter questions by kanban status
 CREATE INDEX idx_voting_questions_cycle_status ON voting_questions(cycle_id, status); -- Combined filter for active questions in cycle
@@ -731,7 +731,7 @@ class GapAnalysisService {
     // Identify missing combinations (size, shape, connection, etc.)
     // Return structured gap data
   }
-  
+
   async generateVotingItems(gapReport: GapReport): Promise<VotingItemSuggestion[]> {
     // Convert gap analysis into aggregated voting items
     // Group related missing items
@@ -765,25 +765,25 @@ class VotingService {
     // SECURITY: Ensure user can only vote for themselves
     // Note: Users can vote for one item per question per cycle
   }
-  
+
   async updateVote(voteId: string, userId: string, newVotingItemId: string): Promise<void> {
     // SECURITY: Verify vote ownership before allowing updates
     // Only allow users to change which item they're voting for
     // vote_weight remains unchanged (preserves historical voting power)
     // Admin users cannot modify patron votes directly
   }
-  
+
   async deleteVote(voteId: string, userId: string): Promise<void> {
     // SECURITY: Verify vote ownership before allowing deletion
     // Only allow users to delete their own votes
   }
-  
+
   async archiveVotingCycle(cycleId: string): Promise<void> {
     // Change cycle status to 'archived' instead of deleting
     // This preserves all voting data while preventing new votes
     // Only archived cycles can be safely deleted after manual review
   }
-  
+
   async getCurrentResults(cycleId: string, userId?: string): Promise<VotingResults> {
     // Calculate vote counts by summing stored vote_weight values from patron_votes
     // Return real-time vote tallies with historical vote weights
@@ -791,7 +791,7 @@ class VotingService {
     // Respect visibility rules (public read-only vs patron-only details)
     // Cache results for performance with new vote invalidation
   }
-  
+
   async processMonthlyReset(): Promise<void> {
     // Automated monthly cycle management
     // Close current cycle, start new cycle
@@ -867,13 +867,13 @@ GROUP BY vq.id, vq.question_name, vi.id, vi.item_name;
 -- Calculates total votes for an item across all voting cycles (active, closed, archived)
 -- Used for the cumulative voting system where votes persist until an item wins
 -- No cycle filtering - includes all historical votes for the item
-SELECT 
+SELECT
   vi.id,
   vi.item_name,
   COUNT(pv.id) as cumulative_votes,
   COALESCE(SUM(pv.vote_weight), 0) as cumulative_weighted_votes
 FROM voting_items vi
-LEFT JOIN patron_votes pv ON vi.id = pv.voting_item_id 
+LEFT JOIN patron_votes pv ON vi.id = pv.voting_item_id
 WHERE vi.id = $1
 GROUP BY vi.id, vi.item_name;
 ```
@@ -885,7 +885,7 @@ GROUP BY vi.id, vi.item_name;
 // Kanban state management - matches PostgreSQL ENUM types
 enum VotingItemStatus {
   VOTING = 'voting',
-  SELECTED = 'selected', 
+  SELECTED = 'selected',
   IN_PROGRESS = 'in_progress',
   COMPLETE = 'complete'
 }
@@ -932,7 +932,7 @@ class KanbanService {
     // Handle bidirectional movement (e.g., back to voting if blocked)
     // Maintain position ordering within status
   }
-  
+
   async getKanbanBoard(type: 'voting' | 'requests'): Promise<KanbanBoard> {
     // Return organized kanban board data
     // Group items by status with position ordering
@@ -1117,24 +1117,24 @@ class SupporterImportService {
   async importFromGoogleSheets(sheetId: string): Promise<ImportResult> {
     // Parse Google Sheets data with columns:
     // - "What next set do you want to see" → tile_set requests
-    // - "Scatter/encounters" → scatter/encounter requests  
+    // - "Scatter/encounters" → scatter/encounter requests
     // - "Got an idea that has yet to get covered, feedback or concerns?" → feature requests
     // - "New tile type idea" → new tile type concepts
   }
-  
+
   async analyzeFrequency(requests: string[]): Promise<FrequencyAnalysis> {
     // Count duplicate requests to identify popularity
     // Group similar requests (e.g., "Mausoleum/Crypts" variations)
     // Return top requested items with counts
   }
-  
+
   async categorizeRequests(requests: string[]): Promise<CategorizedRequests> {
     // Automatically classify into voting_item_type:
     // - tile_set: Complete tile sets (Mausoleum/Crypts, Desert Stone)
     // - specific_tile: Individual tile types (Grass floor, Inn tables)
     // - feature: System improvements (MEGA folder, metric standardization)
   }
-  
+
   async createVotingItems(categorizedRequests: CategorizedRequests): Promise<VotingItem[]> {
     // Generate voting items from analyzed requests
     // Create detailed descriptions from original feedback
@@ -1144,7 +1144,7 @@ class SupporterImportService {
 
 // Example data structure from Google Sheets:
 // Row 2: "Mausoleum/Crypts (Lots of grottos for bodies, urns, etc)" → tile_set
-// Row 89: "Inn tables covered with maps, books, scrolls..." → specific_tile  
+// Row 89: "Inn tables covered with maps, books, scrolls..." → specific_tile
 // Row 97: "MEGA folder like mz4250, searchable, organized..." → feature
 ```
 
@@ -1157,7 +1157,7 @@ class PatreonPostService {
     // Create formatted post with links back to catalog
     // Include participation statistics and thanks
   }
-  
+
   async postToPatreon(post: PatreonPost): Promise<void> {
     // Use Patreon API to create new post
     // Handle posting scheduling and formatting

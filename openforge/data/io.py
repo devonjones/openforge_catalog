@@ -310,8 +310,8 @@ def create_sprite_sheet(file_path: str, tile_size: int = 512) -> Tuple[str, Dict
             _generate_angle_tile(file_path, tile_path, angle["camera_pos"], tile_size)
             tile_paths.append(tile_path)
 
-        # Combine tiles into sprite sheet (use /tmp - not useful in Dropbox)
-        sprite_path = os.path.join("/tmp", f"{base}-sprite.png")
+        # Combine tiles into sprite sheet (use temp dir - not useful in Dropbox)
+        sprite_path = os.path.join(tempfile.gettempdir(), f"{base}-sprite.png")
         _combine_tiles_to_sprite(tile_paths, sprite_path, rows=2, cols=5)
 
         # Temporary tile files are automatically cleaned up when context exits

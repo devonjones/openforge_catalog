@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -140,8 +140,8 @@ export default function AdminLogin() {
           </div>
 
           <div className="text-center">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="text-sm text-indigo-600 hover:text-indigo-500"
             >
               Back to main interface
@@ -151,4 +151,4 @@ export default function AdminLogin() {
       </div>
     </div>
   );
-} 
+}

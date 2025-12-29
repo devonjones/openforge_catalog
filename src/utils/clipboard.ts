@@ -6,8 +6,8 @@
  * @returns Promise that resolves when copy operation completes
  */
 export async function copyToClipboard(
-  text: string, 
-  onSuccess?: () => void, 
+  text: string,
+  onSuccess?: () => void,
   onError?: () => void
 ): Promise<void> {
   try {
@@ -17,4 +17,4 @@ export async function copyToClipboard(
     console.error('Failed to copy to clipboard:', error);
     onError?.();
   }
-} 
+}

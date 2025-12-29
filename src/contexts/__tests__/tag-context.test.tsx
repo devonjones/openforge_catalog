@@ -78,7 +78,7 @@ const createMockTagStore = () => {
     },
     fetchBlueprints: async () => {
       fetchMock();
-      set({ 
+      set({
         blueprints: [{ id: '1', blueprint_name: 'Test Blueprint' }],
         paging: { total_count: 1 }
       });
@@ -165,12 +165,12 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     // Wait for any initial async operations to complete
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
-    
+
     // Default state
     expect(screen.getByTestId('selected-tags')).toHaveTextContent('');
     expect(screen.getByTestId('deny-tags')).toHaveTextContent('');
@@ -213,7 +213,7 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
@@ -233,7 +233,7 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
@@ -252,7 +252,7 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
@@ -276,7 +276,7 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
@@ -297,7 +297,7 @@ describe('TagContext', () => {
         </TagProvider>
       );
     });
-    
+
     await waitFor(() => {
       expect(screen.getByTestId('selected-tags')).toBeInTheDocument();
     });
@@ -308,4 +308,4 @@ describe('TagContext', () => {
     expect(fetchMock).toHaveBeenCalled();
     expect(screen.getByTestId('tag-descriptions')).not.toHaveTextContent('0');
   });
-}); 
+});

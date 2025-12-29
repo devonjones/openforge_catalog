@@ -45,4 +45,4 @@ export function PaginationControls({
       </div>
     </>
   );
-} 
+}

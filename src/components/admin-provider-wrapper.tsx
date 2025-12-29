@@ -13,4 +13,4 @@ export default function AdminProviderWrapper({ children }: AdminProviderWrapperP
       {children}
     </AdminProvider>
   );
-} 
+}

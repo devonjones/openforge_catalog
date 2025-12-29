@@ -247,4 +247,4 @@ When adding new tests:
 2. Use the provided fixtures for database access and API clients
 3. Ensure tests are isolated and don't interfere with each other
 4. Add appropriate error handling and edge case testing
-5. Update this README if adding new test categories or configuration options 
+5. Update this README if adding new test categories or configuration options

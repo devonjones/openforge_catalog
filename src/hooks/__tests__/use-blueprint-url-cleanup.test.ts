@@ -44,7 +44,7 @@ describe('useBlueprintUrlCleanup', () => {
     mockGetAll.mockReturnValue([]);
     mockToString.mockReturnValue('');
     mockHas.mockReturnValue(false);
-    
+
     // Mock window methods
     window.addEventListener = mockAddEventListener;
     window.removeEventListener = mockRemoveEventListener;
@@ -85,9 +85,9 @@ describe('useBlueprintUrlCleanup', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123&other=param', pathname: '/test' };
       mockHas.mockReturnValue(true);
       mockToString.mockReturnValue('other=param');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).toHaveBeenCalledWith('blueprint_id');
       expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '/test?other=param');
@@ -98,9 +98,9 @@ describe('useBlueprintUrlCleanup', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123', pathname: '/test' };
       mockHas.mockReturnValue(true);
       mockToString.mockReturnValue('');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).toHaveBeenCalledWith('blueprint_id');
       expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '/test');
@@ -110,9 +110,9 @@ describe('useBlueprintUrlCleanup', () => {
       const blueprint = createMockBlueprint({ id: '123' });
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?other=param', pathname: '/test' };
       mockHas.mockReturnValue(false);
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).not.toHaveBeenCalled();
       expect(mockHistory.replaceState).not.toHaveBeenCalled();
@@ -121,9 +121,9 @@ describe('useBlueprintUrlCleanup', () => {
     it('does not modify URL when blueprint is null', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123&other=param', pathname: '/test' };
       mockHas.mockReturnValue(true);
-      
+
       renderHook(() => useBlueprintUrlCleanup(null, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).not.toHaveBeenCalled();
       expect(mockDelete).not.toHaveBeenCalled();
       expect(mockHistory.replaceState).not.toHaveBeenCalled();
@@ -135,11 +135,11 @@ describe('useBlueprintUrlCleanup', () => {
       const blueprint = createMockBlueprint({ id: '123' });
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '', pathname: '/' };
       mockGet.mockReturnValue(null);
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
       const popstateHandler = mockAddEventListener.mock.calls[0][1];
       popstateHandler();
-      
+
       expect(mockGet).toHaveBeenCalledWith('blueprint_id');
       expect(locationWithParams.reload).toHaveBeenCalled();
     });
@@ -148,11 +148,11 @@ describe('useBlueprintUrlCleanup', () => {
       const blueprint = createMockBlueprint({ id: '123' });
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123', pathname: '/' };
       mockGet.mockReturnValue('123');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
       const popstateHandler = mockAddEventListener.mock.calls[0][1];
       popstateHandler();
-      
+
       expect(mockGet).toHaveBeenCalledWith('blueprint_id');
       expect(locationWithParams.reload).not.toHaveBeenCalled();
     });
@@ -160,11 +160,11 @@ describe('useBlueprintUrlCleanup', () => {
     it('does not reload page when popstate occurs and no blueprint is provided', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '', pathname: '/' };
       mockGet.mockReturnValue(null);
-      
+
       renderHook(() => useBlueprintUrlCleanup(null, locationWithParams as Location, mockHistory as History));
       const popstateHandler = mockAddEventListener.mock.calls[0][1];
       popstateHandler();
-      
+
       expect(mockGet).toHaveBeenCalledWith('blueprint_id');
       expect(locationWithParams.reload).not.toHaveBeenCalled();
     });
@@ -172,11 +172,11 @@ describe('useBlueprintUrlCleanup', () => {
     it('does not reload page when popstate occurs and blueprint_id is in URL but blueprint is null', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123', pathname: '/' };
       mockGet.mockReturnValue('123');
-      
+
       renderHook(() => useBlueprintUrlCleanup(null, locationWithParams as Location, mockHistory as History));
       const popstateHandler = mockAddEventListener.mock.calls[0][1];
       popstateHandler();
-      
+
       expect(mockGet).toHaveBeenCalledWith('blueprint_id');
       expect(locationWithParams.reload).not.toHaveBeenCalled();
     });
@@ -188,9 +188,9 @@ describe('useBlueprintUrlCleanup', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=123&blueprint_id=456&other=param', pathname: '/test' };
       mockHas.mockReturnValue(true);
       mockToString.mockReturnValue('other=param');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).toHaveBeenCalledWith('blueprint_id');
       expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '/test?other=param');
@@ -201,9 +201,9 @@ describe('useBlueprintUrlCleanup', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?blueprint_id=&other=param', pathname: '/test' };
       mockHas.mockReturnValue(true);
       mockToString.mockReturnValue('other=param');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).toHaveBeenCalledWith('blueprint_id');
       expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '/test?other=param');
@@ -214,12 +214,12 @@ describe('useBlueprintUrlCleanup', () => {
       const locationWithParams: Partial<Location> = { ...mockLocation, search: '?param1=value1&blueprint_id=123&param2=value2&param3=value3', pathname: '/complex/path' };
       mockHas.mockReturnValue(true);
       mockToString.mockReturnValue('param1=value1&param2=value2&param3=value3');
-      
+
       renderHook(() => useBlueprintUrlCleanup(blueprint, locationWithParams as Location, mockHistory as History));
-      
+
       expect(mockHas).toHaveBeenCalledWith('blueprint_id');
       expect(mockDelete).toHaveBeenCalledWith('blueprint_id');
       expect(mockHistory.replaceState).toHaveBeenCalledWith({}, '', '/complex/path?param1=value1&param2=value2&param3=value3');
     });
   });
-}); 
+});

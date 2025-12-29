@@ -11,9 +11,9 @@ describe('SearchDisplay', () => {
 
   it('renders nothing when searchTerm is null', () => {
     const { container } = render(
-      <SearchDisplay 
-        searchTerm={null} 
-        onClearSearch={mockOnClearSearch} 
+      <SearchDisplay
+        searchTerm={null}
+        onClearSearch={mockOnClearSearch}
       />
     );
 
@@ -22,9 +22,9 @@ describe('SearchDisplay', () => {
 
   it('renders search display when searchTerm is provided', () => {
     render(
-      <SearchDisplay 
-        searchTerm="test search" 
-        onClearSearch={mockOnClearSearch} 
+      <SearchDisplay
+        searchTerm="test search"
+        onClearSearch={mockOnClearSearch}
       />
     );
 
@@ -35,9 +35,9 @@ describe('SearchDisplay', () => {
 
   it('calls onClearSearch when clear button is clicked', () => {
     render(
-      <SearchDisplay 
-        searchTerm="test search" 
-        onClearSearch={mockOnClearSearch} 
+      <SearchDisplay
+        searchTerm="test search"
+        onClearSearch={mockOnClearSearch}
       />
     );
 
@@ -49,9 +49,9 @@ describe('SearchDisplay', () => {
 
   it('displays search term with special characters', () => {
     render(
-      <SearchDisplay 
-        searchTerm="search with spaces & symbols" 
-        onClearSearch={mockOnClearSearch} 
+      <SearchDisplay
+        searchTerm="search with spaces & symbols"
+        onClearSearch={mockOnClearSearch}
       />
     );
 
@@ -60,16 +60,16 @@ describe('SearchDisplay', () => {
 
   it('renders correct structure with header and list', () => {
     render(
-      <SearchDisplay 
-        searchTerm="test" 
-        onClearSearch={mockOnClearSearch} 
+      <SearchDisplay
+        searchTerm="test"
+        onClearSearch={mockOnClearSearch}
       />
     );
 
     const header = screen.getByText('Search');
     const listItem = screen.getByText('test');
-    
+
     expect(header).toHaveClass('selectedTagsContainer__header');
     expect(listItem.closest('ul')).toBeInTheDocument();
   });
-}); 
+});
