@@ -317,6 +317,16 @@ def update_image(curs: cursor, image_id: uuid.UUID, data: dict) -> dict:
                 sql.SQL(f"{comma}{field} = " + "{value}").format(value=data[field])
             )
             comma = ", "
+
+    # Handle sprite_metadata separately as it needs Json() wrapper
+    if "sprite_metadata" in data:
+        query_list.append(
+            sql.SQL(f"{comma}sprite_metadata = " + "{sprite_metadata}").format(
+                sprite_metadata=sql.Literal(Json(data["sprite_metadata"]))
+            )
+        )
+        comma = ", "
+
     query_list.append(sql.SQL(f"{comma}updated_at = NOW()"))
 
     query_list.append(
