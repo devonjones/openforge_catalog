@@ -230,7 +230,9 @@ def _generate_angle_tile(
         str(camera_pos[1]),
         str(camera_pos[2]),
     ]
-    subprocess.run(cmd, check=True, capture_output=True, text=True, cwd="/tmp")
+    subprocess.run(
+        cmd, check=True, capture_output=True, text=True, cwd=tempfile.gettempdir()
+    )
 
 
 def _combine_tiles_to_sprite(
