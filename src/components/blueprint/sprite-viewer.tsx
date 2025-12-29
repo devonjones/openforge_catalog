@@ -126,21 +126,33 @@ interface SpriteControlsProps {
 }
 
 const SpriteControls: React.FC<SpriteControlsProps> = ({ currentAngle, angles, onAngleChange }) => {
-  const { topIndex, bottomIndex } = getAngleIndices(angles);
+  // Build angle map dynamically from angle names to decouple from array order
+  const angleMap: Record<number, { label: string; row: number; col: number }> = {};
 
-  // Map angle indices to their positions in the unwrapped cube layout
-  const angleMap: Record<number, { label: string; row: number; col: number }> = {
-    [topIndex]: { label: 'TOP', row: 0, col: 1 },       // Top
-    7: { label: 'FL', row: 1, col: 0 },         // Front-left
-    0: { label: 'F', row: 1, col: 1 },          // Front
-    1: { label: 'FR', row: 1, col: 2 },         // Front-right
-    6: { label: 'L', row: 2, col: 0 },          // Left
-    2: { label: 'R', row: 2, col: 2 },          // Right
-    5: { label: 'BL', row: 3, col: 0 },         // Back-left
-    4: { label: 'B', row: 3, col: 1 },          // Back
-    3: { label: 'BR', row: 3, col: 2 },         // Back-right
-    [bottomIndex]: { label: 'BOT', row: 4, col: 1 },        // Bottom
+  // Helper to find angle index by name
+  const findAngleIndex = (name: string) => angles.findIndex(a => a.name === name);
+
+  // Layout mapping: angle name -> grid position
+  const layoutMap: Record<string, { label: string; row: number; col: number }> = {
+    'top': { label: 'TOP', row: 0, col: 1 },
+    'front-left': { label: 'FL', row: 1, col: 0 },
+    'front': { label: 'F', row: 1, col: 1 },
+    'front-right': { label: 'FR', row: 1, col: 2 },
+    'left': { label: 'L', row: 2, col: 0 },
+    'right': { label: 'R', row: 2, col: 2 },
+    'back-left': { label: 'BL', row: 3, col: 0 },
+    'back': { label: 'B', row: 3, col: 1 },
+    'back-right': { label: 'BR', row: 3, col: 2 },
+    'bottom': { label: 'BOT', row: 4, col: 1 },
   };
+
+  // Build the dynamic angle map
+  for (const [angleName, layout] of Object.entries(layoutMap)) {
+    const angleIndex = findAngleIndex(angleName);
+    if (angleIndex !== -1) {
+      angleMap[angleIndex] = layout;
+    }
+  }
 
   return (
     <div>

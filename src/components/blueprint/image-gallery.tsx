@@ -52,7 +52,7 @@ const BlueprintImageGallery: React.FC<BlueprintImageGalleryProps> = ({ blueprint
 
   // If sprite, show SpriteViewer
   if (thumbnailData?.type === 'sprite') {
-    return <SpriteViewer key={thumbnailData.sprite_url} blueprint={blueprint} thumbnailData={thumbnailData} />;
+    return <SpriteViewer key={blueprint.id} blueprint={blueprint} thumbnailData={thumbnailData} />;
   }
 
   // Legacy fallback
