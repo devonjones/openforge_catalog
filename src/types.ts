@@ -10,7 +10,7 @@ export interface ConfigTag {
   tag: string;
 }
 
-export type ConstrainTag = 
+export type ConstrainTag =
   | { tag: string; siblings?: string[]; parent?: boolean }
   | { filter: string };
 
@@ -110,3 +110,27 @@ export interface Paging {
   total_count: number;
   start_count: number;
 }
+
+// Sprite thumbnail types
+export interface SpriteAngle {
+  index: number;
+  name: string;
+  camera_pos: [number, number, number];
+}
+
+export interface SpriteThumbnailData {
+  type: 'sprite';
+  sprite_url: string;
+  grid_rows: number;
+  grid_cols: number;
+  tile_size: number;
+  angles: SpriteAngle[];
+  default_angle: number;
+}
+
+export interface LegacyThumbnailData {
+  type: 'single';
+  thumbnail_url: string;
+}
+
+export type ThumbnailVariants = SpriteThumbnailData | LegacyThumbnailData;

@@ -19,8 +19,7 @@ from openforge.openapi import validate_schema
 
 from . import sizes
 from .io import (
-    create_image,
-    create_thumbnail,
+    create_and_upload_thumbnail,
     get_s3_client,
     get_s3_key_cache,
     upload_file,
@@ -493,15 +492,22 @@ def parse_files(path, files, md5, verbose, upload, config):
                 f, full_file, s3_client, "models", s3_key_cache, config, verbose
             )
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
-            thumb_path = create_thumbnail(full_file)
-            thumb_address = upload_file(
-                f, thumb_path, s3_client, "thumbnails", s3_key_cache, config, verbose
-            )
-            images = o.get("images", [])
-            images.append(
-                create_image("thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}")
-            )
-            o["images"] = images
+
+            # Generate and upload thumbnail (sprite or single based on config)
+            use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", False)
+            try:
+                thumbnail_image = create_and_upload_thumbnail(
+                    f, full_file, s3_client, s3_key_cache, config, verbose, use_sprites
+                )
+                images = o.get("images", [])
+                images.append(thumbnail_image)
+                o["images"] = images
+            except Exception as e:
+                # Don't block scan if thumbnail generation fails
+                if verbose:
+                    sys.stderr.write(
+                        f"WARNING: Thumbnail generation failed for {full_file}: {e}\n"
+                    )
         parse_file_tags(f, t, metadata)
         if metadata:
             o["metadata"] = True
@@ -638,8 +644,8 @@ def _process_list(obj, exclude_paths, current_path):
         # Don't sort this list, preserve original order
         return filtered_items
     else:
-        # Sort the list
-        return _sort_list_items(filtered_items)
+        # Sort the list, passing current_path for special case handling
+        return _sort_list_items(filtered_items, current_path)
 
 
 def _process_sequence(obj, exclude_paths, current_path):
@@ -655,11 +661,22 @@ def _process_sequence(obj, exclude_paths, current_path):
     return sorted(filtered_items, key=str)
 
 
-def _sort_list_items(items):
-    """Sort list items using a stable sort key."""
+def _sort_list_items(items, current_path=""):
+    """Sort list items using a stable sort key.
+
+    Args:
+        items: List of items to sort
+        current_path: Current JSON path for special case handling
+    """
 
     def sort_key(item):
-        if isinstance(item, dict):
+        # Special case: top-level blueprint array should be sorted by full_name
+        if current_path == "" and isinstance(item, dict) and "file_metadata" in item:
+            return item.get("file_metadata", {}).get("full_name", "")
+        # Special case: sprite_metadata.angles should be sorted by index field
+        elif current_path.endswith("sprite_metadata.angles") and isinstance(item, dict):
+            return item.get("index", 0)
+        elif isinstance(item, dict):
             # Create a stable, sortable representation of the dictionary
             return json.dumps(item, sort_keys=True)
         elif isinstance(item, (list, tuple, set)):
@@ -676,5 +693,6 @@ def print_files(files):
 
     # Sort all lists recursively for consistent git diffs
     # Exclude config.parts from sorting to preserve order
+    # Top-level array will be sorted by full_name in _sort_list_items
     sorted_files = _sort_and_clean_recursively(files, exclude_paths=["config.parts"])
     print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))

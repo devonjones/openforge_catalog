@@ -21,8 +21,7 @@ from openforge.db.sql.tag_utils import process_tag
 from openforge.openapi import validate_schema
 
 from .io import (
-    create_image,
-    create_thumbnail,
+    create_and_upload_thumbnail,
     get_s3_client,
     get_s3_key_cache,
     upload_file,
@@ -617,23 +616,27 @@ def parse_files_incremental(
 
                     # Only create thumbnail if file has changed
                     if file_changed:
-                        thumb_path = create_thumbnail(full_file)
-                        thumb_address = upload_file(
-                            result["file_metadata"],
-                            thumb_path,
-                            s3_client,
-                            "thumbnails",
-                            s3_key_cache,
-                            config,
-                            verbose,
-                        )
-                        images = result.get("images", [])
-                        images.append(
-                            create_image(
-                                "thumbnail", f"{config['FILE_DOMAIN']}/{thumb_address}"
+                        use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", False)
+                        try:
+                            thumbnail_image = create_and_upload_thumbnail(
+                                result["file_metadata"],
+                                full_file,
+                                s3_client,
+                                s3_key_cache,
+                                config,
+                                verbose,
+                                use_sprites,
                             )
-                        )
-                        result["images"] = images
+                            images = result.get("images", [])
+                            images.append(thumbnail_image)
+                            result["images"] = images
+                        except Exception as e:
+                            # Don't block scan if thumbnail generation fails
+                            if verbose:
+                                sys.stderr.write(
+                                    f"WARNING: Thumbnail generation failed for "
+                                    f"{full_file}: {e}\n"
+                                )
                     # Note: If file hasn't changed and images exist, they were already
                     # preserved in process_file when creating the result entry
 
@@ -812,11 +815,10 @@ def print_files_with_transformer(files):
     transformer = DeprecatedEntryTransformer()
     transformed_files = transformer.transform_list(files)
 
-    # Sort all lists recursively for consistent git diffs, but preserve
-    # top-level array order
-    # Exclude config.parts from sorting to preserve order, and exclude
-    # top-level array (empty path)
+    # Sort all lists recursively for consistent git diffs
+    # Exclude config.parts from sorting to preserve order
+    # Top-level array will be sorted by full_name in _sort_list_items
     sorted_files = _sort_and_clean_recursively(
-        transformed_files, exclude_paths=["config.parts", ""]
+        transformed_files, exclude_paths=["config.parts"]
     )
     print(json.dumps(sorted_files, default=set_handler, indent=4, sort_keys=True))

@@ -144,6 +144,34 @@ class TestIncrementalFixturesLoader:
         result = mock_loader._has_significant_changes(fixture, existing)
         assert result, f"Expected changes for images change, got {result}"
 
+    def test_has_significant_changes_sprite_metadata_change(self, mock_loader):
+        """Test _has_significant_changes detects sprite_metadata addition."""
+        # Existing blueprint has image without sprite_metadata
+        existing = create_mock_blueprint(
+            "test.stl",
+            "abc123",
+            images=[{"image_name": "thumbnail", "image_url": "test.png"}],
+        )
+
+        # Fixture has same image but with sprite_metadata added
+        fixture = create_mock_fixture_item("test.stl", "abc123")
+        fixture["images"] = [
+            {
+                "image_name": "thumbnail",
+                "image_url": "test.png",
+                "sprite_metadata": {
+                    "grid_rows": 2,
+                    "grid_cols": 5,
+                    "tile_size": 512,
+                    "angles": [{"index": 0, "name": "front", "camera_pos": [0, -4, 2]}],
+                    "default_angle": 0,
+                },
+            }
+        ]
+
+        result = mock_loader._has_significant_changes(fixture, existing)
+        assert result, "Expected changes when sprite_metadata is added to image"
+
     def test_has_significant_changes_config_change(self, mock_loader):
         """Test _has_significant_changes with config change."""
         existing = create_mock_blueprint("test.stl", "abc123")

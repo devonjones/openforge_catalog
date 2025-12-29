@@ -674,12 +674,24 @@ class IncrementalFixturesLoader:
             return True
 
         # Check images (compare as sets to handle unordered nature)
+        # Convert entire image dicts to JSON for deep comparison
+        # (includes sprite_metadata and all other fields)
+        import json
+
+        # Helper to extract comparable fields (exclude timestamps)
+        def comparable_image(img):
+            return {
+                k: v
+                for k, v in img.items()
+                if k not in ("created_at", "updated_at", "id")
+            }
+
         existing_images = set(
-            (img["image_name"], img["image_url"])
+            json.dumps(comparable_image(img), sort_keys=True)
             for img in existing_bp.get("images", [])
         )
         new_images = set(
-            (img["image_name"], img["image_url"])
+            json.dumps(comparable_image(img), sort_keys=True)
             for img in fixture_item.get("images", [])
         )
         if existing_images != new_images:
