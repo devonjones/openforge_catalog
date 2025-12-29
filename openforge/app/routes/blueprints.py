@@ -258,12 +258,9 @@ def set_blueprint_default_angle(blueprint_id):
 
     default_angle = request.json["default_angle"]
 
-    # Validate angle index
-    if not isinstance(default_angle, int) or default_angle < 0 or default_angle > 9:
-        return (
-            jsonify({"error": "default_angle must be an integer between 0 and 9"}),
-            400,
-        )
+    # Validate type
+    if not isinstance(default_angle, int):
+        return jsonify({"error": "default_angle must be an integer"}), 400
 
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -285,8 +282,25 @@ def set_blueprint_default_angle(blueprint_id):
                     400,
                 )
 
+            sprite_metadata = thumbnail["sprite_metadata"]
+
+            # Validate angle index against actual sprite metadata
+            max_angle = len(sprite_metadata.get("angles", [])) - 1
+            if default_angle < 0 or default_angle > max_angle:
+                return (
+                    jsonify(
+                        {
+                            "error": (
+                                f"default_angle must be between 0 and {max_angle} "
+                                f"for this sprite"
+                            )
+                        }
+                    ),
+                    400,
+                )
+
             # Update the default_angle in sprite_metadata
-            sprite_metadata = thumbnail["sprite_metadata"].copy()
+            sprite_metadata = sprite_metadata.copy()
             sprite_metadata["default_angle"] = default_angle
 
             # Update the image in database

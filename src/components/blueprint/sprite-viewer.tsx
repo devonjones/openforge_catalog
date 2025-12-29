@@ -3,41 +3,63 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Blueprint, SpriteThumbnailData } from '@/types';
 
-// Constants for sprite viewer rotation logic
-const HORIZONTAL_ANGLE_COUNT = 8;
-const TOP_ANGLE_INDEX = 8;
-const BOTTOM_ANGLE_INDEX = 9;
+// Drag sensitivity constant
 const DRAG_THRESHOLD_PX = 30;
+
+/**
+ * Helper functions to derive angle indices from sprite metadata
+ */
+function getAngleIndices(angles: SpriteThumbnailData['angles']) {
+  const topIndex = angles.findIndex(a => a.name === 'top');
+  const bottomIndex = angles.findIndex(a => a.name === 'bottom');
+
+  // Count horizontal angles (all except top and bottom)
+  const horizontalCount = angles.filter(
+    a => a.name !== 'top' && a.name !== 'bottom'
+  ).length;
+
+  return {
+    horizontalCount,
+    topIndex: topIndex !== -1 ? topIndex : 8,  // Default fallback
+    bottomIndex: bottomIndex !== -1 ? bottomIndex : 9,  // Default fallback
+  };
+}
 
 /**
  * Custom hook for keyboard-based sprite rotation
  */
-function useKeyboardRotation(currentAngle: number, setCurrentAngle: (angle: number | ((prev: number) => number)) => void) {
+function useKeyboardRotation(
+  currentAngle: number,
+  setCurrentAngle: (angle: number | ((prev: number) => number)) => void,
+  angleIndices: ReturnType<typeof getAngleIndices>
+) {
+  const { horizontalCount, topIndex, bottomIndex } = angleIndices;
+
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
       setCurrentAngle(prev => {
         // If we're on a vertical angle, go back to front (0)
-        if (prev >= TOP_ANGLE_INDEX) return 0;
+        if (prev >= topIndex) return 0;
         // Otherwise, previous horizontal angle with wrapping
-        return prev <= 0 ? HORIZONTAL_ANGLE_COUNT - 1 : prev - 1;
+        return prev <= 0 ? horizontalCount - 1 : prev - 1;
       });
     } else if (e.key === 'ArrowRight') {
       e.preventDefault();
       setCurrentAngle(prev => {
         // If we're on a vertical angle, go to front (0)
-        if (prev >= TOP_ANGLE_INDEX) return 0;
+        if (prev >= topIndex) return 0;
         // Otherwise, next horizontal angle with wrapping
-        return prev >= HORIZONTAL_ANGLE_COUNT - 1 ? 0 : prev + 1;
+        return prev >= horizontalCount - 1 ? 0 : prev + 1;
       });
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      setCurrentAngle(TOP_ANGLE_INDEX);
+      setCurrentAngle(topIndex);
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setCurrentAngle(BOTTOM_ANGLE_INDEX);
+      setCurrentAngle(bottomIndex);
     }
-  }, [setCurrentAngle]);
+  }, [setCurrentAngle, topIndex, bottomIndex, horizontalCount]);
 
   return { handleKeyDown };
 }
@@ -45,7 +67,11 @@ function useKeyboardRotation(currentAngle: number, setCurrentAngle: (angle: numb
 /**
  * Custom hook for mouse drag-based sprite rotation
  */
-function useMouseDragRotation(currentAngle: number, setCurrentAngle: (angle: number) => void) {
+function useMouseDragRotation(
+  currentAngle: number,
+  setCurrentAngle: (angle: number) => void,
+  horizontalCount: number
+) {
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef<number>(0);
   const initialAngle = useRef<number>(0);
@@ -62,12 +88,12 @@ function useMouseDragRotation(currentAngle: number, setCurrentAngle: (angle: num
     const deltaX = e.clientX - dragStartX.current;
     const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
 
-    // Only horizontal angles (0-7), wrap around
-    let newAngle = (initialAngle.current + angleChange) % HORIZONTAL_ANGLE_COUNT;
-    if (newAngle < 0) newAngle += HORIZONTAL_ANGLE_COUNT;
+    // Only horizontal angles, wrap around
+    let newAngle = (initialAngle.current + angleChange) % horizontalCount;
+    if (newAngle < 0) newAngle += horizontalCount;
 
     setCurrentAngle(newAngle);
-  }, [isDragging, setCurrentAngle]);
+  }, [isDragging, setCurrentAngle, horizontalCount]);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -100,9 +126,11 @@ interface SpriteControlsProps {
 }
 
 const SpriteControls: React.FC<SpriteControlsProps> = ({ currentAngle, angles, onAngleChange }) => {
+  const { topIndex, bottomIndex } = getAngleIndices(angles);
+
   // Map angle indices to their positions in the unwrapped cube layout
   const angleMap: Record<number, { label: string; row: number; col: number }> = {
-    [TOP_ANGLE_INDEX]: { label: 'TOP', row: 0, col: 1 },       // Top
+    [topIndex]: { label: 'TOP', row: 0, col: 1 },       // Top
     7: { label: 'FL', row: 1, col: 0 },         // Front-left
     0: { label: 'F', row: 1, col: 1 },          // Front
     1: { label: 'FR', row: 1, col: 2 },         // Front-right
@@ -111,7 +139,7 @@ const SpriteControls: React.FC<SpriteControlsProps> = ({ currentAngle, angles, o
     5: { label: 'BL', row: 3, col: 0 },         // Back-left
     4: { label: 'B', row: 3, col: 1 },          // Back
     3: { label: 'BR', row: 3, col: 2 },         // Back-right
-    [BOTTOM_ANGLE_INDEX]: { label: 'BOT', row: 4, col: 1 },        // Bottom
+    [bottomIndex]: { label: 'BOT', row: 4, col: 1 },        // Bottom
   };
 
   return (
@@ -166,9 +194,12 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
   const [currentAngle, setCurrentAngle] = useState(thumbnailData.default_angle);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Derive angle indices from sprite metadata
+  const angleIndices = getAngleIndices(thumbnailData.angles);
+
   // Use custom hooks for event handling
-  const { handleKeyDown } = useKeyboardRotation(currentAngle, setCurrentAngle);
-  const { handleMouseDown } = useMouseDragRotation(currentAngle, setCurrentAngle);
+  const { handleKeyDown } = useKeyboardRotation(currentAngle, setCurrentAngle, angleIndices);
+  const { handleMouseDown } = useMouseDragRotation(currentAngle, setCurrentAngle, angleIndices.horizontalCount);
 
   // Calculate background position based on current angle
   const row = Math.floor(currentAngle / thumbnailData.grid_cols);

@@ -138,19 +138,16 @@ def insert_image(
 ) -> dict:
     query = sql.SQL(
         """
-WITH new_images AS (
-  INSERT INTO images (
-    image_name, image_url, image_type, sprite_metadata
-  ) VALUES (
-    {image_name}, {image_url}, {image_type}, {sprite_metadata}
-  )
-  ON CONFLICT (image_url) DO UPDATE SET
-    image_name = EXCLUDED.image_name,
-    image_type = EXCLUDED.image_type,
-    sprite_metadata = EXCLUDED.sprite_metadata
-  RETURNING id
+INSERT INTO images (
+  image_name, image_url, image_type, sprite_metadata
+) VALUES (
+  {image_name}, {image_url}, {image_type}, {sprite_metadata}
 )
-SELECT id FROM new_images
+ON CONFLICT (image_url) DO UPDATE SET
+  image_name = EXCLUDED.image_name,
+  image_type = EXCLUDED.image_type,
+  sprite_metadata = EXCLUDED.sprite_metadata
+RETURNING id
 """
     ).format(
         image_name=sql.Literal(image_name),

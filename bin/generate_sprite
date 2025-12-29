@@ -199,22 +199,23 @@ def main(ctx, stl_file, tile_size, upload, dry_run, verbose, output_json):
         sys.stderr.write(f"Grid: {grid}\n")
         sys.stderr.write(f"Angles: {len(sprite_metadata['angles'])}\n")
 
-    # Upload to R2 if requested
-    sprite_url = None
-    if upload:
-        sprite_url = _upload_sprite_to_r2(ctx, sprite_path, stl_file, verbose)
-    elif verbose:
-        sys.stderr.write("Skipping upload (use --upload flag to enable)\n")
+    try:
+        # Upload to R2 if requested
+        sprite_url = None
+        if upload:
+            sprite_url = _upload_sprite_to_r2(ctx, sprite_path, stl_file, verbose)
+        elif verbose:
+            sys.stderr.write("Skipping upload (use --upload flag to enable)\n")
 
-    # Output results
-    if output_json:
-        _print_json_output(sprite_path, sprite_url, sprite_metadata)
-    else:
-        _print_human_output(sprite_path, sprite_url, sprite_metadata)
-
-    # Clean up local file if uploaded
-    if upload:
-        _cleanup_local_file(sprite_path, verbose)
+        # Output results
+        if output_json:
+            _print_json_output(sprite_path, sprite_url, sprite_metadata)
+        else:
+            _print_human_output(sprite_path, sprite_url, sprite_metadata)
+    finally:
+        # Clean up local file if uploaded (or on error during upload)
+        if upload:
+            _cleanup_local_file(sprite_path, verbose)
 
     ctx.exit(0)
 

@@ -359,11 +359,11 @@ def create_and_upload_thumbnail(
     Raises:
         Exception: If thumbnail/sprite generation or upload fails
     """
-    try:
-        if use_sprites:
-            # Generate multi-angle sprite sheet
-            sprite_path, sprite_metadata = create_sprite_sheet(stl_path)
+    if use_sprites:
+        # Generate multi-angle sprite sheet
+        sprite_path, sprite_metadata = create_sprite_sheet(stl_path)
 
+        try:
             # Upload sprite to R2
             sprite_address = upload_file(
                 file_metadata,
@@ -375,18 +375,24 @@ def create_and_upload_thumbnail(
                 verbose,
             )
 
-            # Clean up local sprite file
-            if os.path.exists(sprite_path):
-                os.remove(sprite_path)
-
             # Create image entry with sprite metadata
             sprite_url = f"{config['FILE_DOMAIN']}/{sprite_address}"
             return create_image("thumbnail", sprite_url, sprite_metadata)
 
-        else:
-            # Generate legacy single thumbnail
-            thumb_path = create_thumbnail(stl_path)
+        except Exception as e:
+            if verbose:
+                sys.stderr.write(f"ERROR: Failed to upload sprite sheet: {e}\n")
+            raise
+        finally:
+            # Clean up local sprite file (even on error)
+            if os.path.exists(sprite_path):
+                os.remove(sprite_path)
 
+    else:
+        # Generate legacy single thumbnail
+        thumb_path = create_thumbnail(stl_path)
+
+        try:
             # Upload thumbnail to R2
             thumb_address = upload_file(
                 file_metadata,
@@ -398,16 +404,15 @@ def create_and_upload_thumbnail(
                 verbose,
             )
 
-            # Clean up local thumbnail file
-            if os.path.exists(thumb_path):
-                os.remove(thumb_path)
-
             # Create image entry without sprite metadata
             thumb_url = f"{config['FILE_DOMAIN']}/{thumb_address}"
             return create_image("thumbnail", thumb_url)
 
-    except Exception as e:
-        if verbose:
-            sys.stderr.write(f"ERROR: Failed to create/upload thumbnail: {e}\n")
-        # Re-raise to let caller decide how to handle
-        raise
+        except Exception as e:
+            if verbose:
+                sys.stderr.write(f"ERROR: Failed to upload thumbnail: {e}\n")
+            raise
+        finally:
+            # Clean up local thumbnail file (even on error)
+            if os.path.exists(thumb_path):
+                os.remove(thumb_path)
