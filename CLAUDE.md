@@ -126,6 +126,25 @@ For language-specific coding preferences and patterns, see:
 - Python/Backend: `openforge/CLAUDE.md`
 - JavaScript/Frontend: `src/CLAUDE.md`
 
+## Code Organization Philosophy
+
+### Function Complexity and Cognitive Load
+
+**Core Principle**: Functions should be describable with as few uses of "and" or "or" as possible.
+
+- **Single Screen Rule**: Generally, a function should be viewable on a single screen to keep cognitive load down
+- **Helper Functions**: Use private/helper functions extensively to extract specific tasks
+  - Python: Use `_function_name()` for private helpers
+  - JavaScript/React: Use custom hooks or helper functions
+- **Pragmatic Exceptions**: Larger functions are acceptable when breaking them up would genuinely complicate rather than simplify
+- **Test for Complexity**: If you're describing what a function does and you use multiple "and"s or "or"s, it's probably doing too much
+
+**Examples**:
+- ❌ "This component handles state AND rendering AND keyboard events AND mouse drag events" - too many responsibilities
+- ✅ "This component manages sprite viewer state and delegates event handling to custom hooks"
+- ❌ "This function validates input AND transforms data AND saves to database" - should be 3 functions
+- ✅ "This function validates and saves user data (validation is a prerequisite for saving, so it's cohesive)"
+
 ## Background Context
 
 ### Technical Experience

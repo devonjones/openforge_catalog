@@ -9,6 +9,85 @@ const TOP_ANGLE_INDEX = 8;
 const BOTTOM_ANGLE_INDEX = 9;
 const DRAG_THRESHOLD_PX = 30;
 
+/**
+ * Custom hook for keyboard-based sprite rotation
+ */
+function useKeyboardRotation(currentAngle: number, setCurrentAngle: (angle: number | ((prev: number) => number)) => void) {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setCurrentAngle(prev => {
+        // If we're on a vertical angle, go back to front (0)
+        if (prev >= TOP_ANGLE_INDEX) return 0;
+        // Otherwise, previous horizontal angle with wrapping
+        return prev <= 0 ? HORIZONTAL_ANGLE_COUNT - 1 : prev - 1;
+      });
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      setCurrentAngle(prev => {
+        // If we're on a vertical angle, go to front (0)
+        if (prev >= TOP_ANGLE_INDEX) return 0;
+        // Otherwise, next horizontal angle with wrapping
+        return prev >= HORIZONTAL_ANGLE_COUNT - 1 ? 0 : prev + 1;
+      });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setCurrentAngle(TOP_ANGLE_INDEX);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setCurrentAngle(BOTTOM_ANGLE_INDEX);
+    }
+  }, [setCurrentAngle]);
+
+  return { handleKeyDown };
+}
+
+/**
+ * Custom hook for mouse drag-based sprite rotation
+ */
+function useMouseDragRotation(currentAngle: number, setCurrentAngle: (angle: number) => void) {
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef<number>(0);
+  const initialAngle = useRef<number>(0);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setIsDragging(true);
+    dragStartX.current = e.clientX;
+    initialAngle.current = currentAngle;
+  }, [currentAngle]);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - dragStartX.current;
+    const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
+
+    // Only horizontal angles (0-7), wrap around
+    let newAngle = (initialAngle.current + angleChange) % HORIZONTAL_ANGLE_COUNT;
+    if (newAngle < 0) newAngle += HORIZONTAL_ANGLE_COUNT;
+
+    setCurrentAngle(newAngle);
+  }, [isDragging, setCurrentAngle]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // Setup and cleanup window event listeners for drag
+  useEffect(() => {
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
+  return { handleMouseDown, isDragging };
+}
+
 interface SpriteViewerProps {
   blueprint: Blueprint;
   thumbnailData: SpriteThumbnailData;
@@ -85,82 +164,17 @@ const KeyboardHint: React.FC = () => (
 
 const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData }) => {
   const [currentAngle, setCurrentAngle] = useState(thumbnailData.default_angle);
-  const [isDragging, setIsDragging] = useState(false);
-
-  const dragStartX = useRef<number>(0);
-  const initialAngle = useRef<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Use custom hooks for event handling
+  const { handleKeyDown } = useKeyboardRotation(currentAngle, setCurrentAngle);
+  const { handleMouseDown } = useMouseDragRotation(currentAngle, setCurrentAngle);
 
   // Calculate background position based on current angle
   const row = Math.floor(currentAngle / thumbnailData.grid_cols);
   const col = currentAngle % thumbnailData.grid_cols;
   const backgroundPositionX = -(col * thumbnailData.tile_size);
   const backgroundPositionY = -(row * thumbnailData.tile_size);
-
-  // Mouse drag handlers
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    setIsDragging(true);
-    dragStartX.current = e.clientX;
-    initialAngle.current = currentAngle;
-  }, [currentAngle]);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging) return;
-
-    const deltaX = e.clientX - dragStartX.current;
-    const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
-
-    // Only horizontal angles (0-7), wrap around
-    let newAngle = (initialAngle.current + angleChange) % HORIZONTAL_ANGLE_COUNT;
-    if (newAngle < 0) newAngle += HORIZONTAL_ANGLE_COUNT;
-
-    setCurrentAngle(newAngle);
-  }, [isDragging]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-    // Refocus the container after drag ends
-    containerRef.current?.focus();
-  }, []);
-
-  // Keyboard navigation handler
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      setCurrentAngle(prev => {
-        // If we're on a vertical angle, go back to front (0)
-        if (prev >= TOP_ANGLE_INDEX) return 0;
-        // Otherwise, previous horizontal angle with wrapping
-        return prev <= 0 ? HORIZONTAL_ANGLE_COUNT - 1 : prev - 1;
-      });
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      setCurrentAngle(prev => {
-        // If we're on a vertical angle, go to front (0)
-        if (prev >= TOP_ANGLE_INDEX) return 0;
-        // Otherwise, next horizontal angle with wrapping
-        return prev >= HORIZONTAL_ANGLE_COUNT - 1 ? 0 : prev + 1;
-      });
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setCurrentAngle(TOP_ANGLE_INDEX);
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setCurrentAngle(BOTTOM_ANGLE_INDEX);
-    }
-  }, []);
-
-  // Setup and cleanup window event listeners for drag
-  useEffect(() => {
-    if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
-      };
-    }
-  }, [isDragging, handleMouseMove, handleMouseUp]);
 
   // Auto-focus viewer on mount for immediate keyboard navigation
   useEffect(() => {

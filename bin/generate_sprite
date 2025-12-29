@@ -223,8 +223,9 @@ def main(ctx, stl_file, tile_size, upload, db_update, dry_run, verbose, output_j
     if db_update:
         if verbose:
             sys.stderr.write("Updating database with sprite metadata...\n")
-        # TODO: Implement database update
-        sys.stderr.write("Warning: Database update not yet implemented\n")
+        raise NotImplementedError(
+            "Database update functionality is not yet implemented."
+        )
 
     # Output results
     if output_json:
