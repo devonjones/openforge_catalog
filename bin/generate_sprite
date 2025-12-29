@@ -13,6 +13,7 @@ Usage:
 import hashlib
 import json
 import os
+import subprocess
 import sys
 
 import click
@@ -185,6 +186,10 @@ def main(ctx, stl_file, tile_size, upload, dry_run, verbose, output_json):
 
     try:
         sprite_path, sprite_metadata = create_sprite_sheet(stl_file, tile_size)
+    except subprocess.CalledProcessError as e:
+        sys.stderr.write(f"Error running stl-thumb: {e}\n")
+        sys.stderr.write(f"STDERR:\n{e.stderr}\n")
+        ctx.exit(1)
     except Exception as e:
         sys.stderr.write(f"Error generating sprite sheet: {e}\n")
         if verbose:
