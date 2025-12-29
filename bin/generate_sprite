@@ -20,28 +20,21 @@ import click
 from openforge.data.io import create_sprite_sheet, get_s3_client, upload_file
 
 
-def _validate_args(ctx, stl_file, upload, db_update, dry_run):
+def _validate_args(ctx, stl_file, upload, dry_run):
     """Validate command-line arguments and adjust flags as needed.
 
     Returns:
-        tuple: (upload, db_update) with adjusted flags
+        bool: upload flag (adjusted if needed)
     """
     if not stl_file.endswith(".stl"):
         sys.stderr.write("Error: Input file must be an STL file (.stl extension)\n")
         ctx.exit(1)
 
-    if db_update and not upload:
-        sys.stderr.write("Error: --db-update requires --upload\n")
-        ctx.exit(1)
-
-    if dry_run and (upload or db_update):
-        sys.stderr.write(
-            "Warning: --dry-run mode, ignoring --upload and --db-update flags\n"
-        )
+    if dry_run and upload:
+        sys.stderr.write("Warning: --dry-run mode, ignoring --upload flag\n")
         upload = False
-        db_update = False
 
-    return upload, db_update
+    return upload
 
 
 def _calculate_file_md5(stl_file):
@@ -96,8 +89,7 @@ def _upload_sprite_to_r2(ctx, sprite_path, stl_file, verbose):
     except KeyError as e:
         sys.stderr.write(f"Error: Missing environment variable: {e}\n")
         sys.stderr.write(
-            "Required: CLOUDFLARE_ENDPOINT, AWS_ACCESS_KEY_ID, "
-            "AWS_SECRET_ACCESS_KEY\n"
+            "Required: CLOUDFLARE_ENDPOINT, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY\n"
         )
         ctx.exit(1)
     except Exception as e:
@@ -167,14 +159,9 @@ def _cleanup_local_file(sprite_path, verbose):
     "--upload", is_flag=True, help="Upload sprite sheet to R2 (requires credentials)"
 )
 @click.option(
-    "--db-update",
-    is_flag=True,
-    help="Update database with sprite metadata (requires --upload)",
-)
-@click.option(
     "--dry-run",
     is_flag=True,
-    help="Generate sprite locally but don't upload or update database",
+    help="Generate sprite locally but don't upload",
 )
 @click.option("--verbose", is_flag=True, help="Enable verbose output")
 @click.option(
@@ -183,13 +170,13 @@ def _cleanup_local_file(sprite_path, verbose):
     help="Output sprite metadata as JSON (for fixture integration)",
 )
 @click.pass_context
-def main(ctx, stl_file, tile_size, upload, db_update, dry_run, verbose, output_json):
+def main(ctx, stl_file, tile_size, upload, dry_run, verbose, output_json):
     """Generate multi-angle sprite sheet for an STL file.
 
     STL_FILE: Path to the STL file to process
     """
     # Validate arguments
-    upload, db_update = _validate_args(ctx, stl_file, upload, db_update, dry_run)
+    upload = _validate_args(ctx, stl_file, upload, dry_run)
 
     # Generate sprite sheet
     if verbose:
@@ -218,14 +205,6 @@ def main(ctx, stl_file, tile_size, upload, db_update, dry_run, verbose, output_j
         sprite_url = _upload_sprite_to_r2(ctx, sprite_path, stl_file, verbose)
     elif verbose:
         sys.stderr.write("Skipping upload (use --upload flag to enable)\n")
-
-    # Update database if requested
-    if db_update:
-        if verbose:
-            sys.stderr.write("Updating database with sprite metadata...\n")
-        raise NotImplementedError(
-            "Database update functionality is not yet implemented."
-        )
 
     # Output results
     if output_json:
