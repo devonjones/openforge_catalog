@@ -38,451 +38,6 @@
             ]
         },
         "file_metadata": {
-            "file": "sewer#floor.1x1.openforge.stl",
-            "file_modified_at": "2021-07-26T02:50:25.551775+00:00",
-            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.1x1.openforge.stl",
-            "md5": "bcdbbe13c6a2f9e4903e17b6ebe7ceed",
-            "size": 6194784,
-            "storage_address": "https://objects.openforge.tools/models/bcdbbe/bcdbbe13c6a2f9e4903e17b6ebe7ceed.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/bcdbbe/bcdbbe13c6a2f9e4903e17b6ebe7ceed.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|1",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "sewer#floor.2x1.openforge.stl",
-            "file_modified_at": "2021-07-26T02:52:32.827170+00:00",
-            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.2x1.openforge.stl",
-            "md5": "c0023f5b133fb739c054e00b3c7984f9",
-            "size": 30703284,
-            "storage_address": "https://objects.openforge.tools/models/c0023f/c0023f5b133fb739c054e00b3c7984f9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c0023f/c0023f5b133fb739c054e00b3c7984f9.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|2",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "sewer#floor.2x2.openforge.stl",
-            "file_modified_at": "2021-07-30T20:33:34.252626+00:00",
-            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.2x2.openforge.stl",
-            "md5": "4d99278bffd93b5d3e66ec9c76bb4bc8",
-            "size": 41750384,
-            "storage_address": "https://objects.openforge.tools/models/4d9927/4d99278bffd93b5d3e66ec9c76bb4bc8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/4d9927/4d99278bffd93b5d3e66ec9c76bb4bc8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "sewer#floor.3x1.openforge.stl",
-            "file_modified_at": "2021-07-26T02:52:05.648321+00:00",
-            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.3x1.openforge.stl",
-            "md5": "27d1a983a504b920d9d1c5f7a86a777b",
-            "size": 13722184,
-            "storage_address": "https://objects.openforge.tools/models/27d1a9/27d1a983a504b920d9d1c5f7a86a777b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/27d1a9/27d1a983a504b920d9d1c5f7a86a777b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|3",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "sewer#floor.4x1.openforge.stl",
-            "file_modified_at": "2021-07-26T02:51:52.852936+00:00",
-            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.4x1.openforge.stl",
-            "md5": "27e8fe736b31be3ca1d33492008d74fb",
-            "size": 21854484,
-            "storage_address": "https://objects.openforge.tools/models/27e8fe/27e8fe736b31be3ca1d33492008d74fb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/27e8fe/27e8fe736b31be3ca1d33492008d74fb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|4",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "sewer#floor.1x1.openlock.stl",
-            "file_modified_at": "2021-07-30T20:32:24.604107+00:00",
-            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.1x1.openlock.stl",
-            "md5": "95faefd5b283b36fbb98566326ab73a8",
-            "size": 6355184,
-            "storage_address": "https://objects.openforge.tools/models/95faef/95faefd5b283b36fbb98566326ab73a8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/95faef/95faefd5b283b36fbb98566326ab73a8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|1",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "sewer#floor.2x1.openlock.stl",
-            "file_modified_at": "2021-07-30T20:33:23.332694+00:00",
-            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.2x1.openlock.stl",
-            "md5": "d6ff580f8fe82f12892455dc3fb01c09",
-            "size": 30930084,
-            "storage_address": "https://objects.openforge.tools/models/d6ff58/d6ff580f8fe82f12892455dc3fb01c09.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d6ff58/d6ff580f8fe82f12892455dc3fb01c09.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|2",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "sewer#floor.2x2.openlock.stl",
-            "file_modified_at": "2021-07-30T20:33:42.332586+00:00",
-            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.2x2.openlock.stl",
-            "md5": "21a3bc14312ee7919ca6d184d8149d72",
-            "size": 41893984,
-            "storage_address": "https://objects.openforge.tools/models/21a3bc/21a3bc14312ee7919ca6d184d8149d72.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/21a3bc/21a3bc14312ee7919ca6d184d8149d72.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "sewer#floor.3x1.openlock.stl",
-            "file_modified_at": "2021-07-30T20:32:08.891873+00:00",
-            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.3x1.openlock.stl",
-            "md5": "77714a3a868a60f9bfb87018a030e485",
-            "size": 14216184,
-            "storage_address": "https://objects.openforge.tools/models/77714a/77714a3a868a60f9bfb87018a030e485.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/77714a/77714a3a868a60f9bfb87018a030e485.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|3",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "sewer#floor.4x1.openlock.stl",
-            "file_modified_at": "2021-07-30T20:32:38.480777+00:00",
-            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.4x1.openlock.stl",
-            "md5": "003f399b91f32ce8eecafb3455c1b8b8",
-            "size": 22881184,
-            "storage_address": "https://objects.openforge.tools/models/003f39/003f399b91f32ce8eecafb3455c1b8b8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/003f39/003f399b91f32ce8eecafb3455c1b8b8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|floor",
-            "shape|square",
-            "size|depth|1",
-            "size|width|4",
-            "texture|sewer"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "sewer#floor,sluice+corner.2x2.openforge.stl",
             "file_modified_at": "2021-08-31T05:01:46.708277+00:00",
             "full_name": "tiles/sewers/floors/floor#sluice/openforge/sewer#floor,sluice+corner.2x2.openforge.stl",
@@ -1088,6 +643,451 @@
             "size|width|2",
             "texture|sewer",
             "texture|sewer|sewer_brick"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "sewer#floor.1x1.openforge.stl",
+            "file_modified_at": "2021-07-26T02:50:25.551775+00:00",
+            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.1x1.openforge.stl",
+            "md5": "bcdbbe13c6a2f9e4903e17b6ebe7ceed",
+            "size": 6194784,
+            "storage_address": "https://objects.openforge.tools/models/bcdbbe/bcdbbe13c6a2f9e4903e17b6ebe7ceed.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bcdbbe/bcdbbe13c6a2f9e4903e17b6ebe7ceed.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "sewer#floor.2x1.openforge.stl",
+            "file_modified_at": "2021-07-26T02:52:32.827170+00:00",
+            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.2x1.openforge.stl",
+            "md5": "c0023f5b133fb739c054e00b3c7984f9",
+            "size": 30703284,
+            "storage_address": "https://objects.openforge.tools/models/c0023f/c0023f5b133fb739c054e00b3c7984f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c0023f/c0023f5b133fb739c054e00b3c7984f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "sewer#floor.2x2.openforge.stl",
+            "file_modified_at": "2021-07-30T20:33:34.252626+00:00",
+            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.2x2.openforge.stl",
+            "md5": "4d99278bffd93b5d3e66ec9c76bb4bc8",
+            "size": 41750384,
+            "storage_address": "https://objects.openforge.tools/models/4d9927/4d99278bffd93b5d3e66ec9c76bb4bc8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4d9927/4d99278bffd93b5d3e66ec9c76bb4bc8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "sewer#floor.3x1.openforge.stl",
+            "file_modified_at": "2021-07-26T02:52:05.648321+00:00",
+            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.3x1.openforge.stl",
+            "md5": "27d1a983a504b920d9d1c5f7a86a777b",
+            "size": 13722184,
+            "storage_address": "https://objects.openforge.tools/models/27d1a9/27d1a983a504b920d9d1c5f7a86a777b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/27d1a9/27d1a983a504b920d9d1c5f7a86a777b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|3",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "sewer#floor.4x1.openforge.stl",
+            "file_modified_at": "2021-07-26T02:51:52.852936+00:00",
+            "full_name": "tiles/sewers/floors/floor/openforge/sewer#floor.4x1.openforge.stl",
+            "md5": "27e8fe736b31be3ca1d33492008d74fb",
+            "size": 21854484,
+            "storage_address": "https://objects.openforge.tools/models/27e8fe/27e8fe736b31be3ca1d33492008d74fb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/27e8fe/27e8fe736b31be3ca1d33492008d74fb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|4",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "sewer#floor.1x1.openlock.stl",
+            "file_modified_at": "2021-07-30T20:32:24.604107+00:00",
+            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.1x1.openlock.stl",
+            "md5": "95faefd5b283b36fbb98566326ab73a8",
+            "size": 6355184,
+            "storage_address": "https://objects.openforge.tools/models/95faef/95faefd5b283b36fbb98566326ab73a8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/95faef/95faefd5b283b36fbb98566326ab73a8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|1",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "sewer#floor.2x1.openlock.stl",
+            "file_modified_at": "2021-07-30T20:33:23.332694+00:00",
+            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.2x1.openlock.stl",
+            "md5": "d6ff580f8fe82f12892455dc3fb01c09",
+            "size": 30930084,
+            "storage_address": "https://objects.openforge.tools/models/d6ff58/d6ff580f8fe82f12892455dc3fb01c09.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d6ff58/d6ff580f8fe82f12892455dc3fb01c09.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|2",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "sewer#floor.2x2.openlock.stl",
+            "file_modified_at": "2021-07-30T20:33:42.332586+00:00",
+            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.2x2.openlock.stl",
+            "md5": "21a3bc14312ee7919ca6d184d8149d72",
+            "size": 41893984,
+            "storage_address": "https://objects.openforge.tools/models/21a3bc/21a3bc14312ee7919ca6d184d8149d72.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/21a3bc/21a3bc14312ee7919ca6d184d8149d72.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "sewer#floor.3x1.openlock.stl",
+            "file_modified_at": "2021-07-30T20:32:08.891873+00:00",
+            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.3x1.openlock.stl",
+            "md5": "77714a3a868a60f9bfb87018a030e485",
+            "size": 14216184,
+            "storage_address": "https://objects.openforge.tools/models/77714a/77714a3a868a60f9bfb87018a030e485.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/77714a/77714a3a868a60f9bfb87018a030e485.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|3",
+            "texture|sewer"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "sewer#floor.4x1.openlock.stl",
+            "file_modified_at": "2021-07-30T20:32:38.480777+00:00",
+            "full_name": "tiles/sewers/floors/floor/openlock/sewer#floor.4x1.openlock.stl",
+            "md5": "003f399b91f32ce8eecafb3455c1b8b8",
+            "size": 22881184,
+            "storage_address": "https://objects.openforge.tools/models/003f39/003f399b91f32ce8eecafb3455c1b8b8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/003f39/003f399b91f32ce8eecafb3455c1b8b8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|floor",
+            "shape|square",
+            "size|depth|1",
+            "size|width|4",
+            "texture|sewer"
         ],
         "type": "model"
     },

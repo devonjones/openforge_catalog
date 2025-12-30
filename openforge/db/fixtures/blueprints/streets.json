@@ -1221,482 +1221,6 @@
             ]
         },
         "file_metadata": {
-            "file": "streets%cobble#floor+a.2x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:46+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+a.2x2.openforge.stl",
-            "md5": "edbc04b22a0a8ecdfcaed609c2127f07",
-            "size": 5859284,
-            "storage_address": "https://objects.openforge.tools/models/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|a",
-            "size|depth|2",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor+a.4x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:54+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+a.4x2.openforge.stl",
-            "md5": "34b7e18fd326f0f510fecc635d28afa2",
-            "size": 9969084,
-            "storage_address": "https://objects.openforge.tools/models/34b7e1/34b7e18fd326f0f510fecc635d28afa2.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/34b7e1/34b7e18fd326f0f510fecc635d28afa2.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/34b7e1/34b7e18fd326f0f510fecc635d28afa2.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|a",
-            "size|depth|2",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor+b.2x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:47+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+b.2x2.openforge.stl",
-            "md5": "cb63ba6b1d89f814f222d51df202b75d",
-            "size": 3511584,
-            "storage_address": "https://objects.openforge.tools/models/cb63ba/cb63ba6b1d89f814f222d51df202b75d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cb63ba/cb63ba6b1d89f814f222d51df202b75d.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cb63ba/cb63ba6b1d89f814f222d51df202b75d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|b",
-            "size|depth|2",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor+b.4x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:57+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+b.4x2.openforge.stl",
-            "md5": "3da883b85c906d03d4ef8d60929f3a4f",
-            "size": 11007784,
-            "storage_address": "https://objects.openforge.tools/models/3da883/3da883b85c906d03d4ef8d60929f3a4f.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3da883/3da883b85c906d03d4ef8d60929f3a4f.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3da883/3da883b85c906d03d4ef8d60929f3a4f.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|b",
-            "size|depth|2",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor+c.2x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:49+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+c.2x2.openforge.stl",
-            "md5": "6b8407b56b26e005368afd49f1535287",
-            "size": 6303784,
-            "storage_address": "https://objects.openforge.tools/models/6b8407/6b8407b56b26e005368afd49f1535287.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6b8407/6b8407b56b26e005368afd49f1535287.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6b8407/6b8407b56b26e005368afd49f1535287.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|c",
-            "size|depth|2",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor+d.2x2.openforge.stl",
-            "file_modified_at": "2018-11-13T18:03:51+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+d.2x2.openforge.stl",
-            "md5": "91e191e8945c04fdd6f550de2304842f",
-            "size": 6118384,
-            "storage_address": "https://objects.openforge.tools/models/91e191/91e191e8945c04fdd6f550de2304842f.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/91e191/91e191e8945c04fdd6f550de2304842f.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/91e191/91e191e8945c04fdd6f550de2304842f.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|d",
-            "size|depth|2",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%cobble#floor.4x4.openforge.stl",
-            "file_modified_at": "2018-11-13T18:04:03+00:00",
-            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor.4x4.openforge.stl",
-            "md5": "f7ffbeaeee5c65ef61337537904ca846",
-            "size": 16660984,
-            "storage_address": "https://objects.openforge.tools/models/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|cobble"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "streets%cobble#floor+broken+a.2x2.openforge.stl",
             "file_modified_at": "2019-07-06T18:27:24+00:00",
             "full_name": "tiles/streets/floors/street,cobble+broken/streets%cobble#floor+broken+a.2x2.openforge.stl",
@@ -5603,6 +5127,482 @@
             ]
         },
         "file_metadata": {
+            "file": "streets%cobble#floor+a.2x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:46+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+a.2x2.openforge.stl",
+            "md5": "edbc04b22a0a8ecdfcaed609c2127f07",
+            "size": 5859284,
+            "storage_address": "https://objects.openforge.tools/models/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/edbc04/edbc04b22a0a8ecdfcaed609c2127f07.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|a",
+            "size|depth|2",
+            "size|width|2",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor+a.4x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:54+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+a.4x2.openforge.stl",
+            "md5": "34b7e18fd326f0f510fecc635d28afa2",
+            "size": 9969084,
+            "storage_address": "https://objects.openforge.tools/models/34b7e1/34b7e18fd326f0f510fecc635d28afa2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/34b7e1/34b7e18fd326f0f510fecc635d28afa2.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/34b7e1/34b7e18fd326f0f510fecc635d28afa2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|a",
+            "size|depth|2",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor+b.2x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:47+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+b.2x2.openforge.stl",
+            "md5": "cb63ba6b1d89f814f222d51df202b75d",
+            "size": 3511584,
+            "storage_address": "https://objects.openforge.tools/models/cb63ba/cb63ba6b1d89f814f222d51df202b75d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cb63ba/cb63ba6b1d89f814f222d51df202b75d.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cb63ba/cb63ba6b1d89f814f222d51df202b75d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|b",
+            "size|depth|2",
+            "size|width|2",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor+b.4x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:57+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+b.4x2.openforge.stl",
+            "md5": "3da883b85c906d03d4ef8d60929f3a4f",
+            "size": 11007784,
+            "storage_address": "https://objects.openforge.tools/models/3da883/3da883b85c906d03d4ef8d60929f3a4f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3da883/3da883b85c906d03d4ef8d60929f3a4f.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3da883/3da883b85c906d03d4ef8d60929f3a4f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|b",
+            "size|depth|2",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor+c.2x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:49+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+c.2x2.openforge.stl",
+            "md5": "6b8407b56b26e005368afd49f1535287",
+            "size": 6303784,
+            "storage_address": "https://objects.openforge.tools/models/6b8407/6b8407b56b26e005368afd49f1535287.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b8407/6b8407b56b26e005368afd49f1535287.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b8407/6b8407b56b26e005368afd49f1535287.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|c",
+            "size|depth|2",
+            "size|width|2",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor+d.2x2.openforge.stl",
+            "file_modified_at": "2018-11-13T18:03:51+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor+d.2x2.openforge.stl",
+            "md5": "91e191e8945c04fdd6f550de2304842f",
+            "size": 6118384,
+            "storage_address": "https://objects.openforge.tools/models/91e191/91e191e8945c04fdd6f550de2304842f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/91e191/91e191e8945c04fdd6f550de2304842f.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/91e191/91e191e8945c04fdd6f550de2304842f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|d",
+            "size|depth|2",
+            "size|width|2",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%cobble#floor.4x4.openforge.stl",
+            "file_modified_at": "2018-11-13T18:04:03+00:00",
+            "full_name": "tiles/streets/floors/street,cobble/streets%cobble#floor.4x4.openforge.stl",
+            "md5": "f7ffbeaeee5c65ef61337537904ca846",
+            "size": 16660984,
+            "storage_address": "https://objects.openforge.tools/models/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f7ffbe/f7ffbeaeee5c65ef61337537904ca846.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|cobble"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "streets%fan_cobble#floor+a.2x2.openforge.stl",
             "file_modified_at": "2018-11-13T16:21:18+00:00",
             "full_name": "tiles/streets/floors/street,fan_cobble/streets%fan_cobble#floor+a.2x2.openforge.stl",
@@ -6351,354 +6351,6 @@
             ]
         },
         "file_metadata": {
-            "file": "streets%mud#floor,tracks+cross.4x4.openforge.stl",
-            "file_modified_at": "2021-04-30T20:16:52.449847+00:00",
-            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+cross.4x4.openforge.stl",
-            "md5": "6bc4eb4e0eb08d22b3c17fc756b2d6ba",
-            "size": 12041684,
-            "storage_address": "https://objects.openforge.tools/models/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|tracks",
-            "component|tracks|cross",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|mud"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%mud#floor,tracks+straight.2x4.openforge.stl",
-            "file_modified_at": "2020-04-06T01:14:16+00:00",
-            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+straight.2x4.openforge.stl",
-            "md5": "30e483c573339fea42e2ae353fbfd609",
-            "size": 4192884,
-            "storage_address": "https://objects.openforge.tools/models/30e483/30e483c573339fea42e2ae353fbfd609.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/30e483/30e483c573339fea42e2ae353fbfd609.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/30e483/30e483c573339fea42e2ae353fbfd609.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|tracks",
-            "component|tracks|straight",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|mud"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%mud#floor,tracks+straight.4x4.openforge.stl",
-            "file_modified_at": "2020-04-06T01:15:44+00:00",
-            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+straight.4x4.openforge.stl",
-            "md5": "834071ef2a5dfbec33a5bad0cf3ab3e0",
-            "size": 7984984,
-            "storage_address": "https://objects.openforge.tools/models/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|tracks",
-            "component|tracks|straight",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|mud"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%mud#floor,tracks+tee.4x4.openforge.stl",
-            "file_modified_at": "2021-04-30T20:17:16.841624+00:00",
-            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+tee.4x4.openforge.stl",
-            "md5": "ed1a0859140d8bbf3427448a4f08ebfe",
-            "size": 12039884,
-            "storage_address": "https://objects.openforge.tools/models/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|tracks",
-            "component|tracks|tee",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|streets",
-            "texture|streets|mud"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "streets%mud#floor.2x2.openforge.stl",
-            "file_modified_at": "2020-04-06T01:13:45+00:00",
-            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor.2x2.openforge.stl",
-            "md5": "3f4456fbfa7e5d187d9754cb2fc8f3ff",
-            "size": 2013484,
-            "storage_address": "https://objects.openforge.tools/models/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.png"
-            },
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|streets",
-            "texture|streets|mud"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "streets%mud#floor,transition+cobble+a.4x4.openforge.stl",
             "file_modified_at": "2021-05-31T22:41:38.992035+00:00",
             "full_name": "tiles/streets/floors/street,mud+transition/streets%mud#floor,transition+cobble+a.4x4.openforge.stl",
@@ -7075,6 +6727,354 @@
             "shape|square",
             "size|depth|4",
             "size|width|4",
+            "texture|streets",
+            "texture|streets|mud"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%mud#floor,tracks+cross.4x4.openforge.stl",
+            "file_modified_at": "2021-04-30T20:16:52.449847+00:00",
+            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+cross.4x4.openforge.stl",
+            "md5": "6bc4eb4e0eb08d22b3c17fc756b2d6ba",
+            "size": 12041684,
+            "storage_address": "https://objects.openforge.tools/models/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6bc4eb/6bc4eb4e0eb08d22b3c17fc756b2d6ba.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|tracks",
+            "component|tracks|cross",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|mud"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%mud#floor,tracks+straight.2x4.openforge.stl",
+            "file_modified_at": "2020-04-06T01:14:16+00:00",
+            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+straight.2x4.openforge.stl",
+            "md5": "30e483c573339fea42e2ae353fbfd609",
+            "size": 4192884,
+            "storage_address": "https://objects.openforge.tools/models/30e483/30e483c573339fea42e2ae353fbfd609.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/30e483/30e483c573339fea42e2ae353fbfd609.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/30e483/30e483c573339fea42e2ae353fbfd609.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|tracks",
+            "component|tracks|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|2",
+            "texture|streets",
+            "texture|streets|mud"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%mud#floor,tracks+straight.4x4.openforge.stl",
+            "file_modified_at": "2020-04-06T01:15:44+00:00",
+            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+straight.4x4.openforge.stl",
+            "md5": "834071ef2a5dfbec33a5bad0cf3ab3e0",
+            "size": 7984984,
+            "storage_address": "https://objects.openforge.tools/models/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/834071/834071ef2a5dfbec33a5bad0cf3ab3e0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|tracks",
+            "component|tracks|straight",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|mud"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%mud#floor,tracks+tee.4x4.openforge.stl",
+            "file_modified_at": "2021-04-30T20:17:16.841624+00:00",
+            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor,tracks+tee.4x4.openforge.stl",
+            "md5": "ed1a0859140d8bbf3427448a4f08ebfe",
+            "size": 12039884,
+            "storage_address": "https://objects.openforge.tools/models/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ed1a08/ed1a0859140d8bbf3427448a4f08ebfe.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|tracks",
+            "component|tracks|tee",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|streets",
+            "texture|streets|mud"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "streets%mud#floor.2x2.openforge.stl",
+            "file_modified_at": "2020-04-06T01:13:45+00:00",
+            "full_name": "tiles/streets/floors/street,mud/streets%mud#floor.2x2.openforge.stl",
+            "md5": "3f4456fbfa7e5d187d9754cb2fc8f3ff",
+            "size": 2013484,
+            "storage_address": "https://objects.openforge.tools/models/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.png"
+            },
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f4456/3f4456fbfa7e5d187d9754cb2fc8f3ff.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
             "texture|streets",
             "texture|streets|mud"
         ],

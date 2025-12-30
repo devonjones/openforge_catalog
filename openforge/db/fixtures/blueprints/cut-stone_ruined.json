@@ -38,6 +38,270 @@
             ]
         },
         "file_metadata": {
+            "file": "cut-stone+ruined#floor,collapsed_blocks+a.2x2.openforge.stl",
+            "file_modified_at": "2021-03-31T19:27:28.535362+00:00",
+            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+a.2x2.openforge.stl",
+            "md5": "44d8de4765a2922fd062f383d5f15db5",
+            "size": 22885684,
+            "storage_address": "https://objects.openforge.tools/models/44d8de/44d8de4765a2922fd062f383d5f15db5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/44d8de/44d8de4765a2922fd062f383d5f15db5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_blocks",
+            "component|collapsed_blocks|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor,collapsed_blocks+b.2x2.openforge.stl",
+            "file_modified_at": "2021-03-31T19:27:53.281197+00:00",
+            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+b.2x2.openforge.stl",
+            "md5": "80411758723bbaff5f060a649ab9a0a5",
+            "size": 34714984,
+            "storage_address": "https://objects.openforge.tools/models/804117/80411758723bbaff5f060a649ab9a0a5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/804117/80411758723bbaff5f060a649ab9a0a5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_blocks",
+            "component|collapsed_blocks|b",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor,collapsed_blocks+c.2x2.openforge.stl",
+            "file_modified_at": "2021-03-31T19:27:35.311242+00:00",
+            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+c.2x2.openforge.stl",
+            "md5": "c610e42958a0f25a8b0fe8c848f10dcb",
+            "size": 31638284,
+            "storage_address": "https://objects.openforge.tools/models/c610e4/c610e42958a0f25a8b0fe8c848f10dcb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c610e4/c610e42958a0f25a8b0fe8c848f10dcb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_blocks",
+            "component|collapsed_blocks|c",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor,collapsed_blocks+d.2x2.openforge.stl",
+            "file_modified_at": "2021-03-31T19:27:53.652452+00:00",
+            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+d.2x2.openforge.stl",
+            "md5": "c8aebfd49aee14e17d6c9eb8149a4da4",
+            "size": 44527284,
+            "storage_address": "https://objects.openforge.tools/models/c8aebf/c8aebfd49aee14e17d6c9eb8149a4da4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c8aebf/c8aebfd49aee14e17d6c9eb8149a4da4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|collapsed_blocks",
+            "component|collapsed_blocks|d",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "cut-stone+ruined#floor+a.2x2.openforge.stl",
             "file_modified_at": "2021-03-31T19:27:15.211058+00:00",
             "full_name": "tiles/cut-stone+ruined/floors/floor/cut-stone+ruined#floor+a.2x2.openforge.stl",
@@ -704,270 +968,6 @@
         "type": "model"
     },
     {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor,collapsed_blocks+a.2x2.openforge.stl",
-            "file_modified_at": "2021-03-31T19:27:28.535362+00:00",
-            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+a.2x2.openforge.stl",
-            "md5": "44d8de4765a2922fd062f383d5f15db5",
-            "size": 22885684,
-            "storage_address": "https://objects.openforge.tools/models/44d8de/44d8de4765a2922fd062f383d5f15db5.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/44d8de/44d8de4765a2922fd062f383d5f15db5.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|collapsed_blocks",
-            "component|collapsed_blocks|a",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor,collapsed_blocks+b.2x2.openforge.stl",
-            "file_modified_at": "2021-03-31T19:27:53.281197+00:00",
-            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+b.2x2.openforge.stl",
-            "md5": "80411758723bbaff5f060a649ab9a0a5",
-            "size": 34714984,
-            "storage_address": "https://objects.openforge.tools/models/804117/80411758723bbaff5f060a649ab9a0a5.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/804117/80411758723bbaff5f060a649ab9a0a5.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|collapsed_blocks",
-            "component|collapsed_blocks|b",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor,collapsed_blocks+c.2x2.openforge.stl",
-            "file_modified_at": "2021-03-31T19:27:35.311242+00:00",
-            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+c.2x2.openforge.stl",
-            "md5": "c610e42958a0f25a8b0fe8c848f10dcb",
-            "size": 31638284,
-            "storage_address": "https://objects.openforge.tools/models/c610e4/c610e42958a0f25a8b0fe8c848f10dcb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c610e4/c610e42958a0f25a8b0fe8c848f10dcb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|collapsed_blocks",
-            "component|collapsed_blocks|c",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor,collapsed_blocks+d.2x2.openforge.stl",
-            "file_modified_at": "2021-03-31T19:27:53.652452+00:00",
-            "full_name": "tiles/cut-stone+ruined/floors/floor+collapsed_blocks/cut-stone+ruined#floor,collapsed_blocks+d.2x2.openforge.stl",
-            "md5": "c8aebfd49aee14e17d6c9eb8149a4da4",
-            "size": 44527284,
-            "storage_address": "https://objects.openforge.tools/models/c8aebf/c8aebfd49aee14e17d6c9eb8149a4da4.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c8aebf/c8aebfd49aee14e17d6c9eb8149a4da4.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|collapsed_blocks",
-            "component|collapsed_blocks|d",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
         "file_metadata": {
             "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge.stl",
             "file_modified_at": "2025-08-31T19:47:58.702215+00:00",
@@ -1153,131 +1153,6 @@
     },
     {
         "file_metadata": {
-            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
-            "file_modified_at": "2025-08-31T19:48:12.175939+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
-            "md5": "6f25d1107884232c7a00a981b9a5b1e7",
-            "size": 11901284,
-            "storage_address": "https://objects.openforge.tools/models/6f25d1/6f25d1107884232c7a00a981b9a5b1e7.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsed",
-            "component|collapsed|full-low",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
-            "file_modified_at": "2025-08-31T19:52:39.585574+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
-            "md5": "a8f538cc951f07289c97f1d2f39d51aa",
-            "size": 17043784,
-            "storage_address": "https://objects.openforge.tools/models/a8f538/a8f538cc951f07289c97f1d2f39d51aa.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsed",
-            "component|collapsed|full-minimal-full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
-            "file_modified_at": "2025-08-31T19:43:50.460358+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
-            "md5": "a20daa018864f78a94dd97df0ccf7f1f",
-            "size": 15543384,
-            "storage_address": "https://objects.openforge.tools/models/a20daa/a20daa018864f78a94dd97df0ccf7f1f.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsed",
-            "component|collapsed|full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
-            "file_modified_at": "2025-08-31T19:56:21.490561+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
-            "md5": "3a451abfcbb969d81d1a8ef60b0b73a3",
-            "size": 15991084,
-            "storage_address": "https://objects.openforge.tools/models/3a451a/3a451abfcbb969d81d1a8ef60b0b73a3.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsed",
-            "component|collapsed|low-full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
-            "file_modified_at": "2025-08-31T19:58:56.908540+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
-            "md5": "e60e0dfee06428cf65111bb2930572a5",
-            "size": 13132484,
-            "storage_address": "https://objects.openforge.tools/models/e60e0d/e60e0dfee06428cf65111bb2930572a5.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsed",
-            "component|collapsed|low",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
             "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side+dragonlock.stl",
             "file_modified_at": "2025-08-31T19:48:27.258874+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side+dragonlock/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side+dragonlock.stl",
@@ -1393,6 +1268,131 @@
             "connection|openforge",
             "connection|side",
             "connection|side|dragonlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:48:12.175939+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-low.2x2.openforge,side.stl",
+            "md5": "6f25d1107884232c7a00a981b9a5b1e7",
+            "size": 11901284,
+            "storage_address": "https://objects.openforge.tools/models/6f25d1/6f25d1107884232c7a00a981b9a5b1e7.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:52:39.585574+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full-minimal-full.2x2.openforge,side.stl",
+            "md5": "a8f538cc951f07289c97f1d2f39d51aa",
+            "size": 17043784,
+            "storage_address": "https://objects.openforge.tools/models/a8f538/a8f538cc951f07289c97f1d2f39d51aa.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full-minimal-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:43:50.460358+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+full.2x2.openforge,side.stl",
+            "md5": "a20daa018864f78a94dd97df0ccf7f1f",
+            "size": 15543384,
+            "storage_address": "https://objects.openforge.tools/models/a20daa/a20daa018864f78a94dd97df0ccf7f1f.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:56:21.490561+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low-full.2x2.openforge,side.stl",
+            "md5": "3a451abfcbb969d81d1a8ef60b0b73a3",
+            "size": 15991084,
+            "storage_address": "https://objects.openforge.tools/models/3a451a/3a451abfcbb969d81d1a8ef60b0b73a3.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
+            "file_modified_at": "2025-08-31T19:58:56.908540+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/corner/openforge/side/cut-stone+ruined#corner,collapsed+low.2x2.openforge,side.stl",
+            "md5": "e60e0dfee06428cf65111bb2930572a5",
+            "size": 13132484,
+            "storage_address": "https://objects.openforge.tools/models/e60e0d/e60e0dfee06428cf65111bb2930572a5.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|corner",
             "size|depth|2",
             "size|width|2",
@@ -1712,29 +1712,6 @@
     },
     {
         "file_metadata": {
-            "file": "cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
-            "file_modified_at": "2025-08-31T15:52:36.543889+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor/cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
-            "md5": "bf5d79a7579c687a80fe281781fa02a4",
-            "size": 48783484,
-            "storage_address": "https://objects.openforge.tools/models/bf5d79/bf5d79a7579c687a80fe281781fa02a4.stl"
-        },
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|corner",
-            "shape|floor|s2w",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
             "file": "cut-stone+ruined#floor+s2w+corner,collapsing_blocks+a.2x2.openforge.stl",
             "file_modified_at": "2025-08-31T15:59:57.510439+00:00",
             "full_name": "tiles/cut-stone+ruined/s2w/corner/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+corner,collapsing_blocks+a.2x2.openforge.stl",
@@ -1822,6 +1799,29 @@
             "build|s2w",
             "component|collapsing_blocks",
             "component|collapsing_blocks|d",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|corner",
+            "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
+            "file_modified_at": "2025-08-31T15:52:36.543889+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/corner/floor/cut-stone+ruined#floor+s2w+corner.2x2.openforge.stl",
+            "md5": "bf5d79a7579c687a80fe281781fa02a4",
+            "size": 48783484,
+            "storage_address": "https://objects.openforge.tools/models/bf5d79/bf5d79a7579c687a80fe281781fa02a4.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "build|s2w",
             "connection|openforge",
             "shape|floor",
             "shape|floor|corner",
@@ -1946,6 +1946,134 @@
             "shape|floor|d",
             "shape|floor|internal_corner",
             "shape|floor|s2w",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
+            "file_modified_at": "2025-04-29T23:00:09.423874+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
+            "md5": "37559ae88677cd3914a8d2e059c022a1",
+            "size": 8704684,
+            "storage_address": "https://objects.openforge.tools/models/37559a/37559ae88677cd3914a8d2e059c022a1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/37559a/37559ae88677cd3914a8d2e059c022a1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|a",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
+            "file_modified_at": "2025-04-29T23:00:25.148792+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
+            "md5": "cbea0b4b41e85abfdac7f28c95dc96a2",
+            "size": 8250284,
+            "storage_address": "https://objects.openforge.tools/models/cbea0b/cbea0b4b41e85abfdac7f28c95dc96a2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cbea0b/cbea0b4b41e85abfdac7f28c95dc96a2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|b",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
+            "file_modified_at": "2025-04-29T23:00:39.832794+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
+            "md5": "37dc06c0eeb8d57d64356fe74522c789",
+            "size": 8250884,
+            "storage_address": "https://objects.openforge.tools/models/37dc06/37dc06c0eeb8d57d64356fe74522c789.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/37dc06/37dc06c0eeb8d57d64356fe74522c789.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|c",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
+            "file_modified_at": "2025-04-29T23:00:57.482795+00:00",
+            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
+            "md5": "65b0f94b02bdc23775d41f9b4b99a304",
+            "size": 8084084,
+            "storage_address": "https://objects.openforge.tools/models/65b0f9/65b0f94b02bdc23775d41f9b4b99a304.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/65b0f9/65b0f94b02bdc23775d41f9b4b99a304.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|s2w",
+            "component|collapsing_blocks",
+            "component|collapsing_blocks|d",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|s2w",
+            "shape|floor|wall",
+            "shape|wall",
             "size|depth|2",
             "size|width|2",
             "texture|cut-stone",
@@ -2188,134 +2316,6 @@
             "shape|wall",
             "size|depth|4",
             "size|width|4",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
-            "file_modified_at": "2025-04-29T23:00:09.423874+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+a.2x2.openforge.stl",
-            "md5": "37559ae88677cd3914a8d2e059c022a1",
-            "size": 8704684,
-            "storage_address": "https://objects.openforge.tools/models/37559a/37559ae88677cd3914a8d2e059c022a1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/37559a/37559ae88677cd3914a8d2e059c022a1.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsing_blocks",
-            "component|collapsing_blocks|a",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "shape|floor|wall",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
-            "file_modified_at": "2025-04-29T23:00:25.148792+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+b.2x2.openforge.stl",
-            "md5": "cbea0b4b41e85abfdac7f28c95dc96a2",
-            "size": 8250284,
-            "storage_address": "https://objects.openforge.tools/models/cbea0b/cbea0b4b41e85abfdac7f28c95dc96a2.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cbea0b/cbea0b4b41e85abfdac7f28c95dc96a2.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsing_blocks",
-            "component|collapsing_blocks|b",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "shape|floor|wall",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
-            "file_modified_at": "2025-04-29T23:00:39.832794+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+c.2x2.openforge.stl",
-            "md5": "37dc06c0eeb8d57d64356fe74522c789",
-            "size": 8250884,
-            "storage_address": "https://objects.openforge.tools/models/37dc06/37dc06c0eeb8d57d64356fe74522c789.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/37dc06/37dc06c0eeb8d57d64356fe74522c789.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsing_blocks",
-            "component|collapsing_blocks|c",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "shape|floor|wall",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cut-stone+ruined#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
-            "file_modified_at": "2025-04-29T23:00:57.482795+00:00",
-            "full_name": "tiles/cut-stone+ruined/s2w/wall/floor+collapsing_blocks/cut-stone+ruined#floor+s2w+wall,collapsing_blocks+d.2x2.openforge.stl",
-            "md5": "65b0f94b02bdc23775d41f9b4b99a304",
-            "size": 8084084,
-            "storage_address": "https://objects.openforge.tools/models/65b0f9/65b0f94b02bdc23775d41f9b4b99a304.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/65b0f9/65b0f94b02bdc23775d41f9b4b99a304.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|s2w",
-            "component|collapsing_blocks",
-            "component|collapsing_blocks|d",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|s2w",
-            "shape|floor|wall",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|2",
             "texture|cut-stone",
             "texture|cut-stone|ruined"
         ],
@@ -2844,462 +2844,6 @@
             ]
         },
         "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+full-low.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:10:22.098644+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full-low.A.openforge,side.stl",
-            "md5": "674d5c156729904dad224b3b94ff03f9",
-            "size": 18354784,
-            "storage_address": "https://objects.openforge.tools/models/674d5c/674d5c156729904dad224b3b94ff03f9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/674d5c/674d5c156729904dad224b3b94ff03f9.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|full-low",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+full-minimal.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:10:05.727808+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full-minimal.A.openforge,side.stl",
-            "md5": "0f05fc1d9d65a86b1b81018d20bbb209",
-            "size": 17185584,
-            "storage_address": "https://objects.openforge.tools/models/0f05fc/0f05fc1d9d65a86b1b81018d20bbb209.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/0f05fc/0f05fc1d9d65a86b1b81018d20bbb209.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|full-minimal",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+full.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:09:47.957688+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full.A.openforge,side.stl",
-            "md5": "3fcf17e365b7366a2d10af8b3ed1d205",
-            "size": 21127734,
-            "storage_address": "https://objects.openforge.tools/models/3fcf17/3fcf17e365b7366a2d10af8b3ed1d205.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3fcf17/3fcf17e365b7366a2d10af8b3ed1d205.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+low-full.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:10:57.456998+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low-full.A.openforge,side.stl",
-            "md5": "456cbaec78fa00d49ef5a8c4a09b08f5",
-            "size": 18332784,
-            "storage_address": "https://objects.openforge.tools/models/456cba/456cbaec78fa00d49ef5a8c4a09b08f5.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/456cba/456cbaec78fa00d49ef5a8c4a09b08f5.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|low-full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+low-minimal.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:11:15.538732+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low-minimal.A.openforge,side.stl",
-            "md5": "639885eb39eddb532ffde5e93fe98b22",
-            "size": 12998584,
-            "storage_address": "https://objects.openforge.tools/models/639885/639885eb39eddb532ffde5e93fe98b22.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/639885/639885eb39eddb532ffde5e93fe98b22.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|low-minimal",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+low.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:10:35.633280+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low.A.openforge,side.stl",
-            "md5": "137b728a7c913b3f6098fe03db985cc1",
-            "size": 14121434,
-            "storage_address": "https://objects.openforge.tools/models/137b72/137b728a7c913b3f6098fe03db985cc1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/137b72/137b728a7c913b3f6098fe03db985cc1.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|low",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+minimal-full.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:11:50.558425+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+minimal-full.A.openforge,side.stl",
-            "md5": "a5ddcf620fcd0079076806963848578e",
-            "size": 16828634,
-            "storage_address": "https://objects.openforge.tools/models/a5ddcf/a5ddcf620fcd0079076806963848578e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a5ddcf/a5ddcf620fcd0079076806963848578e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|minimal-full",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cut-stone+ruined#wall,collapsed+minimal-low.A.openforge,side.stl",
-            "file_modified_at": "2025-04-29T19:12:07.384584+00:00",
-            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+minimal-low.A.openforge,side.stl",
-            "md5": "5a367dbf3be3374a0729f2c81bb21b11",
-            "size": 13221234,
-            "storage_address": "https://objects.openforge.tools/models/5a367d/5a367dbf3be3374a0729f2c81bb21b11.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/5a367d/5a367dbf3be3374a0729f2c81bb21b11.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|collapsed",
-            "component|collapsed|minimal-low",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|cut-stone",
-            "texture|cut-stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "cut-stone+ruined#wall,collapsed+full-low.A.openforge,side+dragonlock.stl",
             "file_modified_at": "2025-04-29T19:13:53.408097+00:00",
             "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side+dragonlock/cut-stone+ruined#wall,collapsed+full-low.A.openforge,side+dragonlock.stl",
@@ -3720,6 +3264,462 @@
             "connection|openforge",
             "connection|side",
             "connection|side|dragonlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+full-low.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:10:22.098644+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full-low.A.openforge,side.stl",
+            "md5": "674d5c156729904dad224b3b94ff03f9",
+            "size": 18354784,
+            "storage_address": "https://objects.openforge.tools/models/674d5c/674d5c156729904dad224b3b94ff03f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/674d5c/674d5c156729904dad224b3b94ff03f9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|full-low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+full-minimal.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:10:05.727808+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full-minimal.A.openforge,side.stl",
+            "md5": "0f05fc1d9d65a86b1b81018d20bbb209",
+            "size": 17185584,
+            "storage_address": "https://objects.openforge.tools/models/0f05fc/0f05fc1d9d65a86b1b81018d20bbb209.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0f05fc/0f05fc1d9d65a86b1b81018d20bbb209.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|full-minimal",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+full.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:09:47.957688+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+full.A.openforge,side.stl",
+            "md5": "3fcf17e365b7366a2d10af8b3ed1d205",
+            "size": 21127734,
+            "storage_address": "https://objects.openforge.tools/models/3fcf17/3fcf17e365b7366a2d10af8b3ed1d205.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3fcf17/3fcf17e365b7366a2d10af8b3ed1d205.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+low-full.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:10:57.456998+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low-full.A.openforge,side.stl",
+            "md5": "456cbaec78fa00d49ef5a8c4a09b08f5",
+            "size": 18332784,
+            "storage_address": "https://objects.openforge.tools/models/456cba/456cbaec78fa00d49ef5a8c4a09b08f5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/456cba/456cbaec78fa00d49ef5a8c4a09b08f5.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|low-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+low-minimal.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:11:15.538732+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low-minimal.A.openforge,side.stl",
+            "md5": "639885eb39eddb532ffde5e93fe98b22",
+            "size": 12998584,
+            "storage_address": "https://objects.openforge.tools/models/639885/639885eb39eddb532ffde5e93fe98b22.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/639885/639885eb39eddb532ffde5e93fe98b22.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|low-minimal",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+low.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:10:35.633280+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+low.A.openforge,side.stl",
+            "md5": "137b728a7c913b3f6098fe03db985cc1",
+            "size": 14121434,
+            "storage_address": "https://objects.openforge.tools/models/137b72/137b728a7c913b3f6098fe03db985cc1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/137b72/137b728a7c913b3f6098fe03db985cc1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+minimal-full.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:11:50.558425+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+minimal-full.A.openforge,side.stl",
+            "md5": "a5ddcf620fcd0079076806963848578e",
+            "size": 16828634,
+            "storage_address": "https://objects.openforge.tools/models/a5ddcf/a5ddcf620fcd0079076806963848578e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a5ddcf/a5ddcf620fcd0079076806963848578e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|minimal-full",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|cut-stone",
+            "texture|cut-stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cut-stone+ruined#wall,collapsed+minimal-low.A.openforge,side.stl",
+            "file_modified_at": "2025-04-29T19:12:07.384584+00:00",
+            "full_name": "tiles/cut-stone+ruined/separate_wall/wall/openforge/side/cut-stone+ruined#wall,collapsed+minimal-low.A.openforge,side.stl",
+            "md5": "5a367dbf3be3374a0729f2c81bb21b11",
+            "size": 13221234,
+            "storage_address": "https://objects.openforge.tools/models/5a367d/5a367dbf3be3374a0729f2c81bb21b11.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5a367d/5a367dbf3be3374a0729f2c81bb21b11.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|collapsed",
+            "component|collapsed|minimal-low",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|wall",
             "size|openlock|A",
             "size|width|2",
