@@ -70,7 +70,16 @@ def _upload_sprite_to_r2(ctx, sprite_path, stl_file, verbose):
         sys.stderr.write("Uploading sprite sheet to R2...\n")
 
     try:
-        config = dict(os.environ)
+        config = {
+            key: os.environ.get(key)
+            for key in [
+                "CLOUDFLARE_ENDPOINT",
+                "AWS_ACCESS_KEY_ID",
+                "AWS_SECRET_ACCESS_KEY",
+                "FILE_DOMAIN",
+                "S3_BUCKET_NAME",
+            ]
+        }
         s3_client = get_s3_client(config)
 
         # Calculate MD5 for the STL file
