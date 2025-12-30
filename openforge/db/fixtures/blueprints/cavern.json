@@ -1220,6 +1220,70 @@
     },
     {
         "file_metadata": {
+            "file": "cavern%volcanic#corner.IL+corner,270\u00b0.openforge.stl",
+            "file_modified_at": "2018-11-29T04:44:11+00:00",
+            "full_name": "tiles/cavern/volcanic/thick_wall/corner/cavern%volcanic#corner.IL+corner,270\u00b0.openforge.stl",
+            "md5": "d027ca44d4f33506e2080f8ef390e0c4",
+            "size": 5696784,
+            "storage_address": "https://objects.openforge.tools/models/d027ca/d027ca44d4f33506e2080f8ef390e0c4.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d027ca/d027ca44d4f33506e2080f8ef390e0c4.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|convex",
+            "shape|square",
+            "size|angle|270",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cavern",
+            "texture|cavern|volcanic"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cavern%volcanic#corner.IL+corner,90\u00b0.openforge.stl",
+            "file_modified_at": "2018-11-29T04:43:56+00:00",
+            "full_name": "tiles/cavern/volcanic/thick_wall/corner/cavern%volcanic#corner.IL+corner,90\u00b0.openforge.stl",
+            "md5": "0d94bac571a622f8f45c283b818a12d6",
+            "size": 7128784,
+            "storage_address": "https://objects.openforge.tools/models/0d94ba/0d94bac571a622f8f45c283b818a12d6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0d94ba/0d94bac571a622f8f45c283b818a12d6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "connection|openforge",
+            "shape|corner",
+            "shape|corner|concave",
+            "shape|square",
+            "size|angle|90",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cavern",
+            "texture|cavern|volcanic"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "cavern%volcanic#corner.corner,120\u00b0.openforge.stl",
             "file_modified_at": "2018-12-06T15:32:24+00:00",
             "full_name": "tiles/cavern/volcanic/thick_wall/corner/cavern%volcanic#corner.corner,120\u00b0.openforge.stl",
@@ -1328,23 +1392,25 @@
     },
     {
         "file_metadata": {
-            "file": "cavern%volcanic#corner.IL+corner,270\u00b0.openforge.stl",
-            "file_modified_at": "2018-11-29T04:44:11+00:00",
-            "full_name": "tiles/cavern/volcanic/thick_wall/corner/cavern%volcanic#corner.IL+corner,270\u00b0.openforge.stl",
-            "md5": "d027ca44d4f33506e2080f8ef390e0c4",
-            "size": 5696784,
-            "storage_address": "https://objects.openforge.tools/models/d027ca/d027ca44d4f33506e2080f8ef390e0c4.stl"
+            "file": "cavern%volcanic#corner.IL+corner,270\u00b0.openforge,side.stl",
+            "file_modified_at": "2018-11-29T04:53:57+00:00",
+            "full_name": "tiles/cavern/volcanic/thick_wall/corner/side/cavern%volcanic#corner.IL+corner,270\u00b0.openforge,side.stl",
+            "md5": "b508ac5c31f45c82896c92853530160e",
+            "size": 5439884,
+            "storage_address": "https://objects.openforge.tools/models/b508ac/b508ac5c31f45c82896c92853530160e.stl"
         },
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d027ca/d027ca44d4f33506e2080f8ef390e0c4.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/b508ac/b508ac5c31f45c82896c92853530160e.png"
             }
         ],
         "metadata": false,
         "tags": [
             "build|thick wall",
             "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|corner",
             "shape|corner|convex",
             "shape|square",
@@ -1360,23 +1426,25 @@
     },
     {
         "file_metadata": {
-            "file": "cavern%volcanic#corner.IL+corner,90\u00b0.openforge.stl",
-            "file_modified_at": "2018-11-29T04:43:56+00:00",
-            "full_name": "tiles/cavern/volcanic/thick_wall/corner/cavern%volcanic#corner.IL+corner,90\u00b0.openforge.stl",
-            "md5": "0d94bac571a622f8f45c283b818a12d6",
-            "size": 7128784,
-            "storage_address": "https://objects.openforge.tools/models/0d94ba/0d94bac571a622f8f45c283b818a12d6.stl"
+            "file": "cavern%volcanic#corner.IL+corner,90\u00b0.openforge,side.stl",
+            "file_modified_at": "2018-11-29T05:01:27+00:00",
+            "full_name": "tiles/cavern/volcanic/thick_wall/corner/side/cavern%volcanic#corner.IL+corner,90\u00b0.openforge,side.stl",
+            "md5": "232b0f296e46b228274f2d93a21548b8",
+            "size": 6917984,
+            "storage_address": "https://objects.openforge.tools/models/232b0f/232b0f296e46b228274f2d93a21548b8.stl"
         },
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/0d94ba/0d94bac571a622f8f45c283b818a12d6.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/232b0f/232b0f296e46b228274f2d93a21548b8.png"
             }
         ],
         "metadata": false,
         "tags": [
             "build|thick wall",
             "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|corner",
             "shape|corner|concave",
             "shape|square",
@@ -1501,74 +1569,6 @@
             "shape|corner",
             "shape|hex",
             "size|angle|270",
-            "texture|cavern",
-            "texture|cavern|volcanic"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cavern%volcanic#corner.IL+corner,270\u00b0.openforge,side.stl",
-            "file_modified_at": "2018-11-29T04:53:57+00:00",
-            "full_name": "tiles/cavern/volcanic/thick_wall/corner/side/cavern%volcanic#corner.IL+corner,270\u00b0.openforge,side.stl",
-            "md5": "b508ac5c31f45c82896c92853530160e",
-            "size": 5439884,
-            "storage_address": "https://objects.openforge.tools/models/b508ac/b508ac5c31f45c82896c92853530160e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b508ac/b508ac5c31f45c82896c92853530160e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|convex",
-            "shape|square",
-            "size|angle|270",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cavern",
-            "texture|cavern|volcanic"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cavern%volcanic#corner.IL+corner,90\u00b0.openforge,side.stl",
-            "file_modified_at": "2018-11-29T05:01:27+00:00",
-            "full_name": "tiles/cavern/volcanic/thick_wall/corner/side/cavern%volcanic#corner.IL+corner,90\u00b0.openforge,side.stl",
-            "md5": "232b0f296e46b228274f2d93a21548b8",
-            "size": 6917984,
-            "storage_address": "https://objects.openforge.tools/models/232b0f/232b0f296e46b228274f2d93a21548b8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/232b0f/232b0f296e46b228274f2d93a21548b8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|concave",
-            "shape|square",
-            "size|angle|90",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
             "texture|cavern",
             "texture|cavern|volcanic"
         ],

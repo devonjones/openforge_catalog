@@ -1,5 +1,1053 @@
 [
     {
+        "file_metadata": {
+            "file": "brazier+large,base.stl",
+            "file_modified_at": "2019-06-27T04:24:02+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/brazier+large,base.stl",
+            "md5": "70eb8893f6e6a4021ba6e569577ee9f9",
+            "size": 14173384,
+            "storage_address": "https://objects.openforge.tools/models/70eb88/70eb8893f6e6a4021ba6e569577ee9f9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/70eb88/70eb8893f6e6a4021ba6e569577ee9f9.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|brazier|base",
+            "part|brazier",
+            "size|large",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "brazier+large.stl",
+            "file_modified_at": "2017-08-12T22:25:41+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/brazier+large.stl",
+            "md5": "397f5442fd9277d321c795f9c8f9a50b",
+            "size": 10267084,
+            "storage_address": "https://objects.openforge.tools/models/397f54/397f5442fd9277d321c795f9c8f9a50b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/397f54/397f5442fd9277d321c795f9c8f9a50b.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|brazier|top",
+            "part|brazier",
+            "size|large",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor,brazier+large.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T04:58:19+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/rough_stone#floor,brazier+large.2x2.openforge.stl",
+            "md5": "8e689cc6e67c220a3b6620886e34d2d8",
+            "size": 7303184,
+            "storage_address": "https://objects.openforge.tools/models/8e689c/8e689cc6e67c220a3b6620886e34d2d8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8e689c/8e689cc6e67c220a3b6620886e34d2d8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|brazier",
+            "component|brazier|large",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "brazier+small.stl",
+            "file_modified_at": "2019-06-27T22:24:12+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+small/brazier+small.stl",
+            "md5": "9ed727980bd094173cb124909f32dc21",
+            "size": 4829284,
+            "storage_address": "https://objects.openforge.tools/models/9ed727/9ed727980bd094173cb124909f32dc21.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9ed727/9ed727980bd094173cb124909f32dc21.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "interface|brazier",
+            "part|brazier",
+            "size|small",
+            "texture|stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor,brazier+small.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T22:29:22+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+small/rough_stone+ruined#floor,brazier+small.2x2.openforge.stl",
+            "md5": "969e2af5e149f509da0fb62f766352f7",
+            "size": 18449384,
+            "storage_address": "https://objects.openforge.tools/models/969e2a/969e2af5e149f509da0fb62f766352f7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/969e2a/969e2af5e149f509da0fb62f766352f7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|brazier",
+            "component|brazier|small",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor,bubbling_pool.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T22:29:02+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+bubbling_pool/rough_stone+ruined#floor,bubbling_pool.2x2.openforge.stl",
+            "md5": "53e31c62f01ffc6377321c7688995e69",
+            "size": 20028984,
+            "storage_address": "https://objects.openforge.tools/models/53e31c/53e31c62f01ffc6377321c7688995e69.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/53e31c/53e31c62f01ffc6377321c7688995e69.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|bubbling_pool",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor,bubbling_pool.4x4.openforge.stl",
+            "file_modified_at": "2019-06-27T22:30:20+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+bubbling_pool/rough_stone+ruined#floor,bubbling_pool.4x4.openforge.stl",
+            "md5": "e1ddcd85a9954002fa9da26f103f8efa",
+            "size": 46761884,
+            "storage_address": "https://objects.openforge.tools/models/e1ddcd/e1ddcd85a9954002fa9da26f103f8efa.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e1ddcd/e1ddcd85a9954002fa9da26f103f8efa.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|bubbling_pool",
+            "connection|openforge",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+air_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-25T23:41:53+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+air_symbol.2x2.openforge.stl",
+            "md5": "82fe65deabcb28ae77f7371d507d8fee",
+            "size": 7009584,
+            "storage_address": "https://objects.openforge.tools/models/82fe65/82fe65deabcb28ae77f7371d507d8fee.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/82fe65/82fe65deabcb28ae77f7371d507d8fee.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|air",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+air_symbol.4x4.openforge.stl",
+            "file_modified_at": "2019-06-25T23:42:21+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+air_symbol.4x4.openforge.stl",
+            "md5": "ba45ba2c582539d5d854a5ad23c2f808",
+            "size": 25243684,
+            "storage_address": "https://objects.openforge.tools/models/ba45ba/ba45ba2c582539d5d854a5ad23c2f808.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ba45ba/ba45ba2c582539d5d854a5ad23c2f808.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|air",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+beezlebub_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-26T00:58:16+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+beezlebub_symbol.2x2.openforge.stl",
+            "md5": "1cd048f71e2fd8c86e0800c2d4480469",
+            "size": 9479334,
+            "storage_address": "https://objects.openforge.tools/models/1cd048/1cd048f71e2fd8c86e0800c2d4480469.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1cd048/1cd048f71e2fd8c86e0800c2d4480469.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|beezlebub",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+earth_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-26T22:29:40+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+earth_symbol.2x2.openforge.stl",
+            "md5": "a58d8bbf434f2f9c2ed51f079f83f133",
+            "size": 6620584,
+            "storage_address": "https://objects.openforge.tools/models/a58d8b/a58d8bbf434f2f9c2ed51f079f83f133.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a58d8b/a58d8bbf434f2f9c2ed51f079f83f133.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|earth",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+earth_symbol.4x4.openforge.stl",
+            "file_modified_at": "2019-06-26T22:30:01+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+earth_symbol.4x4.openforge.stl",
+            "md5": "7699baae1b561ec513ed1e2edfd2a0dd",
+            "size": 22699384,
+            "storage_address": "https://objects.openforge.tools/models/7699ba/7699baae1b561ec513ed1e2edfd2a0dd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7699ba/7699baae1b561ec513ed1e2edfd2a0dd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|earth",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+fire_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T03:44:52+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+fire_symbol.2x2.openforge.stl",
+            "md5": "fd13095be14f369dba51a875c167f957",
+            "size": 9521284,
+            "storage_address": "https://objects.openforge.tools/models/fd1309/fd13095be14f369dba51a875c167f957.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fd1309/fd13095be14f369dba51a875c167f957.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|fire",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+fire_symbol.4x4.openforge.stl",
+            "file_modified_at": "2019-06-27T03:45:56+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+fire_symbol.4x4.openforge.stl",
+            "md5": "9b25e6d76f0706d0c6dd3ade85ec2deb",
+            "size": 33963684,
+            "storage_address": "https://objects.openforge.tools/models/9b25e6/9b25e6d76f0706d0c6dd3ade85ec2deb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9b25e6/9b25e6d76f0706d0c6dd3ade85ec2deb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|fire",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+lamashtu_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T22:29:40+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+lamashtu_symbol.2x2.openforge.stl",
+            "md5": "082968f74bbd36af109f253b25e1c203",
+            "size": 17414784,
+            "storage_address": "https://objects.openforge.tools/models/082968/082968f74bbd36af109f253b25e1c203.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/082968/082968f74bbd36af109f253b25e1c203.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|lamashtu",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+spirit_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-01-25T17:27:10+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+spirit_symbol.2x2.openforge.stl",
+            "md5": "2ebba62d9782c8bec93b41baec111957",
+            "size": 7503884,
+            "storage_address": "https://objects.openforge.tools/models/2ebba6/2ebba62d9782c8bec93b41baec111957.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2ebba6/2ebba62d9782c8bec93b41baec111957.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|spirit",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+water_symbol.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T19:40:54+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+water_symbol.2x2.openforge.stl",
+            "md5": "9acc2739cfc647c2db3029ef5c36ec9a",
+            "size": 6037084,
+            "storage_address": "https://objects.openforge.tools/models/9acc27/9acc2739cfc647c2db3029ef5c36ec9a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9acc27/9acc2739cfc647c2db3029ef5c36ec9a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|water",
+            "shape|floor",
+            "shape|square",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone+ruined#floor+water_symbol.4x4.openforge.stl",
+            "file_modified_at": "2019-06-27T19:41:06+00:00",
+            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+water_symbol.4x4.openforge.stl",
+            "md5": "b88a6c1a83bc856ff4dd1462f7fa8d99",
+            "size": 19728784,
+            "storage_address": "https://objects.openforge.tools/models/b88a6c/b88a6c1a83bc856ff4dd1462f7fa8d99.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/b88a6c/b88a6c1a83bc856ff4dd1462f7fa8d99.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "decoration|symbol|water",
+            "shape|floor",
+            "shape|square",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
         "config": {
             "parts": [
                 {
@@ -1506,1054 +2554,6 @@
             "shape|wall",
             "size|openlock|AS",
             "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "brazier+large,base.stl",
-            "file_modified_at": "2019-06-27T04:24:02+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/brazier+large,base.stl",
-            "md5": "70eb8893f6e6a4021ba6e569577ee9f9",
-            "size": 14173384,
-            "storage_address": "https://objects.openforge.tools/models/70eb88/70eb8893f6e6a4021ba6e569577ee9f9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/70eb88/70eb8893f6e6a4021ba6e569577ee9f9.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|brazier|base",
-            "part|brazier",
-            "size|large",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "brazier+large.stl",
-            "file_modified_at": "2017-08-12T22:25:41+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/brazier+large.stl",
-            "md5": "397f5442fd9277d321c795f9c8f9a50b",
-            "size": 10267084,
-            "storage_address": "https://objects.openforge.tools/models/397f54/397f5442fd9277d321c795f9c8f9a50b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/397f54/397f5442fd9277d321c795f9c8f9a50b.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|brazier|top",
-            "part|brazier",
-            "size|large",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor,brazier+large.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T04:58:19+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+large/rough_stone#floor,brazier+large.2x2.openforge.stl",
-            "md5": "8e689cc6e67c220a3b6620886e34d2d8",
-            "size": 7303184,
-            "storage_address": "https://objects.openforge.tools/models/8e689c/8e689cc6e67c220a3b6620886e34d2d8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/8e689c/8e689cc6e67c220a3b6620886e34d2d8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|brazier",
-            "component|brazier|large",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "brazier+small.stl",
-            "file_modified_at": "2019-06-27T22:24:12+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+small/brazier+small.stl",
-            "md5": "9ed727980bd094173cb124909f32dc21",
-            "size": 4829284,
-            "storage_address": "https://objects.openforge.tools/models/9ed727/9ed727980bd094173cb124909f32dc21.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9ed727/9ed727980bd094173cb124909f32dc21.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "interface|brazier",
-            "part|brazier",
-            "size|small",
-            "texture|stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor,brazier+small.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T22:29:22+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+brazier+small/rough_stone+ruined#floor,brazier+small.2x2.openforge.stl",
-            "md5": "969e2af5e149f509da0fb62f766352f7",
-            "size": 18449384,
-            "storage_address": "https://objects.openforge.tools/models/969e2a/969e2af5e149f509da0fb62f766352f7.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/969e2a/969e2af5e149f509da0fb62f766352f7.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|brazier",
-            "component|brazier|small",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor,bubbling_pool.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T22:29:02+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+bubbling_pool/rough_stone+ruined#floor,bubbling_pool.2x2.openforge.stl",
-            "md5": "53e31c62f01ffc6377321c7688995e69",
-            "size": 20028984,
-            "storage_address": "https://objects.openforge.tools/models/53e31c/53e31c62f01ffc6377321c7688995e69.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/53e31c/53e31c62f01ffc6377321c7688995e69.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|bubbling_pool",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor,bubbling_pool.4x4.openforge.stl",
-            "file_modified_at": "2019-06-27T22:30:20+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+bubbling_pool/rough_stone+ruined#floor,bubbling_pool.4x4.openforge.stl",
-            "md5": "e1ddcd85a9954002fa9da26f103f8efa",
-            "size": 46761884,
-            "storage_address": "https://objects.openforge.tools/models/e1ddcd/e1ddcd85a9954002fa9da26f103f8efa.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/e1ddcd/e1ddcd85a9954002fa9da26f103f8efa.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|bubbling_pool",
-            "connection|openforge",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+air_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-25T23:41:53+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+air_symbol.2x2.openforge.stl",
-            "md5": "82fe65deabcb28ae77f7371d507d8fee",
-            "size": 7009584,
-            "storage_address": "https://objects.openforge.tools/models/82fe65/82fe65deabcb28ae77f7371d507d8fee.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/82fe65/82fe65deabcb28ae77f7371d507d8fee.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|air",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+air_symbol.4x4.openforge.stl",
-            "file_modified_at": "2019-06-25T23:42:21+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+air_symbol.4x4.openforge.stl",
-            "md5": "ba45ba2c582539d5d854a5ad23c2f808",
-            "size": 25243684,
-            "storage_address": "https://objects.openforge.tools/models/ba45ba/ba45ba2c582539d5d854a5ad23c2f808.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/ba45ba/ba45ba2c582539d5d854a5ad23c2f808.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|air",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+beezlebub_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-26T00:58:16+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+beezlebub_symbol.2x2.openforge.stl",
-            "md5": "1cd048f71e2fd8c86e0800c2d4480469",
-            "size": 9479334,
-            "storage_address": "https://objects.openforge.tools/models/1cd048/1cd048f71e2fd8c86e0800c2d4480469.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/1cd048/1cd048f71e2fd8c86e0800c2d4480469.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|beezlebub",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+earth_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-26T22:29:40+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+earth_symbol.2x2.openforge.stl",
-            "md5": "a58d8bbf434f2f9c2ed51f079f83f133",
-            "size": 6620584,
-            "storage_address": "https://objects.openforge.tools/models/a58d8b/a58d8bbf434f2f9c2ed51f079f83f133.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a58d8b/a58d8bbf434f2f9c2ed51f079f83f133.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|earth",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+earth_symbol.4x4.openforge.stl",
-            "file_modified_at": "2019-06-26T22:30:01+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+earth_symbol.4x4.openforge.stl",
-            "md5": "7699baae1b561ec513ed1e2edfd2a0dd",
-            "size": 22699384,
-            "storage_address": "https://objects.openforge.tools/models/7699ba/7699baae1b561ec513ed1e2edfd2a0dd.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7699ba/7699baae1b561ec513ed1e2edfd2a0dd.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|earth",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+fire_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T03:44:52+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+fire_symbol.2x2.openforge.stl",
-            "md5": "fd13095be14f369dba51a875c167f957",
-            "size": 9521284,
-            "storage_address": "https://objects.openforge.tools/models/fd1309/fd13095be14f369dba51a875c167f957.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/fd1309/fd13095be14f369dba51a875c167f957.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|fire",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+fire_symbol.4x4.openforge.stl",
-            "file_modified_at": "2019-06-27T03:45:56+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+fire_symbol.4x4.openforge.stl",
-            "md5": "9b25e6d76f0706d0c6dd3ade85ec2deb",
-            "size": 33963684,
-            "storage_address": "https://objects.openforge.tools/models/9b25e6/9b25e6d76f0706d0c6dd3ade85ec2deb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9b25e6/9b25e6d76f0706d0c6dd3ade85ec2deb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|fire",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+lamashtu_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T22:29:40+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+lamashtu_symbol.2x2.openforge.stl",
-            "md5": "082968f74bbd36af109f253b25e1c203",
-            "size": 17414784,
-            "storage_address": "https://objects.openforge.tools/models/082968/082968f74bbd36af109f253b25e1c203.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/082968/082968f74bbd36af109f253b25e1c203.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|lamashtu",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+spirit_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-01-25T17:27:10+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+spirit_symbol.2x2.openforge.stl",
-            "md5": "2ebba62d9782c8bec93b41baec111957",
-            "size": 7503884,
-            "storage_address": "https://objects.openforge.tools/models/2ebba6/2ebba62d9782c8bec93b41baec111957.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/2ebba6/2ebba62d9782c8bec93b41baec111957.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|spirit",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+water_symbol.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T19:40:54+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+water_symbol.2x2.openforge.stl",
-            "md5": "9acc2739cfc647c2db3029ef5c36ec9a",
-            "size": 6037084,
-            "storage_address": "https://objects.openforge.tools/models/9acc27/9acc2739cfc647c2db3029ef5c36ec9a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9acc27/9acc2739cfc647c2db3029ef5c36ec9a.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|water",
-            "shape|floor",
-            "shape|square",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone+ruined#floor+water_symbol.4x4.openforge.stl",
-            "file_modified_at": "2019-06-27T19:41:06+00:00",
-            "full_name": "tiles/rough_stone+ruined/floors/floor+encounters/rough_stone+ruined#floor+water_symbol.4x4.openforge.stl",
-            "md5": "b88a6c1a83bc856ff4dd1462f7fa8d99",
-            "size": 19728784,
-            "storage_address": "https://objects.openforge.tools/models/b88a6c/b88a6c1a83bc856ff4dd1462f7fa8d99.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/b88a6c/b88a6c1a83bc856ff4dd1462f7fa8d99.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "decoration|symbol|water",
-            "shape|floor",
-            "shape|square",
-            "size|depth|4",
-            "size|width|4",
             "texture|rough_stone",
             "texture|rough_stone|ruined"
         ],
@@ -12363,6 +12363,354 @@
     },
     {
         "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.1x2.openforge.stl",
+            "file_modified_at": "2019-09-26T22:50:27+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x2.openforge.stl",
+            "md5": "e60f1e5ef7c873ceba9717e8e4ea915b",
+            "size": 3250284,
+            "storage_address": "https://objects.openforge.tools/models/e60f1e/e60f1e5ef7c873ceba9717e8e4ea915b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e60f1e/e60f1e5ef7c873ceba9717e8e4ea915b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|1",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.1x3.openforge.stl",
+            "file_modified_at": "2019-09-26T22:50:30+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x3.openforge.stl",
+            "md5": "8ff3c5907f32c201ace87f9e5a350c4d",
+            "size": 5423084,
+            "storage_address": "https://objects.openforge.tools/models/8ff3c5/8ff3c5907f32c201ace87f9e5a350c4d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/8ff3c5/8ff3c5907f32c201ace87f9e5a350c4d.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|1",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.1x4.openforge.stl",
+            "file_modified_at": "2019-09-26T22:50:35+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x4.openforge.stl",
+            "md5": "872df0bfa23fab667417a0139f3293b3",
+            "size": 7426084,
+            "storage_address": "https://objects.openforge.tools/models/872df0/872df0bfa23fab667417a0139f3293b3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/872df0/872df0bfa23fab667417a0139f3293b3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|1",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.2x2.openforge.stl",
+            "file_modified_at": "2019-09-26T22:50:44+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x2.openforge.stl",
+            "md5": "adaedc235266f9c5ae146680da534984",
+            "size": 11364884,
+            "storage_address": "https://objects.openforge.tools/models/adaedc/adaedc235266f9c5ae146680da534984.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/adaedc/adaedc235266f9c5ae146680da534984.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.2x3.openforge.stl",
+            "file_modified_at": "2019-09-26T22:50:58+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x3.openforge.stl",
+            "md5": "5820871eefdc8ad178a25d283a81aac3",
+            "size": 15988584,
+            "storage_address": "https://objects.openforge.tools/models/582087/5820871eefdc8ad178a25d283a81aac3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/582087/5820871eefdc8ad178a25d283a81aac3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.2x4.openforge.stl",
+            "file_modified_at": "2019-09-26T22:51:28+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x4.openforge.stl",
+            "md5": "cc00716e0ffee7ad08ddedabfb92758f",
+            "size": 20615584,
+            "storage_address": "https://objects.openforge.tools/models/cc0071/cc00716e0ffee7ad08ddedabfb92758f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cc0071/cc00716e0ffee7ad08ddedabfb92758f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.3x2.openforge.stl",
+            "file_modified_at": "2019-09-26T22:52:00+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x2.openforge.stl",
+            "md5": "f08d18761697af6950dc873c162eb987",
+            "size": 19521684,
+            "storage_address": "https://objects.openforge.tools/models/f08d18/f08d18761697af6950dc873c162eb987.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f08d18/f08d18761697af6950dc873c162eb987.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|3",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.3x3.openforge.stl",
+            "file_modified_at": "2019-09-26T22:52:45+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x3.openforge.stl",
+            "md5": "4bce5242eca71352ddd803c1e21830aa",
+            "size": 26730084,
+            "storage_address": "https://objects.openforge.tools/models/4bce52/4bce5242eca71352ddd803c1e21830aa.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4bce52/4bce5242eca71352ddd803c1e21830aa.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|3",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.3x4.openforge.stl",
+            "file_modified_at": "2019-09-26T22:53:47+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x4.openforge.stl",
+            "md5": "3ce1b314c7dfcacf67ddbbe4eab67823",
+            "size": 34000584,
+            "storage_address": "https://objects.openforge.tools/models/3ce1b3/3ce1b314c7dfcacf67ddbbe4eab67823.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3ce1b3/3ce1b314c7dfcacf67ddbbe4eab67823.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|3",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.4x2.openforge.stl",
+            "file_modified_at": "2019-09-26T22:54:25+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x2.openforge.stl",
+            "md5": "194b456b6bc5ca79827bde2f3b3551cc",
+            "size": 24878334,
+            "storage_address": "https://objects.openforge.tools/models/194b45/194b456b6bc5ca79827bde2f3b3551cc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/194b45/194b456b6bc5ca79827bde2f3b3551cc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|2",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.4x3.openforge.stl",
+            "file_modified_at": "2019-09-26T22:55:17+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x3.openforge.stl",
+            "md5": "cd13721fcc3d0a98a31ba375d4ac6891",
+            "size": 34756984,
+            "storage_address": "https://objects.openforge.tools/models/cd1372/cd13721fcc3d0a98a31ba375d4ac6891.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cd1372/cd13721fcc3d0a98a31ba375d4ac6891.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|3",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+floor+door.4x4.openforge.stl",
+            "file_modified_at": "2019-09-26T22:56:05+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x4.openforge.stl",
+            "md5": "999bb508a97bc1799d565f13a3a1bf96",
+            "size": 44876484,
+            "storage_address": "https://objects.openforge.tools/models/999bb5/999bb508a97bc1799d565f13a3a1bf96.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/999bb5/999bb508a97bc1799d565f13a3a1bf96.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|door",
+            "component|wall|floor",
+            "connection|openforge",
+            "shape|wall",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "rough_stone+ruined#wall+floor+a.2x2.openforge.stl",
             "file_modified_at": "2019-09-26T21:47:10+00:00",
             "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor/rough_stone+ruined#wall+floor+a.2x2.openforge.stl",
@@ -13068,347 +13416,27 @@
     },
     {
         "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.1x2.openforge.stl",
-            "file_modified_at": "2019-09-26T22:50:27+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x2.openforge.stl",
-            "md5": "e60f1e5ef7c873ceba9717e8e4ea915b",
-            "size": 3250284,
-            "storage_address": "https://objects.openforge.tools/models/e60f1e/e60f1e5ef7c873ceba9717e8e4ea915b.stl"
+            "file": "rough_stone+ruined#wall+fountain.2x2.openforge.stl",
+            "file_modified_at": "2019-06-27T19:41:38+00:00",
+            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/wall+fountain/rough_stone+ruined#wall+fountain.2x2.openforge.stl",
+            "md5": "c26e83f1844fd8d8818c6d7f32e227b9",
+            "size": 33325284,
+            "storage_address": "https://objects.openforge.tools/models/c26e83/c26e83f1844fd8d8818c6d7f32e227b9.stl"
         },
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/e60f1e/e60f1e5ef7c873ceba9717e8e4ea915b.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/c26e83/c26e83f1844fd8d8818c6d7f32e227b9.png"
             }
         ],
         "metadata": false,
         "tags": [
             "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|1",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.1x3.openforge.stl",
-            "file_modified_at": "2019-09-26T22:50:30+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x3.openforge.stl",
-            "md5": "8ff3c5907f32c201ace87f9e5a350c4d",
-            "size": 5423084,
-            "storage_address": "https://objects.openforge.tools/models/8ff3c5/8ff3c5907f32c201ace87f9e5a350c4d.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/8ff3c5/8ff3c5907f32c201ace87f9e5a350c4d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|3",
-            "size|width|1",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.1x4.openforge.stl",
-            "file_modified_at": "2019-09-26T22:50:35+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.1x4.openforge.stl",
-            "md5": "872df0bfa23fab667417a0139f3293b3",
-            "size": 7426084,
-            "storage_address": "https://objects.openforge.tools/models/872df0/872df0bfa23fab667417a0139f3293b3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/872df0/872df0bfa23fab667417a0139f3293b3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|4",
-            "size|width|1",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.2x2.openforge.stl",
-            "file_modified_at": "2019-09-26T22:50:44+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x2.openforge.stl",
-            "md5": "adaedc235266f9c5ae146680da534984",
-            "size": 11364884,
-            "storage_address": "https://objects.openforge.tools/models/adaedc/adaedc235266f9c5ae146680da534984.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/adaedc/adaedc235266f9c5ae146680da534984.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
+            "component|wall|fountain",
             "connection|openforge",
             "shape|wall",
             "size|depth|2",
             "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.2x3.openforge.stl",
-            "file_modified_at": "2019-09-26T22:50:58+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x3.openforge.stl",
-            "md5": "5820871eefdc8ad178a25d283a81aac3",
-            "size": 15988584,
-            "storage_address": "https://objects.openforge.tools/models/582087/5820871eefdc8ad178a25d283a81aac3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/582087/5820871eefdc8ad178a25d283a81aac3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|3",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.2x4.openforge.stl",
-            "file_modified_at": "2019-09-26T22:51:28+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.2x4.openforge.stl",
-            "md5": "cc00716e0ffee7ad08ddedabfb92758f",
-            "size": 20615584,
-            "storage_address": "https://objects.openforge.tools/models/cc0071/cc00716e0ffee7ad08ddedabfb92758f.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cc0071/cc00716e0ffee7ad08ddedabfb92758f.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|4",
-            "size|width|2",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.3x2.openforge.stl",
-            "file_modified_at": "2019-09-26T22:52:00+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x2.openforge.stl",
-            "md5": "f08d18761697af6950dc873c162eb987",
-            "size": 19521684,
-            "storage_address": "https://objects.openforge.tools/models/f08d18/f08d18761697af6950dc873c162eb987.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f08d18/f08d18761697af6950dc873c162eb987.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|3",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.3x3.openforge.stl",
-            "file_modified_at": "2019-09-26T22:52:45+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x3.openforge.stl",
-            "md5": "4bce5242eca71352ddd803c1e21830aa",
-            "size": 26730084,
-            "storage_address": "https://objects.openforge.tools/models/4bce52/4bce5242eca71352ddd803c1e21830aa.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/4bce52/4bce5242eca71352ddd803c1e21830aa.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|3",
-            "size|width|3",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.3x4.openforge.stl",
-            "file_modified_at": "2019-09-26T22:53:47+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.3x4.openforge.stl",
-            "md5": "3ce1b314c7dfcacf67ddbbe4eab67823",
-            "size": 34000584,
-            "storage_address": "https://objects.openforge.tools/models/3ce1b3/3ce1b314c7dfcacf67ddbbe4eab67823.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3ce1b3/3ce1b314c7dfcacf67ddbbe4eab67823.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|4",
-            "size|width|3",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.4x2.openforge.stl",
-            "file_modified_at": "2019-09-26T22:54:25+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x2.openforge.stl",
-            "md5": "194b456b6bc5ca79827bde2f3b3551cc",
-            "size": 24878334,
-            "storage_address": "https://objects.openforge.tools/models/194b45/194b456b6bc5ca79827bde2f3b3551cc.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/194b45/194b456b6bc5ca79827bde2f3b3551cc.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.4x3.openforge.stl",
-            "file_modified_at": "2019-09-26T22:55:17+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x3.openforge.stl",
-            "md5": "cd13721fcc3d0a98a31ba375d4ac6891",
-            "size": 34756984,
-            "storage_address": "https://objects.openforge.tools/models/cd1372/cd13721fcc3d0a98a31ba375d4ac6891.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cd1372/cd13721fcc3d0a98a31ba375d4ac6891.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|3",
-            "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+floor+door.4x4.openforge.stl",
-            "file_modified_at": "2019-09-26T22:56:05+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/floor.door/rough_stone+ruined#wall+floor+door.4x4.openforge.stl",
-            "md5": "999bb508a97bc1799d565f13a3a1bf96",
-            "size": 44876484,
-            "storage_address": "https://objects.openforge.tools/models/999bb5/999bb508a97bc1799d565f13a3a1bf96.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/999bb5/999bb508a97bc1799d565f13a3a1bf96.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|door",
-            "component|wall|floor",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|4",
-            "size|width|4",
             "texture|rough_stone",
             "texture|rough_stone|ruined"
         ],
@@ -13801,34 +13829,6 @@
             "shape|wall",
             "size|openlock|Q",
             "size|width|4",
-            "texture|rough_stone",
-            "texture|rough_stone|ruined"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone+ruined#wall+fountain.2x2.openforge.stl",
-            "file_modified_at": "2019-06-27T19:41:38+00:00",
-            "full_name": "tiles/rough_stone+ruined/wall_on_tile/wall/wall+fountain/rough_stone+ruined#wall+fountain.2x2.openforge.stl",
-            "md5": "c26e83f1844fd8d8818c6d7f32e227b9",
-            "size": 33325284,
-            "storage_address": "https://objects.openforge.tools/models/c26e83/c26e83f1844fd8d8818c6d7f32e227b9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c26e83/c26e83f1844fd8d8818c6d7f32e227b9.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|fountain",
-            "connection|openforge",
-            "shape|wall",
-            "size|depth|2",
-            "size|width|2",
             "texture|rough_stone",
             "texture|rough_stone|ruined"
         ],

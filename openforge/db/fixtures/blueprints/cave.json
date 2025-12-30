@@ -2734,320 +2734,6 @@
             ]
         },
         "file_metadata": {
-            "file": "cave%aggregate+2#wall,outcrop.2x2.openforge,side.stl",
-            "file_modified_at": "2024-11-21T19:53:43.794051+00:00",
-            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%aggregate+2#wall,outcrop.2x2.openforge,side.stl",
-            "md5": "5525180c8f537532473f12f71b90080b",
-            "size": 20811884,
-            "storage_address": "https://objects.openforge.tools/models/552518/5525180c8f537532473f12f71b90080b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/552518/5525180c8f537532473f12f71b90080b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|outcrop",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall,outcrop+a.2x2.openforge,side.stl",
-            "file_modified_at": "2024-11-21T19:52:42.552382+00:00",
-            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+2#wall,outcrop+a.2x2.openforge,side.stl",
-            "md5": "3f76d6efdd2beae27214eeae2067716f",
-            "size": 15746184,
-            "storage_address": "https://objects.openforge.tools/models/3f76d6/3f76d6efdd2beae27214eeae2067716f.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f76d6/3f76d6efdd2beae27214eeae2067716f.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|outcrop",
-            "component|outcrop|a",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall,outcrop+b.2x2.openforge,side.stl",
-            "file_modified_at": "2024-11-21T19:53:09.699659+00:00",
-            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+2#wall,outcrop+b.2x2.openforge,side.stl",
-            "md5": "fa3a3136e367bbf07215b3fd2d395b85",
-            "size": 18068884,
-            "storage_address": "https://objects.openforge.tools/models/fa3a31/fa3a3136e367bbf07215b3fd2d395b85.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/fa3a31/fa3a3136e367bbf07215b3fd2d395b85.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|outcrop",
-            "component|outcrop|b",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall,outcrop+a.2x2.openforge,side.stl",
-            "file_modified_at": "2024-10-31T05:50:44.901504+00:00",
-            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+3#wall,outcrop+a.2x2.openforge,side.stl",
-            "md5": "0699aa5d207dea24399dda7955f32e0a",
-            "size": 22714184,
-            "storage_address": "https://objects.openforge.tools/models/0699aa/0699aa5d207dea24399dda7955f32e0a.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/0699aa/0699aa5d207dea24399dda7955f32e0a.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|outcrop",
-            "component|outcrop|a",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall,outcrop+b.2x2.openforge,side.stl",
-            "file_modified_at": "2024-10-31T05:50:25.300951+00:00",
-            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+3#wall,outcrop+b.2x2.openforge,side.stl",
-            "md5": "2145b041892924370fd0e12725c11040",
-            "size": 19456984,
-            "storage_address": "https://objects.openforge.tools/models/2145b0/2145b041892924370fd0e12725c11040.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/2145b0/2145b041892924370fd0e12725c11040.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|outcrop",
-            "component|outcrop|b",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "size|depth|2",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "cave%aggregate+2#wall,outcrop.2x2.openforge,side+dragonlock.stl",
             "file_modified_at": "2025-05-28T15:57:26.759446+00:00",
             "full_name": "tiles/cave/thick_wall/outcrops/openforge/side+dragonlock/cave%aggregate+2#wall,outcrop.2x2.openforge,side+dragonlock.stl",
@@ -3321,6 +3007,320 @@
             "connection|openforge",
             "connection|side",
             "connection|side|dragonlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#wall,outcrop.2x2.openforge,side.stl",
+            "file_modified_at": "2024-11-21T19:53:43.794051+00:00",
+            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%aggregate+2#wall,outcrop.2x2.openforge,side.stl",
+            "md5": "5525180c8f537532473f12f71b90080b",
+            "size": 20811884,
+            "storage_address": "https://objects.openforge.tools/models/552518/5525180c8f537532473f12f71b90080b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/552518/5525180c8f537532473f12f71b90080b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|outcrop",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall,outcrop+a.2x2.openforge,side.stl",
+            "file_modified_at": "2024-11-21T19:52:42.552382+00:00",
+            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+2#wall,outcrop+a.2x2.openforge,side.stl",
+            "md5": "3f76d6efdd2beae27214eeae2067716f",
+            "size": 15746184,
+            "storage_address": "https://objects.openforge.tools/models/3f76d6/3f76d6efdd2beae27214eeae2067716f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f76d6/3f76d6efdd2beae27214eeae2067716f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|outcrop",
+            "component|outcrop|a",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall,outcrop+b.2x2.openforge,side.stl",
+            "file_modified_at": "2024-11-21T19:53:09.699659+00:00",
+            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+2#wall,outcrop+b.2x2.openforge,side.stl",
+            "md5": "fa3a3136e367bbf07215b3fd2d395b85",
+            "size": 18068884,
+            "storage_address": "https://objects.openforge.tools/models/fa3a31/fa3a3136e367bbf07215b3fd2d395b85.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fa3a31/fa3a3136e367bbf07215b3fd2d395b85.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|outcrop",
+            "component|outcrop|b",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall,outcrop+a.2x2.openforge,side.stl",
+            "file_modified_at": "2024-10-31T05:50:44.901504+00:00",
+            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+3#wall,outcrop+a.2x2.openforge,side.stl",
+            "md5": "0699aa5d207dea24399dda7955f32e0a",
+            "size": 22714184,
+            "storage_address": "https://objects.openforge.tools/models/0699aa/0699aa5d207dea24399dda7955f32e0a.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0699aa/0699aa5d207dea24399dda7955f32e0a.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|outcrop",
+            "component|outcrop|a",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "size|depth|2",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall,outcrop+b.2x2.openforge,side.stl",
+            "file_modified_at": "2024-10-31T05:50:25.300951+00:00",
+            "full_name": "tiles/cave/thick_wall/outcrops/openforge/side/cave%sandstone+3#wall,outcrop+b.2x2.openforge,side.stl",
+            "md5": "2145b041892924370fd0e12725c11040",
+            "size": 19456984,
+            "storage_address": "https://objects.openforge.tools/models/2145b0/2145b041892924370fd0e12725c11040.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2145b0/2145b041892924370fd0e12725c11040.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|outcrop",
+            "component|outcrop|b",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "size|depth|2",
             "size|width|2",
             "texture|cave",
@@ -4066,414 +4066,6 @@
             ]
         },
         "file_metadata": {
-            "file": "cave%aggregate+2#corner.IL+corner,270.openforge,side.stl",
-            "file_modified_at": "2019-09-23T01:58:04+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%aggregate+2#corner.IL+corner,270.openforge,side.stl",
-            "md5": "690515d5c3648d763933a026310d98c7",
-            "size": 13270584,
-            "storage_address": "https://objects.openforge.tools/models/690515/690515d5c3648d763933a026310d98c7.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/690515/690515d5c3648d763933a026310d98c7.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|convex",
-            "shape|square",
-            "shape|wall",
-            "size|angle|270",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%aggregate+2#corner.IL+corner,90.openforge,side.stl",
-            "file_modified_at": "2019-09-23T02:00:46+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%aggregate+2#corner.IL+corner,90.openforge,side.stl",
-            "md5": "9d284985e4096f618ddd60a0020b213c",
-            "size": 11728584,
-            "storage_address": "https://objects.openforge.tools/models/9d2849/9d284985e4096f618ddd60a0020b213c.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9d2849/9d284985e4096f618ddd60a0020b213c.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|concave",
-            "shape|square",
-            "shape|wall",
-            "size|angle|90",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#corner.IL+corner,270.openforge,side.stl",
-            "file_modified_at": "2019-09-20T13:16:59+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+2#corner.IL+corner,270.openforge,side.stl",
-            "md5": "22435f9a012436e3b2c43e915bb7a740",
-            "size": 12810984,
-            "storage_address": "https://objects.openforge.tools/models/22435f/22435f9a012436e3b2c43e915bb7a740.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/22435f/22435f9a012436e3b2c43e915bb7a740.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|convex",
-            "shape|square",
-            "shape|wall",
-            "size|angle|270",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#corner.IL+corner,90.openforge,side.stl",
-            "file_modified_at": "2019-09-09T17:21:42+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+2#corner.IL+corner,90.openforge,side.stl",
-            "md5": "a1430fd730d6627fb8a11de0839fc8ac",
-            "size": 11081184,
-            "storage_address": "https://objects.openforge.tools/models/a1430f/a1430fd730d6627fb8a11de0839fc8ac.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a1430f/a1430fd730d6627fb8a11de0839fc8ac.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|concave",
-            "shape|square",
-            "shape|wall",
-            "size|angle|90",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#corner.IL+corner,270.openforge,side.stl",
-            "file_modified_at": "2024-09-30T06:11:13.226167+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+3#corner.IL+corner,270.openforge,side.stl",
-            "md5": "a95b026d70034967d2bd6d043047ba80",
-            "size": 12051684,
-            "storage_address": "https://objects.openforge.tools/models/a95b02/a95b026d70034967d2bd6d043047ba80.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a95b02/a95b026d70034967d2bd6d043047ba80.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|convex",
-            "shape|square",
-            "shape|wall",
-            "size|angle|270",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#corner.IL+corner,90.openforge,side.stl",
-            "file_modified_at": "2024-09-30T06:09:47.970522+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+3#corner.IL+corner,90.openforge,side.stl",
-            "md5": "dd89cb63ac7ffbba5c9013e74a08b90b",
-            "size": 12430384,
-            "storage_address": "https://objects.openforge.tools/models/dd89cb/dd89cb63ac7ffbba5c9013e74a08b90b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/dd89cb/dd89cb63ac7ffbba5c9013e74a08b90b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|corner",
-            "shape|corner|concave",
-            "shape|square",
-            "shape|wall",
-            "size|angle|90",
-            "size|corner_shape|IL",
-            "size|depth|1",
-            "size|openlock|IL",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "cave%aggregate+2#corner.IL+corner,270.openforge,side+dragonlock.stl",
             "file_modified_at": "2024-10-29T01:03:34.238273+00:00",
             "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side+dragonlock/cave%aggregate+2#corner.IL+corner,270.openforge,side+dragonlock.stl",
@@ -4834,6 +4426,414 @@
             "connection|openforge",
             "connection|side",
             "connection|side|dragonlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "shape|square",
+            "shape|wall",
+            "size|angle|90",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#corner.IL+corner,270.openforge,side.stl",
+            "file_modified_at": "2019-09-23T01:58:04+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%aggregate+2#corner.IL+corner,270.openforge,side.stl",
+            "md5": "690515d5c3648d763933a026310d98c7",
+            "size": 13270584,
+            "storage_address": "https://objects.openforge.tools/models/690515/690515d5c3648d763933a026310d98c7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/690515/690515d5c3648d763933a026310d98c7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "shape|square",
+            "shape|wall",
+            "size|angle|270",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#corner.IL+corner,90.openforge,side.stl",
+            "file_modified_at": "2019-09-23T02:00:46+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%aggregate+2#corner.IL+corner,90.openforge,side.stl",
+            "md5": "9d284985e4096f618ddd60a0020b213c",
+            "size": 11728584,
+            "storage_address": "https://objects.openforge.tools/models/9d2849/9d284985e4096f618ddd60a0020b213c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9d2849/9d284985e4096f618ddd60a0020b213c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "shape|square",
+            "shape|wall",
+            "size|angle|90",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#corner.IL+corner,270.openforge,side.stl",
+            "file_modified_at": "2019-09-20T13:16:59+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+2#corner.IL+corner,270.openforge,side.stl",
+            "md5": "22435f9a012436e3b2c43e915bb7a740",
+            "size": 12810984,
+            "storage_address": "https://objects.openforge.tools/models/22435f/22435f9a012436e3b2c43e915bb7a740.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/22435f/22435f9a012436e3b2c43e915bb7a740.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "shape|square",
+            "shape|wall",
+            "size|angle|270",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#corner.IL+corner,90.openforge,side.stl",
+            "file_modified_at": "2019-09-09T17:21:42+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+2#corner.IL+corner,90.openforge,side.stl",
+            "md5": "a1430fd730d6627fb8a11de0839fc8ac",
+            "size": 11081184,
+            "storage_address": "https://objects.openforge.tools/models/a1430f/a1430fd730d6627fb8a11de0839fc8ac.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a1430f/a1430fd730d6627fb8a11de0839fc8ac.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|corner|concave",
+            "shape|square",
+            "shape|wall",
+            "size|angle|90",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#corner.IL+corner,270.openforge,side.stl",
+            "file_modified_at": "2024-09-30T06:11:13.226167+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+3#corner.IL+corner,270.openforge,side.stl",
+            "md5": "a95b026d70034967d2bd6d043047ba80",
+            "size": 12051684,
+            "storage_address": "https://objects.openforge.tools/models/a95b02/a95b026d70034967d2bd6d043047ba80.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a95b02/a95b026d70034967d2bd6d043047ba80.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|corner",
+            "shape|corner|convex",
+            "shape|square",
+            "shape|wall",
+            "size|angle|270",
+            "size|corner_shape|IL",
+            "size|depth|1",
+            "size|openlock|IL",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#corner.IL+corner,90.openforge,side.stl",
+            "file_modified_at": "2024-09-30T06:09:47.970522+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/corner/openforge/side/cave%sandstone+3#corner.IL+corner,90.openforge,side.stl",
+            "md5": "dd89cb63ac7ffbba5c9013e74a08b90b",
+            "size": 12430384,
+            "storage_address": "https://objects.openforge.tools/models/dd89cb/dd89cb63ac7ffbba5c9013e74a08b90b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/dd89cb/dd89cb63ac7ffbba5c9013e74a08b90b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|corner",
             "shape|corner|concave",
             "shape|square",
@@ -6427,1151 +6427,6 @@
             ]
         },
         "file_metadata": {
-            "file": "cave%aggregate+2#wall.I.openforge,side.stl",
-            "file_modified_at": "2019-09-23T00:21:19+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.I.openforge,side.stl",
-            "md5": "03bb4ae67d14d24d693a5eda2786c669",
-            "size": 12315684,
-            "storage_address": "https://objects.openforge.tools/models/03bb4a/03bb4ae67d14d24d693a5eda2786c669.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/03bb4a/03bb4ae67d14d24d693a5eda2786c669.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|I",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%aggregate+2#wall.S.openforge,side.stl",
-            "file_modified_at": "2019-09-23T03:05:06+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.S.openforge,side.stl",
-            "md5": "370bd470c75076835bcf4150cafae0eb",
-            "size": 21241484,
-            "storage_address": "https://objects.openforge.tools/models/370bd4/370bd470c75076835bcf4150cafae0eb.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/370bd4/370bd470c75076835bcf4150cafae0eb.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%aggregate+2#wall.SA.openforge,side.stl",
-            "file_modified_at": "2019-09-23T13:27:05+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.SA.openforge,side.stl",
-            "md5": "eac22281bdf5f986a64eb930840090f8",
-            "size": 29822484,
-            "storage_address": "https://objects.openforge.tools/models/eac222/eac22281bdf5f986a64eb930840090f8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/eac222/eac22281bdf5f986a64eb930840090f8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SA",
-            "size|width|3",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%aggregate+2#wall.SB.openforge,side.stl",
-            "file_modified_at": "2019-09-23T04:23:22+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.SB.openforge,side.stl",
-            "md5": "90ad16baa6b9dab429c7db46a4ddaa86",
-            "size": 37343684,
-            "storage_address": "https://objects.openforge.tools/models/90ad16/90ad16baa6b9dab429c7db46a4ddaa86.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/90ad16/90ad16baa6b9dab429c7db46a4ddaa86.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|aggregate",
-            "texture|cave|aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall.I.openforge,side.stl",
-            "file_modified_at": "2019-09-08T18:10:09+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.I.openforge,side.stl",
-            "md5": "5ce01619f8e73d1db2878135e6a72932",
-            "size": 12362384,
-            "storage_address": "https://objects.openforge.tools/models/5ce016/5ce01619f8e73d1db2878135e6a72932.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/5ce016/5ce01619f8e73d1db2878135e6a72932.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|I",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall.S.openforge,side.stl",
-            "file_modified_at": "2019-09-09T15:55:46+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.S.openforge,side.stl",
-            "md5": "1a89b177942fe012142d8a2ebc87673b",
-            "size": 20244984,
-            "storage_address": "https://objects.openforge.tools/models/1a89b1/1a89b177942fe012142d8a2ebc87673b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/1a89b1/1a89b177942fe012142d8a2ebc87673b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall.SA.openforge,side.stl",
-            "file_modified_at": "2019-09-09T16:03:38+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.SA.openforge,side.stl",
-            "md5": "6253e05c76c989a562bab0b748780b1e",
-            "size": 30698384,
-            "storage_address": "https://objects.openforge.tools/models/6253e0/6253e05c76c989a562bab0b748780b1e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6253e0/6253e05c76c989a562bab0b748780b1e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SA",
-            "size|width|3",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2#wall.SB.openforge,side.stl",
-            "file_modified_at": "2019-09-09T17:00:28+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.SB.openforge,side.stl",
-            "md5": "97c87580bebdcb3e415f464235463322",
-            "size": 37767584,
-            "storage_address": "https://objects.openforge.tools/models/97c875/97c87580bebdcb3e415f464235463322.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/97c875/97c87580bebdcb3e415f464235463322.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2+fracture#wall.SB.openforge,side.stl",
-            "file_modified_at": "2019-09-09T17:06:35+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2+fracture#wall.SB.openforge,side.stl",
-            "md5": "416190e4c8e1cf0db3e0ea859656264b",
-            "size": 37474184,
-            "storage_address": "https://objects.openforge.tools/models/416190/416190e4c8e1cf0db3e0ea859656264b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/416190/416190e4c8e1cf0db3e0ea859656264b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2",
-            "texture|cave|sandstone|fracture"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+2+xenolith#wall.SB.openforge,side.stl",
-            "file_modified_at": "2019-09-09T17:14:11+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2+xenolith#wall.SB.openforge,side.stl",
-            "md5": "9bcc0339cf164b0f7537c005e2c24d19",
-            "size": 37508184,
-            "storage_address": "https://objects.openforge.tools/models/9bcc03/9bcc0339cf164b0f7537c005e2c24d19.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9bcc03/9bcc0339cf164b0f7537c005e2c24d19.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|2",
-            "texture|cave|sandstone|xenolith"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "fracture slope",
-                    "tags": {
-                        "require": [
-                            {
-                                "tag": "connection|side"
-                            },
-                            {
-                                "tag": "interface|cave|fracture slope"
-                            },
-                            {
-                                "tag": "size|depth|1"
-                            },
-                            {
-                                "tag": "size|width|4"
-                            },
-                            {
-                                "tag": "texture|cave|sandstone"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
-            "file_modified_at": "2024-09-16T23:12:24.650074+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
-            "md5": "23b167296c4c73c6a2d112d07e4d1f31",
-            "size": 9368884,
-            "storage_address": "https://objects.openforge.tools/models/23b167/23b167296c4c73c6a2d112d07e4d1f31.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/23b167/23b167296c4c73c6a2d112d07e4d1f31.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "build|thick wall",
-            "component|slope",
-            "connection|bottom",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall,slope.SB.openforge,side.stl",
-            "file_modified_at": "2024-09-16T23:07:17.375756+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side.stl",
-            "md5": "207ac09e0c40597c386da74ec950efb7",
-            "size": 11884984,
-            "storage_address": "https://objects.openforge.tools/models/207ac0/207ac09e0c40597c386da74ec950efb7.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/207ac0/207ac09e0c40597c386da74ec950efb7.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|slope",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall,slope.SB.side,top.stl",
-            "file_modified_at": "2024-09-16T23:36:34.722304+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.side,top.stl",
-            "md5": "a6501f52ce5e737bc178fddaa8750eda",
-            "size": 12294784,
-            "storage_address": "https://objects.openforge.tools/models/a6501f/a6501f52ce5e737bc178fddaa8750eda.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a6501f/a6501f52ce5e737bc178fddaa8750eda.png"
-            }
-        ],
-        "metadata": true,
-        "tags": [
-            "connection|side",
-            "interface|cave|fracture slope",
-            "part|fracture slope",
-            "size|depth|1",
-            "size|width|4",
-            "texture|sandstone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall.I.openforge,side.stl",
-            "file_modified_at": "2024-09-18T19:08:13.266185+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.I.openforge,side.stl",
-            "md5": "c7291de8d8eab144db07090c4c79e856",
-            "size": 6253184,
-            "storage_address": "https://objects.openforge.tools/models/c7291d/c7291de8d8eab144db07090c4c79e856.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c7291d/c7291de8d8eab144db07090c4c79e856.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|I",
-            "size|width|1",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall.S.openforge,side.stl",
-            "file_modified_at": "2024-09-18T23:10:49.858392+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.S.openforge,side.stl",
-            "md5": "9ae26e9e61fc91055d3ea991b6327d66",
-            "size": 9307084,
-            "storage_address": "https://objects.openforge.tools/models/9ae26e/9ae26e9e61fc91055d3ea991b6327d66.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9ae26e/9ae26e9e61fc91055d3ea991b6327d66.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall.SA.openforge,side.stl",
-            "file_modified_at": "2024-09-20T17:58:24.368662+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.SA.openforge,side.stl",
-            "md5": "3f87a01900ea254a657db4feba378bdd",
-            "size": 20963784,
-            "storage_address": "https://objects.openforge.tools/models/3f87a0/3f87a01900ea254a657db4feba378bdd.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f87a0/3f87a01900ea254a657db4feba378bdd.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SA",
-            "size|width|3",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3#wall.SB.openforge,side.stl",
-            "file_modified_at": "2024-09-19T14:47:49.866397+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.SB.openforge,side.stl",
-            "md5": "50f63768a9a5736cf188a472e27d23c7",
-            "size": 13225984,
-            "storage_address": "https://objects.openforge.tools/models/50f637/50f63768a9a5736cf188a472e27d23c7.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/50f637/50f63768a9a5736cf188a472e27d23c7.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|SB",
-            "size|width|4",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone+3-2_joint#wall.S.openforge,side.stl",
-            "file_modified_at": "2024-09-30T05:29:23.480717+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3-2_joint#wall.S.openforge,side.stl",
-            "md5": "338f85834b028652406feef6c9277233",
-            "size": 17347684,
-            "storage_address": "https://objects.openforge.tools/models/338f85/338f85834b028652406feef6c9277233.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/338f85/338f85834b028652406feef6c9277233.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone",
-            "texture|cave|sandstone|3-2_joint"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "cave%sandstone-aggregate+2#wall.S.openforge,side.stl",
-            "file_modified_at": "2019-09-23T03:10:23+00:00",
-            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone-aggregate+2#wall.S.openforge,side.stl",
-            "md5": "9c8f3755e4861dabf4225928b705b924",
-            "size": 20277784,
-            "storage_address": "https://objects.openforge.tools/models/9c8f37/9c8f3755e4861dabf4225928b705b924.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9c8f37/9c8f3755e4861dabf4225928b705b924.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|thick wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|S",
-            "size|width|2",
-            "texture|cave",
-            "texture|cave|sandstone-aggregate",
-            "texture|cave|sandstone-aggregate|2"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "cave%aggregate+2#wall.I.openforge,side+dragonlock.stl",
             "file_modified_at": "2024-10-26T22:08:25.099802+00:00",
             "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side+dragonlock/cave%aggregate+2#wall.I.openforge,side+dragonlock.stl",
@@ -8673,6 +7528,1151 @@
             "connection|openforge",
             "connection|side",
             "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone-aggregate",
+            "texture|cave|sandstone-aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#wall.I.openforge,side.stl",
+            "file_modified_at": "2019-09-23T00:21:19+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.I.openforge,side.stl",
+            "md5": "03bb4ae67d14d24d693a5eda2786c669",
+            "size": 12315684,
+            "storage_address": "https://objects.openforge.tools/models/03bb4a/03bb4ae67d14d24d693a5eda2786c669.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/03bb4a/03bb4ae67d14d24d693a5eda2786c669.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|I",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#wall.S.openforge,side.stl",
+            "file_modified_at": "2019-09-23T03:05:06+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.S.openforge,side.stl",
+            "md5": "370bd470c75076835bcf4150cafae0eb",
+            "size": 21241484,
+            "storage_address": "https://objects.openforge.tools/models/370bd4/370bd470c75076835bcf4150cafae0eb.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/370bd4/370bd470c75076835bcf4150cafae0eb.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#wall.SA.openforge,side.stl",
+            "file_modified_at": "2019-09-23T13:27:05+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.SA.openforge,side.stl",
+            "md5": "eac22281bdf5f986a64eb930840090f8",
+            "size": 29822484,
+            "storage_address": "https://objects.openforge.tools/models/eac222/eac22281bdf5f986a64eb930840090f8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/eac222/eac22281bdf5f986a64eb930840090f8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SA",
+            "size|width|3",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%aggregate+2#wall.SB.openforge,side.stl",
+            "file_modified_at": "2019-09-23T04:23:22+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%aggregate+2#wall.SB.openforge,side.stl",
+            "md5": "90ad16baa6b9dab429c7db46a4ddaa86",
+            "size": 37343684,
+            "storage_address": "https://objects.openforge.tools/models/90ad16/90ad16baa6b9dab429c7db46a4ddaa86.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/90ad16/90ad16baa6b9dab429c7db46a4ddaa86.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|aggregate",
+            "texture|cave|aggregate|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall.I.openforge,side.stl",
+            "file_modified_at": "2019-09-08T18:10:09+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.I.openforge,side.stl",
+            "md5": "5ce01619f8e73d1db2878135e6a72932",
+            "size": 12362384,
+            "storage_address": "https://objects.openforge.tools/models/5ce016/5ce01619f8e73d1db2878135e6a72932.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5ce016/5ce01619f8e73d1db2878135e6a72932.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|I",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall.S.openforge,side.stl",
+            "file_modified_at": "2019-09-09T15:55:46+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.S.openforge,side.stl",
+            "md5": "1a89b177942fe012142d8a2ebc87673b",
+            "size": 20244984,
+            "storage_address": "https://objects.openforge.tools/models/1a89b1/1a89b177942fe012142d8a2ebc87673b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1a89b1/1a89b177942fe012142d8a2ebc87673b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall.SA.openforge,side.stl",
+            "file_modified_at": "2019-09-09T16:03:38+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.SA.openforge,side.stl",
+            "md5": "6253e05c76c989a562bab0b748780b1e",
+            "size": 30698384,
+            "storage_address": "https://objects.openforge.tools/models/6253e0/6253e05c76c989a562bab0b748780b1e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6253e0/6253e05c76c989a562bab0b748780b1e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SA",
+            "size|width|3",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2#wall.SB.openforge,side.stl",
+            "file_modified_at": "2019-09-09T17:00:28+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2#wall.SB.openforge,side.stl",
+            "md5": "97c87580bebdcb3e415f464235463322",
+            "size": 37767584,
+            "storage_address": "https://objects.openforge.tools/models/97c875/97c87580bebdcb3e415f464235463322.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/97c875/97c87580bebdcb3e415f464235463322.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2+fracture#wall.SB.openforge,side.stl",
+            "file_modified_at": "2019-09-09T17:06:35+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2+fracture#wall.SB.openforge,side.stl",
+            "md5": "416190e4c8e1cf0db3e0ea859656264b",
+            "size": 37474184,
+            "storage_address": "https://objects.openforge.tools/models/416190/416190e4c8e1cf0db3e0ea859656264b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/416190/416190e4c8e1cf0db3e0ea859656264b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2",
+            "texture|cave|sandstone|fracture"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+2+xenolith#wall.SB.openforge,side.stl",
+            "file_modified_at": "2019-09-09T17:14:11+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+2+xenolith#wall.SB.openforge,side.stl",
+            "md5": "9bcc0339cf164b0f7537c005e2c24d19",
+            "size": 37508184,
+            "storage_address": "https://objects.openforge.tools/models/9bcc03/9bcc0339cf164b0f7537c005e2c24d19.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9bcc03/9bcc0339cf164b0f7537c005e2c24d19.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|2",
+            "texture|cave|sandstone|xenolith"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "fracture slope",
+                    "tags": {
+                        "require": [
+                            {
+                                "tag": "connection|side"
+                            },
+                            {
+                                "tag": "interface|cave|fracture slope"
+                            },
+                            {
+                                "tag": "size|depth|1"
+                            },
+                            {
+                                "tag": "size|width|4"
+                            },
+                            {
+                                "tag": "texture|cave|sandstone"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
+            "file_modified_at": "2024-09-16T23:12:24.650074+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side,bottom.stl",
+            "md5": "23b167296c4c73c6a2d112d07e4d1f31",
+            "size": 9368884,
+            "storage_address": "https://objects.openforge.tools/models/23b167/23b167296c4c73c6a2d112d07e4d1f31.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/23b167/23b167296c4c73c6a2d112d07e4d1f31.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "build|thick wall",
+            "component|slope",
+            "connection|bottom",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall,slope.SB.openforge,side.stl",
+            "file_modified_at": "2024-09-16T23:07:17.375756+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.openforge,side.stl",
+            "md5": "207ac09e0c40597c386da74ec950efb7",
+            "size": 11884984,
+            "storage_address": "https://objects.openforge.tools/models/207ac0/207ac09e0c40597c386da74ec950efb7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/207ac0/207ac09e0c40597c386da74ec950efb7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|slope",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall,slope.SB.side,top.stl",
+            "file_modified_at": "2024-09-16T23:36:34.722304+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall,slope.SB.side,top.stl",
+            "md5": "a6501f52ce5e737bc178fddaa8750eda",
+            "size": 12294784,
+            "storage_address": "https://objects.openforge.tools/models/a6501f/a6501f52ce5e737bc178fddaa8750eda.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a6501f/a6501f52ce5e737bc178fddaa8750eda.png"
+            }
+        ],
+        "metadata": true,
+        "tags": [
+            "connection|side",
+            "interface|cave|fracture slope",
+            "part|fracture slope",
+            "size|depth|1",
+            "size|width|4",
+            "texture|sandstone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall.I.openforge,side.stl",
+            "file_modified_at": "2024-09-18T19:08:13.266185+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.I.openforge,side.stl",
+            "md5": "c7291de8d8eab144db07090c4c79e856",
+            "size": 6253184,
+            "storage_address": "https://objects.openforge.tools/models/c7291d/c7291de8d8eab144db07090c4c79e856.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c7291d/c7291de8d8eab144db07090c4c79e856.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|I",
+            "size|width|1",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall.S.openforge,side.stl",
+            "file_modified_at": "2024-09-18T23:10:49.858392+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.S.openforge,side.stl",
+            "md5": "9ae26e9e61fc91055d3ea991b6327d66",
+            "size": 9307084,
+            "storage_address": "https://objects.openforge.tools/models/9ae26e/9ae26e9e61fc91055d3ea991b6327d66.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9ae26e/9ae26e9e61fc91055d3ea991b6327d66.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall.SA.openforge,side.stl",
+            "file_modified_at": "2024-09-20T17:58:24.368662+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.SA.openforge,side.stl",
+            "md5": "3f87a01900ea254a657db4feba378bdd",
+            "size": 20963784,
+            "storage_address": "https://objects.openforge.tools/models/3f87a0/3f87a01900ea254a657db4feba378bdd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f87a0/3f87a01900ea254a657db4feba378bdd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SA",
+            "size|width|3",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3#wall.SB.openforge,side.stl",
+            "file_modified_at": "2024-09-19T14:47:49.866397+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3#wall.SB.openforge,side.stl",
+            "md5": "50f63768a9a5736cf188a472e27d23c7",
+            "size": 13225984,
+            "storage_address": "https://objects.openforge.tools/models/50f637/50f63768a9a5736cf188a472e27d23c7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/50f637/50f63768a9a5736cf188a472e27d23c7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|SB",
+            "size|width|4",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone+3-2_joint#wall.S.openforge,side.stl",
+            "file_modified_at": "2024-09-30T05:29:23.480717+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone+3-2_joint#wall.S.openforge,side.stl",
+            "md5": "338f85834b028652406feef6c9277233",
+            "size": 17347684,
+            "storage_address": "https://objects.openforge.tools/models/338f85/338f85834b028652406feef6c9277233.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/338f85/338f85834b028652406feef6c9277233.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|S",
+            "size|width|2",
+            "texture|cave",
+            "texture|cave|sandstone",
+            "texture|cave|sandstone|3-2_joint"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "cave%sandstone-aggregate+2#wall.S.openforge,side.stl",
+            "file_modified_at": "2019-09-23T03:10:23+00:00",
+            "full_name": "tiles/cave/thick_wall/wall/wall/openforge/side/cave%sandstone-aggregate+2#wall.S.openforge,side.stl",
+            "md5": "9c8f3755e4861dabf4225928b705b924",
+            "size": 20277784,
+            "storage_address": "https://objects.openforge.tools/models/9c8f37/9c8f3755e4861dabf4225928b705b924.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9c8f37/9c8f3755e4861dabf4225928b705b924.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|thick wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
             "shape|square",
             "shape|wall",
             "size|depth|1",

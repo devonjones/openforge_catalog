@@ -38,6 +38,133 @@
             ]
         },
         "file_metadata": {
+            "file": "necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
+            "file_modified_at": "2024-04-23T02:13:31.307243+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
+            "md5": "5ce0eb9fe940602da6e8c10406aa90ea",
+            "size": 24727884,
+            "storage_address": "https://objects.openforge.tools/models/5ce0eb/5ce0eb9fe940602da6e8c10406aa90ea.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5ce0eb/5ce0eb9fe940602da6e8c10406aa90ea.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "component|alter_base",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|necromantic_circle",
+            "size|depth|4",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#floor+necromantic_circle.4x4.openforge.stl",
+            "file_modified_at": "2024-04-21T23:14:07.375495+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle.4x4.openforge.stl",
+            "md5": "d3de91c153e9928c06f7c9a198487fda",
+            "size": 25929084,
+            "storage_address": "https://objects.openforge.tools/models/d3de91/d3de91c153e9928c06f7c9a198487fda.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d3de91/d3de91c153e9928c06f7c9a198487fda.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|necromantic_circle",
+            "size|depth|4",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
             "file": "necro#floor.1x1.openforge.stl",
             "file_modified_at": "2024-03-11T22:04:10.784837+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/floors/floor/necro#floor.1x1.openforge.stl",
@@ -497,133 +624,6 @@
             "connection|openforge",
             "shape|floor",
             "shape|square",
-            "size|depth|4",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
-            "file_modified_at": "2024-04-23T02:13:31.307243+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle,alter_base.4x4.openforge.stl",
-            "md5": "5ce0eb9fe940602da6e8c10406aa90ea",
-            "size": 24727884,
-            "storage_address": "https://objects.openforge.tools/models/5ce0eb/5ce0eb9fe940602da6e8c10406aa90ea.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/5ce0eb/5ce0eb9fe940602da6e8c10406aa90ea.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "component|alter_base",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|necromantic_circle",
-            "size|depth|4",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#floor+necromantic_circle.4x4.openforge.stl",
-            "file_modified_at": "2024-04-21T23:14:07.375495+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/floors/floor#necromantic_circle/necro#floor+necromantic_circle.4x4.openforge.stl",
-            "md5": "d3de91c153e9928c06f7c9a198487fda",
-            "size": 25929084,
-            "storage_address": "https://objects.openforge.tools/models/d3de91/d3de91c153e9928c06f7c9a198487fda.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d3de91/d3de91c153e9928c06f7c9a198487fda.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|necromantic_circle",
             "size|depth|4",
             "size|width|4",
             "texture|necro"
@@ -1661,281 +1661,6 @@
             ]
         },
         "file_metadata": {
-            "file": "necro#wall.A.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:43:15.004594+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.A.openforge,side.stl",
-            "md5": "995f0dc500db370f26de65d6d5cbab37",
-            "size": 15598384,
-            "storage_address": "https://objects.openforge.tools/models/995f0d/995f0dc500db370f26de65d6d5cbab37.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/995f0d/995f0dc500db370f26de65d6d5cbab37.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#wall.BA.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:45:48.355236+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.BA.openforge,side.stl",
-            "md5": "baba999f9363e9138704781287af8ec0",
-            "size": 12681284,
-            "storage_address": "https://objects.openforge.tools/models/baba99/baba999f9363e9138704781287af8ec0.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/baba99/baba999f9363e9138704781287af8ec0.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#wall.D.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:51:28.720284+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.D.openforge,side.stl",
-            "md5": "032a151c66a9ed44a9cbad45bebbbfb0",
-            "size": 20304184,
-            "storage_address": "https://objects.openforge.tools/models/032a15/032a151c66a9ed44a9cbad45bebbbfb0.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/032a15/032a151c66a9ed44a9cbad45bebbbfb0.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#wall.IA.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:56:07.796339+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.IA.openforge,side.stl",
-            "md5": "6104ae967b7f24b119ad22ec34b09d33",
-            "size": 11982584,
-            "storage_address": "https://objects.openforge.tools/models/6104ae/6104ae967b7f24b119ad22ec34b09d33.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6104ae/6104ae967b7f24b119ad22ec34b09d33.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "necro#wall.Q.openforge,side.stl",
-            "file_modified_at": "2024-03-19T03:54:20.426090+00:00",
-            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.Q.openforge,side.stl",
-            "md5": "95e4995e853aef015f327c49af8f1162",
-            "size": 25486784,
-            "storage_address": "https://objects.openforge.tools/models/95e499/95e4995e853aef015f327c49af8f1162.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/95e499/95e4995e853aef015f327c49af8f1162.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|necro"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "necro#wall.A.openforge+dragonlock,side.stl",
             "file_modified_at": "2024-03-19T03:43:32.237772+00:00",
             "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side+dragonlock/necro#wall.A.openforge+dragonlock,side.stl",
@@ -2179,6 +1904,281 @@
             "component|wall",
             "connection|openforge",
             "connection|openforge|dragonlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#wall.A.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:43:15.004594+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.A.openforge,side.stl",
+            "md5": "995f0dc500db370f26de65d6d5cbab37",
+            "size": 15598384,
+            "storage_address": "https://objects.openforge.tools/models/995f0d/995f0dc500db370f26de65d6d5cbab37.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/995f0d/995f0dc500db370f26de65d6d5cbab37.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#wall.BA.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:45:48.355236+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.BA.openforge,side.stl",
+            "md5": "baba999f9363e9138704781287af8ec0",
+            "size": 12681284,
+            "storage_address": "https://objects.openforge.tools/models/baba99/baba999f9363e9138704781287af8ec0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/baba99/baba999f9363e9138704781287af8ec0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#wall.D.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:51:28.720284+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.D.openforge,side.stl",
+            "md5": "032a151c66a9ed44a9cbad45bebbbfb0",
+            "size": 20304184,
+            "storage_address": "https://objects.openforge.tools/models/032a15/032a151c66a9ed44a9cbad45bebbbfb0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/032a15/032a151c66a9ed44a9cbad45bebbbfb0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#wall.IA.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:56:07.796339+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.IA.openforge,side.stl",
+            "md5": "6104ae967b7f24b119ad22ec34b09d33",
+            "size": 11982584,
+            "storage_address": "https://objects.openforge.tools/models/6104ae/6104ae967b7f24b119ad22ec34b09d33.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6104ae/6104ae967b7f24b119ad22ec34b09d33.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "necro#wall.Q.openforge,side.stl",
+            "file_modified_at": "2024-03-19T03:54:20.426090+00:00",
+            "full_name": "tiles/encounters/necromancers_ossuary/separate_wall/wall/openforge/side/necro#wall.Q.openforge,side.stl",
+            "md5": "95e4995e853aef015f327c49af8f1162",
+            "size": 25486784,
+            "storage_address": "https://objects.openforge.tools/models/95e499/95e4995e853aef015f327c49af8f1162.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/95e499/95e4995e853aef015f327c49af8f1162.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
             "connection|side",
             "connection|side|openlock",
             "shape|wall",

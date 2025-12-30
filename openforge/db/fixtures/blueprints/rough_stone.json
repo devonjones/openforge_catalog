@@ -1033,6 +1033,96 @@
         "type": "model"
     },
     {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#column+low.I.openforge.stl",
+            "file_modified_at": "2020-07-19T19:02:20.206958+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/column+low/openlock/rough_stone#column+low.I.openforge.stl",
+            "md5": "9464b9a38b82b5c311a352b099cf96ff",
+            "size": 3490084,
+            "storage_address": "https://objects.openforge.tools/models/9464b9/9464b9a38b82b5c311a352b099cf96ff.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9464b9/9464b9a38b82b5c311a352b099cf96ff.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|column",
+            "shape|column|low",
+            "shape|square",
+            "shape|wall",
+            "size|depth|1",
+            "size|openlock|I",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#column+low.O.openforge.stl",
+            "file_modified_at": "2020-07-19T19:04:09.366624+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/column+low/openlock/rough_stone#column+low.O.openforge.stl",
+            "md5": "e323f712ac00d8f034b89da1a345d5d1",
+            "size": 3868984,
+            "storage_address": "https://objects.openforge.tools/models/e323f7/e323f712ac00d8f034b89da1a345d5d1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e323f7/e323f712ac00d8f034b89da1a345d5d1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openforge",
+            "shape|angled",
+            "shape|angled|right",
+            "shape|column",
+            "shape|column|low",
+            "shape|floor",
+            "shape|square",
+            "shape|wall",
+            "size|angle|45",
+            "size|depth|2",
+            "size|openlock|O",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "rough_stone#column.col+I.side.stl",
             "file_modified_at": "2020-07-19T19:00:13.828403+00:00",
@@ -1173,1672 +1263,6 @@
             "shape|wall",
             "size|column_shape|X",
             "size|openlock|X",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#column+low.I.openforge.stl",
-            "file_modified_at": "2020-07-19T19:02:20.206958+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/column+low/openlock/rough_stone#column+low.I.openforge.stl",
-            "md5": "9464b9a38b82b5c311a352b099cf96ff",
-            "size": 3490084,
-            "storage_address": "https://objects.openforge.tools/models/9464b9/9464b9a38b82b5c311a352b099cf96ff.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9464b9/9464b9a38b82b5c311a352b099cf96ff.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openforge",
-            "shape|column",
-            "shape|column|low",
-            "shape|square",
-            "shape|wall",
-            "size|depth|1",
-            "size|openlock|I",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#column+low.O.openforge.stl",
-            "file_modified_at": "2020-07-19T19:04:09.366624+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/column+low/openlock/rough_stone#column+low.O.openforge.stl",
-            "md5": "e323f712ac00d8f034b89da1a345d5d1",
-            "size": 3868984,
-            "storage_address": "https://objects.openforge.tools/models/e323f7/e323f712ac00d8f034b89da1a345d5d1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/e323f7/e323f712ac00d8f034b89da1a345d5d1.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "connection|openforge",
-            "shape|angled",
-            "shape|angled|right",
-            "shape|column",
-            "shape|column|low",
-            "shape|floor",
-            "shape|square",
-            "shape|wall",
-            "size|angle|45",
-            "size|depth|2",
-            "size|openlock|O",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openforge,pegs.stl",
-            "file_modified_at": "2020-07-13T18:08:42.923179+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.A.openforge,pegs.stl",
-            "md5": "3c02743766e0e5a78c99b90fa692af95",
-            "size": 16768984,
-            "storage_address": "https://objects.openforge.tools/models/3c0274/3c02743766e0e5a78c99b90fa692af95.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3c0274/3c02743766e0e5a78c99b90fa692af95.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openforge,pegs.stl",
-            "file_modified_at": "2020-07-16T20:26:47.399173+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.IA.openforge,pegs.stl",
-            "md5": "9aca2d0afd97c69730152f1bad633cc3",
-            "size": 9907784,
-            "storage_address": "https://objects.openforge.tools/models/9aca2d/9aca2d0afd97c69730152f1bad633cc3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9aca2d/9aca2d0afd97c69730152f1bad633cc3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openforge,pegs.stl",
-            "file_modified_at": "2020-07-19T18:30:36.271694+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.Q.openforge,pegs.stl",
-            "md5": "3ab88a624c095be2dfa823ded7b41dbc",
-            "size": 10831784,
-            "storage_address": "https://objects.openforge.tools/models/3ab88a/3ab88a624c095be2dfa823ded7b41dbc.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3ab88a/3ab88a624c095be2dfa823ded7b41dbc.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openforge,side,pegs.stl",
-            "file_modified_at": "2020-07-13T18:56:01.049804+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.A.openforge,side,pegs.stl",
-            "md5": "fdb0ad9570efc2c96ec257266557450b",
-            "size": 18145684,
-            "storage_address": "https://objects.openforge.tools/models/fdb0ad/fdb0ad9570efc2c96ec257266557450b.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/fdb0ad/fdb0ad9570efc2c96ec257266557450b.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openforge,side,pegs.stl",
-            "file_modified_at": "2020-07-16T20:47:29.426568+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.IA.openforge,side,pegs.stl",
-            "md5": "caba034849aba847608bffad10db55c3",
-            "size": 15914084,
-            "storage_address": "https://objects.openforge.tools/models/caba03/caba034849aba847608bffad10db55c3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/caba03/caba034849aba847608bffad10db55c3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openforge,side,pegs.stl",
-            "file_modified_at": "2020-07-19T18:30:54.538942+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.Q.openforge,side,pegs.stl",
-            "md5": "cfac9d6dc9b83304cdfc4c1dcb267837",
-            "size": 10707084,
-            "storage_address": "https://objects.openforge.tools/models/cfac9d/cfac9d6dc9b83304cdfc4c1dcb267837.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/cfac9d/cfac9d6dc9b83304cdfc4c1dcb267837.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|pegs",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openforge.stl",
-            "file_modified_at": "2025-07-29T18:37:24.493063+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.A.openforge.stl",
-            "md5": "d866ede5ece8693b5f64fab45d6939e0",
-            "size": 17267084,
-            "storage_address": "https://objects.openforge.tools/models/d866ed/d866ede5ece8693b5f64fab45d6939e0.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/d866ed/d866ede5ece8693b5f64fab45d6939e0.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.BA.openforge.stl",
-            "file_modified_at": "2025-07-29T18:26:26.446860+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.BA.openforge.stl",
-            "md5": "4c5299f1cd01b060b39ed98f6878f307",
-            "size": 14383384,
-            "storage_address": "https://objects.openforge.tools/models/4c5299/4c5299f1cd01b060b39ed98f6878f307.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/4c5299/4c5299f1cd01b060b39ed98f6878f307.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.D.openforge.stl",
-            "file_modified_at": "2025-07-29T18:42:54.897100+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.D.openforge.stl",
-            "md5": "659c7ed2e94ce863d458980958b2b103",
-            "size": 22384384,
-            "storage_address": "https://objects.openforge.tools/models/659c7e/659c7ed2e94ce863d458980958b2b103.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/659c7e/659c7ed2e94ce863d458980958b2b103.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openforge.stl",
-            "file_modified_at": "2025-07-29T18:20:30.826649+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.IA.openforge.stl",
-            "md5": "1b002b4f28b9694f6df1ba123dad820e",
-            "size": 9524484,
-            "storage_address": "https://objects.openforge.tools/models/1b002b/1b002b4f28b9694f6df1ba123dad820e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/1b002b/1b002b4f28b9694f6df1ba123dad820e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openforge.stl",
-            "file_modified_at": "2025-07-29T18:57:01.516830+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.Q.openforge.stl",
-            "md5": "450a08b6e7f59507933bb60cc46ab4b2",
-            "size": 25403084,
-            "storage_address": "https://objects.openforge.tools/models/450a08/450a08b6e7f59507933bb60cc46ab4b2.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/450a08/450a08b6e7f59507933bb60cc46ab4b2.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openforge,side.stl",
-            "file_modified_at": "2025-07-29T18:39:22.132371+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.A.openforge,side.stl",
-            "md5": "5c439e1c4cf65ca2ee7c6b817d5b20c7",
-            "size": 16963584,
-            "storage_address": "https://objects.openforge.tools/models/5c439e/5c439e1c4cf65ca2ee7c6b817d5b20c7.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/5c439e/5c439e1c4cf65ca2ee7c6b817d5b20c7.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.BA.openforge,side.stl",
-            "file_modified_at": "2025-07-29T18:30:20.040016+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.BA.openforge,side.stl",
-            "md5": "c38c0dabdb2e13beea81baa531157b52",
-            "size": 14177784,
-            "storage_address": "https://objects.openforge.tools/models/c38c0d/c38c0dabdb2e13beea81baa531157b52.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c38c0d/c38c0dabdb2e13beea81baa531157b52.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.D.openforge,side.stl",
-            "file_modified_at": "2025-07-29T18:46:55.897507+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.D.openforge,side.stl",
-            "md5": "5c55cb7da025a168d02bf065963df5b8",
-            "size": 22123584,
-            "storage_address": "https://objects.openforge.tools/models/5c55cb/5c55cb7da025a168d02bf065963df5b8.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/5c55cb/5c55cb7da025a168d02bf065963df5b8.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openforge,side.stl",
-            "file_modified_at": "2025-07-29T18:35:40.089252+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.IA.openforge,side.stl",
-            "md5": "6b7eb1e10f9c87fc87c90b8aee064221",
-            "size": 9198884,
-            "storage_address": "https://objects.openforge.tools/models/6b7eb1/6b7eb1e10f9c87fc87c90b8aee064221.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6b7eb1/6b7eb1e10f9c87fc87c90b8aee064221.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openforge,side.stl",
-            "file_modified_at": "2025-07-29T18:58:58.488574+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.Q.openforge,side.stl",
-            "md5": "dbae437bbd2a13a1ce29f0469975f550",
-            "size": 25076984,
-            "storage_address": "https://objects.openforge.tools/models/dbae43/dbae437bbd2a13a1ce29f0469975f550.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/dbae43/dbae437bbd2a13a1ce29f0469975f550.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openforge,side+dragonlock.stl",
-            "file_modified_at": "2025-07-29T18:39:36.942908+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.A.openforge,side+dragonlock.stl",
-            "md5": "10f435625f1d2774895cb86ed38dc793",
-            "size": 17631984,
-            "storage_address": "https://objects.openforge.tools/models/10f435/10f435625f1d2774895cb86ed38dc793.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/10f435/10f435625f1d2774895cb86ed38dc793.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.BA.openforge,side+dragonlock.stl",
-            "file_modified_at": "2025-07-29T18:31:20.903759+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.BA.openforge,side+dragonlock.stl",
-            "md5": "c63d4baf4e9abe92ffccac15b9dbca99",
-            "size": 14846184,
-            "storage_address": "https://objects.openforge.tools/models/c63d4b/c63d4baf4e9abe92ffccac15b9dbca99.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c63d4b/c63d4baf4e9abe92ffccac15b9dbca99.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.D.openforge,side+dragonlock.stl",
-            "file_modified_at": "2025-07-29T18:47:14.972504+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.D.openforge,side+dragonlock.stl",
-            "md5": "a04427b06a749b5f8ae452ce8a4ed76e",
-            "size": 22788084,
-            "storage_address": "https://objects.openforge.tools/models/a04427/a04427b06a749b5f8ae452ce8a4ed76e.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a04427/a04427b06a749b5f8ae452ce8a4ed76e.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openforge,side+dragonlock.stl",
-            "file_modified_at": "2025-07-29T18:21:50.411398+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.IA.openforge,side+dragonlock.stl",
-            "md5": "9a77e6927bb90791c52a91488f74a47f",
-            "size": 9868984,
-            "storage_address": "https://objects.openforge.tools/models/9a77e6/9a77e6927bb90791c52a91488f74a47f.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9a77e6/9a77e6927bb90791c52a91488f74a47f.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|width"
-                            },
-                            {
-                                "tag": "texture"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openforge,side+dragonlock.stl",
-            "file_modified_at": "2025-07-29T18:59:14.972481+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.Q.openforge,side+dragonlock.stl",
-            "md5": "bf8a06703b38453c2a58a4c49edc7210",
-            "size": 25745384,
-            "storage_address": "https://objects.openforge.tools/models/bf8a06/bf8a06703b38453c2a58a4c49edc7210.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/bf8a06/bf8a06703b38453c2a58a4c49edc7210.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openforge",
-            "connection|side",
-            "connection|side|dragonlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openlock,pegs.stl",
-            "file_modified_at": "2020-07-13T18:07:58.720141+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/rough_stone#wall.A.openlock,pegs.stl",
-            "md5": "9f7c60621a624d4da2fd635f07d84768",
-            "size": 28076984,
-            "storage_address": "https://objects.openforge.tools/models/9f7c60/9f7c60621a624d4da2fd635f07d84768.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9f7c60/9f7c60621a624d4da2fd635f07d84768.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|pegs",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openlock,pegs.stl",
-            "file_modified_at": "2020-07-19T18:29:59.581709+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/rough_stone#wall.Q.openlock,pegs.stl",
-            "md5": "7efca06a7306f245d4ed2e054812f669",
-            "size": 21634184,
-            "storage_address": "https://objects.openforge.tools/models/7efca0/7efca06a7306f245d4ed2e054812f669.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7efca0/7efca06a7306f245d4ed2e054812f669.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|pegs",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openlock,side,pegs.stl",
-            "file_modified_at": "2020-07-13T19:26:08.074523+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/side,pegs/rough_stone#wall.A.openlock,side,pegs.stl",
-            "md5": "c51085ea291ee869a1b3aa1f4ca23ef1",
-            "size": 30256284,
-            "storage_address": "https://objects.openforge.tools/models/c51085/c51085ea291ee869a1b3aa1f4ca23ef1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c51085/c51085ea291ee869a1b3aa1f4ca23ef1.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|pegs",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openlock,side,pegs.stl",
-            "file_modified_at": "2020-07-19T18:30:18.163329+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/side,pegs/rough_stone#wall.Q.openlock,side,pegs.stl",
-            "md5": "ef4b252745a3986a11a1cfaf849f35d9",
-            "size": 21805184,
-            "storage_address": "https://objects.openforge.tools/models/ef4b25/ef4b252745a3986a11a1cfaf849f35d9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/ef4b25/ef4b252745a3986a11a1cfaf849f35d9.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|pegs",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openlock.stl",
-            "file_modified_at": "2025-07-29T18:37:35.473478+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.A.openlock.stl",
-            "md5": "004a8406a50f6690f169fde97548a71c",
-            "size": 12533284,
-            "storage_address": "https://objects.openforge.tools/models/004a84/004a8406a50f6690f169fde97548a71c.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/004a84/004a8406a50f6690f169fde97548a71c.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.BA.openlock.stl",
-            "file_modified_at": "2025-07-29T18:32:15.564685+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.BA.openlock.stl",
-            "md5": "7d393c59e34c5b5818d86a92ac0492dd",
-            "size": 10152184,
-            "storage_address": "https://objects.openforge.tools/models/7d393c/7d393c59e34c5b5818d86a92ac0492dd.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7d393c/7d393c59e34c5b5818d86a92ac0492dd.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.D.openlock.stl",
-            "file_modified_at": "2025-07-29T18:43:10.063464+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.D.openlock.stl",
-            "md5": "6fe979d26d903125050cc7d9de270002",
-            "size": 17962484,
-            "storage_address": "https://objects.openforge.tools/models/6fe979/6fe979d26d903125050cc7d9de270002.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6fe979/6fe979d26d903125050cc7d9de270002.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openlock.stl",
-            "file_modified_at": "2025-07-29T18:20:43.617564+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.IA.openlock.stl",
-            "md5": "7cab5fab49bf11aa8f524d6dedc91510",
-            "size": 7104484,
-            "storage_address": "https://objects.openforge.tools/models/7cab5f/7cab5fab49bf11aa8f524d6dedc91510.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/7cab5f/7cab5fab49bf11aa8f524d6dedc91510.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openlock.stl",
-            "file_modified_at": "2025-07-29T18:57:17.836789+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.Q.openlock.stl",
-            "md5": "e9b07b3c4229b7808263ea34ce5f1a61",
-            "size": 20269084,
-            "storage_address": "https://objects.openforge.tools/models/e9b07b/e9b07b3c4229b7808263ea34ce5f1a61.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/e9b07b/e9b07b3c4229b7808263ea34ce5f1a61.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.A.openlock,side.stl",
-            "file_modified_at": "2025-07-29T18:39:50.866593+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.A.openlock,side.stl",
-            "md5": "e9b68217e1b7bd03eedfa17164c1d129",
-            "size": 12229784,
-            "storage_address": "https://objects.openforge.tools/models/e9b682/e9b68217e1b7bd03eedfa17164c1d129.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/e9b682/e9b68217e1b7bd03eedfa17164c1d129.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.BA.openlock,side.stl",
-            "file_modified_at": "2025-07-29T18:31:55.563158+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.BA.openlock,side.stl",
-            "md5": "c75fe334b15616c773ce6698cee5e3c6",
-            "size": 9946584,
-            "storage_address": "https://objects.openforge.tools/models/c75fe3/c75fe334b15616c773ce6698cee5e3c6.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c75fe3/c75fe334b15616c773ce6698cee5e3c6.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|BA",
-            "size|width|1.5",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.D.openlock,side.stl",
-            "file_modified_at": "2025-07-29T18:47:30.211817+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.D.openlock,side.stl",
-            "md5": "6c498ed50f2a1c8fadc1dae28778aa31",
-            "size": 17701984,
-            "storage_address": "https://objects.openforge.tools/models/6c498e/6c498ed50f2a1c8fadc1dae28778aa31.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6c498e/6c498ed50f2a1c8fadc1dae28778aa31.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.IA.openlock,side.stl",
-            "file_modified_at": "2025-07-29T18:22:06.562781+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.IA.openlock,side.stl",
-            "md5": "3f7516229d65de3a32ba85847679a901",
-            "size": 6780084,
-            "storage_address": "https://objects.openforge.tools/models/3f7516/3f7516229d65de3a32ba85847679a901.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3f7516/3f7516229d65de3a32ba85847679a901.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.Q.openlock,side.stl",
-            "file_modified_at": "2025-07-29T18:59:29.964387+00:00",
-            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.Q.openlock,side.stl",
-            "md5": "f7585ac8b93b7253d65251b8026d1f65",
-            "size": 19942984,
-            "storage_address": "https://objects.openforge.tools/models/f7585a/f7585ac8b93b7253d65251b8026d1f65.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f7585a/f7585ac8b93b7253d65251b8026d1f65.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|separate wall",
-            "component|wall",
-            "connection|openlock",
-            "connection|side",
-            "connection|side|openlock",
-            "shape|square",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
             "texture|rough_stone"
         ],
         "type": "model"
@@ -3692,6 +2116,1582 @@
                     "tags": {
                         "constrain": [
                             {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openforge,pegs.stl",
+            "file_modified_at": "2020-07-13T18:08:42.923179+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.A.openforge,pegs.stl",
+            "md5": "3c02743766e0e5a78c99b90fa692af95",
+            "size": 16768984,
+            "storage_address": "https://objects.openforge.tools/models/3c0274/3c02743766e0e5a78c99b90fa692af95.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3c0274/3c02743766e0e5a78c99b90fa692af95.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openforge,pegs.stl",
+            "file_modified_at": "2020-07-16T20:26:47.399173+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.IA.openforge,pegs.stl",
+            "md5": "9aca2d0afd97c69730152f1bad633cc3",
+            "size": 9907784,
+            "storage_address": "https://objects.openforge.tools/models/9aca2d/9aca2d0afd97c69730152f1bad633cc3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9aca2d/9aca2d0afd97c69730152f1bad633cc3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openforge,pegs.stl",
+            "file_modified_at": "2020-07-19T18:30:36.271694+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/rough_stone#wall.Q.openforge,pegs.stl",
+            "md5": "3ab88a624c095be2dfa823ded7b41dbc",
+            "size": 10831784,
+            "storage_address": "https://objects.openforge.tools/models/3ab88a/3ab88a624c095be2dfa823ded7b41dbc.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3ab88a/3ab88a624c095be2dfa823ded7b41dbc.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openforge,side,pegs.stl",
+            "file_modified_at": "2020-07-13T18:56:01.049804+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.A.openforge,side,pegs.stl",
+            "md5": "fdb0ad9570efc2c96ec257266557450b",
+            "size": 18145684,
+            "storage_address": "https://objects.openforge.tools/models/fdb0ad/fdb0ad9570efc2c96ec257266557450b.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/fdb0ad/fdb0ad9570efc2c96ec257266557450b.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openforge,side,pegs.stl",
+            "file_modified_at": "2020-07-16T20:47:29.426568+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.IA.openforge,side,pegs.stl",
+            "md5": "caba034849aba847608bffad10db55c3",
+            "size": 15914084,
+            "storage_address": "https://objects.openforge.tools/models/caba03/caba034849aba847608bffad10db55c3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/caba03/caba034849aba847608bffad10db55c3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openforge,side,pegs.stl",
+            "file_modified_at": "2020-07-19T18:30:54.538942+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/pegs/side,pegs/rough_stone#wall.Q.openforge,side,pegs.stl",
+            "md5": "cfac9d6dc9b83304cdfc4c1dcb267837",
+            "size": 10707084,
+            "storage_address": "https://objects.openforge.tools/models/cfac9d/cfac9d6dc9b83304cdfc4c1dcb267837.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/cfac9d/cfac9d6dc9b83304cdfc4c1dcb267837.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|pegs",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openforge.stl",
+            "file_modified_at": "2025-07-29T18:37:24.493063+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.A.openforge.stl",
+            "md5": "d866ede5ece8693b5f64fab45d6939e0",
+            "size": 17267084,
+            "storage_address": "https://objects.openforge.tools/models/d866ed/d866ede5ece8693b5f64fab45d6939e0.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/d866ed/d866ede5ece8693b5f64fab45d6939e0.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.BA.openforge.stl",
+            "file_modified_at": "2025-07-29T18:26:26.446860+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.BA.openforge.stl",
+            "md5": "4c5299f1cd01b060b39ed98f6878f307",
+            "size": 14383384,
+            "storage_address": "https://objects.openforge.tools/models/4c5299/4c5299f1cd01b060b39ed98f6878f307.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/4c5299/4c5299f1cd01b060b39ed98f6878f307.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.D.openforge.stl",
+            "file_modified_at": "2025-07-29T18:42:54.897100+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.D.openforge.stl",
+            "md5": "659c7ed2e94ce863d458980958b2b103",
+            "size": 22384384,
+            "storage_address": "https://objects.openforge.tools/models/659c7e/659c7ed2e94ce863d458980958b2b103.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/659c7e/659c7ed2e94ce863d458980958b2b103.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openforge.stl",
+            "file_modified_at": "2025-07-29T18:20:30.826649+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.IA.openforge.stl",
+            "md5": "1b002b4f28b9694f6df1ba123dad820e",
+            "size": 9524484,
+            "storage_address": "https://objects.openforge.tools/models/1b002b/1b002b4f28b9694f6df1ba123dad820e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/1b002b/1b002b4f28b9694f6df1ba123dad820e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openforge.stl",
+            "file_modified_at": "2025-07-29T18:57:01.516830+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/rough_stone#wall.Q.openforge.stl",
+            "md5": "450a08b6e7f59507933bb60cc46ab4b2",
+            "size": 25403084,
+            "storage_address": "https://objects.openforge.tools/models/450a08/450a08b6e7f59507933bb60cc46ab4b2.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/450a08/450a08b6e7f59507933bb60cc46ab4b2.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:39:36.942908+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.A.openforge,side+dragonlock.stl",
+            "md5": "10f435625f1d2774895cb86ed38dc793",
+            "size": 17631984,
+            "storage_address": "https://objects.openforge.tools/models/10f435/10f435625f1d2774895cb86ed38dc793.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/10f435/10f435625f1d2774895cb86ed38dc793.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.BA.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:31:20.903759+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.BA.openforge,side+dragonlock.stl",
+            "md5": "c63d4baf4e9abe92ffccac15b9dbca99",
+            "size": 14846184,
+            "storage_address": "https://objects.openforge.tools/models/c63d4b/c63d4baf4e9abe92ffccac15b9dbca99.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c63d4b/c63d4baf4e9abe92ffccac15b9dbca99.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.D.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:47:14.972504+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.D.openforge,side+dragonlock.stl",
+            "md5": "a04427b06a749b5f8ae452ce8a4ed76e",
+            "size": 22788084,
+            "storage_address": "https://objects.openforge.tools/models/a04427/a04427b06a749b5f8ae452ce8a4ed76e.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a04427/a04427b06a749b5f8ae452ce8a4ed76e.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:21:50.411398+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.IA.openforge,side+dragonlock.stl",
+            "md5": "9a77e6927bb90791c52a91488f74a47f",
+            "size": 9868984,
+            "storage_address": "https://objects.openforge.tools/models/9a77e6/9a77e6927bb90791c52a91488f74a47f.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9a77e6/9a77e6927bb90791c52a91488f74a47f.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openforge,side+dragonlock.stl",
+            "file_modified_at": "2025-07-29T18:59:14.972481+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side+dragonlock/rough_stone#wall.Q.openforge,side+dragonlock.stl",
+            "md5": "bf8a06703b38453c2a58a4c49edc7210",
+            "size": 25745384,
+            "storage_address": "https://objects.openforge.tools/models/bf8a06/bf8a06703b38453c2a58a4c49edc7210.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/bf8a06/bf8a06703b38453c2a58a4c49edc7210.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|dragonlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openforge,side.stl",
+            "file_modified_at": "2025-07-29T18:39:22.132371+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.A.openforge,side.stl",
+            "md5": "5c439e1c4cf65ca2ee7c6b817d5b20c7",
+            "size": 16963584,
+            "storage_address": "https://objects.openforge.tools/models/5c439e/5c439e1c4cf65ca2ee7c6b817d5b20c7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5c439e/5c439e1c4cf65ca2ee7c6b817d5b20c7.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.BA.openforge,side.stl",
+            "file_modified_at": "2025-07-29T18:30:20.040016+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.BA.openforge,side.stl",
+            "md5": "c38c0dabdb2e13beea81baa531157b52",
+            "size": 14177784,
+            "storage_address": "https://objects.openforge.tools/models/c38c0d/c38c0dabdb2e13beea81baa531157b52.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c38c0d/c38c0dabdb2e13beea81baa531157b52.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.D.openforge,side.stl",
+            "file_modified_at": "2025-07-29T18:46:55.897507+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.D.openforge,side.stl",
+            "md5": "5c55cb7da025a168d02bf065963df5b8",
+            "size": 22123584,
+            "storage_address": "https://objects.openforge.tools/models/5c55cb/5c55cb7da025a168d02bf065963df5b8.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/5c55cb/5c55cb7da025a168d02bf065963df5b8.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openforge,side.stl",
+            "file_modified_at": "2025-07-29T18:35:40.089252+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.IA.openforge,side.stl",
+            "md5": "6b7eb1e10f9c87fc87c90b8aee064221",
+            "size": 9198884,
+            "storage_address": "https://objects.openforge.tools/models/6b7eb1/6b7eb1e10f9c87fc87c90b8aee064221.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6b7eb1/6b7eb1e10f9c87fc87c90b8aee064221.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|width"
+                            },
+                            {
+                                "tag": "texture"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openforge,side.stl",
+            "file_modified_at": "2025-07-29T18:58:58.488574+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openforge/side/rough_stone#wall.Q.openforge,side.stl",
+            "md5": "dbae437bbd2a13a1ce29f0469975f550",
+            "size": 25076984,
+            "storage_address": "https://objects.openforge.tools/models/dbae43/dbae437bbd2a13a1ce29f0469975f550.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/dbae43/dbae437bbd2a13a1ce29f0469975f550.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openforge",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openlock,pegs.stl",
+            "file_modified_at": "2020-07-13T18:07:58.720141+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/rough_stone#wall.A.openlock,pegs.stl",
+            "md5": "9f7c60621a624d4da2fd635f07d84768",
+            "size": 28076984,
+            "storage_address": "https://objects.openforge.tools/models/9f7c60/9f7c60621a624d4da2fd635f07d84768.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9f7c60/9f7c60621a624d4da2fd635f07d84768.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|pegs",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openlock,pegs.stl",
+            "file_modified_at": "2020-07-19T18:29:59.581709+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/rough_stone#wall.Q.openlock,pegs.stl",
+            "md5": "7efca06a7306f245d4ed2e054812f669",
+            "size": 21634184,
+            "storage_address": "https://objects.openforge.tools/models/7efca0/7efca06a7306f245d4ed2e054812f669.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7efca0/7efca06a7306f245d4ed2e054812f669.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|pegs",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openlock,side,pegs.stl",
+            "file_modified_at": "2020-07-13T19:26:08.074523+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/side,pegs/rough_stone#wall.A.openlock,side,pegs.stl",
+            "md5": "c51085ea291ee869a1b3aa1f4ca23ef1",
+            "size": 30256284,
+            "storage_address": "https://objects.openforge.tools/models/c51085/c51085ea291ee869a1b3aa1f4ca23ef1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c51085/c51085ea291ee869a1b3aa1f4ca23ef1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|pegs",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openlock,side,pegs.stl",
+            "file_modified_at": "2020-07-19T18:30:18.163329+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/pegs/side,pegs/rough_stone#wall.Q.openlock,side,pegs.stl",
+            "md5": "ef4b252745a3986a11a1cfaf849f35d9",
+            "size": 21805184,
+            "storage_address": "https://objects.openforge.tools/models/ef4b25/ef4b252745a3986a11a1cfaf849f35d9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/ef4b25/ef4b252745a3986a11a1cfaf849f35d9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|pegs",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openlock.stl",
+            "file_modified_at": "2025-07-29T18:37:35.473478+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.A.openlock.stl",
+            "md5": "004a8406a50f6690f169fde97548a71c",
+            "size": 12533284,
+            "storage_address": "https://objects.openforge.tools/models/004a84/004a8406a50f6690f169fde97548a71c.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/004a84/004a8406a50f6690f169fde97548a71c.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.BA.openlock.stl",
+            "file_modified_at": "2025-07-29T18:32:15.564685+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.BA.openlock.stl",
+            "md5": "7d393c59e34c5b5818d86a92ac0492dd",
+            "size": 10152184,
+            "storage_address": "https://objects.openforge.tools/models/7d393c/7d393c59e34c5b5818d86a92ac0492dd.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7d393c/7d393c59e34c5b5818d86a92ac0492dd.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.D.openlock.stl",
+            "file_modified_at": "2025-07-29T18:43:10.063464+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.D.openlock.stl",
+            "md5": "6fe979d26d903125050cc7d9de270002",
+            "size": 17962484,
+            "storage_address": "https://objects.openforge.tools/models/6fe979/6fe979d26d903125050cc7d9de270002.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6fe979/6fe979d26d903125050cc7d9de270002.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openlock.stl",
+            "file_modified_at": "2025-07-29T18:20:43.617564+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.IA.openlock.stl",
+            "md5": "7cab5fab49bf11aa8f524d6dedc91510",
+            "size": 7104484,
+            "storage_address": "https://objects.openforge.tools/models/7cab5f/7cab5fab49bf11aa8f524d6dedc91510.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/7cab5f/7cab5fab49bf11aa8f524d6dedc91510.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openlock.stl",
+            "file_modified_at": "2025-07-29T18:57:17.836789+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/rough_stone#wall.Q.openlock.stl",
+            "md5": "e9b07b3c4229b7808263ea34ce5f1a61",
+            "size": 20269084,
+            "storage_address": "https://objects.openforge.tools/models/e9b07b/e9b07b3c4229b7808263ea34ce5f1a61.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e9b07b/e9b07b3c4229b7808263ea34ce5f1a61.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.A.openlock,side.stl",
+            "file_modified_at": "2025-07-29T18:39:50.866593+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.A.openlock,side.stl",
+            "md5": "e9b68217e1b7bd03eedfa17164c1d129",
+            "size": 12229784,
+            "storage_address": "https://objects.openforge.tools/models/e9b682/e9b68217e1b7bd03eedfa17164c1d129.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/e9b682/e9b68217e1b7bd03eedfa17164c1d129.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.BA.openlock,side.stl",
+            "file_modified_at": "2025-07-29T18:31:55.563158+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.BA.openlock,side.stl",
+            "md5": "c75fe334b15616c773ce6698cee5e3c6",
+            "size": 9946584,
+            "storage_address": "https://objects.openforge.tools/models/c75fe3/c75fe334b15616c773ce6698cee5e3c6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c75fe3/c75fe334b15616c773ce6698cee5e3c6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|BA",
+            "size|width|1.5",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.D.openlock,side.stl",
+            "file_modified_at": "2025-07-29T18:47:30.211817+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.D.openlock,side.stl",
+            "md5": "6c498ed50f2a1c8fadc1dae28778aa31",
+            "size": 17701984,
+            "storage_address": "https://objects.openforge.tools/models/6c498e/6c498ed50f2a1c8fadc1dae28778aa31.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6c498e/6c498ed50f2a1c8fadc1dae28778aa31.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.IA.openlock,side.stl",
+            "file_modified_at": "2025-07-29T18:22:06.562781+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.IA.openlock,side.stl",
+            "md5": "3f7516229d65de3a32ba85847679a901",
+            "size": 6780084,
+            "storage_address": "https://objects.openforge.tools/models/3f7516/3f7516229d65de3a32ba85847679a901.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/3f7516/3f7516229d65de3a32ba85847679a901.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.Q.openlock,side.stl",
+            "file_modified_at": "2025-07-29T18:59:29.964387+00:00",
+            "full_name": "tiles/rough_stone/separate_wall/primary_walls/wall/openlock/side/rough_stone#wall.Q.openlock,side.stl",
+            "md5": "f7585ac8b93b7253d65251b8026d1f65",
+            "size": 19942984,
+            "storage_address": "https://objects.openforge.tools/models/f7585a/f7585ac8b93b7253d65251b8026d1f65.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f7585a/f7585ac8b93b7253d65251b8026d1f65.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
                                 "filter": "shape|floor"
                             },
                             {
@@ -4094,390 +4094,6 @@
             ]
         },
         "file_metadata": {
-            "file": "rough_stone#floor+curved.1x1.openforge.stl",
-            "file_modified_at": "2020-11-30T23:58:18.509443+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.1x1.openforge.stl",
-            "md5": "67c001fb3a5fd3d30887cbee59b2d5a3",
-            "size": 2971184,
-            "storage_address": "https://objects.openforge.tools/models/67c001/67c001fb3a5fd3d30887cbee59b2d5a3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/67c001/67c001fb3a5fd3d30887cbee59b2d5a3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|1",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor+curved.2x2.openforge.stl",
-            "file_modified_at": "2020-11-30T23:58:30.685168+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.2x2.openforge.stl",
-            "md5": "0c9e5dbf3ed3951dbe6ef86b1a4567c6",
-            "size": 12083784,
-            "storage_address": "https://objects.openforge.tools/models/0c9e5d/0c9e5dbf3ed3951dbe6ef86b1a4567c6.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/0c9e5d/0c9e5dbf3ed3951dbe6ef86b1a4567c6.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|2",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor+curved.2x4.openforge.stl",
-            "file_modified_at": "2020-11-30T23:58:40.490405+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.2x4.openforge.stl",
-            "md5": "f2ea9a183974e22a5c5c69bd9fa0b945",
-            "size": 20398984,
-            "storage_address": "https://objects.openforge.tools/models/f2ea9a/f2ea9a183974e22a5c5c69bd9fa0b945.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/f2ea9a/f2ea9a183974e22a5c5c69bd9fa0b945.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|4",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor+curved.3x3.openforge.stl",
-            "file_modified_at": "2020-11-30T23:58:52.658205+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.3x3.openforge.stl",
-            "md5": "2b8fffc4549df7e8826a6e432ba1a961",
-            "size": 42041084,
-            "storage_address": "https://objects.openforge.tools/models/2b8fff/2b8fffc4549df7e8826a6e432ba1a961.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/2b8fff/2b8fffc4549df7e8826a6e432ba1a961.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|3",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor+curved.4x2.openforge.stl",
-            "file_modified_at": "2020-11-30T23:59:03.638254+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.4x2.openforge.stl",
-            "md5": "2745084bfc7e0917446670187339be47",
-            "size": 19470384,
-            "storage_address": "https://objects.openforge.tools/models/274508/2745084bfc7e0917446670187339be47.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/274508/2745084bfc7e0917446670187339be47.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|2",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
-            "file": "rough_stone#floor+curved.4x4.openforge.stl",
-            "file_modified_at": "2020-11-30T23:59:19.541142+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.4x4.openforge.stl",
-            "md5": "9ffd0848608ce8eadae7af4964759ed1",
-            "size": 72507984,
-            "storage_address": "https://objects.openforge.tools/models/9ffd08/9ffd0848608ce8eadae7af4964759ed1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/9ffd08/9ffd0848608ce8eadae7af4964759ed1.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "connection|openforge",
-            "shape|floor",
-            "shape|floor|curved",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "config": {
-            "parts": [
-                {
-                    "name": "base",
-                    "optional": true,
-                    "tags": {
-                        "constrain": [
-                            {
-                                "filter": "shape|floor"
-                            },
-                            {
-                                "filter": "shape|wall"
-                            },
-                            {
-                                "tag": "shape"
-                            },
-                            {
-                                "tag": "size|depth"
-                            },
-                            {
-                                "tag": "size|width"
-                            }
-                        ],
-                        "deny": [
-                            {
-                                "tag": "build|s2w"
-                            }
-                        ],
-                        "require": [
-                            {
-                                "tag": "shape|base"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "file_metadata": {
             "file": "rough_stone#floor+curved+concave.1x1.openforge.stl",
             "file_modified_at": "2020-12-01T00:00:34.108345+00:00",
             "full_name": "tiles/rough_stone/wall_on_tile/curved/floor+concave/rough_stone#floor+curved+concave.1x1.openforge.stl",
@@ -4830,6 +4446,418 @@
         "type": "model"
     },
     {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.1x1.openforge.stl",
+            "file_modified_at": "2020-11-30T23:58:18.509443+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.1x1.openforge.stl",
+            "md5": "67c001fb3a5fd3d30887cbee59b2d5a3",
+            "size": 2971184,
+            "storage_address": "https://objects.openforge.tools/models/67c001/67c001fb3a5fd3d30887cbee59b2d5a3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/67c001/67c001fb3a5fd3d30887cbee59b2d5a3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|1",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.2x2.openforge.stl",
+            "file_modified_at": "2020-11-30T23:58:30.685168+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.2x2.openforge.stl",
+            "md5": "0c9e5dbf3ed3951dbe6ef86b1a4567c6",
+            "size": 12083784,
+            "storage_address": "https://objects.openforge.tools/models/0c9e5d/0c9e5dbf3ed3951dbe6ef86b1a4567c6.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/0c9e5d/0c9e5dbf3ed3951dbe6ef86b1a4567c6.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|2",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.2x4.openforge.stl",
+            "file_modified_at": "2020-11-30T23:58:40.490405+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.2x4.openforge.stl",
+            "md5": "f2ea9a183974e22a5c5c69bd9fa0b945",
+            "size": 20398984,
+            "storage_address": "https://objects.openforge.tools/models/f2ea9a/f2ea9a183974e22a5c5c69bd9fa0b945.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/f2ea9a/f2ea9a183974e22a5c5c69bd9fa0b945.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|4",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.3x3.openforge.stl",
+            "file_modified_at": "2020-11-30T23:58:52.658205+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.3x3.openforge.stl",
+            "md5": "2b8fffc4549df7e8826a6e432ba1a961",
+            "size": 42041084,
+            "storage_address": "https://objects.openforge.tools/models/2b8fff/2b8fffc4549df7e8826a6e432ba1a961.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/2b8fff/2b8fffc4549df7e8826a6e432ba1a961.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|3",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.4x2.openforge.stl",
+            "file_modified_at": "2020-11-30T23:59:03.638254+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.4x2.openforge.stl",
+            "md5": "2745084bfc7e0917446670187339be47",
+            "size": 19470384,
+            "storage_address": "https://objects.openforge.tools/models/274508/2745084bfc7e0917446670187339be47.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/274508/2745084bfc7e0917446670187339be47.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|2",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "config": {
+            "parts": [
+                {
+                    "name": "base",
+                    "optional": true,
+                    "tags": {
+                        "constrain": [
+                            {
+                                "filter": "shape|floor"
+                            },
+                            {
+                                "filter": "shape|wall"
+                            },
+                            {
+                                "tag": "shape"
+                            },
+                            {
+                                "tag": "size|depth"
+                            },
+                            {
+                                "tag": "size|width"
+                            }
+                        ],
+                        "deny": [
+                            {
+                                "tag": "build|s2w"
+                            }
+                        ],
+                        "require": [
+                            {
+                                "tag": "shape|base"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "file_metadata": {
+            "file": "rough_stone#floor+curved.4x4.openforge.stl",
+            "file_modified_at": "2020-11-30T23:59:19.541142+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/floor/rough_stone#floor+curved.4x4.openforge.stl",
+            "md5": "9ffd0848608ce8eadae7af4964759ed1",
+            "size": 72507984,
+            "storage_address": "https://objects.openforge.tools/models/9ffd08/9ffd0848608ce8eadae7af4964759ed1.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/9ffd08/9ffd0848608ce8eadae7af4964759ed1.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "connection|openforge",
+            "shape|floor",
+            "shape|floor|curved",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall+curved+low.4x4.openforge.stl",
+            "file_modified_at": "2019-09-26T14:13:07+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/curved/wall+low/rough_stone#wall+curved+low.4x4.openforge.stl",
+            "md5": "08e2ea871f011e1c52e937e37a74b843",
+            "size": 14112084,
+            "storage_address": "https://objects.openforge.tools/models/08e2ea/08e2ea871f011e1c52e937e37a74b843.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/08e2ea/08e2ea871f011e1c52e937e37a74b843.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall|curved",
+            "component|wall|low",
+            "connection|openforge",
+            "shape|wall|low",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
         "file_metadata": {
             "file": "rough_stone#wall+curved.1x1.openforge.stl",
             "file_modified_at": "2019-09-26T14:10:43+00:00",
@@ -4985,34 +5013,6 @@
             "component|wall|curved",
             "connection|openforge",
             "shape|wall",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall+curved+low.4x4.openforge.stl",
-            "file_modified_at": "2019-09-26T14:13:07+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/curved/wall+low/rough_stone#wall+curved+low.4x4.openforge.stl",
-            "md5": "08e2ea871f011e1c52e937e37a74b843",
-            "size": 14112084,
-            "storage_address": "https://objects.openforge.tools/models/08e2ea/08e2ea871f011e1c52e937e37a74b843.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/08e2ea/08e2ea871f011e1c52e937e37a74b843.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall|curved",
-            "component|wall|low",
-            "connection|openforge",
-            "shape|wall|low",
             "size|depth|4",
             "size|width|4",
             "texture|rough_stone"
@@ -5801,6 +5801,34 @@
     },
     {
         "file_metadata": {
+            "file": "rough_stone#diagonal+wall+low.4x4.openforge.stl",
+            "file_modified_at": "2019-09-26T14:27:26+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/diagonal/wall+low/rough_stone#diagonal+wall+low.4x4.openforge.stl",
+            "md5": "21d8436d279ee20631674d3f7ef36649",
+            "size": 14139784,
+            "storage_address": "https://objects.openforge.tools/models/21d843/21d8436d279ee20631674d3f7ef36649.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/21d843/21d8436d279ee20631674d3f7ef36649.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|diagonal",
+            "component|diagonal|low",
+            "component|diagonal|wall",
+            "connection|openforge",
+            "size|depth|4",
+            "size|width|4",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
             "file": "rough_stone#diagonal+wall.1x1.openforge.stl",
             "file_modified_at": "2019-09-26T14:24:52+00:00",
             "full_name": "tiles/rough_stone/wall_on_tile/diagonal/wall/rough_stone#diagonal+wall.1x1.openforge.stl",
@@ -5961,34 +5989,6 @@
             "component|diagonal|wall",
             "connection|openforge",
             "shape|wall",
-            "size|depth|4",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#diagonal+wall+low.4x4.openforge.stl",
-            "file_modified_at": "2019-09-26T14:27:26+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/diagonal/wall+low/rough_stone#diagonal+wall+low.4x4.openforge.stl",
-            "md5": "21d8436d279ee20631674d3f7ef36649",
-            "size": 14139784,
-            "storage_address": "https://objects.openforge.tools/models/21d843/21d8436d279ee20631674d3f7ef36649.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/21d843/21d8436d279ee20631674d3f7ef36649.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|diagonal",
-            "component|diagonal|low",
-            "component|diagonal|wall",
-            "connection|openforge",
             "size|depth|4",
             "size|width|4",
             "texture|rough_stone"
@@ -6452,114 +6452,6 @@
     },
     {
         "file_metadata": {
-            "file": "rough_stone#wall.1x.openforge.stl",
-            "file_modified_at": "2019-09-27T12:44:33+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.1x.openforge.stl",
-            "md5": "c99f8244fa0dddc2c3cd82076f5206a9",
-            "size": 9656084,
-            "storage_address": "https://objects.openforge.tools/models/c99f82/c99f8244fa0dddc2c3cd82076f5206a9.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/c99f82/c99f8244fa0dddc2c3cd82076f5206a9.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall",
-            "connection|openforge",
-            "shape|wall",
-            "size|openlock|IA",
-            "size|width|1",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.2x.openforge.stl",
-            "file_modified_at": "2019-09-27T12:44:47+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.2x.openforge.stl",
-            "md5": "84f646c800efd83cd9f092af2df87579",
-            "size": 16484184,
-            "storage_address": "https://objects.openforge.tools/models/84f646/84f646c800efd83cd9f092af2df87579.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/84f646/84f646c800efd83cd9f092af2df87579.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall",
-            "connection|openforge",
-            "shape|wall",
-            "size|openlock|A",
-            "size|width|2",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.3x.openforge.stl",
-            "file_modified_at": "2019-09-27T12:45:21+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.3x.openforge.stl",
-            "md5": "6c64cdc6f427088792b1836d1aafc4d3",
-            "size": 23235184,
-            "storage_address": "https://objects.openforge.tools/models/6c64cd/6c64cdc6f427088792b1836d1aafc4d3.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/6c64cd/6c64cdc6f427088792b1836d1aafc4d3.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall",
-            "connection|openforge",
-            "shape|wall",
-            "size|openlock|D",
-            "size|width|3",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "rough_stone#wall.4x.openforge.stl",
-            "file_modified_at": "2019-09-27T12:45:50+00:00",
-            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.4x.openforge.stl",
-            "md5": "a7184213ac827e1fc3d0d62b99e16a28",
-            "size": 27785184,
-            "storage_address": "https://objects.openforge.tools/models/a71842/a7184213ac827e1fc3d0d62b99e16a28.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/a71842/a7184213ac827e1fc3d0d62b99e16a28.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "build|wall on tile",
-            "component|wall",
-            "connection|openforge",
-            "shape|wall",
-            "size|openlock|Q",
-            "size|width|4",
-            "texture|rough_stone"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
             "file": "rough_stone#wall+air_symbol.2x.openforge.stl",
             "file_modified_at": "2019-06-25T23:42:39+00:00",
             "full_name": "tiles/rough_stone/wall_on_tile/wall/wall+encounters/rough_stone#wall+air_symbol.2x.openforge.stl",
@@ -6770,6 +6662,114 @@
             "shape|wall",
             "size|depth|2",
             "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.1x.openforge.stl",
+            "file_modified_at": "2019-09-27T12:44:33+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.1x.openforge.stl",
+            "md5": "c99f8244fa0dddc2c3cd82076f5206a9",
+            "size": 9656084,
+            "storage_address": "https://objects.openforge.tools/models/c99f82/c99f8244fa0dddc2c3cd82076f5206a9.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/c99f82/c99f8244fa0dddc2c3cd82076f5206a9.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|IA",
+            "size|width|1",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.2x.openforge.stl",
+            "file_modified_at": "2019-09-27T12:44:47+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.2x.openforge.stl",
+            "md5": "84f646c800efd83cd9f092af2df87579",
+            "size": 16484184,
+            "storage_address": "https://objects.openforge.tools/models/84f646/84f646c800efd83cd9f092af2df87579.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/84f646/84f646c800efd83cd9f092af2df87579.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.3x.openforge.stl",
+            "file_modified_at": "2019-09-27T12:45:21+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.3x.openforge.stl",
+            "md5": "6c64cdc6f427088792b1836d1aafc4d3",
+            "size": 23235184,
+            "storage_address": "https://objects.openforge.tools/models/6c64cd/6c64cdc6f427088792b1836d1aafc4d3.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/6c64cd/6c64cdc6f427088792b1836d1aafc4d3.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|D",
+            "size|width|3",
+            "texture|rough_stone"
+        ],
+        "type": "model"
+    },
+    {
+        "file_metadata": {
+            "file": "rough_stone#wall.4x.openforge.stl",
+            "file_modified_at": "2019-09-27T12:45:50+00:00",
+            "full_name": "tiles/rough_stone/wall_on_tile/wall/wall/rough_stone#wall.4x.openforge.stl",
+            "md5": "a7184213ac827e1fc3d0d62b99e16a28",
+            "size": 27785184,
+            "storage_address": "https://objects.openforge.tools/models/a71842/a7184213ac827e1fc3d0d62b99e16a28.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/a71842/a7184213ac827e1fc3d0d62b99e16a28.png"
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|wall on tile",
+            "component|wall",
+            "connection|openforge",
+            "shape|wall",
+            "size|openlock|Q",
+            "size|width|4",
             "texture|rough_stone"
         ],
         "type": "model"
