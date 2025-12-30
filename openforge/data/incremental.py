@@ -466,6 +466,14 @@ class IncrementalScanner:
             # Find the existing entry
             existing_entry = self._find_existing_entry(full_name)
             if existing_entry:
+                # Skip if already deprecated (preserved separately)
+                if existing_entry.get("deprecated"):
+                    if self.verbose:
+                        sys.stderr.write(
+                            f"DEBUG: Skipping already-deprecated entry: {full_name}\n"
+                        )
+                    continue
+
                 # Check if this is just a rename (same MD5 exists in current scan)
                 existing_md5 = existing_entry["file_metadata"].get("md5")
                 if existing_md5 and existing_md5 in current_md5s:

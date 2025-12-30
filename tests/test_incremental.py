@@ -427,6 +427,42 @@ class TestIncrementalScanner:
         )
         assert missing[0]["deprecated"] is True
 
+    def test_get_missing_files_skips_already_deprecated(self, temp_dir):
+        """Test that get_missing_files doesn't duplicate deprecated entries."""
+        # Create fixture with one already-deprecated entry
+        fixture_data = [
+            {
+                "file_metadata": {
+                    "full_name": "tiles/test/deprecated.stl",
+                    "file": "deprecated.stl",
+                    "md5": "abc123",
+                    "size": 1000,
+                    "file_modified_at": "2023-01-01T10:00:00+00:00",
+                },
+                "deprecated": True,
+                "type": "model",
+                "tags": [],
+                "images": [],
+                "config": {},
+            }
+        ]
+
+        # Write fixture to temp file
+        fixture_path = os.path.join(temp_dir, "deprecated_test.json")
+        with open(fixture_path, "w") as f:
+            json.dump(fixture_data, f)
+
+        scanner = IncrementalScanner(fixture_path)
+
+        # Current scan doesn't include this file (it's still missing)
+        current_files = set()
+
+        # Get missing files - should NOT create a new deprecated entry
+        missing = scanner.get_missing_files(current_files)
+
+        # Should be empty - the file is already deprecated
+        assert len(missing) == 0
+
     def test_has_changes_for_output_md5_changed(self, sample_fixture, sample_files):
         """Test change detection when MD5 changes."""
         scanner = IncrementalScanner(sample_fixture)
