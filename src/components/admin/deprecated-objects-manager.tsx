@@ -90,7 +90,7 @@ const DeprecatedObjectsManager: React.FC = () => {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      
+
       if (adminState.csrfToken) {
         headers['X-CSRF-Token'] = adminState.csrfToken;
       }
@@ -124,7 +124,7 @@ const DeprecatedObjectsManager: React.FC = () => {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      
+
       if (adminState.csrfToken) {
         headers['X-CSRF-Token'] = adminState.csrfToken;
       }
@@ -200,13 +200,13 @@ const DeprecatedObjectsManager: React.FC = () => {
                   <div className="deprecated-actions">
                     {blueprint.successor_id ? (
                       <>
-                        <button 
+                        <button
                           className="create-changelog-btn"
                           onClick={() => handleEditChangelog(blueprint)}
                         >
                           {blueprint.successor_info?.changelog ? 'Edit Changelog' : 'Create Changelog'}
                         </button>
-                        <button 
+                        <button
                           className="disconnect-btn"
                           onClick={() => setShowDisconnectConfirm(blueprint)}
                           title="Disconnect successor"
@@ -215,7 +215,7 @@ const DeprecatedObjectsManager: React.FC = () => {
                         </button>
                       </>
                     ) : (
-                      <button 
+                      <button
                         className="attach-successor-btn"
                         onClick={() => handleAttachSuccessor(blueprint)}
                       >
@@ -328,4 +328,4 @@ const DeprecatedObjectsManager: React.FC = () => {
   );
 };
 
-export default DeprecatedObjectsManager; 
+export default DeprecatedObjectsManager;

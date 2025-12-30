@@ -23,7 +23,7 @@
   cursor: pointer;
   margin-left: 5px;
   flex-shrink: 0;
-} 
+}
 
 .tooltip {
   position: fixed;

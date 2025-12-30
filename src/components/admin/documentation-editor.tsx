@@ -51,7 +51,7 @@ const DocumentationEditor: React.FC = () => {
     <div className="documentation-editor">
       <div className="editor-header">
         <h3>Documentation Editor</h3>
-        
+
         {/* Target type selector */}
         <div className="target-type-selector">
           <label>
@@ -129,7 +129,7 @@ const DocumentationEditor: React.FC = () => {
         onSelect={handleBlueprintSelect}
         onClose={() => setShowBlueprintPicker(false)}
       />
-      
+
       <AdminTagPicker
         isOpen={showTagPicker}
         onSelect={handleTagSelect}
@@ -139,4 +139,4 @@ const DocumentationEditor: React.FC = () => {
   );
 };
 
-export default DocumentationEditor; 
+export default DocumentationEditor;

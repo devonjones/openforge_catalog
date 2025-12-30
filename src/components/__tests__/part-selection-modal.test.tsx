@@ -68,4 +68,4 @@ describe('PartSelectionModal', () => {
     fireEvent.click(screen.getByTestId('select-part'));
     expect(baseProps.onPartSelected).toHaveBeenCalledWith('partName', expect.objectContaining({ blueprint_name: 'BP' }));
   });
-}); 
+});

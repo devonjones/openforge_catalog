@@ -13,4 +13,4 @@ const BlueprintRelatedLinks: React.FC<BlueprintRelatedLinksProps> = ({ onSwap })
   </p>
 );
 
-export default BlueprintRelatedLinks; 
+export default BlueprintRelatedLinks;

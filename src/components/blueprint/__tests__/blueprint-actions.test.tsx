@@ -48,4 +48,4 @@ describe('BlueprintActions', () => {
     const reportLink = screen.getByText('Report Issue with this model');
     expect(reportLink).toHaveAttribute('href', '/issue');
   });
-}); 
+});

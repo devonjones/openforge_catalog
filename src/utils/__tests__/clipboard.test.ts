@@ -127,4 +127,4 @@ describe('clipboard', () => {
       expect(onSuccess).toHaveBeenCalled();
     });
   });
-}); 
+});

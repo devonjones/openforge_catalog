@@ -6,13 +6,16 @@ and thumbnail creation used by both scanner.py and incremental.py.
 """
 
 import os
+import subprocess
 import sys
-from typing import Dict, Optional, Set
+import tempfile
+from typing import Dict, List, Optional, Set, Tuple
 
 import boto3
 import sh
 from botocore.client import Config
 from botocore.exceptions import ClientError
+from PIL import Image
 
 
 def get_s3_client(config: Dict) -> boto3.client:
@@ -61,17 +64,21 @@ def get_s3_client(config: Dict) -> boto3.client:
     return s3_client
 
 
-def create_image(name: str, url: str) -> Dict:
+def create_image(name: str, url: str, sprite_metadata: Optional[Dict] = None) -> Dict:
     """Create image object for fixture.
 
     Args:
         name: Image name
         url: Image URL
+        sprite_metadata: Optional sprite sheet metadata (grid layout, camera angles)
 
     Returns:
         Image object dictionary
     """
-    return {"image_name": name, "image_url": url}
+    image = {"image_name": name, "image_url": url}
+    if sprite_metadata:
+        image["sprite_metadata"] = sprite_metadata
+    return image
 
 
 def get_s3_key_cache(
@@ -176,3 +183,236 @@ def create_thumbnail(file_path: str) -> str:
     thumb_path = os.path.join(path, f"{base}-thumb.png")
     sh.stl_thumb(file_path, thumb_path)
     return thumb_path
+
+
+# Sprite sheet camera angles configuration
+# 10 isometric-perspective angles: 4 cardinal + 4 diagonal + 2 vertical
+# Arranged in 45-degree increments around the model for even coverage
+SPRITE_ANGLES = [
+    {"index": 0, "name": "front", "camera_pos": [0, -4, 2]},  # Front view
+    {"index": 1, "name": "front-right", "camera_pos": [3, -3, 2]},  # 45° from front
+    {"index": 2, "name": "right", "camera_pos": [4, 0, 2]},  # Right view
+    {"index": 3, "name": "back-right", "camera_pos": [3, 3, 2]},  # 45° from right
+    {"index": 4, "name": "back", "camera_pos": [0, 4, 2]},  # Back view
+    {"index": 5, "name": "back-left", "camera_pos": [-3, 3, 2]},  # 45° from back
+    {"index": 6, "name": "left", "camera_pos": [-4, 0, 2]},  # Left view
+    {"index": 7, "name": "front-left", "camera_pos": [-3, -3, 2]},  # 45° from left
+    {"index": 8, "name": "top", "camera_pos": [0, -2, 5]},  # Top view
+    {"index": 9, "name": "bottom", "camera_pos": [0, -2, -3]},  # Bottom view
+]
+
+
+def _generate_angle_tile(
+    stl_path: str, output_path: str, camera_pos: List[float], size: int = 512
+) -> None:
+    """Generate a single thumbnail tile at specified camera position.
+
+    Args:
+        stl_path: Path to STL file
+        output_path: Path to save the generated tile
+        camera_pos: Camera position [x, y, z]
+        size: Size of square tile (default 512)
+
+    Raises:
+        subprocess.CalledProcessError: If stl-thumb command fails
+    """
+    # Use subprocess to properly handle negative camera position values
+    # stl-thumb now has allow_hyphen_values(true) to handle negative values
+    # Run in /tmp to avoid permission issues with temp files
+    cmd = [
+        "stl-thumb",
+        stl_path,
+        output_path,
+        "-s",
+        str(size),
+        "-c",
+        str(camera_pos[0]),
+        str(camera_pos[1]),
+        str(camera_pos[2]),
+    ]
+    subprocess.run(
+        cmd, check=True, capture_output=True, text=True, cwd=tempfile.gettempdir()
+    )
+
+
+def _combine_tiles_to_sprite(
+    tile_paths: List[str], sprite_path: str, rows: int = 2, cols: int = 5
+) -> None:
+    """Combine individual tiles into a sprite sheet.
+
+    Args:
+        tile_paths: List of paths to tile images (must match rows * cols)
+        sprite_path: Path to save the combined sprite sheet
+        rows: Number of rows in grid (default 2)
+        cols: Number of columns in grid (default 5)
+
+    Raises:
+        ValueError: If number of tiles doesn't match grid dimensions
+    """
+    if len(tile_paths) != rows * cols:
+        raise ValueError(
+            f"Expected {rows * cols} tiles for {rows}x{cols} grid, "
+            f"got {len(tile_paths)}"
+        )
+
+    # Load first tile to get dimensions
+    first_tile = Image.open(tile_paths[0])
+    tile_width, tile_height = first_tile.size
+    first_tile.close()
+
+    # Create sprite sheet
+    sprite_width = cols * tile_width
+    sprite_height = rows * tile_height
+    sprite = Image.new("RGBA", (sprite_width, sprite_height), (0, 0, 0, 0))
+
+    # Paste each tile into the sprite
+    for idx, tile_path in enumerate(tile_paths):
+        row = idx // cols
+        col = idx % cols
+        x = col * tile_width
+        y = row * tile_height
+
+        tile = Image.open(tile_path)
+        sprite.paste(tile, (x, y))
+        tile.close()
+
+    # Save sprite sheet
+    sprite.save(sprite_path, "PNG")
+    sprite.close()
+
+
+def create_sprite_sheet(file_path: str, tile_size: int = 512) -> Tuple[str, Dict]:
+    """Create multi-angle sprite sheet for STL file.
+
+    Generates 10 isometric-perspective angles and combines them into a
+    single sprite sheet PNG. Temporary tile files are cleaned up after
+    sprite generation.
+
+    Args:
+        file_path: Path to STL file
+        tile_size: Size of each square tile (default 512)
+
+    Returns:
+        Tuple of (sprite_path, sprite_metadata):
+        - sprite_path: Path to generated sprite sheet PNG
+        - sprite_metadata: Dictionary containing grid layout and camera angles
+    """
+    path, fn = os.path.split(file_path)
+    parts = fn.split(".")
+    _ = parts.pop()
+    base = ".".join(parts)
+
+    # Create temporary directory for tiles
+    with tempfile.TemporaryDirectory() as temp_dir:
+        tile_paths = []
+
+        # Generate each angle tile
+        for angle in SPRITE_ANGLES:
+            tile_path = os.path.join(temp_dir, f"{base}-angle-{angle['index']}.png")
+            _generate_angle_tile(file_path, tile_path, angle["camera_pos"], tile_size)
+            tile_paths.append(tile_path)
+
+        # Combine tiles into sprite sheet (use temp dir - not useful in Dropbox)
+        sprite_path = os.path.join(tempfile.gettempdir(), f"{base}-sprite.png")
+        _combine_tiles_to_sprite(tile_paths, sprite_path, rows=2, cols=5)
+
+        # Temporary tile files are automatically cleaned up when context exits
+
+    # Build sprite metadata
+    sprite_metadata = {
+        "grid_rows": 2,
+        "grid_cols": 5,
+        "tile_size": tile_size,
+        "angles": SPRITE_ANGLES,
+        "default_angle": 0,
+    }
+
+    return sprite_path, sprite_metadata
+
+
+def create_and_upload_thumbnail(
+    file_metadata: Dict,
+    stl_path: str,
+    s3_client,
+    s3_key_cache: Set[str],
+    config: Dict,
+    verbose: bool = False,
+    use_sprites: bool = False,
+) -> Dict:
+    """Create and upload thumbnail or sprite sheet for an STL file.
+
+    Handles both legacy single thumbnails and new multi-angle sprite sheets
+    based on the use_sprites flag. Uploads to R2 and cleans up local files.
+
+    Args:
+        file_metadata: File metadata dictionary (must include 'md5')
+        stl_path: Path to STL file
+        s3_client: Configured S3 client
+        s3_key_cache: Set of existing S3 keys for upload optimization
+        config: Configuration dictionary
+        verbose: Enable verbose output
+        use_sprites: If True, generate sprite sheet; if False, single thumbnail
+
+    Returns:
+        Image dictionary for fixture (with sprite_metadata if applicable)
+
+    Raises:
+        Exception: If thumbnail/sprite generation or upload fails
+    """
+    if use_sprites:
+        # Generate multi-angle sprite sheet
+        sprite_path, sprite_metadata = create_sprite_sheet(stl_path)
+
+        try:
+            # Upload sprite to R2
+            sprite_address = upload_file(
+                file_metadata,
+                sprite_path,
+                s3_client,
+                "sprites",
+                s3_key_cache,
+                config,
+                verbose,
+            )
+
+            # Create image entry with sprite metadata
+            sprite_url = f"{config['FILE_DOMAIN']}/{sprite_address}"
+            return create_image("thumbnail", sprite_url, sprite_metadata)
+
+        except Exception as e:
+            if verbose:
+                sys.stderr.write(f"ERROR: Failed to upload sprite sheet: {e}\n")
+            raise
+        finally:
+            # Clean up local sprite file (even on error)
+            if os.path.exists(sprite_path):
+                os.remove(sprite_path)
+
+    else:
+        # Generate legacy single thumbnail
+        thumb_path = create_thumbnail(stl_path)
+
+        try:
+            # Upload thumbnail to R2
+            thumb_address = upload_file(
+                file_metadata,
+                thumb_path,
+                s3_client,
+                "thumbnails",
+                s3_key_cache,
+                config,
+                verbose,
+            )
+
+            # Create image entry without sprite metadata
+            thumb_url = f"{config['FILE_DOMAIN']}/{thumb_address}"
+            return create_image("thumbnail", thumb_url)
+
+        except Exception as e:
+            if verbose:
+                sys.stderr.write(f"ERROR: Failed to upload thumbnail: {e}\n")
+            raise
+        finally:
+            # Clean up local thumbnail file (even on error)
+            if os.path.exists(thumb_path):
+                os.remove(thumb_path)

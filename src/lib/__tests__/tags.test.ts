@@ -196,7 +196,7 @@ describe('tags.ts', () => {
 
     it('should handle complex nested structures', () => {
       const complexSelections = {
-        'level1': { 
+        'level1': {
           id: 'level1-id',
           blueprint_name: 'Level 1',
           blueprint_type: 'blueprint',
@@ -213,7 +213,7 @@ describe('tags.ts', () => {
           tags: ['level1'],
           images: []
         },
-        'level1|level2': { 
+        'level1|level2': {
           id: 'level2-id',
           blueprint_name: 'Level 2',
           blueprint_type: 'blueprint',
@@ -230,7 +230,7 @@ describe('tags.ts', () => {
           tags: ['level2'],
           images: []
         },
-        'level1|level2|level3': { 
+        'level1|level2|level3': {
           id: 'level3-id',
           blueprint_name: 'Level 3',
           blueprint_type: 'blueprint',
@@ -247,7 +247,7 @@ describe('tags.ts', () => {
           tags: ['level3'],
           images: []
         },
-        'other': { 
+        'other': {
           id: 'other-id',
           blueprint_name: 'Other',
           blueprint_type: 'blueprint',
@@ -264,7 +264,7 @@ describe('tags.ts', () => {
           tags: ['other'],
           images: []
         },
-        'level1|other': { 
+        'level1|other': {
           id: 'level1-other-id',
           blueprint_name: 'Level 1 Other',
           blueprint_type: 'blueprint',
@@ -282,7 +282,7 @@ describe('tags.ts', () => {
           images: []
         }
       };
-      
+
       const result = getSelectionsWithSamePrefix(complexSelections, 'level1|level2');
       expect(result).toEqual([
         ['level1', complexSelections['level1']],
@@ -296,7 +296,7 @@ describe('tags.ts', () => {
   describe('getOtherBlueprintTags', () => {
     it('should combine parent and sibling tags for nested parts', () => {
       const result = getOtherBlueprintTags(mockConfigSelections, 'part1|subpart1', mockBlueprint);
-      
+
       // Should include:
       // - Parent tags: ['part1', 'component'] (from getParentBlueprintTags)
       // - All sibling tags: ['part1', 'component'] (from part1), ['subpart1', 'detail'] (from part1|subpart1), ['subpart2', 'detail'] (from part1|subpart2)
@@ -306,7 +306,7 @@ describe('tags.ts', () => {
 
     it('should return main blueprint and sibling tags for top-level parts', () => {
       const result = getOtherBlueprintTags(mockConfigSelections, 'part1', mockBlueprint);
-      
+
       // Should include:
       // - Main blueprint tags: ['test', 'model', 'base'] (from getParentBlueprintTags)
       // - All sibling tags: ['part1', 'component'] (from part1), ['part2', 'component'] (from part2)
@@ -339,7 +339,7 @@ describe('tags.ts', () => {
           images: []
         }
       };
-      
+
       const result = getOtherBlueprintTags(singleSelection, 'part1', mockBlueprint);
       expect(result).toEqual(new Set(['test', 'model', 'base', 'part1', 'component']));
     });
@@ -362,7 +362,7 @@ describe('tags.ts', () => {
         tags: [],
         images: []
       };
-      
+
       const result = getOtherBlueprintTags(mockConfigSelections, 'part1', blueprintWithoutTags);
       expect(result).toEqual(new Set(['part1', 'component', 'part2', 'component']));
     });
@@ -404,14 +404,14 @@ describe('tags.ts', () => {
           images: []
         }
       };
-      
+
       const result = getOtherBlueprintTags(selectionsWithoutTags, 'part1', mockBlueprint);
       expect(result).toEqual(new Set(['test', 'model', 'base', 'part2', 'component']));
     });
 
     it('should handle complex nested structure with multiple levels', () => {
       const complexSelections = {
-        'base': { 
+        'base': {
           id: 'base-id',
           blueprint_name: 'Base',
           blueprint_type: 'blueprint',
@@ -428,7 +428,7 @@ describe('tags.ts', () => {
           tags: ['base'],
           images: []
         },
-        'base|level1': { 
+        'base|level1': {
           id: 'level1-id',
           blueprint_name: 'Level 1',
           blueprint_type: 'blueprint',
@@ -445,7 +445,7 @@ describe('tags.ts', () => {
           tags: ['level1'],
           images: []
         },
-        'base|level1|level2': { 
+        'base|level1|level2': {
           id: 'level2-id',
           blueprint_name: 'Level 2',
           blueprint_type: 'blueprint',
@@ -462,7 +462,7 @@ describe('tags.ts', () => {
           tags: ['level2'],
           images: []
         },
-        'base|level1|level2|level3': { 
+        'base|level1|level2|level3': {
           id: 'level3-id',
           blueprint_name: 'Level 3',
           blueprint_type: 'blueprint',
@@ -479,7 +479,7 @@ describe('tags.ts', () => {
           tags: ['level3'],
           images: []
         },
-        'base|other': { 
+        'base|other': {
           id: 'other-id',
           blueprint_name: 'Other',
           blueprint_type: 'blueprint',
@@ -497,9 +497,9 @@ describe('tags.ts', () => {
           images: []
         }
       };
-      
+
       const result = getOtherBlueprintTags(complexSelections, 'base|level1|level2', mockBlueprint);
-      
+
       // Should include:
       // - Parent tags: ['level1'] (from base|level1)
       // - All sibling tags: ['base'] (from base), ['level1'] (from base|level1), ['level2'] (from base|level1|level2), ['level3'] (from base|level1|level2|level3), ['other'] (from base|other)
@@ -507,4 +507,4 @@ describe('tags.ts', () => {
       expect(result).toEqual(expectedTags);
     });
   });
-}); 
+});

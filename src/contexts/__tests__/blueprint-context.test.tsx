@@ -386,4 +386,4 @@ describe('BlueprintContext', () => {
       expect(mockState.clearConfigSelections).toHaveBeenCalled();
     });
   });
-}); 
+});

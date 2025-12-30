@@ -47,12 +47,12 @@ export function getOtherBlueprintTags(
 ): { parentTags: string[]; siblingSelections: { partName: string; tags: string[] }[] } {
   const parentTags: string[] = [];
   const siblingSelections: { partName: string; tags: string[] }[] = [];
-  
+
   // Add tags from parent blueprint
   if (parentBlueprint) {
     parentTags.push(...parentBlueprint.tags);
   }
-  
+
   // Add tags from other selected parts as sibling selections
   Object.entries(configSelections).forEach(([partName, bp]) => {
     if (partName !== currentPartName) {
@@ -62,7 +62,7 @@ export function getOtherBlueprintTags(
       });
     }
   });
-  
+
   return { parentTags, siblingSelections };
 }
 
@@ -74,4 +74,4 @@ export function getOtherBlueprintTags(
  */
 export function swapTagsByType(blueprint: Blueprint, tagType: string): string[] {
   return blueprint.tags.filter(t => !t.startsWith(tagType));
-} 
+}

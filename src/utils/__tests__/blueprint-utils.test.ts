@@ -98,7 +98,7 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const childBlueprint = createMockBlueprint({
         id: '2',
         blueprint_config: {
@@ -110,12 +110,12 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const configSelections = {
         parentPart: childBlueprint,
         'parentPart|childPart': createMockBlueprint({ id: '3' })
       };
-      
+
       const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
       expect(result).toBe(true);
     });
@@ -132,7 +132,7 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const level2Blueprint = createMockBlueprint({
         id: '2',
         blueprint_config: {
@@ -144,7 +144,7 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const level3Blueprint = createMockBlueprint({
         id: '3',
         blueprint_config: {
@@ -156,13 +156,13 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const configSelections = {
         level1: level2Blueprint,
         'level1|level2': level3Blueprint,
         'level1|level2|level3': createMockBlueprint({ id: '4' })
       };
-      
+
       const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
       expect(result).toBe(true);
     });
@@ -179,7 +179,7 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       const childBlueprint = createMockBlueprint({
         id: '2',
         blueprint_config: {
@@ -191,13 +191,13 @@ describe('blueprint-utils', () => {
           ]
         }
       });
-      
+
       // Missing the nested child part selection
       const configSelections = {
         parentPart: childBlueprint
         // Missing: 'parentPart|childPart'
       };
-      
+
       const result = shouldShowDownloadLink(blueprintWithConfig, configSelections);
       expect(result).toBe(false);
     });
@@ -494,9 +494,9 @@ describe('blueprint-utils', () => {
       const blueprint = createMockBlueprint({
         file_modified_at: '2023-01-02T00:00:00Z'
       });
-      
+
       const result = getLatestModificationDate(blueprint);
       expect(result).toEqual(new Date('2023-01-02T00:00:00Z'));
     });
   });
-}); 
+});

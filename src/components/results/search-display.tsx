@@ -22,4 +22,4 @@ export function SearchDisplay({ searchTerm, onClearSearch }: SearchDisplayProps)
       </ul>
     </>
   );
-} 
+}

@@ -20,4 +20,4 @@ describe('BlueprintRelatedLinks', () => {
     expect(screen.getByText('sizes')).toBeInTheDocument();
     expect(screen.getByText('connections')).toBeInTheDocument();
   });
-}); 
+});

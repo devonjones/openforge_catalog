@@ -15,10 +15,10 @@ export function useBlueprintUrlCleanup(
   useEffect(() => {
     // Only run on client side
     if (typeof window === 'undefined') return;
-    
+
     const currentLocation = location || window.location;
     const currentHistory = history || window.history;
-    
+
     // Handle URL cleanup and browser navigation
     if (blueprint) {
       // Remove blueprint_id from URL after it's been used
@@ -42,4 +42,4 @@ export function useBlueprintUrlCleanup(
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [blueprint, location, history]);
-} 
+}

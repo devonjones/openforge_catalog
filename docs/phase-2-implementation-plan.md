@@ -6,7 +6,7 @@ This document outlines the implementation strategy for Phase 2 of the OpenForge 
 
 ## Phase 2: Documentation System Implementation
 
-### Priority: HIGH  
+### Priority: HIGH
 ### Timeline: 2-3 weeks
 ### Dependencies: Phase 1 complete
 
@@ -54,7 +54,7 @@ CREATE INDEX idx_tags_documentation_tag ON tags_documentation USING GIN(tag);
 CREATE INDEX idx_tags_documentation_type ON tags_documentation(document_type);
 
 -- Trigger for automatic updated_at timestamp updates
-CREATE TRIGGER update_tags_documentation_updated_at 
+CREATE TRIGGER update_tags_documentation_updated_at
 BEFORE UPDATE ON tags_documentation
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 ```
@@ -95,7 +95,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Trigger for automatic last_used_at updates on UPDATE
-CREATE TRIGGER update_sessions_last_used 
+CREATE TRIGGER update_sessions_last_used
 BEFORE UPDATE ON sessions
 FOR EACH ROW EXECUTE FUNCTION update_last_used_at_column();
 ```
@@ -126,7 +126,7 @@ Response: {
 
 // Create documentation for blueprint (requires API key or active session)
 POST /api/blueprints/{blueprint_id}/documentation
-Body: { 
+Body: {
   document: string,
   document_type: 'changelog' | 'instructions'
 }
@@ -136,7 +136,7 @@ Response: {
 
 // Update specific documentation entry (requires API key or active session)
 PUT /api/blueprints/{blueprint_id}/documentation/{doc_id}
-Body: { 
+Body: {
   document: string,
   document_type: 'changelog' | 'instructions'
 }
@@ -171,7 +171,7 @@ Response: {
 // Create documentation for tag (requires API key or active session)
 // URL: /api/tags/texture/dungeon_stone/documentation
 POST /api/tags/{tag_array}/documentation
-Body: { 
+Body: {
   document: string,
   document_type: 'instructions'
 }
@@ -182,7 +182,7 @@ Response: {
 // Update specific tag documentation entry (requires API key or active session)
 // URL: /api/tags/texture/dungeon_stone/documentation/123
 PUT /api/tags/{tag_array}/documentation/{doc_id}
-Body: { 
+Body: {
   document: string,
   document_type: 'instructions'
 }
@@ -269,22 +269,22 @@ class SessionService:
         # Raises KeyError at runtime if ADMIN_API_KEY is not set (fail-fast behavior)
         if not secrets.compare_digest(api_key, os.environ['ADMIN_API_KEY']):
             raise ValueError("Invalid API key")
-        
+
         # Generate secure session token
         session_token = secrets.token_urlsafe(32)
         session_token_hash = hashlib.sha256(session_token.encode()).hexdigest()
-        
+
         # Set expiration to 30 days from now
         expires_at = datetime.now(timezone.utc) + timedelta(days=30)
-        
+
         # Store hash in database
         session_id = self.db.insert_session(session_token_hash, expires_at)
-        
+
         return {
             "session_token": session_token,
             "expires_at": expires_at.isoformat()
         }
-    
+
     def validate_session(self, session_token: str) -> Optional[Dict]:
         """Validate session token and update last_used_at (throttled by trigger). Returns safe session data if valid."""
         try:
@@ -316,7 +316,7 @@ class SessionService:
             # Log the error and fail validation gracefully
             logger.error(f"Session validation failed: {e}")
             return None
-    
+
     def delete_session(self, session_token: str) -> bool:
         """Delete session (logout). To invalidate compromised sessions, simply delete the record."""
         try:
@@ -325,7 +325,7 @@ class SessionService:
         except Exception as e:
             logger.error(f"Session deletion failed: {e}")
             return False
-    
+
     def cleanup_expired_sessions(self) -> int:
         """Clean up expired sessions (run periodically)."""
         try:
@@ -339,12 +339,12 @@ class SessionDatabase:
     def get_session_by_hash(self, session_token_hash: str) -> Optional[Dict]:
         """Get session by token hash."""
         # SELECT * FROM sessions WHERE session_token_hash = %s
-        
+
     def update_session_last_used(self, session_token_hash: str) -> bool:
         """Update last_used_at for session (triggers throttled update)."""
         # UPDATE sessions SET last_used_at = now() WHERE session_token_hash = %s
         # This UPDATE will be caught by the trigger which only updates if >1 hour has passed
-        
+
     def validate_session_hash(self, session_token_hash: str) -> bool:
         """Legacy method - use get_session_by_hash + update_session_last_used instead."""
         # Deprecated: Use the new validation flow above
@@ -417,7 +417,7 @@ BEGIN
     RETURN QUERY
     WITH RECURSIVE changelog_chain AS (
         -- Start with the current blueprint
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -426,14 +426,14 @@ BEGIN
             0 as depth,
             b.deprecated
         FROM blueprints b
-        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
+        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id
             AND bd.document_type = 'changelog'
         WHERE b.id = $1
-        
+
         UNION ALL
-        
+
         -- Follow successor chain
-        SELECT 
+        SELECT
             b.id,
             b.blueprint_name,
             b.successor_id,
@@ -442,16 +442,16 @@ BEGIN
             cc.depth + 1,
             b.deprecated
         FROM blueprints b
-        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id 
+        LEFT JOIN blueprint_documentation bd ON b.id = bd.blueprint_id
             AND bd.document_type = 'changelog'
         INNER JOIN changelog_chain cc ON b.id = cc.successor_id
         WHERE cc.depth < $2 AND cc.successor_id IS NOT NULL
     )
-    SELECT 
-        cc.id, 
-        cc.blueprint_name, 
-        cc.document, 
-        cc.created_at, 
+    SELECT
+        cc.id,
+        cc.blueprint_name,
+        cc.document,
+        cc.created_at,
         cc.depth,
         cc.successor_id,
         cc.deprecated
@@ -472,7 +472,7 @@ class TagConverter(BaseConverter):
     def to_python(self, value):
         # Convert "texture/dungeon_stone" to ["texture", "dungeon_stone"]
         return value.split('/')
-    
+
     def to_url(self, value):
         # Convert ["texture", "dungeon_stone"] to "texture/dungeon_stone"
         return '/'.join(value)
@@ -511,45 +511,45 @@ def delete_tag_documentation(tag_array, doc_id):
 class DocumentationService:
     def get_blueprint_documentation(self, blueprint_id: str) -> List[Dict]:
         """Get all documentation for a blueprint."""
-        
+
     def get_tag_documentation(self, tag_array: List[str]) -> List[Dict]:
         """Get documentation for a specific tag.
-        
+
         Args:
             tag_array: A tag array (e.g., ["texture", "dungeon_stone"]) from the Flask route
         """
-        
+
     def create_blueprint_documentation(self, blueprint_id: str, data: Dict) -> Dict:
         """Create new documentation for a blueprint."""
-        
+
     def create_tag_documentation(self, tag_array: List[str], data: Dict) -> Dict:
         """Create new documentation for a tag.
-        
+
         Args:
             tag_array: A tag array (e.g., ["texture", "dungeon_stone"]) from the Flask route
             data: Documentation data
         """
-        
+
     def get_changelog_history(self, blueprint_id: str, limit: int = 10, offset: int = 0) -> Dict:
         """Get recursive changelog history for a blueprint."""
 
 class ImageService:
     def upload_documentation_image(self, file_data: bytes, filename: str) -> Dict:
         """Upload new documentation image to S3."""
-        
+
     def get_documentation_images(self) -> List[Dict]:
         """Get all documentation images."""
-        
+
     def update_image_name(self, image_id: str, new_name: str) -> Dict:
         """Update image name."""
 
 class SessionService:
     def create_session(self, api_key: str) -> Dict:
         """Create new admin session."""
-        
+
     def validate_session(self, session_token: str) -> bool:
         """Validate session token."""
-        
+
     def delete_session(self, session_token: str) -> bool:
         """Delete session (logout)."""
 ```
@@ -571,7 +571,7 @@ interface BlueprintDetailTabs {
 const DocumentationTab = ({ blueprint }: { blueprint: Blueprint }) => {
   const [blueprintDocs, setBlueprintDocs] = useState<Documentation[]>([]);
   const [tagDocs, setTagDocs] = useState<Documentation[]>([]);
-  
+
   // Load blueprint documentation
   // Load documentation from all blueprint tags
   // Render combined documentation with markdown support
@@ -582,7 +582,7 @@ const ChangelogTab = ({ blueprint }: { blueprint: Blueprint }) => {
   const [changelogs, setChangelogs] = useState<ChangelogEntry[]>([]);
   const [hasMore, setHasMore] = useState(false);
   const [offset, setOffset] = useState(0);
-  
+
   // Load changelog history with pagination
   // Support "Load More" functionality
 };
@@ -596,7 +596,7 @@ const ChangelogTab = ({ blueprint }: { blueprint: Blueprint }) => {
 const AdminLayout = ({ children }: { children: ReactNode }) => {
   const [sessionToken, setSessionToken] = useState<string | null>(null);
   const [apiKey, setApiKey] = useState('');
-  
+
   // Session management
   // API key input and validation
   // Protected route wrapper
@@ -632,40 +632,40 @@ import MDEditor from '@uiw/react-md-editor';
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 
-const DocumentationEditor = ({ 
-  blueprintId, 
-  tagArray, 
-  documentType 
+const DocumentationEditor = ({
+  blueprintId,
+  tagArray,
+  documentType
 }: DocumentationEditorProps) => {
   const [content, setContent] = useState('');
   const [images, setImages] = useState<Image[]>([]);
   const [showImagePicker, setShowImagePicker] = useState(false);
   const editorRef = useRef<any>(null);
-  
+
   // Custom image upload handler for MDEditor
   const handleImageUpload = async (file: File): Promise<string> => {
     const formData = new FormData();
     formData.append('file', file);
-    
+
     const response = await fetch('/api/admin/images', {
       method: 'POST',
       body: formData
     });
-    
+
     const { image } = await response.json();
     return image.url; // Return URL for markdown insertion
   };
-  
+
   // Insert image markdown using the editor's API
   const insertImageMarkdown = (image: Image) => {
     const imageMarkdown = `![${image.image_name}](${image.url})`;
-    
+
     // Use the editor's built-in API for text insertion
     if (editorRef.current && editorRef.current.api) {
       editorRef.current.api.replaceSelection(imageMarkdown);
     }
   };
-  
+
   return (
     <div className="documentation-editor">
       <MDEditor
@@ -690,9 +690,9 @@ const DocumentationEditor = ({
           }
         ]}
       />
-      
+
       {showImagePicker && (
-        <ImagePicker 
+        <ImagePicker
           onSelect={(image) => {
             insertImageMarkdown(image);
             setShowImagePicker(false);
@@ -704,17 +704,17 @@ const DocumentationEditor = ({
   );
 };
 
-const ImagePicker = ({ 
-  onSelect, 
-  onClose 
-}: { 
+const ImagePicker = ({
+  onSelect,
+  onClose
+}: {
   onSelect: (image: Image) => void;
   onClose: () => void;
 }) => {
   const [images, setImages] = useState<Image[]>([]);
   const [filter, setFilter] = useState('');
   const [uploading, setUploading] = useState(false);
-  
+
   useEffect(() => {
     // Load documentation images
     fetch('/api/admin/images?type=documentation')
@@ -722,16 +722,16 @@ const ImagePicker = ({
       .then(data => setImages(data.images))
       .catch(e => console.error("Failed to load documentation images:", e));
   }, []);
-  
-  const filteredImages = images.filter(img => 
+
+  const filteredImages = images.filter(img =>
     img.image_name.toLowerCase().includes(filter.toLowerCase())
   );
-  
+
   const handleFileUpload = async (file: File) => {
     setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-    
+
     try {
       const response = await fetch('/api/admin/images', {
         method: 'POST',
@@ -746,7 +746,7 @@ const ImagePicker = ({
       setUploading(false);
     }
   };
-  
+
   return (
     <div className="image-picker-modal">
       <div className="image-picker-header">
@@ -763,11 +763,11 @@ const ImagePicker = ({
           disabled={uploading}
         />
       </div>
-      
+
       <div className="image-grid">
         {filteredImages.map(image => (
-          <div 
-            key={image.id} 
+          <div
+            key={image.id}
             className="image-item"
             onClick={() => onSelect(image)}
           >
@@ -776,7 +776,7 @@ const ImagePicker = ({
           </div>
         ))}
       </div>
-      
+
       <button onClick={onClose}>Close</button>
     </div>
   );
@@ -789,18 +789,18 @@ const ImagePicker = ({
 ```typescript
 const DeprecatedObjectsPage = () => {
   const [deprecatedObjects, setDeprecatedObjects] = useState<DeprecatedObject[]>([]);
-  
+
   // Load all deprecated objects with successor_id
   // Display in table format
   // Link to changelog creation
 };
 
-const ChangelogCreationPage = ({ 
-  deprecatedBlueprint, 
-  successorBlueprint 
+const ChangelogCreationPage = ({
+  deprecatedBlueprint,
+  successorBlueprint
 }: ChangelogCreationProps) => {
   const [changelog, setChangelog] = useState('');
-  
+
   // Show both blueprints side by side
   // Navigation through successor chain
   // Changelog creation form
@@ -878,13 +878,13 @@ const ChangelogCreationPage = ({
 ### Potential Risks
 1. **Markdown Security**: XSS vulnerabilities in markdown rendering
    - **Mitigation**: Use secure markdown parser with sanitization
-   
+
 2. **Image Storage**: S3 upload failures or storage issues
    - **Mitigation**: Implement retry logic and error handling
-   
+
 3. **Session Security**: Session token vulnerabilities
    - **Mitigation**: Use secure token generation and proper expiration
-   
+
 4. **Performance**: Large changelog history causing slow page loads
    - **Mitigation**: Implement proper pagination and caching
 
@@ -912,4 +912,4 @@ const ChangelogCreationPage = ({
 - Image metadata management
 - Bulk image operations
 
-This implementation plan provides a comprehensive roadmap for Phase 2, ensuring the documentation system meets all requirements while maintaining system stability and user experience quality. 
+This implementation plan provides a comprehensive roadmap for Phase 2, ensuring the documentation system meets all requirements while maintaining system stability and user experience quality.

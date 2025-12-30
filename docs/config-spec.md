@@ -12,7 +12,7 @@ config:
     - name: string              # Human-readable part identifier
       tags:                     # Constraint system for part selection
         accept: []              # Optional: Hierarchical tag matching
-        require: []             # Required: Exact tag matching  
+        require: []             # Required: Exact tag matching
         deny: []                # Prohibited: Tags that disqualify parts
         constrain: []           # Dynamic: Inherit from parent/siblings
       fulfills: []              # Optional: Requirements this part satisfies
@@ -57,7 +57,7 @@ require:
 - Uses array equality: `['shape', 'base']` matches only `['shape', 'base']`
 - Multiple require entries create AND relationship (must have ALL)
 
-### Accept Constraints  
+### Accept Constraints
 ```yaml
 accept:
   - tag: "shape|wall"
@@ -143,10 +143,10 @@ parts:
       constrain:
         - tag: "texture"        # Available: texture|dungeon_stone, texture|dungeon_stone|block
           siblings: ["wall"]    # Restrict to wall: texture|dungeon_stone (exact + most general)
-        - tag: "connection|side" # Available: connection|side, connection|side|openlock  
+        - tag: "connection|side" # Available: connection|side, connection|side|openlock
           parent: false         # From floor only: connection|side (exact) + connection|side|openlock (most general prefix)
         - filter: "connection|openforge"  # Remove openforge variants
-        
+
 # Final constraints: shape|base + texture|dungeon_stone + connection|side + connection|side|openlock
 ```
 
@@ -180,7 +180,7 @@ config:
       tags:
         require:
           - tag: "interface|grate"
-    - name: "grate (left)"  
+    - name: "grate (left)"
       tags:
         require:
           - tag: "interface|grate"
@@ -206,7 +206,7 @@ Both part-level and blueprint-level fulfills can exist in the same blueprint and
 
 ### Part Selection Flow
 1. **Initial filtering**: Apply require, accept, and deny constraints
-2. **Constraint inheritance**: Apply constrain rules based on parent and selected siblings  
+2. **Constraint inheritance**: Apply constrain rules based on parent and selected siblings
 3. **Filter application**: Remove filtered tag prefixes
 4. **Option presentation**: Show filtered list to user
 5. **Selection impact**: Update constraints for remaining parts
@@ -228,7 +228,7 @@ The blueprint configuration system is split between frontend and backend respons
 - **Conflict Resolution**: Automatically deselects conflicting parts when fulfillment conflicts occur
 - **Progressive Filtering**: Updates available options in real-time as parts are selected
 
-### Backend Responsibilities  
+### Backend Responsibilities
 - **Constraint Enforcement**: Only understands and enforces accept/require/deny constraints
 - **Tag Querying**: `/api/blueprint/tags/` endpoint filters blueprints based on provided constraints
 - **No Fulfillment Awareness**: Backend has no knowledge of fulfills declarations
@@ -263,7 +263,7 @@ parts:
     tags:
       require:
         - tag: "shape|wall"
-  - name: "base" 
+  - name: "base"
     tags:
       require:
         - tag: "shape|base"
@@ -313,7 +313,7 @@ config:
           - tag: "interface|grate"
   fulfills:
     - part: "column"      # Replaces structural column
-    - part: "left wall"   # Includes left wall functionality  
+    - part: "left wall"   # Includes left wall functionality
     - part: "right wall"  # Includes right wall functionality
 ```
 
@@ -325,7 +325,7 @@ The constraint system handles **inherent complexity** of the domain where physic
 ### Progressive Disclosure
 Real-time constraint evaluation guides users through complex decisions by eliminating invalid options at each step, making the assembly process feel intuitive despite underlying complexity.
 
-### Hierarchical Independence  
+### Hierarchical Independence
 Each blueprint level resolves its constraints independently, preventing constraint complexity from spiraling out of control while still enabling sophisticated compositions.
 
 ### Extensibility

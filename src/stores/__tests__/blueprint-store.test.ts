@@ -43,7 +43,7 @@ describe('BlueprintStore', () => {
       // Set a different blueprint
       const differentBlueprint = { ...mockBlueprint, id: 'different-id' };
       store.getState().setSelectedBlueprint(differentBlueprint);
-      
+
       expect(store.getState().selectedBlueprint).toBe(differentBlueprint);
       expect(store.getState().configSelections).toEqual({});
     });
@@ -55,7 +55,7 @@ describe('BlueprintStore', () => {
 
       // Set the same blueprint reference - this actually clears config selections
       store.getState().setSelectedBlueprint(mockBlueprint);
-      
+
       expect(store.getState().selectedBlueprint).toBe(mockBlueprint);
       // The current implementation clears config selections even for the same blueprint
       expect(store.getState().configSelections).toEqual({});
@@ -76,7 +76,7 @@ describe('BlueprintStore', () => {
       });
 
       const result = await store.getState().fetchBlueprintById('123e4567-e89b-12d3-a456-426614174000');
-      
+
       expect(fetch).toHaveBeenCalledWith('/api/blueprints/123e4567-e89b-12d3-a456-426614174000');
       expect(result).toEqual(mockBlueprint);
     });
@@ -100,7 +100,7 @@ describe('BlueprintStore', () => {
       });
 
       const result = await store.getState().fetchBlueprintByMd5('d41d8cd98f00b204e9800998ecf8427e');
-      
+
       expect(fetch).toHaveBeenCalledWith('/api/blueprints/md5/d41d8cd98f00b204e9800998ecf8427e');
       expect(result).toEqual(mockBlueprint);
     });
@@ -126,10 +126,10 @@ describe('BlueprintStore', () => {
 
     it('should update existing config selection', () => {
       const updatedBlueprint = { ...mockBlueprint, blueprint_name: 'Updated Blueprint' };
-      
+
       store.getState().setConfigSelection('part1', mockBlueprint);
       store.getState().setConfigSelection('part1', updatedBlueprint);
-      
+
       expect(store.getState().configSelections).toEqual({
         part1: updatedBlueprint
       });
@@ -138,16 +138,16 @@ describe('BlueprintStore', () => {
     it('should remove blueprint when setting to null', () => {
       store.getState().setConfigSelection('part1', mockBlueprint);
       store.getState().setConfigSelection('part1', null);
-      
+
       expect(store.getState().configSelections).toEqual({});
     });
 
     it('should handle multiple config selections', () => {
       const blueprint2 = { ...mockBlueprint, id: 'different-id', blueprint_name: 'Blueprint 2' };
-      
+
       store.getState().setConfigSelection('part1', mockBlueprint);
       store.getState().setConfigSelection('part2', blueprint2);
-      
+
       expect(store.getState().configSelections).toEqual({
         part1: mockBlueprint,
         part2: blueprint2
@@ -159,11 +159,11 @@ describe('BlueprintStore', () => {
     it('should clear all config selections', () => {
       store.getState().setConfigSelection('part1', mockBlueprint);
       store.getState().setConfigSelection('part2', mockBlueprint);
-      
+
       expect(store.getState().configSelections).not.toEqual({});
-      
+
       store.getState().clearConfigSelections();
       expect(store.getState().configSelections).toEqual({});
     });
   });
-}); 
+});

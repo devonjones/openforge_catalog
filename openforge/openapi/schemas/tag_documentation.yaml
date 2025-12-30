@@ -78,4 +78,4 @@ TagDocumentationUpdate:
       description: Whether this documentation is live and visible to users
   required:
     - document
-  additionalProperties: false 
+  additionalProperties: false

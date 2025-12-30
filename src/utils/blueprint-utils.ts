@@ -15,7 +15,7 @@ export const navigate = (url: string) => {
  */
 export const downloadFiles = async (urls: string[], nav: (url: string) => void = navigate) => {
   if (urls.length === 0) return;
-  
+
   if (urls.length === 1) {
     nav(urls[0]);
     return;
@@ -29,7 +29,7 @@ export const downloadFiles = async (urls: string[], nav: (url: string) => void =
         iframe.style.display = 'none';
         iframe.src = url;
         document.body.appendChild(iframe);
-        
+
         // Remove iframe after a delay to ensure download starts
         setTimeout(() => {
           document.body.removeChild(iframe);
@@ -52,23 +52,23 @@ export const downloadFiles = async (urls: string[], nav: (url: string) => void =
  * @returns True if download link should be shown
  */
 export function shouldShowDownloadLink(
-  blueprint: Blueprint, 
+  blueprint: Blueprint,
   configSelections: Record<string, Blueprint>
 ): boolean {
   if (blueprint.file_name) {
     return true;
   }
-  
+
   if (blueprint.blueprint_config?.parts) {
-    const requiredParts = blueprint.blueprint_config.parts.filter(part => 
+    const requiredParts = blueprint.blueprint_config.parts.filter(part =>
       !part.optional && part.tags.require && part.tags.require.length > 0
     );
-    
-    return requiredParts.every(part => 
+
+    return requiredParts.every(part =>
       checkPartRequirements(part, configSelections, part.name)
     );
   }
-  
+
   return false;
 }
 
@@ -80,23 +80,23 @@ export function shouldShowDownloadLink(
  * @returns True if all required parts are selected
  */
 function checkPartRequirements(
-  part: ConfigPart, 
-  configSelections: Record<string, Blueprint>, 
+  part: ConfigPart,
+  configSelections: Record<string, Blueprint>,
   currentPath: string
 ): boolean {
   const selectedBlueprint = configSelections[currentPath];
   if (!selectedBlueprint) return false;
-  
+
   // Check if the selected blueprint has its own required parts
   if (selectedBlueprint.blueprint_config?.parts) {
-    const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart => 
+    const nestedRequiredParts = selectedBlueprint.blueprint_config.parts.filter(nestedPart =>
       !nestedPart.optional && nestedPart.tags.require && nestedPart.tags.require.length > 0
     );
-    return nestedRequiredParts.every(nestedPart => 
+    return nestedRequiredParts.every(nestedPart =>
       checkPartRequirements(nestedPart, configSelections, `${currentPath}|${nestedPart.name}`)
     );
   }
-  
+
   return true;
 }
 
@@ -107,7 +107,7 @@ function checkPartRequirements(
  * @returns Array of download URLs
  */
 export function collectDownloadUrls(
-  blueprint: Blueprint, 
+  blueprint: Blueprint,
   configSelections: Record<string, Blueprint>
 ): string[] {
   const urls: string[] = [];
@@ -142,4 +142,4 @@ export function collectDownloadUrls(
  */
 export function getLatestModificationDate(blueprint: Blueprint): Date {
   return new Date(blueprint.file_modified_at);
-} 
+}

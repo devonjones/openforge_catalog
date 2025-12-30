@@ -77,11 +77,11 @@ describe('ConfigBox', () => {
   it('calls onHover when hovering over the box', () => {
     const mockOnHover = jest.fn();
     render(<ConfigBox {...baseProps} onHover={mockOnHover} />);
-    
+
     const box = screen.getByText('TestPart').closest('div');
     fireEvent.mouseEnter(box!);
     expect(mockOnHover).toHaveBeenCalledWith(true);
-    
+
     fireEvent.mouseLeave(box!);
     expect(mockOnHover).toHaveBeenCalledWith(false);
   });
@@ -130,4 +130,4 @@ describe('ConfigBox', () => {
     // Should close modal and not throw
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
-}); 
+});

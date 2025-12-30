@@ -67,7 +67,7 @@ A file is considered "updated" if any of the following change:
 
 ## Error Conditions
 - Fixture file doesn't exist → error
-- Schema validation fails → error  
+- Schema validation fails → error
 - No `file_metadata` on any element → error
 - Cannot determine subset path → error
 

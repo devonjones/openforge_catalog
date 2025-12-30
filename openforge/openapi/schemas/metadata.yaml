@@ -29,4 +29,4 @@ properties:
               type: string
         additionalProperties: false
     additionalProperties: false
-additionalProperties: false 
+additionalProperties: false

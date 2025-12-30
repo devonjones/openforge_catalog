@@ -13,4 +13,4 @@ const BlueprintMeta: React.FC<BlueprintMetaProps> = ({ type, lastModified, size 
   </p>
 );
 
-export default BlueprintMeta; 
+export default BlueprintMeta;

@@ -36,11 +36,11 @@ export function AdminProvider({ children }: AdminProviderProps) {
       const response = await fetch('/api/admin/sessions/validate', {
         credentials: 'include', // Include cookies in the request
       });
-      
+
       if (response.ok) {
         // Extract CSRF token from response headers
         const csrfToken = response.headers.get('X-CSRF-Token');
-        
+
         setState(prev => ({
           ...prev,
           isAuthenticated: true,
@@ -85,7 +85,7 @@ export function AdminProvider({ children }: AdminProviderProps) {
 
       // Extract CSRF token from response headers
       const csrfToken = response.headers.get('X-CSRF-Token');
-      
+
       // Backend automatically sets HttpOnly session cookie
       setState({
         isAuthenticated: true,
@@ -113,18 +113,18 @@ export function AdminProvider({ children }: AdminProviderProps) {
       // Get current CSRF token
       const currentState = state;
       const headers: Record<string, string> = {};
-      
+
       if (currentState.csrfToken) {
         headers['X-CSRF-Token'] = currentState.csrfToken;
       }
-      
+
       // Send logout request to backend - browser will automatically send HttpOnly cookie
       const response = await fetch('/api/admin/sessions', {
         method: 'DELETE',
         credentials: 'include', // Include cookies in the request
         headers,
       });
-      
+
       if (response.ok) {
         // Only update state if logout was successful
         setState({
@@ -173,4 +173,4 @@ export function useAdminContext() {
     throw new Error('useAdminContext must be used within an AdminProvider');
   }
   return context;
-} 
+}

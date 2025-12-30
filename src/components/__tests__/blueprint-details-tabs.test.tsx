@@ -67,7 +67,7 @@ describe('BlueprintDetailsTabs', () => {
 
     // Wait for documentation to load
     await screen.findByText('Documentation');
-    
+
     expect(screen.getByText('Documentation')).toBeInTheDocument();
     expect(screen.getByTestId('details-content')).toBeInTheDocument();
   });
@@ -96,22 +96,22 @@ describe('BlueprintDetailsTabs', () => {
 
     // Wait for documentation to load
     await screen.findByText('Documentation');
-    
+
     // Initially details content should be visible and documentation tab should not
     expect(screen.getByTestId('details-content')).toBeInTheDocument();
-    
+
     // The documentation tab should be rendered but hidden
     expect(screen.getByTestId('documentation-tab')).toBeInTheDocument();
-    
+
     // Click documentation tab
     fireEvent.click(screen.getByText('Documentation'));
-    
+
     // Wait for the state to update and check that details is hidden
     await waitFor(() => {
       const detailsContent = screen.getByTestId('details-content');
       expect(detailsContent.parentElement).toHaveStyle({ display: 'none' });
     });
-    
+
     // Now documentation tab should be visible
     expect(screen.getByTestId('documentation-tab')).toBeInTheDocument();
   });
@@ -143,4 +143,4 @@ describe('BlueprintDetailsTabs', () => {
     expect(screen.queryByText('Documentation')).not.toBeInTheDocument();
     expect(screen.getByTestId('details-content')).toBeInTheDocument();
   });
-}); 
+});

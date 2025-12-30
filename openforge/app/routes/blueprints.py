@@ -23,6 +23,23 @@ def _validate_uuid(uuid_string: str) -> None:
         abort(400, description="Invalid UUID format.")
 
 
+def _get_blueprint_thumbnail(cursor, blueprint_id):
+    """Fetch the thumbnail image for a given blueprint.
+
+    Args:
+        cursor: Database cursor
+        blueprint_id: UUID of the blueprint
+
+    Returns:
+        dict: Thumbnail image data, or None if not found
+    """
+    images = image_sql.get_images_for_blueprint(cursor, blueprint_id)
+    thumbnails = [img for img in images if img.get("image_type") == "thumbnail"]
+    if not thumbnails:
+        return None
+    return thumbnails[0]
+
+
 def get_blueprints():
     with current_app.db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as cursor:
@@ -180,3 +197,124 @@ def _get_signed_urls(bp: dict):
         ExpiresIn=3600,  # 1 hour
     )
     return url
+
+
+def get_blueprint_thumbnail_variants(blueprint_id):
+    """Get thumbnail sprite sheet information for a blueprint.
+
+    Returns sprite sheet URL, grid layout, angle metadata, and default angle.
+    Handles models with legacy single thumbnails gracefully.
+    """
+    _validate_uuid(blueprint_id)
+
+    with current_app.db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            thumbnail = _get_blueprint_thumbnail(cursor, blueprint_id)
+            if not thumbnail:
+                return jsonify({"error": "No thumbnail found for blueprint"}), 404
+
+            # Check if this is a sprite sheet or legacy single thumbnail
+            sprite_metadata = thumbnail.get("sprite_metadata")
+
+            if sprite_metadata:
+                # Return sprite sheet information
+                return (
+                    jsonify(
+                        {
+                            "type": "sprite",
+                            "sprite_url": thumbnail["image_url"],
+                            "grid_rows": sprite_metadata["grid_rows"],
+                            "grid_cols": sprite_metadata["grid_cols"],
+                            "tile_size": sprite_metadata["tile_size"],
+                            "angles": sprite_metadata["angles"],
+                            "default_angle": sprite_metadata.get("default_angle", 0),
+                        }
+                    ),
+                    200,
+                )
+            else:
+                # Return legacy single thumbnail information
+                return (
+                    jsonify(
+                        {
+                            "type": "single",
+                            "thumbnail_url": thumbnail["image_url"],
+                        }
+                    ),
+                    200,
+                )
+
+
+def set_blueprint_default_angle(blueprint_id):
+    """Set the default camera angle for a blueprint's thumbnail sprite.
+
+    Admin-only endpoint. Updates the default_angle in sprite_metadata.
+    """
+    _validate_uuid(blueprint_id)
+
+    # Validate request body
+    if not request.json or "default_angle" not in request.json:
+        return jsonify({"error": "default_angle is required"}), 400
+
+    default_angle = request.json["default_angle"]
+
+    # Validate type
+    if not isinstance(default_angle, int):
+        return jsonify({"error": "default_angle must be an integer"}), 400
+
+    with current_app.db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as cursor:
+            thumbnail = _get_blueprint_thumbnail(cursor, blueprint_id)
+            if not thumbnail:
+                return jsonify({"error": "No thumbnail found for blueprint"}), 404
+
+            # Check if this has sprite_metadata
+            if not thumbnail.get("sprite_metadata"):
+                return (
+                    jsonify(
+                        {
+                            "error": (
+                                "Blueprint uses legacy single thumbnail, "
+                                "not a sprite sheet"
+                            )
+                        }
+                    ),
+                    400,
+                )
+
+            sprite_metadata = thumbnail["sprite_metadata"]
+
+            # Validate angle index against actual sprite metadata
+            max_angle = len(sprite_metadata.get("angles", [])) - 1
+            if default_angle < 0 or default_angle > max_angle:
+                return (
+                    jsonify(
+                        {
+                            "error": (
+                                f"default_angle must be between 0 and {max_angle} "
+                                f"for this sprite"
+                            )
+                        }
+                    ),
+                    400,
+                )
+
+            # Update the default_angle in sprite_metadata
+            sprite_metadata = sprite_metadata.copy()
+            sprite_metadata["default_angle"] = default_angle
+
+            # Update the image in database
+            updated_image = image_sql.update_image(
+                cursor, thumbnail["id"], {"sprite_metadata": sprite_metadata}
+            )
+
+            return (
+                jsonify(
+                    {
+                        "message": "Default angle updated successfully",
+                        "default_angle": default_angle,
+                        "sprite_metadata": updated_image["sprite_metadata"],
+                    }
+                ),
+                200,
+            )

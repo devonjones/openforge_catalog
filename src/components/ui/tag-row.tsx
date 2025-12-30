@@ -18,12 +18,12 @@ const TagRow: React.FC<TagRowProps> = ({ tags, onTagClick, tooltipAbove = false 
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
     hoverTimeout.current = setTimeout(() => setHoveredTag(tag), 500);
   };
-  
+
   const handleMouseLeave = () => {
     if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
     setHoveredTag(null);
   };
-  
+
   useEffect(() => {
     return () => {
       if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
@@ -63,4 +63,4 @@ const TagRow: React.FC<TagRowProps> = ({ tags, onTagClick, tooltipAbove = false 
   );
 };
 
-export default TagRow; 
+export default TagRow;

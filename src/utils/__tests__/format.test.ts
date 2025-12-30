@@ -56,4 +56,4 @@ describe('formatFileSize', () => {
     expect(formatFileSize(-1024)).toBe('-1024 B');
     expect(formatFileSize(-512)).toBe('-512 B');
   });
-}); 
+});

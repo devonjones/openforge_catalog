@@ -59,4 +59,4 @@ describe('TabAdmin', () => {
     expect(screen.getByRole('button', { name: 'Deprecated Objects' })).toBeInTheDocument();
     expect(screen.getByTestId('documentation-editor')).toBeInTheDocument();
   });
-}); 
+});

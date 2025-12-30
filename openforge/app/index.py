@@ -203,6 +203,21 @@ def download_blueprint(blueprint_id):
     return blueprint_routes.download_blueprint(blueprint_id)
 
 
+@app.route("/api/blueprints/<blueprint_id>/thumbnail-variants", methods=["GET"])
+def blueprint_thumbnail_variants(blueprint_id):
+    return blueprint_routes.get_blueprint_thumbnail_variants(blueprint_id)
+
+
+@app.route(
+    "/api/blueprints/<blueprint_id>/thumbnail-variants/default-angle",
+    methods=["PATCH"],
+)
+@authenticate(methods=["PATCH"])
+@csrf_protect
+def blueprint_default_angle(blueprint_id):
+    return blueprint_routes.set_blueprint_default_angle(blueprint_id)
+
+
 @app.route("/api/blueprints/<blueprint_id>/tags", methods=["GET", "POST", "DELETE"])
 @authenticate(methods=["POST", "DELETE"])
 @csrf_protect

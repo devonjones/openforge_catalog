@@ -14,7 +14,7 @@ const TabAdmin = () => {
     <div className="admin-tab">
       <div className="admin-content">
         <h2>Admin Panel</h2>
-        
+
         {/* Sub-tab navigation */}
         <div className="admin-sub-tabs">
           <button
@@ -45,4 +45,4 @@ const TabAdmin = () => {
   );
 };
 
-export default TabAdmin; 
+export default TabAdmin;

@@ -26,14 +26,14 @@ describe('useCopyToClipboard', () => {
 
   it('should initialize with copied as false', () => {
     const { result } = renderHook(() => useCopyToClipboard());
-    
+
     expect(result.current.copied).toBe(false);
   });
 
   it('should call copyToClipboard utility when copyText is called', () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     act(() => {
       result.current.copyText('test text');
     });
@@ -44,7 +44,7 @@ describe('useCopyToClipboard', () => {
   it('should set copied to true when copy succeeds', async () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     let successCallback: (() => void) | undefined;
     mockCopyToClipboard.mockImplementation((text, onSuccess) => {
       successCallback = onSuccess;
@@ -68,7 +68,7 @@ describe('useCopyToClipboard', () => {
   it('should reset copied to false after 2 seconds', async () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     let successCallback: (() => void) | undefined;
     mockCopyToClipboard.mockImplementation((text, onSuccess) => {
       successCallback = onSuccess;
@@ -97,7 +97,7 @@ describe('useCopyToClipboard', () => {
   it('should not reset copied before 2 seconds', async () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     let successCallback: (() => void) | undefined;
     mockCopyToClipboard.mockImplementation((text, onSuccess) => {
       successCallback = onSuccess;
@@ -126,7 +126,7 @@ describe('useCopyToClipboard', () => {
   it('should handle multiple copy calls correctly', async () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     let successCallback: (() => void) | undefined;
     mockCopyToClipboard.mockImplementation((text, onSuccess) => {
       successCallback = onSuccess;
@@ -166,7 +166,7 @@ describe('useCopyToClipboard', () => {
   it('should call copyToClipboard with correct parameters', () => {
     const { result } = renderHook(() => useCopyToClipboard());
     const mockCopyToClipboard = copyToClipboard as jest.MockedFunction<typeof copyToClipboard>;
-    
+
     act(() => {
       result.current.copyText('test text');
     });
@@ -174,4 +174,4 @@ describe('useCopyToClipboard', () => {
     expect(mockCopyToClipboard).toHaveBeenCalledWith('test text', expect.any(Function));
     expect(mockCopyToClipboard).toHaveBeenCalledTimes(1);
   });
-}); 
+});

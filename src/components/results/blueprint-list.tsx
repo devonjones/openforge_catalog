@@ -21,4 +21,4 @@ export function BlueprintList({ blueprints, selectedBlueprint, onSelectBlueprint
       ))}
     </ul>
   );
-} 
+}

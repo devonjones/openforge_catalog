@@ -1,6 +1,7 @@
 import uuid
 
 from psycopg import cursor, sql
+from psycopg.types.json import Json
 from werkzeug.exceptions import NotFound
 
 
@@ -50,6 +51,7 @@ def get_images_for_blueprint(curs: cursor, blueprint_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
 SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
+    i.image_type AS image_type, i.sprite_metadata AS sprite_metadata,
     i.created_at AS created_at, i.updated_at AS updated_at
   FROM images i
     JOIN blueprint_images bi ON bi.image_id = i.id
@@ -95,7 +97,7 @@ SELECT i.id AS id, i.image_name AS image_name, i.image_url AS image_url,
 def get_image_by_id(curs: cursor, image_id: uuid.UUID) -> dict:
     query = sql.SQL(
         """
-SELECT id, image_name, image_url, image_type, created_at, updated_at
+SELECT id, image_name, image_url, image_type, sprite_metadata, created_at, updated_at
   FROM images
   WHERE id = {image_id}
 """
@@ -131,27 +133,29 @@ def insert_image(
     image_name: str,
     image_url: str,
     image_type: str = "thumbnail",
+    sprite_metadata: dict | None = None,
     **kwargs,
 ) -> dict:
     query = sql.SQL(
         """
-WITH new_images AS (
-  INSERT INTO images (
-    image_name, image_url, image_type
-  ) VALUES (
-    {image_name}, {image_url}, {image_type}
-  ) ON CONFLICT DO NOTHING
-  RETURNING id
+INSERT INTO images (
+  image_name, image_url, image_type, sprite_metadata
+) VALUES (
+  {image_name}, {image_url}, {image_type}, {sprite_metadata}
 )
-SELECT COALESCE(
-  (SELECT id FROM new_images),
-  (SELECT id FROM images WHERE image_url = {image_url})
-) AS id
+ON CONFLICT (image_url) DO UPDATE SET
+  image_name = EXCLUDED.image_name,
+  image_type = EXCLUDED.image_type,
+  sprite_metadata = EXCLUDED.sprite_metadata
+RETURNING id
 """
     ).format(
         image_name=sql.Literal(image_name),
         image_url=sql.Literal(image_url),
         image_type=sql.Literal(image_type),
+        sprite_metadata=sql.Literal(Json(sprite_metadata))
+        if sprite_metadata
+        else sql.SQL("NULL"),
     )
     curs.execute(query)
     return get_image_by_id(curs, curs.fetchone()["id"])
@@ -199,9 +203,15 @@ SELECT COALESCE(
 def insert_image_for_blueprint(
     curs: cursor, blueprint_id: uuid.UUID, image: dict
 ) -> dict:
-    image = insert_image(curs, image["image_name"], image["image_url"])
-    insert_blueprint_image(curs, blueprint_id, image["id"])
-    return image
+    sprite_metadata = image.get("sprite_metadata")
+    inserted_image = insert_image(
+        curs,
+        image["image_name"],
+        image["image_url"],
+        sprite_metadata=sprite_metadata,
+    )
+    insert_blueprint_image(curs, blueprint_id, inserted_image["id"])
+    return inserted_image
 
 
 def replace_images_for_blueprint(
@@ -304,6 +314,16 @@ def update_image(curs: cursor, image_id: uuid.UUID, data: dict) -> dict:
                 sql.SQL(f"{comma}{field} = " + "{value}").format(value=data[field])
             )
             comma = ", "
+
+    # Handle sprite_metadata separately as it needs Json() wrapper
+    if "sprite_metadata" in data:
+        query_list.append(
+            sql.SQL(f"{comma}sprite_metadata = " + "{sprite_metadata}").format(
+                sprite_metadata=sql.Literal(Json(data["sprite_metadata"]))
+            )
+        )
+        comma = ", "
+
     query_list.append(sql.SQL(f"{comma}updated_at = NOW()"))
 
     query_list.append(
