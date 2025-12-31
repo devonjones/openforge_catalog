@@ -673,7 +673,28 @@ def parse_files_incremental(
         )
     newfiles.extend(existing_deprecated)
 
-    return newfiles
+    # Deduplicate by (md5, full_name, deprecated) to remove exact duplicates
+    # while keeping legitimate reuse of same MD5 at different paths
+    seen = {}
+    deduped = []
+    duplicates_removed = 0
+
+    for item in newfiles:
+        md5 = item["file_metadata"]["md5"]
+        full_name = item["file_metadata"]["full_name"]
+        deprecated = item.get("deprecated", False)
+        key = (md5, full_name, deprecated)
+
+        if key not in seen:
+            seen[key] = True
+            deduped.append(item)
+        else:
+            duplicates_removed += 1
+
+    if duplicates_removed > 0 and verbose:
+        sys.stderr.write(f"Removed {duplicates_removed} duplicate entries\n")
+
+    return deduped
 
 
 def print_incremental_diff(files, scanner, verbose=False):
