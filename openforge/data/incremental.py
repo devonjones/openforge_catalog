@@ -628,7 +628,7 @@ def parse_files_incremental(
 
                     # Only create thumbnail if file has changed
                     if file_changed:
-                        use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", False)
+                        use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", True)
                         try:
                             thumbnail_image = create_and_upload_thumbnail(
                                 result["file_metadata"],

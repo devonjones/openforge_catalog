@@ -337,7 +337,7 @@ def create_and_upload_thumbnail(
     s3_key_cache: Set[str],
     config: Dict,
     verbose: bool = False,
-    use_sprites: bool = False,
+    use_sprites: bool = True,
 ) -> Dict:
     """Create and upload thumbnail or sprite sheet for an STL file.
 

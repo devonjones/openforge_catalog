@@ -494,7 +494,7 @@ def parse_files(path, files, md5, verbose, upload, config):
             f["storage_address"] = f"{config['FILE_DOMAIN']}/{model_address}"
 
             # Generate and upload thumbnail (sprite or single based on config)
-            use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", False)
+            use_sprites = config.get("ENABLE_SPRITE_THUMBNAILS", True)
             try:
                 thumbnail_image = create_and_upload_thumbnail(
                     f, full_file, s3_client, s3_key_cache, config, verbose, use_sprites

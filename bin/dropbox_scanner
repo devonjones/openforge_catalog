@@ -28,7 +28,7 @@ from openforge.data.scanner import clean_files, find_files, parse_files, print_f
 @click.option("--verbose/--no-verbose", default=False, help="Verbose output")
 @click.option("--upload/--no-upload", default=False, help="Upload files to R2")
 @click.option(
-    "--sprites/--no-sprites", default=False, help="Generate sprite sheet thumbnails"
+    "--sprites/--no-sprites", default=True, help="Generate sprite sheet thumbnails"
 )
 @click.option("--update", help="Update existing fixture file incrementally")
 @click.option("--dry-run", is_flag=True, help="Preview changes without writing files")
