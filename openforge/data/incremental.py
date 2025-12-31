@@ -65,8 +65,12 @@ class IncrementalScanner:
         self.verbose = verbose
         self.skip_schema_validation = skip_schema_validation
         self.existing_data = self._load_fixture()
+        # Only map non-deprecated entries - deprecated entries shouldn't be
+        # used for comparison since they represent old versions
         self.existing_data_map = {
-            item["file_metadata"]["full_name"]: item for item in self.existing_data
+            item["file_metadata"]["full_name"]: item
+            for item in self.existing_data
+            if not item.get("deprecated")
         }
         self.subset_path = self._detect_subset_path()
 
