@@ -538,7 +538,8 @@ def clean_files(path, files):
         if len(parts) == 1:
             continue
         assert len(parts) == 2, parts
-        newfiles.append(parts[1])
+        # Strip leading slash so os.path.join works correctly
+        newfiles.append(parts[1].lstrip("/"))
     return newfiles
 
 
