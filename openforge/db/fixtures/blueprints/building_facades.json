@@ -819,19 +819,18 @@
         "type": "model"
     },
     {
-        "deprecated": true,
         "file_metadata": {
             "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2021-06-28T09:51:10.741293",
+            "file_modified_at": "2025-07-06T22:29:05.528133+00:00",
             "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "be93fd95db6e7e373b851f47b39ce279",
-            "size": 9269884,
-            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
+            "md5": "3e93b8f2f458ae101c0a69ab2380f400",
+            "size": 9275584,
+            "storage_address": "https://objects.openforge.tools/models/3e93b8/3e93b8f2f458ae101c0a69ab2380f400.stl"
         },
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/3e93b8/3e93b8f2f458ae101c0a69ab2380f400.png"
             }
         ],
         "metadata": false,
@@ -845,18 +844,19 @@
         "type": "model"
     },
     {
+        "deprecated": true,
         "file_metadata": {
             "file": "ironbound_wood#column.col+I.openlock.stl",
-            "file_modified_at": "2025-07-06T22:29:05.528133+00:00",
+            "file_modified_at": "2021-06-28T09:51:10.741293",
             "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+I.openlock.stl",
-            "md5": "3e93b8f2f458ae101c0a69ab2380f400",
-            "size": 9275584,
-            "storage_address": "https://objects.openforge.tools/models/3e93b8/3e93b8f2f458ae101c0a69ab2380f400.stl"
+            "md5": "be93fd95db6e7e373b851f47b39ce279",
+            "size": 9269884,
+            "storage_address": "https://objects.openforge.tools/models/be93fd/be93fd95db6e7e373b851f47b39ce279.stl"
         },
         "images": [
             {
                 "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/3e93b8/3e93b8f2f458ae101c0a69ab2380f400.png"
+                "image_url": "https://objects.openforge.tools/thumbnails/be93fd/be93fd95db6e7e373b851f47b39ce279.png"
             }
         ],
         "metadata": false,
@@ -920,6 +920,25 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "ironbound_wood#column.col+T.openlock.stl",
+            "file_modified_at": "2025-07-07T04:47:17.299541+00:00",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
+            "md5": "8d942f545ee94d107bc1cbbbabc5a8e6",
+            "size": 5897684,
+            "storage_address": "https://objects.openforge.tools/models/8d942f/8d942f545ee94d107bc1cbbbabc5a8e6.stl"
+        },
+        "metadata": false,
+        "tags": [
+            "connection|openlock",
+            "shape|column",
+            "size|column_shape|T",
+            "size|openlock|T",
+            "texture|ironbound_wood"
+        ],
+        "type": "model"
+    },
+    {
         "deprecated": true,
         "file_metadata": {
             "file": "ironbound_wood#column.col+T.openlock.stl",
@@ -947,19 +966,25 @@
     },
     {
         "file_metadata": {
-            "file": "ironbound_wood#column.col+T.openlock.stl",
-            "file_modified_at": "2025-07-07T04:47:17.299541+00:00",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+T.openlock.stl",
-            "md5": "8d942f545ee94d107bc1cbbbabc5a8e6",
-            "size": 5897684,
-            "storage_address": "https://objects.openforge.tools/models/8d942f/8d942f545ee94d107bc1cbbbabc5a8e6.stl"
+            "file": "ironbound_wood#column.col+X.openlock.stl",
+            "file_modified_at": "2025-07-07T05:29:18.709579+00:00",
+            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
+            "md5": "75a16fb7afab8ecb055ed542d9e62ae1",
+            "size": 3783784,
+            "storage_address": "https://objects.openforge.tools/models/75a16f/75a16fb7afab8ecb055ed542d9e62ae1.stl"
         },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/thumbnails/75a16f/75a16fb7afab8ecb055ed542d9e62ae1.png"
+            }
+        ],
         "metadata": false,
         "tags": [
             "connection|openlock",
             "shape|column",
-            "size|column_shape|T",
-            "size|openlock|T",
+            "size|column_shape|X",
+            "size|openlock|X",
             "texture|ironbound_wood"
         ],
         "type": "model"
@@ -978,31 +1003,6 @@
             {
                 "image_name": "thumbnail",
                 "image_url": "https://objects.openforge.tools/thumbnails/c36123/c361239d1cc7c41a34848f80536bd59d.png"
-            }
-        ],
-        "metadata": false,
-        "tags": [
-            "connection|openlock",
-            "shape|column",
-            "size|column_shape|X",
-            "size|openlock|X",
-            "texture|ironbound_wood"
-        ],
-        "type": "model"
-    },
-    {
-        "file_metadata": {
-            "file": "ironbound_wood#column.col+X.openlock.stl",
-            "file_modified_at": "2025-07-07T05:29:18.709579+00:00",
-            "full_name": "tiles/building_facades/columns/ironbound_timber/ironbound_wood#column.col+X.openlock.stl",
-            "md5": "75a16fb7afab8ecb055ed542d9e62ae1",
-            "size": 3783784,
-            "storage_address": "https://objects.openforge.tools/models/75a16f/75a16fb7afab8ecb055ed542d9e62ae1.stl"
-        },
-        "images": [
-            {
-                "image_name": "thumbnail",
-                "image_url": "https://objects.openforge.tools/thumbnails/75a16f/75a16fb7afab8ecb055ed542d9e62ae1.png"
             }
         ],
         "metadata": false,
