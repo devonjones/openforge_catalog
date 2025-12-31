@@ -672,7 +672,12 @@ def _sort_list_items(items, current_path=""):
     def sort_key(item):
         # Special case: top-level blueprint array should be sorted by full_name
         if current_path == "" and isinstance(item, dict) and "file_metadata" in item:
-            return item.get("file_metadata", {}).get("full_name", "")
+            # Sort by: full_name, deprecated (False first), then md5 for stability
+            full_name = item.get("file_metadata", {}).get("full_name", "")
+            deprecated = item.get("deprecated", False)
+            md5 = item.get("file_metadata", {}).get("md5", "")
+            # Return tuple: non-deprecated (False=0) sorts before deprecated (True=1)
+            return (full_name, deprecated, md5)
         # Special case: sprite_metadata.angles should be sorted by index field
         elif current_path.endswith("sprite_metadata.angles") and isinstance(item, dict):
             return item.get("index", 0)
