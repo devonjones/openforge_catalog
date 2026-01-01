@@ -225,6 +225,18 @@ const KeyboardHint: React.FC = () => (
   </div>
 );
 
+/**
+ * Downloads the sprite sheet image via backend proxy to avoid CORS issues
+ */
+function downloadSpriteSheet(spriteUrl: string, blueprintName: string) {
+  // Use backend proxy to download the image with proper headers
+  const proxyUrl = `/api/images/proxy?url=${encodeURIComponent(spriteUrl)}`;
+  const a = document.createElement('a');
+  a.href = proxyUrl;
+  a.download = `${blueprintName}-sprite.png`;
+  a.click();
+}
+
 const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData }) => {
   const [currentAngle, setCurrentAngle] = useState(thumbnailData.default_angle);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -247,6 +259,53 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     containerRef.current?.focus();
   }, []);
 
+  const handleDownload = () => {
+    downloadSpriteSheet(thumbnailData.sprite_url, blueprint.blueprint_name);
+  };
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Create a simple context menu
+    const contextMenu = document.createElement('div');
+    contextMenu.style.position = 'fixed';
+    contextMenu.style.left = `${e.clientX}px`;
+    contextMenu.style.top = `${e.clientY}px`;
+    contextMenu.style.backgroundColor = 'white';
+    contextMenu.style.border = '1px solid #ccc';
+    contextMenu.style.borderRadius = '4px';
+    contextMenu.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+    contextMenu.style.zIndex = '10000';
+    contextMenu.style.padding = '4px 0';
+
+    const downloadOption = document.createElement('div');
+    downloadOption.textContent = 'Download sprite sheet';
+    downloadOption.style.padding = '8px 16px';
+    downloadOption.style.cursor = 'pointer';
+    downloadOption.style.fontSize = '14px';
+    downloadOption.onmouseover = () => {
+      downloadOption.style.backgroundColor = '#f0f0f0';
+    };
+    downloadOption.onmouseout = () => {
+      downloadOption.style.backgroundColor = 'white';
+    };
+    downloadOption.onclick = () => {
+      handleDownload();
+      document.body.removeChild(contextMenu);
+    };
+
+    contextMenu.appendChild(downloadOption);
+    document.body.appendChild(contextMenu);
+
+    // Remove menu when clicking elsewhere
+    const removeMenu = () => {
+      if (document.body.contains(contextMenu)) {
+        document.body.removeChild(contextMenu);
+      }
+      document.removeEventListener('click', removeMenu);
+    };
+    setTimeout(() => document.addEventListener('click', removeMenu), 0);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -256,19 +315,30 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
       tabIndex={0}
     >
       <div className="flex gap-4 items-center">
-        <div
-          className="cursor-grab active:cursor-grabbing rounded"
-          style={{
-            backgroundImage: `url(${thumbnailData.sprite_url})`,
-            backgroundPosition: `${backgroundPositionX}px ${backgroundPositionY}px`,
-            width: `${thumbnailData.tile_size}px`,
-            height: `${thumbnailData.tile_size}px`,
-            backgroundRepeat: 'no-repeat',
-            userSelect: 'none'
-          }}
-          onMouseDown={handleMouseDown}
-          aria-label={`${blueprint.blueprint_name} - 3D model view, current angle: ${thumbnailData.angles[currentAngle]?.name || currentAngle}`}
-        />
+        <div className="relative">
+          <div
+            className="cursor-grab active:cursor-grabbing rounded"
+            style={{
+              backgroundImage: `url(${thumbnailData.sprite_url})`,
+              backgroundPosition: `${backgroundPositionX}px ${backgroundPositionY}px`,
+              width: `${thumbnailData.tile_size}px`,
+              height: `${thumbnailData.tile_size}px`,
+              backgroundRepeat: 'no-repeat',
+              userSelect: 'none'
+            }}
+            onMouseDown={handleMouseDown}
+            onContextMenu={handleContextMenu}
+            aria-label={`${blueprint.blueprint_name} - 3D model view, current angle: ${thumbnailData.angles[currentAngle]?.name || currentAngle}`}
+          />
+          <button
+            onClick={handleDownload}
+            className="absolute bottom-2 right-2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded px-2 py-1 text-xs"
+            title="Download current view"
+            type="button"
+          >
+            ⬇
+          </button>
+        </div>
 
         <SpriteControls
           currentAngle={currentAngle}
