@@ -1,7 +1,9 @@
 import json
 import uuid
+from urllib.parse import urlparse
 
 import boto3
+import requests
 from botocore.config import Config
 from flask import abort, current_app, jsonify, make_response, request
 from jsonschema.exceptions import ValidationError
@@ -280,3 +282,39 @@ def delete_image(image_id):
                 return make_response("", 204)
             else:
                 abort(404)
+
+
+def proxy_image():
+    """Proxy an image URL to enable downloads without CORS restrictions."""
+    image_url = request.args.get("url")
+    if not image_url:
+        return jsonify({"error": "url parameter is required"}), 400
+
+    # Only allow proxying from our R2 bucket
+    file_domain = current_app.config.get("FILE_DOMAIN")
+    if not file_domain or urlparse(image_url).netloc != urlparse(file_domain).netloc:
+        return jsonify({"error": "Invalid image URL"}), 400
+
+    try:
+        # Fetch the image from R2
+        response = requests.get(image_url, timeout=30)
+        response.raise_for_status()
+
+        # Get filename from URL for download (sanitized to prevent path traversal)
+        filename = secure_filename(
+            urlparse(image_url).path.split("/")[-1] or "downloaded-image"
+        )
+
+        # Create response with proper headers for download
+        img_response = make_response(response.content)
+        img_response.headers["Content-Type"] = response.headers.get(
+            "Content-Type", "image/png"
+        )
+        img_response.headers["Content-Disposition"] = (
+            f'attachment; filename="{filename}"'
+        )
+        return img_response
+
+    except requests.RequestException as e:
+        current_app.logger.error(f"Failed to proxy image: {e}")
+        return jsonify({"error": "Failed to fetch image"}), 500
