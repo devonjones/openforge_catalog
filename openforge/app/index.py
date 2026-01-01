@@ -274,12 +274,6 @@ def image(image_id):
         return image_routes.delete_image(image_id)
 
 
-@app.route("/api/images/proxy", methods=["GET"])
-def proxy_image():
-    """Proxy image downloads to avoid CORS restrictions."""
-    return image_routes.proxy_image()
-
-
 ####################
 ### Tag Description routes
 ####################

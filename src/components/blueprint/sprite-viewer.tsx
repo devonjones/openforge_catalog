@@ -230,13 +230,11 @@ const KeyboardHint: React.FC = () => (
 );
 
 /**
- * Downloads the sprite sheet image via backend proxy to avoid CORS issues
+ * Downloads the sprite sheet image directly (CORS enabled on R2)
  */
 function downloadSpriteSheet(spriteUrl: string, blueprintName: string) {
-  // Use backend proxy to download the image with proper headers
-  const proxyUrl = `/api/images/proxy?url=${encodeURIComponent(spriteUrl)}`;
   const a = document.createElement('a');
-  a.href = proxyUrl;
+  a.href = spriteUrl;
   a.download = `${blueprintName}-sprite.png`;
   a.click();
 }
