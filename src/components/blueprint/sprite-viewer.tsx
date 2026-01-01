@@ -97,24 +97,25 @@ function useMouseDragRotation(
     const absY = Math.abs(deltaY);
 
     // Determine drag direction based on which delta is larger
-    if (absY > absX && absY > DRAG_THRESHOLD_PX) {
+    if (absY > absX && absY >= DRAG_THRESHOLD_PX) {
       // Vertical drag: go to top or bottom
       if (deltaY < 0) {
         setCurrentAngle(topIndex);
       } else {
         setCurrentAngle(bottomIndex);
       }
-    } else if (absX > DRAG_THRESHOLD_PX / 2) {
+    } else if (absX > absY && absX >= DRAG_THRESHOLD_PX) {
       // Horizontal drag: rotate through horizontal angles
-      const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
-
-      // If initial angle was vertical, start from front (0), otherwise use initial angle
-      const baseAngle = initialAngle.current >= horizontalCount ? 0 : initialAngle.current;
-
-      let newAngle = (baseAngle + angleChange) % horizontalCount;
-      if (newAngle < 0) newAngle += horizontalCount;
-
-      setCurrentAngle(newAngle);
+      // If initial angle was vertical, just go to front (0) without calculating rotation
+      if (initialAngle.current >= horizontalCount) {
+        setCurrentAngle(0);
+      } else {
+        // Normal horizontal rotation from a horizontal starting angle
+        const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
+        let newAngle = (initialAngle.current + angleChange) % horizontalCount;
+        if (newAngle < 0) newAngle += horizontalCount;
+        setCurrentAngle(newAngle);
+      }
     }
   }, [isDragging, setCurrentAngle, horizontalCount, topIndex, bottomIndex]);
 
