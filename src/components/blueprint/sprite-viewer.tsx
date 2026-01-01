@@ -241,6 +241,7 @@ function downloadSpriteSheet(spriteUrl: string, blueprintName: string) {
 const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData }) => {
   const [currentAngle, setCurrentAngle] = useState(thumbnailData.default_angle);
   const containerRef = useRef<HTMLDivElement>(null);
+  const contextMenuCleanupRef = useRef<(() => void) | null>(null);
 
   // Derive angle indices from sprite metadata
   const angleIndices = getAngleIndices(thumbnailData.angles);
@@ -260,12 +261,27 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     containerRef.current?.focus();
   }, []);
 
+  // Cleanup context menu on unmount
+  useEffect(() => {
+    return () => {
+      if (contextMenuCleanupRef.current) {
+        contextMenuCleanupRef.current();
+      }
+    };
+  }, []);
+
   const handleDownload = () => {
     downloadSpriteSheet(thumbnailData.sprite_url, blueprint.blueprint_name);
   };
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    // Clean up any existing context menu
+    if (contextMenuCleanupRef.current) {
+      contextMenuCleanupRef.current();
+    }
+
     // Create a simple context menu
     const contextMenu = document.createElement('div');
     contextMenu.style.position = 'fixed';
@@ -292,6 +308,7 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     downloadOption.onclick = () => {
       handleDownload();
       document.body.removeChild(contextMenu);
+      contextMenuCleanupRef.current = null;
     };
 
     contextMenu.appendChild(downloadOption);
@@ -303,7 +320,11 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
         document.body.removeChild(contextMenu);
       }
       document.removeEventListener('click', removeMenu);
+      contextMenuCleanupRef.current = null;
     };
+
+    // Store cleanup function for component unmount
+    contextMenuCleanupRef.current = removeMenu;
     setTimeout(() => document.addEventListener('click', removeMenu), 0);
   };
 
@@ -334,7 +355,7 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
           <button
             onClick={handleDownload}
             className="absolute bottom-2 right-2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded px-2 py-1 text-xs"
-            title="Download current view"
+            title="Download sprite sheet"
             type="button"
           >
             ⬇

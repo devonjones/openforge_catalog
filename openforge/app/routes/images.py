@@ -290,8 +290,8 @@ def proxy_image():
         return jsonify({"error": "url parameter is required"}), 400
 
     # Only allow proxying from our R2 bucket
-    file_domain = current_app.config.get("FILE_DOMAIN", "")
-    if not image_url.startswith(file_domain):
+    file_domain = current_app.config.get("FILE_DOMAIN")
+    if not file_domain or not image_url.startswith(file_domain):
         return jsonify({"error": "Invalid image URL"}), 400
 
     try:
@@ -300,7 +300,7 @@ def proxy_image():
         response.raise_for_status()
 
         # Get filename from URL for download
-        filename = image_url.split("/")[-1]
+        filename = image_url.split("/")[-1].split("?")[0]
 
         # Create response with proper headers for download
         img_response = make_response(response.content)
