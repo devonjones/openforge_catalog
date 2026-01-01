@@ -107,7 +107,10 @@ function useMouseDragRotation(
     } else if (absX > absY && absX >= DRAG_THRESHOLD_PX) {
       // Horizontal drag: rotate through horizontal angles
       // If initial angle was vertical, just go to front (0) without calculating rotation
-      if (initialAngle.current >= horizontalCount) {
+      if (
+        initialAngle.current === topIndex ||
+        initialAngle.current === bottomIndex
+      ) {
         setCurrentAngle(0);
       } else {
         // Normal horizontal rotation from a horizontal starting angle

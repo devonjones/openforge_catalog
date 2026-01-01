@@ -301,7 +301,9 @@ def proxy_image():
         response.raise_for_status()
 
         # Get filename from URL for download (sanitized to prevent path traversal)
-        filename = secure_filename(image_url.split("/")[-1].split("?")[0])
+        filename = secure_filename(
+            urlparse(image_url).path.split("/")[-1] or "downloaded-image"
+        )
 
         # Create response with proper headers for download
         img_response = make_response(response.content)
