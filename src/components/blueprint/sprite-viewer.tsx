@@ -70,15 +70,21 @@ function useKeyboardRotation(
 function useMouseDragRotation(
   currentAngle: number,
   setCurrentAngle: (angle: number) => void,
-  horizontalCount: number
+  angleIndices: ReturnType<typeof getAngleIndices>
 ) {
+  const { horizontalCount, topIndex, bottomIndex } = angleIndices;
   const [isDragging, setIsDragging] = useState(false);
   const dragStartX = useRef<number>(0);
+  const dragStartY = useRef<number>(0);
   const initialAngle = useRef<number>(0);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    // Only respond to left mouse button (button 0) to avoid conflicts with context menu
+    if (e.button !== 0) return;
+
     setIsDragging(true);
     dragStartX.current = e.clientX;
+    dragStartY.current = e.clientY;
     initialAngle.current = currentAngle;
   }, [currentAngle]);
 
@@ -86,14 +92,31 @@ function useMouseDragRotation(
     if (!isDragging) return;
 
     const deltaX = e.clientX - dragStartX.current;
-    const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
+    const deltaY = e.clientY - dragStartY.current;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
 
-    // Only horizontal angles, wrap around
-    let newAngle = (initialAngle.current + angleChange) % horizontalCount;
-    if (newAngle < 0) newAngle += horizontalCount;
+    // Determine drag direction based on which delta is larger
+    if (absY > absX && absY > DRAG_THRESHOLD_PX) {
+      // Vertical drag: go to top or bottom
+      if (deltaY < 0) {
+        setCurrentAngle(topIndex);
+      } else {
+        setCurrentAngle(bottomIndex);
+      }
+    } else if (absX > DRAG_THRESHOLD_PX / 2) {
+      // Horizontal drag: rotate through horizontal angles
+      const angleChange = Math.floor(deltaX / DRAG_THRESHOLD_PX);
 
-    setCurrentAngle(newAngle);
-  }, [isDragging, setCurrentAngle, horizontalCount]);
+      // If initial angle was vertical, start from front (0), otherwise use initial angle
+      const baseAngle = initialAngle.current >= horizontalCount ? 0 : initialAngle.current;
+
+      let newAngle = (baseAngle + angleChange) % horizontalCount;
+      if (newAngle < 0) newAngle += horizontalCount;
+
+      setCurrentAngle(newAngle);
+    }
+  }, [isDragging, setCurrentAngle, horizontalCount, topIndex, bottomIndex]);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -211,7 +234,7 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
 
   // Use custom hooks for event handling
   const { handleKeyDown } = useKeyboardRotation(currentAngle, setCurrentAngle, angleIndices);
-  const { handleMouseDown } = useMouseDragRotation(currentAngle, setCurrentAngle, angleIndices.horizontalCount);
+  const { handleMouseDown } = useMouseDragRotation(currentAngle, setCurrentAngle, angleIndices);
 
   // Calculate background position based on current angle
   const row = Math.floor(currentAngle / thumbnailData.grid_cols);
