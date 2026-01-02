@@ -230,12 +230,12 @@ const KeyboardHint: React.FC = () => (
 );
 
 /**
- * Downloads the sprite sheet image directly (CORS enabled on R2)
+ * Downloads the preview image directly (CORS enabled on R2)
  */
 function downloadSpriteSheet(spriteUrl: string, blueprintName: string) {
   const a = document.createElement('a');
   a.href = spriteUrl;
-  a.download = `${blueprintName}-sprite.png`;
+  a.download = `${blueprintName}-preview.png`;
   a.click();
 }
 
@@ -296,7 +296,7 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
     contextMenu.style.padding = '4px 0';
 
     const downloadOption = document.createElement('div');
-    downloadOption.textContent = 'Download sprite sheet';
+    downloadOption.textContent = 'Download preview image';
     downloadOption.style.padding = '8px 16px';
     downloadOption.style.cursor = 'pointer';
     downloadOption.style.fontSize = '14px';
@@ -356,7 +356,7 @@ const SpriteViewer: React.FC<SpriteViewerProps> = ({ blueprint, thumbnailData })
           <button
             onClick={handleDownload}
             className="absolute bottom-2 right-2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded px-2 py-1 text-xs"
-            title="Download sprite sheet"
+            title="Download preview image"
             type="button"
           >
             ⬇
