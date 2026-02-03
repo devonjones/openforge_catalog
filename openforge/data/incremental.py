@@ -11,7 +11,7 @@ import os
 import sys
 import time
 import traceback
-from datetime import datetime, timezone
+from datetime import datetime
 from typing import Dict, List, Optional, Set, Tuple
 
 from yaml import safe_load
@@ -182,9 +182,12 @@ class IncrementalScanner:
             Dict with size and modified info
         """
         stat = os.stat(file_path)
-        # Use UTC time interpretation for consistent behavior across environments
-        utc_time = datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc)
-        final_time = utc_time.isoformat()
+        # Use local time interpretation to match existing fixture files
+        # This is intentional - existing fixtures were created with local time,
+        # and changing to UTC would break timestamp comparisons and cause
+        # unnecessary MD5 recalculation for all files
+        local_time = datetime.fromtimestamp(stat.st_mtime)
+        final_time = local_time.isoformat()
 
         return {"size": stat.st_size, "file_modified_at": final_time}
 
@@ -224,6 +227,32 @@ class IncrementalScanner:
         if "images" in existing_entry:
             new_entry["images"] = existing_entry["images"]
 
+    def _normalize_timestamp(self, timestamp: str) -> str:
+        """Normalize timestamp for comparison by stripping timezone info.
+
+        Old fixtures have timestamps without timezone (local time).
+        New fixtures have timestamps with +00:00 timezone (UTC).
+        To maintain incremental scanning compatibility, we compare only
+        the datetime portion, ignoring timezone differences.
+
+        Args:
+            timestamp: ISO format timestamp string
+
+        Returns:
+            Normalized timestamp without timezone info
+        """
+        # Strip timezone info (everything after + or - in the timestamp)
+        # 2021-12-31T12:56:52.581406 -> 2021-12-31T12:56:52.581406
+        # 2020-10-24T18:44:44+00:00 -> 2020-10-24T18:44:44
+        if "+" in timestamp:
+            return timestamp.split("+")[0]
+        if timestamp.count("-") > 2:  # Has timezone like -07:00
+            # Find the last occurrence of - which is part of timezone
+            parts = timestamp.rsplit("-", 1)
+            if ":" in parts[1]:  # Confirm it's a timezone
+                return parts[0]
+        return timestamp
+
     def _has_file_changed(self, file_path: str, existing_entry: Dict) -> bool:
         """Check if a file has changed by comparing metadata.
 
@@ -245,7 +274,10 @@ class IncrementalScanner:
             return True
 
         existing_modified = self._get_existing_modified_time(existing_metadata)
-        if current_info["file_modified_at"] != existing_modified:
+        # Normalize timestamps for comparison to handle timezone differences
+        current_normalized = self._normalize_timestamp(current_info["file_modified_at"])
+        existing_normalized = self._normalize_timestamp(existing_modified)
+        if current_normalized != existing_normalized:
             return True
 
         return False
@@ -281,7 +313,11 @@ class IncrementalScanner:
         existing_size = existing_entry["file_metadata"]["size"]
         new_size = new_entry["file_metadata"]["size"]
 
-        if existing_modified != new_modified or existing_size != new_size:
+        # Normalize timestamps for comparison to handle timezone differences
+        existing_normalized = self._normalize_timestamp(existing_modified)
+        new_normalized = self._normalize_timestamp(new_modified)
+
+        if existing_normalized != new_normalized or existing_size != new_size:
             if self.verbose:
                 sys.stderr.write(
                     f"DEBUG: Modification time or size changed for {file_path}: "

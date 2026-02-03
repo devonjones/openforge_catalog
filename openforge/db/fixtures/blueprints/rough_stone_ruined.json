@@ -19272,6 +19272,135 @@
     {
         "file_metadata": {
             "file": "rough_stone+ruined#wall+low-minimal.A.openlock,side.stl",
+            "file_modified_at": "2026-02-02T22:15:52.670268",
+            "full_name": "tiles/rough_stone+ruined/separate_wall/primary_wall/wall/openlock/side/rough_stone+ruined#wall+low-minimal.A.openlock,side.stl",
+            "md5": "6da9f18f0759d744c77f82481fc20115",
+            "size": 19103484,
+            "storage_address": "https://objects.openforge.tools/models/6da9f1/6da9f18f0759d744c77f82481fc20115.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/6da9f1/6da9f18f0759d744c77f82481fc20115.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "component|wall|low-minimal",
+            "connection|openlock",
+            "connection|side",
+            "connection|side|openlock",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|rough_stone",
+            "texture|rough_stone|ruined"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "rough_stone+ruined#wall+low-minimal.A.openlock,side.stl",
             "file_modified_at": "2020-07-19T12:24:57.092806",
             "full_name": "tiles/rough_stone+ruined/separate_wall/primary_wall/wall/openlock/side/rough_stone+ruined#wall+low-minimal.A.openlock,side.stl",
             "md5": "5d3bb094d49c96691f23408d930cef62",

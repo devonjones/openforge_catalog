@@ -178908,6 +178908,136 @@
     {
         "file_metadata": {
             "file": "necro#base+wall.A.dragonlock,magnetic+flex.stl",
+            "file_modified_at": "2026-02-02T22:11:38.306913",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/dragonlock,magnetic+flex/necro#base+wall.A.dragonlock,magnetic+flex.stl",
+            "md5": "8f043e50562eb454d4f73c6352caaa2d",
+            "size": 738284,
+            "storage_address": "https://objects.openforge.tools/models/8f043e/8f043e50562eb454d4f73c6352caaa2d.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/8f043e/8f043e50562eb454d4f73c6352caaa2d.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "necro#base+wall.A.dragonlock,magnetic+flex.stl",
             "file_modified_at": "2024-03-09T20:37:36.164522",
             "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/dragonlock,magnetic+flex/necro#base+wall.A.dragonlock,magnetic+flex.stl",
             "md5": "ec9b3195fd8e33fcec1365d5048c3f80",
@@ -179554,6 +179684,134 @@
     {
         "file_metadata": {
             "file": "necro#base+wall.A.dragonlock.stl",
+            "file_modified_at": "2026-02-02T22:11:28.068769",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/dragonlock/necro#base+wall.A.dragonlock.stl",
+            "md5": "c1429de31d25c4f5ef35fbcffdd03c27",
+            "size": 842684,
+            "storage_address": "https://objects.openforge.tools/models/c1429d/c1429de31d25c4f5ef35fbcffdd03c27.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/c1429d/c1429de31d25c4f5ef35fbcffdd03c27.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|dragonlock",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "necro#base+wall.A.dragonlock.stl",
             "file_modified_at": "2024-03-09T20:37:23.431065",
             "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/dragonlock/necro#base+wall.A.dragonlock.stl",
             "md5": "0dae038e545de08ca1234c93ad1edd8c",
@@ -180187,6 +180445,135 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "necro#base+wall.A.magnetic+flex.stl",
+            "file_modified_at": "2026-02-02T22:10:39.288898",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/magnetic+flex/necro#base+wall.A.magnetic+flex.stl",
+            "md5": "3d73a022d0f82ee0768fd606cd1f44d7",
+            "size": 669584,
+            "storage_address": "https://objects.openforge.tools/models/3d73a0/3d73a022d0f82ee0768fd606cd1f44d7.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/3d73a0/3d73a022d0f82ee0768fd606cd1f44d7.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
         "file_metadata": {
             "file": "necro#base+wall.A.magnetic+flex.stl",
             "file_modified_at": "2024-03-09T20:36:14.919280",
@@ -180827,6 +181214,137 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "necro#base+wall.A.openlock+topless,magnetic+flex.stl",
+            "file_modified_at": "2026-02-02T22:11:04.670981",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/openlock+topless,magnetic+flex/necro#base+wall.A.openlock+topless,magnetic+flex.stl",
+            "md5": "11c9d39f50db3d9dbae4e0db0d1dfa76",
+            "size": 650284,
+            "storage_address": "https://objects.openforge.tools/models/11c9d3/11c9d39f50db3d9dbae4e0db0d1dfa76.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/11c9d3/11c9d39f50db3d9dbae4e0db0d1dfa76.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "connection|openlock|topless",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
         "file_metadata": {
             "file": "necro#base+wall.A.openlock+topless,magnetic+flex.stl",
             "file_modified_at": "2024-03-09T20:36:46.571294",
@@ -181608,6 +182126,136 @@
     {
         "file_metadata": {
             "file": "necro#base+wall.A.openlock,magnetic+flex.stl",
+            "file_modified_at": "2026-02-02T22:10:54.051640",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/openlock,magnetic+flex/necro#base+wall.A.openlock,magnetic+flex.stl",
+            "md5": "c4e2447477e97d878de04ee08edecda5",
+            "size": 687584,
+            "storage_address": "https://objects.openforge.tools/models/c4e244/c4e2447477e97d878de04ee08edecda5.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/c4e244/c4e2447477e97d878de04ee08edecda5.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|magnetic",
+            "connection|magnetic|flex",
+            "connection|openlock",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
+        "file_metadata": {
+            "file": "necro#base+wall.A.openlock,magnetic+flex.stl",
             "file_modified_at": "2024-03-09T20:36:29.114345",
             "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/openlock,magnetic+flex/necro#base+wall.A.openlock,magnetic+flex.stl",
             "md5": "b98877fdcfa22efc5502d0c20262e915",
@@ -182252,6 +182900,134 @@
         "type": "model"
     },
     {
+        "file_metadata": {
+            "file": "necro#base+wall.A.openlock.stl",
+            "file_modified_at": "2026-02-02T22:11:16.598447",
+            "full_name": "tiles/bases/separate_wall/primary_walls/base#wall%necro/openlock/necro#base+wall.A.openlock.stl",
+            "md5": "546c73bb12be6c2c2a51a0b923fcd780",
+            "size": 676384,
+            "storage_address": "https://objects.openforge.tools/models/546c73/546c73bb12be6c2c2a51a0b923fcd780.stl"
+        },
+        "images": [
+            {
+                "image_name": "thumbnail",
+                "image_url": "https://objects.openforge.tools/sprites/546c73/546c73bb12be6c2c2a51a0b923fcd780.png",
+                "sprite_metadata": {
+                    "angles": [
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 0,
+                            "name": "front"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 1,
+                            "name": "front-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 2,
+                            "name": "right"
+                        },
+                        {
+                            "camera_pos": [
+                                2,
+                                3,
+                                3
+                            ],
+                            "index": 3,
+                            "name": "back-right"
+                        },
+                        {
+                            "camera_pos": [
+                                0,
+                                2,
+                                4
+                            ],
+                            "index": 4,
+                            "name": "back"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                2,
+                                3
+                            ],
+                            "index": 5,
+                            "name": "back-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -4,
+                                0,
+                                2
+                            ],
+                            "index": 6,
+                            "name": "left"
+                        },
+                        {
+                            "camera_pos": [
+                                -3,
+                                -3,
+                                2
+                            ],
+                            "index": 7,
+                            "name": "front-left"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                0,
+                                5
+                            ],
+                            "index": 8,
+                            "name": "top"
+                        },
+                        {
+                            "camera_pos": [
+                                -2,
+                                -3,
+                                0
+                            ],
+                            "index": 9,
+                            "name": "bottom"
+                        }
+                    ],
+                    "default_angle": 0,
+                    "grid_cols": 5,
+                    "grid_rows": 2,
+                    "tile_size": 512
+                }
+            }
+        ],
+        "metadata": false,
+        "tags": [
+            "build|separate wall",
+            "connection|openlock",
+            "shape|base",
+            "shape|base|wall",
+            "shape|square",
+            "shape|wall",
+            "size|openlock|A",
+            "size|width|2",
+            "texture|necro"
+        ],
+        "type": "model"
+    },
+    {
+        "deprecated": true,
         "file_metadata": {
             "file": "necro#base+wall.A.openlock.stl",
             "file_modified_at": "2024-03-09T20:37:09.062911",
