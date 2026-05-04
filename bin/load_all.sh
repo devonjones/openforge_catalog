@@ -1,5 +1,6 @@
 #!/bin/bash
 
+./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/aztlan.json --upload > ../openforge/db/fixtures/blueprints/aztlan.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/bases.json --upload > ../openforge/db/fixtures/blueprints/bases.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/building_facades.json --upload > ../openforge/db/fixtures/blueprints/building_facades.json.next
 ./dropbox_scanner --verbose --update=../openforge/db/fixtures/blueprints/catacombs.json --upload > ../openforge/db/fixtures/blueprints/catacombs.json.next
