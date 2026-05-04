@@ -38,9 +38,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.1x1.openforge.stl",
+            "file": "aztlan#floor.1x1.openforge.stl",
             "file_modified_at": "2026-04-30T09:29:17.384623",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.1x1.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.1x1.openforge.stl",
             "md5": "8707608881f5630c7e9927fe2e2c0f8d",
             "size": 1335084,
             "storage_address": "https://objects.openforge.tools/models/870760/8707608881f5630c7e9927fe2e2c0f8d.stl"
@@ -156,7 +156,7 @@
             "shape|square",
             "size|depth|1",
             "size|width|1",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -199,9 +199,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.2x1.openforge.stl",
+            "file": "aztlan#floor.2x1.openforge.stl",
             "file_modified_at": "2026-04-30T09:29:32.752546",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.2x1.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.2x1.openforge.stl",
             "md5": "a6881f5ce657e9bb6d514a3d27fa88d8",
             "size": 3947184,
             "storage_address": "https://objects.openforge.tools/models/a6881f/a6881f5ce657e9bb6d514a3d27fa88d8.stl"
@@ -317,7 +317,7 @@
             "shape|square",
             "size|depth|1",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -360,9 +360,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.2x2.openforge.stl",
+            "file": "aztlan#floor.2x2.openforge.stl",
             "file_modified_at": "2026-04-30T09:31:15.105878",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.2x2.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.2x2.openforge.stl",
             "md5": "f1e2ff0bc747302d95adc5c0cf694678",
             "size": 8925384,
             "storage_address": "https://objects.openforge.tools/models/f1e2ff/f1e2ff0bc747302d95adc5c0cf694678.stl"
@@ -478,7 +478,7 @@
             "shape|square",
             "size|depth|2",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -521,9 +521,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.3x1.openforge.stl",
+            "file": "aztlan#floor.3x1.openforge.stl",
             "file_modified_at": "2026-04-30T09:29:46.033325",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.3x1.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.3x1.openforge.stl",
             "md5": "09fab62c72a5588a27aecf7888a4f907",
             "size": 3717834,
             "storage_address": "https://objects.openforge.tools/models/09fab6/09fab62c72a5588a27aecf7888a4f907.stl"
@@ -639,7 +639,7 @@
             "shape|square",
             "size|depth|1",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -682,9 +682,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.3x3.openforge.stl",
+            "file": "aztlan#floor.3x3.openforge.stl",
             "file_modified_at": "2026-04-30T09:30:42.311479",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.3x3.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.3x3.openforge.stl",
             "md5": "acfbf0d43d997b76046a36fa0d84eeff",
             "size": 18695484,
             "storage_address": "https://objects.openforge.tools/models/acfbf0/acfbf0d43d997b76046a36fa0d84eeff.stl"
@@ -800,7 +800,7 @@
             "shape|square",
             "size|depth|3",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -843,9 +843,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.4x1.openforge.stl",
+            "file": "aztlan#floor.4x1.openforge.stl",
             "file_modified_at": "2026-04-30T09:30:01.225267",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.4x1.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.4x1.openforge.stl",
             "md5": "02201f41d95ec957cfd705be73f467ae",
             "size": 4917134,
             "storage_address": "https://objects.openforge.tools/models/02201f/02201f41d95ec957cfd705be73f467ae.stl"
@@ -961,7 +961,7 @@
             "shape|square",
             "size|depth|1",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -1004,9 +1004,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.4x2.openforge.stl",
+            "file": "aztlan#floor.4x2.openforge.stl",
             "file_modified_at": "2026-04-30T09:31:00.486795",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.4x2.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.4x2.openforge.stl",
             "md5": "a2d966c8d562876804e67f77eb728386",
             "size": 16802884,
             "storage_address": "https://objects.openforge.tools/models/a2d966/a2d966c8d562876804e67f77eb728386.stl"
@@ -1122,7 +1122,7 @@
             "shape|square",
             "size|depth|2",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
@@ -1165,9 +1165,9 @@
             ]
         },
         "file_metadata": {
-            "file": "atzlan#floor.4x4.openforge.stl",
+            "file": "aztlan#floor.4x4.openforge.stl",
             "file_modified_at": "2026-04-30T09:30:21.888160",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.4x4.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.4x4.openforge.stl",
             "md5": "31fe37fde49ad6bf648da248bc069bc0",
             "size": 31787984,
             "storage_address": "https://objects.openforge.tools/models/31fe37/31fe37fde49ad6bf648da248bc069bc0.stl"
@@ -1283,15 +1283,15 @@
             "shape|square",
             "size|depth|4",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.AS.openforge.stl",
+            "file": "aztlan#floor.AS.openforge.stl",
             "file_modified_at": "2026-04-30T09:31:37.010466",
-            "full_name": "tiles/aztlan/floors/floor/openforge/atzlan#floor.AS.openforge.stl",
+            "full_name": "tiles/aztlan/floors/floor/openforge/aztlan#floor.AS.openforge.stl",
             "md5": "7ce4d00ccd40a7d69b09bfbe42d5fa39",
             "size": 3947184,
             "storage_address": "https://objects.openforge.tools/models/7ce4d0/7ce4d00ccd40a7d69b09bfbe42d5fa39.stl"
@@ -1408,15 +1408,15 @@
             "shape|wall",
             "size|openlock|AS",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.1x1.openlock+unsupported.stl",
+            "file": "aztlan#floor.1x1.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:25:10.634335",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.1x1.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.1x1.openlock+unsupported.stl",
             "md5": "a3a52391fc9bc8399cf651820f611f1f",
             "size": 1361884,
             "storage_address": "https://objects.openforge.tools/models/a3a523/a3a52391fc9bc8399cf651820f611f1f.stl"
@@ -1533,15 +1533,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|1",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.2x1.openlock+unsupported.stl",
+            "file": "aztlan#floor.2x1.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:25:28.113369",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.2x1.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.2x1.openlock+unsupported.stl",
             "md5": "fd40da461da634407ab1b261b7ec83d4",
             "size": 3983784,
             "storage_address": "https://objects.openforge.tools/models/fd40da/fd40da461da634407ab1b261b7ec83d4.stl"
@@ -1658,15 +1658,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.2x2.openlock+unsupported.stl",
+            "file": "aztlan#floor.2x2.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:28:00.112566",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.2x2.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.2x2.openlock+unsupported.stl",
             "md5": "272dda0f7b52165fc6d3597ce20ae134",
             "size": 8980084,
             "storage_address": "https://objects.openforge.tools/models/272dda/272dda0f7b52165fc6d3597ce20ae134.stl"
@@ -1783,15 +1783,15 @@
             "shape|square",
             "size|depth|2",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.3x1.openlock+unsupported.stl",
+            "file": "aztlan#floor.3x1.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:25:43.457953",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.3x1.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.3x1.openlock+unsupported.stl",
             "md5": "7e1283f5e67df33921b6a5a399fe9bbb",
             "size": 3753034,
             "storage_address": "https://objects.openforge.tools/models/7e1283/7e1283f5e67df33921b6a5a399fe9bbb.stl"
@@ -1908,15 +1908,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.3x3.openlock+unsupported.stl",
+            "file": "aztlan#floor.3x3.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:27:38.837634",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.3x3.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.3x3.openlock+unsupported.stl",
             "md5": "73c328e7068c81711905599e8b5d8eae",
             "size": 18836184,
             "storage_address": "https://objects.openforge.tools/models/73c328/73c328e7068c81711905599e8b5d8eae.stl"
@@ -2033,15 +2033,15 @@
             "shape|square",
             "size|depth|3",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x1.openlock+unsupported.stl",
+            "file": "aztlan#floor.4x1.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:26:00.324913",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.4x1.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.4x1.openlock+unsupported.stl",
             "md5": "c951d09d09b363b0c23f5ee2e95e9b88",
             "size": 4961134,
             "storage_address": "https://objects.openforge.tools/models/c951d0/c951d09d09b363b0c23f5ee2e95e9b88.stl"
@@ -2158,15 +2158,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x2.openlock+unsupported.stl",
+            "file": "aztlan#floor.4x2.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:27:17.637014",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.4x2.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.4x2.openlock+unsupported.stl",
             "md5": "7767177e3cfac0762be6f42e2194aafc",
             "size": 16934684,
             "storage_address": "https://objects.openforge.tools/models/776717/7767177e3cfac0762be6f42e2194aafc.stl"
@@ -2283,15 +2283,15 @@
             "shape|square",
             "size|depth|2",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x4.openlock+unsupported.stl",
+            "file": "aztlan#floor.4x4.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:26:50.229617",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.4x4.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.4x4.openlock+unsupported.stl",
             "md5": "6dcd17de44b98add40da6852b9e1463a",
             "size": 31890784,
             "storage_address": "https://objects.openforge.tools/models/6dcd17/6dcd17de44b98add40da6852b9e1463a.stl"
@@ -2408,15 +2408,15 @@
             "shape|square",
             "size|depth|4",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.AS.openlock+unsupported.stl",
+            "file": "aztlan#floor.AS.openlock+unsupported.stl",
             "file_modified_at": "2026-04-30T09:28:18.351277",
-            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/atzlan#floor.AS.openlock+unsupported.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock+unsupported/aztlan#floor.AS.openlock+unsupported.stl",
             "md5": "0590f288b6d25ae5bb973b3ab2495348",
             "size": 3977184,
             "storage_address": "https://objects.openforge.tools/models/0590f2/0590f288b6d25ae5bb973b3ab2495348.stl"
@@ -2534,15 +2534,15 @@
             "shape|wall",
             "size|openlock|AS",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.1x1.openlock.stl",
+            "file": "aztlan#floor.1x1.openlock.stl",
             "file_modified_at": "2026-04-30T09:21:18.321183",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.1x1.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.1x1.openlock.stl",
             "md5": "cafb83af9d3055ee392f3f69e8e9463d",
             "size": 1417884,
             "storage_address": "https://objects.openforge.tools/models/cafb83/cafb83af9d3055ee392f3f69e8e9463d.stl"
@@ -2658,15 +2658,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|1",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.2x1.openlock.stl",
+            "file": "aztlan#floor.2x1.openlock.stl",
             "file_modified_at": "2026-04-30T09:22:20.616216",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.2x1.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.2x1.openlock.stl",
             "md5": "9ba26d4c62c907171a6b9ba76d42bc08",
             "size": 4095384,
             "storage_address": "https://objects.openforge.tools/models/9ba26d/9ba26d4c62c907171a6b9ba76d42bc08.stl"
@@ -2782,15 +2782,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.2x2.openlock.stl",
+            "file": "aztlan#floor.2x2.openlock.stl",
             "file_modified_at": "2026-04-30T09:23:16.857777",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.2x2.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.2x2.openlock.stl",
             "md5": "3cb410cfd21ff7928fb1fc97d2831735",
             "size": 9174384,
             "storage_address": "https://objects.openforge.tools/models/3cb410/3cb410cfd21ff7928fb1fc97d2831735.stl"
@@ -2906,15 +2906,15 @@
             "shape|square",
             "size|depth|2",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.3x1.openlock.stl",
+            "file": "aztlan#floor.3x1.openlock.stl",
             "file_modified_at": "2026-04-30T09:22:38.567616",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.3x1.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.3x1.openlock.stl",
             "md5": "b40a959a800fc7d750d6e5a836587260",
             "size": 3897834,
             "storage_address": "https://objects.openforge.tools/models/b40a95/b40a959a800fc7d750d6e5a836587260.stl"
@@ -3030,15 +3030,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.3x3.openlock.stl",
+            "file": "aztlan#floor.3x3.openlock.stl",
             "file_modified_at": "2026-04-30T09:24:06.205443",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.3x3.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.3x3.openlock.stl",
             "md5": "7bf72f5f8a88a3541c9f40dbcdaeac23",
             "size": 19066684,
             "storage_address": "https://objects.openforge.tools/models/7bf72f/7bf72f5f8a88a3541c9f40dbcdaeac23.stl"
@@ -3154,15 +3154,15 @@
             "shape|square",
             "size|depth|3",
             "size|width|3",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x1.openlock.stl",
+            "file": "aztlan#floor.4x1.openlock.stl",
             "file_modified_at": "2026-04-30T09:22:52.916389",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.4x1.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.4x1.openlock.stl",
             "md5": "43193eb3a14aa5ef7855d3f5f5142dd7",
             "size": 5153934,
             "storage_address": "https://objects.openforge.tools/models/43193e/43193eb3a14aa5ef7855d3f5f5142dd7.stl"
@@ -3278,15 +3278,15 @@
             "shape|square",
             "size|depth|1",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x2.openlock.stl",
+            "file": "aztlan#floor.4x2.openlock.stl",
             "file_modified_at": "2026-04-30T09:23:45.721478",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.4x2.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.4x2.openlock.stl",
             "md5": "32a3d03d69a1518dae1a35b36c1a60ca",
             "size": 17165184,
             "storage_address": "https://objects.openforge.tools/models/32a3d0/32a3d03d69a1518dae1a35b36c1a60ca.stl"
@@ -3402,15 +3402,15 @@
             "shape|square",
             "size|depth|2",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.4x4.openlock.stl",
+            "file": "aztlan#floor.4x4.openlock.stl",
             "file_modified_at": "2026-04-30T09:24:24.750798",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.4x4.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.4x4.openlock.stl",
             "md5": "b41040dc8d990e1cfb3296463e3c7059",
             "size": 32310884,
             "storage_address": "https://objects.openforge.tools/models/b41040/b41040dc8d990e1cfb3296463e3c7059.stl"
@@ -3526,15 +3526,15 @@
             "shape|square",
             "size|depth|4",
             "size|width|4",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "atzlan#floor.AS.openlock.stl",
+            "file": "aztlan#floor.AS.openlock.stl",
             "file_modified_at": "2026-04-30T09:22:05.074336",
-            "full_name": "tiles/aztlan/floors/floor/openlock/atzlan#floor.AS.openlock.stl",
+            "full_name": "tiles/aztlan/floors/floor/openlock/aztlan#floor.AS.openlock.stl",
             "md5": "148047943119dad18ea2a3ac16a6d0a9",
             "size": 4007784,
             "storage_address": "https://objects.openforge.tools/models/148047/148047943119dad18ea2a3ac16a6d0a9.stl"
@@ -3651,15 +3651,15 @@
             "shape|wall",
             "size|openlock|AS",
             "size|width|2",
-            "texture|atzlan"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "dungeon_stone#column+corner+low.col+L.openforge,side+filament.stl",
+            "file": "aztlan#column+corner+low.col+L.openforge,side+filament.stl",
             "file_modified_at": "2026-05-01T15:00:58.109944",
-            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w+low/dungeon_stone#column+corner+low.col+L.openforge,side+filament.stl",
+            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w+low/aztlan#column+corner+low.col+L.openforge,side+filament.stl",
             "md5": "899cd7f02485e3476d75c84d09b508a7",
             "size": 4098984,
             "storage_address": "https://objects.openforge.tools/models/899cd7/899cd7f02485e3476d75c84d09b508a7.stl"
@@ -3779,15 +3779,15 @@
             "shape|column|low",
             "size|column_shape|L",
             "size|openlock|L",
-            "texture|dungeon_stone"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "dungeon_stone#column+corner+low.col+L.openforge,side.stl",
+            "file": "aztlan#column+corner+low.col+L.openforge,side.stl",
             "file_modified_at": "2026-05-01T15:00:17.256561",
-            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w+low/dungeon_stone#column+corner+low.col+L.openforge,side.stl",
+            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w+low/aztlan#column+corner+low.col+L.openforge,side.stl",
             "md5": "19675117cfd9deb5bcf3dff2965bf3af",
             "size": 3156184,
             "storage_address": "https://objects.openforge.tools/models/196751/19675117cfd9deb5bcf3dff2965bf3af.stl"
@@ -3907,15 +3907,15 @@
             "shape|column|low",
             "size|column_shape|L",
             "size|openlock|L",
-            "texture|dungeon_stone"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "dungeon_stone#column+corner.col+L.openforge,side+dragonlock.stl",
+            "file": "aztlan#column+corner.col+L.openforge,side+dragonlock.stl",
             "file_modified_at": "2026-05-01T14:59:22.236033",
-            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/dungeon_stone#column+corner.col+L.openforge,side+dragonlock.stl",
+            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/aztlan#column+corner.col+L.openforge,side+dragonlock.stl",
             "md5": "0d4593875681d6e823d7219252fa346e",
             "size": 3353784,
             "storage_address": "https://objects.openforge.tools/models/0d4593/0d4593875681d6e823d7219252fa346e.stl"
@@ -4034,15 +4034,15 @@
             "shape|column|corner",
             "size|column_shape|L",
             "size|openlock|L",
-            "texture|dungeon_stone"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "dungeon_stone#column+corner.col+L.openforge,side+filament.stl",
+            "file": "aztlan#column+corner.col+L.openforge,side+filament.stl",
             "file_modified_at": "2026-05-01T14:59:37.438274",
-            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/dungeon_stone#column+corner.col+L.openforge,side+filament.stl",
+            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/aztlan#column+corner.col+L.openforge,side+filament.stl",
             "md5": "661f0331d27bc09e81e78d618390e555",
             "size": 5009284,
             "storage_address": "https://objects.openforge.tools/models/661f03/661f0331d27bc09e81e78d618390e555.stl"
@@ -4161,15 +4161,15 @@
             "shape|column|corner",
             "size|column_shape|L",
             "size|openlock|L",
-            "texture|dungeon_stone"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "dungeon_stone#column+corner.col+L.openforge,side.stl",
+            "file": "aztlan#column+corner.col+L.openforge,side.stl",
             "file_modified_at": "2026-05-01T14:59:03.165244",
-            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/dungeon_stone#column+corner.col+L.openforge,side.stl",
+            "full_name": "tiles/aztlan/s2w/corner/column#corner+s2w/aztlan#column+corner.col+L.openforge,side.stl",
             "md5": "0a01b204c26a904c24549f10b3a80566",
             "size": 3086784,
             "storage_address": "https://objects.openforge.tools/models/0a01b2/0a01b204c26a904c24549f10b3a80566.stl"
@@ -4288,15 +4288,15 @@
             "shape|column|corner",
             "size|column_shape|L",
             "size|openlock|L",
-            "texture|dungeon_stone"
+            "texture|aztlan"
         ],
         "type": "model"
     },
     {
         "file_metadata": {
-            "file": "aztlan#floor+s2w+corner.4x4.openforge.stl",
+            "file": "aztlan#floor+s2w+corner.2x2.openforge.stl",
             "file_modified_at": "2026-04-30T09:48:50.119616",
-            "full_name": "tiles/aztlan/s2w/corner/floor/aztlan#floor+s2w+corner.4x4.openforge.stl",
+            "full_name": "tiles/aztlan/s2w/corner/floor/aztlan#floor+s2w+corner.2x2.openforge.stl",
             "md5": "61a223328780ef9f2d4a84cf46c2d238",
             "size": 5325784,
             "storage_address": "https://objects.openforge.tools/models/61a223/61a223328780ef9f2d4a84cf46c2d238.stl"
@@ -4412,8 +4412,8 @@
             "shape|floor",
             "shape|floor|corner",
             "shape|floor|s2w",
-            "size|depth|4",
-            "size|width|4",
+            "size|depth|2",
+            "size|width|2",
             "texture|aztlan"
         ],
         "type": "model"
