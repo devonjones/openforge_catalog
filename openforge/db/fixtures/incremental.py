@@ -107,6 +107,10 @@ class IncrementalFixturesLoader:
         self.current_fixture_files = (
             set()
         )  # Will be populated when processing fixture data
+        # Blueprint IDs that were renamed in this load — used to skip the
+        # subsequent deprecation step so a renamed row isn't tombstoned and
+        # stripped of tags/images.
+        self._renamed_blueprint_ids = set()
 
     def _load_existing_blueprints(self, curs: cursor = None) -> Dict[str, Dict]:
         """Load existing blueprints from database for comparison.
@@ -752,6 +756,9 @@ class IncrementalFixturesLoader:
         # Load existing blueprints for modification handling
         existing_blueprints = self._load_existing_blueprints(curs)
 
+        # Reset rename tracking for this load.
+        self._renamed_blueprint_ids = set()
+
         # Track new blueprint IDs for version change linking
         new_blueprint_ids = {}
         new_blueprint_ids_by_md5 = {}
@@ -798,6 +805,17 @@ class IncrementalFixturesLoader:
             deprecated_bp: Blueprint to deprecate
             successor_id: Optional ID of the successor blueprint (for version changes)
         """
+        # If this blueprint was renamed in this same load, the row was
+        # already updated in place. Deprecating it now would tombstone the
+        # live row and strip its freshly-inserted tags/images.
+        if deprecated_bp.get("id") in self._renamed_blueprint_ids:
+            if self.verbose:
+                write_output(
+                    f"Skipping deprecation of blueprint {deprecated_bp['id']} "
+                    f"(renamed in this load)\n"
+                )
+            return
+
         # Check if a deprecated blueprint with this MD5 already exists
         if deprecated_bp.get("file_md5"):
             existing_deprecated = self._find_deprecated_blueprint_by_md5(
@@ -897,12 +915,26 @@ class IncrementalFixturesLoader:
                                 "adding to consolidated_paths\n"
                             )
 
-                        # Update the blueprint's full_name to the new path
+                        # Update the blueprint's full_name to the new path.
+                        # Also resync blueprint_name + search_text and clear
+                        # deprecated, since the underlying file is the same
+                        # bytes under a new name.
+                        new_file_name = os.path.basename(new_full_name)
+                        words = self._get_words(new_item)
+                        search_text = blueprint_sql._blueprint_search_text(
+                            {"blueprint_name": new_file_name}, words
+                        )
                         update_data = {
                             "full_name": new_full_name,
-                            "file_name": os.path.basename(new_full_name),
+                            "file_name": new_file_name,
+                            "blueprint_name": new_file_name,
+                            "search_text": search_text,
+                            "deprecated": False,
                         }
                         blueprint_sql.update_blueprint(curs, bp["id"], update_data)
+                        # Mark this id as renamed so a later deprecation step
+                        # in the same load won't tombstone it.
+                        self._renamed_blueprint_ids.add(bp["id"])
 
                         # Also update tags and images from the new fixture data
                         # First remove old tags and images

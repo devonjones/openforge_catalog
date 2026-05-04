@@ -191,6 +191,7 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         "full_name",
         "file_modified_at",
         "storage_address",
+        "search_text",
         # Phase 1 fields
         "consolidated_paths",
         "deprecated",
