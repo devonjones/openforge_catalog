@@ -109,7 +109,10 @@ class IncrementalFixturesLoader:
         )  # Will be populated when processing fixture data
         # Blueprint IDs that were renamed in this load — used to skip the
         # subsequent deprecation step so a renamed row isn't tombstoned and
-        # stripped of tags/images.
+        # stripped of tags/images. Per-apply state: populated in
+        # `_handle_addition`'s rename branch and reset at the top of
+        # `_apply_changes_with_cursor` so it doesn't leak between fixtures
+        # when one loader instance processes a directory.
         self._renamed_blueprint_ids = set()
 
     def _load_existing_blueprints(self, curs: cursor = None) -> Dict[str, Dict]:
@@ -921,7 +924,7 @@ class IncrementalFixturesLoader:
                         # bytes under a new name.
                         new_file_name = os.path.basename(new_full_name)
                         words = self._get_words(new_item)
-                        search_text = blueprint_sql._blueprint_search_text(
+                        search_text = blueprint_sql.blueprint_search_text(
                             {"blueprint_name": new_file_name}, words
                         )
                         update_data = {
@@ -1046,8 +1049,14 @@ class IncrementalFixturesLoader:
 
         blueprint_id = existing_bp["id"]
 
-        # Update blueprint data
+        # Update blueprint data. Recompute search_text alongside the column
+        # update because tag changes are a common modify trigger and tag
+        # words feed into search_text — without this, search_text drifts
+        # whenever tags are edited.
         bp_data = self._munge_blueprint(modified_item)
+        bp_data["search_text"] = blueprint_sql.blueprint_search_text(
+            bp_data, self._get_words(modified_item)
+        )
         blueprint_sql.update_blueprint(curs, blueprint_id, bp_data)
 
         # Update tags (delete old, insert new)
