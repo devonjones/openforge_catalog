@@ -94,7 +94,7 @@ SELECT b.id, b.blueprint_name, b.blueprint_type, b.config, b.file_md5, b.file_si
     return results
 
 
-def _blueprint_search_text(data: dict, words: list[str]) -> str:
+def blueprint_search_text(data: dict, words: list[str]) -> str:
     retwords = set()
     retwords.update(words)
     retwords.update(re.split(r"[^a-zA-Z0-9]", data["blueprint_name"]))
@@ -104,7 +104,7 @@ def _blueprint_search_text(data: dict, words: list[str]) -> str:
 def insert_blueprint(
     curs: cursor, data: dict, rescue_md5_conflict: bool = False, words: list[str] = []
 ) -> dict:
-    data["search_text"] = _blueprint_search_text(data, words)
+    data["search_text"] = blueprint_search_text(data, words)
     query_list = [
         sql.SQL(
             """
@@ -191,6 +191,7 @@ def update_blueprint(curs: cursor, blueprint_id: uuid.UUID, data: dict) -> dict:
         "full_name",
         "file_modified_at",
         "storage_address",
+        "search_text",
         # Phase 1 fields
         "consolidated_paths",
         "deprecated",

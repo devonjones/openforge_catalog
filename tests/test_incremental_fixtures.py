@@ -2,7 +2,7 @@
 Tests for incremental fixtures loading functionality.
 """
 
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -499,3 +499,137 @@ class TestIncrementalFixturesLoader:
         assert "1 modified" in summary
         assert "1 deprecated" in summary
         assert result.has_changes()
+
+    # ------------------------------------------------------------------
+    # Rename-within-same-fixture regression tests
+    # ------------------------------------------------------------------
+    # These tests pin down the bug where renaming a file in Dropbox
+    # (same MD5, new full_name) corrupted the DB row: blueprint_name and
+    # search_text went stale, the row got tombstoned in the same load,
+    # and tags/images were deleted.
+
+    def _rename_loader(self):
+        """Build a loader primed for the same-fixture rename branch."""
+        mock_conn = create_mock_connection()
+        loader = IncrementalFixturesLoader(mock_conn, verbose=False)
+        # Trigger the is_rename=True branch in _handle_addition: both
+        # paths must share the subset path, and the existing path must
+        # not be in the current fixture files set.
+        loader.fixture_subset_path = "tiles/aztlan"
+        loader.current_fixture_files = {
+            "tiles/aztlan/floors/floor/openforge/aztlan#floor.1x1.openforge.stl"
+        }
+        return loader
+
+    def test_rename_resyncs_blueprint_name_and_clears_deprecated(self):
+        """Rename branch must resync blueprint_name + search_text and
+        clear deprecated, not just full_name/file_name."""
+        loader = self._rename_loader()
+
+        # Existing DB row uses the old (typo'd) name; insert returns it
+        # as the rescued md5 conflict.
+        existing_bp = {
+            "id": "bp-1",
+            "full_name": (
+                "tiles/aztlan/floors/floor/openforge/atzlan#floor.1x1.openforge.stl"
+            ),
+        }
+
+        new_item = create_mock_fixture_item(
+            "tiles/aztlan/floors/floor/openforge/aztlan#floor.1x1.openforge.stl",
+            "md5-shared",
+            tags=[["texture", "aztlan"], ["shape", "floor"]],
+        )
+        # _munge_blueprint reads file_metadata["file"]; create_mock_fixture_item
+        # omits it, so add the basename here.
+        new_item["file_metadata"]["file"] = "aztlan#floor.1x1.openforge.stl"
+
+        captured = {}
+
+        def fake_update(curs, blueprint_id, data):
+            captured["id"] = blueprint_id
+            captured["data"] = data
+
+        with (
+            patch(
+                "openforge.db.fixtures.incremental.blueprint_sql.insert_blueprint",
+                return_value=existing_bp,
+            ),
+            patch(
+                "openforge.db.fixtures.incremental.blueprint_sql.update_blueprint",
+                side_effect=fake_update,
+            ),
+            patch(
+                "openforge.db.fixtures.incremental.tag_sql.delete_all_blueprint_tags"
+            ),
+            patch("openforge.db.fixtures.incremental.tag_sql.insert_tag"),
+            patch(
+                "openforge.db.fixtures.incremental.image_sql"
+                ".delete_images_for_blueprint"
+            ),
+            patch(
+                "openforge.db.fixtures.incremental.image_sql.insert_image_for_blueprint"
+            ),
+        ):
+            loader._handle_addition(Mock(), new_item)
+
+        # The rename id is tracked so the deprecation step skips it.
+        assert "bp-1" in loader._renamed_blueprint_ids
+        # All four corruption-prone fields must be in the update payload.
+        assert captured["data"]["full_name"] == (
+            "tiles/aztlan/floors/floor/openforge/aztlan#floor.1x1.openforge.stl"
+        )
+        assert captured["data"]["file_name"] == "aztlan#floor.1x1.openforge.stl"
+        assert captured["data"]["blueprint_name"] == ("aztlan#floor.1x1.openforge.stl")
+        assert captured["data"]["deprecated"] is False
+        # search_text reflects the new name and tag words, not the old.
+        search_text = captured["data"]["search_text"]
+        assert "aztlan" in search_text.split()
+        assert "atzlan" not in search_text.split()
+        assert "floor" in search_text.split()
+
+    def test_renamed_id_skips_deprecation(self):
+        """A bp id added to _renamed_blueprint_ids during a load must
+        not be re-deprecated by _handle_deprecation in the same load."""
+        loader = self._rename_loader()
+        loader._renamed_blueprint_ids.add("bp-1")
+
+        deprecated_bp = {"id": "bp-1", "file_md5": "md5-shared"}
+
+        with (
+            patch(
+                "openforge.db.fixtures.incremental.blueprint_sql"
+                ".mark_blueprint_deprecated"
+            ) as mark_dep,
+            patch(
+                "openforge.db.fixtures.incremental.tag_sql.delete_all_blueprint_tags"
+            ) as del_tags,
+            patch(
+                "openforge.db.fixtures.incremental.image_sql"
+                ".delete_images_for_blueprint"
+            ) as del_imgs,
+        ):
+            loader._handle_deprecation(Mock(), deprecated_bp)
+
+        # The skip path means none of the deprecation side-effects fire.
+        mark_dep.assert_not_called()
+        del_tags.assert_not_called()
+        del_imgs.assert_not_called()
+
+    def test_apply_changes_resets_renamed_ids_per_load(self):
+        """_renamed_blueprint_ids must reset at the top of each apply so
+        state from one fixture doesn't leak into the next."""
+        loader = self._rename_loader()
+        loader._renamed_blueprint_ids.add("stale-id-from-prior-load")
+
+        empty_changes = ComparisonResult()
+
+        # _link_deprecated_to_successors runs at the end and calls
+        # cursor.fetchall(); make it return an empty list.
+        cursor = Mock()
+        cursor.fetchall = Mock(return_value=[])
+
+        with patch.object(loader, "_load_existing_blueprints", return_value={}):
+            loader._apply_changes_with_cursor(cursor, empty_changes)
+
+        assert loader._renamed_blueprint_ids == set()
