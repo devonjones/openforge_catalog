@@ -540,6 +540,9 @@ class TestIncrementalFixturesLoader:
             "md5-shared",
             tags=[["texture", "aztlan"], ["shape", "floor"]],
         )
+        # _munge_blueprint reads file_metadata["file"]; create_mock_fixture_item
+        # omits it, so add the basename here.
+        new_item["file_metadata"]["file"] = "aztlan#floor.1x1.openforge.stl"
 
         captured = {}
 
@@ -621,7 +624,12 @@ class TestIncrementalFixturesLoader:
 
         empty_changes = ComparisonResult()
 
+        # _link_deprecated_to_successors runs at the end and calls
+        # cursor.fetchall(); make it return an empty list.
+        cursor = Mock()
+        cursor.fetchall = Mock(return_value=[])
+
         with patch.object(loader, "_load_existing_blueprints", return_value={}):
-            loader._apply_changes_with_cursor(Mock(), empty_changes)
+            loader._apply_changes_with_cursor(cursor, empty_changes)
 
         assert loader._renamed_blueprint_ids == set()
