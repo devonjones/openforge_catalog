@@ -1,0 +1,264 @@
+"""Tests for openforge.thingiverse.auth (TokenManager and JWT helpers)."""
+
+import base64
+import json
+import stat
+import time
+
+import pytest
+
+from openforge.thingiverse.auth import (
+    API_BASE,
+    NotLoggedIn,
+    ThingiverseAuthError,
+    TokenManager,
+    TwoFactorRequired,
+    _jwt_exp,
+    _token_expired,
+)
+
+
+def make_jwt(exp=None, payload_extra=None):
+    """Build a structurally-valid, unsigned JWT for testing."""
+
+    def seg(obj):
+        raw = base64.urlsafe_b64encode(json.dumps(obj).encode()).decode()
+        return raw.rstrip("=")
+
+    payload = dict(payload_extra or {})
+    if exp is not None:
+        payload["exp"] = exp
+    return f"{seg({'alg': 'none'})}.{seg(payload)}.fakesig"
+
+
+class FakeResponse:
+    def __init__(self, status_code, body=None):
+        self.status_code = status_code
+        self._body = body if body is not None else {}
+
+    def json(self):
+        if isinstance(self._body, Exception):
+            raise self._body
+        return self._body
+
+
+class FakeSession:
+    """Duck-typed requests.Session capturing calls, returning queued responses."""
+
+    def __init__(self):
+        self.responses = []
+        self.calls = []
+        self.headers = {}
+
+    def queue(self, response):
+        self.responses.append(response)
+        return self
+
+    def post(self, url, json=None, timeout=None, headers=None):
+        self.calls.append(("POST", url, json))
+        return self.responses.pop(0)
+
+    def get(self, url, timeout=None, headers=None):
+        self.calls.append(("GET", url, headers))
+        return self.responses.pop(0)
+
+
+@pytest.fixture
+def token_file(tmp_path):
+    return tmp_path / "config" / "thingiverse_tokens.json"
+
+
+@pytest.fixture
+def session():
+    return FakeSession()
+
+
+@pytest.fixture
+def manager(token_file, session):
+    return TokenManager(token_file=token_file, session=session)
+
+
+def login_body(access, refresh, token="session-token-value"):
+    jwt = {"access": access, "refresh": refresh}
+    return {"message": "ok", "token": token, "jwt": jwt}
+
+
+class TestJwtHelpers:
+    def test_jwt_exp_extracts_claim(self):
+        assert _jwt_exp(make_jwt(exp=1234567890)) == 1234567890
+
+    def test_jwt_exp_no_claim_returns_none(self):
+        assert _jwt_exp(make_jwt()) is None
+
+    def test_jwt_exp_garbage_returns_none(self):
+        assert _jwt_exp("not-a-jwt") is None
+        assert _jwt_exp("") is None
+        assert _jwt_exp("a.!!!notbase64!!!.c") is None
+
+    def test_token_expired_future_exp(self):
+        assert not _token_expired(make_jwt(exp=int(time.time()) + 3600))
+
+    def test_token_expired_past_exp(self):
+        assert _token_expired(make_jwt(exp=int(time.time()) - 10))
+
+    def test_token_expired_within_leeway(self):
+        # expires in 30s, leeway is 60s -> treat as expired
+        assert _token_expired(make_jwt(exp=int(time.time()) + 30))
+
+    def test_token_expired_undecodable_treated_expired(self):
+        assert _token_expired("garbage")
+
+
+class TestLogin:
+    def test_login_success_stores_tokens(self, manager, session, token_file):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "refresh-jwt")))
+
+        stored = manager.login("devon", "hunter2")
+
+        assert stored["access"] == access
+        assert stored["refresh"] == "refresh-jwt"
+        assert stored["session_token"] == "session-token-value"
+        on_disk = json.loads(token_file.read_text())
+        assert on_disk["access"] == access
+        method, url, body = session.calls[0]
+        assert (method, url) == ("POST", f"{API_BASE}/v2/auth/login")
+        assert body == {"usernameOrEmail": "devon", "password": "hunter2"}
+
+    def test_login_token_file_is_owner_only(self, manager, session, token_file):
+        session.queue(FakeResponse(200, login_body(make_jwt(exp=1), "r")))
+        manager.login("devon", "pw")
+        mode = stat.S_IMODE(token_file.stat().st_mode)
+        assert mode == 0o600
+
+    def test_login_202_raises_two_factor(self, manager, session):
+        session.queue(FakeResponse(202, {"message": "2fa", "username": "devon"}))
+        with pytest.raises(TwoFactorRequired):
+            manager.login("devon", "pw")
+
+    def test_login_401_raises_with_error_detail(self, manager, session):
+        session.queue(FakeResponse(401, {"error": "Unauthorized access."}))
+        with pytest.raises(ThingiverseAuthError, match="HTTP 401"):
+            manager.login("devon", "wrong")
+
+    def test_login_error_message_never_contains_password(self, manager, session):
+        session.queue(FakeResponse(401, {"error": "Unauthorized access."}))
+        with pytest.raises(ThingiverseAuthError) as excinfo:
+            manager.login("devon", "s3cretpw")
+        assert "s3cretpw" not in str(excinfo.value)
+
+    def test_login_missing_tokens_in_body_raises(self, manager, session):
+        session.queue(FakeResponse(200, {"message": "ok", "jwt": {}}))
+        with pytest.raises(ThingiverseAuthError, match="no tokens"):
+            manager.login("devon", "pw")
+
+    def test_login_2fa_posts_code_and_stores(self, manager, session, token_file):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "refresh-jwt")))
+
+        stored = manager.login_2fa("123456")
+
+        assert stored["access"] == access
+        method, url, body = session.calls[0]
+        assert (method, url) == ("POST", f"{API_BASE}/v2/auth/2fa/login")
+        assert body == {"code": "123456"}
+        assert token_file.exists()
+
+
+class TestAccessToken:
+    def test_valid_stored_token_returned_without_refresh(
+        self, manager, session, token_file
+    ):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "refresh-jwt")))
+        manager.login("devon", "pw")
+        session.calls.clear()
+
+        assert manager.access_token() == access
+        assert session.calls == []  # no refresh round-trip
+
+    def test_expired_token_triggers_refresh(self, manager, session):
+        expired = make_jwt(exp=int(time.time()) - 100)
+        fresh = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(expired, "refresh-1")))
+        manager.login("devon", "pw")
+        # refresh endpoint returns JwtTokenResponse directly (no jwt wrapper)
+        session.queue(FakeResponse(200, {"access": fresh, "refresh": "refresh-2"}))
+
+        assert manager.access_token() == fresh
+        method, url, body = session.calls[-1]
+        assert (method, url) == ("POST", f"{API_BASE}/v2/auth/refresh")
+        assert body == {"refresh_token": "refresh-1"}
+
+    def test_refresh_rotates_stored_refresh_token(self, manager, session, token_file):
+        expired = make_jwt(exp=int(time.time()) - 100)
+        fresh = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(expired, "refresh-1")))
+        manager.login("devon", "pw")
+        session.queue(FakeResponse(200, {"access": fresh, "refresh": "refresh-2"}))
+        manager.access_token()
+
+        assert json.loads(token_file.read_text())["refresh"] == "refresh-2"
+
+    def test_no_token_file_raises_not_logged_in(self, manager):
+        with pytest.raises(NotLoggedIn):
+            manager.access_token()
+
+    def test_corrupt_token_file_raises_not_logged_in(self, manager, token_file):
+        token_file.parent.mkdir(parents=True)
+        token_file.write_text("{not json")
+        with pytest.raises(NotLoggedIn, match="corrupt"):
+            manager.access_token()
+
+    def test_rejected_refresh_raises_not_logged_in(self, manager, session):
+        expired = make_jwt(exp=int(time.time()) - 100)
+        session.queue(FakeResponse(200, login_body(expired, "refresh-1")))
+        manager.login("devon", "pw")
+        session.queue(FakeResponse(401, {"error": "invalid"}))
+
+        with pytest.raises(NotLoggedIn, match="log in again"):
+            manager.access_token()
+
+    def test_auth_header_shape(self, manager, session):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "r")))
+        manager.login("devon", "pw")
+
+        assert manager.auth_header() == {"Authorization": f"Bearer {access}"}
+
+
+class TestWhoamiAndLogout:
+    def test_whoami_returns_user(self, manager, session):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "r")))
+        manager.login("devon", "pw")
+        session.queue(FakeResponse(200, {"id": 42, "name": "devonjones"}))
+
+        user = manager.whoami()
+
+        assert user == {"id": 42, "name": "devonjones"}
+        method, url, headers = session.calls[-1]
+        assert (method, url) == ("GET", f"{API_BASE}/v2/users/me")
+        assert headers == {"Authorization": f"Bearer {access}"}
+
+    def test_whoami_non_200_raises(self, manager, session):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "r")))
+        manager.login("devon", "pw")
+        session.queue(FakeResponse(500, {}))
+
+        with pytest.raises(ThingiverseAuthError, match="HTTP 500"):
+            manager.whoami()
+
+    def test_logout_removes_file(self, manager, session, token_file):
+        session.queue(FakeResponse(200, login_body(make_jwt(exp=1), "r")))
+        manager.login("devon", "pw")
+        assert manager.is_logged_in()
+
+        manager.logout()
+
+        assert not token_file.exists()
+        assert not manager.is_logged_in()
+
+    def test_logout_without_file_is_noop(self, manager):
+        manager.logout()  # must not raise
