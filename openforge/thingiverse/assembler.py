@@ -130,6 +130,22 @@ def _merge_tags(template_tags: List[str], manifest_tags: List[str]) -> List[str]
     return merged
 
 
+# Fields every resolved model row carries, regardless of resolution path.
+# The underlying accessors project different column sets (SELECT * vs
+# explicit lists); this keeps the payload shape stable for the sync engine.
+MODEL_FIELDS = (
+    "id",
+    "blueprint_name",
+    "full_name",
+    "file_name",
+    "file_md5",
+    "file_size",
+    "storage_address",
+    "file_changed_at",
+    "file_modified_at",
+)
+
+
 def _resolve_models(curs: cursor, manifest: Dict) -> List[Dict]:
     """Resolve every model entry to blueprint rows, deduped by md5."""
     resolved = []
@@ -140,28 +156,44 @@ def _resolve_models(curs: cursor, manifest: Dict) -> List[Dict]:
             resolved.append(_resolve_md5(curs, entry["md5"]))
         else:
             resolved.append(_resolve_full_name(curs, entry["full_name"]))
-    return _dedupe_models(resolved)
+    return _dedupe_models([_project_model(row) for row in resolved])
 
 
 def _resolve_select(curs: cursor, select: Dict) -> List[Dict]:
+    """Run a selector: require = exact ALL, accept = prefix ANY, deny = exclude.
+
+    The underlying engine ANDs multiple accept entries together (each adds
+    an independent join), so ANY-of-subtrees is implemented here by running
+    one query per accept entry and unioning the results:
+    (require AND accept_1) OR (require AND accept_2) == require AND (any accept).
+    """
+    accepts = select["accept"]
+    accept_batches = [[a] for a in accepts] if accepts else [[]]
+    rows = []
+    for accept_batch in accept_batches:
+        rows.extend(_run_tag_search(curs, accept_batch, select))
+    if not rows:
+        raise AssemblyError(f"selector matched no models: {select}")
+    logger.info("selector %s matched %d models", select, len(rows))
+    return rows
+
+
+def _run_tag_search(curs: cursor, accept: List[str], select: Dict) -> List[Dict]:
     # tag_search_blueprints takes {"tag": ...} dicts (the blueprint-config
     # parts shape), not bare strings — bare strings silently no-op.
     rows = tag_sql.tag_search_blueprints(
         curs,
-        accept=[{"tag": t} for t in select["accept"]],
+        accept=[{"tag": t} for t in accept],
         require=[{"tag": t} for t in select["require"]],
         deny=[{"tag": t} for t in select["deny"]],
         limit=SELECT_LIMIT,
         models=True,
         blueprints=False,
     )
-    if not rows:
-        raise AssemblyError(f"selector matched no models: {select}")
     if len(rows) >= SELECT_LIMIT:
         raise AssemblyError(
             f"selector hit the {SELECT_LIMIT}-row ceiling (silent truncation): {select}"
         )
-    logger.info("selector %s matched %d models", select, len(rows))
     return rows
 
 
@@ -169,7 +201,7 @@ def _resolve_md5(curs: cursor, md5: str) -> Dict:
     rows = blueprint_sql.get_blueprints_by_md5(curs, md5)
     if not rows:
         raise AssemblyError(f"no blueprint with md5 {md5}")
-    return rows[0]
+    return _require_model(rows[0], f"md5 {md5}")
 
 
 def _resolve_full_name(curs: cursor, full_name: str) -> Dict:
@@ -181,7 +213,26 @@ def _resolve_full_name(curs: cursor, full_name: str) -> Dict:
             f"full_name {full_name!r} is ambiguous ({len(rows)} blueprints); "
             "reference it by md5 instead"
         )
-    return rows[0]
+    return _require_model(rows[0], f"full_name {full_name!r}")
+
+
+def _require_model(row: Dict, ref: str) -> Dict:
+    """Explicit refs must resolve to models, matching the selector filter."""
+    if row.get("blueprint_type") != "model":
+        raise AssemblyError(
+            f"{ref} resolves to a {row.get('blueprint_type')!r} blueprint, not a model"
+        )
+    return row
+
+
+def _project_model(row: Dict) -> Dict:
+    """Project a blueprint row to the stable payload shape."""
+    if not row.get("file_md5"):
+        raise AssemblyError(
+            f"model {row.get('blueprint_name')!r} has no file_md5; the sync "
+            "diff engine can't track it"
+        )
+    return {field: row.get(field) for field in MODEL_FIELDS}
 
 
 def _dedupe_models(rows: List[Dict]) -> List[Dict]:
@@ -189,7 +240,7 @@ def _dedupe_models(rows: List[Dict]) -> List[Dict]:
     deduped = []
     seen = set()
     for row in rows:
-        key = row.get("file_md5")
+        key = row["file_md5"]
         if key not in seen:
             seen.add(key)
             deduped.append(row)

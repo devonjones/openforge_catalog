@@ -187,6 +187,102 @@ class TestModelResolution:
                 with pytest.raises(AssemblyError, match="no blueprint with full_name"):
                     assemble_thing(curs, manifest)
 
+    def test_accept_matches_by_hierarchical_prefix(self, test_db, tmp_path):
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n"
+            "    - select:\n        accept: ['shape|floor']\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                insert_model(curs, "corner", "md5a", ["shape|floor|corner"])
+                insert_model(curs, "plain", "md5b", ["shape|floor"])
+                insert_model(curs, "wall", "md5c", ["shape|wall"])
+                thing = assemble_thing(curs, manifest)
+        md5s = {m["file_md5"] for m in thing["files"]["models"]}
+        assert md5s == {"md5a", "md5b"}
+
+    def test_multiple_accepts_are_any_not_all(self, test_db, tmp_path):
+        # each model carries only ONE of the two accept subtrees; ANY
+        # semantics must match both (the engine ANDs accepts natively —
+        # the assembler unions per-accept queries to get ANY)
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n"
+            "    - select:\n"
+            "        accept: ['texture|cave', 'texture|dungeon_stone']\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                insert_model(curs, "cave", "md5a", ["texture|cave|smooth"])
+                insert_model(curs, "stone", "md5b", ["texture|dungeon_stone"])
+                insert_model(curs, "other", "md5c", ["texture|tudor"])
+                thing = assemble_thing(curs, manifest)
+        md5s = {m["file_md5"] for m in thing["files"]["models"]}
+        assert md5s == {"md5a", "md5b"}
+
+    def test_model_rows_have_stable_shape_across_paths(self, test_db, tmp_path):
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n"
+            "    - select:\n        require: ['texture|cave']\n"
+            "    - md5: md5x\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                insert_model(curs, "selected", "md5a", ["texture|cave"])
+                insert_model(curs, "explicit", "md5x", [])
+                thing = assemble_thing(curs, manifest)
+        models = thing["files"]["models"]
+        assert len(models) == 2
+        assert set(models[0].keys()) == set(models[1].keys())
+        assert "file_md5" in models[0] and "storage_address" in models[0]
+
+    def test_explicit_ref_to_non_model_raises(self, test_db, tmp_path):
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n    - md5: md5comp\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                data = create_test_blueprint(
+                    blueprint_name="composite",
+                    blueprint_type="blueprint",
+                    file_md5="md5comp",
+                )
+                blueprint_sql.insert_blueprint(curs, data)
+                with pytest.raises(AssemblyError, match="not a model"):
+                    assemble_thing(curs, manifest)
+
+    def test_ambiguous_full_name_raises(self, test_db, tmp_path):
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n    - full_name: tiles/test/dupe.stl\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                dupe = "tiles/test/dupe.stl"
+                insert_model(curs, "dupe_a", "md5a", [], full_name=dupe)
+                insert_model(curs, "dupe_b", "md5b", [], full_name=dupe)
+                with pytest.raises(AssemblyError, match="ambiguous"):
+                    assemble_thing(curs, manifest)
+
+    def test_select_limit_ceiling_raises(self, test_db, tmp_path, monkeypatch):
+        import openforge.thingiverse.assembler as assembler_mod
+
+        monkeypatch.setattr(assembler_mod, "SELECT_LIMIT", 2)
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n"
+            "    - select:\n        require: ['texture|cave']\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                insert_model(curs, "one", "md5a", ["texture|cave"])
+                insert_model(curs, "two", "md5b", ["texture|cave"])
+                with pytest.raises(AssemblyError, match="ceiling"):
+                    assemble_thing(curs, manifest)
+
     def test_overlapping_entries_dedupe_by_md5(self, test_db, tmp_path):
         manifest = make_manifest(
             tmp_path,

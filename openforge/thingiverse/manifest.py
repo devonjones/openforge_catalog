@@ -41,7 +41,7 @@ Select semantics (matching the catalog's tag search engine):
 from pathlib import Path
 from typing import Dict, List
 
-from yaml import safe_load
+from yaml import YAMLError, safe_load
 
 TOP_LEVEL_KEYS = {
     "name",
@@ -82,7 +82,9 @@ def load_manifest(path: Path) -> Dict:
         raw = safe_load(path.read_text())
     except FileNotFoundError as e:
         raise ManifestError(f"manifest not found: {path}") from e
-    except Exception as e:
+    except (YAMLError, UnicodeDecodeError) as e:
+        # narrow on purpose: PermissionError/IsADirectoryError etc. keep
+        # their real type instead of being mislabeled as YAML problems
         raise ManifestError(f"manifest {path} is not valid YAML: {e}") from e
     if not isinstance(raw, dict):
         raise ManifestError(f"manifest {path} must be a YAML mapping")
