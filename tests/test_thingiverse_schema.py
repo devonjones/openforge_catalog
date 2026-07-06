@@ -119,7 +119,14 @@ def test_deleting_referenced_blueprint_is_restricted(test_db):
             blueprint = blueprint_sql.insert_blueprint(curs, create_test_blueprint())
             thing = insert_thing(curs)
             insert_file(curs, thing["id"], blueprint_id=blueprint["id"])
-            with pytest.raises(psycopg.errors.ForeignKeyViolation):
+            # RESTRICT raises RestrictViolation (23001) on newer Postgres,
+            # ForeignKeyViolation (23503) on older — accept either
+            with pytest.raises(
+                (
+                    psycopg.errors.ForeignKeyViolation,
+                    psycopg.errors.RestrictViolation,
+                )
+            ):
                 curs.execute(
                     sql.SQL("DELETE FROM blueprints WHERE id = %s"),
                     (blueprint["id"],),
@@ -134,7 +141,12 @@ def test_deleting_referenced_image_is_restricted(test_db):
             )
             thing = insert_thing(curs)
             insert_file(curs, thing["id"], file_type="image", image_id=image["id"])
-            with pytest.raises(psycopg.errors.ForeignKeyViolation):
+            with pytest.raises(
+                (
+                    psycopg.errors.ForeignKeyViolation,
+                    psycopg.errors.RestrictViolation,
+                )
+            ):
                 curs.execute(
                     sql.SQL("DELETE FROM images WHERE id = %s"), (image["id"],)
                 )
