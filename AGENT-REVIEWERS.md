@@ -158,7 +158,7 @@ Each reviewer runs independently and reports findings without coordination. A re
 | `js-async-reviewer` | `src/**/*.ts(x)` with async/promise code |
 | `credentials-hygiene-reviewer` | everything (auth code, fixtures, artifacts, `.gitignore`) |
 
-Skip reviewers whose file scope doesn't match the PR diff.
+Skip reviewers whose file scope doesn't match the PR diff. (`general-reviewer`'s scope is "everything," so it always matches — the skip rule never applies to it by construction.)
 
 ## Branch targeting
 
