@@ -174,7 +174,7 @@ def _resolve_select(curs: cursor, select: Dict) -> List[Dict]:
         rows.extend(_run_tag_search(curs, accept_batch, select))
     if not rows:
         raise AssemblyError(f"selector matched no models: {select}")
-    logger.info("selector %s matched %d models", select, len(rows))
+    logger.info("selector %s matched %d rows (pre-dedupe)", select, len(rows))
     return rows
 
 

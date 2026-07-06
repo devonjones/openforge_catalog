@@ -254,6 +254,24 @@ class TestModelResolution:
                 with pytest.raises(AssemblyError, match="not a model"):
                     assemble_thing(curs, manifest)
 
+    def test_model_without_md5_raises(self, test_db, tmp_path):
+        manifest = make_manifest(
+            tmp_path,
+            "name: X\nfiles:\n  models:\n    - full_name: tiles/test/no_md5.stl\n",
+        )
+        with test_db.connection() as conn:
+            with conn.cursor(row_factory=dict_row) as curs:
+                data = create_test_blueprint(
+                    blueprint_name="no_md5",
+                    blueprint_type="model",
+                    full_name="tiles/test/no_md5.stl",
+                )
+                # the helper generates an md5 when given None; force NULL
+                data["file_md5"] = None
+                blueprint_sql.insert_blueprint(curs, data)
+                with pytest.raises(AssemblyError, match="has no file_md5"):
+                    assemble_thing(curs, manifest)
+
     def test_ambiguous_full_name_raises(self, test_db, tmp_path):
         manifest = make_manifest(
             tmp_path,
