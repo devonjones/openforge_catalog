@@ -178,6 +178,27 @@ def test_duplicate_source_in_same_thing_rejected(test_db):
                 insert_file(curs, thing["id"], blueprint_id=blueprint["id"])
 
 
+def test_duplicate_image_in_same_thing_rejected(test_db):
+    with test_db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as curs:
+            image = image_sql.insert_image(
+                curs, "gallery_shot", "http://test.com/shot.jpg"
+            )
+            thing = insert_thing(curs)
+            insert_file(curs, thing["id"], file_type="image", image_id=image["id"])
+            with pytest.raises(psycopg.errors.UniqueViolation):
+                insert_file(curs, thing["id"], file_type="image", image_id=image["id"])
+
+
+def test_duplicate_path_in_same_thing_rejected(test_db):
+    with test_db.connection() as conn:
+        with conn.cursor(row_factory=dict_row) as curs:
+            thing = insert_thing(curs)
+            insert_file(curs, thing["id"], file_type="zip", local_path="/out/a.zip")
+            with pytest.raises(psycopg.errors.UniqueViolation):
+                insert_file(curs, thing["id"], file_type="zip", local_path="/out/a.zip")
+
+
 def test_same_source_allowed_in_different_things(test_db):
     with test_db.connection() as conn:
         with conn.cursor(row_factory=dict_row) as curs:
