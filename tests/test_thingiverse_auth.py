@@ -294,6 +294,21 @@ class TestWhoamiAndLogout:
         manager.logout()  # must not raise; no revoke call without tokens
         assert session.calls == []
 
+    def test_logout_removes_file_when_tokens_unusable(
+        self, manager, session, token_file
+    ):
+        # expired access + no refresh key: auth_header raises NotLoggedIn
+        # (a ThingiverseAuthError) before any network call; logout must
+        # still remove the file
+        token_file.parent.mkdir(parents=True)
+        expired = make_jwt(exp=int(time.time()) - 100)
+        token_file.write_text(json.dumps({"access": expired}))
+
+        manager.logout()  # must not raise
+
+        assert not token_file.exists()
+        assert session.calls == []
+
 
 class TestConstruction:
     def test_token_file_from_env_var(self, monkeypatch, tmp_path):
