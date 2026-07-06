@@ -258,6 +258,13 @@ Several resources share a consistent shape convention worth relying on:
 
 ---
 
+## OpenForge tooling environment variables
+
+- `THINGIVERSE_TOKEN_FILE` — where `openforge/thingiverse/auth.py` persists the
+  access/refresh JWTs (owner-only file permissions). Defaults to
+  `~/.config/openforge/thingiverse_tokens.json`. Name documented here only —
+  never commit token values.
+
 ## Notes for OpenForge integration
 
 - The API is JWT/session-oriented and clearly built for the first-party web app rather than

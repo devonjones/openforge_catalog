@@ -4,8 +4,10 @@ import base64
 import json
 import stat
 import time
+from pathlib import Path
 
 import pytest
+import requests
 
 from openforge.thingiverse.auth import (
     API_BASE,
@@ -49,6 +51,10 @@ class FakeSession:
         self.responses = []
         self.calls = []
         self.headers = {}
+        self.closed = False
+
+    def close(self):
+        self.closed = True
 
     def queue(self, response):
         self.responses.append(response)
@@ -250,15 +256,118 @@ class TestWhoamiAndLogout:
         with pytest.raises(ThingiverseAuthError, match="HTTP 500"):
             manager.whoami()
 
-    def test_logout_removes_file(self, manager, session, token_file):
-        session.queue(FakeResponse(200, login_body(make_jwt(exp=1), "r")))
+    def test_logout_revokes_server_side_and_removes_file(
+        self, manager, session, token_file
+    ):
+        access = make_jwt(exp=int(time.time()) + 3600)
+        session.queue(FakeResponse(200, login_body(access, "r")))
         manager.login("devon", "pw")
         assert manager.is_logged_in()
+        session.queue(FakeResponse(302))
 
         manager.logout()
 
         assert not token_file.exists()
         assert not manager.is_logged_in()
+        method, url, headers = session.calls[-1]
+        assert (method, url) == ("GET", f"{API_BASE}/v2/auth/logout")
+        assert headers == {"Authorization": f"Bearer {access}"}
 
-    def test_logout_without_file_is_noop(self, manager):
+    def test_logout_removes_file_when_revocation_fails(
+        self, manager, session, token_file
+    ):
+        class ExplodingSession(FakeSession):
+            def get(self, url, timeout=None, headers=None):
+                raise requests.ConnectionError("api unreachable")
+
+        exploding = ExplodingSession()
+        valid = make_jwt(exp=int(time.time()) + 3600)
+        exploding.queue(FakeResponse(200, login_body(valid, "r")))
+        manager = TokenManager(token_file=token_file, session=exploding)
+        manager.login("devon", "pw")
+
         manager.logout()  # must not raise
+
+        assert not token_file.exists()
+
+    def test_logout_without_file_is_noop(self, manager, session):
+        manager.logout()  # must not raise; no revoke call without tokens
+        assert session.calls == []
+
+
+class TestConstruction:
+    def test_token_file_from_env_var(self, monkeypatch, tmp_path):
+        env_path = tmp_path / "from-env.json"
+        monkeypatch.setenv("THINGIVERSE_TOKEN_FILE", str(env_path))
+        manager = TokenManager(session=FakeSession())
+        assert manager.token_file == env_path
+
+    def test_token_file_default_when_env_unset(self, monkeypatch):
+        monkeypatch.delenv("THINGIVERSE_TOKEN_FILE", raising=False)
+        manager = TokenManager(session=FakeSession())
+        expected = Path("~/.config/openforge/thingiverse_tokens.json").expanduser()
+        assert manager.token_file == expected
+
+    def test_default_session_is_requests_session_with_user_agent(self, token_file):
+        manager = TokenManager(token_file=token_file)
+        assert isinstance(manager.session, requests.Session)
+        assert manager.session.headers["User-Agent"] == "openforge-catalog-tools"
+        manager.close()
+
+    def test_context_manager_closes_session(self, token_file, session):
+        with TokenManager(token_file=token_file, session=session) as manager:
+            assert manager.session is session
+        assert session.closed
+
+
+class TestErrorBranches:
+    def test_refresh_with_no_refresh_key_raises_not_logged_in(
+        self, manager, token_file
+    ):
+        token_file.parent.mkdir(parents=True)
+        token_file.write_text(json.dumps({"access": "only-access"}))
+        with pytest.raises(NotLoggedIn, match="no refresh token stored"):
+            manager.refresh()
+
+    def test_non_json_error_body_still_raises_with_status(self, manager, session):
+        # error-detail extraction failing must not mask the HTTP failure
+        session.queue(FakeResponse(500, ValueError("not json")))
+        with pytest.raises(ThingiverseAuthError, match="HTTP 500"):
+            manager.login("devon", "pw")
+
+    def test_null_jwt_in_login_body_raises(self, manager, session):
+        session.queue(FakeResponse(200, {"message": "ok", "jwt": None}))
+        with pytest.raises(ThingiverseAuthError, match="no tokens"):
+            manager.login("devon", "pw")
+
+    def test_non_dict_jwt_in_login_body_raises(self, manager, session):
+        session.queue(FakeResponse(200, {"message": "ok", "jwt": "not-a-dict"}))
+        with pytest.raises(ThingiverseAuthError, match="no tokens"):
+            manager.login("devon", "pw")
+
+    def test_failed_store_cleans_up_tmp_and_reraises(
+        self, manager, session, token_file, monkeypatch
+    ):
+        session.queue(FakeResponse(200, login_body(make_jwt(exp=1), "r")))
+
+        def explode(src, dst):
+            raise OSError("disk full")
+
+        monkeypatch.setattr("openforge.thingiverse.auth.os.replace", explode)
+        with pytest.raises(OSError, match="disk full"):
+            manager.login("devon", "pw")
+        assert list(token_file.parent.glob("*.tmp")) == []
+        assert not token_file.exists()
+
+    def test_non_dict_jwt_payload_treated_as_expired(self):
+        # a JWT whose payload decodes to a list must not crash exp parsing
+        seg = base64.urlsafe_b64encode(json.dumps([1, 2]).encode()).decode()
+        weird = f"x.{seg.rstrip('=')}.y"
+        assert _jwt_exp(weird) is None
+        assert _token_expired(weird)
+
+    def test_store_leaves_no_tmp_file(self, manager, session, token_file):
+        session.queue(FakeResponse(200, login_body(make_jwt(exp=1), "r")))
+        manager.login("devon", "pw")
+        leftovers = list(token_file.parent.glob("*.tmp"))
+        assert leftovers == []

@@ -15,6 +15,7 @@ persisted, to a 0600 file outside the repo tree.
 
 import base64
 import binascii
+import contextlib
 import json
 import logging
 import os
@@ -64,13 +65,15 @@ def _jwt_exp(token: str) -> Optional[int]:
         # JWT segments are base64url without padding
         payload_b64 += "=" * (-len(payload_b64) % 4)
         payload = json.loads(base64.urlsafe_b64decode(payload_b64))
+        if not isinstance(payload, dict):
+            return None
         exp = payload.get("exp")
         return int(exp) if exp is not None else None
     except (IndexError, ValueError, binascii.Error, json.JSONDecodeError):
         return None
 
 
-def _token_expired(token: str, leeway: int = EXPIRY_LEEWAY) -> bool:
+def _token_expired(token: str) -> bool:
     """Report whether a JWT is expired (or close enough to need a refresh).
 
     Tokens whose exp claim can't be read are treated as expired so the
@@ -79,7 +82,7 @@ def _token_expired(token: str, leeway: int = EXPIRY_LEEWAY) -> bool:
     exp = _jwt_exp(token)
     if exp is None:
         return True
-    return time.time() >= exp - leeway
+    return time.time() >= exp - EXPIRY_LEEWAY
 
 
 class TokenManager:
@@ -213,7 +216,21 @@ class TokenManager:
         return resp.json()
 
     def logout(self):
-        """Delete the persisted tokens."""
+        """Revoke the session server-side (best effort) and delete tokens.
+
+        Server-side revocation via GET /v2/auth/logout is best-effort: an
+        unreachable API or already-dead tokens must not block removing the
+        local token file.
+        """
+        if self.is_logged_in():
+            try:
+                self.session.get(
+                    f"{API_BASE}/v2/auth/logout",
+                    headers=self.auth_header(),
+                    timeout=REQUEST_TIMEOUT,
+                )
+            except (ThingiverseAuthError, requests.RequestException) as e:
+                logger.warning("server-side logout failed: %s", e)
         try:
             self.token_file.unlink()
             logger.info("removed token file")
@@ -223,6 +240,22 @@ class TokenManager:
     def is_logged_in(self) -> bool:
         """Report whether tokens are stored (not whether they're valid)."""
         return self.token_file.exists()
+
+    def close(self):
+        """Release the HTTP session's connection pool.
+
+        One-shot CLI invocations can skip this; long-running callers
+        (the sync engine) should use the context-manager form or call
+        close() when done. Reuse one TokenManager per process — don't
+        construct one per item in a loop.
+        """
+        self.session.close()
+
+    def __enter__(self) -> "TokenManager":
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
 
     # -- internals ------------------------------------------------------
 
@@ -243,8 +276,10 @@ class TokenManager:
         body = resp.json()
         # Login endpoints return AuthTokensResponse {token, jwt: {access,
         # refresh}}; the refresh endpoint returns JwtTokenResponse
-        # {access, refresh} directly.
-        jwt = body.get("jwt", body)
+        # {access, refresh} directly. `or body` also covers "jwt": null.
+        jwt = body.get("jwt") or body
+        if not isinstance(jwt, dict):
+            raise ThingiverseAuthError(f"{action} succeeded but response had no tokens")
         access = jwt.get("access")
         refresh = jwt.get("refresh")
         if not access or not refresh:
@@ -263,13 +298,24 @@ class TokenManager:
         return stored
 
     def _store_tokens(self, tokens: Dict):
-        """Write tokens to the token file with owner-only permissions."""
+        """Write tokens atomically with owner-only permissions.
+
+        Written to a temp file in the same directory and swapped in with
+        os.replace so a crash mid-write can't corrupt the stored tokens.
+        """
         parent = self.token_file.parent
         parent.mkdir(parents=True, exist_ok=True)
         os.chmod(parent, 0o700)
-        fd = os.open(self.token_file, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
-        with os.fdopen(fd, "w") as f:
-            json.dump(tokens, f, indent=2)
+        tmp_path = self.token_file.with_name(self.token_file.name + ".tmp")
+        fd = os.open(tmp_path, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        try:
+            with os.fdopen(fd, "w") as f:
+                json.dump(tokens, f, indent=2)
+            os.replace(tmp_path, self.token_file)
+        except BaseException:
+            with contextlib.suppress(FileNotFoundError):
+                os.unlink(tmp_path)
+            raise
 
     def _load_tokens(self) -> Dict:
         """Read stored tokens.
