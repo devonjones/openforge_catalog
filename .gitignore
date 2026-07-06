@@ -21,6 +21,10 @@
 scratch
 
 .env
+
+# traffic captures — carry live credentials (JWTs, cookies); never commit
+*.har
+
 # debug
 npm-debug.log*
 yarn-debug.log*
