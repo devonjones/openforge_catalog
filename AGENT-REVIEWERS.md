@@ -182,7 +182,7 @@ Every finding must be tagged with a beads-style priority:
 - `complexity-reviewer`: **P2** for objective floor violations; **P3** for heuristic findings.
 - `dead-code-reviewer`: **P3** by default.
 
-A reviewer may promote or demote a specific finding from its default, but must state why.
+A reviewer may promote or demote a specific finding from its default, but must state why. **Where a spec under `.reviewers/` tags a specific pattern with an explicit priority, the spec's tag wins over this table** — the table gives each reviewer's default, not a ceiling/floor.
 
 ## Output format
 
@@ -202,6 +202,8 @@ Reason (optional): <only if not obvious>
 ```
 
 Structured findings are diff-able, easy to triage, and easy to deduplicate when multiple reviewers flag the same line.
+
+When posting via `post-line-comment.sh`, the comment is already anchored to a file/line by the script's arguments — keep the `File:` line in the body anyway (it survives quoting, consolidation into PR-level summaries, and beads-ticket copy/paste, where the anchor doesn't).
 
 ## Deferring findings with beads
 

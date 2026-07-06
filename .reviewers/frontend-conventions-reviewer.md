@@ -17,7 +17,7 @@ Review TypeScript/React changes (`src/**/*.ts`, `src/**/*.tsx`) for this repo's 
 
 4. **Type discipline (P2):** new `any` (explicit or via untyped boundaries), `as unknown as X` double-casts, `@ts-ignore`/`@ts-expect-error` without a comment explaining why, `!` non-null assertions where a runtime check is warranted. `npm run type-check` must pass — but these patterns pass the checker while defeating it.
 
-5. **State anti-patterns (P3):** derived state stored in `useState` + synced with `useEffect` (compute it during render or `useMemo`); `useEffect` with missing/over-broad dependencies as a data-flow mechanism; prop drilling through 3+ layers where the existing context/patterns in `src/` offer a home.
+5. **State anti-patterns (P3):** derived state stored in `useState` + synced with `useEffect` (compute it during render or `useMemo`); `useEffect` with missing/over-broad dependencies as a data-flow mechanism; prop drilling through 3+ layers where the existing context/patterns in `src/` offer a home. (Derived-state and deps findings are shared ground with `react-hooks-reviewer` — post under whichever reviewer found it first, don't double-post.)
 
 6. **Data fetching in render paths without cancellation/guards (P2):** fetches in `useEffect` that set state after unmount, missing loading/error states for user-visible data, refetching on every render due to unstable dependencies.
 
