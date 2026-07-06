@@ -21,6 +21,13 @@
 scratch
 
 .env
+
+# traffic captures — carry live credentials (JWTs, cookies); never commit.
+# Raw request/response dumps of ANY extension belong in captures/ (ignored)
+# or the session scratchpad, never elsewhere in the repo tree.
+*.har
+captures/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
