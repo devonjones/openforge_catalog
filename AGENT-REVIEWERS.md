@@ -93,6 +93,24 @@ Read `.reviewers/frontend-conventions-reviewer.md` and follow it as your complet
 
 ---
 
+## react-hooks-reviewer
+
+**What it checks:** hook correctness and render performance — missing/wrong dependency arrays, missing effect cleanup (listeners, timers, observers), setState-after-unmount and fetch races (missing abort), conditional hooks, unstable references into memoized children/effect deps, catalog-scale list rendering without stable keys/memo, `useEffect` chains as data-flow.
+**When to spawn:** PR touches `src/**/*.tsx` or hook files (`use*.ts`) in `src/`. Skip for backend-only or non-component TS diffs.
+
+Read `.reviewers/react-hooks-reviewer.md` and follow it as your complete review specification.
+
+---
+
+## js-async-reviewer
+
+**What it checks:** floating promises, `fetch` without `resp.ok` handling, swallowed rejections (P1 — the JS `except: pass`), async event handlers with no error path, `Promise.all` vs `allSettled` semantics, serial awaits for independent work, missing loading/error states, async promise-executor anti-pattern.
+**When to spawn:** PR touches `src/**/*.ts(x)` containing `async`, `await`, `.then(`, or `fetch(`. Skip otherwise.
+
+Read `.reviewers/js-async-reviewer.md` and follow it as your complete review specification.
+
+---
+
 ## credentials-hygiene-reviewer
 
 **What it checks:** literal secrets/JWTs committed anywhere (P1), HAR/traffic captures with live tokens in the diff (P1 — this project uses HAR captures for Thingiverse reverse-engineering; they carry live credentials and stay out of the repo), tokens in URLs when a header works, tokens echoed to output, insecure persistence of refresh tokens, realistic credentials in test fixtures.
@@ -124,6 +142,8 @@ Each reviewer runs independently and reports findings without coordination. A re
 | `migration-discipline-reviewer` | `openforge/db/schema/**` + any diff containing DDL |
 | `serverless-architecture-reviewer` | `requirements.txt`, `openforge/app/**`, `openforge/db/**`, storage clients |
 | `frontend-conventions-reviewer` | `src/**/*.ts(x)` |
+| `react-hooks-reviewer` | `src/**/*.tsx`, `src/**/use*.ts` |
+| `js-async-reviewer` | `src/**/*.ts(x)` with async/promise code |
 | `credentials-hygiene-reviewer` | everything (auth code, fixtures, artifacts, `.gitignore`) |
 
 Skip reviewers whose file scope doesn't match the PR diff.
@@ -156,6 +176,8 @@ Every finding must be tagged with a beads-style priority:
 - `migration-discipline-reviewer`: **P1** for DDL outside the migration system and version-number collisions; **P2** otherwise.
 - `serverless-architecture-reviewer`: **P1** for S3-instead-of-R2, persistent-state features, and connection-pattern violations; **P2** otherwise.
 - `frontend-conventions-reviewer`: **P1** for hardcoded base URLs and static-export violations; **P2** otherwise.
+- `react-hooks-reviewer`: **P2** by default; **P1** for conditional hooks; **P3** for unstable-reference and derived-state advisories.
+- `js-async-reviewer`: **P2** by default; **P1** for swallowed rejections that hide user-facing failures.
 - `test-coverage-reviewer`: **P2** by default.
 - `complexity-reviewer`: **P2** for objective floor violations; **P3** for heuristic findings.
 - `dead-code-reviewer`: **P3** by default.
