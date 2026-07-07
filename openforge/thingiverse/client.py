@@ -66,6 +66,9 @@ def normalize_hash(h: Optional[str]) -> Optional[str]:
         try:
             return binascii.hexlify(base64.b64decode(h, validate=True)).decode()
         except (binascii.Error, ValueError):
+            # A hash we can't decode would silently fail (or coincidentally
+            # collide) in the sync diff — surface it instead of hiding it.
+            logger.warning("unrecognized file hash %r; using as-is", h)
             return h.lower()
     return h.lower()
 
@@ -154,11 +157,22 @@ class ThingiverseClient:
             files = {"file": (path.name, fh)}
             return self._request("POST", f"/files/{thing_id}/uploadFile", files=files)
 
+    def delete_file(self, thing_id: int, file_id: int) -> Dict:
+        """Delete a single file from a thing.
+
+        This is the file-granular removal the sync engine uses to drop a
+        file that's no longer in the manifest (vs. delete_thing()).
+        """
+        return self._request("DELETE", f"/things/{thing_id}/files/{file_id}")
+
     def finalize_files(self, thing_id: int, file_ids: List[int]) -> Dict:
         """Commit pending uploads, associating them with the thing.
 
-        Ranks are assigned by list order (10, 20, …) to preserve intended
-        file ordering.
+        Ranks are assigned by list order (10, 20, …). Rank numbering is
+        CALL-SCOPED — a later finalize restarts at 10 rather than
+        continuing — so callers adding files incrementally should pass the
+        full intended set in one call. The sync engine finalizes a thing's
+        uploads together, so this holds.
         """
         pending = [{"id": fid, "rank": (i + 1) * 10} for i, fid in enumerate(file_ids)]
         payload = {
@@ -180,9 +194,13 @@ class ThingiverseClient:
             timeout=REQUEST_TIMEOUT,
             **kwargs,
         )
+        # Log method/path/status only — never the headers or the token.
+        logger.debug("%s %s -> %s", method, path, resp.status_code)
         if not 200 <= resp.status_code < 300:
             detail = ""
             try:
+                # Error bodies are {"error": "..."}; a non-JSON body (e.g. a
+                # Cloudflare 429 HTML page) yields no detail, not a crash.
                 detail = resp.json().get("error", "")
             except (ValueError, AttributeError):
                 pass
@@ -190,6 +208,11 @@ class ThingiverseClient:
         try:
             return resp.json()
         except ValueError:
+            # Some write endpoints legitimately return an empty body. Log it
+            # so a truncated/corrupt 2xx body (which would otherwise read as
+            # "zero files" downstream and trigger spurious re-uploads) is
+            # visible rather than silently masked.
+            logger.warning("2xx body from %s %s did not parse as JSON", method, path)
             return {}
 
     def close(self):

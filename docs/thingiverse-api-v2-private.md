@@ -41,24 +41,29 @@ token. **The write surface is the v1 API**, not v2.
 
 From the swagger path list; payload shapes to be confirmed on first real use.
 
+All confirmed live except where noted (✓ = round-tripped against the API).
+
 | Purpose | Endpoint |
 |---|---|
-| Create thing | `POST /things/` (v1 create; old tooling payload `{name, license, category, tags[], description}`) |
+| Create thing ✓ | `POST /things/` `{name, license (slug e.g. "cc"), category (display name)}` → `{id, …}` (name/license/category required) |
 | Update thing | `PATCH /things/{thing_id}` |
-| Upload a file | `POST /files/0/uploadFile` (multipart/form-data → `{"id": <fileId>}`); the `0` is the thing sentinel |
-| Finalize upload | `POST /files/0/FinalizeFiles` (the `Finalize`/`/files/{id}/finalize` variants are DEPRECATED) |
-| Thing's files (hash lives here) | `GET /things/{thing_id}/files`, `GET /things/{thing_id}/files/{file_id}` |
+| Delete thing ✓ | `DELETE /things/{thing_id}` → `{"ok":"ok"}` |
+| Upload a file ✓ | `POST /files/{thing_id}/uploadFile` (multipart, field name `file`) → `{"id": <fileId>}` — a PENDING upload. (The SPA uses the `0` sentinel pre-save; a real `thing_id` works and is what the tool uses.) |
+| Finalize uploads ✓ | `POST /files/{thing_id}/FinalizeFiles` `{pending_uploads:[{id, rank}], target_id: <thing_id>, target_type:"thing"}` — commits pendings so they appear in the file list. (The `/files/{id}/finalize` singular variant is DEPRECATED.) |
+| Thing's files (hash lives here) ✓ | `GET /things/{thing_id}/files`, `GET /things/{thing_id}/files/{file_id}` |
+| Delete a file | `DELETE /things/{thing_id}/files/{file_id}` (file-granular removal for sync) |
 | Images | `GET/POST /things/{thing_id}/images`, `/images/{image_id}` |
 | Publish | `POST /things/{thing_id}/publish` |
-| Delete/move/copy | `POST /thingops/{ids}/remove|move|copy` |
 | Download | `GET /files/{file_id}/download` |
 
-Observed upload flow in the SPA: `POST /files/0/uploadFile` (multipart, one
-per file) → returns `{id}` → files attach to the draft. A **finalize** step
-(`/files/0/FinalizeFiles`) commits them. Create-thing (`POST /things/`) was
-NOT captured live (the generic editor stalled on a Thingiverse-side 500), so
-confirm its exact payload against the swagger `resources/thing.yaml#/Root`
-and on first real create.
+Note: `POST /thingops/{ids}/remove|move|copy` is **collection**-scoped (it
+requires a `collection_id`), NOT thing deletion — use `DELETE /things/{id}`.
+
+Confirmed upload flow: `POST /files/{thing_id}/uploadFile` (multipart, one per
+file) → `{id}` (pending, does NOT yet appear in the file list) → collect the
+ids → `POST /files/{thing_id}/FinalizeFiles` with `pending_uploads` +
+`target_id`/`target_type` to commit. Rank is call-scoped (each finalize
+restarts numbering), so finalize a thing's uploads in one call.
 
 ## Known limitation (from Devon)
 

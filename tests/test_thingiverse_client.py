@@ -80,9 +80,13 @@ class TestNormalizeHash:
         assert normalize_hash(None) is None
         assert normalize_hash("") is None
 
-    def test_invalid_base64_falls_back_to_lower(self):
+    def test_invalid_base64_falls_back_to_lower_and_warns(self, caplog):
+        import logging
+
         junk = "!!!!!!!!!!!!!!!!!!!!!!=="  # 24 chars, ends '=', not base64
-        assert normalize_hash(junk) == junk.lower()
+        with caplog.at_level(logging.WARNING):
+            assert normalize_hash(junk) == junk.lower()
+        assert "unrecognized file hash" in caplog.text
 
 
 class TestThings:
@@ -130,6 +134,15 @@ class TestThings:
         session.queue(FakeResponse(200, {"ok": "ok"}))
         client.publish_thing(7)
         assert session.calls[0]["url"] == f"{API_BASE}/things/7/publish"
+
+
+class TestFileDelete:
+    def test_delete_file(self, client, session):
+        session.queue(FakeResponse(200, {"ok": "ok"}))
+        client.delete_file(7, 555)
+        call = session.calls[0]
+        assert call["method"] == "DELETE"
+        assert call["url"] == f"{API_BASE}/things/7/files/555"
 
 
 class TestFiles:
@@ -198,9 +211,13 @@ class TestErrorsAndAuth:
             client.get_thing(1)
         assert exc.value.status == 429
 
-    def test_empty_body_returns_empty_dict(self, client, session):
+    def test_empty_body_returns_empty_dict_and_warns(self, client, session, caplog):
+        import logging
+
         session.queue(FakeResponse(200, ValueError("no body")))
-        assert client.get_thing(1) == {}
+        with caplog.at_level(logging.WARNING):
+            assert client.get_thing(1) == {}
+        assert "did not parse as JSON" in caplog.text
 
     def test_write_token_consulted_per_request(self, session):
         tm = FakeTokenManager()

@@ -341,7 +341,12 @@ class TokenManager:
             raise
 
     def _peek_tokens(self) -> Dict:
-        """Read stored tokens, returning {} instead of raising if absent."""
+        """Read stored tokens, returning {} if absent or unreadable.
+
+        Used only to carry an existing session_token forward on refresh; a
+        missing-or-corrupt file just means "no prior token to carry" (the
+        caller is about to write a fresh, valid token file regardless).
+        """
         try:
             return self._load_tokens()
         except NotLoggedIn:
